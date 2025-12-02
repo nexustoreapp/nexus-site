@@ -1,0 +1,474 @@
+/* ---------- BASE ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #050816;
+  --bg-soft: #0b1020;
+  --bg-card: #111827;
+  --accent: #7c3aed;       /* roxo neon */
+  --accent-soft: #4c1d95;
+  --accent-strong: #a855f7;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --danger: #f97373;
+  --radius-lg: 16px;
+  --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.7);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+  color: var(--text);
+}
+
+/* ---------- LAYOUT GERAL ---------- */
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 96px 16px 64px;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 16px 64px;
+}
+
+/* ---------- TOPO / NAVBAR ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0)
+  );
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.9);
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f9fafb;
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: 0.18s ease;
+}
+
+.nav-link:hover {
+  color: #f9fafb;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.nav-link.active {
+  color: #f9fafb;
+  background: radial-gradient(
+    circle at top left,
+    var(--accent) 0,
+    var(--accent-soft) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.8);
+}
+
+/* ---------- HERO / HOME ---------- */
+.hero {
+  padding-top: 32px;
+}
+
+.hero-inner {
+  max-width: 768px;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 3vw + 1.2rem, 3rem);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #a855f7, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 540px;
+  margin-bottom: 24px;
+}
+
+/* ---------- BARRA DE BUSCA ---------- */
+.hero-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.input-search {
+  flex: 1 1 220px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--text);
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.input-search::placeholder {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.input-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.7);
+}
+
+/* ---------- BOTÕES E CHIPS ---------- */
+.btn-primary {
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+  color: #0b1020;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 18px 35px rgba(59, 130, 246, 0.5);
+  transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 22px 45px rgba(59, 130, 246, 0.7);
+}
+
+.btn-primary.full {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-outline {
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.18s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: #f9fafb;
+}
+
+/* Chips de categoria */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--muted);
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  transition: 0.18s ease;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: #e5e7eb;
+}
+
+/* ---------- SEÇÕES E CARDS ---------- */
+.section {
+  margin-top: 40px;
+}
+
+.section.center {
+  text-align: center;
+}
+
+.section-header h2,
+.section h1 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.section-header p,
+.section > p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.grid-cards {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card-product {
+  position: relative;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.card-product img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.card-product h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.card-tag {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  margin-bottom: 10px;
+}
+
+.card-glow {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top, rgba(124, 58, 237, 0.3), transparent);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------- PÁGINA PREMIUM ---------- */
+.premium-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.premium-summary {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.premium-results {
+  margin-top: 20px;
+}
+
+/* ---------- ASSINATURA / PLANO ---------- */
+.plan-card {
+  position: relative;
+  margin: 32px auto 0;
+  max-width: 420px;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
+  padding: 28px 20px 22px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  text-align: left;
+}
+
+.plan-glow {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top, rgba(124, 58, 237, 0.45), transparent);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.plan-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.plan-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.plan-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.plan-trial {
+  font-size: 0.9rem;
+  color: var(--accent-strong);
+  margin-bottom: 10px;
+}
+
+.plan-list {
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.plan-list li {
+  margin-bottom: 4px;
+}
+
+/* ---------- FORM LOGIN ---------- */
+.form-card {
+  margin: 24px auto 0;
+  max-width: 380px;
+  padding: 20px 18px 18px;
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+
+.form-card label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.form-card input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text);
+  outline: none;
+}
+
+.form-card input:focus {
+  border-color: var(--accent);
+}
+
+/* ---------- TEXTOS AUXILIARES ---------- */
+.small-text {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.small-text a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.small-text a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- ALERTAS ---------- */
+.alert {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.alert.error {
+  border-color: var(--danger);
+  color: #fecaca;
+}
+
+/* ---------- RODAPÉ ---------- */
+.footer {
+  text-align: center;
+  padding: 32px 16px 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 720px) {
+  .topbar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .nav {
+    gap: 10px;
+  }
+
+  main,
+  .page {
+    padding-top: 80px;
+  }
+}
