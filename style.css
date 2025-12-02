@@ -70,11 +70,12 @@ main {
 }
 
 .brand-logo {
-  width: 56px;      /* Aumentei */
-  height: 56px;
-  border-radius: 999px;
-  object-fit: cover;
-  box-shadow: 0 0 22px rgba(124, 58, 237, 0.9);
+  height: 40px;            /* controla pela altura */
+  width: auto;             /* largura fica proporcional à imagem */
+  object-fit: contain;     /* não corta a logo */
+  border-radius: 8px;      /* cantos levemente arredondados (não círculo) */
+  box-shadow: 0 0 14px rgba(124, 58, 237, 0.7); /* brilho mais suave */
+  background: transparent; /* garante fundo transparente */
 }
 
 .brand-name {
