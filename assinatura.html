@@ -2,16 +2,21 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Assinatura Nexus Premium</title>
+  <title>Assinatura Nexus - Planos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Escolha seu plano Nexus: gratuito, premium semanal, mensal ou anual. Acesso a lojas menores ou grandes marketplaces, comissões diferentes e foco em eletrônicos com desconto."
+  />
+  <link rel="icon" type="image/png" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <a href="index.html" class="brand brand-link">
-  <img src="logo.png" alt="Nexus" class="brand-logo" />
-  <span class="brand-name">Nexus</span>
-</a>
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
+    </a>
     <nav class="nav">
       <a href="index.html" class="nav-link">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
@@ -22,35 +27,95 @@
 
   <main class="page">
     <section class="section center">
-      <h1>Plano Premium Nexus</h1>
-      <p>Ative o plano visual Premium para liberar a tela de busca inteligente.</p>
+      <h1>Escolha seu plano Nexus</h1>
+      <p>
+        Aqui você define como quer usar o Nexus: de forma gratuita, com acesso a lojas menores,
+        ou no Premium, liberando grandes marketplaces e uma comissão menor nas compras.
+      </p>
 
-      <div class="plan-card">
-        <div class="plan-glow"></div>
-        <h2>Premium</h2>
-        <p class="plan-price">R$ 8,99<span>/mês</span></p>
-        <p class="plan-trial">2 dias grátis (conceito)</p>
+      <div class="plans-grid">
+        <!-- PLANO GRATUITO -->
+        <article class="plan-card" id="gratuito">
+          <div class="plan-glow"></div>
+          <h2>Gratuito</h2>
+          <p class="plan-price">R$ 0,00<span>/semana</span></p>
+          <ul class="plan-list">
+            <li>Acesso a 5–10 lojas menores</li>
+            <li>Só produtos com desconto</li>
+            <li>Comissão Nexus maior nas compras</li>
+            <li>Ideal para começar a usar a plataforma</li>
+          </ul>
+          <button class="btn-outline full" onclick="simulateCheckout('FREE')">
+            Continuar no plano gratuito
+          </button>
+          <p class="plan-note">
+            No futuro, esse botão pode apenas concluir o cadastro básico e já liberar o modo gratuito.
+          </p>
+        </article>
 
-        <ul class="plan-list">
-          <li>Interface de comparação de preços</li>
-          <li>Filtro por menor preço (quando ligar as APIs)</li>
-          <li>Visual profissional e organizado</li>
-        </ul>
+        <!-- PREMIUM SEMANAL -->
+        <article class="plan-card" id="semanal">
+          <div class="plan-glow"></div>
+          <h2>Premium Semanal</h2>
+          <p class="plan-price">R$ 8,99<span>/semana</span></p>
+          <ul class="plan-list">
+            <li>Acesso a todas as lojas (grandes + pequenas)</li>
+            <li>Comparação mais completa com IA</li>
+            <li>Comissão Nexus menor nas compras</li>
+            <li>Bom para semanas de promoção ou compras pontuais</li>
+          </ul>
+          <button class="btn-primary full" onclick="simulateCheckout('PREMIUM_WEEKLY')">
+            Assinar semanal (simulação)
+          </button>
+          <p class="plan-note">
+            Nesta versão não há cobrança real. O fluxo de pagamento real será integrado depois com um gateway
+            (como Stripe, Mercado Pago, etc.).
+          </p>
+        </article>
 
-        <button class="btn-primary full" onclick="simulateCheckout()">
-          Começar teste (simulação)
-        </button>
+        <!-- PREMIUM MENSAL -->
+        <article class="plan-card" id="mensal">
+          <div class="plan-glow"></div>
+          <h2>Premium Mensal</h2>
+          <p class="plan-price">R$ 16,99<span>/mês</span></p>
+          <ul class="plan-list">
+            <li>Todos os recursos do Premium</li>
+            <li>Melhor custo-benefício para uso contínuo</li>
+            <li>Comissão Nexus menor nas compras</li>
+            <li>Ideal para quem pesquisa e compra com frequência</li>
+          </ul>
+          <button class="btn-primary full" onclick="simulateCheckout('PREMIUM_MONTHLY')">
+            Assinar mensal (simulação)
+          </button>
+          <p class="plan-note">
+            Em produção, aqui você criaria uma assinatura recorrente mensal no gateway de pagamento.
+          </p>
+        </article>
 
-        <p class="plan-note">
-          Nesta versão não há cobrança real, apenas fluxo visual. Pagamentos reais dependem
-          de integrar um gateway como Stripe ou Mercado Pago.
-        </p>
+        <!-- PREMIUM ANUAL -->
+        <article class="plan-card" id="anual">
+          <div class="plan-glow"></div>
+          <h2>Premium Anual</h2>
+          <p class="plan-price">R$ 210,99<span>/ano</span></p>
+          <ul class="plan-list">
+            <li>Acesso total ao Nexus durante o ano inteiro</li>
+            <li>Plano mais econômico a longo prazo</li>
+            <li>Comissão Nexus menor nas compras</li>
+            <li>Perfeito para quem usa o comparador o tempo todo</li>
+          </ul>
+          <button class="btn-primary full" onclick="simulateCheckout('PREMIUM_YEARLY')">
+            Assinar anual (simulação)
+          </button>
+          <p class="plan-note">
+            Em uma integração real, este plano geraria uma cobrança anual única ou renovação automática.
+          </p>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Assinaturas.</p>
+    <p>Nexus © 2025 – Assinaturas e planos de acesso.</p>
   </footer>
 
   <script src="script.js"></script>
