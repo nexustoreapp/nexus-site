@@ -70,17 +70,17 @@ main {
 }
 
 .brand-logo {
-  width: 36px;
-  height: 36px;
+  width: 56px;      /* Aumentei */
+  height: 56px;
   border-radius: 999px;
   object-fit: cover;
-  box-shadow: 0 0 18px rgba(124, 58, 237, 0.9);
+  box-shadow: 0 0 22px rgba(124, 58, 237, 0.9);
 }
 
 .brand-name {
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 0.95rem;  /* Um pouco menor */
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #f9fafb;
 }
