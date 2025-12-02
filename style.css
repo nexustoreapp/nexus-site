@@ -69,7 +69,7 @@ main {
 }
 
 .brand-logo {
-  height: 40px;           /* tamanho controlado pela altura */
+  height: 55px;           /* tamanho controlado pela altura */
   width: auto;            /* mantém proporção natural */
   object-fit: contain;    /* não corta a logo */
   border-radius: 0;       /* sem ficar redonda */
