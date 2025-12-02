@@ -52,8 +52,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 28px;  /* ajustado */
-  background: rgba(15, 23, 42, 0.85);
+  padding: 14px 28px;
+  background: rgba(15, 23, 42, 0.9);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
 }
@@ -63,37 +63,40 @@ main {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;              /* espaço natural entre logo e texto */
+  gap: 10px;
   padding: 0;
+  text-decoration: none;
 }
 
 .brand-logo {
-  height: 38px;           /* tamanho ideal, não deforma */
+  height: 40px;           /* tamanho controlado pela altura */
   width: auto;            /* mantém proporção natural */
-  object-fit: contain;    /* não corta sua logo */
-  border-radius: 0;       /* remove redondo completamente */
-  box-shadow: none;       /* remove brilho exagerado */
+  object-fit: contain;    /* não corta a logo */
+  border-radius: 0;       /* sem ficar redonda */
+  box-shadow: none;       /* sem glow exagerado */
   background: transparent;
 }
 
 .brand-name {
   font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #ffffff;
-  margin-top: 2px;        /* alinha verticalmente */
+  margin-top: 1px;
 }
 
+/* ---------- LINKS DO MENU ---------- */
 .nav {
   display: flex;
-  gap: 18px;
+  gap: 16px;
 }
 
 .nav-link {
   font-size: 0.9rem;
   color: var(--muted);
   text-decoration: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
   transition: 0.18s ease;
 }
@@ -259,6 +262,17 @@ main {
   font-size: 0.95rem;
 }
 
+/* Versão menor de header */
+.section-header-sm {
+  margin-top: 24px;
+}
+
+.section-header-sm h2 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+/* Grid genérico */
 .grid-cards {
   margin-top: 24px;
   display: grid;
@@ -266,6 +280,7 @@ main {
   gap: 20px;
 }
 
+/* ---------- CARDS DE PRODUTO ---------- */
 .card-product {
   position: relative;
   background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
@@ -308,12 +323,51 @@ main {
   pointer-events: none;
 }
 
+/* ---------- SEÇÃO "COMO O NEXUS FUNCIONA" ---------- */
+.section-steps {
+  margin-top: 48px;
+}
+
+.grid-steps {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.card-info {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-info h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.card-info p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 /* ---------- PÁGINA PREMIUM ---------- */
 .premium-search {
+  margin-top: 20px;
+}
+
+.premium-search-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 6px;
+}
+
+.label-inline {
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .premium-summary {
@@ -326,17 +380,71 @@ main {
   margin-top: 20px;
 }
 
-/* ---------- ASSINATURA / PLANO ---------- */
+/* ---------- PLANOS / SEÇÕES DE ASSINATURA ---------- */
+.section-plans {
+  margin-top: 40px;
+}
+
+/* Cards de plano (home/premium) */
+.card-plan {
+  position: relative;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+
+.card-plan-featured {
+  border-color: var(--accent-strong);
+  box-shadow: 0 24px 50px rgba(124, 58, 237, 0.6);
+}
+
+.card-plan h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.card-plan .card-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.card-plan .card-list {
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 10px 0 16px;
+}
+
+.card-plan .card-list li {
+  margin-bottom: 4px;
+}
+
+/* Grid da página de assinatura */
+.plans-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Card principal de plano (assinatura.html) */
 .plan-card {
   position: relative;
-  margin: 32px auto 0;
-  max-width: 420px;
   background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
   padding: 28px 20px 22px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(148, 163, 184, 0.28);
   text-align: left;
+}
+
+.plans-grid .plan-card {
+  max-width: none;
+  margin: 0;
 }
 
 .plan-glow {
@@ -469,5 +577,9 @@ main {
   main,
   .page {
     padding-top: 80px;
+  }
+
+  .premium-search-row {
+    flex-direction: column;
   }
 }
