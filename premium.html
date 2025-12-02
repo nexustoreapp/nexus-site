@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nexus Premium - Busca Inteligente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="premium.html" class="nav-link active">Premium</a>
+      <a href="assinatura.html" class="nav-link">Assinatura</a>
+      <a href="login.html" class="nav-link">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-header">
+        <h1>Busca Inteligente Premium</h1>
+        <p>
+          Aqui o front-end vai conversar com um back-end futuro que consulta Shopee, Mercado Livre,
+          AliExpress, Amazon etc. No momento, não há dados falsos, só teste visual.
+        </p>
+      </div>
+
+      <div id="premium-status" class="alert"></div>
+
+      <div class="premium-search">
+        <input
+          type="text"
+          id="premium-query"
+          class="input-search"
+          placeholder="Digite o nome do produto..."
+        />
+        <button class="btn-primary" onclick="runPremiumSearch()">
+          Buscar nas lojas
+        </button>
+      </div>
+
+      <div id="premium-summary" class="premium-summary"></div>
+      <div id="premium-results" class="premium-results"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Nexus © 2025 – Módulo Premium em desenvolvimento.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
