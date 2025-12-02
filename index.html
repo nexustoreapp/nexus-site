@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nexus - Comparador Gamer & Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Início</a>
+      <a href="premium.html" class="nav-link">Premium</a>
+      <a href="assinatura.html" class="nav-link">Assinatura</a>
+      <a href="login.html" class="nav-link">Entrar</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          Encontre o <span class="highlight">melhor preço</span> em eletrônicos gamers e home office.
+        </h1>
+        <p class="hero-subtitle">
+          Este é o front-end da Nexus. No futuro, com um back-end ligado, ele busca preços em várias lojas online.
+        </p>
+
+        <div class="hero-search">
+          <input
+            type="text"
+            id="home-query"
+            class="input-search"
+            placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
+          />
+          <button class="btn-primary" onclick="goToPremiumFromHome()">
+            Buscar menor preço
+          </button>
+        </div>
+
+        <div class="chip-row">
+          <button class="chip" onclick="quickPreset('notebook gamer')">Notebooks</button>
+          <button class="chip" onclick="quickPreset('monitor 144Hz')">Monitores</button>
+          <button class="chip" onclick="quickPreset('teclado mecânico rgb')">Teclados</button>
+          <button class="chip" onclick="quickPreset('headset gamer')">Headsets</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Ofertas em destaque (exemplo visual)</h2>
+        <p>Depois você pode substituir isso por dados reais da API.</p>
+      </div>
+
+      <div class="grid-cards">
+        <article class="card-product">
+          <div class="card-glow"></div>
+          <img src="https://via.placeholder.com/350x220" alt="Headset Gamer" />
+          <h3>Headset Gamer 7.1</h3>
+          <p class="card-tag">Exemplo de oferta</p>
+          <p class="card-price">R$ 199,90</p>
+          <button class="btn-outline">Ver na loja</button>
+        </article>
+
+        <article class="card-product">
+          <div class="card-glow"></div>
+          <img src="https://via.placeholder.com/350x220" alt="Teclado RGB" />
+          <h3>Teclado Mecânico RGB</h3>
+          <p class="card-tag">Exemplo de oferta</p>
+          <p class="card-price">R$ 259,90</p>
+          <button class="btn-outline">Ver na loja</button>
+        </article>
+
+        <article class="card-product">
+          <div class="card-glow"></div>
+          <img src="https://via.placeholder.com/350x220" alt="Monitor 144Hz" />
+          <h3>Monitor 24&quot; 144Hz</h3>
+          <p class="card-tag">Exemplo de oferta</p>
+          <p class="card-price">R$ 899,90</p>
+          <button class="btn-outline">Ver na loja</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Nexus © 2025 – Layout visual minimal neon.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
