@@ -4,14 +4,19 @@
   <meta charset="UTF-8" />
   <title>Entrar - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Faça login na sua conta Nexus para acessar a comparação de preços gamer & tech, planos gratuito e premium e acompanhar suas buscas."
+  />
+  <link rel="icon" type="image/png" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
-   <a href="index.html" class="brand brand-link">
-  <img src="logo.png" alt="Nexus" class="brand-logo" />
-  <span class="brand-name">Nexus</span>
-</a>
+    <a href="index.html" class="brand brand-link">
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
+    </a>
     <nav class="nav">
       <a href="index.html" class="nav-link">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
@@ -23,28 +28,39 @@
   <main class="page">
     <section class="section center">
       <h1>Entrar na sua conta Nexus</h1>
-      <p>Login apenas de demonstração, sem back-end real ainda.</p>
+      <p>
+        Este login ainda é uma simulação de front-end. Em produção, aqui vamos validar seus dados no
+        back-end (CPF, e-mail, senha) e aplicar autenticação em duas etapas (2FA) por e-mail.
+      </p>
 
       <form class="form-card" onsubmit="return fakeLogin(event)">
         <label>
           E-mail
-          <input type="email" id="login-email" required />
+          <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" />
         </label>
         <label>
           Senha
-          <input type="password" id="login-password" required />
+          <input type="password" id="login-password" required placeholder="••••••••" />
         </label>
+
+        <!-- Campo opcional só pra indicar futuro uso de CPF (login futuro pode aceitar CPF ou e-mail) -->
+        <p class="small-text">
+          No cadastro real, você também informará seu <strong>CPF</strong>. No login futuro, será possível
+          acessar tanto com e-mail quanto com CPF + senha, mais o código 2FA.
+        </p>
+
         <button type="submit" class="btn-primary full">Entrar</button>
       </form>
 
       <p class="small-text">
-        Não tem conta? <a href="assinatura.html">Ative o Premium de demonstração.</a>
+        Ainda não tem conta?
+        <a href="assinatura.html">Escolha um plano e crie seu acesso Nexus.</a>
       </p>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025</p>
+    <p>Nexus © 2025 – Acesso à sua conta.</p>
   </footer>
 
   <script src="script.js"></script>
