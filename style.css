@@ -68,14 +68,18 @@ main {
   text-decoration: none;
 }
 
+/* Logo maior + neon seguindo o formato da imagem (drop-shadow) */
 .brand-logo {
-  height: 54px;
+  height: 60px;                 /* AUMENTADO */
   width: auto;
   object-fit: contain;
-  border-radius: 8px;  /* leve arredondado, não círculo */
-  box-shadow: 0 0 18px rgba(124, 58, 237, 0.55);
+  border-radius: 0;             /* sem canto redondo obrigatório */
   background: transparent;
+  filter:
+    drop-shadow(0 0 6px rgba(124, 58, 237, 0.9))
+    drop-shadow(0 0 14px rgba(59, 130, 246, 0.8));  /* neon em volta */
 }
+
 .brand-name {
   font-weight: 700;
   font-size: 1.05rem;
@@ -595,4 +599,25 @@ main {
 .card-plan.card-plan-featured .btn-primary {
   background: linear-gradient(135deg, #ec4899, #8b5cf6); /* rosa -> roxo  */
   box-shadow: 0 26px 55px rgba(236, 72, 153, 0.7);
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 720px) {
+  .topbar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .nav {
+    gap: 10px;
+  }
+
+  main,
+  .page {
+    padding-top: 80px;
+  }
+
+  .premium-search-row {
+    flex-direction: column;
+  }
 }
