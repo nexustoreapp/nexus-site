@@ -69,14 +69,13 @@ main {
 }
 
 .brand-logo {
-  height: 65px;           /* tamanho controlado pela altura */
-  width: auto;            /* mantém proporção natural */
-  object-fit: contain;    /* não corta a logo */
-  border-radius: 0;       /* sem ficar redonda */
-  box-shadow: none;       /* sem glow exagerado */
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;  /* leve arredondado, não círculo */
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.55);
   background: transparent;
 }
-
 .brand-name {
   font-weight: 700;
   font-size: 1.05rem;
