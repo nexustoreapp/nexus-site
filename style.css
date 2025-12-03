@@ -562,23 +562,37 @@ main {
   font-size: 0.85rem;
 }
 
-/* ---------- RESPONSIVO ---------- */
-@media (max-width: 720px) {
-  .topbar {
-    padding: 10px 14px;
-    gap: 10px;
-  }
+/* ---------- BOTÕES ESPECÍFICOS DOS PLANOS ---------- */
 
-  .nav {
-    gap: 10px;
-  }
+/* botões dentro dos cards de plano (assinatura + seções de planos) */
+.card-plan .btn-primary,
+.plan-card .btn-primary {
+  background: linear-gradient(135deg, #a855f7, #6366f1); /* roxo -> azul */
+  color: #0b1020;
+  box-shadow: 0 18px 35px rgba(88, 28, 135, 0.6);
+}
 
-  main,
-  .page {
-    padding-top: 80px;
-  }
+.card-plan .btn-primary:hover,
+.plan-card .btn-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 24px 45px rgba(88, 28, 135, 0.8);
+}
 
-  .premium-search-row {
-    flex-direction: column;
-  }
+/* botões "outline" dos planos */
+.card-plan .btn-outline,
+.plan-card .btn-outline {
+  border-color: rgba(168, 85, 247, 0.7);
+  color: #e5e7eb;
+}
+
+.card-plan .btn-outline:hover,
+.plan-card .btn-outline:hover {
+  border-color: #a855f7;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* destaca ainda mais o plano Premium semanal (card-plan-featured) */
+.card-plan.card-plan-featured .btn-primary {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6); /* rosa -> roxo  */
+  box-shadow: 0 26px 55px rgba(236, 72, 153, 0.7);
 }
