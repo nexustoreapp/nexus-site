@@ -212,21 +212,21 @@ body {
 /*  PC - DESKTOP                 */
 /* ============================= */
 /* ============================
-   AJUSTE DA BARRA NO MOBILE
+   AJUSTES PARA CELULAR
    ============================ */
 @media (max-width: 767px) {
 
-  /* BARra de pesquisa MENOR (resolve o quadrado gigante) */
+  /* Barra de pesquisa menor (sem ficar quadradona gigante) */
   .input-search {
-    height: 42px !important;      /* Altura ajustada */
+    height: 42px !important;
     border-radius: 10px !important;
     padding: 0 14px !important;
     font-size: 14px !important;
   }
 
-  /* Mantém os botões longe da barra, no mesmo lugar */
+  /* Mantém a distância entre barra e botão — NÃO ENCOSTA */
   .hero-search {
-    gap: 12px !important;         /* Distância fixa da barra para o botão */
+    gap: 12px !important;
   }
 
   .hero-search .btn-primary {
@@ -235,51 +235,87 @@ body {
     font-size: 15px !important;
   }
 
-  /* Aproxima o nome da logo */
+  /* Aproxima NEXUS da logo */
   .brand-name {
     margin-left: 4px !important;
     font-size: 17px !important;
   }
 
+  /* Logo maior e proporcional */
   .brand-logo {
     width: 50px !important;
     height: 50px !important;
   }
+
+  /* Menu hamburguer no mobile */
+  .nav-toggle {
+    display: flex !important;
+  }
+
+  /* Menu fechado por padrão */
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(15, 23, 42, 0.95);
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  /* Menu abre quando clicado */
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 14px;
+    font-size: 1rem;
+  }
 }
+
+
+/* ============================
+   AJUSTES PARA PC / TABLET
+   ============================ */
 @media (min-width: 768px) {
 
-.nav {
-display: flex !important;
-flex-direction: row;
-background: transparent;
-width: fit-content;
-padding: 0;
-margin: 0;
-gap: 22px;
-}
+  .nav {
+    display: flex !important;
+    flex-direction: row;
+    background: transparent;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    gap: 22px;
+  }
 
-.nav-toggle {
-display: none;
-}
+  .nav-toggle {
+    display: none !important;
+  }
 
-.brand-logo {
-width: 46px;
-height: 46px;
-}
+  .brand-logo {
+    width: 46px;
+    height: 46px;
+  }
 
-.input-search {
-width: 380px;
-height: 42px;
-}
+  .brand-name {
+    margin-left: 6px;
+    font-size: 19px;
+  }
 
-.hero-search {
-flex-direction: row;
-align-items: center;
-gap: 10px;
-}
+  /* Ajuste da barra de pesquisa sem ficar gigante */
+  .input-search {
+    width: 380px;
+    height: 42px;
+  }
 
-.btn-primary {
-width: auto;
-padding: 0 20px;
-}
+  .hero-search {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    width: auto;
+    padding: 0 20px;
+  }
 }
