@@ -6,23 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Escolha seu plano Nexus: gratuito, premium semanal, mensal ou anual. Acesso a lojas menores ou grandes marketplaces, comissões diferentes e foco em eletrônicos com desconto."
+    content="Escolha seu plano Nexus: gratuito, premium semanal, mensal ou anual. Acesse lojas menores ou grandes marketplaces com comissões diferentes."
   />
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    a.brand-link { display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit; }
+    .brand-name { font-weight:700;letter-spacing:0.06em; }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
     <a href="index.html" class="brand brand-link">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">NEXUS</span>
     </a>
 
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Abrir menu">
-      &#9776;
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
-    <nav class="nav" id="main-nav">
+    <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
       <a href="assinatura.html" class="nav-link active">Assinatura</a>
@@ -34,8 +50,8 @@
     <section class="section center">
       <h1>Escolha seu plano Nexus</h1>
       <p>
-        Você pode começar no modo gratuito, com acesso a lojas menores, ou ativar o Premium
-        para liberar grandes marketplaces e pagar uma comissão menor nas compras.
+        Defina como você quer usar o Nexus: gratuitamente, com acesso a lojas menores, ou no Premium,
+        liberando grandes marketplaces e uma comissão menor nas compras.
       </p>
 
       <div class="plans-grid">
@@ -49,7 +65,7 @@
             <li>Comissão Nexus maior nas compras</li>
             <li>Ideal para começar a usar a plataforma</li>
           </ul>
-          <button class="btn-primary full" onclick="simulateCheckout('FREE')">
+          <button class="btn-outline full" onclick="simulateCheckout('FREE')">
             Continuar no plano gratuito
           </button>
           <p class="plan-note">
@@ -71,8 +87,8 @@
             Assinar semanal (simulação)
           </button>
           <p class="plan-note">
-            Nesta versão não há cobrança real. O fluxo de pagamento real será integrado depois com um gateway
-            (como Stripe, Mercado Pago, etc.).
+            Nesta versão não há cobrança real. O fluxo de pagamento real será integrado depois com um
+            gateway (como Stripe, Mercado Pago, etc.).
           </p>
         </article>
 
@@ -119,6 +135,15 @@
     <p>Nexus © 2025 – Assinaturas e planos de acesso.</p>
   </footer>
 
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('nav-open');
+      });
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
