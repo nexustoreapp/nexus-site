@@ -74,7 +74,6 @@ main {
   object-fit: contain;
   border-radius: 0;
   background: transparent;
-  /* neon seguindo o formato da logo (PNG transparente) */
   filter:
     drop-shadow(0 0 6px rgba(124, 58, 237, 0.9))
     drop-shadow(0 0 14px rgba(59, 130, 246, 0.8));
@@ -176,7 +175,7 @@ main {
   box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.75);
 }
 
-/* ---------- BOTÕES E CHIPS ---------- */
+/* ---------- BOTÕES E CHIPS (GERAIS) ---------- */
 .btn-primary {
   padding: 11px 20px;
   border-radius: 999px;
@@ -265,7 +264,6 @@ main {
   font-size: 0.95rem;
 }
 
-/* Versão menor de header */
 .section-header-sm {
   margin-top: 24px;
 }
@@ -494,6 +492,12 @@ main {
   margin-bottom: 4px;
 }
 
+.plan-note {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 /* ---------- FORM LOGIN ---------- */
 .form-card {
   margin: 24px auto 0;
@@ -566,16 +570,16 @@ main {
   font-size: 0.85rem;
 }
 
-/* ---------- BOTÕES ESPECÍFICOS DOS PLANOS ---------- */
+/* ---------- BOTÕES ESPECÍFICOS DOS PLANOS (HOME + ASSINATURA) ---------- */
 
-/* botões dentro dos cards de plano (assinatura + seções de planos) */
+/* BOTÕES DENTRO DE QUALQUER CARD DE PLANO */
 .card-plan .btn-primary,
 .plan-card .btn-primary {
-  background: linear-gradient(135deg, #a855f7, #6366f1); /* roxo -> azul */
-  color: #0b1020;
+  background: linear-gradient(135deg, #a855f7, #6366f1) !important;
+  color: #0b1020 !important;
   box-shadow:
     0 0 10px rgba(88, 28, 135, 0.7),
-    0 18px 35px rgba(88, 28, 135, 0.7);
+    0 18px 35px rgba(88, 28, 135, 0.8);
   border: none;
 }
 
@@ -587,27 +591,27 @@ main {
     0 24px 45px rgba(88, 28, 135, 0.9);
 }
 
-/* botões "outline" dos planos */
+/* botões outline dos planos */
 .card-plan .btn-outline,
 .plan-card .btn-outline {
-  border-color: rgba(168, 85, 247, 0.9);
-  color: #e5e7eb;
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.9) !important;
+  color: #e5e7eb !important;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.45);
 }
 
 .card-plan .btn-outline:hover,
 .plan-card .btn-outline:hover {
-  border-color: #a855f7;
+  border-color: #a855f7 !important;
   background: rgba(15, 23, 42, 0.96);
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
 }
 
-/* destaca ainda mais o plano Premium semanal (card-plan-featured) */
+/* plano destacado (se usar card-plan-featured na home) */
 .card-plan.card-plan-featured .btn-primary {
-  background: linear-gradient(135deg, #ec4899, #8b5cf6); /* rosa -> roxo  */
+  background: linear-gradient(135deg, #ec4899, #8b5cf6) !important;
   box-shadow:
     0 0 14px rgba(236, 72, 153, 0.9),
-    0 26px 55px rgba(236, 72, 153, 0.8);
+    0 26px 55px rgba(236, 72, 153, 0.85);
 }
 
 /* ---------- RESPONSIVO ---------- */
