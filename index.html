@@ -4,25 +4,26 @@
   <meta charset="UTF-8" />
   <title>Nexus - Comparador Gamer & Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas. Planos gratuito e premium (semanal, mensal e anual)."
-  />
+  <meta name="description" content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas. Planos gratuito e premium (semanal, mensal e anual)." />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- NAVBAR -->
   <header class="topbar">
     <a href="index.html" class="brand brand-link">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">NEXUS</span>
     </a>
 
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Abrir menu">
-      &#9776;
+    <button class="nav-toggle" id="navToggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
-    <nav class="nav" id="main-nav">
+    <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link active">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
@@ -31,18 +32,21 @@
   </header>
 
   <main>
-    <!-- HERO PRINCIPAL -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
+
         <h1 class="hero-title">
           Seu ponto de partida para achar
           <span class="highlight">ofertas de eletrônicos sem dor de cabeça</span>.
         </h1>
+
         <p class="hero-subtitle">
-          Compare preços de notebooks, periféricos, monitores, headsets e muito mais em um lugar só.
+          Compare preços de notebooks, periféricos, monitores, headsets e muito mais em um só lugar.
           O Nexus busca sempre <strong>produtos com desconto</strong> em várias lojas ao mesmo tempo.
         </p>
 
+        <!-- AQUI É A BARRA DE BUSCA CERTA -->
         <div class="hero-search">
           <input
             type="text"
@@ -50,67 +54,55 @@
             class="input-search"
             placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
           />
+
           <button class="btn-primary" onclick="goToPremiumFromHome()">
             Buscar menor preço
           </button>
         </div>
 
+        <!-- Chips -->
         <div class="chip-row">
           <button class="chip" onclick="quickPreset('notebook gamer')">Notebooks</button>
           <button class="chip" onclick="quickPreset('monitor 144Hz')">Monitores</button>
           <button class="chip" onclick="quickPreset('teclado mecânico rgb')">Teclados</button>
           <button class="chip" onclick="quickPreset('headset gamer')">Headsets</button>
         </div>
+
       </div>
     </section>
 
-    <!-- COMO O NEXUS FUNCIONA -->
+    <!-- COMO FUNCIONA -->
     <section class="section section-steps">
       <div class="section-header">
         <h2>Como o Nexus funciona</h2>
         <p>
-          Você pesquisa uma vez, a nossa IA consulta várias lojas, aplica a comissão certa de acordo com o plano
-          e você vê o melhor preço final já com desconto.
+          Você pesquisa uma vez, nossa IA consulta várias lojas, aplica a comissão certa
+          e te mostra o menor preço final com desconto.
         </p>
       </div>
 
       <div class="grid-steps">
         <article class="card-info">
           <h3>1. Pesquisa inteligente</h3>
-          <p>
-            Você digita o que quer (ex: “smartwatch”, “cadeira gamer”, “fone bluetooth”)
-            e o Nexus consulta diversas lojas ao mesmo tempo. No plano gratuito, só lojas menores;
-            no Premium, grandes e pequenas.
-          </p>
+          <p>Digita o que busca e o Nexus consulta lojas simultaneamente.</p>
         </article>
 
         <article class="card-info">
           <h3>2. Comparação com desconto</h3>
-          <p>
-            O sistema filtra apenas produtos com desconto e calcula o valor final já com a
-            <strong>comissão Nexus</strong> de acordo com o seu plano:
-            no <strong>gratuito</strong> a comissão é maior, no <strong>Premium</strong> a comissão é menor.
-          </p>
+          <p>Filtramos só produtos com desconto e aplicamos comissão conforme o plano.</p>
         </article>
 
         <article class="card-info">
           <h3>3. Compra e rastreio</h3>
-          <p>
-            Você compra direto pelo Nexus, o pedido é repassado para as lojas parceiras
-            (modelo dropshipping intermediado) e a entrega vai direto para você.
-            O rastreio fica centralizado na plataforma.
-          </p>
+          <p>Compra pelo Nexus e acompanha o rastreio centralizado.</p>
         </article>
       </div>
     </section>
 
-    <!-- PLANOS EM DESTAQUE (RESUMO) -->
+    <!-- PLANOS -->
     <section class="section section-plans">
       <div class="section-header">
         <h2>Planos para todos os perfis</h2>
-        <p>
-          Comece grátis e, quando fizer sentido, ative o Premium para ter acesso às maiores lojas e pagar menos comissão.
-        </p>
       </div>
 
       <div class="grid-cards">
@@ -118,91 +110,48 @@
           <h3>Gratuito</h3>
           <p class="card-price">R$ 0,00 / semana</p>
           <ul class="card-list">
-            <li>Acesso a 5–10 lojas menores</li>
+            <li>Acesso a lojas menores</li>
             <li>Só produtos com desconto</li>
-            <li>Comissão Nexus maior sobre a compra</li>
-            <li>Perfeito para testar a plataforma</li>
           </ul>
-          <a href="assinatura.html#gratuito" class="btn-outline full">Começar no gratuito</a>
+          <a href="assinatura.html" class="btn-outline">Começar no gratuito</a>
         </article>
 
         <article class="card-plan card-plan-featured">
           <h3>Premium Semanal</h3>
           <p class="card-price">R$ 8,99 / semana</p>
           <ul class="card-list">
-            <li>Acesso a todas as lojas (grandes + pequenas)</li>
-            <li>IA mais precisa na comparação</li>
-            <li>Comissão Nexus menor</li>
-            <li>Ideal para quem compra com frequência</li>
+            <li>Lojas grandes + pequenas</li>
+            <li>Descontos melhores</li>
           </ul>
-          <a href="assinatura.html#semanal" class="btn-primary full">Assinar semanal</a>
+          <a href="premium.html" class="btn-primary">Assinar semanal</a>
         </article>
 
         <article class="card-plan">
           <h3>Premium Mensal</h3>
           <p class="card-price">R$ 16,99 / mês</p>
           <ul class="card-list">
-            <li>Todos os benefícios do Premium</li>
-            <li>Melhor custo-benefício no mês</li>
-            <li>Comissão Nexus menor</li>
-            <li>Perfeito para uso contínuo</li>
+            <li>Todos os recursos Premium</li>
           </ul>
-          <a href="assinatura.html#mensal" class="btn-outline full">Assinar mensal</a>
-        </article>
-
-        <article class="card-plan">
-          <h3>Premium Anual</h3>
-          <p class="card-price">R$ 210,99 / ano</p>
-          <ul class="card-list">
-            <li>Acesso total durante o ano inteiro</li>
-            <li>Mais econômico a longo prazo</li>
-            <li>Comissão Nexus menor</li>
-            <li>Focado em quem compra sempre</li>
-          </ul>
-          <a href="assinatura.html#anual" class="btn-outline full">Assinar anual</a>
+          <a href="premium.html" class="btn-outline">Assinar mensal</a>
         </article>
       </div>
     </section>
 
-    <!-- OFERTAS EM DESTAQUE (EXEMPLO VISUAL) -->
-    <section class="section">
-      <div class="section-header">
-        <h2>Ofertas em destaque (exemplo visual)</h2>
-        <p>Depois você pode substituir isso por dados reais vindos da API do backend Nexus.</p>
-      </div>
-
-      <div class="grid-cards">
-        <article class="card-product">
-          <img src="https://via.placeholder.com/350x220" alt="Headset Gamer" />
-          <h3>Headset Gamer 7.1</h3>
-          <p class="card-tag">Exemplo de oferta</p>
-          <p class="card-price">R$ 199,90</p>
-          <button class="btn-outline">Ver na loja</button>
-        </article>
-
-        <article class="card-product">
-          <img src="https://via.placeholder.com/350x220" alt="Teclado RGB" />
-          <h3>Teclado Mecânico RGB</h3>
-          <p class="card-tag">Exemplo de oferta</p>
-          <p class="card-price">R$ 259,90</p>
-          <button class="btn-outline">Ver na loja</button>
-        </article>
-
-        <article class="card-product">
-          <img src="https://via.placeholder.com/350x220" alt="Monitor 144Hz" />
-          <h3>Monitor 24&quot; 144Hz</h3>
-          <p class="card-tag">Exemplo de oferta</p>
-          <p class="card-price">R$ 899,90</p>
-          <button class="btn-outline">Ver na loja</button>
-        </article>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Comparador Gamer & Tech com IA e foco em descontos.</p>
+    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- SCRIPT -->
+  <script>
+    // menu hamburguer
+    const toggle = document.getElementById("navToggle");
+    const menu = document.getElementById("navMenu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("nav-open");
+    });
+  </script>
 </body>
 </html>
