@@ -6,36 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Nexus Premium libera busca inteligente em grandes lojas como Amazon, Magalu, Mercado Livre, Shopee e outras, com comissão menor."
+    content="Nexus Premium libera busca inteligente em grandes lojas como Amazon, Magalu, Mercado Livre e outras, com comissão menor e planos semanal, mensal e anual."
   />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    a.brand-link { display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit; }
-    .brand-name { font-weight:700;letter-spacing:0.06em; }
-  </style>
 </head>
-
 <body>
   <header class="topbar">
-    <a href="index.html" class="brand brand-link">
-      <img src="logo.png" class="brand-logo" alt="Nexus" />
-      <span class="brand-name">NEXUS</span>
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span></span><span></span><span></span>
     </button>
 
     <nav class="nav" id="navMenu">
@@ -47,25 +31,27 @@
   </header>
 
   <main class="page">
-    <section class="section">
+    <section class="section fade-in">
       <div class="section-header">
         <h1>Nexus Premium – Busca Inteligente em Grandes Lojas</h1>
         <p>
-          No Premium, o Nexus consulta também as grandes lojas (Amazon, Mercado Livre, Shopee, Magalu,
-          AliExpress e outras), sempre focando em <strong>produtos com desconto</strong> e aplicando
-          uma <strong>comissão menor</strong> do Nexus sobre o preço base.
+          No Premium você libera as grandes lojas (Amazon, Mercado Livre, Shopee, Magalu, AliExpress e outras),
+          sempre focando em <strong>produtos com desconto</strong> e com
+          <strong>comissão Nexus menor</strong> sobre o preço base.
+        </p>
+        <p class="muted">
+          Esta página está em modo de demonstração visual. Depois o back-end real de busca (API Nexus) será conectado.
         </p>
       </div>
 
       <div id="premium-status" class="alert">
-        Você está visualizando o Nexus Premium em modo demonstração. Em produção, aqui vamos validar
-        seu plano (semanal, mensal ou anual) antes da busca.
+        Você está visualizando o Nexus Premium em modo simulado. Em produção, aqui validaríamos seu plano ativo.
       </div>
 
       <!-- BUSCA PREMIUM -->
       <div class="premium-search">
         <label for="premium-query" class="label-inline">
-          Digite o nome do produto que você quer procurar no modo Premium:
+          Digite o produto que você quer procurar no modo Premium:
         </label>
         <div class="premium-search-row">
           <input
@@ -78,13 +64,16 @@
             Buscar nas grandes lojas
           </button>
         </div>
+        <p class="muted">
+          No Premium o Nexus consulta mais lojas e aplica uma <strong>comissão menor</strong>, então o preço tende a ser melhor.
+        </p>
       </div>
 
-      <!-- PLANOS PREMIUM RESUMO -->
+      <!-- RESUMO DOS PLANOS -->
       <section class="section section-plans">
         <div class="section-header section-header-sm">
           <h2>Planos Premium disponíveis</h2>
-          <p>Todos liberam as grandes lojas, IA mais precisa e comissão Nexus reduzida.</p>
+          <p>Escolha o modelo de assinatura que combina com o seu uso.</p>
         </div>
 
         <div class="grid-cards">
@@ -93,7 +82,8 @@
             <p class="card-price">R$ 8,99 / semana</p>
             <ul class="card-list">
               <li>Acesso total às grandes e pequenas lojas</li>
-              <li>Ideal para testar o Premium ou semanas de promoção</li>
+              <li>Bom para semanas de promoção específicas</li>
+              <li>Comissão Nexus menor nas compras</li>
             </ul>
             <a href="assinatura.html#semanal" class="btn-outline">Escolher semanal</a>
           </article>
@@ -104,6 +94,7 @@
             <ul class="card-list">
               <li>Melhor custo-benefício para uso contínuo</li>
               <li>Todos os benefícios do Premium</li>
+              <li>Comissão Nexus reduzida</li>
             </ul>
             <a href="assinatura.html#mensal" class="btn-primary">Escolher mensal</a>
           </article>
@@ -112,15 +103,16 @@
             <h3>Premium Anual</h3>
             <p class="card-price">R$ 210,99 / ano</p>
             <ul class="card-list">
+              <li>Acesso total durante o ano inteiro</li>
               <li>Mais econômico no longo prazo</li>
-              <li>Acesso total ao Nexus o ano inteiro</li>
+              <li>Comissão Nexus menor nas compras</li>
             </ul>
             <a href="assinatura.html#anual" class="btn-outline">Escolher anual</a>
           </article>
         </div>
       </section>
 
-      <!-- ÁREA ONDE O script.js COLOCA OS RESULTADOS FAKE -->
+      <!-- ÁREA DE RESULTADOS (EXEMPLO) -->
       <div id="premium-summary" class="premium-summary"></div>
       <div id="premium-results" class="premium-results"></div>
     </section>
@@ -130,15 +122,6 @@
     <p>Nexus © 2025 – Módulo Premium focado em comparação gamer & tech com IA.</p>
   </footer>
 
-  <script>
-    const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu');
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        menu.classList.toggle('nav-open');
-      });
-    }
-  </script>
   <script src="script.js"></script>
 </body>
 </html>
