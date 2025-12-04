@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: linear-gradient(180deg, #0a0f1f, #0f172a);
   color: #e5e7eb;
   line-height: 1.5;
@@ -29,22 +29,41 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
+/* link da marca (logo + NEXUS) */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #e5e7eb;
+}
+
+.brand-link:visited,
+.brand-link:hover,
+.brand-link:active {
+  color: #e5e7eb;
+}
+
 .brand {
   display: flex;
   align-items: center;
-  gap: 4px;              /* nome mais perto da logo */
+  gap: 4px;
 }
 
 .brand-logo {
-  width: 65px;           /* tamanho GRANDE fixo p/ tudo */
+  width: 65px;
   height: 65px;
   object-fit: contain;
+  filter:
+    drop-shadow(0 0 6px rgba(124, 58, 237, 0.9))
+    drop-shadow(0 0 14px rgba(59, 130, 246, 0.8));
 }
 
 .brand-name {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
+  color: #e5e7eb;
 }
 
 /* MENU HAMBÚRGUER (MOBILE) */
@@ -149,8 +168,21 @@ body {
   color: #9ca3af;
 }
 
-/* BOTÃO BUSCAR */
+/* ============================= */
+/*  BOTÕES (GERAL)               */
+/* ============================= */
 
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;   /* tira sublinhado dos <a> */
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* principal */
 .btn-primary {
   width: 100%;
   height: 42px;
@@ -159,9 +191,13 @@ body {
   background: #6366f1;
   color: white;
   font-size: 16px;
-  font-weight: 600;
 }
 
+.btn-primary:hover {
+  background: #4f46e5;
+}
+
+/* contornado */
 .btn-outline {
   width: 100%;
   height: 42px;
@@ -169,7 +205,19 @@ body {
   border: 2px solid #6366f1;
   background: transparent;
   color: #6366f1;
-  font-weight: 600;
+  font-size: 15px;
+}
+
+.btn-outline:hover {
+  background: rgba(99, 102, 241, 0.14);
+}
+
+/* botões DENTRO dos cards de plano (home / assinatura / premium) */
+.card-plan .btn-primary,
+.card-plan .btn-outline,
+.plan-card .btn-primary,
+.plan-card .btn-outline {
+  margin-top: 8px;
 }
 
 /* Chips */
@@ -264,6 +312,33 @@ body {
   margin-bottom: 12px;
 }
 
+/* cards de assinatura.html (plan-card) */
+.plan-card {
+  background: rgba(15,23,42,0.9);
+  border-radius: 12px;
+  padding: 18px 14px 20px;
+  border: 1px solid rgba(148,163,184,0.35);
+}
+
+.plan-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-left: 4px;
+}
+
+.plan-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin-bottom: 12px;
+}
+
+.plan-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
 /* ============================= */
 /*  FOOTER                       */
 /* ============================= */
@@ -281,8 +356,7 @@ body {
 
 @media (max-width: 767px) {
 
-  /* logo e nome já estão grandes pelo padrão,
-     aqui só garantimos que não encolham */
+  /* logo e nome grandes no mobile */
   .brand-logo {
     width: 65px !important;
     height: 65px !important;
@@ -363,7 +437,6 @@ body {
     font-size: 15px;
   }
 
-  /* logo continua grande no desktop */
   .brand-logo {
     width: 65px;
     height: 65px;
@@ -409,5 +482,10 @@ body {
   .grid-steps,
   .grid-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plans-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
   }
 }
