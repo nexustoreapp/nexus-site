@@ -12,7 +12,6 @@
   --bg-soft: #111827;
   --bg-card: #1f2937;
   --accent: #6366f1;
-  --accent-soft: #4c1d95;
   --accent-strong: #a855f7;
   --text: #e5e7eb;
   --muted: #9ca3af;
@@ -20,177 +19,165 @@
   --radius-lg: 16px;
 }
 
-html,
 body {
-  height: 100%;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #1e293b 0, #0b1120 55%, #020617 100%);
   color: var(--text);
 }
 
 /* ===================================================== */
-/* ---------- LAYOUT GERAL ----------------------------- */
+/* ---------- NAVBAR ----------------------------------- */
 /* ===================================================== */
-main {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 96px 16px 64px;
-}
-
-.page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 96px 16px 64px;
-}
-
-/* ===================================================== */
-/* ---------- TOPO / NAVBAR ---------------------------- */
-/* ===================================================== */
-
 .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 28px;
+  padding: 14px 22px;
   background: rgba(15, 23, 42, 0.95);
   border-bottom: 1px solid rgba(148, 163, 184, 0.3);
 }
 
-/* LOGO + NOME */
 .brand {
   display: flex;
   align-items: center;
-  gap: 6px; /* JUNTEI O NOME DA LOGO */
+  gap: 4px; /* 🔥 JUNTEI MAIS O NOME DA LOGO */
 }
 
 .brand-logo {
-  height: 54px;
+  height: 58px; /* 🔥 AUMENTEI um pouco */
   width: auto;
   object-fit: contain;
-  filter:
-    drop-shadow(0 0 6px rgba(124, 58, 237, 0.9))
-    drop-shadow(0 0 14px rgba(59, 130, 246, 0.8));
+  filter: drop-shadow(0 0 6px rgba(124,58,237,0.9)) drop-shadow(0 0 12px rgba(59,130,246,0.8));
 }
 
 .brand-name {
   font-weight: 700;
-  font-size: 1rem;
-  margin-top: -2px; /* ENCOSTEI MAIS PERTO DA LOGO */
+  font-size: 1.08rem; /* 🔥 NOME MAIOR */
   letter-spacing: 0.08em;
-  color: #fff;
+  margin-left: -2px; /* 🔥 ENCOSTEI */
 }
 
-/* MENU */
-.nav {
-  display: flex;
-  gap: 16px;
-}
+.nav { display: flex; gap: 16px; }
 
 /* ===================================================== */
-/* ------------------- HERO ---------------------------- */
+/* ---------- HERO (HOME) ------------------------------- */
 /* ===================================================== */
 .hero {
   padding-top: 32px;
 }
 
-.input-search {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(148,163,184,0.45);
-  background: rgba(15,23,42,0.9);
+.hero-inner {
+  max-width: 780px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
   font-size: .95rem;
+  max-width: 540px;
+  color: var(--muted);
+  margin-bottom: 20px;
 }
 
 /* ===================================================== */
-/* ----------- PREMIUM SEARCH (AJUSTE PEDIDO) ---------- */
+/* 🔥🔥 BARRA DE PESQUISA DA HOME (A QUE VOCÊ QUIS REDUZIR) 🔥🔥 */
 /* ===================================================== */
 
-.premium-search-row {
+.hero-search {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-/* 🟣 AQUI É O QUE ESTAVA GIGANTE – EU CORRIGI */
-.premium-search-row .input-search {
-  height: 36px;      /* DIMINUÍ A ALTURA */
-  border-radius: 8px; /* MENOS QUADRADA */
-  padding: 6px 10px;  /* MENOR E MAIS LEVE */
-  font-size: 0.85rem; /* MENOR NO CELULAR */
+/* 🔥 INPUT MENOR, FINO, E ELEGANTE */
+.hero-search .input-search {
+  flex: 1;
+  height: 38px;                /* 🔥🔥 ALTURA REDUZIDA */
+  padding: 6px 10px;           /* 🔥 MENOR */
+  font-size: 0.85rem;          /* 🔥 FONTE MENOR */
+  border-radius: 8px;          /* 🔥 MENOS QUADRADO */
+  border: 1px solid rgba(148,163,184,0.4);
+  background: rgba(15,23,42,0.85);
 }
 
-.premium-search-row .btn-primary {
-  height: 36px;         /* MESMA ALTURA DO INPUT */
-  padding: 6px 14px;
-  font-size: 0.85rem;
+/* 🔥 BOTÃO DA HOME AGORA MENOR */
+.hero-search .btn-primary {
+  height: 38px;                 /* 🔥 MESMA ALTURA DO INPUT */
+  padding: 6px 10px;
   border-radius: 8px;
-}
-
-/* ===================================================== */
-/* -------------- BOTÕES (GERAL) ------------------------ */
-/* ===================================================== */
-
-.btn-primary {
-  padding: 10px 16px;
-  border-radius: 10px;
+  font-size: 0.85rem;
   background: var(--accent);
-  border: none;
   color: #fff;
   font-weight: 600;
-  font-size: .9rem;
+  border: none;
 }
 
-.btn-outline {
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--accent);
-  color: var(--text);
+.hero-search .btn-primary:hover {
+  background: #4f46e5;
 }
 
 /* ===================================================== */
-/* -------- RESPONSIVO CELULAR -------------------------- */
+/* ---------- CARDS & SEÇÕES --------------------------- */
+/* ===================================================== */
+
+.section { margin-top: 40px; }
+.grid-cards { 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 20px;
+}
+
+.card-product {
+  background: var(--bg-card);
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148,163,184,0.35);
+}
+
+/* ===================================================== */
+/* ---------- PLANOS & ASSINATURA ---------------------- */
+/* ===================================================== */
+
+.card-plan {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid rgba(148,163,184,0.4);
+}
+
+/* ===================================================== */
+/* ----------- RESPONSIVO (CELULAR) -------------------- */
 /* ===================================================== */
 
 @media (max-width: 720px) {
 
+  /* 🔥 LOGO MAIOR NO CELULAR */
   .brand-logo {
-    height: 85px !important;
+    height: 90px !important;
   }
 
   .brand-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-left: -4px;
   }
 
   /* ESCONDE MENU */
-  .nav {
-    display: none;
-  }
+  .nav { display: none; }
 
-  main,
-  .page {
-    padding-top: 90px;
-  }
-
-  /* ------- CORREÇÃO PRINCIPAL QUE VOCÊ PEDIU ------- */
-  .premium-search-row .input-search {
-    height: 32px !important;  /* AINDA MENOR */
-    border-radius: 6px !important;
+  /* 🔥 HERO SEARCH AINDA MENOR NO CELULAR */
+  .hero-search .input-search {
+    height: 32px !important;      /* 🔥 ainda menor */
     padding: 5px 8px !important;
-    font-size: 0.8rem !important;
+    border-radius: 6px !important;
   }
 
-  .premium-search-row .btn-primary {
+  .hero-search .btn-primary {
     height: 32px !important;
-    padding: 6px 10px !important;
-    font-size: 0.8rem !important;
+    padding: 5px 8px !important;
+    font-size: 0.78rem !important;
+    border-radius: 6px !important;
   }
 }
