@@ -4,9 +4,23 @@
   <meta charset="UTF-8" />
   <title>Nexus - Comparador Gamer & Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas. Planos gratuito e premium (semanal, mensal e anual)." />
+  <meta name="description" content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em várias lojas. Planos gratuito e premium (semanal, mensal e anual)." />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+  <!-- Fonte Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos críticos mínimos para evitar link roxo/sublinhado se o CSS externo falhar -->
+  <style>
+    body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a.brand-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit}
+    .brand-name{font-weight:700;letter-spacing:.06em}
+  </style>
 </head>
 
 <body>
@@ -17,12 +31,14 @@
       <span class="brand-name">NEXUS</span>
     </a>
 
-    <button class="nav-toggle" id="navToggle">
+    <!-- Botão hambúrguer (mobile) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
+    <!-- Menu -->
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link active">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
@@ -35,7 +51,6 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-
         <h1 class="hero-title">
           Seu ponto de partida para achar
           <span class="highlight">ofertas de eletrônicos sem dor de cabeça</span>.
@@ -54,7 +69,6 @@
             class="input-search"
             placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
           />
-
           <button class="btn-primary" onclick="goToPremiumFromHome()">
             Buscar menor preço
           </button>
@@ -67,7 +81,6 @@
           <button class="chip" onclick="quickPreset('teclado mecânico rgb')">Teclados</button>
           <button class="chip" onclick="quickPreset('headset gamer')">Headsets</button>
         </div>
-
       </div>
     </section>
 
@@ -77,24 +90,24 @@
         <h2>Como o Nexus funciona</h2>
         <p>
           Você pesquisa uma vez, nossa IA consulta várias lojas, aplica a comissão certa
-          e te mostra o menor preço final com desconto.
+          e te mostra o menor preço final já com desconto.
         </p>
       </div>
 
       <div class="grid-steps">
         <article class="card-info">
           <h3>1. Pesquisa inteligente</h3>
-          <p>Digita o que busca e o Nexus consulta lojas simultaneamente.</p>
+          <p>Digite o que busca e o Nexus consulta lojas simultaneamente.</p>
         </article>
 
         <article class="card-info">
           <h3>2. Comparação com desconto</h3>
-          <p>Filtramos só produtos com desconto e aplicamos comissão conforme o plano.</p>
+          <p>Filtramos só produtos com desconto e aplicamos a comissão conforme o plano.</p>
         </article>
 
         <article class="card-info">
           <h3>3. Compra e rastreio</h3>
-          <p>Compra pelo Nexus e acompanha o rastreio centralizado.</p>
+          <p>Você compra pelo Nexus e acompanha o rastreio centralizado.</p>
         </article>
       </div>
     </section>
@@ -136,23 +149,22 @@
         </article>
       </div>
     </section>
-
   </main>
 
   <footer class="footer">
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-  <!-- SCRIPT MENU HAMBÚRGUER -->
+  <!-- Script do menu mobile -->
   <script>
-    const toggle = document.getElementById("navToggle");
-    const menu = document.getElementById("navMenu");
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("nav-open");
-    });
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => menu.classList.toggle('nav-open'));
+    }
   </script>
 
-  <!-- FUNÇÕES GERAIS (quickPreset, goToPremiumFromHome, etc.) -->
+  <!-- Suas funções já usadas no projeto (se estiverem no script.js, pode manter a linha abaixo) -->
   <script src="script.js"></script>
 </body>
 </html>
