@@ -4,22 +4,36 @@
   <meta charset="UTF-8" />
   <title>Nexus - Comparador Gamer & Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em várias lojas. Planos gratuito e premium (semanal, mensal e anual)." />
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
+  <meta
+    name="description"
+    content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em várias lojas. Planos gratuito e premium."
+  />
 
   <!-- Fonte Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- CSS principal -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Estilos críticos mínimos para evitar link roxo/sublinhado se o CSS externo falhar -->
+  <!-- Estilo crítico pro NEXUS não ficar roxo/sublinhado enquanto o CSS carrega -->
   <style>
-    body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    a.brand-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit}
-    .brand-name{font-weight:700;letter-spacing:.06em}
+    body { font-family: 'Inter', sans-serif; }
+    a.brand-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
   </style>
 </head>
 
@@ -31,14 +45,12 @@
       <span class="brand-name">NEXUS</span>
     </a>
 
-    <!-- Botão hambúrguer (mobile) -->
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
-    <!-- Menu -->
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link active">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
@@ -69,12 +81,13 @@
             class="input-search"
             placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
           />
+
           <button class="btn-primary" onclick="goToPremiumFromHome()">
             Buscar menor preço
           </button>
         </div>
 
-        <!-- Chips -->
+        <!-- CHIPS -->
         <div class="chip-row">
           <button class="chip" onclick="quickPreset('notebook gamer')">Notebooks</button>
           <button class="chip" onclick="quickPreset('monitor 144Hz')">Monitores</button>
@@ -90,32 +103,33 @@
         <h2>Como o Nexus funciona</h2>
         <p>
           Você pesquisa uma vez, nossa IA consulta várias lojas, aplica a comissão certa
-          e te mostra o menor preço final já com desconto.
+          e te mostra o menor preço final com desconto.
         </p>
       </div>
 
       <div class="grid-steps">
         <article class="card-info">
           <h3>1. Pesquisa inteligente</h3>
-          <p>Digite o que busca e o Nexus consulta lojas simultaneamente.</p>
+          <p>Você digita o que procura e o Nexus consulta diversas lojas ao mesmo tempo.</p>
         </article>
 
         <article class="card-info">
           <h3>2. Comparação com desconto</h3>
-          <p>Filtramos só produtos com desconto e aplicamos a comissão conforme o plano.</p>
+          <p>Filtramos apenas produtos com desconto e aplicamos a comissão conforme o seu plano.</p>
         </article>
 
         <article class="card-info">
           <h3>3. Compra e rastreio</h3>
-          <p>Você compra pelo Nexus e acompanha o rastreio centralizado.</p>
+          <p>Você compra pelo Nexus e acompanha o rastreio centralizado na plataforma.</p>
         </article>
       </div>
     </section>
 
-    <!-- PLANOS -->
+    <!-- PLANOS RESUMO -->
     <section class="section section-plans">
       <div class="section-header">
         <h2>Planos para todos os perfis</h2>
+        <p>Comece de graça e ative o Premium quando fizer sentido pra você.</p>
       </div>
 
       <div class="grid-cards">
@@ -126,7 +140,7 @@
             <li>Acesso a lojas menores</li>
             <li>Só produtos com desconto</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline">Começar no gratuito</a>
+          <a href="assinatura.html#gratuito" class="btn-outline">Começar no gratuito</a>
         </article>
 
         <article class="card-plan card-plan-featured">
@@ -136,7 +150,7 @@
             <li>Lojas grandes + pequenas</li>
             <li>Descontos melhores</li>
           </ul>
-          <a href="premium.html" class="btn-primary">Assinar semanal</a>
+          <a href="assinatura.html#semanal" class="btn-primary">Assinar semanal</a>
         </article>
 
         <article class="card-plan">
@@ -144,8 +158,9 @@
           <p class="card-price">R$ 16,99 / mês</p>
           <ul class="card-list">
             <li>Todos os recursos Premium</li>
+            <li>Melhor custo-benefício contínuo</li>
           </ul>
-          <a href="premium.html" class="btn-outline">Assinar mensal</a>
+          <a href="assinatura.html#mensal" class="btn-outline">Assinar mensal</a>
         </article>
       </div>
     </section>
@@ -155,16 +170,16 @@
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-  <!-- Script do menu mobile -->
+  <!-- Script do menu hambúrguer + script.js -->
   <script>
     const toggle = document.getElementById('navToggle');
     const menu = document.getElementById('navMenu');
     if (toggle && menu) {
-      toggle.addEventListener('click', () => menu.classList.toggle('nav-open'));
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('nav-open');
+      });
     }
   </script>
-
-  <!-- Suas funções já usadas no projeto (se estiverem no script.js, pode manter a linha abaixo) -->
   <script src="script.js"></script>
 </body>
 </html>
