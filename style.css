@@ -246,3 +246,40 @@ body {
     height: 50px !important;
   }
 }
+@media (min-width: 768px) {
+
+.nav {
+display: flex !important;
+flex-direction: row;
+background: transparent;
+width: fit-content;
+padding: 0;
+margin: 0;
+gap: 22px;
+}
+
+.nav-toggle {
+display: none;
+}
+
+.brand-logo {
+width: 46px;
+height: 46px;
+}
+
+.input-search {
+width: 380px;
+height: 42px;
+}
+
+.hero-search {
+flex-direction: row;
+align-items: center;
+gap: 10px;
+}
+
+.btn-primary {
+width: auto;
+padding: 0 20px;
+}
+}
