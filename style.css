@@ -32,23 +32,23 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 4px;              /* nome mais perto da logo */
 }
 
 .brand-logo {
-  width: 46px;
-  height: 46px;
+  width: 65px;           /* tamanho GRANDE fixo p/ tudo */
+  height: 65px;
   object-fit: contain;
 }
 
 .brand-name {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-left: 2px;
 }
 
-/* MENU HAMBURGUER */
+/* MENU HAMBÚRGUER (MOBILE) */
+
 .nav-toggle {
   width: 42px;
   height: 42px;
@@ -68,6 +68,8 @@ body {
   border-radius: 3px;
 }
 
+/* MENU (MOBILE FECHADO POR PADRÃO) */
+
 .nav {
   display: none;
   flex-direction: column;
@@ -79,7 +81,7 @@ body {
   border-radius: 10px;
 }
 
-.nav-open {
+.nav.nav-open {
   display: flex;
 }
 
@@ -94,9 +96,8 @@ body {
   font-weight: 600;
 }
 
-
 /* ============================= */
-/*  HERO                         */
+/*  HERO / TÍTULOS               */
 /* ============================= */
 
 .hero {
@@ -132,13 +133,13 @@ body {
   gap: 14px;
 }
 
-/* BARRA DE PESQUISA AJUSTADA */
+/* altura fina, sem quadradão gigante */
 .input-search {
   width: 100%;
-  height: 48px;
+  height: 42px;
   padding: 0 14px;
-  font-size: 16px;
-  border-radius: 12px;
+  font-size: 15px;
+  border-radius: 10px;
   border: 1.5px solid rgba(255,255,255,0.25);
   background: rgba(255,255,255,0.06);
   color: #e5e7eb;
@@ -148,13 +149,14 @@ body {
   color: #9ca3af;
 }
 
-/* BOTÕES */
+/* BOTÃO BUSCAR */
+
 .btn-primary {
   width: 100%;
-  height: 48px;
+  height: 42px;
   border: none;
-  border-radius: 12px;
-  background: #4f46e5;
+  border-radius: 10px;
+  background: #6366f1;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -162,15 +164,16 @@ body {
 
 .btn-outline {
   width: 100%;
-  height: 48px;
-  border-radius: 12px;
+  height: 42px;
+  border-radius: 10px;
   border: 2px solid #6366f1;
-  color: #6366f1;
   background: transparent;
+  color: #6366f1;
   font-weight: 600;
 }
 
 /* Chips */
+
 .chip-row {
   margin-top: 14px;
   display: flex;
@@ -187,9 +190,8 @@ body {
   border: 1px solid rgba(255,255,255,0.15);
 }
 
-
 /* ============================= */
-/*  SEÇÕES                       */
+/*  SEÇÕES / CARDS               */
 /* ============================= */
 
 .section {
@@ -201,6 +203,66 @@ body {
   margin-bottom: 6px;
 }
 
+/* Cards de “como funciona”, planos, etc. */
+
+.grid-steps {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.card-info {
+  background: rgba(15,23,42,0.9);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid rgba(148,163,184,0.35);
+}
+
+.card-info h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.card-info p {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* grid de cards genérico */
+
+.grid-cards {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.card-plan {
+  background: rgba(15,23,42,0.9);
+  border-radius: 12px;
+  padding: 16px 14px 18px;
+  border: 1px solid rgba(148,163,184,0.35);
+}
+
+.card-plan-featured {
+  border-color: #6366f1;
+}
+
+.card-plan h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.card-price {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin-bottom: 12px;
+}
 
 /* ============================= */
 /*  FOOTER                       */
@@ -213,76 +275,139 @@ body {
   font-size: 14px;
 }
 
-
-/* ============================= */
-/*  MOBILE                       */
-/* ============================= */
+/* ===================================================== */
+/*  MOBILE ESPECÍFICO (ATÉ 767PX)                        */
+/* ===================================================== */
 
 @media (max-width: 767px) {
 
-  .input-search {
-    height: 48px !important;
-    font-size: 15px !important;
-  }
-
-  .hero-search {
-    gap: 14px !important;
-  }
-
-  .btn-primary {
-    height: 48px !important;
+  /* logo e nome já estão grandes pelo padrão,
+     aqui só garantimos que não encolham */
+  .brand-logo {
+    width: 65px !important;
+    height: 65px !important;
   }
 
   .brand-name {
-    font-size: 17px !important;
+    font-size: 22px !important;
+    margin-left: 4px !important;
   }
 
-  .brand-logo {
-    width: 52px !important;
-    height: 52px !important;
+  /* barra de busca fina e botão separado */
+  .input-search {
+    height: 42px !important;
+    border-radius: 10px !important;
+    padding: 0 14px !important;
+    font-size: 14px !important;
+  }
+
+  .hero-search {
+    gap: 12px !important;
+  }
+
+  .hero-search .btn-primary {
+    height: 46px !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+  }
+
+  /* menu hambúrguer visível no mobile */
+  .nav-toggle {
+    display: flex !important;
+  }
+
+  /* nav fechado por padrão */
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(15,23,42,0.95);
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 14px 18px;
+    font-size: 16px;
   }
 }
 
-
-/* ============================= */
-/*  DESKTOP                      */
-/* ============================= */
+/* ===================================================== */
+/*  DESKTOP / TABLET (A PARTIR DE 768PX)                 */
+/* ===================================================== */
 
 @media (min-width: 768px) {
+
+  .topbar {
+    padding: 12px 32px;
+  }
 
   .nav {
     display: flex !important;
     flex-direction: row;
-    gap: 24px;
     background: transparent;
+    width: auto;
     padding: 0;
     margin: 0;
+    gap: 22px;
   }
 
   .nav-toggle {
     display: none !important;
   }
 
+  .nav-link {
+    font-size: 15px;
+  }
+
+  /* logo continua grande no desktop */
   .brand-logo {
-    width: 48px;
-    height: 48px;
+    width: 65px;
+    height: 65px;
   }
 
   .brand-name {
-    font-size: 20px;
+    font-size: 22px;
+    margin-left: 6px;
+  }
+
+  /* hero mais largo e busca em linha */
+  .hero {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
   }
 
   .hero-search {
     flex-direction: row;
     align-items: center;
+    gap: 10px;
+    max-width: 620px;
   }
 
   .input-search {
-    width: 340px;
+    width: 380px;
+    height: 42px;
   }
 
   .btn-primary {
     width: auto;
     padding: 0 22px;
+  }
+
+  .grid-steps,
+  .grid-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
