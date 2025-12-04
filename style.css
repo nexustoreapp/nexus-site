@@ -166,7 +166,6 @@ main {
 
 /* ===================================================== */
 /* ----- BARRA DE PESQUISA DA HOME (INDEX) ------------- */
-/* ===================================================== */
 .hero-search {
   display: flex;
   flex-wrap: wrap;
@@ -174,20 +173,22 @@ main {
   margin-bottom: 12px;
 }
 
-/* barra com tamanho MÉDIO – proporcional */
 .hero-search .input-search {
   flex: 1 1 240px;
-  height: 42px;                 /* altura média */
-  padding: 7px 12px;
+  height: 36px;        /* << ANTES 42px — agora menor e proporcional */
+  padding: 6px 12px;
   border-radius: 10px;
   border: 1px solid rgba(148, 163, 184, 0.5);
   background: rgba(15, 23, 42, 0.9);
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-.hero-search .input-search::placeholder {
-  color: rgba(148, 163, 184, 0.85);
+.hero-search .btn-primary {
+  height: 36px;       /* << acompanha o input */
+  padding: 0 14px;
+  font-size: 0.85rem;
+  border-radius: 10px;
 }
 
 /* botão combinando com a barra */
@@ -472,17 +473,18 @@ main {
 /* ===================================================== */
 @media (max-width: 720px) {
   .topbar {
-    padding: 10px 12px;
+    padding: 6px 10px;   /* << antes era 10px 12px */
   }
 
   .brand-logo {
-    height: 86px; /* logo grande no mobile */
+    height: 70px;        /* << antes 86px — mais elegante */
   }
 
   .brand-name {
-    font-size: 0.95rem;
-    margin-left: -4px;
+    font-size: 0.9rem;
+    margin-left: -2px;
   }
+}
 
   /* mostra hamburguer e esconde menu */
   .nav-toggle {
