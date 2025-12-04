@@ -13,6 +13,10 @@ body {
   background: linear-gradient(180deg, #0a0f1f, #0f172a);
   color: #e5e7eb;
   line-height: 1.5;
+
+  /* ANIMAÇÃO DE ENTRADA DA PÁGINA */
+  opacity: 0;
+  animation: fadeInPage 0.6s ease-out forwards;
 }
 
 /* ============================= */
@@ -245,8 +249,17 @@ body {
 }
 
 /* ============================= */
-/*  FOOTER                       */
+/*  SECTIONS E FOOTER            */
 /* ============================= */
+
+.section {
+  padding: 28px 18px;
+}
+
+.section-header h2 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
 
 .footer {
   text-align: center;
@@ -296,5 +309,21 @@ body {
 
   .brand-name {
     font-size: 24px;
+  }
+}
+
+/* ============================= */
+/*  KEYFRAMES GERAIS             */
+/* ============================= */
+
+/* Animação de entrada da página inteira */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
