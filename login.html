@@ -6,20 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Acesse sua conta Nexus e utilize a busca inteligente gamer & tech, com planos grátis e premium."
+    content="Faça login na sua conta Nexus para acessar a comparação de preços gamer & tech, planos gratuito e premium e acompanhar suas buscas."
   />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <header class="topbar">
     <a href="index.html" class="brand brand-link">
       <img src="logo.png" alt="Nexus" class="brand-logo" />
-      <span class="brand-name">Nexus</span>
+      <span class="brand-name">NEXUS</span>
     </a>
 
-    <nav class="nav">
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Abrir menu">
+      &#9776;
+    </button>
+
+    <nav class="nav" id="main-nav">
       <a href="index.html" class="nav-link">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
@@ -30,48 +33,37 @@
   <main class="page">
     <section class="section center">
       <h1>Entrar na sua conta Nexus</h1>
-
       <p class="hero-subtitle" style="margin-bottom: 20px;">
-        Este login ainda é apenas visual. Em produção, haverá autenticação real + 2FA por e-mail.
+        Este login ainda é apenas visual. Em produção, terá validação real e autenticação em duas etapas (2FA).
       </p>
 
       <form class="form-card" onsubmit="return fakeLogin(event)">
         <label>
           E-mail
-          <input 
-            type="email" 
-            id="login-email" 
-            required 
-            placeholder="seuemail@exemplo.com" 
-          />
+          <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" />
         </label>
-
         <label>
           Senha
-          <input 
-            type="password" 
-            id="login-password" 
-            required 
-            placeholder="••••••••" 
-          />
+          <input type="password" id="login-password" required placeholder="••••••••" />
         </label>
 
-        <p class="small-text" style="margin-top: 4px;">
-          No futuro, será possível entrar com <strong>CPF ou e-mail</strong> + senha + código 2FA.
+        <p class="small-text">
+          No cadastro real, você também informará seu <strong>CPF</strong>. No login futuro, será possível
+          acessar tanto com e-mail quanto com CPF + senha + código 2FA.
         </p>
 
         <button type="submit" class="btn-primary full">Entrar</button>
       </form>
 
       <p class="small-text">
-        Ainda não possui uma conta?
-        <a href="assinatura.html">Crie sua conta escolhendo um plano.</a>
+        Ainda não tem conta?
+        <a href="assinatura.html">Escolha um plano e crie seu acesso Nexus.</a>
       </p>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Login do usuário.</p>
+    <p>Nexus © 2025 – Acesso à sua conta.</p>
   </footer>
 
   <script src="script.js"></script>
