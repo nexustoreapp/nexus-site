@@ -8,21 +8,37 @@
     name="description"
     content="Faça login na sua conta Nexus para acessar a comparação de preços gamer & tech, planos gratuito e premium e acompanhar suas buscas."
   />
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    a.brand-link { display:flex;align-items:center;gap:6px;text-decoration:none;color:inherit; }
+    .brand-name { font-weight:700;letter-spacing:0.06em; }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
     <a href="index.html" class="brand brand-link">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">NEXUS</span>
     </a>
 
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Abrir menu">
-      &#9776;
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
-    <nav class="nav" id="main-nav">
+    <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
@@ -33,8 +49,9 @@
   <main class="page">
     <section class="section center">
       <h1>Entrar na sua conta Nexus</h1>
-      <p class="hero-subtitle" style="margin-bottom: 20px;">
-        Este login ainda é apenas visual. Em produção, terá validação real e autenticação em duas etapas (2FA).
+      <p>
+        Este login ainda é uma simulação de front-end. Em produção, vamos validar seus dados no back-end
+        e aplicar autenticação em duas etapas (2FA) por e-mail.
       </p>
 
       <form class="form-card" onsubmit="return fakeLogin(event)">
@@ -42,6 +59,7 @@
           E-mail
           <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" />
         </label>
+
         <label>
           Senha
           <input type="password" id="login-password" required placeholder="••••••••" />
@@ -49,7 +67,7 @@
 
         <p class="small-text">
           No cadastro real, você também informará seu <strong>CPF</strong>. No login futuro, será possível
-          acessar tanto com e-mail quanto com CPF + senha + código 2FA.
+          acessar tanto com e-mail quanto com CPF + senha, mais o código 2FA.
         </p>
 
         <button type="submit" class="btn-primary full">Entrar</button>
@@ -66,6 +84,15 @@
     <p>Nexus © 2025 – Acesso à sua conta.</p>
   </footer>
 
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('nav-open');
+      });
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
