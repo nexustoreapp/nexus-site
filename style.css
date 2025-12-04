@@ -176,26 +176,31 @@ main {
 }
 
 /* ---------- BOTÕES E CHIPS (GERAIS) ---------- */
+
 .btn-primary {
   padding: 11px 20px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+  background: linear-gradient(135deg, #a855f7, #22d3ee);
   color: #0b1020;
   font-weight: 600;
   font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 18px 35px rgba(59, 130, 246, 0.55);
+  box-shadow:
+    0 0 10px rgba(59, 130, 246, 0.7),
+    0 18px 35px rgba(59, 130, 246, 0.6);
   transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
-  box-shadow: 0 22px 45px rgba(59, 130, 246, 0.75);
+  filter: brightness(1.08);
+  box-shadow:
+    0 0 16px rgba(129, 140, 248, 0.9),
+    0 24px 45px rgba(59, 130, 246, 0.9);
 }
 
 .btn-primary.full {
@@ -207,16 +212,19 @@ main {
   padding: 9px 16px;
   border-radius: 999px;
   background: transparent;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  color: var(--text);
+  border: 1px solid rgba(168, 85, 247, 0.9);
+  color: #e5e7eb;
   cursor: pointer;
   font-size: 0.9rem;
   transition: 0.18s ease;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.45);
 }
 
 .btn-outline:hover {
-  border-color: var(--accent);
+  border-color: #a855f7;
+  background: rgba(15, 23, 42, 0.96);
   color: #f9fafb;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.85);
 }
 
 /* Chips de categoria */
@@ -568,50 +576,6 @@ main {
   padding: 32px 16px 24px;
   color: var(--muted);
   font-size: 0.85rem;
-}
-
-/* ---------- BOTÕES ESPECÍFICOS DOS PLANOS (HOME + ASSINATURA) ---------- */
-
-/* BOTÕES DENTRO DE QUALQUER CARD DE PLANO */
-.card-plan .btn-primary,
-.plan-card .btn-primary {
-  background: linear-gradient(135deg, #a855f7, #6366f1) !important;
-  color: #0b1020 !important;
-  box-shadow:
-    0 0 10px rgba(88, 28, 135, 0.7),
-    0 18px 35px rgba(88, 28, 135, 0.8);
-  border: none;
-}
-
-.card-plan .btn-primary:hover,
-.plan-card .btn-primary:hover {
-  filter: brightness(1.1);
-  box-shadow:
-    0 0 16px rgba(168, 85, 247, 0.9),
-    0 24px 45px rgba(88, 28, 135, 0.9);
-}
-
-/* botões outline dos planos */
-.card-plan .btn-outline,
-.plan-card .btn-outline {
-  border-color: rgba(168, 85, 247, 0.9) !important;
-  color: #e5e7eb !important;
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.45);
-}
-
-.card-plan .btn-outline:hover,
-.plan-card .btn-outline:hover {
-  border-color: #a855f7 !important;
-  background: rgba(15, 23, 42, 0.96);
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
-}
-
-/* plano destacado (se usar card-plan-featured na home) */
-.card-plan.card-plan-featured .btn-primary {
-  background: linear-gradient(135deg, #ec4899, #8b5cf6) !important;
-  box-shadow:
-    0 0 14px rgba(236, 72, 153, 0.9),
-    0 26px 55px rgba(236, 72, 153, 0.85);
 }
 
 /* ---------- RESPONSIVO ---------- */
