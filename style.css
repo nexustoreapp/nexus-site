@@ -1023,9 +1023,55 @@ main {
   gap: 28px;
 }
 
-/* Deixa os cards de atalho mais suaves */
+/* atalhos bem menores e mais compactos */
 .shortcut-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 12px;               /* diminui tamanho */
+  border-radius: 14px;
+
   background: rgba(20, 25, 40, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
   backdrop-filter: blur(6px);
+
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
 
+.shortcut-card:hover {
+  background: rgba(30, 40, 60, 0.9);
+  transform: translateY(-2px);
+}
+
+/* ícone menor */
+.shortcut-icon {
+  font-size: 1.3rem;   /* antes 1.5rem */
+}
+
+/* textos mais organizados */
+.shortcut-info h4 {
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+  color: #f9fafb;
+}
+
+.shortcut-info p {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+/* diminuir espaço entre itens */
+.shortcut-grid {
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* no desktop fica 3 por linha, mas menor */
+@media (min-width: 768px) {
+  .shortcut-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
