@@ -1307,3 +1307,106 @@ main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+/* ============================= */
+/*  PRODUTO – HERO               */
+/* ============================= */
+
+.product-hero .product-store {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.product-hero .product-store span {
+  color: #e5e7eb;
+}
+
+.product-hero-body {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.product-hero-image {
+  max-width: 240px;
+}
+
+.product-hero-info .product-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #22d3ee;
+  margin-bottom: 6px;
+}
+
+.product-hero-info .product-tagline {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ============================= */
+/*  PRODUTO – ESPECIFICAÇÕES     */
+/* ============================= */
+
+.product-specs .specs-list {
+  list-style: none;
+  margin-top: 12px;
+  padding-left: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.product-specs .specs-list li {
+  margin-bottom: 4px;
+}
+
+.product-specs .specs-list span {
+  color: #e5e7eb;
+}
+
+/* ============================= */
+/*  PRODUTO – FRETE DEMO         */
+/* ============================= */
+
+.frete-form {
+  margin-top: 10px;
+}
+
+.frete-form label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+.frete-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.frete-row .input-search {
+  flex: 1;
+  height: 40px;
+}
+
+.frete-status {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.frete-status-ok {
+  color: #4ade80;
+}
+
+.frete-status-error {
+  color: #fecaca;
+}
+
+/* Ajuste do hero do produto em desktop */
+@media (min-width: 768px) {
+  .product-hero-body {
+    grid-template-columns: 260px 1fr;
+    align-items: center;
+  }
+}
