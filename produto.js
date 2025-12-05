@@ -136,13 +136,17 @@ async function carregarProduto() {
 
     if (precoEl) precoEl.textContent = formatarPreco(preco);
 
-    // === Especificações técnicas (demo, com estrutura pra API real) ===
+       // === Especificações técnicas (demo, com estrutura pra API real) ===
     preencherEspecificacoes(data);
+
+    // === Avaliações (demo, estrutura pronta para dados reais) ===
+    preencherAvaliacoes(data);
 
     // === Debug JSON cru ===
     if (rawEl) {
       rawEl.textContent = JSON.stringify(data, null, 2);
     }
+
 
     // === Configura o formulário de frete para usar o preço correto ===
     configurarFrete(preco);
