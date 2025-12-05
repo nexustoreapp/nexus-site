@@ -37,13 +37,13 @@ body {
 main {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 96px 16px 64px;
+  padding: 88px 16px 64px;
 }
 
 .page {
   max-width: 720px;
   margin: 0 auto;
-  padding: 96px 16px 64px;
+  padding: 88px 16px 64px;
 }
 
 /* ============================= */
@@ -55,7 +55,7 @@ main {
   top: 0;
   z-index: 50;
   width: 100%;
-  padding: 14px 18px;
+  padding: 10px 18px;              /* barra um pouco menor */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,7 +68,7 @@ main {
 .brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;                        /* logo + nome mais perto */
   text-decoration: none;
 }
 
@@ -89,22 +89,36 @@ main {
   color: #f9fafb;
 }
 
-/* Menu */
+/* MENU MOBILE (abre pra baixo, suave) */
 .nav {
-  display: none;
-  flex-direction: column;
   position: absolute;
   top: 64px;
+  left: 16px;
   right: 16px;
-  width: 210px;
-  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 12px;
   border-radius: 18px;
   background: rgba(15, 23, 42, 0.98);
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.22s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 
+/* quando abre */
 .nav.nav-open {
-  display: flex;
+  max-height: 260px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .nav-link {
@@ -227,6 +241,7 @@ main {
   transform: translateY(-1px);
 }
 
+/* outline usado nos planos da HOME */
 .btn-outline {
   width: auto;
   min-height: 40px;
@@ -245,8 +260,10 @@ main {
   transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
 }
 
+/* barra grande ocupando a largura do card */
 .btn-outline.full {
   width: 100%;
+  height: 44px;
   border-radius: 12px;
 }
 
@@ -336,7 +353,7 @@ main {
   color: var(--muted);
 }
 
-/* Planos home */
+/* PLANOS DA HOME – TODAS AS BORDAS ROXAS */
 .section-plans {
   margin-top: 40px;
 }
@@ -351,12 +368,12 @@ main {
 .card-plan {
   background: radial-gradient(circle at top, #02081a 0, #020617 65%);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(148, 163, 184, 0.45);
+  border: 1.5px solid rgba(99, 102, 241, 0.95);   /* roxo em todos */
   padding: 18px 16px 16px;
 }
 
 .card-plan-featured {
-  border-color: var(--accent-strong);
+  border-width: 2px;
 }
 
 .card-plan h3 {
@@ -412,7 +429,7 @@ main {
   margin-top: 20px;
 }
 
-/* planos da página de assinatura */
+/* planos da página de assinatura (bordas roxas também) */
 .plans-grid {
   margin-top: 30px;
   display: grid;
@@ -423,7 +440,7 @@ main {
 .plan-card {
   background: radial-gradient(circle at top, #02081a 0, #020617 65%);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(148, 163, 184, 0.45);
+  border: 1.5px solid rgba(99, 102, 241, 0.95);
   padding: 20px 18px 18px;
   text-align: left;
 }
@@ -524,13 +541,13 @@ main {
 }
 
 /* ============================= */
-/*  RESPONSIVO                   */
+/*  RESPONSIVO (DESKTOP)         */
 /* ============================= */
 
 @media (min-width: 768px) {
 
   .topbar {
-    padding-inline: 32px;
+    padding: 10px 32px;
   }
 
   .brand-logo {
@@ -542,19 +559,22 @@ main {
     font-size: 1.2rem;
   }
 
+  /* no desktop o menu fica sempre visível, sem animação */
   .nav {
     position: static;
-    display: flex;
     flex-direction: row;
-    width: auto;
+    max-height: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
     padding: 0;
-    background: transparent;
     box-shadow: none;
+    background: transparent;
     gap: 18px;
   }
 
   .nav.nav-open {
-    display: flex;
+    max-height: none;
   }
 
   .nav-toggle {
