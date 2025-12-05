@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Produto - Nexus</title>
+  <title>Detalhes do produto - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -35,72 +35,88 @@
 
   <main class="page">
 
-    <!-- HERO DO PRODUTO (título, loja e preço principais) -->
+    <!-- CABEÇALHO DO PRODUTO -->
     <section class="section product-hero">
       <div class="section-header">
-        <h1 id="product-title">Nome do produto (demo)</h1>
-        <p id="product-store" class="product-store">
-          Loja principal: <span>Loja demo</span>
+        <h1 id="product-title">Carregando produto...</h1>
+        <p id="product-store" class="product-store"></p>
+      </div>
+    </section>
+
+    <!-- LAYOUT PRINCIPAL: IMAGEM + INFO -->
+    <section class="section product-main">
+      <div class="product-layout">
+
+        <!-- GALERIA / IMAGEM -->
+        <div class="product-gallery">
+          <div id="product-image-wrapper" class="product-image-wrapper">
+            <div class="thumb-placeholder">Sem imagem</div>
+          </div>
+          <p id="product-id" class="product-id"></p>
+        </div>
+
+        <!-- BLOCO DE PREÇO + AÇÕES -->
+        <div class="product-info">
+          <div class="product-price-block">
+            <p id="product-price" class="product-price">–</p>
+            <p id="product-old-price" class="product-old-price"></p>
+            <p id="product-extra" class="product-extra"></p>
+          </div>
+
+          <!-- FRETE (DEMO) -->
+          <div class="product-frete">
+            <h2>Calcular frete (demo)</h2>
+            <div class="frete-row">
+              <input
+                type="text"
+                id="frete-cep"
+                class="input-search"
+                placeholder="Digite seu CEP"
+              />
+              <button id="btn-frete" class="btn-primary">
+                Calcular
+              </button>
+            </div>
+            <p id="frete-result" class="product-frete-result"></p>
+          </div>
+
+          <!-- BOTÕES PRINCIPAIS -->
+          <div class="product-actions">
+            <button class="btn-outline full" id="btn-ver-na-loja">
+              Ver oferta na loja (demo)
+            </button>
+            <button class="btn-outline full" id="btn-add-carrinho">
+              Adicionar ao carrinho (demo)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPECIFICAÇÕES / DETALHES -->
+    <section class="section product-specs-section">
+      <div class="section-header">
+        <h2>Especificações do produto</h2>
+        <p>
+          Aqui vamos mostrar tudo o que a API devolver de informações úteis (marca, modelo, variações etc).
         </p>
       </div>
 
-      <div class="product-hero-body">
-        <div class="product-hero-image">
-          <div class="thumb-placeholder">
-            Imagem do produto (demo)
-          </div>
-        </div>
-
-        <div class="product-hero-info">
-          <p class="product-price">
-            <span id="product-price">R$ 0,00</span>
-          </p>
-          <p class="product-tagline">
-            Esses dados ainda são de demonstração. Depois, vamos puxar preço real das APIs.
-          </p>
-        </div>
+      <div id="product-specs" class="product-specs">
+        <p>Aguardando dados da API...</p>
       </div>
     </section>
 
-    <!-- ESPECIFICAÇÕES COMPLETAS (DEMO) -->
-    <section class="section product-specs">
+    <!-- DUMP BRUTO DA API (PARA DESENVOLVER) -->
+    <section class="section product-raw-section">
       <div class="section-header">
-        <h2>Especificações completas</h2>
-        <p>Essas informações ainda são de demonstração. Depois, vamos puxar tudo direto das lojas.</p>
+        <h2>Dados brutos da API (debug)</h2>
+        <p>
+          Esta área é só para desenvolvimento. Aqui aparece exatamente o JSON que veio da sua API.
+        </p>
       </div>
 
-      <ul class="specs-list" id="product-specs">
-        <li>Categoria: <span id="spec-category">Notebook / Hardware (demo)</span></li>
-        <li>Marca: <span id="spec-brand">Não informado (demo)</span></li>
-        <li>Modelo: <span id="spec-model">Não informado (demo)</span></li>
-        <li>Loja principal: <span id="spec-store">Loja demo</span></li>
-      </ul>
-    </section>
-
-    <!-- CALCULAR FRETE (DEMO) -->
-    <section class="section product-frete">
-      <div class="section-header">
-        <h2>Calcular frete</h2>
-        <p>Simulação de frete em modo demo. Depois vamos integrar com APIs reais.</p>
-      </div>
-
-      <form id="freteForm" class="frete-form">
-        <label for="freteCep">Digite seu CEP</label>
-        <div class="frete-row">
-          <input
-            type="text"
-            id="freteCep"
-            class="input-search"
-            placeholder="Ex.: 79000-000"
-            maxlength="9"
-          />
-          <button type="submit" class="btn-outline">
-            Calcular frete
-          </button>
-        </div>
-      </form>
-
-      <p id="freteStatus" class="frete-status"></p>
+      <pre id="product-raw" class="product-raw"></pre>
     </section>
 
   </main>
@@ -109,7 +125,7 @@
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="produto.js"></script>
   <script>
     // MENU MOBILE
     const navToggle = document.getElementById("navToggle");
