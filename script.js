@@ -9,25 +9,25 @@ function quickPreset(texto) {
   }
 }
 
-// Vai para a página Premium levando o texto da busca (via query string simples)
+// Vai para a página Minha área (dashboard) levando o texto da busca (via query string simples)
 function goToPremiumFromHome() {
   const input = document.getElementById("home-query");
   const termo = input ? input.value.trim() : "";
 
   if (termo) {
-    const url = new URL(window.location.origin + "/premium.html");
+    const url = new URL(window.location.origin + "/dashboard.html");
     url.searchParams.set("q", termo);
     window.location.href = url.toString();
   } else {
-    window.location.href = "premium.html";
+    window.location.href = "dashboard.html";
   }
 }
 
-// =============== PREMIUM ===============
+// =============== DASHBOARD / PREMIUM (DEMO) ===============
 
-// Quando abre premium.html, pega o ?q= da URL e joga dentro do input premium-query
+// Quando abre o dashboard, pega o ?q= da URL e joga dentro do input premiumQuery
 (function preencherBuscaPremiumComURL() {
-  const campo = document.getElementById("premium-query");
+  const campo = document.getElementById("premiumQuery");
   if (!campo) return;
 
   const params = new URLSearchParams(window.location.search);
@@ -38,7 +38,7 @@ function goToPremiumFromHome() {
 })();
 
 // Chama o backend do Nexus (rota /api/search/demo)
-// e mostra os resultados na tela do Premium
+// e mostra os resultados na tela do Premium (versão antiga, pode ser reaproveitada futuramente)
 async function runPremiumSearch() {
   const input = document.getElementById("premium-query");
   const status = document.getElementById("premium-status");
@@ -165,7 +165,7 @@ function fakeLogin(event) {
       ".\n\nNesta versão não há autenticação real, é somente front-end."
   );
 
-  // redireciona só para mostrar fluxo
-  window.location.href = "premium.html";
+  // redireciona agora para a Minha área (dashboard)
+  window.location.href = "dashboard.html";
   return false;
 }
