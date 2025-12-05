@@ -583,6 +583,11 @@ main {
   background: radial-gradient(circle at top, #02081a 0, #020617 75%);
 }
 
+/* Mais espaço entre o conteúdo e o botão no card do dashboard */
+.dashboard-card .btn-outline.full {
+  margin-top: 10px;
+}
+
 /* ícones via CSS */
 .section-dashboard-summary .section-header h2::before {
   content: "👤 ";
