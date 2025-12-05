@@ -1410,3 +1410,150 @@ main {
     align-items: center;
   }
 }
+/* ============================= */
+/*  PÁGINA DE PRODUTO            */
+/* ============================= */
+
+.product-hero .product-store {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.product-image-wrapper {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  display: block;
+}
+
+.product-id {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.product-price-block {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: radial-gradient(circle at top, #02081a 0, #020617 65%);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.product-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #22d3ee;
+}
+
+.product-old-price {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-top: 4px;
+}
+
+.product-extra {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.product-frete h2 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.frete-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.product-frete-result {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Especificações */
+.product-specs-section {
+  margin-top: 24px;
+}
+
+.product-specs-list {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+.product-specs-list li {
+  margin-bottom: 4px;
+}
+
+.product-specs-list strong {
+  color: #e5e7eb;
+}
+
+.product-raw {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 0.78rem;
+  overflow-x: auto;
+}
+
+/* Desktop: 2 colunas para layout do produto */
+@media (min-width: 768px) {
+  .product-layout {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    align-items: flex-start;
+  }
+
+  .frete-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .frete-row .input-search {
+    flex: 1;
+  }
+
+  .product-actions {
+    flex-direction: row;
+  }
+
+  .product-actions .btn-outline.full {
+    width: auto;
+    flex: 1;
+  }
+}
