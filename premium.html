@@ -36,9 +36,30 @@
   <main class="page">
 
     <h1>Premium Nexus</h1>
-    <p>Compare em lojas grandes e pequenas com descontos exclusivos.</p>
+<p>Compare em lojas grandes e pequenas com descontos exclusivos.</p>
 
-    <div class="plans-grid">
+    <!-- BUSCA DEMO -->
+    <section class="premium-search">
+      <h2>Teste a busca demo</h2>
+      <p>Digite um produto para ver como a comparação funciona (os dados ainda são fictícios).</p>
+
+      <form id="premiumSearchForm" class="search-form">
+        <input
+          type="text"
+          id="premiumQuery"
+          class="input-search"
+          placeholder="Ex.: notebook gamer, teclado mecânico, headset..."
+          required
+        />
+        <button type="submit" class="btn-outline full">
+          Buscar ofertas demo
+        </button>
+      </form>
+
+      <div id="premiumSearchResults" class="search-results"></div>
+    </section>
+
+<div class="plans-grid">
 
       <!-- SEMANAL -->
       <article class="plan-card">
@@ -86,10 +107,84 @@
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-  <script>
-    document.getElementById("navToggle").addEventListener("click", () => {
-      document.getElementById("navMenu").classList.toggle("nav-open");
-    });
+   <script>
+    // MENU MOBILE
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("nav-open");
+      });
+    }
+
+    // BUSCA PREMIUM → chama backend /api/search/demo
+    const premiumForm = document.getElementById("premiumSearchForm");
+    const premiumInput = document.getElementById("premiumQuery");
+    const premiumResults = document.getElementById("premiumSearchResults");
+
+    async function handlePremiumSearch(event) {
+      event.preventDefault();
+
+      if (!premiumInput || !premiumResults) return;
+
+      const termo = premiumInput.value.trim();
+      if (!termo) return;
+
+      // estado de carregando
+      premiumResults.innerHTML = "<p>Buscando ofertas demo...</p>";
+
+      try {
+        const response = await fetch("http://localhost:3000/api/search/demo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: termo }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao chamar a API");
+        }
+
+        const data = await response.json();
+
+        if (!data.ok || !Array.isArray(data.results) || data.results.length === 0) {
+          premiumResults.innerHTML =
+            "<p>Nenhum resultado encontrado na demo para esse termo.</p>";
+          return;
+        }
+
+        // monta a listinha de resultados
+        const list = document.createElement("ul");
+        list.className = "results-list";
+
+        data.results.forEach((item) => {
+          const li = document.createElement("li");
+          const price =
+            typeof item.price === "number"
+              ? "R$ " + item.price.toFixed(2).replace(".", ",")
+              : item.price;
+
+          li.innerHTML = `
+            <strong>${item.title}</strong><br />
+            <span>${item.store}</span> — <span>${price}</span>
+          `;
+          list.appendChild(li);
+        });
+
+        premiumResults.innerHTML = "";
+        premiumResults.appendChild(list);
+      } catch (err) {
+        console.error(err);
+        premiumResults.innerHTML =
+          "<p>Ocorreu um erro ao buscar as ofertas demo. Verifique se o servidor do backend está rodando.</p>";
+      }
+    }
+
+    if (premiumForm) {
+      premiumForm.addEventListener("submit", handlePremiumSearch);
+    }
   </script>
 </body>
 </html>
