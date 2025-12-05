@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Buscar ofertas - Nexus</title>
+  <title>Buscar produtos - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -10,14 +10,16 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
 </head>
+
 <body>
+  <!-- NAV -->
   <header class="topbar">
     <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" alt="Nexus" />
+      <img src="logo.png" class="brand-logo" />
       <span class="brand-name">Nexus</span>
     </a>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+    <button class="nav-toggle" id="navToggle">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -25,66 +27,79 @@
 
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
+      <a href="buscar.html" class="nav-link active">Buscar</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
       <a href="login.html" class="nav-link">Entrar</a>
     </nav>
   </header>
 
-  <main class="page search-page">
-    <!-- CABEÇALHO DA BUSCA -->
-    <section class="section search-hero">
-      <div class="section-header">
-        <h1>Resultados da sua busca</h1>
-        <p>
-          Buscando ofertas reais no Mercado Livre (site MLB) com visual do Nexus.
+  <!-- MAIN BUSCA -->
+  <main class="search-page">
+
+    <!-- HERO DA BUSCA -->
+    <section class="hero search-hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          Encontre <span class="highlight">as melhores ofertas</span> em um só lugar.
+        </h1>
+        <p class="hero-subtitle">
+          Digite o nome do produto e compare preços, lojas, frete e condições.
+        </p>
+
+        <div class="hero-search">
+          <input
+            id="search-query"
+            type="text"
+            class="input-search"
+            placeholder="Ex: RTX 4060, PS5, monitor 144Hz..."
+          />
+          <button class="btn-primary" onclick="runSearchPageSearch()">
+            Buscar ofertas
+          </button>
+        </div>
+
+        <p class="search-meta" id="search-meta-text">
+          Comece digitando algo como “RTX 4060” ou “cadeira gamer”.
         </p>
       </div>
-
-      <!-- FORMULÁRIO DE BUSCA -->
-      <form id="searchForm" class="search-form">
-        <input
-          type="text"
-          id="searchQuery"
-          class="input-search"
-          placeholder="Ex.: notebook gamer, teclado mecânico, headset..."
-          required
-        />
-        <button type="submit" class="btn-primary" style="margin-top: 10px;">
-          Buscar novamente
-        </button>
-      </form>
-
-      <p id="searchMeta" class="search-meta"></p>
     </section>
 
-    <!-- FILTROS / ORDEM (layout C + A, minimalista) -->
-    <section class="section results-toolbar" id="resultsToolbar" style="display:none;">
-      <div class="toolbar-row">
-        <span id="resultsCount" class="toolbar-info"></span>
+    <!-- RESULTADOS -->
+    <section class="section">
+      <!-- Barra de info + ordenação -->
+      <div class="results-toolbar">
+        <div class="toolbar-row">
+          <span class="toolbar-info" id="results-count">
+            <!-- “Mostrando X resultados para Y” -->
+          </span>
 
-        <div class="toolbar-actions">
-          <label class="toolbar-label">
-            Ordenar:
-            <select id="sortSelect" class="toolbar-select">
+          <div class="toolbar-actions">
+            <label class="toolbar-label" for="sort-select">
+              Ordenar por:
+            </label>
+            <select id="sort-select" class="toolbar-select" onchange="runSearchPageSearch(true)">
               <option value="relevance">Relevância</option>
               <option value="price_asc">Menor preço</option>
               <option value="price_desc">Maior preço</option>
             </select>
-          </label>
+          </div>
         </div>
+      </div>
+
+      <!-- GRID DE RESULTADOS -->
+      <div id="results-grid" class="results-grid">
+        <!-- Cards inseridos via JS -->
       </div>
     </section>
 
-    <!-- GRID DE RESULTADOS -->
-    <section class="section section-search-results">
-      <div id="searchResults" class="results-grid"></div>
-    </section>
   </main>
 
   <footer class="footer">
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
+
+  <script src="script.js"></script>
 
   <script>
     // MENU MOBILE
@@ -97,174 +112,12 @@
       });
     }
 
-    const searchForm   = document.getElementById("searchForm");
-    const searchInput  = document.getElementById("searchQuery");
-    const searchMeta   = document.getElementById("searchMeta");
-    const searchResults = document.getElementById("searchResults");
-    const resultsToolbar = document.getElementById("resultsToolbar");
-    const resultsCount   = document.getElementById("resultsCount");
-    const sortSelect     = document.getElementById("sortSelect");
-
-    let lastResults = []; // guarda o último array pra reordenar no front
-
-    // Chama a API do Mercado Livre (preços reais)
-    async function fetchRealOffers(term) {
-      const url = `https://api.mercadolibre.com/sites/MLB/search?q=${encodeURIComponent(term)}&limit=24`;
-
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("Erro ao chamar API do Mercado Livre");
+    // Quando carregar buscar.html, puxa ?q= da URL e já busca
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof initSearchPage === "function") {
+        initSearchPage();
       }
-      const data = await res.json();
-      return data;
-    }
-
-    function formatPrice(value) {
-      if (typeof value !== "number") return "Preço não informado";
-      return "R$ " + value.toFixed(2).replace(".", ",");
-    }
-
-    function renderResults(results, term) {
-      if (!searchResults) return;
-
-      if (!results || results.length === 0) {
-        searchResults.innerHTML = `
-          <p class="search-meta">
-            Nenhum resultado encontrado para "<strong>${term}</strong>".
-          </p>
-        `;
-        resultsToolbar.style.display = "none";
-        return;
-      }
-
-      // toolbar on
-      resultsToolbar.style.display = "block";
-      resultsCount.textContent = `${results.length} resultados encontrados`;
-
-      const cardsHTML = results
-        .map((item, index) => {
-          const title = item.title || "Produto sem nome";
-          const thumb = item.thumbnail || item.thumbnail_id || "";
-          const price = item.price;
-          const originalPrice = item.original_price;
-          const permalink = item.permalink || "#";
-          const freeShipping = item.shipping && item.shipping.free_shipping;
-          const storeName = item.seller && item.seller.nickname
-            ? item.seller.nickname
-            : "Vendedor Mercado Livre";
-
-          const isBest = index === 0; // menor preço ou mais relevante → badge
-
-          return `
-            <article class="result-card">
-              <div class="result-thumb">
-                ${
-                  thumb
-                    ? `<img src="${thumb}" alt="${title}" loading="lazy" />`
-                    : `<div class="thumb-placeholder">Sem imagem</div>`
-                }
-              </div>
-
-              <div class="result-body">
-                <div class="result-header">
-                  <h2>${title}</h2>
-                  ${isBest ? '<span class="badge badge-best">Melhor oferta</span>' : ""}
-                </div>
-
-                <p class="result-store">
-                  ${storeName}
-                  ${
-                    freeShipping
-                      ? '<span class="badge badge-frete">Frete grátis</span>'
-                      : ""
-                  }
-                </p>
-
-                <div class="result-prices">
-                  <span class="price-current">${formatPrice(price)}</span>
-                  ${
-                    originalPrice && originalPrice > price
-                      ? `<span class="price-original">${formatPrice(originalPrice)}</span>`
-                      : ""
-                  }
-                </div>
-
-                <div class="result-actions">
-                  <a href="${permalink}" target="_blank" rel="noopener noreferrer" class="btn-outline">
-                    Ver oferta
-                  </a>
-                </div>
-              </div>
-            </article>
-          `;
-        })
-        .join("");
-
-      searchResults.innerHTML = cardsHTML;
-    }
-
-    function sortResults(type) {
-      if (!lastResults || lastResults.length === 0) return;
-
-      const sorted = [...lastResults];
-
-      if (type === "price_asc") {
-        sorted.sort((a, b) => (a.price || 0) - (b.price || 0));
-      } else if (type === "price_desc") {
-        sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
-      }
-      // "relevance" mantém a ordem original
-
-      const term = searchInput.value.trim();
-      renderResults(sorted, term);
-    }
-
-    async function handleSearch(event) {
-      if (event) event.preventDefault();
-      if (!searchInput || !searchResults) return;
-
-      const term = searchInput.value.trim();
-      if (!term) return;
-
-      searchMeta.innerHTML = `Buscando por "<strong>${term}</strong>"...`;
-      searchResults.innerHTML = `<p class="search-meta">Carregando ofertas reais...</p>`;
-      resultsToolbar.style.display = "none";
-
-      try {
-        const data = await fetchRealOffers(term);
-        lastResults = data.results || [];
-        searchMeta.innerHTML = `Exibindo resultados para "<strong>${term}</strong>"`;
-        renderResults(lastResults, term);
-      } catch (err) {
-        console.error(err);
-        searchMeta.innerHTML =
-          "Ocorreu um erro ao buscar as ofertas. Tente novamente em alguns instantes.";
-        searchResults.innerHTML = "";
-      }
-    }
-
-    // submit do form
-    if (searchForm) {
-      searchForm.addEventListener("submit", handleSearch);
-    }
-
-    // mudança na ordenação
-    if (sortSelect) {
-      sortSelect.addEventListener("change", () => {
-        sortResults(sortSelect.value);
-      });
-    }
-
-    // Pega ?q= da URL e já busca automaticamente
-    (function fillFromURL() {
-      if (!searchInput) return;
-      const params = new URLSearchParams(window.location.search);
-      const term = params.get("q");
-      if (term) {
-        searchInput.value = term;
-        handleSearch();
-      }
-    })();
+    });
   </script>
 </body>
 </html>
