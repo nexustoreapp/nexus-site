@@ -479,6 +479,40 @@ main {
   margin-top: 8px;
 }
 
+/* ============================
+   DASHBOARD - RESULTADOS DA BUSCA
+============================ */
+
+.search-results {
+  margin-top: 1.5rem;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.results-list li {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.7);
+  font-size: 0.95rem;
+}
+
+.results-list li strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.results-list li span {
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
 /* ============================= */
 /*  FORM LOGIN                   */
 /* ============================= */
