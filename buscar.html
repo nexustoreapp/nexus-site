@@ -2,122 +2,46 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Buscar produtos - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscar produtos - Nexus</title>
 
-  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
 </head>
-
 <body>
-  <!-- NAV -->
+
   <header class="topbar">
     <a href="index.html" class="brand">
       <img src="logo.png" class="brand-logo" />
       <span class="brand-name">Nexus</span>
     </a>
-
     <button class="nav-toggle" id="navToggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
-      <a href="buscar.html" class="nav-link active">Buscar</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
       <a href="login.html" class="nav-link">Entrar</a>
     </nav>
   </header>
 
-  <!-- MAIN BUSCA -->
-  <main class="search-page">
+  <main class="page search-page">
 
-    <!-- HERO DA BUSCA -->
-    <section class="hero search-hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">
-          Encontre <span class="highlight">as melhores ofertas</span> em um só lugar.
-        </h1>
-        <p class="hero-subtitle">
-          Digite o nome do produto e compare preços, lojas, frete e condições.
-        </p>
-
-        <div class="hero-search">
-          <input
-            id="search-query"
-            type="text"
-            class="input-search"
-            placeholder="Ex: RTX 4060, PS5, monitor 144Hz..."
-          />
-          <button class="btn-primary" onclick="runSearchPageSearch()">
-            Buscar ofertas
-          </button>
-        </div>
-
-        <p class="search-meta" id="search-meta-text">
-          Comece digitando algo como “RTX 4060” ou “cadeira gamer”.
-        </p>
-      </div>
-    </section>
-
-    <!-- RESULTADOS -->
-    <section class="section">
-      <!-- Barra de info + ordenação -->
-      <div class="results-toolbar">
-        <div class="toolbar-row">
-          <span class="toolbar-info" id="results-count">
-            <!-- “Mostrando X resultados para Y” -->
-          </span>
-
-          <div class="toolbar-actions">
-            <label class="toolbar-label" for="sort-select">
-              Ordenar por:
-            </label>
-            <select id="sort-select" class="toolbar-select" onchange="runSearchPageSearch(true)">
-              <option value="relevance">Relevância</option>
-              <option value="price_asc">Menor preço</option>
-              <option value="price_desc">Maior preço</option>
-            </select>
-          </div>
-        </div>
+    <section class="section search-hero">
+      <div class="section-header">
+        <h1>Resultados da busca</h1>
+        <p class="search-meta" id="search-meta"></p>
       </div>
 
-      <!-- GRID DE RESULTADOS -->
-      <div id="results-grid" class="results-grid">
-        <!-- Cards inseridos via JS -->
-      </div>
+      <div id="results-grid" class="results-grid"></div>
     </section>
 
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
+    Nexus © 2025
   </footer>
 
-  <script src="script.js"></script>
-
-  <script>
-    // MENU MOBILE
-    const navToggle = document.getElementById("navToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("nav-open");
-      });
-    }
-
-    // Quando carregar buscar.html, puxa ?q= da URL e já busca
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof initSearchPage === "function") {
-        initSearchPage();
-      }
-    });
-  </script>
+  <script src="buscar.js"></script>
 </body>
 </html>
