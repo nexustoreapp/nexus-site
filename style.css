@@ -180,7 +180,7 @@ main {
 
 .hero {
   padding-top: 32px;
-  animation: fadeUpSoft 0.45s ease-out;
+  animation: fadeUpSoft 0.7s ease-out;
   animation-fill-mode: both;
 }
 
@@ -322,7 +322,7 @@ main {
 
 .section {
   margin-top: 40px;
-  animation: fadeUpSoft 0.45s ease-out;
+  animation: fadeUpSoft 0.7s ease-out;
   animation-fill-mode: both;
 }
 
