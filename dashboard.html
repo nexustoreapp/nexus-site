@@ -45,7 +45,7 @@
       </div>
     </section>
 
-    <!-- RESUMO DO PLANO + ATALHOS -->
+        <!-- RESUMO DO PLANO + ATALHOS -->
     <section class="section section-dashboard-summary">
       <div class="section-header">
         <h2>Visão geral da sua conta</h2>
@@ -69,11 +69,20 @@
           </a>
         </article>
 
-        <!-- CARD 2: ATALHOS RÁPIDOS -->
+        <!-- CARD 2: ATALHOS RÁPIDOS (COM BOTÃO) -->
         <article class="plan-card dashboard-card">
-          <h2>Atalhos rápidos</h2>
+          <div class="shortcut-header">
+            <h2>Atalhos rápidos</h2>
 
-          <div class="shortcut-grid">
+            <!-- botão hambúrguer para abrir/fechar atalhos -->
+            <button class="shortcut-toggle" id="shortcutToggle" type="button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <div class="shortcut-grid" id="shortcutGrid">
             <a class="shortcut-card" href="index.html">
               <span class="shortcut-icon">🏠</span>
               <div class="shortcut-info">
