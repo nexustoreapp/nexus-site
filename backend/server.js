@@ -6,11 +6,9 @@ import routes from "./routes/index.js";
 
 const app = express();
 
-// Middlewares básicos
 app.use(cors());
 app.use(express.json());
 
-// Rota raiz só para dizer que a API está ok
 app.get("/", (req, res) => {
   res.json({
     ok: true,
@@ -18,10 +16,18 @@ app.get("/", (req, res) => {
   });
 });
 
-// Rotas principais da API (tudo começa com /api)
+// rota /test só pra você conferir
+app.get("/test", (req, res) => {
+  res.json({
+    ok: true,
+    message: "Rota /test funcionando ✅",
+    hint: "Agora você pode testar também /api/health e /api/plans",
+  });
+});
+
+// aqui ele aplica TODAS as rotas de /routes
 app.use("/api", routes);
 
-// Iniciar servidor
 app.listen(3000, () => {
   console.log("🚀 Backend do Nexus rodando na porta 3000");
 });
