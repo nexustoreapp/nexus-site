@@ -922,6 +922,10 @@ main {
 /*  RESPONSIVO (DESKTOP)         */
 /* ============================= */
 
+@media (min-width: 768px) {/* ============================= */
+/*  RESPONSIVO (DESKTOP)         */
+/* ============================= */
+
 @media (min-width: 768px) {
 
   .topbar {
@@ -937,7 +941,7 @@ main {
     font-size: 1.2rem;
   }
 
-  /* no desktop o menu fica sempre visível, sem animação */
+  /* menu sempre visível no desktop */
   .nav {
     position: static;
     flex-direction: row;
@@ -979,6 +983,7 @@ main {
     padding-inline: 20px;
   }
 
+  /* grid padrão de cards (home, assinatura, etc.) */
   .grid-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -991,6 +996,27 @@ main {
     flex-direction: row;
     align-items: center;
   }
+
+  /* ===== AJUSTES ESPECÍFICOS DA PÁGINA "MINHA ÁREA" ===== */
+
+  /* 1) Visão geral da conta: só 1 card larguinho (Seu plano atual) */
+  .section-dashboard-summary .plans-grid {
+    grid-template-columns: minmax(0, 440px);
+    justify-content: flex-start;
+    gap: 28px;
+  }
+
+  /* 2) Carrinho: dois cards lado a lado, bonitinhos */
+  .section-dashboard-cart .plans-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .section-dashboard-cart .plan-card {
+    height: 100%;
+  }
+}
 }
 /* Ajuste de espaçamento entre cards do dashboard */
 .section-dashboard-summary .plans-grid {
