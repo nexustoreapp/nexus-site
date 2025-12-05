@@ -858,6 +858,238 @@ main {
   }
 }
 /* ============================= */
+/*  PÁGINA DE PRODUTO (DETALHES) */
+/* ============================= */
+
+.product-page {
+  max-width: 1120px;
+}
+
+/* Cabeçalho / breadcrumb */
+.product-hero .product-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.breadcrumb-link {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.product-hero h1 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.product-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Layout principal: coluna do conteúdo + lateral */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+/* Card base da página de produto */
+.product-card,
+.product-main-card {
+  background: radial-gradient(circle at top, #02081a 0, #020617 70%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 16px 14px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.9);
+}
+
+.product-main-card {
+  margin-bottom: 16px;
+}
+
+/* Topo principal: imagem + info */
+.product-main-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.product-image-area {
+  display: flex;
+  justify-content: center;
+}
+
+.product-image-wrapper img {
+  width: 180px;
+  height: 180px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #020617;
+}
+
+.product-thumb-placeholder {
+  width: 180px;
+  height: 180px;
+}
+
+.product-main-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-brand {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #22d3ee;
+}
+
+.product-price-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.product-main-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Especificações */
+.product-specs {
+  margin-top: 10px;
+}
+
+.product-specs-table {
+  margin: 0;
+}
+
+.product-spec-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  font-size: 0.88rem;
+}
+
+.product-spec-row dt {
+  color: var(--muted);
+}
+
+.product-spec-row dd {
+  margin: 0;
+}
+
+/* Texto de seções da página de produto */
+.product-section-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.product-description {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* Ofertas por loja */
+.product-offers {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.product-offer-card {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  font-size: 0.88rem;
+}
+
+.product-offer-store {
+  font-weight: 500;
+}
+
+.product-offer-price {
+  font-size: 1rem;
+  color: #22d3ee;
+}
+
+.product-offer-shipping,
+.product-offer-note {
+  font-size: 0.83rem;
+  color: var(--muted);
+}
+
+/* Frete */
+.frete-form {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.frete-form label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.frete-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.product-frete-resultado {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Desktop: deixa 2 colunas (conteúdo + lateral) e organiza melhor */
+@media (min-width: 768px) {
+  .product-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+    align-items: flex-start;
+  }
+
+  .product-main-top {
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .product-image-wrapper img,
+  .product-thumb-placeholder {
+    width: 220px;
+    height: 220px;
+  }
+
+  .product-main-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .frete-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .frete-row .input-search {
+    flex: 1;
+  }
+}
+/* ============================= */
 /*  FORM LOGIN                   */
 /* ============================= */
 
