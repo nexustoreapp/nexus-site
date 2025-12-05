@@ -1,10 +1,3 @@
-// =============== NAV (MOBILE) ===============
-function toggleNav() {
-  const nav = document.getElementById("main-nav");
-  if (!nav) return;
-  nav.classList.toggle("nav-open");
-}
-
 // =============== FUNÇÕES DA HOME ===============
 
 // Preenche a busca rápida da home
@@ -32,7 +25,7 @@ function goToPremiumFromHome() {
 
 // =============== PREMIUM ===============
 
-// Lê o parâmetro q= da URL (se existir) e joga no input da premium
+// Quando abre premium.html, pega o ?q= da URL e joga dentro do input premium-query
 (function preencherBuscaPremiumComURL() {
   const campo = document.getElementById("premium-query");
   if (!campo) return;
@@ -44,8 +37,9 @@ function goToPremiumFromHome() {
   }
 })();
 
-// Simulação de busca – NÃO é API real
-function runPremiumSearch() {
+// Chama o backend do Nexus (rota /api/search/demo)
+// e mostra os resultados na tela do Premium
+async function runPremiumSearch() {
   const input = document.getElementById("premium-query");
   const status = document.getElementById("premium-status");
   const resumo = document.getElementById("premium-summary");
@@ -63,52 +57,93 @@ function runPremiumSearch() {
     return;
   }
 
+  // Mostra mensagem de carregando
   status.className = "alert";
-  status.textContent =
-    "Simulação visual: ainda não há conexão real com Shopee, Amazon, AliExpress etc.";
+  status.textContent = "Buscando ofertas em modo demonstração...";
+  resumo.textContent = "";
+  lista.innerHTML = "";
 
-  resumo.textContent =
-    'Exemplo fictício de comparação para o termo: "' + termo + '" (dados de teste).';
+  try {
+    // IMPORTANTE: por enquanto chama o backend local
+    const resposta = await fetch("http://localhost:3000/api/search/demo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: termo }),
+    });
 
-  lista.innerHTML = `
-    <div class="grid-cards">
-      <article class="card-product">
-        <h3>${termo} - Loja A</h3>
-        <p class="card-tag">Exemplo de loja (dados fictícios)</p>
-        <p class="card-price">R$ 199,90</p>
-        <button class="btn-outline">Ir para a loja (simulação)</button>
-      </article>
+    const data = await resposta.json();
 
-      <article class="card-product">
-        <h3>${termo} - Loja B</h3>
-        <p class="card-tag">Exemplo de loja (dados fictícios)</p>
-        <p class="card-price">R$ 209,90</p>
-        <button class="btn-outline">Ir para a loja (simulação)</button>
-      </article>
+    if (!resposta.ok || !data.ok) {
+      status.className = "alert error";
+      status.textContent =
+        data.error || "Erro ao buscar ofertas. Tente novamente.";
+      return;
+    }
 
-      <article class="card-product">
-        <h3>${termo} - Loja C</h3>
-        <p class="card-tag">Exemplo de loja (dados fictícios)</p>
-        <p class="card-price">R$ 215,50</p>
-        <button class="btn-outline">Ir para a loja (simulação)</button>
-      </article>
-    </div>
-  `;
+    // Monta um resumo do que foi buscado
+    resumo.textContent =
+      'Resultados de demonstração para o termo: "' + data.query + '"';
+
+    // Monta cards com base no que o backend retornou
+    if (!Array.isArray(data.results) || data.results.length === 0) {
+      lista.innerHTML =
+        '<p class="premium-summary">Nenhum resultado retornado pelo backend (modo demo).</p>';
+      return;
+    }
+
+    const cardsHTML = data.results
+      .map(
+        (item) => `
+        <article class="card-product">
+          <h3>${item.title || item.name || "Produto sem nome"}</h3>
+          <p class="card-tag">
+            Loja: ${item.store || "Loja não informada"} – Dados fictícios (demo)
+          </p>
+          <p class="card-price">
+            ${
+              item.price
+                ? "R$ " + item.price.toFixed(2).replace(".", ",")
+                : "Preço não informado"
+            }
+          </p>
+          <button class="btn-outline">Ver na loja (simulação)</button>
+        </article>
+      `
+      )
+      .join("");
+
+    lista.innerHTML = `
+      <div class="grid-cards">
+        ${cardsHTML}
+      </div>
+    `;
+
+    status.className = "alert";
+    status.textContent =
+      "Busca concluída com sucesso (modo demonstração, usando o backend do Nexus).";
+  } catch (erro) {
+    console.error("Erro na chamada da API:", erro);
+    status.className = "alert error";
+    status.textContent =
+      "Erro de conexão com o servidor do Nexus. Verifique se o backend está rodando.";
+  }
 }
 
 // =============== ASSINATURA (SIMULAÇÃO) ===============
-function simulateCheckout(plan) {
-  let nomePlano = "Plano";
-  if (plan === "FREE") nomePlano = "Gratuito";
-  if (plan === "PREMIUM_WEEKLY") nomePlano = "Premium Semanal";
-  if (plan === "PREMIUM_MONTHLY") nomePlano = "Premium Mensal";
-  if (plan === "PREMIUM_YEARLY") nomePlano = "Premium Anual";
+function simulateCheckout(planId) {
+  let planoTexto = "Plano selecionado";
+
+  if (planId === "FREE") planoTexto = "Plano Gratuito";
+  if (planId === "PREMIUM_WEEKLY") planoTexto = "Premium Semanal";
+  if (planId === "PREMIUM_MONTHLY") planoTexto = "Premium Mensal";
+  if (planId === "PREMIUM_YEARLY") planoTexto = "Premium Anual";
 
   alert(
-    "Simulação de assinatura: " +
-      nomePlano +
-      ".\n\n" +
-      "Nesta versão não há cobrança real. No futuro, aqui entra o gateway de pagamento (ex.: Stripe, Mercado Pago)."
+    planoTexto +
+      " selecionado (simulação).\n\n" +
+      "Na versão real, aqui vamos abrir o fluxo de pagamento via gateway (ex: Stripe, Mercado Pago...)."
   );
 }
 
@@ -130,6 +165,7 @@ function fakeLogin(event) {
       ".\n\nNesta versão não há autenticação real, é somente front-end."
   );
 
+  // redireciona só para mostrar fluxo
   window.location.href = "premium.html";
   return false;
 }
