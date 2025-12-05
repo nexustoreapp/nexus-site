@@ -228,7 +228,6 @@ async function runSearchPageSearch(fromSortChange) {
   if (countSpan) countSpan.textContent = "";
 
   try {
-    // Aqui você pode reaproveitar a mesma rota demo do backend
     const resposta = await fetch("http://localhost:3000/api/search/demo", {
       method: "POST",
       headers: {
@@ -248,6 +247,13 @@ async function runSearchPageSearch(fromSortChange) {
 
     const resultados = Array.isArray(data.results) ? data.results : [];
 
+    // salva os últimos resultados para a página de produto
+    try {
+      localStorage.setItem("nexusLastResults", JSON.stringify(resultados));
+    } catch (e) {
+      console.warn("Não foi possível salvar resultados no localStorage:", e);
+    }
+
     if (meta) {
       meta.textContent = 'Resultados de demonstração para: "' + (data.query || termo) + '"';
     }
@@ -265,7 +271,7 @@ async function runSearchPageSearch(fromSortChange) {
       return;
     }
 
-    // Montar cards (layout A – estilo lista / comparador)
+    // Montar cards (layout lista, estilo comparador)
     const cards = resultados.map((item, index) => {
       const nome = item.title || item.name || "Produto sem nome";
       const loja = item.store || "Loja não informada";
@@ -283,8 +289,7 @@ async function runSearchPageSearch(fromSortChange) {
         ? "R$ " + precoOriginal.toFixed(2).replace(".", ",")
         : "";
 
-      // ID para futura página de detalhes
-      const produtoId = item.id || index;
+      const produtoIndex = index; // usamos o índice como ID na página de produto
 
       return `
         <article class="result-card">
@@ -325,7 +330,7 @@ async function runSearchPageSearch(fromSortChange) {
             </div>
 
             <div class="result-actions">
-              <button class="btn-outline" onclick="verDetalhesProduto('${produtoId}')">
+              <button class="btn-outline" onclick="verDetalhesProduto(${produtoIndex})">
                 Ver detalhes
               </button>
             </div>
@@ -344,15 +349,219 @@ async function runSearchPageSearch(fromSortChange) {
   }
 }
 
-// Placeholder para futura página de detalhes
-function verDetalhesProduto(produtoId) {
-  // No futuro: redirecionar para uma página de detalhes (produto.html)
-  // passando o ID, ex:
-  // window.location.href = "produto.html?id=" + encodeURIComponent(produtoId);
+// Abre a página de detalhes de produto, usando o índice salvo
+function verDetalhesProduto(produtoIndex) {
+  const url = new URL(window.location.origin + "/produto.html");
+  url.searchParams.set("idx", String(produtoIndex));
+  window.location.href = url.toString();
+}
+// ============================
+//  PRODUTO.HTML – DETALHES DO PRODUTO (DEMO)
+// ============================
 
-  alert(
-    "Detalhes do produto (demo).\n\n" +
-      "No projeto real, isso vai abrir uma página com TODAS as especificações, reviews, frete, etc.\n\n" +
-      "ID do produto: " + produtoId
-  );
+function getProductIndexFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const idx = parseInt(params.get("idx"), 10);
+  return Number.isNaN(idx) ? null : idx;
+}
+
+function getLastResultsFromStorage() {
+  try {
+    const raw = localStorage.getItem("nexusLastResults");
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) {
+    console.warn("Erro ao ler nexusLastResults do localStorage:", e);
+    return [];
+  }
+}
+
+function initProductPage() {
+  const idx = getProductIndexFromURL();
+  const results = getLastResultsFromStorage();
+
+  const titleEl = document.getElementById("product-title");
+  const subtitleEl = document.getElementById("product-subtitle");
+  const storeEl = document.getElementById("product-store");
+  const storeSmallEl = document.getElementById("product-store-small");
+  const priceEl = document.getElementById("product-price");
+  const priceNoteEl = document.getElementById("product-price-note");
+  const imageWrapper = document.getElementById("product-image-wrapper");
+  const specsContainer = document.getElementById("product-specs");
+  const descEl = document.getElementById("product-description");
+  const offersEl = document.getElementById("product-offers");
+
+  if (idx === null || !results.length || !results[idx]) {
+    if (titleEl) titleEl.textContent = "Produto não encontrado (demo)";
+    if (subtitleEl) {
+      subtitleEl.textContent =
+        "Volte para a página de busca e selecione um produto novamente.";
+    }
+    if (specsContainer) {
+      specsContainer.innerHTML =
+        "<p class='product-section-note'>Não foi possível carregar os dados deste produto.</p>";
+    }
+    return;
+  }
+
+  const item = results[idx];
+
+  const nome = item.title || item.name || "Produto sem nome (demo)";
+  const loja = item.store || "Loja não informada";
+  const preco = typeof item.price === "number" ? item.price : null;
+  const precoOriginal = typeof item.originalPrice === "number" ? item.originalPrice : null;
+  const imagem = item.image || item.thumbnail || null;
+
+  if (titleEl) titleEl.textContent = nome;
+  if (subtitleEl) {
+    subtitleEl.textContent =
+      item.subtitle ||
+      item.subtitleText ||
+      "Informações completas serão carregadas das APIs das lojas na versão final.";
+  }
+
+  if (storeEl) storeEl.textContent = loja;
+  if (storeSmallEl) storeSmallEl.textContent = loja;
+
+  if (priceEl) {
+    if (preco) {
+      priceEl.textContent = "R$ " + preco.toFixed(2).replace(".", ",");
+    } else {
+      priceEl.textContent = "Preço não informado (demo)";
+    }
+  }
+
+  if (priceNoteEl && precoOriginal) {
+    priceNoteEl.textContent =
+      "Preço atual comparado ao valor cheio de R$ " +
+      precoOriginal.toFixed(2).replace(".", ",") +
+      " (dados de demonstração).";
+  }
+
+  if (imageWrapper) {
+    if (imagem) {
+      imageWrapper.innerHTML = `<img src="${imagem}" alt="${nome}" />`;
+    } else {
+      imageWrapper.innerHTML =
+        `<div class="thumb-placeholder product-thumb-placeholder">Sem imagem disponível</div>`;
+    }
+  }
+
+  // ESPECIFICAÇÕES (demo): tenta ler item.specs, se não tiver, monta um básico
+  if (specsContainer) {
+    let specsHTML = "";
+
+    if (Array.isArray(item.specs)) {
+      specsHTML += `<dl class="product-specs-table">`;
+      item.specs.forEach((spec) => {
+        if (!spec || !spec.label) return;
+        specsHTML += `
+          <div class="product-spec-row">
+            <dt>${spec.label}</dt>
+            <dd>${spec.value || "-"}</dd>
+          </div>
+        `;
+      });
+      specsHTML += `</dl>`;
+    } else if (item.specs && typeof item.specs === "object") {
+      specsHTML += `<dl class="product-specs-table">`;
+      Object.keys(item.specs).forEach((key) => {
+        specsHTML += `
+          <div class="product-spec-row">
+            <dt>${key}</dt>
+            <dd>${item.specs[key]}</dd>
+          </div>
+        `;
+      });
+      specsHTML += `</dl>`;
+    } else {
+      specsHTML = `
+        <dl class="product-specs-table">
+          <div class="product-spec-row">
+            <dt>Loja</dt>
+            <dd>${loja}</dd>
+          </div>
+          <div class="product-spec-row">
+            <dt>Preço exibido</dt>
+            <dd>${preco ? "R$ " + preco.toFixed(2).replace(".", ",") : "Não informado"}</dd>
+          </div>
+          <div class="product-spec-row">
+            <dt>Modo</dt>
+            <dd>Demonstração (dados fictícios). Na versão final, vem da API.</dd>
+          </div>
+        </dl>
+      `;
+    }
+
+    specsContainer.innerHTML = specsHTML;
+  }
+
+  // Descrição (demo)
+  if (descEl) {
+    descEl.textContent =
+      item.description ||
+      "Na versão completa, aqui entra a descrição consolidada das lojas com curadoria por IA, destacando os pontos fortes, limitações e o que prestar atenção antes de comprar.";
+  }
+
+  // Ofertas por loja (demo)
+  if (offersEl) {
+    const offers = Array.isArray(item.offers) ? item.offers : [];
+
+    if (!offers.length) {
+      offersEl.innerHTML = `
+        <div class="product-offer-card">
+          <p class="product-offer-store">${loja}</p>
+          <p class="product-offer-price">
+            ${preco ? "R$ " + preco.toFixed(2).replace(".", ",") : "Preço não informado"}
+          </p>
+          <p class="product-offer-note">
+            Exemplo de oferta única em modo demo. No futuro, vamos listar várias lojas aqui.
+          </p>
+        </div>
+      `;
+    } else {
+      offersEl.innerHTML = offers
+        .map((of) => {
+          const lojaOf = of.store || of.loja || "Loja não informada";
+          const precoOf =
+            typeof of.price === "number"
+              ? "R$ " + of.price.toFixed(2).replace(".", ",")
+              : "Preço não informado";
+          const freteOf =
+            of.shipping ||
+            of.frete ||
+            "Frete a calcular (integração futura com correios/transportadoras).";
+          return `
+            <div class="product-offer-card">
+              <p class="product-offer-store">${lojaOf}</p>
+              <p class="product-offer-price">${precoOf}</p>
+              <p class="product-offer-shipping">${freteOf}</p>
+            </div>
+          `;
+        })
+        .join("");
+    }
+  }
+}
+
+// Simulação básica de frete (demo)
+function calcularFreteDemo() {
+  const cepInput = document.getElementById("cep-input");
+  const freteResultado = document.getElementById("frete-resultado");
+  if (!cepInput || !freteResultado) return;
+
+  const cep = cepInput.value.replace(/\D/g, "");
+  if (cep.length < 8) {
+    freteResultado.textContent = "Digite um CEP válido com 8 dígitos.";
+    return;
+  }
+
+  // Só pra demo: valor aleatório
+  const base = 19.9;
+  const variacao = (parseInt(cep.slice(-2), 10) % 10) * 1.2;
+  const valor = base + variacao;
+
+  freteResultado.textContent =
+    "Frete estimado (demo): R$ " + valor.toFixed(2).replace(".", ",") + " · Entrega em 5 a 9 dias úteis.";
 }
