@@ -665,6 +665,189 @@ main {
   }
 }
 /* ============================= */
+/*  BUSCAR – GRID DE PRODUTOS    */
+/* ============================= */
+
+.search-page {
+  max-width: 1120px;
+}
+
+.search-hero .search-meta,
+.search-meta {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.results-toolbar {
+  margin-top: 10px;
+}
+
+.toolbar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.toolbar-info {
+  font-size: 0.9rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.toolbar-label {
+  font-size: 0.85rem;
+}
+
+.toolbar-select {
+  margin-left: 6px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+/* GRID DE RESULTADOS (layout C + A) */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.result-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.8);
+}
+
+.result-thumb img {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #020617;
+}
+
+.thumb-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: #020617;
+}
+
+.result-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.result-header h2 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  color: #e0f2fe;
+}
+
+.badge-best {
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.badge-frete {
+  margin-left: 6px;
+  border-color: rgba(52, 211, 153, 0.6);
+  color: #bbf7d0;
+  background: rgba(22, 163, 74, 0.15);
+}
+
+.result-store {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.result-prices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.price-current {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #22d3ee;
+}
+
+.price-original {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.result-actions {
+  margin-top: 8px;
+}
+
+/* Desktop ajustes */
+@media (min-width: 768px) {
+  .toolbar-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .results-grid {
+    gap: 16px;
+  }
+
+  .result-card {
+    grid-template-columns: 112px 1fr;
+    padding: 14px 16px;
+  }
+
+  .result-thumb img,
+  .thumb-placeholder {
+    width: 112px;
+    height: 112px;
+  }
+
+  .result-header h2 {
+    font-size: 1rem;
+  }
+}
+/* ============================= */
 /*  FORM LOGIN                   */
 /* ============================= */
 
