@@ -6,20 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Nexus Premium libera busca inteligente em grandes lojas como Amazon, Magalu, Mercado Livre e outras, com comissão menor e planos semanal, mensal e anual."
+    content="Nexus Premium libera busca em grandes lojas como Amazon, Magalu e Mercado Livre, comissão menor e filtros avançados."
   />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <a href="index.html" class="brand">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">Nexus</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span></span><span></span><span></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <nav class="nav" id="navMenu">
@@ -31,49 +35,41 @@
   </header>
 
   <main class="page">
-    <section class="section fade-in">
+    <section class="section">
       <div class="section-header">
-        <h1>Nexus Premium – Busca Inteligente em Grandes Lojas</h1>
+        <h1>Nexus Premium – Busca em grandes lojas</h1>
         <p>
-          No Premium você libera as grandes lojas (Amazon, Mercado Livre, Shopee, Magalu, AliExpress e outras),
-          sempre focando em <strong>produtos com desconto</strong> e com
-          <strong>comissão Nexus menor</strong> sobre o preço base.
-        </p>
-        <p class="muted">
-          Esta página está em modo de demonstração visual. Depois o back-end real de busca (API Nexus) será conectado.
+          No Premium você libera grandes marketplaces (Amazon, Magalu, Mercado Livre, Shopee, AliExpress e outros)
+          e vê sempre o <strong>preço final com comissão menor</strong>.
         </p>
       </div>
 
-      <div id="premium-status" class="alert">
-        Você está visualizando o Nexus Premium em modo simulado. Em produção, aqui validaríamos seu plano ativo.
-      </div>
-
-      <!-- BUSCA PREMIUM -->
       <div class="premium-search">
         <label for="premium-query" class="label-inline">
-          Digite o produto que você quer procurar no modo Premium:
+          Digite o produto que você quer procurar:
         </label>
         <div class="premium-search-row">
           <input
             type="text"
             id="premium-query"
             class="input-search"
-            placeholder="Ex: smartwatch, cadeira gamer, fone bluetooth..."
+            placeholder="Ex: cadeira gamer, smartwatch, fone bluetooth..."
           />
           <button class="btn-primary" onclick="runPremiumSearch()">
             Buscar nas grandes lojas
           </button>
         </div>
-        <p class="muted">
-          No Premium o Nexus consulta mais lojas e aplica uma <strong>comissão menor</strong>, então o preço tende a ser melhor.
+        <p class="premium-summary">
+          Esta página ainda está em modo demonstração visual: os resultados de oferta são exemplos.
+          Depois você conecta o back-end real do Nexus aqui.
         </p>
       </div>
 
-      <!-- RESUMO DOS PLANOS -->
+      <!-- RESUMO DOS PLANOS PREMIUM -->
       <section class="section section-plans">
         <div class="section-header section-header-sm">
           <h2>Planos Premium disponíveis</h2>
-          <p>Escolha o modelo de assinatura que combina com o seu uso.</p>
+          <p>Todos liberam grandes lojas, IA mais precisa e comissão Nexus reduzida.</p>
         </div>
 
         <div class="grid-cards">
@@ -81,11 +77,10 @@
             <h3>Premium Semanal</h3>
             <p class="card-price">R$ 8,99 / semana</p>
             <ul class="card-list">
-              <li>Acesso total às grandes e pequenas lojas</li>
-              <li>Bom para semanas de promoção específicas</li>
-              <li>Comissão Nexus menor nas compras</li>
+              <li>Acesso total a lojas grandes e pequenas</li>
+              <li>Bom para usar em semanas específicas</li>
             </ul>
-            <a href="assinatura.html#semanal" class="btn-outline">Escolher semanal</a>
+            <a href="assinatura.html#semanal" class="btn-primary full">Escolher semanal</a>
           </article>
 
           <article class="card-plan card-plan-featured">
@@ -93,35 +88,43 @@
             <p class="card-price">R$ 16,99 / mês</p>
             <ul class="card-list">
               <li>Melhor custo-benefício para uso contínuo</li>
-              <li>Todos os benefícios do Premium</li>
-              <li>Comissão Nexus reduzida</li>
+              <li>Ideal para quem compara preços sempre</li>
             </ul>
-            <a href="assinatura.html#mensal" class="btn-primary">Escolher mensal</a>
+            <a href="assinatura.html#mensal" class="btn-primary full">Escolher mensal</a>
           </article>
 
           <article class="card-plan">
             <h3>Premium Anual</h3>
             <p class="card-price">R$ 210,99 / ano</p>
             <ul class="card-list">
-              <li>Acesso total durante o ano inteiro</li>
+              <li>Acesso durante o ano inteiro</li>
               <li>Mais econômico no longo prazo</li>
-              <li>Comissão Nexus menor nas compras</li>
             </ul>
-            <a href="assinatura.html#anual" class="btn-outline">Escolher anual</a>
+            <a href="assinatura.html#anual" class="btn-primary full">Escolher anual</a>
           </article>
         </div>
       </section>
 
-      <!-- ÁREA DE RESULTADOS (EXEMPLO) -->
-      <div id="premium-summary" class="premium-summary"></div>
+      <!-- ÁREA PARA RESULTADOS (exemplo) -->
       <div id="premium-results" class="premium-results"></div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Módulo Premium focado em comparação gamer & tech com IA.</p>
+    <p>Nexus © 2025 – Módulo Premium gamer & tech.</p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMenu");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("nav-open");
+        });
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
