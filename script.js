@@ -9,19 +9,20 @@ function quickPreset(texto) {
   }
 }
 
-// Vai para a página Minha área (dashboard) levando o texto da busca (via query string simples)
+// Vai para a página buscar.html
 function goToPremiumFromHome() {
   const input = document.getElementById("home-query");
   const termo = input ? input.value.trim() : "";
 
   if (termo) {
-    const url = new URL(window.location.origin + "/dashboard.html");
+    const url = new URL(window.location.origin + "/buscar.html");
     url.searchParams.set("q", termo);
     window.location.href = url.toString();
   } else {
-    window.location.href = "dashboard.html";
+    window.location.href = "buscar.html";
   }
 }
+
 
 // =============== DASHBOARD / PREMIUM (DEMO) ===============
 
