@@ -565,3 +565,108 @@ function calcularFreteDemo() {
   freteResultado.textContent =
     "Frete estimado (demo): R$ " + valor.toFixed(2).replace(".", ",") + " · Entrega em 5 a 9 dias úteis.";
 }
+// =============== DETALHE DE PRODUTO (DEMO) ===============
+
+// Carrega os dados do produto na página produto.html usando o que foi salvo no localStorage
+function carregarProdutoDetalhe() {
+  // só roda se estivermos em produto.html
+  if (!window.location.pathname.endsWith("produto.html")) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const idx = Number(params.get("idx") || "0");
+
+  const cache = localStorage.getItem("nexus:lastSearchResults");
+  if (!cache) {
+    // modo super demo, sem dados
+    return;
+  }
+
+  let data;
+  try {
+    data = JSON.parse(cache);
+  } catch (e) {
+    console.error("Erro ao ler cache de resultados:", e);
+    return;
+  }
+
+  const produto = data.results && data.results[idx];
+  if (!produto) return;
+
+  // Preenche título, loja e preço
+  const elTitle = document.getElementById("product-title");
+  const elStore = document.getElementById("product-store");
+  const elPrice = document.getElementById("product-price");
+
+  if (elTitle) elTitle.textContent = produto.title || produto.name || "Produto (demo)";
+  if (elStore) {
+    const loja = produto.store || "Loja demo";
+    elStore.innerHTML = `Loja principal: <span>${loja}</span>`;
+  }
+  if (elPrice) {
+    if (produto.price) {
+      elPrice.textContent = "R$ " + Number(produto.price).toFixed(2).replace(".", ",");
+    } else {
+      elPrice.textContent = "Preço não informado";
+    }
+  }
+
+  // Preenche especificações
+  preencherEspecificacoesProduto(produto);
+}
+
+// Preenche a área de especificações com base no objeto de produto
+function preencherEspecificacoesProduto(produto) {
+  const categoria = produto.category || produto.type || "Produto tech (demo)";
+  const loja = produto.store || "Loja demo";
+  const marca = produto.brand || "Não informado (demo)";
+  const modelo = produto.model || produto.title || "Não informado (demo)";
+
+  const elCategory = document.getElementById("spec-category");
+  const elBrand = document.getElementById("spec-brand");
+  const elModel = document.getElementById("spec-model");
+  const elStore = document.getElementById("spec-store");
+
+  if (elCategory) elCategory.textContent = categoria;
+  if (elBrand) elBrand.textContent = marca;
+  if (elModel) elModel.textContent = modelo;
+  if (elStore) elStore.textContent = loja;
+}
+
+// =============== FRETE DEMO NA PÁGINA DE PRODUTO ===============
+(function initFreteDemo() {
+  const form = document.getElementById("freteForm");
+  const cepInput = document.getElementById("freteCep");
+  const statusEl = document.getElementById("freteStatus");
+
+  if (!form || !cepInput || !statusEl) return; // não está em produto.html
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const cep = cepInput.value.trim();
+
+    if (!cep) {
+      statusEl.textContent = "Digite um CEP para simular o frete.";
+      statusEl.className = "frete-status frete-status-error";
+      return;
+    }
+
+    const cepLimpo = cep.replace(/\D/g, "");
+    let preco = 29.9;
+    let prazo = "6 a 9 dias úteis";
+
+    if (cepLimpo.startsWith("01") || cepLimpo.startsWith("02")) {
+      preco = 19.9;
+      prazo = "3 a 5 dias úteis";
+    } else if (cepLimpo.startsWith("79")) {
+      preco = 14.9;
+      prazo = "2 a 4 dias úteis (região MS - demo)";
+    }
+
+    statusEl.textContent =
+      `Frete estimado: R$ ${preco.toFixed(2).replace(".", ",")} – prazo ${prazo} (simulação).`;
+    statusEl.className = "frete-status frete-status-ok";
+  });
+})();
+
+// chama o carregamento de produto quando a página terminar de carregar
+window.addEventListener("DOMContentLoaded", carregarProdutoDetalhe);
