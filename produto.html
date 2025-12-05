@@ -33,90 +33,73 @@
     </nav>
   </header>
 
-  <main class="page">
+  <main class="page search-page">
 
-    <!-- CABEÇALHO DO PRODUTO -->
-    <section class="section product-hero">
+    <section class="section">
       <div class="section-header">
         <h1 id="product-title">Carregando produto...</h1>
-        <p id="product-store" class="product-store"></p>
+        <p id="product-store" class="search-meta"></p>
       </div>
-    </section>
 
-    <!-- LAYOUT PRINCIPAL: IMAGEM + INFO -->
-    <section class="section product-main">
-      <div class="product-layout">
-
-        <!-- GALERIA / IMAGEM -->
-        <div class="product-gallery">
-          <div id="product-image-wrapper" class="product-image-wrapper">
-            <div class="thumb-placeholder">Sem imagem</div>
-          </div>
-          <p id="product-id" class="product-id"></p>
-        </div>
-
-        <!-- BLOCO DE PREÇO + AÇÕES -->
-        <div class="product-info">
-          <div class="product-price-block">
-            <p id="product-price" class="product-price">–</p>
-            <p id="product-old-price" class="product-old-price"></p>
-            <p id="product-extra" class="product-extra"></p>
+      <div class="results-grid" style="margin-top: 18px;">
+        <article class="result-card">
+          <div class="result-thumb">
+            <!-- Por enquanto imagem demo / futura -->
+            <div class="thumb-placeholder" id="product-image-placeholder">
+              Imagem do produto
+            </div>
           </div>
 
-          <!-- FRETE (DEMO) -->
-          <div class="product-frete">
-            <h2>Calcular frete (demo)</h2>
-            <div class="frete-row">
-              <input
-                type="text"
-                id="frete-cep"
-                class="input-search"
-                placeholder="Digite seu CEP"
-              />
-              <button id="btn-frete" class="btn-primary">
-                Calcular
+          <div class="result-body">
+            <div class="result-header">
+              <h2 id="product-title-small">Carregando...</h2>
+            </div>
+
+            <p class="result-store" id="product-store-inline"></p>
+
+            <div class="result-prices">
+              <span class="price-current" id="product-price">R$ 0,00</span>
+            </div>
+
+            <div class="result-actions">
+              <button class="btn-primary" disabled>
+                Comprar (demo)
               </button>
             </div>
-            <p id="frete-result" class="product-frete-result"></p>
           </div>
+        </article>
+      </div>
 
-          <!-- BOTÕES PRINCIPAIS -->
-          <div class="product-actions">
-            <button class="btn-outline full" id="btn-ver-na-loja">
-              Ver oferta na loja (demo)
-            </button>
-            <button class="btn-outline full" id="btn-add-carrinho">
-              Adicionar ao carrinho (demo)
-            </button>
-          </div>
+      <!-- Especificações simples (por enquanto só texto) -->
+      <section class="section" style="margin-top: 24px;">
+        <div class="section-header-sm">
+          <h2>Especificações do produto</h2>
+          <p id="product-specs">
+            Este é um exemplo de página de detalhes. No projeto real,
+            aqui vão aparecer as especificações completas vindas da API.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ESPECIFICAÇÕES / DETALHES -->
-    <section class="section product-specs-section">
-      <div class="section-header">
-        <h2>Especificações do produto</h2>
-        <p>
-          Aqui vamos mostrar tudo o que a API devolver de informações úteis (marca, modelo, variações etc).
-        </p>
-      </div>
+      <!-- Debug: dados crus da API -->
+      <section class="section" style="margin-top: 24px;">
+        <div class="section-header-sm">
+          <h2>Dados brutos (debug)</h2>
+          <p class="search-meta">
+            Apenas para desenvolvimento, para você ver exatamente o que a API retornou.
+          </p>
+        </div>
 
-      <div id="product-specs" class="product-specs">
-        <p>Aguardando dados da API...</p>
-      </div>
-    </section>
-
-    <!-- DUMP BRUTO DA API (PARA DESENVOLVER) -->
-    <section class="section product-raw-section">
-      <div class="section-header">
-        <h2>Dados brutos da API (debug)</h2>
-        <p>
-          Esta área é só para desenvolvimento. Aqui aparece exatamente o JSON que veio da sua API.
-        </p>
-      </div>
-
-      <pre id="product-raw" class="product-raw"></pre>
+        <pre id="product-raw" style="
+          margin-top: 10px;
+          font-size: 0.8rem;
+          background: rgba(15,23,42,0.9);
+          padding: 10px 12px;
+          border-radius: 10px;
+          border: 1px solid rgba(148,163,184,0.35);
+          overflow-x: auto;
+        "></pre>
+      </section>
     </section>
 
   </main>
