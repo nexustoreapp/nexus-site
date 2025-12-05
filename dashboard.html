@@ -233,21 +233,44 @@
         }
 
         const list = document.createElement("ul");
-        list.className = "results-list";
+list.className = "results-list";
 
-        data.results.forEach((item) => {
-          const li = document.createElement("li");
-          const price =
-            typeof item.price === "number"
-              ? "R$ " + item.price.toFixed(2).replace(".", ",")
-              : item.price;
+data.results.forEach((item) => {
+  const li = document.createElement("li");
+  const priceNumber =
+    typeof item.price === "number" ? item.price : null;
+  const priceText =
+    priceNumber !== null
+      ? "R$ " + priceNumber.toFixed(2).replace(".", ",")
+      : (item.price || "Preço não informado");
 
-          li.innerHTML = `
-            <strong>${item.title}</strong><br />
-            <span>${item.store}</span> — <span>${price}</span>
-          `;
-          list.appendChild(li);
-        });
+  // conteúdo principal
+  const infoDiv = document.createElement("div");
+  infoDiv.innerHTML = `
+    <strong>${item.title}</strong><br />
+    <span>${item.store}</span> — <span>${priceText}</span>
+  `;
+
+  // botão de adicionar ao carrinho
+  const btn = document.createElement("button");
+  btn.className = "btn-outline";
+  btn.textContent = "Adicionar ao carrinho (demo)";
+
+  btn.addEventListener("click", () => {
+    addToFreeCart({
+      title: item.title,
+      store: item.store,
+      price: priceNumber,
+    });
+  });
+
+  li.appendChild(infoDiv);
+  li.appendChild(btn);
+  list.appendChild(li);
+});
+
+premiumResults.innerHTML = "";
+premiumResults.appendChild(list);
 
         premiumResults.innerHTML = "";
         premiumResults.appendChild(list);
