@@ -642,4 +642,161 @@ main {
 .shortcut-card:hover {
   background: rgba(30, 41, 59, 0.85);
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(15
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
+}
+
+.shortcut-icon {
+  font-size: 1.6rem;
+}
+
+.shortcut-info h4 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.shortcut-info p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .shortcut-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* ============================= */
+/*  FORM LOGIN                   */
+/* ============================= */
+
+.form-card {
+  margin: 24px auto 0;
+  max-width: 380px;
+  padding: 20px 18px;
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  text-align: left;
+}
+
+.form-card label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.form-card input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #020617;
+  color: var(--text);
+  outline: none;
+}
+
+.form-card input:focus {
+  border-color: var(--accent);
+}
+
+/* ============================= */
+/*  TEXTOS AUXILIARES / FOOTER   */
+/* ============================= */
+
+.small-text {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.small-text a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+.small-text a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  padding: 32px 16px 24px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+/* ============================= */
+/*  RESPONSIVO (DESKTOP)         */
+/* ============================= */
+
+@media (min-width: 768px) {
+
+  .topbar {
+    padding: 10px 32px;
+  }
+
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
+  /* no desktop o menu fica sempre visível, sem animação */
+  .nav {
+    position: static;
+    flex-direction: row;
+    max-height: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    gap: 18px;
+  }
+
+  .nav.nav-open {
+    max-height: none;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .hero-search {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .input-search {
+    width: 380px;
+  }
+
+  .btn-primary {
+    width: auto;
+    padding-inline: 20px;
+  }
+
+  .grid-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plans-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .premium-search-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
