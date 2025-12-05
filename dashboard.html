@@ -284,6 +284,59 @@ premiumResults.appendChild(list);
     if (premiumForm) {
       premiumForm.addEventListener("submit", handlePremiumSearch);
     }
+    // ============== CARRINHO (DEMO) ==============
+
+const cartFreeList = document.getElementById("cartFreeList");
+// por enquanto não vamos usar o premiumList, mas deixamos pronto
+const cartPremiumList = document.getElementById("cartPremiumList");
+
+// lê carrinho salvo no localStorage (se existir)
+function loadCartFromStorage() {
+  try {
+    const raw = localStorage.getItem("nexus_cart_free");
+    if (!raw || !cartFreeList) return;
+
+    const items = JSON.parse(raw);
+    if (!Array.isArray(items)) return;
+
+    cartFreeList.innerHTML = "";
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      const priceText =
+        typeof item.price === "number"
+          ? "R$ " + item.price.toFixed(2).replace(".", ",")
+          : (item.price || "Preço não informado");
+
+      li.textContent = `${item.title} – ${item.store} (${priceText})`;
+      cartFreeList.appendChild(li);
+    });
+  } catch (e) {
+    console.error("Erro ao carregar carrinho:", e);
+  }
+}
+
+function addToFreeCart(item) {
+  try {
+    const raw = localStorage.getItem("nexus_cart_free");
+    const current = raw ? JSON.parse(raw) : [];
+
+    const updated = Array.isArray(current) ? current : [];
+    updated.push({
+      title: item.title || "Produto sem nome",
+      store: item.store || "Loja não informada",
+      price: typeof item.price === "number" ? item.price : null,
+    });
+
+    localStorage.setItem("nexus_cart_free", JSON.stringify(updated));
+    loadCartFromStorage();
+    alert("Item adicionado ao carrinho (modo demonstração).");
+  } catch (e) {
+    console.error("Erro ao adicionar ao carrinho:", e);
+  }
+}
+
+// carrega carrinho ao abrir o dashboard
+loadCartFromStorage();
   </script>
 </body>
 </html>
