@@ -7,8 +7,13 @@ import searchRoutes from "./search.routes.js";
 
 const router = Router();
 
+// /api/health
 router.use("/health", healthRoutes);
+
+// /api/plans
 router.use("/plans", plansRoutes);
+
+// /api/search
 router.use("/search", searchRoutes);
 
 export default router;
