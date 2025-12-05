@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscar ofertas - Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
+      <span class="brand-name">Nexus</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="dashboard.html" class="nav-link">Minha área</a>
+      <a href="assinatura.html" class="nav-link">Assinatura</a>
+      <a href="login.html" class="nav-link">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section section-search-hero">
+      <div class="section-header">
+        <h1>Resultados da sua busca</h1>
+        <p>Esta página está em modo demonstração, usando a API /api/search/demo do Nexus.</p>
+      </div>
+
+      <form id="searchForm" class="search-form" style="margin-top: 18px;">
+        <input
+          type="text"
+          id="searchQuery"
+          class="input-search"
+          placeholder="Ex.: notebook gamer, teclado mecânico, headset..."
+          required
+        />
+        <button type="submit" class="btn-primary" style="margin-top: 10px;">
+          Buscar novamente
+        </button>
+      </form>
+    </section>
+
+    <section class="section section-search-results">
+      <div id="searchResults" class="search-results"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
+  </footer>
+
+  <script>
+    // MENU MOBILE
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("nav-open");
+      });
+    }
+
+    // BUSCA REAL (DEMO) – CHAMA /api/search/demo
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchQuery");
+    const searchResults = document.getElementById("searchResults");
+
+    async function handleSearch(event) {
+      if (event) event.preventDefault();
+      if (!searchInput || !searchResults) return;
+
+      const termo = searchInput.value.trim();
+      if (!termo) return;
+
+      searchResults.innerHTML = "<p>Buscando ofertas em modo demonstração...</p>";
+
+      try {
+        const response = await fetch("http://localhost:3000/api/search/demo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: termo }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao chamar a API");
+        }
+
+        const data = await response.json();
+
+        if (!data.ok || !Array.isArray(data.results) || data.results.length === 0) {
+          searchResults.innerHTML =
+            "<p>Nenhum resultado encontrado na demo para esse termo.</p>";
+          return;
+        }
+
+        const list = document.createElement("ul");
+        list.className = "results-list";
+
+        data.results.forEach((item) => {
+          const li = document.createElement("li");
+          const price =
+            typeof item.price === "number"
+              ? "R$ " + item.price.toFixed(2).replace(".", ",")
+              : (item.price || "Preço não informado");
+
+          li.innerHTML = `
+            <strong>${item.title}</strong><br />
+            <span>${item.store}</span> — <span>${price}</span>
+          `;
+          list.appendChild(li);
+        });
+
+        searchResults.innerHTML = "";
+        searchResults.appendChild(list);
+      } catch (err) {
+        console.error(err);
+        searchResults.innerHTML =
+          "<p>Ocorreu um erro ao buscar as ofertas. Verifique se o servidor do backend está rodando.</p>";
+      }
+    }
+
+    // submit do form
+    if (searchForm) {
+      searchForm.addEventListener("submit", handleSearch);
+    }
+
+    // Pega ?q= da URL e já busca automaticamente
+    (function fillFromURL() {
+      if (!searchInput) return;
+      const params = new URLSearchParams(window.location.search);
+      const termo = params.get("q");
+      if (termo) {
+        searchInput.value = termo;
+        handleSearch();
+      }
+    })();
+  </script>
+</body>
+</html>
