@@ -483,6 +483,18 @@ main {
    DASHBOARD - RESULTADOS DA BUSCA
 ============================ */
 
+.cart-items {
+  list-style: none;
+  margin-top: 0.75rem;
+  padding-left: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.cart-items li {
+  margin-bottom: 0.35rem;
+}
+
 .search-results {
   margin-top: 1.5rem;
 }
