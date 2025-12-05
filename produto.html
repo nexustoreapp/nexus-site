@@ -35,18 +35,20 @@
 
   <main class="page search-page">
 
+    <!-- HEADER DO PRODUTO -->
     <section class="section">
       <div class="section-header">
         <h1 id="product-title">Carregando produto...</h1>
         <p id="product-store" class="search-meta"></p>
       </div>
 
+      <!-- CARD PRINCIPAL DO PRODUTO -->
       <div class="results-grid" style="margin-top: 18px;">
         <article class="result-card">
           <div class="result-thumb">
-            <!-- Por enquanto imagem demo / futura -->
+            <!-- Por enquanto imagem demo -->
             <div class="thumb-placeholder" id="product-image-placeholder">
-              Imagem do produto
+              Imagem do produto (demo)
             </div>
           </div>
 
@@ -70,23 +72,85 @@
         </article>
       </div>
 
-      <!-- Especificações simples (por enquanto só texto) -->
+      <!-- BLOCO: CALCULAR FRETE (DEMO) -->
       <section class="section" style="margin-top: 24px;">
         <div class="section-header-sm">
-          <h2>Especificações do produto</h2>
-          <p id="product-specs">
-            Este é um exemplo de página de detalhes. No projeto real,
-            aqui vão aparecer as especificações completas vindas da API.
+          <h2>Calcular frete (demo)</h2>
+          <p class="search-meta">
+            Simulação simples de frete. No projeto real, isso viria da API de frete das lojas / transportadoras.
           </p>
         </div>
+
+        <form id="frete-form" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <div style="flex: 1 1 180px;">
+            <label for="frete-cep" style="font-size: 0.85rem; color: #9ca3af; display:block; margin-bottom:4px;">
+              CEP de entrega
+            </label>
+            <input
+              id="frete-cep"
+              type="text"
+              placeholder="Ex: 79000-000"
+              style="
+                width: 100%;
+                padding: 8px 10px;
+                border-radius: 10px;
+                border: 1px solid rgba(148,163,184,0.6);
+                background: #020617;
+                color: #e5e7eb;
+                font-size: 0.9rem;
+              "
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn-primary"
+            style="height: 40px; padding-inline: 16px; flex: 0 0 auto; margin-top: 18px;"
+          >
+            Calcular frete (demo)
+          </button>
+        </form>
+
+        <div
+          id="frete-resultado"
+          style="
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(15,23,42,0.9);
+            display: none;
+          "
+        ></div>
       </section>
 
-      <!-- Debug: dados crus da API -->
+      <!-- ESPECIFICAÇÕES TÉCNICAS -->
+      <section class="section" style="margin-top: 24px;">
+        <div class="section-header-sm">
+          <h2>Especificações técnicas (demo)</h2>
+          <p class="search-meta">
+            Estrutura pronta para receber dados reais da API (marca, modelo, memória, chipset, etc.).
+          </p>
+        </div>
+
+        <ul id="specs-list" style="
+          margin-top: 12px;
+          list-style: none;
+          padding: 0;
+          font-size: 0.9rem;
+        ">
+          <!-- Itens serão preenchidos pelo produto.js -->
+        </ul>
+      </section>
+
+      <!-- DEBUG: DADOS CRUS DA API -->
       <section class="section" style="margin-top: 24px;">
         <div class="section-header-sm">
           <h2>Dados brutos (debug)</h2>
           <p class="search-meta">
-            Apenas para desenvolvimento, para você ver exatamente o que a API retornou.
+            Apenas para desenvolvimento: mostra exatamente o JSON que o backend retornou.
           </p>
         </div>
 
