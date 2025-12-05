@@ -1,11 +1,14 @@
 // backend/routes/search.routes.js
 
-import { Router } from "express";
-import { searchController } from "../controllers/search.controller.js";
+import express from "express";
+const router = express.Router();
 
-const router = Router();
-
-// POST /api/search/demo
-router.post("/demo", searchController.demoSearch);
+// Rota de busca FAKE temporária
+router.get("/", (req, res) => {
+  res.json({
+    ok: true,
+    message: "Rota /api/search funcionando (mock)!",
+  });
+});
 
 export default router;
