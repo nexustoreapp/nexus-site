@@ -9,23 +9,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Rota raiz
 app.get("/", (req, res) => {
   res.json({
     ok: true,
-    message: "API Nexus online. Use /api/health, /api/plans, /api/search/demo",
+    message:
+      "API Nexus online. Use /api/health, /api/plans, /api/search/demo",
   });
 });
 
-// rota /test só pra você conferir
+// Rota /test só pra você conferir
 app.get("/test", (req, res) => {
   res.json({
     ok: true,
     message: "Rota /test funcionando ✅",
-    hint: "Agora você pode testar também /api/health e /api/plans",
+    hint: "Agora você pode testar também /api/health, /api/plans, /api/search/demo",
   });
 });
 
-// aqui ele aplica TODAS as rotas de /routes
+// Aqui ele aplica TODAS as rotas do /routes
 app.use("/api", routes);
 
 app.listen(3000, () => {
