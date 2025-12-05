@@ -4,36 +4,36 @@
   <meta charset="UTF-8" />
   <title>Nexus - Comparador Gamer & Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas. Compare notebooks, monitores, periféricos e mais." />
+  <meta
+    name="description"
+    content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas."
+  />
 
-  <!-- Ícone da aba -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
 
-  <!-- CSS FINAL -->
+  <!-- Fonte Google (mais grossa e quadrada) -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-  <!-- ===================== -->
   <!-- NAVBAR -->
-  <!-- ===================== -->
   <header class="topbar">
     <a href="index.html" class="brand">
       <img src="logo.png" class="brand-logo" alt="Nexus" />
-      <span class="brand-name">NEXUS</span>
+      <span class="brand-name">Nexus</span>
     </a>
 
-    <!-- Botão hambúrguer -->
-    <button id="navToggle" class="nav-toggle">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
-    <!-- Menu -->
-    <nav id="navMenu" class="nav">
+    <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link active">Início</a>
       <a href="premium.html" class="nav-link">Premium</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
@@ -41,33 +41,28 @@
     </nav>
   </header>
 
-
-  <!-- ===================== -->
-  <!-- HERO / BUSCA -->
-  <!-- ===================== -->
   <main>
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-
         <h1 class="hero-title">
-          O jeito mais fácil de achar
-          <span class="highlight">ofertas reais em eletrônicos</span>.
+          Seu ponto de partida para achar
+          <span class="highlight">ofertas de eletrônicos sem dor de cabeça</span>.
         </h1>
 
         <p class="hero-subtitle">
-          Compare preços de notebooks, headsets, monitores, teclados e mais.
-          O Nexus consulta várias lojas ao mesmo tempo e mostra o menor preço real.
+          Compare preços de notebooks, periféricos, monitores, headsets e muito mais em um só lugar.
+          O Nexus busca sempre <strong>produtos com desconto</strong> em várias lojas ao mesmo tempo.
         </p>
 
-        <!-- BARRA DE BUSCA AJUSTADA -->
+        <!-- BUSCA -->
         <div class="hero-search">
           <input
             type="text"
             id="home-query"
             class="input-search"
-            placeholder="Ex: notebook gamer, headset RGB, monitor 144Hz..."
+            placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
           />
-
           <button class="btn-primary" onclick="goToPremiumFromHome()">
             Buscar menor preço
           </button>
@@ -77,62 +72,58 @@
         <div class="chip-row">
           <button class="chip" onclick="quickPreset('notebook gamer')">Notebooks</button>
           <button class="chip" onclick="quickPreset('monitor 144Hz')">Monitores</button>
-          <button class="chip" onclick="quickPreset('teclado mecânico')">Teclados</button>
+          <button class="chip" onclick="quickPreset('teclado mecânico RGB')">Teclados</button>
           <button class="chip" onclick="quickPreset('headset gamer')">Headsets</button>
         </div>
-
       </div>
     </section>
 
-
-    <!-- ===================== -->
-    <!-- SEÇÃO: COMO FUNCIONA -->
-    <!-- ===================== -->
+    <!-- COMO FUNCIONA -->
     <section class="section section-steps">
       <div class="section-header">
         <h2>Como o Nexus funciona</h2>
-        <p>Você pesquisa, nossa IA compara preços e te mostra o menor valor com desconto.</p>
+        <p>
+          Você pesquisa uma vez, a nossa IA consulta várias lojas, aplica a comissão certa e te mostra o menor
+          preço final já com desconto.
+        </p>
       </div>
 
       <div class="grid-steps">
         <article class="card-info">
           <h3>1. Pesquisa inteligente</h3>
-          <p>Você digita o que busca e o Nexus consulta diversas lojas ao mesmo tempo.</p>
+          <p>Você digita o que quer e o Nexus consulta diversas lojas simultaneamente.</p>
         </article>
 
         <article class="card-info">
-          <h3>2. Preço final com desconto</h3>
-          <p>Mostramos apenas produtos com desconto real e preço final ajustado pelo plano.</p>
+          <h3>2. Comparação com desconto</h3>
+          <p>Filtramos só produtos com desconto e aplicamos a comissão de acordo com o plano.</p>
         </article>
 
         <article class="card-info">
           <h3>3. Compra e rastreio</h3>
-          <p>Você compra direto pelo Nexus e acompanha tudo em um só lugar.</p>
+          <p>Você compra pelo Nexus e acompanha o rastreio centralizado na plataforma.</p>
         </article>
       </div>
     </section>
 
-
-    <!-- ===================== -->
-    <!-- SEÇÃO: PLANOS -->
-    <!-- ===================== -->
+    <!-- PLANOS DA HOME -->
     <section class="section section-plans">
       <div class="section-header">
         <h2>Planos para todos os perfis</h2>
-        <p>Comece grátis e ative o Premium quando quiser mais vantagens.</p>
+        <p>Comece de graça e ative o Premium quando fizer sentido pra você.</p>
       </div>
 
       <div class="grid-cards">
-
-        <!-- PLANO GRATUITO -->
+        <!-- GRATUITO -->
         <article class="card-plan">
           <h3>Gratuito</h3>
           <p class="card-price">R$ 0,00 / semana</p>
           <ul class="card-list">
             <li>Acesso a lojas menores</li>
-            <li>Só produtos com desconto real</li>
+            <li>Só produtos com desconto</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline">Começar no gratuito</a>
+          <!-- TODOS OS 3 IGUAIS (OUTLINE) -->
+          <a href="assinatura.html" class="btn-outline full">Começar no gratuito</a>
         </article>
 
         <!-- PREMIUM SEMANAL -->
@@ -141,9 +132,10 @@
           <p class="card-price">R$ 8,99 / semana</p>
           <ul class="card-list">
             <li>Lojas grandes + pequenas</li>
-            <li>Melhores ofertas e filtros avançados</li>
+            <li>Descontos melhores</li>
           </ul>
-          <a href="premium.html" class="btn-primary">Assinar semanal</a>
+          <!-- AGORA É OUTLINE TAMBÉM -->
+          <a href="premium.html" class="btn-outline full">Assinar semanal</a>
         </article>
 
         <!-- PREMIUM MENSAL -->
@@ -154,37 +146,30 @@
             <li>Todos os recursos Premium</li>
             <li>Melhor custo-benefício contínuo</li>
           </ul>
-          <a href="premium.html" class="btn-outline">Assinar mensal</a>
+          <a href="premium.html" class="btn-outline full">Assinar mensal</a>
         </article>
-
       </div>
     </section>
-
   </main>
 
-
-  <!-- ===================== -->
-  <!-- FOOTER -->
-  <!-- ===================== -->
   <footer class="footer">
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-
-  <!-- ===================== -->
   <!-- SCRIPT DO MENU -->
-  <!-- ===================== -->
   <script>
-    const toggle = document.getElementById("navToggle");
-    const menu = document.getElementById("navMenu");
-
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("nav-open");
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMenu");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("nav-open");
+        });
+      }
     });
   </script>
 
-  <!-- SCRIPT ORIGINAL DO SEU PROJETO -->
+  <!-- SEU JS ANTIGO (busca, etc) -->
   <script src="script.js"></script>
-
 </body>
 </html>
