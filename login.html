@@ -6,20 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Faça login na sua conta Nexus para acessar a comparação de preços gamer & tech, planos gratuito e premium e acompanhar suas buscas."
+    content="Faça login na sua conta Nexus para acompanhar suas buscas e planos."
   />
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <a href="index.html" class="brand">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">Nexus</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span></span><span></span><span></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <nav class="nav" id="navMenu">
@@ -31,11 +35,11 @@
   </header>
 
   <main class="page">
-    <section class="section center fade-in">
+    <section class="section center">
       <h1>Entrar na sua conta Nexus</h1>
       <p>
-        Este login ainda é uma simulação de front-end. Em produção, aqui vamos validar seus dados no
-        back-end e aplicar autenticação em duas etapas (2FA).
+        Esta tela ainda é apenas visual. Depois você conecta com o back-end para validar
+        e-mail, senha e aplicar 2FA.
       </p>
 
       <form class="form-card" onsubmit="return fakeLogin(event)">
@@ -49,8 +53,7 @@
         </label>
 
         <p class="small-text">
-          No cadastro real, você também informará seu <strong>CPF</strong>. Depois será possível
-          acessar com e-mail ou CPF + senha, mais o código 2FA.
+          No futuro, o login também poderá aceitar <strong>CPF + senha</strong>, com código 2FA enviado por e-mail.
         </p>
 
         <button type="submit" class="btn-primary full">Entrar</button>
@@ -58,7 +61,7 @@
 
       <p class="small-text">
         Ainda não tem conta?
-        <a href="assinatura.html" class="link-inline">Escolha um plano e crie seu acesso Nexus.</a>
+        <a href="assinatura.html">Escolha um plano e crie seu acesso Nexus.</a>
       </p>
     </section>
   </main>
@@ -67,6 +70,17 @@
     <p>Nexus © 2025 – Acesso à sua conta.</p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMenu");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("nav-open");
+        });
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
