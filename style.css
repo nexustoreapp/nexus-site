@@ -526,6 +526,72 @@ main {
 }
 
 /* ============================= */
+/*  DASHBOARD – LAYOUT & VISUAL  */
+/* ============================= */
+
+.section-dashboard-hero {
+  margin-bottom: 10px;
+}
+
+.section-dashboard-hero .section-header h1 {
+  font-size: 1.7rem;
+}
+
+.section-dashboard-hero .section-header p {
+  font-size: 0.96rem;
+}
+
+/* separadores suaves entre blocos do dashboard */
+.section-dashboard-summary,
+.section-dashboard-cart,
+.section-dashboard-history,
+.section-dashboard-settings,
+.section-dashboard-info {
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  padding-top: 20px;
+  margin-top: 28px;
+}
+
+/* cards do dashboard um pouco mais “painel” */
+.dashboard-card,
+.cart-card {
+  background: radial-gradient(circle at top, #02081a 0, #020617 75%);
+}
+
+/* ícones via CSS (sem mexer no HTML) */
+.section-dashboard-summary .section-header h2::before {
+  content: "👤 ";
+}
+
+.section-dashboard-cart .section-header h2::before {
+  content: "🛒 ";
+}
+
+.section-dashboard-history .section-header h2::before {
+  content: "📜 ";
+}
+
+.section-dashboard-settings .section-header h2::before {
+  content: "⚙️ ";
+}
+
+.section-dashboard-info .section-header h2::before {
+  content: "✨ ";
+}
+
+/* lista de histórico/config mais “painel” */
+.section-dashboard-history .plan-list,
+.section-dashboard-settings .plan-list {
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.section-dashboard-history .plan-list li,
+.section-dashboard-settings .plan-list li {
+  margin-bottom: 4px;
+}
+
+/* ============================= */
 /*  FORM LOGIN                   */
 /* ============================= */
 
