@@ -170,3 +170,189 @@ function fakeLogin(event) {
   window.location.href = "dashboard.html";
   return false;
 }
+// ============================
+//  BUSCAR.HTML – PÁGINA DE BUSCA REAL
+// ============================
+
+// Lê ?q= da URL (se existir)
+function getQueryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("q") || "";
+}
+
+// Inicializa a página de busca
+function initSearchPage() {
+  const input = document.getElementById("search-query");
+  const meta = document.getElementById("search-meta-text");
+
+  if (!input) return;
+
+  const termoURL = getQueryFromURL();
+  if (termoURL) {
+    input.value = termoURL;
+    if (meta) {
+      meta.textContent = 'Mostrando resultados para: "' + termoURL + '"';
+    }
+    // Já roda a busca inicial
+    runSearchPageSearch();
+  }
+}
+
+// Função chamada ao clicar no botão "Buscar ofertas"
+async function runSearchPageSearch(fromSortChange) {
+  const input = document.getElementById("search-query");
+  const meta = document.getElementById("search-meta-text");
+  const grid = document.getElementById("results-grid");
+  const countSpan = document.getElementById("results-count");
+  const selectOrdenacao = document.getElementById("sort-select");
+
+  if (!input || !grid) return;
+
+  const termo = input.value.trim();
+  if (!termo) {
+    if (meta) {
+      meta.textContent = "Digite o nome de um produto para buscar.";
+    }
+    grid.innerHTML = "";
+    if (countSpan) countSpan.textContent = "";
+    return;
+  }
+
+  const sortBy = selectOrdenacao ? selectOrdenacao.value : "relevance";
+
+  // Mensagem de carregando
+  if (meta) {
+    meta.textContent = "Buscando ofertas em modo demonstração...";
+  }
+  grid.innerHTML = "";
+  if (countSpan) countSpan.textContent = "";
+
+  try {
+    // Aqui você pode reaproveitar a mesma rota demo do backend
+    const resposta = await fetch("http://localhost:3000/api/search/demo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: termo, sortBy }),
+    });
+
+    const data = await resposta.json();
+
+    if (!resposta.ok || !data.ok) {
+      if (meta) {
+        meta.textContent = data.error || "Erro ao buscar ofertas. Tente novamente.";
+      }
+      return;
+    }
+
+    const resultados = Array.isArray(data.results) ? data.results : [];
+
+    if (meta) {
+      meta.textContent = 'Resultados de demonstração para: "' + (data.query || termo) + '"';
+    }
+
+    if (countSpan) {
+      countSpan.textContent = `Mostrando ${resultados.length} resultado(s).`;
+    }
+
+    if (!resultados.length) {
+      grid.innerHTML = `
+        <p class="premium-summary">
+          Nenhuma oferta encontrada no modo demonstração. Tente outro nome de produto.
+        </p>
+      `;
+      return;
+    }
+
+    // Montar cards (layout A – estilo lista / comparador)
+    const cards = resultados.map((item, index) => {
+      const nome = item.title || item.name || "Produto sem nome";
+      const loja = item.store || "Loja não informada";
+      const preco = typeof item.price === "number" ? item.price : null;
+      const precoOriginal = typeof item.originalPrice === "number" ? item.originalPrice : null;
+      const imagem = item.image || item.thumbnail || null;
+      const freteGratis = item.freeShipping || item.frete_gratis || false;
+      const melhorOferta = item.bestOffer || item.melhor_oferta || false;
+
+      const precoFormatado = preco
+        ? "R$ " + preco.toFixed(2).replace(".", ",")
+        : "Preço não informado";
+
+      const precoOriginalFormatado = precoOriginal
+        ? "R$ " + precoOriginal.toFixed(2).replace(".", ",")
+        : "";
+
+      // ID para futura página de detalhes
+      const produtoId = item.id || index;
+
+      return `
+        <article class="result-card">
+          <div class="result-thumb">
+            ${
+              imagem
+                ? `<img src="${imagem}" alt="${nome}" />`
+                : `<div class="thumb-placeholder">Sem imagem</div>`
+            }
+          </div>
+
+          <div class="result-body">
+            <div class="result-header">
+              <h2>${nome}</h2>
+              ${
+                melhorOferta
+                  ? `<span class="badge badge-best">Melhor oferta</span>`
+                  : ""
+              }
+              ${
+                freteGratis
+                  ? `<span class="badge badge-frete">Frete grátis</span>`
+                  : ""
+              }
+            </div>
+
+            <div class="result-store">
+              ${loja}
+            </div>
+
+            <div class="result-prices">
+              <span class="price-current">${precoFormatado}</span>
+              ${
+                precoOriginalFormatado
+                  ? `<span class="price-original">${precoOriginalFormatado}</span>`
+                  : ""
+              }
+            </div>
+
+            <div class="result-actions">
+              <button class="btn-outline" onclick="verDetalhesProduto('${produtoId}')">
+                Ver detalhes
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    });
+
+    grid.innerHTML = cards.join("");
+  } catch (erro) {
+    console.error("Erro na busca da página de resultados:", erro);
+    if (meta) {
+      meta.textContent =
+        "Erro de conexão com o servidor do Nexus. Verifique se o backend está rodando.";
+    }
+  }
+}
+
+// Placeholder para futura página de detalhes
+function verDetalhesProduto(produtoId) {
+  // No futuro: redirecionar para uma página de detalhes (produto.html)
+  // passando o ID, ex:
+  // window.location.href = "produto.html?id=" + encodeURIComponent(produtoId);
+
+  alert(
+    "Detalhes do produto (demo).\n\n" +
+      "No projeto real, isso vai abrir uma página com TODAS as especificações, reviews, frete, etc.\n\n" +
+      "ID do produto: " + produtoId
+  );
+}
