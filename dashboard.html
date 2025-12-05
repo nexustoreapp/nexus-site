@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus Premium</title>
+  <title>Minha área - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -27,7 +27,7 @@
 
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
-      <a href="premium.html" class="nav-link active">Premium</a>
+      <a href="dashboard.html" class="nav-link active">Minha área</a>
       <a href="assinatura.html" class="nav-link">Assinatura</a>
       <a href="login.html" class="nav-link">Entrar</a>
     </nav>
@@ -35,10 +35,37 @@
 
   <main class="page">
 
-    <h1>Premium Nexus</h1>
-<p>Compare em lojas grandes e pequenas com descontos exclusivos.</p>
+    <h1>Minha área Nexus</h1>
+    <p>Bem-vindo! Aqui você vê seu plano, atalhos e testes da busca demo do Nexus.</p>
 
-    <!-- BUSCA DEMO -->
+    <!-- RESUMO DO PLANO + ATALHOS (reaproveitando estilo dos cards de planos) -->
+    <section class="plans-grid">
+      <article class="plan-card dashboard-card">
+        <h2>Seu plano atual</h2>
+        <p class="plan-price">Gratuito <span>/ demo</span></p>
+
+        <ul class="plan-list">
+          <li>Acesso às buscas básicas</li>
+          <li>Testes da busca demo Premium</li>
+          <li>Sem necessidade de cartão agora</li>
+        </ul>
+
+        <a href="assinatura.html" class="btn-outline full">
+          Ver planos Premium
+        </a>
+      </article>
+
+      <article class="plan-card dashboard-card">
+        <h2>Atalhos rápidos</h2>
+        <ul class="plan-list">
+          <li><a href="index.html">Ir para página inicial</a></li>
+          <li><a href="dashboard.html">Atualizar minha área</a></li>
+          <li><a href="assinatura.html">Gerenciar assinatura</a></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- BUSCA DEMO (a mesma que a gente já integrou) -->
     <section class="premium-search">
       <h2>Teste a busca demo</h2>
       <p>Digite um produto para ver como a comparação funciona (os dados ainda são fictícios).</p>
@@ -59,55 +86,73 @@
       <div id="premiumSearchResults" class="search-results"></div>
     </section>
 
-<div class="plans-grid">
+    <!-- ÁREA DE CARRINHO PARA GRATUITO E PREMIUM (sem desigualdade social) -->
+    <section class="cart-section">
+      <h2>Seu carrinho Nexus</h2>
+      <p>
+        Esta é uma visão geral de como o carrinho vai funcionar para todos os planos.
+        Mesmo no plano gratuito, você vai conseguir organizar suas ofertas — o Premium só adiciona algumas facilidades a mais.
+      </p>
 
-      <!-- SEMANAL -->
-      <article class="plan-card">
-        <h2>Premium Semanal</h2>
-        <p class="plan-price">R$ 8,99 <span>/ semana</span></p>
+      <div class="plans-grid carts-grid">
+        <!-- Carrinho do plano gratuito -->
+        <article class="plan-card cart-card">
+          <h3>Carrinho do plano gratuito</h3>
+          <p class="plan-price">Gratuito <span>/ demo</span></p>
 
-        <ul class="plan-list">
-          <li>Acesso a todas as lojas</li>
-          <li>Descontos exclusivos</li>
-        </ul>
+          <ul class="plan-list">
+            <li>Salvar algumas ofertas favoritas</li>
+            <li>Organizar itens que você está pensando em comprar</li>
+            <li>Visual simples e direto, sem exageros</li>
+          </ul>
 
-        <a href="assinatura.html" class="btn-outline full">Assinar semanal</a>
-      </article>
+          <p class="cart-note">
+            Em breve, você poderá adicionar itens do resultado da busca direto aqui.
+          </p>
+        </article>
 
-      <!-- MENSAL -->
-      <article class="plan-card">
-        <h2>Premium Mensal</h2>
-        <p class="plan-price">R$ 16,99 <span>/ mês</span></p>
+        <!-- Carrinho do plano Premium -->
+        <article class="plan-card cart-card">
+          <h3>Carrinho do plano Premium</h3>
+          <p class="plan-price">Premium <span>/ futuro</span></p>
 
-        <ul class="plan-list">
-          <li>Todos os benefícios Premium</li>
-          <li>Melhor custo-benefício mensal</li>
-        </ul>
+          <ul class="plan-list">
+            <li>Salvar quantas ofertas quiser</li>
+            <li>Ver histórico de alterações de preço</li>
+            <li>Organizar por loja, categoria e prioridade</li>
+          </ul>
 
-        <a href="assinatura.html" class="btn-outline full">Assinar mensal</a>
-      </article>
+          <p class="cart-note">
+            A ideia é que o Premium traga mais controle, não mais “status”. O objetivo é facilitar sua vida, não criar diferença de tratamento.
+          </p>
 
-      <!-- ANUAL -->
-      <article class="plan-card">
-        <h2>Premium Anual</h2>
-        <p class="plan-price">R$ 210,99 <span>/ ano</span></p>
+          <a href="assinatura.html" class="btn-outline full">
+            Conhecer planos Premium
+          </a>
+        </article>
+      </div>
+    </section>
 
-        <ul class="plan-list">
-          <li>Plano mais econômico</li>
-          <li>Acesso premium o ano inteiro</li>
-        </ul>
+    <!-- INFO DEMO -->
+    <section class="info-section">
+      <h2>Modo demonstração</h2>
+      <p>
+        Esta área ainda está em modo <strong>demo</strong>. Aos poucos, ela vai ganhar:
+      </p>
+      <ul>
+        <li>Histórico real de buscas</li>
+        <li>Ofertas salvas / favoritos</li>
+        <li>Status da assinatura e pagamentos</li>
+      </ul>
+    </section>
 
-        <a href="assinatura.html" class="btn-outline full">Assinar anual</a>
-      </article>
-
-    </div>
   </main>
 
   <footer class="footer">
     <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
   </footer>
 
-   <script>
+  <script>
     // MENU MOBILE
     const navToggle = document.getElementById("navToggle");
     const navMenu = document.getElementById("navMenu");
@@ -155,7 +200,6 @@
           return;
         }
 
-        // monta a listinha de resultados
         const list = document.createElement("ul");
         list.className = "results-list";
 
