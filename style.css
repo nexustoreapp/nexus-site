@@ -1007,4 +1007,14 @@ main {
     align-items: center;
   }
 }
+/* Ajuste de espaçamento entre cards do dashboard */
+.section-dashboard-summary .plans-grid {
+  gap: 28px;
+}
+
+/* Deixa os cards de atalho mais suaves */
+.shortcut-card {
+  background: rgba(20, 25, 40, 0.8);
+  backdrop-filter: blur(6px);
+}
 
