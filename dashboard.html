@@ -35,17 +35,7 @@
 
   <main class="page">
 
-    <!-- CABEÇALHO DO DASHBOARD -->
-    <section class="section section-dashboard-hero">
-      <div class="section-header">
-        <h1>Minha área Nexus</h1>
-        <p>
-          Bem-vindo! Aqui você acompanha o seu plano, seu carrinho e a atividade da sua conta.
-        </p>
-      </div>
-    </section>
-
-    <!-- RESUMO DO PLANO + ATALHOS -->
+   <!-- RESUMO DO PLANO + ATALHOS -->
     <section class="section section-dashboard-summary">
       <div class="section-header">
         <h2>Visão geral da sua conta</h2>
@@ -53,27 +43,50 @@
       </div>
 
       <div class="plans-grid">
+        <!-- CARD 1: SEU PLANO ATUAL -->
         <article class="plan-card dashboard-card">
           <h2>Seu plano atual</h2>
           <p class="plan-price">Gratuito <span>/ demo</span></p>
 
+          <ul class="plan-list">
+            <li>Acesso às buscas básicas</li>
+            <li>Testes da busca demo Premium</li>
+            <li>Sem necessidade de cartão agora</li>
+          </ul>
+
+          <a href="assinatura.html" class="btn-outline full">
+            Ver planos Premium
+          </a>
+        </article>
+
+        <!-- CARD 2: ATALHOS RÁPIDOS -->
+        <article class="plan-card dashboard-card">
+          <h2>Atalhos rápidos</h2>
+
           <div class="shortcut-grid">
+            <a class="shortcut-card" href="index.html">
+              <span class="shortcut-icon">🏠</span>
+              <div class="shortcut-info">
+                <h4>Home</h4>
+                <p>Acessar a página inicial.</p>
+              </div>
+            </a>
 
-  <a class="shortcut-card" href="index.html">
-    <span class="shortcut-icon">🏠</span>
-    <div class="shortcut-info">
-      <h4>Home</h4>
-      <p>Acessar a página inicial</p>
-    </div>
-  </a>
+            <a class="shortcut-card" href="dashboard.html">
+              <span class="shortcut-icon">👤</span>
+              <div class="shortcut-info">
+                <h4>Minha área</h4>
+                <p>Recarregar seus atalhos e carrinho demo.</p>
+              </div>
+            </a>
 
-  <a class="shortcut-card" href="assinatura.html">
-    <span class="shortcut-icon">💳</span>
-    <div class="shortcut-info">
-      <h4>Assinatura</h4>
-      <p>Gerenciar seu plano</p>
-    </div>
-  </a>
+            <a class="shortcut-card" href="assinatura.html">
+              <span class="shortcut-icon">💳</span>
+              <div class="shortcut-info">
+                <h4>Assinatura</h4>
+                <p>Ver e gerenciar planos.</p>
+              </div>
+            </a>
 
   <a class="shortcut-card" href="login.html">
     <span class="shortcut-icon">👤</span>
