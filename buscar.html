@@ -31,14 +31,18 @@
     </nav>
   </header>
 
-  <main class="page">
-    <section class="section section-search-hero">
+  <main class="page search-page">
+    <!-- CABEÇALHO DA BUSCA -->
+    <section class="section search-hero">
       <div class="section-header">
         <h1>Resultados da sua busca</h1>
-        <p>Esta página está em modo demonstração, usando a API /api/search/demo do Nexus.</p>
+        <p>
+          Buscando ofertas reais no Mercado Livre (site MLB) com visual do Nexus.
+        </p>
       </div>
 
-      <form id="searchForm" class="search-form" style="margin-top: 18px;">
+      <!-- FORMULÁRIO DE BUSCA -->
+      <form id="searchForm" class="search-form">
         <input
           type="text"
           id="searchQuery"
@@ -50,10 +54,31 @@
           Buscar novamente
         </button>
       </form>
+
+      <p id="searchMeta" class="search-meta"></p>
     </section>
 
+    <!-- FILTROS / ORDEM (layout C + A, minimalista) -->
+    <section class="section results-toolbar" id="resultsToolbar" style="display:none;">
+      <div class="toolbar-row">
+        <span id="resultsCount" class="toolbar-info"></span>
+
+        <div class="toolbar-actions">
+          <label class="toolbar-label">
+            Ordenar:
+            <select id="sortSelect" class="toolbar-select">
+              <option value="relevance">Relevância</option>
+              <option value="price_asc">Menor preço</option>
+              <option value="price_desc">Maior preço</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID DE RESULTADOS -->
     <section class="section section-search-results">
-      <div id="searchResults" class="search-results"></div>
+      <div id="searchResults" class="results-grid"></div>
     </section>
   </main>
 
@@ -72,64 +97,149 @@
       });
     }
 
-    // BUSCA REAL (DEMO) – CHAMA /api/search/demo
-    const searchForm = document.getElementById("searchForm");
-    const searchInput = document.getElementById("searchQuery");
+    const searchForm   = document.getElementById("searchForm");
+    const searchInput  = document.getElementById("searchQuery");
+    const searchMeta   = document.getElementById("searchMeta");
     const searchResults = document.getElementById("searchResults");
+    const resultsToolbar = document.getElementById("resultsToolbar");
+    const resultsCount   = document.getElementById("resultsCount");
+    const sortSelect     = document.getElementById("sortSelect");
+
+    let lastResults = []; // guarda o último array pra reordenar no front
+
+    // Chama a API do Mercado Livre (preços reais)
+    async function fetchRealOffers(term) {
+      const url = `https://api.mercadolibre.com/sites/MLB/search?q=${encodeURIComponent(term)}&limit=24`;
+
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Erro ao chamar API do Mercado Livre");
+      }
+      const data = await res.json();
+      return data;
+    }
+
+    function formatPrice(value) {
+      if (typeof value !== "number") return "Preço não informado";
+      return "R$ " + value.toFixed(2).replace(".", ",");
+    }
+
+    function renderResults(results, term) {
+      if (!searchResults) return;
+
+      if (!results || results.length === 0) {
+        searchResults.innerHTML = `
+          <p class="search-meta">
+            Nenhum resultado encontrado para "<strong>${term}</strong>".
+          </p>
+        `;
+        resultsToolbar.style.display = "none";
+        return;
+      }
+
+      // toolbar on
+      resultsToolbar.style.display = "block";
+      resultsCount.textContent = `${results.length} resultados encontrados`;
+
+      const cardsHTML = results
+        .map((item, index) => {
+          const title = item.title || "Produto sem nome";
+          const thumb = item.thumbnail || item.thumbnail_id || "";
+          const price = item.price;
+          const originalPrice = item.original_price;
+          const permalink = item.permalink || "#";
+          const freeShipping = item.shipping && item.shipping.free_shipping;
+          const storeName = item.seller && item.seller.nickname
+            ? item.seller.nickname
+            : "Vendedor Mercado Livre";
+
+          const isBest = index === 0; // menor preço ou mais relevante → badge
+
+          return `
+            <article class="result-card">
+              <div class="result-thumb">
+                ${
+                  thumb
+                    ? `<img src="${thumb}" alt="${title}" loading="lazy" />`
+                    : `<div class="thumb-placeholder">Sem imagem</div>`
+                }
+              </div>
+
+              <div class="result-body">
+                <div class="result-header">
+                  <h2>${title}</h2>
+                  ${isBest ? '<span class="badge badge-best">Melhor oferta</span>' : ""}
+                </div>
+
+                <p class="result-store">
+                  ${storeName}
+                  ${
+                    freeShipping
+                      ? '<span class="badge badge-frete">Frete grátis</span>'
+                      : ""
+                  }
+                </p>
+
+                <div class="result-prices">
+                  <span class="price-current">${formatPrice(price)}</span>
+                  ${
+                    originalPrice && originalPrice > price
+                      ? `<span class="price-original">${formatPrice(originalPrice)}</span>`
+                      : ""
+                  }
+                </div>
+
+                <div class="result-actions">
+                  <a href="${permalink}" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                    Ver oferta
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+
+      searchResults.innerHTML = cardsHTML;
+    }
+
+    function sortResults(type) {
+      if (!lastResults || lastResults.length === 0) return;
+
+      const sorted = [...lastResults];
+
+      if (type === "price_asc") {
+        sorted.sort((a, b) => (a.price || 0) - (b.price || 0));
+      } else if (type === "price_desc") {
+        sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+      }
+      // "relevance" mantém a ordem original
+
+      const term = searchInput.value.trim();
+      renderResults(sorted, term);
+    }
 
     async function handleSearch(event) {
       if (event) event.preventDefault();
       if (!searchInput || !searchResults) return;
 
-      const termo = searchInput.value.trim();
-      if (!termo) return;
+      const term = searchInput.value.trim();
+      if (!term) return;
 
-      searchResults.innerHTML = "<p>Buscando ofertas em modo demonstração...</p>";
+      searchMeta.innerHTML = `Buscando por "<strong>${term}</strong>"...`;
+      searchResults.innerHTML = `<p class="search-meta">Carregando ofertas reais...</p>`;
+      resultsToolbar.style.display = "none";
 
       try {
-        const response = await fetch("http://localhost:3000/api/search/demo", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query: termo }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Erro ao chamar a API");
-        }
-
-        const data = await response.json();
-
-        if (!data.ok || !Array.isArray(data.results) || data.results.length === 0) {
-          searchResults.innerHTML =
-            "<p>Nenhum resultado encontrado na demo para esse termo.</p>";
-          return;
-        }
-
-        const list = document.createElement("ul");
-        list.className = "results-list";
-
-        data.results.forEach((item) => {
-          const li = document.createElement("li");
-          const price =
-            typeof item.price === "number"
-              ? "R$ " + item.price.toFixed(2).replace(".", ",")
-              : (item.price || "Preço não informado");
-
-          li.innerHTML = `
-            <strong>${item.title}</strong><br />
-            <span>${item.store}</span> — <span>${price}</span>
-          `;
-          list.appendChild(li);
-        });
-
-        searchResults.innerHTML = "";
-        searchResults.appendChild(list);
+        const data = await fetchRealOffers(term);
+        lastResults = data.results || [];
+        searchMeta.innerHTML = `Exibindo resultados para "<strong>${term}</strong>"`;
+        renderResults(lastResults, term);
       } catch (err) {
         console.error(err);
-        searchResults.innerHTML =
-          "<p>Ocorreu um erro ao buscar as ofertas. Verifique se o servidor do backend está rodando.</p>";
+        searchMeta.innerHTML =
+          "Ocorreu um erro ao buscar as ofertas. Tente novamente em alguns instantes.";
+        searchResults.innerHTML = "";
       }
     }
 
@@ -138,13 +248,20 @@
       searchForm.addEventListener("submit", handleSearch);
     }
 
+    // mudança na ordenação
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        sortResults(sortSelect.value);
+      });
+    }
+
     // Pega ?q= da URL e já busca automaticamente
     (function fillFromURL() {
       if (!searchInput) return;
       const params = new URLSearchParams(window.location.search);
-      const termo = params.get("q");
-      if (termo) {
-        searchInput.value = termo;
+      const term = params.get("q");
+      if (term) {
+        searchInput.value = term;
         handleSearch();
       }
     })();
