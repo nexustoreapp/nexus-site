@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Detalhes do produto - Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="logo.png" class="brand-logo" />
+      <span class="brand-name">Nexus</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="buscar.html" class="nav-link">Buscar</a>
+      <a href="dashboard.html" class="nav-link">Minha área</a>
+      <a href="assinatura.html" class="nav-link">Assinatura</a>
+      <a href="login.html" class="nav-link">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="page product-page">
+    <!-- HERO DO PRODUTO -->
+    <section class="section product-hero">
+      <div class="section-header">
+        <p class="product-breadcrumb">
+          <a href="buscar.html" class="breadcrumb-link">Voltar para a busca</a>
+          <span> / </span>
+          <span id="product-store-small">Loja</span>
+        </p>
+        <h1 id="product-title">Nome do produto (demo)</h1>
+        <p id="product-subtitle" class="product-subtitle">
+          Aqui vão aparecer as informações principais do produto, como modelo, linha e variações.
+        </p>
+      </div>
+    </section>
+
+    <!-- LAYOUT PRINCIPAL: INFO + LADO DIREITO -->
+    <section class="section product-layout">
+      <!-- COLUNA PRINCIPAL -->
+      <div class="product-main">
+        <!-- Imagem + preço grande -->
+        <article class="product-main-card">
+          <div class="product-main-top">
+            <div class="product-image-area">
+              <div id="product-image-wrapper" class="product-image-wrapper">
+                <!-- Imagem via JS -->
+              </div>
+            </div>
+
+            <div class="product-main-info">
+              <p class="product-brand" id="product-store">Loja exemplo</p>
+              <p class="product-price" id="product-price">R$ 0,00</p>
+              <p class="product-price-note" id="product-price-note">
+                Preço em modo demonstração. No projeto real, vem direto da API da loja.
+              </p>
+
+              <div class="product-main-actions">
+                <button class="btn-primary">
+                  Ir para oferta (demo)
+                </button>
+                <button class="btn-outline">
+                  Adicionar ao carrinho Nexus (futuro)
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ESPECIFICAÇÕES TÉCNICAS -->
+        <article class="product-card">
+          <h2>Especificações técnicas</h2>
+          <p class="product-section-note">
+            Aqui reunimos todas as especificações que vierem das APIs das lojas
+            (título, ficha técnica, descrição detalhada, etc.).
+          </p>
+
+          <div id="product-specs" class="product-specs">
+            <!-- Tabela de specs via JS -->
+          </div>
+        </article>
+
+        <!-- DESCRIÇÃO / DETALHES -->
+        <article class="product-card">
+          <h2>Descrição completa</h2>
+          <p id="product-description" class="product-description">
+            No modo real, essa área vai receber a descrição trabalhada pelas APIs + IA,
+            com resumo, pontos positivos/negativos e aviso de possíveis pegadinhas.
+          </p>
+        </article>
+      </div>
+
+      <!-- COLUNA LATERAL (OFERTAS E FRETE) -->
+      <aside class="product-side">
+        <!-- OUTRAS OFERTAS -->
+        <article class="product-card">
+          <h2>Ofertas por loja</h2>
+          <p class="product-section-note">
+            No futuro, vamos listar aqui todas as lojas onde esse produto foi encontrado,
+            com preço, frete e condições.
+          </p>
+
+          <div id="product-offers" class="product-offers">
+            <!-- Ofertas via JS (demo) -->
+          </div>
+        </article>
+
+        <!-- FRETE -->
+        <article class="product-card">
+          <h2>Frete e entrega</h2>
+          <p class="product-section-note">
+            Simulação de frete em modo demonstração. Depois, isso pode ser conectado em APIs reais.
+          </p>
+
+          <div class="frete-form">
+            <label for="cep-input">Calcular frete:</label>
+            <div class="frete-row">
+              <input
+                type="text"
+                id="cep-input"
+                class="input-search"
+                placeholder="Digite seu CEP"
+              />
+              <button class="btn-outline" onclick="calcularFreteDemo()">
+                Calcular
+              </button>
+            </div>
+            <p id="frete-resultado" class="product-frete-resultado">
+              Informe um CEP para simular o frete.
+            </p>
+          </div>
+        </article>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    // MENU MOBILE
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("nav-open");
+      });
+    }
+
+    // Inicializa a página de produto usando o script.js
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof initProductPage === "function") {
+        initProductPage();
+      }
+    });
+  </script>
+</body>
+</html>
