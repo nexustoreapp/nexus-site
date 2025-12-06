@@ -68,34 +68,50 @@ async function buscarProdutos() {
       const card = document.createElement("article");
       card.className = "result-card";
 
-      const nome = produto.title || produto.name || "Produto sem nome (demo)";
-      const loja = produto.store || "Loja não informada";
-      const preco =
-        typeof produto.price === "number"
-          ? "R$ " + produto.price.toFixed(2).replace(".", ",")
-          : "Preço não informado";
+      const nome = produto.title || "Produto sem nome";
+const loja = produto.store || "Loja não informada";
+const preco =
+  typeof produto.price === "number"
+    ? "R$ " + produto.price.toFixed(2).replace(".", ",")
+    : "Preço não informado";
+const imagem = produto.image || null;
+const link = produto.permalink || "#";
+const freteGratis = produto.freeShipping;
 
       card.innerHTML = `
-        <div class="result-body">
-          <div class="result-header">
-            <h2>${nome}</h2>
-          </div>
+  <div class="result-thumb">
+    ${
+      imagem
+        ? `<img src="${imagem}" alt="${nome}" />`
+        : `<div class="thumb-placeholder">Sem imagem</div>`
+    }
+  </div>
 
-          <p class="result-store">
-            ${loja} <span class="badge badge-demo">Demo</span>
-          </p>
+  <div class="result-body">
+    <div class="result-header">
+      <h2>${nome}</h2>
+    </div>
 
-          <div class="result-prices">
-            <span class="price-current">${preco}</span>
-          </div>
+    <p class="result-store">
+      ${loja}
+      ${
+        freteGratis
+          ? `<span class="badge badge-best">Frete grátis</span>`
+          : ""
+      }
+    </p>
 
-          <div class="result-actions">
-            <button class="btn-outline">
-              Ver detalhes (demo)
-            </button>
-          </div>
-        </div>
-      `;
+    <div class="result-prices">
+      <span class="price-current">${preco}</span>
+    </div>
+
+    <div class="result-actions">
+      <a href="${link}" target="_blank" class="btn-outline">
+        Ver na loja
+      </a>
+    </div>
+  </div>
+`;
 
       // Clique do card → leva para produto.html com índice (ainda demo)
       card.addEventListener("click", () => {
