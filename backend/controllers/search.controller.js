@@ -3,7 +3,7 @@
 import fetch from "node-fetch";
 
 export const searchController = {
-  demo: async (req, res) => {
+  real: async (req, res) => {
     try {
       // 1) Termo que veio do front (body ou query)
       const termo =
