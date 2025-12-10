@@ -1,26 +1,24 @@
 // backend/controllers/search.controller.js
 
-// Vamos usar fetch nativo do Node 18+.
-// Se seu Node for mais antigo, dá pra trocar por 'node-fetch'.
+import fetch from "node-fetch";
 
 export const searchController = {
   demo: async (req, res) => {
     try {
-      // 1) Descobrir o termo de busca vindo do front
+      // 1) Termo que veio do front
       const termo =
         (req.body && req.body.query) ||
         req.query.q ||
         "notebook gamer";
 
-      // 2) Chamar a API REAL do Mercado Livre Brasil
+      // 2) Monta URL da API REAL do Mercado Livre Brasil
       const url = new URL("https://api.mercadolibre.com/sites/MLB/search");
       url.searchParams.set("q", termo);
-      url.searchParams.set("limit", "12"); // máximo de 12 resultados
+      url.searchParams.set("limit", "12"); // até 12 resultados
 
       const resposta = await fetch(url.toString());
       const data = await resposta.json();
 
-      // 3) Tratar erros básicos
       if (!resposta.ok) {
         return res.status(500).json({
           ok: false,
@@ -31,7 +29,7 @@ export const searchController = {
 
       const itens = Array.isArray(data.results) ? data.results : [];
 
-      // 4) Mapear o formato do Mercado Livre → formato do Nexus
+      // 3) Mapeia o formato do Mercado Livre → formato do Nexus
       const resultados = itens.map((item) => ({
         id: item.id,
         title: item.title,
@@ -41,10 +39,10 @@ export const searchController = {
         image: item.thumbnail,
         permalink: item.permalink,
         freeShipping: item.shipping?.free_shipping || false,
-        bestOffer: false, // dá pra inventar uma lógica depois
+        bestOffer: false, // depois podemos melhorar essa lógica
       }));
 
-      // 5) Resposta para o front
+      // 4) Resposta final pro front
       res.json({
         ok: true,
         mode: "real",
