@@ -33,7 +33,7 @@ export const productController = {
         });
       }
 
-      // 2) Montar um objeto no formato que o produto.js espera
+      // 2) Montar objeto no formato que o produto.js consegue usar
       const specs = {
         Marca: item.brand || "Não informada",
         Categoria: item.category || "Não informada",
@@ -41,7 +41,8 @@ export const productController = {
         Estoque: item.stock != null ? String(item.stock) : "—",
       };
 
-      const imagemPrincipal = item.thumbnail || (item.images && item.images[0]) || null;
+      const imagemPrincipal =
+        item.thumbnail || (Array.isArray(item.images) && item.images[0]) || null;
 
       const product = {
         ok: true,
@@ -49,7 +50,7 @@ export const productController = {
         title: item.title,
         store: "Loja Demo (DummyJSON)",
         price: item.price,
-        originalPrice: item.price, // pode inventar lógica depois
+        originalPrice: item.price,
         image: imagemPrincipal,
         permalink: `https://dummyjson.com/products/${item.id}`,
         specs,
