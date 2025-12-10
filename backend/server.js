@@ -6,19 +6,20 @@ import routes from "./routes/index.js";
 
 const app = express();
 
+// Libera CORS (pra conseguir chamar do front)
 app.use(cors());
 app.use(express.json());
 
-// Rota raiz
+// Rota raiz só pra teste
 app.get("/", (req, res) => {
   res.json({
     ok: true,
     message:
-      "API Nexus online. Use /api/health, /api/plans, /api/search/demo",
+      "Bem-vindo à API do Nexus. Use /api/health, /api/plans, /api/search/demo e /api/product/demo.",
   });
 });
 
-// Rota /test só pra você conferir
+// Rota /test só pra conferir
 app.get("/test", (req, res) => {
   res.json({
     ok: true,
@@ -27,9 +28,12 @@ app.get("/test", (req, res) => {
   });
 });
 
-// Aqui ele aplica TODAS as rotas do /routes
+// Aplica todas as rotas
 app.use("/api", routes);
 
-app.listen(3000, () => {
-  console.log("🚀 Backend do Nexus rodando na porta 3000");
+// Porta: local (3000) ou Render (process.env.PORT)
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Backend do Nexus rodando na porta ${PORT}`);
 });
