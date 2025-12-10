@@ -5,10 +5,8 @@ import { searchController } from "../controllers/search.controller.js";
 
 const router = Router();
 
-// POST /api/search/demo  → usado pelo front
-router.post("/demo", searchController.demo);
-
-// GET /api/search/demo   → testar direto no navegador
-router.get("/demo", searchController.demo);
+// Rota REAL
+router.post("/", searchController.real);
+router.get("/", searchController.real);
 
 export default router;
