@@ -5,20 +5,19 @@ import fetch from "node-fetch";
 export const searchController = {
   demo: async (req, res) => {
     try {
-      // termo que veio do front (body ou querystring)
+      // 1) Termo que veio do front (body ou query)
       const termo =
         (req.body && req.body.query) ||
         req.query.q ||
         "monitor";
 
-      // 1) Monta URL da API DummyJSON (produtos fake, mas com campos reais)
+      // 2) Chama a API REAL da DummyJSON
       const url = new URL("https://dummyjson.com/products/search");
       url.searchParams.set("q", termo);
 
       const resposta = await fetch(url.toString());
       const data = await resposta.json();
 
-      // Só pra debug, se quiser ver no terminal
       console.log("DummyJSON status:", resposta.status);
 
       if (!resposta.ok) {
@@ -32,16 +31,29 @@ export const searchController = {
         });
       }
 
-      // 2) A API usa "products" em vez de "results"
-      const itens = Array.isArray(data.products) ? data.products : [];
+      // 3) Pega a lista de produtos
+      let itens = Array.isArray(data.products) ? data.products : [];
 
-      // 3) Mapear para o formato padrão do Nexus
+      // 🔁 Plano B: se não achou nada com o termo, busca produtos genéricos
+      if (!itens.length) {
+        const fallbackResp = await fetch("https://dummyjson.com/products?limit=12");
+        const fallbackData = await fallbackResp.json();
+
+        if (fallbackResp.ok && Array.isArray(fallbackData.products)) {
+          itens = fallbackData.products;
+        }
+      }
+
+      // 4) Mapeia para o formato "Nexus"
       const resultados = itens.map((item) => {
-        // tenta inventar um "originalPrice" a partir do desconto
         let originalPrice = null;
-        if (typeof item.price === "number" && typeof item.discountPercentage === "number") {
-          originalPrice =
+        if (
+          typeof item.price === "number" &&
+          typeof item.discountPercentage === "number"
+        ) {
+          const calc =
             item.price / (1 - item.discountPercentage / 100);
+          originalPrice = Number(calc.toFixed(2));
         }
 
         return {
@@ -49,7 +61,7 @@ export const searchController = {
           title: item.title,
           store: "Loja Demo (DummyJSON)",
           price: item.price,
-          originalPrice: originalPrice ? Number(originalPrice.toFixed(2)) : null,
+          originalPrice,
           image: item.thumbnail,
           permalink: `https://dummyjson.com/products/${item.id}`,
           freeShipping: false,
@@ -57,7 +69,7 @@ export const searchController = {
         };
       });
 
-      // 4) Resposta final pro front
+      // 5) Resposta final pro front
       res.json({
         ok: true,
         mode: "real",
