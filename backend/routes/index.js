@@ -16,4 +16,7 @@ router.use("/plans", plansRoutes);
 // /api/search
 router.use("/search", searchRoutes);
 
+// /api/product
+router.use("/product", productRoutes);
+
 export default router;
