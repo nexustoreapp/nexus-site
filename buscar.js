@@ -31,7 +31,7 @@ async function buscarProdutos() {
   `;
 
   try {
-    const resposta = await fetch("http://localhost:3000/api/search/demo", {
+    const resposta = await fetch("http://localhost:3000/api/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: termo }),
