@@ -104,7 +104,7 @@ async function carregarProduto() {
 
   try {
     const resposta = await fetch(
-  "http://localhost:3000/api/product/demo?id=" + encodeURIComponent(produtoId)
+  "http://localhost:3000/api/product?id=" + encodeURIComponent(produtoId)
 );
     
     const data = await resposta.json();
