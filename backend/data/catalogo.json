@@ -8,10 +8,7 @@
     "tags": ["gamer", "monitor", "144hz", "fps", "nexus-core"],
     "pricePublic": 1199.90,
     "pricePremium": 1049.90,
-    "images": [
-      "/imagens/monitor-24-144hz-core-1.jpg",
-      "/imagens/monitor-24-144hz-core-2.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 25,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -38,9 +35,7 @@
     "tags": ["gamer", "monitor", "165hz", "2k", "omega"],
     "pricePublic": 2199.90,
     "pricePremium": 1899.90,
-    "images": [
-      "/imagens/monitor-27-165hz-omega-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 10,
     "premiumOnly": true,
     "omegaExclusive": true,
@@ -67,9 +62,7 @@
     "tags": ["gamer", "teclado", "mecanico", "rgb", "hyper"],
     "pricePublic": 499.90,
     "pricePremium": 419.90,
-    "images": [
-      "/imagens/teclado-mecanico-hyper-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 40,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -96,9 +89,7 @@
     "tags": ["gamer", "teclado", "60%", "compacto", "omega"],
     "pricePublic": 599.90,
     "pricePremium": 489.90,
-    "images": [
-      "/imagens/teclado-60-omega-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 18,
     "premiumOnly": true,
     "omegaExclusive": false,
@@ -125,9 +116,7 @@
     "tags": ["gamer", "mouse", "dpi", "core"],
     "pricePublic": 149.90,
     "pricePremium": 119.90,
-    "images": [
-      "/imagens/mouse-gamer-core-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 60,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -154,9 +143,7 @@
     "tags": ["gamer", "mouse", "ultralight", "fps", "hyper"],
     "pricePublic": 279.90,
     "pricePremium": 239.90,
-    "images": [
-      "/imagens/mouse-ultralight-hyper-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 30,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -183,9 +170,7 @@
     "tags": ["gamer", "headset", "7.1", "core"],
     "pricePublic": 249.90,
     "pricePremium": 199.90,
-    "images": [
-      "/imagens/headset-core-surround-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 35,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -212,9 +197,7 @@
     "tags": ["gamer", "headset", "wireless", "omega"],
     "pricePublic": 599.90,
     "pricePremium": 529.90,
-    "images": [
-      "/imagens/headset-wireless-omega-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 15,
     "premiumOnly": true,
     "omegaExclusive": false,
@@ -241,9 +224,7 @@
     "tags": ["gamer", "notebook", "rtx", "core"],
     "pricePublic": 5299.90,
     "pricePremium": 4899.90,
-    "images": [
-      "/imagens/notebook-gamer-core-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 8,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -270,9 +251,7 @@
     "tags": ["gamer", "notebook", "omega", "entusiasta"],
     "pricePublic": 8999.90,
     "pricePremium": 8299.90,
-    "images": [
-      "/imagens/notebook-gamer-omega-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 5,
     "premiumOnly": true,
     "omegaExclusive": true,
@@ -299,9 +278,7 @@
     "tags": ["gamer", "cadeira", "core"],
     "pricePublic": 799.90,
     "pricePremium": 699.90,
-    "images": [
-      "/imagens/cadeira-gamer-core-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 20,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -328,9 +305,7 @@
     "tags": ["streamer", "microfone", "hyper"],
     "pricePublic": 429.90,
     "pricePremium": 369.90,
-    "images": [
-      "/imagens/kit-streamer-hyper-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 25,
     "premiumOnly": false,
     "omegaExclusive": false,
@@ -357,9 +332,7 @@
     "tags": ["mousepad", "omega", "setup"],
     "pricePublic": 149.90,
     "pricePremium": 119.90,
-    "images": [
-      "/imagens/mousepad-omega-xxl-1.jpg"
-    ],
+    "images": ["logo.png"],
     "stock": 50,
     "premiumOnly": false,
     "omegaExclusive": false,
