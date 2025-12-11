@@ -4,7 +4,7 @@ import { Router } from "express";
 import healthRoutes from "./health.routes.js";
 import plansRoutes from "./plans.routes.js";
 import searchRoutes from "./search.routes.js";
-import productRoutes from "./product.routes.js"; // ⬅️ IMPORT NOVO
+import productRoutes from "./product.routes.js";
 
 const router = Router();
 
@@ -18,6 +18,6 @@ router.use("/plans", plansRoutes);
 router.use("/search", searchRoutes);
 
 // /api/product
-router.use("/product", productRoutes); // ⬅️ AGORA productRoutes EXISTE
+router.use("/product", productRoutes);
 
 export default router;
