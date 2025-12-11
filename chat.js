@@ -2,7 +2,6 @@
 
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
-const chatInput = document.getElementById("chat-input");
 const chatPlan = document.getElementById("chat-plan");
 
 function addMessage(text, from = "user", meta = {}) {
