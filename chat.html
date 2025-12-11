@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atendimento Nexus</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
+      <span class="brand-name">Nexus</span>
+    </a>
+  </header>
+
+  <main class="page chat-page">
+    <section class="section chat-section">
+      <header class="section-header">
+        <h1>Atendimento Nexus</h1>
+        <p>Converse com a IA da Nexus sobre pedidos, produtos e planos.</p>
+      </header>
+
+      <div id="chat-box" class="chat-box">
+        <!-- Mensagens aparecem aqui -->
+      </div>
+
+      <form id="chat-form" class="chat-form">
+        <select id="chat-plan" class="chat-plan-select">
+          <option value="free">Plano: Free</option>
+          <option value="core">Plano: Core</option>
+          <option value="hyper">Plano: Hyper</option>
+          <option value="omega">Plano: Omega</option>
+        </select>
+
+        <div class="chat-input-row">
+          <input
+            type="text"
+            id="chat-input"
+            class="chat-input"
+            placeholder="Digite sua mensagem..."
+            autocomplete="off"
+          />
+          <button type="submit" class="btn-primary">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Nexus © 2025 — Atendimento inteligente, catálogo próprio.
+  </footer>
+
+  <script src="chat.js"></script>
+</body>
+</html>
