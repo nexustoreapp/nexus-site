@@ -5,7 +5,7 @@ import { searchController } from "../controllers/search.controller.js";
 
 const router = Router();
 
-// Rota REAL
+// ROTA REAL: /api/search  (GET e POST)
 router.post("/", searchController.real);
 router.get("/", searchController.real);
 
