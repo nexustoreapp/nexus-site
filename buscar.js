@@ -1,135 +1,145 @@
-// 1 — Lê o termo da URL (?q=...)
-const params = new URLSearchParams(window.location.search);
-const termo = params.get("q") || "";
+// buscar.js
 
-// Elementos da página
-const metaEl = document.getElementById("search-meta");
-const grid = document.getElementById("results-grid");
-
-if (metaEl) {
-  metaEl.textContent = termo
-    ? `Mostrando resultados para: "${termo}"`
-    : "Nenhum termo informado. Volte à página inicial e faça uma nova busca.";
+// Formata número como preço em R$ (pt-BR)
+function formatPrice(valor) {
+  if (typeof valor !== "number") return "-";
+  return valor.toFixed(2).replace(".", ",");
 }
 
-// 2 — Função principal: chama a API do backend (demo)
-async function buscarProdutos() {
+// Monta o textozinho em cima da página
+function atualizarMetaBusca(termo, total) {
+  const metaEl = document.getElementById("search-meta");
+  if (!metaEl) return;
+
   if (!termo) {
+    metaEl.textContent = `Mostrando ${total} produto(s) do catálogo Nexus.`;
+  } else {
+    metaEl.textContent = `Você buscou por “${termo}” — encontramos ${total} produto(s) no catálogo Nexus.`;
+  }
+}
+
+// Monta os cards de resultado
+function renderizarResultados(data) {
+  const grid = document.getElementById("results-grid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  const resultados = data?.results || [];
+  const termo = data?.query || "";
+
+  atualizarMetaBusca(termo, resultados.length);
+
+  if (!resultados.length) {
     grid.innerHTML = `
-      <p class="premium-summary">
-        Nenhum termo de busca foi informado. Volte para a página inicial e digite o nome de um produto.
+      <p class="no-results">
+        Não encontramos nenhum produto Nexus para “${termo}”.
+        <br />
+        Tenta usar outro termo ou categoria (ex: monitor, teclado, mouse, headset).
       </p>
     `;
     return;
   }
 
-  // Mensagem inicial
-  grid.innerHTML = `
-    <p class="premium-summary">
-      Buscando ofertas em modo demonstração...
-    </p>
-  `;
+  resultados.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "result-card";
+
+    const imgSrc = item.images && item.images.length ? item.images[0] : "logo.png";
+
+    const precoPublic = item.pricePublic;
+    const precoPremium = item.pricePremium;
+
+    const precoPublicHtml = precoPublic
+      ? `<span class="price-public">R$ ${formatPrice(precoPublic)}</span>`
+      : "";
+
+    const precoPremiumHtml = precoPremium
+      ? `<span class="price-premium">R$ ${formatPrice(precoPremium)} <span class="price-premium-badge">Nexus+</span></span>`
+      : "";
+
+    const flags = [];
+    if (item.premiumOnly) {
+      flags.push(`<span class="flag flag-premium">Exclusivo Nexus+</span>`);
+    }
+    if (item.omegaExclusive) {
+      flags.push(`<span class="flag flag-omega">Omega Exclusive</span>`);
+    }
+
+    card.innerHTML = `
+      <div class="result-image">
+        <img src="${imgSrc}" alt="${item.title}" />
+      </div>
+      <div class="result-info">
+        <h3 class="result-title">${item.title}</h3>
+        ${
+          item.subtitle
+            ? `<p class="result-subtitle">${item.subtitle}</p>`
+            : ""
+        }
+        <p class="result-category">Categoria: ${item.category || "-"}</p>
+
+        <div class="result-prices">
+          ${precoPublicHtml}
+          ${precoPremiumHtml}
+        </div>
+
+        ${
+          flags.length
+            ? `<div class="result-flags">${flags.join("")}</div>`
+            : ""
+        }
+
+        ${
+          item.tags && item.tags.length
+            ? `<div class="result-tags">
+                 ${item.tags
+                   .map((tag) => `<span class="tag-pill">${tag}</span>`)
+                   .join("")}
+               </div>`
+            : ""
+        }
+
+        <!-- Futuro: quando tiver página de produto, é só trocar o # -->
+        <a href="#" class="btn-primary btn-sm" onclick="event.preventDefault(); alert('Em breve página de detalhes do produto: ${item.id}');">
+          Ver detalhes
+        </a>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// Faz a chamada na API /api/search
+async function carregarResultadosBusca() {
+  const params = new URLSearchParams(window.location.search);
+  const termo = params.get("q") || "";
 
   try {
-    const resposta = await fetch("http://localhost:3000/api/search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: termo }),
-    });
+    const resp = await fetch(
+      "http://localhost:3000/api/search?q=" + encodeURIComponent(termo)
+    );
 
-    const data = await resposta.json();
+    const data = await resp.json();
 
-    if (!resposta.ok || !data.ok) {
-      grid.innerHTML = `
-        <p class="premium-summary">
-          Erro ao buscar ofertas. ${
-            data.error ? "Detalhe: " + data.error : "Tente novamente mais tarde."
-          }
-        </p>
-      `;
-      return;
-    }
-
-    const resultados = Array.isArray(data.results) ? data.results : [];
-
-    if (!resultados.length) {
-      grid.innerHTML = `
-        <p class="premium-summary">
-          Nenhuma oferta encontrada no modo demonstração. Tente outro nome de produto.
-        </p>
-      `;
-      return;
-    }
-
-    // 3 — Renderiza os cards de resultado
-    grid.innerHTML = ""; // limpa
-
-    resultados.forEach((produto, index) => {
-      const card = document.createElement("article");
-      card.className = "result-card";
-
-      const nome = produto.title || "Produto sem nome";
-const loja = produto.store || "Loja não informada";
-const preco =
-  typeof produto.price === "number"
-    ? "R$ " + produto.price.toFixed(2).replace(".", ",")
-    : "Preço não informado";
-const imagem = produto.image || null;
-const link = produto.permalink || "#";
-const freteGratis = produto.freeShipping;
-
-      card.innerHTML = `
-  <div class="result-thumb">
-    ${
-      imagem
-        ? `<img src="${imagem}" alt="${nome}" />`
-        : `<div class="thumb-placeholder">Sem imagem</div>`
-    }
-  </div>
-
-  <div class="result-body">
-    <div class="result-header">
-      <h2>${nome}</h2>
-    </div>
-
-    <p class="result-store">
-      ${loja}
-      ${
-        freteGratis
-          ? `<span class="badge badge-best">Frete grátis</span>`
-          : ""
+    if (!data.ok) {
+      console.error("Erro da API:", data.error);
+      const grid = document.getElementById("results-grid");
+      if (grid) {
+        grid.innerHTML = `<p class="no-results">Erro ao buscar produtos no catálogo Nexus. Tente novamente em alguns instantes.</p>`;
       }
-    </p>
+      return;
+    }
 
-    <div class="result-prices">
-      <span class="price-current">${preco}</span>
-    </div>
-
-    <div class="result-actions">
-      <a href="${link}" target="_blank" class="btn-outline">
-        Ver na loja
-      </a>
-    </div>
-  </div>
-`;
-
-      // Clique do card → leva para produto.html com índice (ainda demo)
-      card.addEventListener("click", () => {
-        window.location.href = `produto.html?idx=${index}`;
-      });
-
-      grid.appendChild(card);
-    });
-  } catch (erro) {
-    console.error("Erro na chamada da API de busca:", erro);
-    grid.innerHTML = `
-      <p class="premium-summary">
-        Erro de conexão com o servidor do Nexus. Verifique se o backend está rodando em
-        <code>http://localhost:3000</code>.
-      </p>
-    `;
+    renderizarResultados(data);
+  } catch (e) {
+    console.error("Erro na requisição /api/search:", e);
+    const grid = document.getElementById("results-grid");
+    if (grid) {
+      grid.innerHTML = `<p class="no-results">Não foi possível conectar ao servidor da Nexus. Verifique se o backend está rodando.</p>`;
+    }
   }
 }
 
-// 4 — Roda automaticamente ao carregar a página
-document.addEventListener("DOMContentLoaded", buscarProdutos);
+document.addEventListener("DOMContentLoaded", carregarResultadosBusca);
