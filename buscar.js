@@ -101,7 +101,7 @@ function renderizarResultados(data) {
         }
 
         <!-- Futuro: quando tiver página de produto, é só trocar o # -->
-        <a href="#" class="btn-primary btn-sm" onclick="event.preventDefault(); alert('Em breve página de detalhes do produto: ${item.id}');">
+                <a href="produto.html?id=${encodeURIComponent(item.id)}" class="btn-primary btn-sm">
           Ver detalhes
         </a>
       </div>
