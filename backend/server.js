@@ -1,5 +1,5 @@
 // backend/server.js
-
+import "dotenv/config"; // deixa isso na primeira ou segunda linha
 import express from "express";
 import cors from "cors";
 import routes from "./routes/index.js";
