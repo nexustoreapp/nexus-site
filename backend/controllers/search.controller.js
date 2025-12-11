@@ -1,81 +1,116 @@
 // backend/controllers/search.controller.js
-import fetch from "node-fetch";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const ML_ACCESS_TOKEN = process.env.ML_ACCESS_TOKEN;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Caminho do catálogo
+const catalogPath = path.join(__dirname, "..", "data", "catalogo.json");
+
+let catalogo = [];
+
+// Carrega o catálogo na memória na subida do servidor
+try {
+  const raw = fs.readFileSync(catalogPath, "utf-8");
+  catalogo = JSON.parse(raw);
+  console.log(`[NEXUS] Catálogo carregado com ${catalogo.length} produto(s).`);
+} catch (e) {
+  console.error("[NEXUS] Erro ao carregar catalogo.json:", e.message);
+  catalogo = [];
+}
+
+// Função simples pra normalizar string (sem acento, minúsculo)
+function normalize(str) {
+  return String(str || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+// Faz a busca no catálogo
+function buscarNoCatalogo(termo) {
+  const tNorm = normalize(termo);
+
+  if (!tNorm) {
+    // Se não tiver termo, podemos retornar tudo ou nada.
+    // Aqui vou retornar tudo, mas limitado a 50 pra não explodir.
+    return catalogo.slice(0, 50);
+  }
+
+  const resultados = catalogo.filter((item) => {
+    const titulo = normalize(item.title);
+    const subtitulo = normalize(item.subtitle || "");
+    const categoria = normalize(item.category || "");
+    const tags = Array.isArray(item.tags)
+      ? normalize(item.tags.join(" "))
+      : "";
+
+    return (
+      titulo.includes(tNorm) ||
+      subtitulo.includes(tNorm) ||
+      categoria.includes(tNorm) ||
+      tags.includes(tNorm)
+    );
+  });
+
+  // Ordena por pricePremium crescente (quem é premium vê mais vantagem)
+  resultados.sort((a, b) => {
+    const pa = a.pricePremium ?? a.pricePublic ?? 0;
+    const pb = b.pricePremium ?? b.pricePublic ?? 0;
+    return pa - pb;
+  });
+
+  return resultados;
+}
 
 export const searchController = {
-  real: async (req, res) => {
+  // GET /api/search
+  catalog: async (req, res) => {
     try {
       const termo =
+        (req.query && req.query.q) ||
         (req.body && req.body.query) ||
-        req.query.q ||
-        "notebook gamer";
+        "";
 
-      if (!ML_ACCESS_TOKEN) {
-        return res.status(500).json({
-          ok: false,
-          error: "ML_ACCESS_TOKEN não configurado no .env",
-        });
-      }
+      const encontrados = buscarNoCatalogo(termo);
 
-      const url = new URL("https://api.mercadolibre.com/sites/MLB/search");
-      url.searchParams.set("q", termo);
-      url.searchParams.set("limit", "12");
-
-      const resposta = await fetch(url.toString(), {
-        headers: {
-          Authorization: `Bearer ${ML_ACCESS_TOKEN}`,
-        },
-      });
-
-      const data = await resposta.json();
-      console.log("ML search status:", resposta.status);
-
-      if (!resposta.ok) {
-        return res.status(500).json({
-          ok: false,
-          error: "Erro ao consultar Mercado Livre",
-          details: {
-            status: resposta.status,
-            body: data,
-          },
-        });
-      }
-
-      const itens = Array.isArray(data.results) ? data.results : [];
-
-      const resultados = itens.map((item) => {
-        const imagem =
-          (Array.isArray(item.pictures) && item.pictures[0]?.secure_url) ||
-          item.thumbnail ||
-          null;
-
-        return {
+      const resposta = {
+        ok: true,
+        mode: "catalogo_nexus",
+        query: termo,
+        total: encontrados.length,
+        results: encontrados.map((item) => ({
           id: item.id,
           title: item.title,
-          store: item.seller?.nickname || "Mercado Livre",
-          price: item.price,
-          originalPrice: null,
-          image: imagem,
-          permalink: item.permalink,
-          freeShipping: item.shipping?.free_shipping || false,
-          bestOffer: false,
-        };
-      });
+          subtitle: item.subtitle,
+          category: item.category,
+          tags: item.tags || [],
+          pricePublic: item.pricePublic,
+          pricePremium: item.pricePremium,
+          images: item.images || [],
+          stock: item.stock,
+          premiumOnly: !!item.premiumOnly,
+          omegaExclusive: !!item.omegaExclusive,
+          // infos pra IA / painel futuro
+          supplier: {
+            name: item.supplier?.name || null,
+            cost: item.supplier?.cost ?? null,
+            shippingCost: item.supplier?.shippingCost ?? null,
+            deliveryTime: item.supplier?.deliveryTime || null,
+          },
+          shipping: item.shipping || null,
+          comboEligible: !!item.comboEligible,
+        })),
+      };
 
-      res.json({
-        ok: true,
-        mode: "real",
-        provider: "mercadolivre",
-        query: termo,
-        total: resultados.length,
-        results: resultados,
-      });
+      return res.json(resposta);
     } catch (erro) {
-      console.error("Erro na busca real (Mercado Livre):", erro);
-      res.status(500).json({
+      console.error("[NEXUS] Erro na busca do catálogo:", erro);
+      return res.status(500).json({
         ok: false,
-        error: "Erro interno ao buscar produtos reais no Mercado Livre.",
+        error: "Erro interno ao buscar produtos no catálogo Nexus.",
       });
     }
   },
