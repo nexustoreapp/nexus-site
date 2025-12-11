@@ -1,29 +1,40 @@
 // backend/controllers/search.controller.js
-
 import fetch from "node-fetch";
+
+const ML_ACCESS_TOKEN = process.env.ML_ACCESS_TOKEN;
 
 export const searchController = {
   real: async (req, res) => {
     try {
-      // Termo que veio do front (body ou query)
       const termo =
         (req.body && req.body.query) ||
         req.query.q ||
-        "monitor";
+        "notebook gamer";
 
-      // Chama a API da DummyJSON
-      const url = new URL("https://dummyjson.com/products/search");
+      if (!ML_ACCESS_TOKEN) {
+        return res.status(500).json({
+          ok: false,
+          error: "ML_ACCESS_TOKEN não configurado no .env",
+        });
+      }
+
+      const url = new URL("https://api.mercadolibre.com/sites/MLB/search");
       url.searchParams.set("q", termo);
+      url.searchParams.set("limit", "12");
 
-      const resposta = await fetch(url.toString());
+      const resposta = await fetch(url.toString(), {
+        headers: {
+          Authorization: `Bearer ${ML_ACCESS_TOKEN}`,
+        },
+      });
+
       const data = await resposta.json();
-
-      console.log("DummyJSON search status:", resposta.status);
+      console.log("ML search status:", resposta.status);
 
       if (!resposta.ok) {
         return res.status(500).json({
           ok: false,
-          error: "Erro ao consultar DummyJSON",
+          error: "Erro ao consultar Mercado Livre",
           details: {
             status: resposta.status,
             body: data,
@@ -31,39 +42,23 @@ export const searchController = {
         });
       }
 
-      // Lista principal de produtos
-      let itens = Array.isArray(data.products) ? data.products : [];
+      const itens = Array.isArray(data.results) ? data.results : [];
 
-      // 🔁 Plano B: se não achou nada com o termo, pega produtos genéricos
-      if (!itens.length) {
-        const fallbackResp = await fetch("https://dummyjson.com/products?limit=12");
-        const fallbackData = await fallbackResp.json();
-
-        if (fallbackResp.ok && Array.isArray(fallbackData.products)) {
-          itens = fallbackData.products;
-        }
-      }
-
-      // Mapeia pro formato Nexus
       const resultados = itens.map((item) => {
-        let originalPrice = null;
-        if (
-          typeof item.price === "number" &&
-          typeof item.discountPercentage === "number"
-        ) {
-          const calc = item.price / (1 - item.discountPercentage / 100);
-          originalPrice = Number(calc.toFixed(2));
-        }
+        const imagem =
+          (Array.isArray(item.pictures) && item.pictures[0]?.secure_url) ||
+          item.thumbnail ||
+          null;
 
         return {
           id: item.id,
           title: item.title,
-          store: "Loja Demo (DummyJSON)",
+          store: item.seller?.nickname || "Mercado Livre",
           price: item.price,
-          originalPrice,
-          image: item.thumbnail,
-          permalink: `https://dummyjson.com/products/${item.id}`,
-          freeShipping: false,
+          originalPrice: null,
+          image: imagem,
+          permalink: item.permalink,
+          freeShipping: item.shipping?.free_shipping || false,
           bestOffer: false,
         };
       });
@@ -71,16 +66,16 @@ export const searchController = {
       res.json({
         ok: true,
         mode: "real",
-        provider: "dummyjson",
+        provider: "mercadolivre",
         query: termo,
         total: resultados.length,
         results: resultados,
       });
     } catch (erro) {
-      console.error("Erro na busca real (DummyJSON):", erro);
+      console.error("Erro na busca real (Mercado Livre):", erro);
       res.status(500).json({
         ok: false,
-        error: "Erro interno ao buscar produtos reais.",
+        error: "Erro interno ao buscar produtos reais no Mercado Livre.",
       });
     }
   },
