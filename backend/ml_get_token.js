@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 
 const CLIENT_ID = "8813479283539803";
 const CLIENT_SECRET = "4GIwLC3UZBfUFVFRuNddqPxcVG3ourvz";
-const CODE = "TG-693a5eb8628b6200013262bf-281552835";
+const CODE = "TG-693a6b23c07eb900017bf84c-281552835";
 const REDIRECT_URI = "https://nexustore.store";
 
 async function getToken() {
