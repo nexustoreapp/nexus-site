@@ -2,29 +2,21 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Detalhes do produto - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produto - Nexus</title>
 
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
 </head>
-
 <body>
-  <!-- NAV -->
   <header class="topbar">
     <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" />
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
       <span class="brand-name">Nexus</span>
     </a>
-
     <button class="nav-toggle" id="navToggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
@@ -33,188 +25,70 @@
     </nav>
   </header>
 
-  <main class="page search-page">
+  <main class="page product-page">
+    <section class="section product-hero" id="product-section">
+      <div class="product-layout">
+        <div class="product-gallery">
+          <img id="product-image-main" src="logo.png" alt="Produto Nexus" class="product-image-main" />
+          <div class="product-thumbs" id="product-thumbs"></div>
+        </div>
 
-    <!-- HEADER DO PRODUTO -->
-    <section class="section">
-      <div class="section-header">
-        <h1 id="product-title">Carregando produto...</h1>
-        <p id="product-store" class="search-meta"></p>
+        <div class="product-info">
+          <h1 id="product-title">Carregando produto...</h1>
+          <p id="product-subtitle" class="product-subtitle"></p>
+
+          <div class="product-flags" id="product-flags"></div>
+
+          <div class="product-prices">
+            <p id="product-price-public" class="product-price-public"></p>
+            <p id="product-price-premium" class="product-price-premium"></p>
+          </div>
+
+          <div class="product-meta">
+            <p id="product-category"></p>
+            <div id="product-tags" class="product-tags"></div>
+            <p id="product-stock" class="product-stock"></p>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn-primary" id="btn-buy">
+              Comprar agora
+            </button>
+            <button class="btn-outline" id="btn-see-plans">
+              Ver vantagens Nexus+
+            </button>
+          </div>
+
+          <p class="product-note" id="product-note">
+            Os preços e benefícios podem variar conforme seu plano (Free, Core, Hyper ou Omega).
+          </p>
+        </div>
       </div>
-
-      <!-- CARD PRINCIPAL DO PRODUTO -->
-      <div class="results-grid" style="margin-top: 18px;">
-        <article class="result-card">
-          <div class="result-thumb">
-            <!-- Por enquanto imagem demo -->
-            <div class="thumb-placeholder" id="product-image-placeholder">
-              Imagem do produto (demo)
-            </div>
-          </div>
-
-          <div class="result-body">
-            <div class="result-header">
-              <h2 id="product-title-small">Carregando...</h2>
-            </div>
-
-            <p class="result-store" id="product-store-inline"></p>
-
-            <div class="result-prices">
-              <span class="price-current" id="product-price">R$ 0,00</span>
-            </div>
-
-            <div class="result-actions">
-              <button class="btn-primary" disabled>
-                Comprar (demo)
-              </button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <!-- BLOCO: CALCULAR FRETE (DEMO) -->
-      <section class="section" style="margin-top: 24px;">
-        <div class="section-header-sm">
-          <h2>Calcular frete (demo)</h2>
-          <p class="search-meta">
-            Simulação simples de frete. No projeto real, isso viria da API de frete das lojas / transportadoras.
-          </p>
-        </div>
-
-        <form id="frete-form" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-          <div style="flex: 1 1 180px;">
-            <label for="frete-cep" style="font-size: 0.85rem; color: #9ca3af; display:block; margin-bottom:4px;">
-              CEP de entrega
-            </label>
-            <input
-              id="frete-cep"
-              type="text"
-              placeholder="Ex: 79000-000"
-              style="
-                width: 100%;
-                padding: 8px 10px;
-                border-radius: 10px;
-                border: 1px solid rgba(148,163,184,0.6);
-                background: #020617;
-                color: #e5e7eb;
-                font-size: 0.9rem;
-              "
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="btn-primary"
-            style="height: 40px; padding-inline: 16px; flex: 0 0 auto; margin-top: 18px;"
-          >
-            Calcular frete (demo)
-          </button>
-        </form>
-
-        <div
-          id="frete-resultado"
-          style="
-            margin-top: 14px;
-            font-size: 0.9rem;
-            color: #e5e7eb;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(148,163,184,0.4);
-            background: rgba(15,23,42,0.9);
-            display: none;
-          "
-        ></div>
-      </section>
-
-      <!-- ESPECIFICAÇÕES TÉCNICAS -->
-      <section class="section" style="margin-top: 24px;">
-        <div class="section-header-sm">
-          <h2>Especificações técnicas (demo)</h2>
-          <p class="search-meta">
-            Estrutura pronta para receber dados reais da API (marca, modelo, memória, chipset, etc.).
-          </p>
-        </div>
-
-        <ul id="specs-list" style="
-          margin-top: 12px;
-          list-style: none;
-          padding: 0;
-          font-size: 0.9rem;
-        ">
-          <!-- Itens serão preenchidos pelo produto.js -->
-        </ul>
-      </section>
-      
-            <!-- AVALIAÇÕES / REVIEWS (DEMO) -->
-      <section class="section" style="margin-top: 24px;">
-        <div class="section-header-sm">
-          <h2>Avaliações e opiniões (demo)</h2>
-          <p class="search-meta">
-            No projeto real, aqui entram notas e comentários reais das lojas / usuários. Por enquanto é uma simulação.
-          </p>
-        </div>
-
-        <!-- Resumo tipo “IA” -->
-        <div id="reviews-summary" style="
-          margin-top: 12px;
-          padding: 10px 12px;
-          border-radius: 10px;
-          border: 1px solid rgba(148,163,184,0.35);
-          background: rgba(15,23,42,0.9);
-          font-size: 0.9rem;
-        ">
-          <!-- preenchido pelo produto.js -->
-        </div>
-
-        <!-- Lista de reviews individuais -->
-        <ul id="reviews-list" style="
-          margin-top: 10px;
-          list-style: none;
-          padding: 0;
-          font-size: 0.9rem;
-        ">
-          <!-- reviews serão preenchidos pelo produto.js -->
-        </ul>
-      </section>
-
-      <!-- DEBUG: DADOS CRUS DA API -->
-      <section class="section" style="margin-top: 24px;">
-        <div class="section-header-sm">
-          <h2>Dados brutos (debug)</h2>
-          <p class="search-meta">
-            Apenas para desenvolvimento: mostra exatamente o JSON que o backend retornou.
-          </p>
-        </div>
-
-        <pre id="product-raw" style="
-          margin-top: 10px;
-          font-size: 0.8rem;
-          background: rgba(15,23,42,0.9);
-          padding: 10px 12px;
-          border-radius: 10px;
-          border: 1px solid rgba(148,163,184,0.35);
-          overflow-x: auto;
-        "></pre>
-      </section>
     </section>
 
+    <section class="section product-description">
+      <header class="section-header">
+        <h2>Descrição do produto</h2>
+      </header>
+      <p id="product-description" class="product-description-text">
+        Carregando descrição...
+      </p>
+    </section>
+
+    <section class="section product-shipping">
+      <header class="section-header">
+        <h2>Frete & Entrega</h2>
+      </header>
+      <div id="product-shipping-info" class="product-shipping-info">
+        <p>Carregando informações de frete...</p>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
+    Nexus © 2025 — Preço agressivo, atendimento inteligente.
   </footer>
 
   <script src="produto.js"></script>
-  <script>
-    // MENU MOBILE
-    const navToggle = document.getElementById("navToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("nav-open");
-      });
-    }
-  </script>
 </body>
 </html>
