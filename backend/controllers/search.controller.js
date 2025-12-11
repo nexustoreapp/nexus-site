@@ -5,20 +5,20 @@ import fetch from "node-fetch";
 export const searchController = {
   real: async (req, res) => {
     try {
-      // 1) Termo que veio do front (body ou query)
+      // Termo que veio do front (body ou query)
       const termo =
         (req.body && req.body.query) ||
         req.query.q ||
         "monitor";
 
-      // 2) Chama a API REAL da DummyJSON
+      // Chama a API da DummyJSON
       const url = new URL("https://dummyjson.com/products/search");
       url.searchParams.set("q", termo);
 
       const resposta = await fetch(url.toString());
       const data = await resposta.json();
 
-      console.log("DummyJSON status:", resposta.status);
+      console.log("DummyJSON search status:", resposta.status);
 
       if (!resposta.ok) {
         return res.status(500).json({
@@ -31,10 +31,10 @@ export const searchController = {
         });
       }
 
-      // 3) Pega a lista de produtos
+      // Lista principal de produtos
       let itens = Array.isArray(data.products) ? data.products : [];
 
-      // 🔁 Plano B: se não achou nada com o termo, busca produtos genéricos
+      // 🔁 Plano B: se não achou nada com o termo, pega produtos genéricos
       if (!itens.length) {
         const fallbackResp = await fetch("https://dummyjson.com/products?limit=12");
         const fallbackData = await fallbackResp.json();
@@ -44,15 +44,14 @@ export const searchController = {
         }
       }
 
-      // 4) Mapeia para o formato "Nexus"
+      // Mapeia pro formato Nexus
       const resultados = itens.map((item) => {
         let originalPrice = null;
         if (
           typeof item.price === "number" &&
           typeof item.discountPercentage === "number"
         ) {
-          const calc =
-            item.price / (1 - item.discountPercentage / 100);
+          const calc = item.price / (1 - item.discountPercentage / 100);
           originalPrice = Number(calc.toFixed(2));
         }
 
@@ -69,7 +68,6 @@ export const searchController = {
         };
       });
 
-      // 5) Resposta final pro front
       res.json({
         ok: true,
         mode: "real",
