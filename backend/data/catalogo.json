@@ -1,0 +1,380 @@
+[
+  {
+    "id": "monitor-24-144hz-core",
+    "title": "Monitor Gamer 24” Full HD 144Hz Nexus Core",
+    "subtitle": "1ms, painel IPS, foco em FPS competitivo",
+    "description": "Monitor gamer 24 polegadas com 144Hz reais, 1ms de resposta e painel IPS. Ideal para quem joga CS2, Valorant, Fortnite e quer fluidez sem gastar como em loja grande.",
+    "category": "monitores",
+    "tags": ["gamer", "monitor", "144hz", "fps", "nexus-core"],
+    "pricePublic": 1199.90,
+    "pricePremium": 1049.90,
+    "images": [
+      "/imagens/monitor-24-144hz-core-1.jpg",
+      "/imagens/monitor-24-144hz-core-2.jpg"
+    ],
+    "stock": 25,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Alpha",
+      "cost": 680.00,
+      "shippingCost": 40.00,
+      "deliveryTime": "12-25 dias"
+    },
+    "shipping": {
+      "baseShipping": 29.90,
+      "freeForHyperOver": 99.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "monitor-27-165hz-omega",
+    "title": "Monitor Gamer 27” QHD 165Hz Nexus Omega",
+    "subtitle": "2K, 165Hz, FreeSync/G-Sync compatível",
+    "description": "Monitor 27 polegadas com resolução 2K, 165Hz e suporte a FreeSync/G-Sync. Pensado para setups Nexus Omega que querem máxima qualidade de imagem e competitividade.",
+    "category": "monitores",
+    "tags": ["gamer", "monitor", "165hz", "2k", "omega"],
+    "pricePublic": 2199.90,
+    "pricePremium": 1899.90,
+    "images": [
+      "/imagens/monitor-27-165hz-omega-1.jpg"
+    ],
+    "stock": 10,
+    "premiumOnly": true,
+    "omegaExclusive": true,
+    "supplier": {
+      "name": "Fornecedor Elite",
+      "cost": 1280.00,
+      "shippingCost": 70.00,
+      "deliveryTime": "15-30 dias"
+    },
+    "shipping": {
+      "baseShipping": 39.90,
+      "freeForHyperOver": 149.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "teclado-mecanico-hyper",
+    "title": "Teclado Mecânico Nexus Hyper RGB",
+    "subtitle": "Switch mecânico vermelho, ABNT2, RGB por tecla",
+    "description": "Teclado mecânico com switches vermelhos silenciosos, layout ABNT2, construção em metal e RGB por tecla. Perfeito para quem quer sensação premium sem pagar preço absurdo.",
+    "category": "teclados",
+    "tags": ["gamer", "teclado", "mecanico", "rgb", "hyper"],
+    "pricePublic": 499.90,
+    "pricePremium": 419.90,
+    "images": [
+      "/imagens/teclado-mecanico-hyper-1.jpg"
+    ],
+    "stock": 40,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor KeyLab",
+      "cost": 240.00,
+      "shippingCost": 25.00,
+      "deliveryTime": "10-20 dias"
+    },
+    "shipping": {
+      "baseShipping": 24.90,
+      "freeForHyperOver": 199.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "teclado-60-omega",
+    "title": "Teclado 60% Nexus Omega Low Profile",
+    "subtitle": "Formato compacto, ideal para FPS e setups pequenos",
+    "description": "Teclado 60% low profile com keycaps PBT, switches brown e cabo destacável. Feito para quem quer espaço no mousepad e estilo minimalista no setup.",
+    "category": "teclados",
+    "tags": ["gamer", "teclado", "60%", "compacto", "omega"],
+    "pricePublic": 599.90,
+    "pricePremium": 489.90,
+    "images": [
+      "/imagens/teclado-60-omega-1.jpg"
+    ],
+    "stock": 18,
+    "premiumOnly": true,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor KeyLab",
+      "cost": 280.00,
+      "shippingCost": 25.00,
+      "deliveryTime": "12-22 dias"
+    },
+    "shipping": {
+      "baseShipping": 24.90,
+      "freeForHyperOver": 249.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "mouse-gamer-core",
+    "title": "Mouse Gamer Nexus Core 7200 DPI",
+    "subtitle": "Sensor óptico preciso, 6 botões, leve e confortável",
+    "description": "Mouse gamer com até 7200 DPI, 6 botões programáveis e design ergonômico. Indicado para quem está montando o primeiro setup ou quer sair do mouse genérico.",
+    "category": "mouses",
+    "tags": ["gamer", "mouse", "dpi", "core"],
+    "pricePublic": 149.90,
+    "pricePremium": 119.90,
+    "images": [
+      "/imagens/mouse-gamer-core-1.jpg"
+    ],
+    "stock": 60,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Pixel",
+      "cost": 55.00,
+      "shippingCost": 15.00,
+      "deliveryTime": "8-18 dias"
+    },
+    "shipping": {
+      "baseShipping": 19.90,
+      "freeForHyperOver": 149.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "mouse-ultralight-hyper",
+    "title": "Mouse Ultralight Nexus Hyper 58g",
+    "subtitle": "FPS focado em precisão, cabo flexível e skates PTFE",
+    "description": "Mouse ultraleve com 58 gramas, sensor de alta precisão e cabo super flexível. Pensado para players de FPS que querem mira rápida sem travar no mousepad.",
+    "category": "mouses",
+    "tags": ["gamer", "mouse", "ultralight", "fps", "hyper"],
+    "pricePublic": 279.90,
+    "pricePremium": 239.90,
+    "images": [
+      "/imagens/mouse-ultralight-hyper-1.jpg"
+    ],
+    "stock": 30,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Pixel",
+      "cost": 135.00,
+      "shippingCost": 18.00,
+      "deliveryTime": "10-20 dias"
+    },
+    "shipping": {
+      "baseShipping": 24.90,
+      "freeForHyperOver": 199.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "headset-core-surround",
+    "title": "Headset Gamer Nexus Core 7.1",
+    "subtitle": "Som surround virtual, microfone removível",
+    "description": "Headset gamer confortável com som 7.1 virtual, acolchoamento macio e microfone removível. Ideal para quem quer imersão sem estourar o orçamento.",
+    "category": "headsets",
+    "tags": ["gamer", "headset", "7.1", "core"],
+    "pricePublic": 249.90,
+    "pricePremium": 199.90,
+    "images": [
+      "/imagens/headset-core-surround-1.jpg"
+    ],
+    "stock": 35,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor AudioLab",
+      "cost": 110.00,
+      "shippingCost": 20.00,
+      "deliveryTime": "10-20 dias"
+    },
+    "shipping": {
+      "baseShipping": 24.90,
+      "freeForHyperOver": 199.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "headset-wireless-omega",
+    "title": "Headset Wireless Nexus Omega Low Latency",
+    "subtitle": "Sem fio, baixa latência, bateria até 30h",
+    "description": "Headset wireless gamer com baixa latência, bateria de até 30 horas e construção premium. Indicado para quem quer liberdade total sem lag no áudio.",
+    "category": "headsets",
+    "tags": ["gamer", "headset", "wireless", "omega"],
+    "pricePublic": 599.90,
+    "pricePremium": 529.90,
+    "images": [
+      "/imagens/headset-wireless-omega-1.jpg"
+    ],
+    "stock": 15,
+    "premiumOnly": true,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor AudioLab",
+      "cost": 290.00,
+      "shippingCost": 30.00,
+      "deliveryTime": "12-25 dias"
+    },
+    "shipping": {
+      "baseShipping": 29.90,
+      "freeForHyperOver": 249.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "notebook-gamer-core",
+    "title": "Notebook Gamer Nexus Core 15” RTX",
+    "subtitle": "RTX série 30, 16GB RAM, SSD 512GB",
+    "description": "Notebook gamer custo-benefício com placa RTX série 30, 16GB de RAM e SSD de 512GB. Pensado para quem quer jogar e trabalhar na mesma máquina pagando menos que nas lojas grandes.",
+    "category": "notebooks",
+    "tags": ["gamer", "notebook", "rtx", "core"],
+    "pricePublic": 5299.90,
+    "pricePremium": 4899.90,
+    "images": [
+      "/imagens/notebook-gamer-core-1.jpg"
+    ],
+    "stock": 8,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Titan",
+      "cost": 3650.00,
+      "shippingCost": 80.00,
+      "deliveryTime": "15-30 dias"
+    },
+    "shipping": {
+      "baseShipping": 79.90,
+      "freeForHyperOver": 399.00,
+      "freeForOmega": true
+    },
+    "comboEligible": false,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "notebook-gamer-omega",
+    "title": "Notebook Gamer Nexus Omega 17” Ultra",
+    "subtitle": "Tela 17”, alta taxa de atualização, foco em entusiastas",
+    "description": "Notebook gamer 17 polegadas com alta taxa de atualização, hardware topo de linha e construção reforçada. Produto focado em membros Nexus Omega que querem tudo no máximo.",
+    "category": "notebooks",
+    "tags": ["gamer", "notebook", "omega", "entusiasta"],
+    "pricePublic": 8999.90,
+    "pricePremium": 8299.90,
+    "images": [
+      "/imagens/notebook-gamer-omega-1.jpg"
+    ],
+    "stock": 5,
+    "premiumOnly": true,
+    "omegaExclusive": true,
+    "supplier": {
+      "name": "Fornecedor Titan",
+      "cost": 5980.00,
+      "shippingCost": 100.00,
+      "deliveryTime": "20-35 dias"
+    },
+    "shipping": {
+      "baseShipping": 99.90,
+      "freeForHyperOver": 499.00,
+      "freeForOmega": true
+    },
+    "comboEligible": false,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "cadeira-gamer-core",
+    "title": "Cadeira Gamer Nexus Core Comfort",
+    "subtitle": "Revestimento em tecido, apoio lombar e cervical",
+    "description": "Cadeira gamer confortável com revestimento em tecido, apoio lombar e cervical ajustáveis. Pra quem passa horas no PC sem querer sair quebrado no final do dia.",
+    "category": "cadeiras",
+    "tags": ["gamer", "cadeira", "core"],
+    "pricePublic": 799.90,
+    "pricePremium": 699.90,
+    "images": [
+      "/imagens/cadeira-gamer-core-1.jpg"
+    ],
+    "stock": 20,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Comfort",
+      "cost": 390.00,
+      "shippingCost": 70.00,
+      "deliveryTime": "12-25 dias"
+    },
+    "shipping": {
+      "baseShipping": 79.90,
+      "freeForHyperOver": 299.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "kit-streamer-hyper",
+    "title": "Kit Streamer Nexus Hyper",
+    "subtitle": "Microfone condensador + braço articulado + pop filter",
+    "description": "Kit completo para começar a streamar: microfone condensador USB, braço articulado e pop filter. Pensado pra quem quer qualidade de áudio sem pagar valor de estúdio.",
+    "category": "acessorios",
+    "tags": ["streamer", "microfone", "hyper"],
+    "pricePublic": 429.90,
+    "pricePremium": 369.90,
+    "images": [
+      "/imagens/kit-streamer-hyper-1.jpg"
+    ],
+    "stock": 25,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor AudioLab",
+      "cost": 185.00,
+      "shippingCost": 25.00,
+      "deliveryTime": "10-20 dias"
+    },
+    "shipping": {
+      "baseShipping": 29.90,
+      "freeForHyperOver": 199.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  },
+  {
+    "id": "mousepad-omega-xxl",
+    "title": "Mousepad Nexus Omega XXL",
+    "subtitle": "900x400mm, borda costurada, superfície speed",
+    "description": "Mousepad estendido cobrindo teclado e mouse, com superfície speed e borda costurada. Ideal para setups limpos e quem gosta de espaço pra puxar mira.",
+    "category": "acessorios",
+    "tags": ["mousepad", "omega", "setup"],
+    "pricePublic": 149.90,
+    "pricePremium": 119.90,
+    "images": [
+      "/imagens/mousepad-omega-xxl-1.jpg"
+    ],
+    "stock": 50,
+    "premiumOnly": false,
+    "omegaExclusive": false,
+    "supplier": {
+      "name": "Fornecedor Pixel",
+      "cost": 45.00,
+      "shippingCost": 15.00,
+      "deliveryTime": "8-18 dias"
+    },
+    "shipping": {
+      "baseShipping": 19.90,
+      "freeForHyperOver": 149.00,
+      "freeForOmega": true
+    },
+    "comboEligible": true,
+    "createdAt": "2025-12-11T05:10:00"
+  }
+]
