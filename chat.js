@@ -3,6 +3,9 @@
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
 const chatPlan = document.getElementById("chat-plan");
+const chatInput = document.getElementById("chat-input");
+
+const API = window.NEXUS_API_BASE;
 
 function addMessage(text, from = "user", meta = {}) {
   const msg = document.createElement("div");
@@ -30,7 +33,7 @@ async function sendMessage(text) {
   addMessage(text, "user");
 
   try {
-    const resp = await fetch("http://localhost:3000/api/chat", {
+    const resp = await fetch(`${API}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
