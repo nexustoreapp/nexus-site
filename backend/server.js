@@ -2,62 +2,38 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
 import routes from "./routes/index.js";
 
 const app = express();
 
-/**
- * CORS seguro (troque/adicione domínios aqui)
- * - Local: localhost
- * - Produção: nexustore.store
- */
-const allowedOrigins = [
-  "http://localhost:5500",
-  "http://127.0.0.1:5500",
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  "https://nexustore.store",
-  "https://www.nexustore.store",
-];
-
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      // sem origin = chamadas do próprio servidor, curl, Postman etc
-      if (!origin) return cb(null, true);
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error(`CORS bloqueado para: ${origin}`));
-    },
-    credentials: true,
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 
-// ✅ Rota raiz só pra teste (texto atualizado, sem /demo)
-app.get("/", (req, res) => {
-  res.json({
-    ok: true,
-    message:
-      "Bem-vindo à API do Nexus. Use /api/health, /api/plans, /api/search?q=termo e /api/product/:id.",
-  });
-});
+// ---- SERVIR O FRONTEND (arquivos do site) ----
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// ✅ Rota /test só pra conferir
-app.get("/test", (req, res) => {
-  res.json({
-    ok: true,
-    message: "Rota /test funcionando ✅",
-    hint: "Teste também: /api/health, /api/plans, /api/search?q=monitor",
-  });
-});
+// Isso aponta pro "root" do repositório (onde fica seu index.html)
+const WEB_ROOT = path.resolve(__dirname, "..");
 
-// ✅ Aplica todas as rotas
+// Serve arquivos estáticos: index.html, chat.html, css, js, imagens...
+app.use(express.static(WEB_ROOT));
+
+// API continua em /api
 app.use("/api", routes);
 
-// ✅ Porta: local (3000) ou Render (process.env.PORT)
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 Backend do Nexus rodando na porta ${PORT}`);
+// Se abrir "/", mostra o site (index.html)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(WEB_ROOT, "index.html"));
 });
+
+// (Opcional) Se tentar abrir uma rota que não existe como arquivo, cai pro index
+app.get("*", (req, res) => {
+  res.sendFile(path.join(WEB_ROOT, "index.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Nexus rodando na porta ${PORT}`));

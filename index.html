@@ -20,6 +20,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<!-- Botão flutuante da IA -->
+<a href="chat.html" id="nexus-fab">💬 Nexus IA</a>
+
+<style>
+  #nexus-fab{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    background:#111;
+    color:#fff;
+    padding:12px 14px;
+    border-radius:999px;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    z-index:9999;
+  }
+  #nexus-fab:hover{ transform:translateY(-1px); }
+</style>
+
   <!-- NAVBAR -->
   <header class="topbar">
     <a href="index.html" class="brand">
