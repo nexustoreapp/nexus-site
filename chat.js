@@ -5,7 +5,12 @@ const chatForm = document.getElementById("chat-form");
 const chatPlan = document.getElementById("chat-plan");
 const chatInput = document.getElementById("chat-input");
 
-const API = window.NEXUS_API_BASE;
+// ✅ API base (Render em produção, localhost em dev)
+const API =
+  window.NEXUS_API_BASE ||
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "http://localhost:3000"
+    : "https://nexus-site-oufm.onrender.com");
 
 function addMessage(text, from = "user", meta = {}) {
   const msg = document.createElement("div");
@@ -48,7 +53,7 @@ async function sendMessage(text) {
 
     if (!data.ok) {
       addMessage(
-        "Tive um problema pra responder agora, mas você pode tentar de novo em alguns instantes.",
+        "Tive um problema pra responder agora, mas você pode tentar novamente em alguns instantes.",
         "bot"
       );
       return;
@@ -60,7 +65,7 @@ async function sendMessage(text) {
   } catch (e) {
     console.error("Erro no chat:", e);
     addMessage(
-      "Não consegui conectar no servidor da Nexus agora. Verifica se ele está rodando.",
+      "Não consegui conectar no servidor da Nexus agora. Tente novamente em alguns instantes.",
       "bot"
     );
   }
