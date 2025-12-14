@@ -5,12 +5,8 @@ const chatForm = document.getElementById("chat-form");
 const chatPlan = document.getElementById("chat-plan");
 const chatInput = document.getElementById("chat-input");
 
-// ✅ API base (Render em produção, localhost em dev)
-const API =
-  window.NEXUS_API_BASE ||
-  (location.hostname === "localhost" || location.hostname === "127.0.0.1"
-    ? "http://localhost:3000"
-    : "https://nexus-site-oufm.onrender.com");
+// 🔹 API correta (Render)
+const API = "https://nexus-site-oufm.onrender.com";
 
 function addMessage(text, from = "user", meta = {}) {
   const msg = document.createElement("div");
@@ -23,9 +19,7 @@ function addMessage(text, from = "user", meta = {}) {
 
   msg.innerHTML = `
     ${metaLine}
-    <div class="chat-bubble">
-      ${text}
-    </div>
+    <div class="chat-bubble">${text}</div>
   `;
 
   chatBox.appendChild(msg);
@@ -40,20 +34,15 @@ async function sendMessage(text) {
   try {
     const resp = await fetch(`${API}/api/chat`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: text,
-        plan
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text, plan })
     });
 
     const data = await resp.json();
 
     if (!data.ok) {
       addMessage(
-        "Tive um problema pra responder agora, mas você pode tentar novamente em alguns instantes.",
+        "Tive um problema pra responder agora. Tente novamente em instantes.",
         "bot"
       );
       return;
@@ -62,10 +51,10 @@ async function sendMessage(text) {
     addMessage(data.reply, "bot", {
       personaLabel: data.personaLabel
     });
-  } catch (e) {
-    console.error("Erro no chat:", e);
+  } catch (err) {
+    console.error("Erro no chat:", err);
     addMessage(
-      "Não consegui conectar no servidor da Nexus agora. Tente novamente em alguns instantes.",
+      "Não consegui conectar ao servidor da Nexus agora.",
       "bot"
     );
   }
@@ -81,7 +70,7 @@ chatForm.addEventListener("submit", (e) => {
 
 // Mensagem inicial
 addMessage(
-  "Oi! Eu sou a IA da Nexus. Posso te ajudar com produto, pedido ou planos Nexus+. Sobre o que você quer falar hoje?",
+  "Oi! Eu sou a IA da Nexus. Posso te ajudar com produtos, pedidos ou planos Nexus+. Sobre o que você quer falar hoje?",
   "bot",
   { personaLabel: "Vendedor Amigo" }
 );
