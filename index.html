@@ -2,44 +2,27 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus - Comparador Gamer & Tech</title>
+  <title>Nexus - Clube de Compradores Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Nexus é um comparador gamer & tech que encontra ofertas de eletrônicos com desconto em dezenas de lojas."
+    content="Nexus é um clube de compradores de tecnologia: preços mais acessíveis em eletrônicos, com atendimento por IA e planos para todos os perfis."
   />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
 
-  <!-- Fonte Google (mais grossa e quadrada) -->
+  <!-- Fonte Google -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
 
-  <!-- CSS -->
+  <!-- CSS do site -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Widget Nexus IA (fica no canto, sem abrir outra página) -->
+  <link rel="stylesheet" href="./nexus-widget.css" />
 </head>
 <body>
-
-<!-- Botão flutuante da IA -->
-<a href="chat.html" id="nexus-fab">💬 Nexus IA</a>
-
-<style>
-  #nexus-fab{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    background:#111;
-    color:#fff;
-    padding:12px 14px;
-    border-radius:999px;
-    text-decoration:none;
-    font-family:Arial, sans-serif;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    z-index:9999;
-  }
-  #nexus-fab:hover{ transform:translateY(-1px); }
-</style>
 
   <!-- NAVBAR -->
   <header class="topbar">
@@ -67,13 +50,14 @@
     <section class="hero">
       <div class="hero-inner">
         <h1 class="hero-title">
-          Seu ponto de partida para achar
-          <span class="highlight">ofertas de eletrônicos sem dor de cabeça</span>.
+          Seu clube de compradores para
+          <span class="highlight">tecnologia mais barata e sem dor de cabeça</span>.
         </h1>
 
         <p class="hero-subtitle">
-          Compare preços de notebooks, periféricos, monitores, headsets e muito mais em um só lugar.
-          O Nexus busca sempre <strong>produtos com desconto</strong> em várias lojas ao mesmo tempo.
+          Gadgets, periféricos, monitores, headsets, notebooks e muito mais.
+          A <strong>Nexus</strong> junta tudo em um só lugar pra você comprar com
+          <strong>segurança, vantagem e alívio financeiro</strong>.
         </p>
 
         <!-- BUSCA -->
@@ -102,27 +86,27 @@
     <!-- COMO FUNCIONA -->
     <section class="section section-steps">
       <div class="section-header">
-        <h2>Como o Nexus funciona</h2>
+        <h2>Como a Nexus funciona</h2>
         <p>
-          Você pesquisa uma vez, a nossa IA consulta várias lojas, aplica a comissão certa
-          e te mostra o menor preço final já com desconto.
+          Você fala o que quer, a Nexus organiza as opções do catálogo e te guia
+          com IA pra fechar a compra com confiança e economia.
         </p>
       </div>
 
       <div class="grid-steps">
         <article class="card-info">
-          <h3>1. Pesquisa inteligente</h3>
-          <p>Você digita o que quer e o Nexus consulta diversas lojas simultaneamente.</p>
+          <h3>1. Pedido rápido</h3>
+          <p>Você diz o que precisa e como pretende usar. Em poucos passos, a IA já filtra as melhores opções.</p>
         </article>
 
         <article class="card-info">
-          <h3>2. Comparação com desconto</h3>
-          <p>Filtramos só produtos com desconto e aplicamos a comissão de acordo com o plano.</p>
+          <h3>2. Recomendações certeiras</h3>
+          <p>A Nexus compara custo-benefício e te mostra o que faz sentido pro seu orçamento e perfil.</p>
         </article>
 
         <article class="card-info">
-          <h3>3. Compra e rastreio</h3>
-          <p>Você compra pelo Nexus e acompanha o rastreio centralizado na plataforma.</p>
+          <h3>3. Compra com segurança</h3>
+          <p>Você recebe orientação, resumo do pedido e próximos passos sem pressão e sem enrolação.</p>
         </article>
       </div>
     </section>
@@ -143,7 +127,6 @@
             <li>Acesso a lojas menores</li>
             <li>Só produtos com desconto</li>
           </ul>
-          <!-- outline grande (barra inteira) -->
           <a href="assinatura.html" class="btn-outline full">Começar no gratuito</a>
         </article>
 
@@ -184,7 +167,7 @@
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
+    <p>Nexus © 2025 – Clube de Compradores Tech com IA.</p>
   </footer>
 
   <!-- SCRIPT DO MENU -->
@@ -200,9 +183,10 @@
     });
   </script>
 
-  <!-- Seu JS -->
+  <!-- JS do site -->
   <script src="script.js"></script>
-<link rel="stylesheet" href="./nexus-widget.css" />
-<script src="./nexus-widget.js"></script>
+
+  <!-- Widget Nexus IA -->
+  <script src="./nexus-widget.js"></script>
 </body>
 </html>
