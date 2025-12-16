@@ -4,15 +4,17 @@
   <meta charset="UTF-8" />
   <title>Entrar - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Faça login na sua conta Nexus para acompanhar suas buscas e planos." />
+  <meta name="description" content="Entre na sua conta Nexus." />
 
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- Widget Nexus IA -->
-  <link rel="stylesheet" href="./nexus-widget.css" />
+  <link rel="stylesheet" href="./nexus-widget.css?v=3" />
 </head>
+
 <body>
   <header class="topbar">
     <a href="index.html" class="brand">
@@ -36,11 +38,10 @@
 
   <main class="page">
     <section class="section center">
-      <h1>Entrar na sua conta Nexus</h1>
-      <p>
-        Esta tela ainda é apenas visual. Depois você conecta com o back-end para validar
-        e-mail, senha e aplicar 2FA.
-      </p>
+      <div class="section-header">
+        <h1>Entrar</h1>
+        <p>Área de login do cliente Nexus (fase inicial).</p>
+      </div>
 
       <form class="form-card" onsubmit="return fakeLogin(event)">
         <label>
@@ -53,22 +54,18 @@
           <input type="password" id="login-password" required placeholder="••••••••" />
         </label>
 
-        <p class="small-text">
-          No futuro, o login também poderá aceitar <strong>CPF + senha</strong>, com código 2FA enviado por e-mail.
-        </p>
-
         <button type="submit" class="btn-primary full">Entrar</button>
-      </form>
 
-      <p class="small-text">
-        Ainda não tem conta?
-        <a href="assinatura.html">Escolha um plano e crie seu acesso Nexus.</a>
-      </p>
+        <p class="small-text">
+          Ainda não tem conta?
+          <a href="assinatura.html">Escolha um plano e crie seu acesso.</a>
+        </p>
+      </form>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Acesso à sua conta.</p>
+    <p>Nexus © 2025 – Login.</p>
   </footer>
 
   <script>
@@ -79,11 +76,18 @@
         toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
       }
     });
+
+    function fakeLogin(e) {
+      e.preventDefault();
+      alert("Login ainda em fase inicial. Em breve vai validar no backend.");
+      return false;
+    }
   </script>
 
-  <script src="script.js"></script>
-
-  <!-- Widget Nexus IA -->
-  <script src="./nexus-widget.js"></script>
+  <!-- =========================
+     NEXUS IA WIDGET (GLOBAL)
+     ========================= -->
+<link rel="stylesheet" href="./nexus-widget.css?v=3" />
+<script src="./nexus-widget.js?v=3"></script>
 </body>
 </html>

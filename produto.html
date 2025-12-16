@@ -7,9 +7,7 @@
 
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Widget Nexus IA -->
-  <link rel="stylesheet" href="./nexus-widget.css" />
+  <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
 <body>
   <header class="topbar">
@@ -17,13 +15,9 @@
       <img src="logo.png" alt="Nexus" class="brand-logo" />
       <span class="brand-name">Nexus</span>
     </a>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <button class="nav-toggle" id="navToggle">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
@@ -58,8 +52,12 @@
           </div>
 
           <div class="product-actions">
-            <button class="btn-primary" id="btn-buy">Comprar agora</button>
-            <button class="btn-outline" id="btn-see-plans">Ver vantagens Nexus+</button>
+            <button class="btn-primary" id="btn-buy">
+              Comprar agora
+            </button>
+            <button class="btn-outline" id="btn-see-plans">
+              Ver vantagens Nexus+
+            </button>
           </div>
 
           <p class="product-note" id="product-note">
@@ -89,23 +87,10 @@
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 — Preço agressivo, atendimento inteligente.</p>
+    Nexus © 2025 — Preço agressivo, atendimento inteligente.
   </footer>
 
-  <!-- Menu mobile -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("navToggle");
-      const menu = document.getElementById("navMenu");
-      if (toggle && menu) {
-        toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
-      }
-    });
-  </script>
-
+  <script src="nexus-widget.js?v=3"></script>
   <script src="produto.js"></script>
-
-  <!-- Widget Nexus IA -->
-  <script src="./nexus-widget.js"></script>
 </body>
 </html>
