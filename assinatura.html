@@ -7,21 +7,25 @@
 
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Widget Nexus IA -->
+  <link rel="stylesheet" href="./nexus-widget.css" />
 </head>
 <body>
-  <!-- TOPO -->
   <header class="topbar">
     <a href="index.html" class="brand">
       <img src="logo.png" alt="Nexus" class="brand-logo" />
       <span class="brand-name">Nexus</span>
     </a>
-    <button class="nav-toggle" id="navToggle">
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
+
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link">Início</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
-      <a href="assinatura.html" class="nav-link nav-link-active">Assinatura</a>
+      <a href="assinatura.html" class="nav-link active">Assinatura</a>
       <a href="login.html" class="nav-link">Entrar</a>
     </nav>
   </header>
@@ -57,7 +61,7 @@
       </header>
 
       <div class="plans-grid">
-        <!-- CORE – SEMANAL -->
+        <!-- CORE -->
         <article class="plan-card">
           <div class="plan-header">
             <span class="plan-label">Plano de Teste</span>
@@ -76,15 +80,13 @@
             <li>✅ Frete Guard Básico</li>
             <li>✅ Cashback <strong>1%</strong> em compras aprovadas</li>
             <li>✅ IA Nexus para dúvidas rápidas</li>
-            <li>✅ Sem fidelidade: renovou, usou, cancelou se quiser</li>
+            <li>✅ Sem fidelidade</li>
           </ul>
 
-          <button class="btn-outline" data-plan="core">
-            Começar com Nexus Core
-          </button>
+          <button class="btn-outline" data-plan="core">Começar com Nexus Core</button>
         </article>
 
-        <!-- HYPER – MENSAL (DESTAQUE) -->
+        <!-- HYPER -->
         <article class="plan-card plan-card-featured">
           <div class="plan-ribbon">Mais Assinado</div>
           <div class="plan-header">
@@ -104,21 +106,19 @@
             <li>🔥 Frete <strong>GRÁTIS</strong> a partir de R$ 99</li>
             <li>🔥 Combos Nexus com até <strong>40% OFF</strong></li>
             <li>🔥 Cashback <strong>3%</strong> em compras aprovadas</li>
-            <li>🔥 IA de compras personalizada (te ajuda a montar o setup)</li>
+            <li>🔥 IA de compras personalizada</li>
             <li>🔥 Garantia Nexus de <strong>30 dias</strong></li>
-            <li>🔥 Prioridade em reposição de estoque</li>
+            <li>🔥 Prioridade em reposição</li>
           </ul>
 
-          <button class="btn-primary btn-full" data-plan="hyper">
-            Assinar Nexus Hyper
-          </button>
+          <button class="btn-primary btn-full" data-plan="hyper">Assinar Nexus Hyper</button>
 
           <p class="plan-footnote">
             Ideal pra quem compra eletrônico com frequência e quer parar de pagar “taxa de loja grande”.
           </p>
         </article>
 
-        <!-- OMEGA – ANUAL -->
+        <!-- OMEGA -->
         <article class="plan-card">
           <div class="plan-header">
             <span class="plan-label">Plano Máximo</span>
@@ -138,13 +138,11 @@
             <li>💎 Combos exclusivos com até <strong>55% OFF</strong></li>
             <li>💎 Acesso ao catálogo <strong>Omega Exclusive</strong></li>
             <li>💎 IA ilimitada para suporte e recomendação</li>
-            <li>💎 Garantia Nexus estendida de <strong>6 meses</strong></li>
-            <li>💎 Selo Omega no perfil + prioridade máxima</li>
+            <li>💎 Garantia Nexus estendida</li>
+            <li>💎 Prioridade máxima</li>
           </ul>
 
-          <button class="btn-outline" data-plan="omega">
-            Quero ser Nexus Omega
-          </button>
+          <button class="btn-outline" data-plan="omega">Quero ser Nexus Omega</button>
 
           <p class="plan-footnote">
             Pra quem sabe que vai comprar muito, quer pagar o menor preço possível e ainda lucrar com cashback.
@@ -153,7 +151,7 @@
       </div>
     </section>
 
-    <!-- BENEFÍCIOS RESUMIDOS -->
+    <!-- BENEFÍCIOS -->
     <section class="section section-why">
       <header class="section-header">
         <h2>Por que a assinatura Nexus+ existe?</h2>
@@ -166,32 +164,19 @@
       <div class="why-grid">
         <article class="why-card">
           <h3>Descontos de verdade</h3>
-          <p>
-            Nada de “R$ 9.999 por R$ 9.497”. Aqui o jogo é outro.
-            Se a loja vende a R$ 100, nosso objetivo é bater <strong>R$ 80</strong> e ainda sair no lucro.
-          </p>
+          <p>Se a loja vende a R$ 100, nosso objetivo é bater <strong>R$ 80</strong> e ainda sair no lucro.</p>
         </article>
         <article class="why-card">
           <h3>Frete que não te pune</h3>
-          <p>
-            Frete grátis por valor mínimo nos planos mensais, frete grátis total no Nexus Omega.
-            Você paga pelo produto, não por mandar ele chegar na sua casa.
-          </p>
+          <p>Frete grátis por valor mínimo no Hyper e frete grátis total no Omega.</p>
         </article>
         <article class="why-card">
           <h3>IA cuidando do caos</h3>
-          <p>
-            Do suporte ao pós-venda, a IA da Nexus aprende com cada problema para que o próximo cliente
-            não passe pela mesma dor de cabeça. Quanto mais a gente vende, mais inteligente o sistema fica.
-          </p>
+          <p>Do suporte ao pós-venda, a IA da Nexus aprende com cada problema.</p>
         </article>
         <article class="why-card">
           <h3>Você primeiro, margem depois</h3>
-          <p>
-            Sim, a Nexus lucra. Mas a prioridade é clara:
-            <strong>preço absurdo para o cliente</strong> + <strong>volume alto</strong>.
-            Todo mundo ganha.
-          </p>
+          <p><strong>Preço absurdo</strong> + <strong>volume alto</strong>. Todo mundo ganha.</p>
         </article>
       </div>
     </section>
@@ -205,55 +190,50 @@
       <div class="faq-list">
         <details class="faq-item">
           <summary>Posso cancelar quando quiser?</summary>
-          <p>
-            Sim. Você pode cancelar a qualquer momento. Não tem multa, não tem fidelidade,
-            não tem ligação chata. Cancelou, parou de renovar. Simples.
-          </p>
+          <p>Sim. Sem multa e sem fidelidade.</p>
         </details>
 
         <details class="faq-item">
-          <summary>Os descontos são REAIS ou “preço de mentira”?</summary>
-          <p>
-            Reais. A ideia da Nexus é justamente ser a loja que faz o preço das outras parecer piada.
-            A gente aperta a margem, negocia melhor e escolhe produto certo pra conseguir descer o preço
-            <strong>sem te enganar</strong>.
-          </p>
+          <summary>Os descontos são reais?</summary>
+          <p>Sim. A lógica do Nexus é derrubar o preço sem enganar.</p>
         </details>
 
         <details class="faq-item">
           <summary>Como funcionam os planos com frete grátis?</summary>
-          <p>
-            Nexus Hyper: frete grátis acima de um valor mínimo em compras elegíveis.
-            Nexus Omega: frete grátis em todas as compras elegíveis, sem valor mínimo.
-            As condições detalhadas ficam na página de frete e no checkout.
-          </p>
+          <p>Hyper: frete grátis acima de mínimo. Omega: frete grátis total (elegíveis).</p>
         </details>
 
         <details class="faq-item">
           <summary>O que muda entre Core, Hyper e Omega?</summary>
-          <p>
-            Core é pra testar. Hyper é o plano ideal pra quem compra com frequência.
-            Omega é pra quem quer o máximo: mais desconto, mais cashback, frete grátis total
-            e todas as regalias da Nexus.
-          </p>
+          <p>Mais desconto, mais cashback, mais frete e mais acesso ao catálogo.</p>
         </details>
 
         <details class="faq-item">
-          <summary>Como eu viro assinante?</summary>
-          <p>
-            Você escolhe o plano, faz login ou cria uma conta, e finaliza o pagamento.
-            Depois disso, seu perfil já aparece como Nexus Core, Hyper ou Omega
-            e os preços especiais começam a aparecer pra você.
-          </p>
+          <summary>Como viro assinante?</summary>
+          <p>Escolhe o plano, cria conta e finaliza pagamento. Depois o preço especial aparece.</p>
         </details>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    Nexus © 2025 — Construído para vender barato de verdade.
+    <p>Nexus © 2025 — Construído para vender barato de verdade.</p>
   </footer>
 
+  <!-- Menu mobile -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMenu");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
+      }
+    });
+  </script>
+
   <script src="script.js"></script>
+
+  <!-- Widget Nexus IA -->
+  <script src="./nexus-widget.js"></script>
 </body>
 </html>

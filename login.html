@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <title>Entrar - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Faça login na sua conta Nexus para acompanhar suas buscas e planos."
-  />
+  <meta name="description" content="Faça login na sua conta Nexus para acompanhar suas buscas e planos." />
+
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Widget Nexus IA -->
+  <link rel="stylesheet" href="./nexus-widget.css" />
 </head>
 <body>
   <header class="topbar">
@@ -47,6 +47,7 @@
           E-mail
           <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" />
         </label>
+
         <label>
           Senha
           <input type="password" id="login-password" required placeholder="••••••••" />
@@ -75,14 +76,14 @@
       const toggle = document.getElementById("navToggle");
       const menu = document.getElementById("navMenu");
       if (toggle && menu) {
-        toggle.addEventListener("click", () => {
-          menu.classList.toggle("nav-open");
-        });
+        toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
       }
     });
   </script>
 
-  <!-- Seu script original -->
   <script src="script.js"></script>
+
+  <!-- Widget Nexus IA -->
+  <script src="./nexus-widget.js"></script>
 </body>
 </html>

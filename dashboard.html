@@ -7,19 +7,20 @@
 
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
+
+  <!-- Widget Nexus IA -->
+  <link rel="stylesheet" href="./nexus-widget.css" />
 </head>
 
 <body>
-  <!-- NAV -->
   <header class="topbar">
     <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" />
+      <img src="logo.png" class="brand-logo" alt="Nexus" />
       <span class="brand-name">Nexus</span>
     </a>
 
-    <button class="nav-toggle" id="navToggle">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -34,18 +35,13 @@
   </header>
 
   <main class="page">
-
-    <!-- CABEÇALHO DO DASHBOARD -->
     <section class="section section-dashboard-hero">
       <div class="section-header">
         <h1>Minha área Nexus</h1>
-        <p>
-          Bem-vindo! Aqui você acompanha o seu plano, seu carrinho e a atividade da sua conta.
-        </p>
+        <p>Bem-vindo! Aqui você acompanha o seu plano, seu carrinho e a atividade da sua conta.</p>
       </div>
     </section>
 
-        <!-- RESUMO DO PLANO + ATALHOS -->
     <section class="section section-dashboard-summary">
       <div class="section-header">
         <h2>Visão geral da sua conta</h2>
@@ -53,7 +49,6 @@
       </div>
 
       <div class="plans-grid">
-        <!-- CARD 1: SEU PLANO ATUAL -->
         <article class="plan-card dashboard-card">
           <h2>Seu plano atual</h2>
           <p class="plan-price">Gratuito <span>/ demo</span></p>
@@ -64,21 +59,14 @@
             <li>Sem necessidade de cartão agora</li>
           </ul>
 
-          <a href="assinatura.html" class="btn-outline full">
-            Ver planos Premium
-          </a>
+          <a href="assinatura.html" class="btn-outline full">Ver planos Premium</a>
         </article>
 
-        <!-- CARD 2: ATALHOS RÁPIDOS (COM BOTÃO) -->
         <article class="plan-card dashboard-card">
           <div class="shortcut-header">
             <h2>Atalhos rápidos</h2>
-
-            <!-- botão hambúrguer para abrir/fechar atalhos -->
-            <button class="shortcut-toggle" id="shortcutToggle" type="button">
-              <span></span>
-              <span></span>
-              <span></span>
+            <button class="shortcut-toggle" id="shortcutToggle" type="button" aria-label="Abrir atalhos">
+              <span></span><span></span><span></span>
             </button>
           </div>
 
@@ -111,7 +99,6 @@
       </div>
     </section>
 
-    <!-- ÁREA DE CARRINHO -->
     <section class="section section-dashboard-cart">
       <div class="section-header">
         <h2>Seu carrinho Nexus</h2>
@@ -122,7 +109,6 @@
       </div>
 
       <div class="plans-grid carts-grid">
-        <!-- Carrinho do plano gratuito -->
         <article class="plan-card cart-card">
           <h3>Carrinho do plano gratuito</h3>
           <p class="plan-price">Gratuito <span>/ demo</span></p>
@@ -138,7 +124,6 @@
           </p>
         </article>
 
-        <!-- Carrinho do plano Premium -->
         <article class="plan-card cart-card">
           <h3>Carrinho do plano Premium</h3>
           <p class="plan-price">Premium <span>/ futuro</span></p>
@@ -154,14 +139,11 @@
             O foco é facilitar sua vida, não criar diferença de tratamento.
           </p>
 
-          <a href="assinatura.html" class="btn-outline full">
-            Conhecer planos Premium
-          </a>
+          <a href="assinatura.html" class="btn-outline full">Conhecer planos Premium</a>
         </article>
       </div>
     </section>
 
-    <!-- HISTÓRICO (DEMO) -->
     <section class="section section-dashboard-history">
       <div class="section-header">
         <h2>Histórico da conta (demo)</h2>
@@ -175,7 +157,6 @@
       </ul>
     </section>
 
-    <!-- CONFIGURAÇÕES (DEMO) -->
     <section class="section section-dashboard-settings">
       <div class="section-header">
         <h2>Configurações da conta (demo)</h2>
@@ -189,7 +170,6 @@
       </ul>
     </section>
 
-    <!-- INFO DEMO -->
     <section class="section section-dashboard-info">
       <div class="section-header">
         <h2>Modo demonstração</h2>
@@ -205,7 +185,6 @@
         <li>Status da assinatura e pagamentos</li>
       </ul>
     </section>
-
   </main>
 
   <footer class="footer">
@@ -213,15 +192,24 @@
   </footer>
 
   <script>
-    // MENU MOBILE
-    const navToggle = document.getElementById("navToggle");
-    const navMenu = document.getElementById("navMenu");
+    document.addEventListener("DOMContentLoaded", () => {
+      const navToggle = document.getElementById("navToggle");
+      const navMenu = document.getElementById("navMenu");
+      if (navToggle && navMenu) {
+        navToggle.addEventListener("click", () => navMenu.classList.toggle("nav-open"));
+      }
 
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("nav-open");
-      });
-    }
+      const shortcutToggle = document.getElementById("shortcutToggle");
+      const shortcutGrid = document.getElementById("shortcutGrid");
+      if (shortcutToggle && shortcutGrid) {
+        shortcutToggle.addEventListener("click", () => {
+          shortcutGrid.classList.toggle("open");
+        });
+      }
+    });
   </script>
+
+  <!-- Widget Nexus IA -->
+  <script src="./nexus-widget.js"></script>
 </body>
 </html>
