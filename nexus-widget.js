@@ -1,152 +1,155 @@
 // nexus-widget.js
+(() => {
+  if (document.getElementById("nexus-ia-widget")) return;
 
-// 🔹 API do backend (Render)
-const API = "https://nexus-site-oufm.onrender.com";
+  const API = "https://nexus-site-oufm.onrender.com";
+  const MIN_TYPING_MS = 700;
 
-function el(html) {
-  const t = document.createElement("template");
-  t.innerHTML = html.trim();
-  return t.content.firstChild;
-}
+  // ===== UI =====
+  const widget = document.createElement("div");
+  widget.id = "nexus-ia-widget";
 
-function addMessage(container, text, from = "user", personaLabel = "") {
-  const wrap = document.createElement("div");
-  wrap.style.display = "flex";
-  wrap.style.flexDirection = "column";
-  wrap.style.gap = "6px";
-  wrap.style.alignSelf = from === "user" ? "flex-end" : "flex-start";
-
-  if (from === "bot" && personaLabel) {
-    const meta = document.createElement("div");
-    meta.className = "nx-meta";
-    meta.textContent = personaLabel;
-    wrap.appendChild(meta);
-  }
-
-  const msg = document.createElement("div");
-  msg.className = `nx-msg ${from}`;
-  msg.textContent = text;
-  wrap.appendChild(msg);
-
-  container.appendChild(wrap);
-  container.scrollTop = container.scrollHeight;
-}
-
-async function sendToIA(bodyEl, text) {
-  const payload = { message: text, plan: "free" };
-
-  const resp = await fetch(`${API}/api/chat`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  const data = await resp.json();
-  if (!data.ok) throw new Error(data.error || "Falha no chat");
-  return data;
-}
-
-function mountWidget() {
-  // Launcher
-  const launcher = el(`
-    <button id="nexus-ia-launcher" type="button" aria-label="Abrir Nexus IA">
-      <div class="nx-orb"></div>
-      <div class="nx-launcher-text">
-        <div class="nx-launcher-title">Nexus IA</div>
-        <div class="nx-launcher-sub">Atendimento inteligente</div>
-      </div>
+  widget.innerHTML = `
+    <button id="nexus-ia-btn" class="nexus-ia-btn" aria-label="Abrir Nexus IA">
+      💬
     </button>
-  `);
 
-  // Panel
-  const panel = el(`
-    <div id="nexus-ia-panel" role="dialog" aria-label="Nexus IA">
-      <div class="nx-head">
-        <div class="nx-head-left">
-          <div class="nx-orb" style="width:26px;height:26px;"></div>
-          <div>
-            <div class="nx-head-title">Nexus IA</div>
-            <div class="nx-meta" style="margin:0;">segurança • vantagem • exclusividade</div>
-          </div>
-          <div class="nx-head-badge">online</div>
+    <div id="nexus-ia-panel" class="nexus-ia-panel" aria-hidden="true">
+      <div class="nexus-ia-header">
+        <div class="nexus-ia-title">
+          <span class="nexus-ia-dot"></span>
+          <strong>Nexus IA</strong>
+          <span class="nexus-ia-sub">Atendimento</span>
         </div>
-        <button class="nx-close" type="button" aria-label="Fechar">✕</button>
+        <button id="nexus-ia-close" class="nexus-ia-close" aria-label="Fechar">✕</button>
       </div>
 
-      <div class="nx-body" id="nx-body"></div>
+      <div id="nexus-ia-messages" class="nexus-ia-messages"></div>
 
-      <form class="nx-foot" id="nx-form">
-        <input class="nx-input" id="nx-input" placeholder="Digite sua mensagem..." autocomplete="off" />
-        <button class="nx-send" type="submit">Enviar</button>
+      <form id="nexus-ia-form" class="nexus-ia-form">
+        <select id="nexus-ia-plan" class="nexus-ia-plan">
+          <option value="free">Free</option>
+          <option value="core">Core</option>
+          <option value="hyper">Hyper</option>
+          <option value="omega">Omega</option>
+        </select>
+
+        <div class="nexus-ia-row">
+          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Escreva aqui…" autocomplete="off" />
+          <button class="nexus-ia-send" type="submit">Enviar</button>
+        </div>
       </form>
     </div>
-  `);
+  `;
 
-  document.body.appendChild(launcher);
-  document.body.appendChild(panel);
+  document.body.appendChild(widget);
 
-  const bodyEl = panel.querySelector("#nx-body");
-  const form = panel.querySelector("#nx-form");
-  const input = panel.querySelector("#nx-input");
-  const closeBtn = panel.querySelector(".nx-close");
+  const btn = document.getElementById("nexus-ia-btn");
+  const panel = document.getElementById("nexus-ia-panel");
+  const closeBtn = document.getElementById("nexus-ia-close");
+  const messages = document.getElementById("nexus-ia-messages");
+  const form = document.getElementById("nexus-ia-form");
+  const input = document.getElementById("nexus-ia-input");
+  const planSelect = document.getElementById("nexus-ia-plan");
 
-  function open() {
+  function openPanel() {
     panel.classList.add("open");
-    input.focus();
+    panel.setAttribute("aria-hidden", "false");
+    setTimeout(() => input.focus(), 50);
   }
-  function close() {
+
+  function closePanel() {
     panel.classList.remove("open");
+    panel.setAttribute("aria-hidden", "true");
   }
 
-  launcher.addEventListener("click", () => {
-    if (panel.classList.contains("open")) close();
-    else open();
-  });
+  btn.onclick = () => (panel.classList.contains("open") ? closePanel() : openPanel());
+  closeBtn.onclick = () => closePanel();
 
-  closeBtn.addEventListener("click", close);
+  function addMsg(text, from = "bot", meta = {}) {
+    const wrap = document.createElement("div");
+    wrap.className = `nexus-ia-msg nexus-ia-${from}`;
+
+    const metaLine =
+      from === "bot" && meta.personaLabel
+        ? `<div class="nexus-ia-meta">${meta.personaLabel}</div>`
+        : "";
+
+    wrap.innerHTML = `
+      ${metaLine}
+      <div class="nexus-ia-bubble">${text}</div>
+    `;
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+    return wrap;
+  }
+
+  function addTyping() {
+    const el = document.createElement("div");
+    el.className = "nexus-ia-msg nexus-ia-bot nexus-ia-typing";
+    el.innerHTML = `<div class="nexus-ia-bubble">Digitando…</div>`;
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
 
   // Mensagem inicial
-  addMessage(
-    bodyEl,
-    "Oi! Eu sou a Nexus IA. Me diz: você quer algo gamer (FPS/Setup) ou algo pra escritório/produtividade? E qual seu orçamento?",
+  addMsg(
+    "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar (e orçamento) que eu te recomendo do catálogo.",
     "bot",
-    "Nexus IA"
+    { personaLabel: "Nexus IA" }
   );
-
-  let sending = false;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const text = input.value.trim();
-    if (!text || sending) return;
+
+    const text = (input.value || "").trim();
+    if (!text) return;
+
+    const plan = (planSelect.value || "free").trim();
 
     input.value = "";
-    addMessage(bodyEl, text, "user");
+    addMsg(text, "user");
 
-    sending = true;
+    const startedAt = Date.now();
+    const typing = addTyping();
+
     try {
-      // micro feedback
-      addMessage(bodyEl, "Só um segundo…", "bot", "Nexus IA");
-      const lastBot = bodyEl.lastChild;
+      const resp = await fetch(`${API}/api/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, plan })
+      });
 
-      const data = await sendToIA(bodyEl, text);
+      const data = await resp.json();
 
-      // remove “Só um segundo…”
-      if (lastBot && lastBot.remove) lastBot.remove();
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
+      await new Promise((r) => setTimeout(r, remaining));
 
-      addMessage(bodyEl, data.reply, "bot", data.personaLabel || "Nexus IA");
+      typing.remove();
+
+      if (!data.ok) {
+        addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
+          personaLabel: data.personaLabel || "Nexus IA"
+        });
+        return;
+      }
+
+      addMsg(data.reply, "bot", {
+        personaLabel: data.personaLabel || "Nexus IA"
+      });
     } catch (err) {
-      addMessage(
-        bodyEl,
-        "Não consegui conectar agora. Tenta de novo em instantes.",
-        "bot",
-        "Nexus IA"
-      );
-      console.error(err);
-    } finally {
-      sending = false;
+      console.error("Widget chat error:", err);
+
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
+      await new Promise((r) => setTimeout(r, remaining));
+
+      typing.remove();
+      addMsg("Não consegui conectar agora. Tenta novamente em instantes.", "bot", {
+        personaLabel: "Nexus IA"
+      });
     }
   });
-}
-
-document.addEventListener("DOMContentLoaded", mountWidget);
+})();
