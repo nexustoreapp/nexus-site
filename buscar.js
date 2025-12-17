@@ -1,125 +1,119 @@
 // buscar.js
+const API =
+  window.NEXUS_API_BASE ||
+  "https://nexus-site-oufm.onrender.com";
 
-// 🔹 API (Render)
-const API = "https://nexus-site-oufm.onrender.com";
+const PLAN_KEY = "nexus_user_plan";
+function getUserPlan() {
+  const p = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
+  return p || "free";
+}
+function planRank(plan) {
+  if (plan === "omega") return 4;
+  if (plan === "hyper") return 3;
+  if (plan === "core") return 2;
+  return 1;
+}
+function tierLabel(tier) {
+  const t = (tier || "free").toLowerCase();
+  if (t === "omega") return "Conteúdo OMEGA";
+  if (t === "hyper") return "Conteúdo HYPER";
+  if (t === "core") return "Conteúdo CORE";
+  return "";
+}
+function formatBRL(n) {
+  try {
+    return Number(n).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  } catch {
+    return `R$ ${n}`;
+  }
+}
 
-// pega o q da URL (ex: buscar.html?q=notebook)
-function getQueryParam(name) {
+const resultsGrid = document.getElementById("results-grid");
+const metaEl = document.getElementById("search-meta");
+
+function getQueryFromUrl() {
   const url = new URL(window.location.href);
-  return (url.searchParams.get(name) || "").trim();
+  return (url.searchParams.get("q") || "").trim();
 }
 
-function formatBRL(value) {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return "";
-  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-}
+function renderCard(p) {
+  const plan = getUserPlan();
+  const userRank = planRank(plan);
+  const required = planRank((p.accessTier || "free").toLowerCase());
+  const locked = userRank < required;
 
-function el(html) {
+  const badge = tierLabel(p.accessTier);
+  const badgeHtml = badge
+    ? `<span class="badge badge-tier">${badge}</span>`
+    : "";
+
+  const img = (p.images && p.images[0]) ? p.images[0] : "";
+  const thumb = img
+    ? `<div class="result-thumb"><img src="${img}" alt=""></div>`
+    : `<div class="thumb-placeholder">Sem imagem</div>`;
+
+  const price = formatBRL(p.pricePublic ?? p.price ?? 0);
+
+  const actionHtml = locked
+    ? `<a class="btn-outline full" href="assinatura.html">Ver planos para desbloquear</a>`
+    : `<a class="btn-primary" href="produto.html?id=${encodeURIComponent(p.id)}">Ver detalhes</a>`;
+
   const div = document.createElement("div");
-  div.innerHTML = html.trim();
-  return div.firstChild;
+  div.className = "result-card";
+
+  div.innerHTML = `
+    ${thumb}
+    <div class="result-body">
+      <div class="result-header">
+        <h2>${p.title}</h2>
+        ${badgeHtml}
+      </div>
+      <div class="result-store">${p.subtitle || ""}</div>
+
+      <div class="result-prices">
+        <div class="price-current">${price}</div>
+      </div>
+
+      <div class="result-actions">
+        ${actionHtml}
+      </div>
+    </div>
+  `;
+
+  return div;
 }
 
-async function main() {
-  const q = getQueryParam("q") || getQueryParam("query"); // aceita os dois, mas manda q
-  const plan = (getQueryParam("plan") || "free").trim();
-
-  const meta = document.getElementById("search-meta");
-  const grid = document.getElementById("results-grid");
-
+async function runSearch() {
+  const q = getQueryFromUrl();
   if (!q) {
-    meta.textContent = "Digite algo para buscar (ex: notebook i5, headset, monitor 144Hz).";
+    metaEl.textContent = "Nenhuma busca informada.";
     return;
   }
 
-  meta.textContent = `Buscando: "${q}" • plano: ${plan}`;
+  metaEl.textContent = `Buscando: "${q}"…`;
 
   try {
-    const resp = await fetch(`${API}/api/search?q=${encodeURIComponent(q)}&plan=${encodeURIComponent(plan)}`, {
-      method: "GET",
-      headers: { "Accept": "application/json" },
-    });
-
-    const data = await resp.json().catch(() => null);
-
-    if (!resp.ok || !data || data.ok === false) {
-      const msg = (data && (data.error || data.message)) || "Falha ao buscar produtos.";
-      grid.innerHTML = "";
-      grid.appendChild(
-        el(`<div class="card-info"><h3>Não consegui buscar agora</h3><p>${msg}</p></div>`)
-      );
-      return;
-    }
-
-    const items = data.items || data.products || data.results || [];
-    grid.innerHTML = "";
-
-    if (!items.length) {
-      grid.appendChild(
-        el(`<div class="card-info"><h3>Nenhum resultado</h3><p>Tenta outro termo (ex: “Ryzen 7”, “SSD 1TB”, “monitor 27”).</p></div>`)
-      );
-      return;
-    }
-
-    items.forEach((p) => {
-      const title = p.title || p.name || "Produto";
-      const store = p.store || p.seller || "";
-      const img = p.image || p.imageUrl || p.thumbnail || "";
-      const pricePublic = p.pricePublic ?? p.price ?? p.publicPrice;
-      const pricePremium = p.pricePremium ?? p.premiumPrice;
-
-      const href =
-        p.url ||
-        (p.id ? `produto.html?id=${encodeURIComponent(p.id)}` : "#");
-
-      const badgeBest = p.badge === "best" || p.isBestDeal ? `<span class="badge badge-best">Melhor</span>` : "";
-      const badgeFrete = p.freeShipping ? `<span class="badge badge-frete">Frete grátis</span>` : "";
-
-      grid.appendChild(
-        el(`
-          <article class="result-card">
-            <div class="result-thumb">
-              ${
-                img
-                  ? `<img src="${img}" alt="${title}" onerror="this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\'>Sem imagem</div>'" />`
-                  : `<div class="thumb-placeholder">Sem imagem</div>`
-              }
-            </div>
-
-            <div class="result-body">
-              <div class="result-header">
-                <h2>${title}</h2>
-                ${badgeBest}
-                ${badgeFrete}
-              </div>
-
-              <div class="result-store">${store ? `Loja: ${store}` : ""}</div>
-
-              <div class="result-prices">
-                ${pricePublic != null ? `<div class="price-current">${formatBRL(pricePublic)}</div>` : ""}
-                ${
-                  pricePremium != null
-                    ? `<div class="price-original">Premium: ${formatBRL(pricePremium)}</div>`
-                    : ""
-                }
-              </div>
-
-              <div class="result-actions">
-                <a class="btn-outline" href="${href}">Ver produto</a>
-              </div>
-            </div>
-          </article>
-        `)
-      );
-    });
-  } catch (err) {
-    console.error("BUSCAR ERROR:", err);
-    grid.innerHTML = "";
-    grid.appendChild(
-      el(`<div class="card-info"><h3>Erro de conexão</h3><p>Não foi possível conectar ao servidor da Nexus agora.</p></div>`)
+    const plan = getUserPlan();
+    const resp = await fetch(
+      `${API}/api/search?query=${encodeURIComponent(q)}&plan=${encodeURIComponent(plan)}`
     );
+    const data = await resp.json();
+
+    if (!data.ok) {
+      metaEl.textContent = "Falha ao buscar agora. Tenta novamente.";
+      return;
+    }
+
+    const items = data.items || [];
+    metaEl.textContent = `${items.length} resultado(s) para "${q}"`;
+
+    resultsGrid.innerHTML = "";
+    items.forEach((p) => resultsGrid.appendChild(renderCard(p)));
+  } catch (e) {
+    console.error(e);
+    metaEl.textContent = "Não consegui conectar no servidor agora.";
   }
 }
 
-document.addEventListener("DOMContentLoaded", main);
+runSearch();

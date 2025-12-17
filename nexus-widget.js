@@ -2,8 +2,31 @@
 (() => {
   if (document.getElementById("nexus-ia-widget")) return;
 
-  const API = "https://nexus-site-oufm.onrender.com";
-  const MIN_TYPING_MS = 450; // mais rápido (sem “piscar”)
+  const API =
+    window.NEXUS_API_BASE ||
+    "https://nexus-site-oufm.onrender.com";
+
+  const MIN_TYPING_MS = 450;
+
+  const PLAN_KEY = "nexus_user_plan";
+  function getUserPlan() {
+    const stored = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
+    return stored || "free";
+  }
+
+  const CONV_KEY = "nexus_widget_conversation_id";
+  let conversationId = localStorage.getItem(CONV_KEY);
+  if (!conversationId) {
+    conversationId = `widget_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+    localStorage.setItem(CONV_KEY, conversationId);
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
 
   // ===== UI =====
   const widget = document.createElement("div");
@@ -28,7 +51,7 @@
 
       <form id="nexus-ia-form" class="nexus-ia-form">
         <div class="nexus-ia-row">
-          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diga o que você quer comprar…" autocomplete="off" />
+          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar…" autocomplete="off" />
           <button class="nexus-ia-send" type="submit">Enviar</button>
         </div>
       </form>
@@ -64,12 +87,12 @@
 
     const metaLine =
       from === "bot" && meta.personaLabel
-        ? `<div class="nexus-ia-meta">${meta.personaLabel}</div>`
+        ? `<div class="nexus-ia-meta">${escapeHtml(meta.personaLabel)}</div>`
         : "";
 
     wrap.innerHTML = `
       ${metaLine}
-      <div class="nexus-ia-bubble">${text}</div>
+      <div class="nexus-ia-bubble">${escapeHtml(text)}</div>
     `;
     messages.appendChild(wrap);
     messages.scrollTop = messages.scrollHeight;
@@ -85,9 +108,9 @@
     return el;
   }
 
-  // Mensagem inicial (mais humana, menos seca)
+  // Mensagem inicial
   addMsg(
-    "Oi! Eu sou a Nexus IA 😄\nMe fala o que você quer comprar e o seu orçamento — eu te ajudo a escolher sem enrolação.",
+    "Oi! Eu sou a Nexus IA 🙂 Me diz o que você quer comprar e o orçamento que eu te recomendo opções reais do catálogo.",
     "bot",
     { personaLabel: "Nexus IA" }
   );
@@ -98,9 +121,7 @@
     const text = (input.value || "").trim();
     if (!text) return;
 
-    // ✅ sem seletor: por enquanto vai como free (depois liga ao login)
-    const plan = "free";
-
+    const plan = getUserPlan();
     input.value = "";
     addMsg(text, "user");
 
@@ -111,7 +132,7 @@
       const resp = await fetch(`${API}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, plan })
+        body: JSON.stringify({ message: text, plan, conversationId }),
       });
 
       const data = await resp.json();
@@ -124,13 +145,13 @@
 
       if (!data.ok) {
         addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
-          personaLabel: data.personaLabel || "Nexus IA"
+          personaLabel: "Nexus IA",
         });
         return;
       }
 
       addMsg(data.reply, "bot", {
-        personaLabel: data.personaLabel || "Nexus IA"
+        personaLabel: data.personaLabel || "Nexus IA",
       });
     } catch (err) {
       console.error("Widget chat error:", err);
@@ -141,7 +162,7 @@
 
       typing.remove();
       addMsg("Não consegui conectar agora. Tenta novamente em instantes.", "bot", {
-        personaLabel: "Nexus IA"
+        personaLabel: "Nexus IA",
       });
     }
   });

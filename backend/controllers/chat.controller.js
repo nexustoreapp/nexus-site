@@ -5,7 +5,7 @@ export const chatController = {
   // POST /api/chat
   handleMessage: async (req, res) => {
     try {
-      const { message, plan } = req.body || {};
+      const { message, plan, conversationId } = req.body || {};
 
       if (!message || typeof message !== "string") {
         return res.status(400).json({
@@ -15,10 +15,10 @@ export const chatController = {
       }
 
       const context = {
-        plan: plan || "free",
+        plan: (plan || "free").toLowerCase(),
+        conversationId: String(conversationId || "").trim(),
       };
 
-      // ✅ IMPORTANTE: routeMessage é async, precisa await
       const result = await routeMessage(message, context);
 
       return res.json({

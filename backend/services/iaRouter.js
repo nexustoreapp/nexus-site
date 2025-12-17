@@ -1,232 +1,222 @@
 // backend/services/iaRouter.js
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import OpenAI from "openai";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const personasPath = path.join(__dirname, "..", "data", "ia_personas.json");
-const cacheBasePath = path.join(__dirname, "..", "data", "ia_cache_base.json");
+// ===== memória simples (em RAM) =====
+// Observação: em deploy com múltiplas instâncias, cada instância tem sua RAM.
+// Mas já resolve MUITO o “reset” na prática.
+const MEMORY = new Map();
+// Limites pra não estourar tokens/custo
+const MAX_TURNS = 6; // (user+assistant) pares
+const MAX_USER_CHARS = 900;
 
-// ====== Carregamento de JSON ======
-let personas = [];
-let cacheBase = [];
-
-function loadJsonSafe(filePath, label) {
+// ===== catálogo =====
+function loadCatalog() {
   try {
-    if (!fs.existsSync(filePath)) return [];
-    const raw = fs.readFileSync(filePath, "utf8");
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed;
-  } catch (e) {
-    console.error(`[IA] Falha ao carregar ${label}:`, e?.message || e);
+    const filePath = path.resolve("backend/data/catalogo.json");
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const json = JSON.parse(raw);
+    return Array.isArray(json) ? json : [];
+  } catch {
     return [];
   }
 }
 
-function reloadData() {
-  personas = loadJsonSafe(personasPath, "ia_personas.json");
-  cacheBase = loadJsonSafe(cacheBasePath, "ia_cache_base.json");
-}
-reloadData();
-
-// Recarrega a cada 30s (pra você editar JSON sem reiniciar)
-setInterval(reloadData, 30_000).unref();
-
-// ====== OpenAI (lazy init) ======
-let openai = null;
-function getOpenAIClient() {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) return null;
-  if (!openai) openai = new OpenAI({ apiKey: key });
-  return openai;
+function normalize(s = "") {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-// ====== Heurísticas rápidas (pra reduzir chamadas à OpenAI) ======
-function looksLikeNeedsAI(text) {
-  const t = (text || "").toLowerCase();
+function scoreMatch(query, item) {
+  const q = normalize(query);
+  if (!q) return 0;
 
-  // perguntas “humanas” / complexas -> IA
-  if (
-    t.includes("me indica") ||
-    t.includes("recomenda") ||
-    t.includes("qual vale mais") ||
-    t.includes("custo benefício") ||
-    t.includes("qual é melhor") ||
-    t.includes("pra jogar") ||
-    t.includes("pra trabalhar") ||
-    t.includes("setup") ||
-    t.includes("config") ||
-    t.includes("montar pc") ||
-    t.includes("compatível") ||
-    t.includes("diferença entre") ||
-    t.includes("orçamento") ||
-    t.includes("parcel") ||
-    t.includes("frete") ||
-    t.includes("garantia")
-  ) return true;
+  const hay =
+    normalize(item.title || "") +
+    " " +
+    normalize(item.subtitle || "") +
+    " " +
+    normalize((item.tags || []).join(" "));
 
-  // curto demais e genérico -> cache/template resolve
-  if (t.length <= 18) return false;
-
-  // se for uma pergunta direta
-  if (t.includes("?")) return true;
-
-  return false;
-}
-
-function pickPersona(context = {}) {
-  // Se o teu JSON de personas tiver "default: true", prioriza.
-  const def = personas.find((p) => p?.default === true);
-  if (def) return def;
-
-  // fallback: primeira persona
-  return personas[0] || {
-    id: "nexus_ia",
-    label: "Nexus IA",
-    role: "Atendimento"
-  };
-}
-
-function findBestCacheTemplate(message) {
-  const text = (message || "").toLowerCase();
-
-  // cacheBase esperado: [{ id, intent, patterns:[], template }]
-  // seu arquivo pode estar em outro formato — então deixo tolerante:
-  let best = null;
-  let bestScore = 0;
-
-  for (const item of cacheBase) {
-    const patterns = Array.isArray(item?.patterns) ? item.patterns : [];
-    if (!patterns.length) continue;
-
-    let score = 0;
-    for (const p of patterns) {
-      const needle = String(p || "").toLowerCase().trim();
-      if (!needle) continue;
-      if (text.includes(needle)) score += Math.min(3, needle.length / 6);
-    }
-
-    if (score > bestScore) {
-      bestScore = score;
-      best = item;
-    }
+  // score simples: palavras do query presentes no item
+  const words = q.split(" ").filter(Boolean);
+  let hits = 0;
+  for (const w of words) {
+    if (w.length < 2) continue;
+    if (hay.includes(w)) hits += 1;
   }
 
-  if (best && best?.template) {
-    return {
-      intent: best.intent || "cached",
-      intentId: best.id || null,
-      template: String(best.template)
-    };
-  }
+  // bônus se título contém a frase inteira (ou parte grande)
+  if (hay.includes(q)) hits += 3;
 
-  return null;
+  return hits;
 }
 
-function buildSystemPrompt({ plan, persona }) {
-  // curto = rápido
-  return [
-    "Você é a Nexus IA, atendimento de um clube de compradores de tecnologia.",
-    "Objetivo: segurança + vantagem + exclusividade + alívio financeiro.",
-    "Regras:",
-    "- Responda em no máximo 6 mensagens curtas (sem textão).",
-    "- Seja direto e humano (nada robótico).",
-    "- Faça no máximo 2 perguntas por vez.",
-    "- Se o cliente estiver pronto pra comprar, guie com elegância (sem pressa).",
-    "- Nunca invente estoque/garantia/prazo. Se não souber, diga que precisa verificar.",
-    `Plano do cliente: ${plan || "free"}.`,
-    `Persona: ${persona?.label || "Nexus IA"} (${persona?.role || "Atendimento"}).`
-  ].join("\n");
+function pickCatalogMatches(message, limit = 6) {
+  const catalog = loadCatalog();
+  const ranked = catalog
+    .map((p) => ({ p, s: scoreMatch(message, p) }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .slice(0, limit)
+    .map((x) => x.p);
+
+  return ranked;
 }
 
-// ====== Função principal (AGORA É ASYNC) ======
-export async function routeMessage(message, context = {}) {
-  const plan = (context?.plan || "free").toLowerCase();
-  const persona = pickPersona(context);
+function planRank(plan = "free") {
+  const p = String(plan || "free").toLowerCase();
+  if (p === "omega") return 4;
+  if (p === "hyper") return 3;
+  if (p === "core") return 2;
+  return 1; // free
+}
 
-  // 1) tenta cache/template (instantâneo)
-  const cached = findBestCacheTemplate(message);
-  const shouldUseAI = looksLikeNeedsAI(message);
+function isAllowedByPlan(product, plan = "free") {
+  const userRank = planRank(plan);
+  const tier = String(product.accessTier || "free").toLowerCase();
+  const required = planRank(tier);
+  return userRank >= required;
+}
 
-  if (cached && !shouldUseAI) {
-    return {
-      intent: cached.intent,
-      intentId: cached.intentId,
-      personaId: persona.id,
-      personaLabel: persona.label,
-      personaRole: persona.role,
-      reply: cached.template
-    };
-  }
-
-  // 2) tenta OpenAI (rápido, curto, com timeout)
-  const client = getOpenAIClient();
-  if (!client) {
-    // sem chave: volta pro cache ou fallback
-    return {
-      intent: cached?.intent || "fallback",
-      intentId: cached?.intentId || null,
-      personaId: persona.id,
-      personaLabel: persona.label,
-      personaRole: persona.role,
-      reply:
-        cached?.template ||
-        "Consigo te ajudar sim. Me diz 2 coisas rapidinho: (1) o que você quer comprar e (2) seu orçamento aproximado."
-    };
-  }
-
-  const model = "gpt-4o-mini";
-  const max_output_tokens = plan === "free" ? 180 : 260;
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 6500);
-
+function formatMoneyBRL(n) {
   try {
-    const resp = await client.responses.create(
-      {
-        model,
-        max_output_tokens,
-        temperature: 0.4,
-        input: [
-          { role: "system", content: buildSystemPrompt({ plan, persona }) },
-          { role: "user", content: String(message).slice(0, 1500) }
-        ]
-      },
-      { signal: controller.signal }
-    );
-
-    const reply =
-      resp.output_text?.trim() ||
-      cached?.template ||
-      "Me diz o que você quer comprar e o seu orçamento que eu te passo as melhores opções.";
-
-    return {
-      intent: "openai",
-      intentId: null,
-      personaId: persona.id,
-      personaLabel: persona.label,
-      personaRole: persona.role,
-      reply
-    };
-  } catch (e) {
-    const msg = String(e?.message || e);
-    console.error("[IA] OpenAI error:", msg);
-
-    return {
-      intent: cached?.intent || "fallback",
-      intentId: cached?.intentId || null,
-      personaId: persona.id,
-      personaLabel: persona.label,
-      personaRole: persona.role,
-      reply:
-        cached?.template ||
-        "Tive uma instabilidade rapidinha. Me manda de novo o que você quer comprar + seu orçamento que eu já resolvo."
-    };
-  } finally {
-    clearTimeout(timeout);
+    return Number(n).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  } catch {
+    return `R$ ${n}`;
   }
+}
+
+// ===== Prompt mãe =====
+function buildSystemPrompt({ plan }) {
+  return `
+Você é a Nexus IA (clube de compradores de tecnologia).
+Objetivo: acolher, dar segurança, vantagem e exclusividade — com elegância (sem afobação).
+Regras:
+- Responda rápido, direto e humano.
+- Faça no máximo 2 perguntas por mensagem (só quando necessário).
+- Se o cliente já deu orçamento e objetivo, NÃO “reinicie” o atendimento.
+- Não invente: estoque, prazo, garantia, cupom, frete. Se faltar dado, diga que precisa verificar.
+- Sempre que possível, entregue 2 a 4 opções e um “por que” curto.
+- Nunca chame o produto de “Nexus ____” (o produto não é da Nexus).
+- Plano do usuário: ${plan}.
+- Se algo for restrito ao plano (Core/Hyper/Omega), você pode sugerir o upgrade de forma sutil.
+`.trim();
+}
+
+// ===== memória =====
+function getHistory(conversationId) {
+  const h = MEMORY.get(conversationId);
+  return Array.isArray(h) ? h : [];
+}
+
+function saveTurn(conversationId, role, content) {
+  const h = getHistory(conversationId);
+  h.push({ role, content });
+
+  // mantém só os últimos MAX_TURNS*2 (user+assistant)
+  const maxMsgs = MAX_TURNS * 2;
+  const trimmed = h.slice(-maxMsgs);
+
+  MEMORY.set(conversationId, trimmed);
+}
+
+export async function routeMessage(message, context = {}) {
+  const plan = (context.plan || "free").toLowerCase();
+  const conversationId =
+    String(context.conversationId || "").trim() ||
+    // fallback: se não vier id, cria um “fixo” por processo
+    "default";
+
+  const userText = String(message || "").slice(0, MAX_USER_CHARS);
+
+  // 1) pega histórico curto
+  const history = getHistory(conversationId);
+
+  // 2) tenta puxar matches do catálogo
+  const matches = pickCatalogMatches(userText, 8);
+
+  // 3) monta “catálogo disponível” resumido pro modelo
+  let catalogBlock = "";
+  if (matches.length) {
+    const lines = matches.map((p) => {
+      const tier = String(p.accessTier || "free").toLowerCase();
+      const tagTier =
+        tier === "omega"
+          ? "Conteúdo OMEGA"
+          : tier === "hyper"
+          ? "Conteúdo HYPER"
+          : tier === "core"
+          ? "Conteúdo CORE"
+          : "Livre";
+
+      const price = formatMoneyBRL(p.pricePublic ?? p.price ?? 0);
+
+      return `- [${p.id}] ${p.title} — ${price} — ${tagTier}`;
+    });
+
+    catalogBlock = `
+CATÁLOGO (amostra relevante):
+${lines.join("\n")}
+
+Regras de acesso:
+- Se o produto não for permitido pelo plano do usuário, você pode citar que existe no catálogo e sugerir upgrade com educação.
+- Se for permitido, você pode recomendar e sugerir “Comprar agora” citando o ID.
+`.trim();
+  }
+
+  // 4) monta mensagens para OpenAI
+  const input = [
+    { role: "system", content: buildSystemPrompt({ plan }) },
+    ...(catalogBlock ? [{ role: "system", content: catalogBlock }] : []),
+    ...history,
+    { role: "user", content: userText },
+  ];
+
+  // 5) chama OpenAI
+  const model = "gpt-4o-mini";
+  const max_output_tokens = plan === "free" ? 170 : 260;
+
+  const resp = await client.responses.create({
+    model,
+    input,
+    max_output_tokens,
+    temperature: 0.7,
+  });
+
+  const reply =
+    resp.output_text?.trim() ||
+    "Tive um problema pra responder agora. Tenta de novo em instantes.";
+
+  // 6) salva memória
+  saveTurn(conversationId, "user", userText);
+  saveTurn(conversationId, "assistant", reply);
+
+  // 7) se tiver match, tenta anexar “sugestões” (pra UI futura)
+  const suggestions = matches
+    .slice(0, 4)
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      pricePublic: p.pricePublic ?? p.price ?? null,
+      accessTier: p.accessTier || "free",
+      allowed: isAllowedByPlan(p, plan),
+    }));
+
+  return {
+    reply,
+    personaLabel: "Nexus IA",
+    suggestions,
+  };
 }

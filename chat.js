@@ -1,32 +1,36 @@
 // chat.js
+
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
+const chatPlan = document.getElementById("chat-plan");
 const chatInput = document.getElementById("chat-input");
 
-const API = "https://nexus-site-oufm.onrender.com";
+// API base (config.js pode setar window.NEXUS_API_BASE)
+const API =
+  window.NEXUS_API_BASE ||
+  "https://nexus-site-oufm.onrender.com";
 
-const STORAGE_KEY = "nexus_chat_page_history_v1";
-
-function loadHistory() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    const arr = JSON.parse(raw || "[]");
-    if (!Array.isArray(arr)) return [];
-    return arr
-      .filter((x) => x && (x.role === "user" || x.role === "assistant") && typeof x.content === "string")
-      .slice(-8);
-  } catch {
-    return [];
-  }
+// conversa persistente (não reseta)
+const CONV_KEY = "nexus_chat_conversation_id";
+let conversationId = localStorage.getItem(CONV_KEY);
+if (!conversationId) {
+  conversationId = `web_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  localStorage.setItem(CONV_KEY, conversationId);
 }
 
-function saveHistory(history) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify((history || []).slice(-8)));
-  } catch {}
+// plano do usuário (por enquanto: automático = localStorage, fallback free)
+const PLAN_KEY = "nexus_user_plan";
+function getUserPlan() {
+  const stored = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
+  return stored || (chatPlan?.value || "free");
 }
 
-let history = loadHistory();
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
 
 function addMessage(text, from = "user", meta = {}) {
   const msg = document.createElement("div");
@@ -34,13 +38,16 @@ function addMessage(text, from = "user", meta = {}) {
 
   let metaLine = "";
   if (from === "bot" && meta.personaLabel) {
-    metaLine = `<div class="chat-meta">${meta.personaLabel}</div>`;
+    metaLine = `<div class="chat-meta">${escapeHtml(meta.personaLabel)}</div>`;
   }
 
-  msg.innerHTML = `${metaLine}<div class="chat-bubble">${text}</div>`;
+  msg.innerHTML = `
+    ${metaLine}
+    <div class="chat-bubble">${escapeHtml(text)}</div>
+  `;
+
   chatBox.appendChild(msg);
   chatBox.scrollTop = chatBox.scrollHeight;
-  return msg;
 }
 
 function addTyping() {
@@ -52,26 +59,10 @@ function addTyping() {
   return typing;
 }
 
-function renderExisting() {
-  if (history.length) {
-    history.forEach((m) => addMessage(m.content, m.role === "assistant" ? "bot" : "user", { personaLabel: "Nexus IA" }));
-    return;
-  }
-  const hello = "Oi! Eu sou a Nexus IA. Me fala o que você quer comprar e seu orçamento.";
-  addMessage(hello, "bot", { personaLabel: "Nexus IA" });
-  history.push({ role: "assistant", content: hello });
-  saveHistory(history);
-}
-
-renderExisting();
-
 async function sendMessage(text) {
-  addMessage(text, "user");
-  history.push({ role: "user", content: text });
-  history = history.slice(-8);
-  saveHistory(history);
+  const plan = getUserPlan();
 
-  const startedAt = Date.now();
+  addMessage(text, "user");
   const typing = addTyping();
 
   try {
@@ -80,48 +71,48 @@ async function sendMessage(text) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         message: text,
-        plan: "free",
-        history: history.slice(0, -1),
+        plan,
+        conversationId,
       }),
     });
 
     const data = await resp.json();
-
-    const elapsed = Date.now() - startedAt;
-    const remaining = Math.max(0, 120 - elapsed);
-    if (remaining) await new Promise((r) => setTimeout(r, remaining));
-
     typing.remove();
 
     if (!data.ok) {
-      const msg = "Tive um problema agora. Tenta de novo em instantes.";
-      addMessage(msg, "bot", { personaLabel: "Nexus IA" });
-      history.push({ role: "assistant", content: msg });
-      history = history.slice(-8);
-      saveHistory(history);
+      addMessage(
+        "Tive um problema pra responder agora. Tenta de novo em instantes.",
+        "bot",
+        { personaLabel: "Nexus IA" }
+      );
       return;
     }
 
-    addMessage(data.reply, "bot", { personaLabel: data.personaLabel || "Nexus IA" });
-    history.push({ role: "assistant", content: data.reply });
-    history = history.slice(-8);
-    saveHistory(history);
+    addMessage(data.reply, "bot", {
+      personaLabel: data.personaLabel || "Nexus IA",
+    });
   } catch (e) {
     console.error("Erro no chat:", e);
-
     typing.remove();
-    const msg = "Não consegui conectar ao servidor agora.";
-    addMessage(msg, "bot", { personaLabel: "Nexus IA" });
-    history.push({ role: "assistant", content: msg });
-    history = history.slice(-8);
-    saveHistory(history);
+    addMessage(
+      "Não consegui conectar no servidor agora. Verifica se ele está rodando.",
+      "bot",
+      { personaLabel: "Nexus IA" }
+    );
   }
 }
 
-chatForm.addEventListener("submit", (e) => {
+chatForm?.addEventListener("submit", (e) => {
   e.preventDefault();
   const text = (chatInput.value || "").trim();
   if (!text) return;
   chatInput.value = "";
   sendMessage(text);
 });
+
+// Mensagem inicial (uma vez por carregamento)
+addMessage(
+  "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar e o seu orçamento que eu te recomendo opções reais do catálogo 🙂",
+  "bot",
+  { personaLabel: "Nexus IA" }
+);
