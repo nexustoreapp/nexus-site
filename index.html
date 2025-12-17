@@ -4,26 +4,15 @@
   <meta charset="UTF-8" />
   <title>Nexus - Clube de Compradores Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Nexus é um clube de compradores de tecnologia: preços mais acessíveis em eletrônicos, com atendimento por IA e planos para todos os perfis."
-  />
+  <meta name="description" content="Nexus é um clube de compradores de tecnologia: preços mais acessíveis em eletrônicos, com atendimento por IA e planos para todos os perfis." />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-
-  <!-- Fonte Google -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
-
-  <!-- CSS do site -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Widget Nexus IA -->
   <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
-<body>
 
+<body>
   <!-- NAVBAR -->
   <header class="topbar">
     <a href="index.html" class="brand">
@@ -62,15 +51,8 @@
 
         <!-- BUSCA -->
         <div class="hero-search">
-          <input
-            type="text"
-            id="home-query"
-            class="input-search"
-            placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..."
-          />
-          <button class="btn-primary" onclick="goToPremiumFromHome()">
-            Buscar menor preço
-          </button>
+          <input type="text" id="home-query" class="input-search" placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..." />
+          <button class="btn-primary" onclick="goToPremiumFromHome()">Buscar menor preço</button>
         </div>
 
         <!-- CHIPS -->
@@ -87,10 +69,7 @@
     <section class="section section-steps">
       <div class="section-header">
         <h2>Como a Nexus funciona</h2>
-        <p>
-          Você fala o que quer, a Nexus organiza as opções do catálogo e te guia
-          com IA pra fechar a compra com confiança e economia.
-        </p>
+        <p>Você fala o que quer, a Nexus organiza as opções do catálogo e te guia com IA pra fechar a compra com confiança e economia.</p>
       </div>
 
       <div class="grid-steps">
@@ -111,56 +90,52 @@
       </div>
     </section>
 
-    <!-- PLANOS DA HOME -->
+    <!-- PLANOS -->
     <section class="section section-plans">
       <div class="section-header">
         <h2>Planos para todos os perfis</h2>
-        <p>Comece de graça e ative o Premium quando fizer sentido pra você.</p>
+        <p>Comece no Free e suba quando fizer sentido (Core, Hyper, Omega).</p>
       </div>
 
       <div class="grid-cards">
-        <!-- GRATUITO -->
         <article class="card-plan">
-          <h3>Gratuito</h3>
-          <p class="card-price">R$ 0,00 / semana</p>
+          <h3>Free</h3>
+          <p class="card-price">R$ 0,00</p>
           <ul class="card-list">
-            <li>Acesso a lojas menores</li>
-            <li>Só produtos com desconto</li>
+            <li>Acesso ao catálogo público</li>
+            <li>Atendimento Nexus IA</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline full">Começar no gratuito</a>
+          <a href="assinatura.html" class="btn-outline full">Começar no Free</a>
         </article>
 
-        <!-- PREMIUM SEMANAL -->
         <article class="card-plan card-plan-featured">
-          <h3>Premium Semanal</h3>
-          <p class="card-price">R$ 8,99 / semana</p>
+          <h3>Core</h3>
+          <p class="card-price">R$ 4,99 / semana</p>
           <ul class="card-list">
-            <li>Lojas grandes + pequenas</li>
-            <li>Descontos melhores</li>
+            <li>Até 5% OFF</li>
+            <li>Ofertas secretas (parcial)</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar semanal</a>
+          <a href="assinatura.html" class="btn-outline full">Assinar Core</a>
         </article>
 
-        <!-- PREMIUM MENSAL -->
         <article class="card-plan">
-          <h3>Premium Mensal</h3>
-          <p class="card-price">R$ 16,99 / mês</p>
+          <h3>Hyper</h3>
+          <p class="card-price">R$ 19,90 / mês</p>
           <ul class="card-list">
-            <li>Todos os recursos Premium</li>
-            <li>Melhor custo-benefício contínuo</li>
+            <li>10%–20% OFF</li>
+            <li>Ofertas secretas (total)</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar mensal</a>
+          <a href="assinatura.html" class="btn-outline full">Assinar Hyper</a>
         </article>
 
-        <!-- PREMIUM ANUAL -->
         <article class="card-plan">
-          <h3>Premium Anual</h3>
-          <p class="card-price">R$ 210,99 / ano</p>
+          <h3>Omega</h3>
+          <p class="card-price">R$ 149,90 / ano</p>
           <ul class="card-list">
-            <li>Acesso total durante o ano inteiro</li>
-            <li>Mais econômico no longo prazo</li>
+            <li>20%–30% OFF</li>
+            <li>Frete grátis total (elegível)</li>
           </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar anual</a>
+          <a href="assinatura.html" class="btn-outline full">Assinar Omega</a>
         </article>
       </div>
     </section>
@@ -170,23 +145,15 @@
     <p>Nexus © 2025 – Clube de Compradores Tech com IA.</p>
   </footer>
 
-  <!-- SCRIPT DO MENU -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("navToggle");
       const menu = document.getElementById("navMenu");
-      if (toggle && menu) {
-        toggle.addEventListener("click", () => {
-          menu.classList.toggle("nav-open");
-        });
-      }
+      if (toggle && menu) toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
     });
   </script>
 
-  <!-- Widget Nexus IA -->
-  <script src="nexus-widget.js?v=3"></script>
-
-  <!-- JS do site -->
   <script src="script.js"></script>
+  <script src="nexus-widget.js?v=3"></script>
 </body>
 </html>

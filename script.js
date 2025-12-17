@@ -670,3 +670,24 @@ function preencherEspecificacoesProduto(produto) {
 
 // chama o carregamento de produto quando a página terminar de carregar
 window.addEventListener("DOMContentLoaded", carregarProdutoDetalhe);
+// === Nexus IA Widget Loader (carrega em todas as páginas) ===
+(() => {
+  const CSS_HREF = "./nexus-widget.css?v=3";
+  const JS_SRC   = "./nexus-widget.js?v=3";
+
+  // evita duplicar
+  if (!document.querySelector(`link[href^="./nexus-widget.css"]`)) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = CSS_HREF;
+    document.head.appendChild(link);
+  }
+
+  if (!document.querySelector(`script[src^="./nexus-widget.js"]`)) {
+    const s = document.createElement("script");
+    s.src = JS_SRC;
+    s.defer = true;
+    document.body.appendChild(s);
+  }
+})();
+
