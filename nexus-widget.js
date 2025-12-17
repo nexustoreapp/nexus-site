@@ -19,7 +19,7 @@
         <div class="nexus-ia-title">
           <span class="nexus-ia-dot"></span>
           <strong>Nexus IA</strong>
-          <span class="nexus-ia-sub">Atendimento</span>
+          <span class="nexus-ia-sub">Assistente</span>
         </div>
         <button id="nexus-ia-close" class="nexus-ia-close" aria-label="Fechar">✕</button>
       </div>
@@ -27,15 +27,8 @@
       <div id="nexus-ia-messages" class="nexus-ia-messages"></div>
 
       <form id="nexus-ia-form" class="nexus-ia-form">
-        <select id="nexus-ia-plan" class="nexus-ia-plan">
-          <option value="free">Free</option>
-          <option value="core">Core</option>
-          <option value="hyper">Hyper</option>
-          <option value="omega">Omega</option>
-        </select>
-
         <div class="nexus-ia-row">
-          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Escreva aqui…" autocomplete="off" />
+          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar…" autocomplete="off" />
           <button class="nexus-ia-send" type="submit">Enviar</button>
         </div>
       </form>
@@ -50,14 +43,12 @@
   const messages = document.getElementById("nexus-ia-messages");
   const form = document.getElementById("nexus-ia-form");
   const input = document.getElementById("nexus-ia-input");
-  const planSelect = document.getElementById("nexus-ia-plan");
 
   function openPanel() {
     panel.classList.add("open");
     panel.setAttribute("aria-hidden", "false");
     setTimeout(() => input.focus(), 50);
   }
-
   function closePanel() {
     panel.classList.remove("open");
     panel.setAttribute("aria-hidden", "true");
@@ -93,9 +84,9 @@
     return el;
   }
 
-  // Mensagem inicial
+  // Mensagem inicial (menos robótica)
   addMsg(
-    "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar (e orçamento) que eu te recomendo do catálogo.",
+    "Oi! Eu sou a Nexus IA 🙂\nMe diz o que você quer comprar e, se tiver, seu orçamento. Eu te ajudo a escolher com calma e sem pressão.",
     "bot",
     { personaLabel: "Nexus IA" }
   );
@@ -105,8 +96,6 @@
 
     const text = (input.value || "").trim();
     if (!text) return;
-
-    const plan = (planSelect.value || "free").trim();
 
     input.value = "";
     addMsg(text, "user");
@@ -118,7 +107,8 @@
       const resp = await fetch(`${API}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, plan })
+        // ✅ Sem seletor de plano: o backend decide (por enquanto mandamos "auto")
+        body: JSON.stringify({ message: text, plan: "auto" })
       });
 
       const data = await resp.json();
@@ -131,7 +121,7 @@
 
       if (!data.ok) {
         addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
-          personaLabel: data.personaLabel || "Nexus IA"
+          personaLabel: "Nexus IA"
         });
         return;
       }
