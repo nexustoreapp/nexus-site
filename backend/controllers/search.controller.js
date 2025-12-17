@@ -1,4 +1,3 @@
-// backend/controllers/search.controller.js
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,37 +5,45 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Caminhos possíveis do catálogo (local + Render)
-const POSSIBLE_PATHS = [
-  path.join(__dirname, "..", "data", "catalogo.json"),
-  path.join(process.cwd(), "backend", "data", "catalogo.json"),
-  path.join(process.cwd(), "data", "catalogo.json"),
-];
-
-let catalogo = [];
-
-// Carregar catálogo
-for (const p of POSSIBLE_PATHS) {
+function carregarCatalogo() {
   try {
-    if (fs.existsSync(p)) {
-      const raw = fs.readFileSync(p, "utf-8");
-      catalogo = JSON.parse(raw);
-      console.log("[NEXUS] Catálogo carregado com sucesso:", p);
-      break;
+    const caminhos = [
+      path.join(__dirname, "..", "data", "catalogo.json"),
+      path.join(process.cwd(), "backend", "data", "catalogo.json"),
+      path.join(process.cwd(), "data", "catalogo.json"),
+    ];
+
+    for (const p of caminhos) {
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, "utf-8");
+        return JSON.parse(raw);
+      }
     }
-  } catch (e) {
-    console.warn("[NEXUS] Falha ao tentar carregar:", p);
+
+    console.warn("[SEARCH] catálogo.json não encontrado");
+    return [];
+  } catch (err) {
+    console.error("[SEARCH] Erro ao carregar catálogo:", err);
+    return [];
   }
 }
 
-if (!catalogo.length) {
-  console.error("[NEXUS] ATENÇÃO: Catálogo NÃO foi carregado.");
+function normalize(str) {
+  return (str || "")
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
 }
 
 export const searchController = {
-  catalog: (req, res) => {
+  catalog(req, res) {
     try {
-      const q = (req.query.q || "").toLowerCase();
+      const q = normalize(req.query.q || "");
+      const plan = (req.query.plan || "free").toLowerCase();
+
+      const catalogo = carregarCatalogo();
 
       if (!q) {
         return res.json({
@@ -46,24 +53,42 @@ export const searchController = {
         });
       }
 
-      const resultados = catalogo.filter((item) =>
-        Object.values(item).some(
-          (v) =>
-            typeof v === "string" &&
-            v.toLowerCase().includes(q)
-        )
-      );
+      const rank = { free: 0, core: 1, hyper: 2, omega: 3 };
+      const userRank = rank[plan] ?? 0;
+
+      const resultados = catalogo
+        .filter((p) => {
+          const texto =
+            normalize(p.title) +
+            " " +
+            normalize(p.subtitle) +
+            " " +
+            normalize(p.brand) +
+            " " +
+            normalize(p.category) +
+            " " +
+            normalize(p.description) +
+            " " +
+            normalize((p.tags || []).join(" "));
+
+          return texto.includes(q);
+        })
+        .filter((p) => {
+          const itemRank = rank[p.tier || "free"] ?? 0;
+          return userRank >= itemRank;
+        })
+        .slice(0, 120);
 
       return res.json({
         ok: true,
         total: resultados.length,
         produtos: resultados,
       });
-    } catch (erro) {
-      console.error("[NEXUS] Erro na busca:", erro);
+    } catch (err) {
+      console.error("[SEARCH] ERRO:", err);
       return res.status(500).json({
         ok: false,
-        error: "Erro interno ao buscar produtos.",
+        error: "Erro interno na busca",
       });
     }
   },
