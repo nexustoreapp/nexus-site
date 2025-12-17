@@ -1,15 +1,32 @@
 // chat.js
-
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
-const chatPlan = document.getElementById("chat-plan");
 const chatInput = document.getElementById("chat-input");
 
-// 🔹 API correta (Render)
 const API = "https://nexus-site-oufm.onrender.com";
 
-// ⏱️ tempo mínimo do "Digitando..." (ms)
-const MIN_TYPING_MS = 1200;
+const STORAGE_KEY = "nexus_chat_page_history_v1";
+
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const arr = JSON.parse(raw || "[]");
+    if (!Array.isArray(arr)) return [];
+    return arr
+      .filter((x) => x && (x.role === "user" || x.role === "assistant") && typeof x.content === "string")
+      .slice(-8);
+  } catch {
+    return [];
+  }
+}
+
+function saveHistory(history) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify((history || []).slice(-8)));
+  } catch {}
+}
+
+let history = loadHistory();
 
 function addMessage(text, from = "user", meta = {}) {
   const msg = document.createElement("div");
@@ -20,31 +37,40 @@ function addMessage(text, from = "user", meta = {}) {
     metaLine = `<div class="chat-meta">${meta.personaLabel}</div>`;
   }
 
-  msg.innerHTML = `
-    ${metaLine}
-    <div class="chat-bubble">${text}</div>
-  `;
-
+  msg.innerHTML = `${metaLine}<div class="chat-bubble">${text}</div>`;
   chatBox.appendChild(msg);
   chatBox.scrollTop = chatBox.scrollHeight;
+  return msg;
 }
 
 function addTyping() {
   const typing = document.createElement("div");
   typing.className = "chat-message chat-message-bot typing";
-  typing.innerHTML = `<div class="chat-bubble">Só um segundo…</div>`;
+  typing.innerHTML = `<div class="chat-bubble">Digitando…</div>`;
   chatBox.appendChild(typing);
   chatBox.scrollTop = chatBox.scrollHeight;
   return typing;
 }
 
+function renderExisting() {
+  if (history.length) {
+    history.forEach((m) => addMessage(m.content, m.role === "assistant" ? "bot" : "user", { personaLabel: "Nexus IA" }));
+    return;
+  }
+  const hello = "Oi! Eu sou a Nexus IA. Me fala o que você quer comprar e seu orçamento.";
+  addMessage(hello, "bot", { personaLabel: "Nexus IA" });
+  history.push({ role: "assistant", content: hello });
+  saveHistory(history);
+}
+
+renderExisting();
+
 async function sendMessage(text) {
-  const plan = chatPlan?.value || "free";
-
-  // mostra msg do usuário
   addMessage(text, "user");
+  history.push({ role: "user", content: text });
+  history = history.slice(-8);
+  saveHistory(history);
 
-  // mostra typing
   const startedAt = Date.now();
   const typing = addTyping();
 
@@ -52,56 +78,50 @@ async function sendMessage(text) {
     const resp = await fetch(`${API}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text, plan })
+      body: JSON.stringify({
+        message: text,
+        plan: "free",
+        history: history.slice(0, -1),
+      }),
     });
 
     const data = await resp.json();
 
-    // garante tempo mínimo do typing (pra não piscar)
     const elapsed = Date.now() - startedAt;
-    const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-    await new Promise((r) => setTimeout(r, remaining));
+    const remaining = Math.max(0, 120 - elapsed);
+    if (remaining) await new Promise((r) => setTimeout(r, remaining));
 
     typing.remove();
 
     if (!data.ok) {
-      addMessage("Tive um problema agora, mas já já a gente tenta de novo.", "bot", {
-        personaLabel: "Nexus IA"
-      });
+      const msg = "Tive um problema agora. Tenta de novo em instantes.";
+      addMessage(msg, "bot", { personaLabel: "Nexus IA" });
+      history.push({ role: "assistant", content: msg });
+      history = history.slice(-8);
+      saveHistory(history);
       return;
     }
 
-    addMessage(data.reply, "bot", {
-      personaLabel: data.personaLabel || "Nexus IA"
-    });
-
-  } catch (err) {
-    console.error("Erro no chat:", err);
-
-    // garante tempo mínimo do typing (mesmo em erro)
-    const elapsed = Date.now() - startedAt;
-    const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-    await new Promise((r) => setTimeout(r, remaining));
+    addMessage(data.reply, "bot", { personaLabel: data.personaLabel || "Nexus IA" });
+    history.push({ role: "assistant", content: data.reply });
+    history = history.slice(-8);
+    saveHistory(history);
+  } catch (e) {
+    console.error("Erro no chat:", e);
 
     typing.remove();
-
-    addMessage("Não consegui falar com o servidor agora. Tenta novamente em instantes.", "bot", {
-      personaLabel: "Nexus IA"
-    });
+    const msg = "Não consegui conectar ao servidor agora.";
+    addMessage(msg, "bot", { personaLabel: "Nexus IA" });
+    history.push({ role: "assistant", content: msg });
+    history = history.slice(-8);
+    saveHistory(history);
   }
 }
 
-chatForm?.addEventListener("submit", (e) => {
+chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const text = chatInput.value.trim();
+  const text = (chatInput.value || "").trim();
   if (!text) return;
   chatInput.value = "";
   sendMessage(text);
 });
-
-// Mensagem inicial
-addMessage(
-  "Oi! Eu sou a IA da Nexus. Me diz o que você quer comprar (e seu orçamento) que eu te guio pro melhor custo-benefício.",
-  "bot",
-  { personaLabel: "Nexus IA" }
-);

@@ -3,15 +3,40 @@
   if (document.getElementById("nexus-ia-widget")) return;
 
   const API = "https://nexus-site-oufm.onrender.com";
-  const MIN_TYPING_MS = 650;
 
+  // deixa o typing quase instantâneo (sem “atraso fake”)
+  const MIN_TYPING_MS = 120;
+
+  // histórico local
+  const STORAGE_KEY = "nexus_ia_history_v1";
+
+  function loadHistory() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const arr = JSON.parse(raw || "[]");
+      if (!Array.isArray(arr)) return [];
+      return arr
+        .filter((x) => x && (x.role === "user" || x.role === "assistant") && typeof x.content === "string")
+        .slice(-8);
+    } catch {
+      return [];
+    }
+  }
+
+  function saveHistory(history) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify((history || []).slice(-8)));
+    } catch {}
+  }
+
+  let history = loadHistory();
+
+  // ===== UI =====
   const widget = document.createElement("div");
   widget.id = "nexus-ia-widget";
 
   widget.innerHTML = `
-    <button id="nexus-ia-btn" class="nexus-ia-btn" aria-label="Abrir Nexus IA">
-      💬
-    </button>
+    <button id="nexus-ia-btn" class="nexus-ia-btn" aria-label="Abrir Nexus IA">💬</button>
 
     <div id="nexus-ia-panel" class="nexus-ia-panel" aria-hidden="true">
       <div class="nexus-ia-header">
@@ -27,7 +52,9 @@
 
       <form id="nexus-ia-form" class="nexus-ia-form">
         <div class="nexus-ia-row">
-          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar e seu orçamento…" autocomplete="off" />
+          <input id="nexus-ia-input" class="nexus-ia-input" type="text"
+            placeholder="Ex: 'PC até 13 mil' ou 'monitor 144hz até 1.200'"
+            autocomplete="off" />
           <button class="nexus-ia-send" type="submit">Enviar</button>
         </div>
       </form>
@@ -66,10 +93,7 @@
         ? `<div class="nexus-ia-meta">${meta.personaLabel}</div>`
         : "";
 
-    wrap.innerHTML = `
-      ${metaLine}
-      <div class="nexus-ia-bubble">${text}</div>
-    `;
+    wrap.innerHTML = `${metaLine}<div class="nexus-ia-bubble">${text}</div>`;
     messages.appendChild(wrap);
     messages.scrollTop = messages.scrollHeight;
     return wrap;
@@ -84,12 +108,24 @@
     return el;
   }
 
-  // Mensagem inicial
-  addMsg(
-    "Oi! Eu sou a Nexus IA. Me fala o que você quer comprar + orçamento e eu te passo as melhores opções do catálogo.",
-    "bot",
-    { personaLabel: "Nexus IA" }
-  );
+  function renderExistingHistory() {
+    // se já tem conversa salva, mostra
+    if (history.length) {
+      history.forEach((m) => addMsg(m.content, m.role === "assistant" ? "bot" : "user"));
+      return;
+    }
+
+    // senão, inicia uma vez
+    addMsg(
+      "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar e seu orçamento que eu te recomendo sem enrolar.",
+      "bot",
+      { personaLabel: "Nexus IA" }
+    );
+    history.push({ role: "assistant", content: "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar e seu orçamento que eu te recomendo sem enrolar." });
+    saveHistory(history);
+  }
+
+  renderExistingHistory();
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -98,7 +134,12 @@
     if (!text) return;
 
     input.value = "";
+
+    // UI + histórico
     addMsg(text, "user");
+    history.push({ role: "user", content: text });
+    history = history.slice(-8);
+    saveHistory(history);
 
     const startedAt = Date.now();
     const typing = addTyping();
@@ -107,39 +148,51 @@
       const resp = await fetch(`${API}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // plano “por trás” (depois a gente liga ao login/CPF)
-        body: JSON.stringify({ message: text, plan: "free" }),
+        // plano por trás (depois liga no login real)
+        body: JSON.stringify({
+          message: text,
+          plan: "free",
+          history: history.slice(0, -1), // manda o histórico anterior (sem duplicar a mensagem atual)
+        }),
       });
 
       const data = await resp.json();
 
+      // typing mínimo curtinho só pra não “piscar”
       const elapsed = Date.now() - startedAt;
       const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-      await new Promise((r) => setTimeout(r, remaining));
+      if (remaining) await new Promise((r) => setTimeout(r, remaining));
 
       typing.remove();
 
       if (!data.ok) {
-        addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
-          personaLabel: data.personaLabel || "Nexus IA",
-        });
+        const msg = "Tive um problema agora. Tenta de novo em instantes.";
+        addMsg(msg, "bot", { personaLabel: "Nexus IA" });
+        history.push({ role: "assistant", content: msg });
+        history = history.slice(-8);
+        saveHistory(history);
         return;
       }
 
-      addMsg(data.reply, "bot", {
-        personaLabel: data.personaLabel || "Nexus IA",
-      });
+      addMsg(data.reply, "bot", { personaLabel: data.personaLabel || "Nexus IA" });
+
+      history.push({ role: "assistant", content: data.reply });
+      history = history.slice(-8);
+      saveHistory(history);
     } catch (err) {
       console.error("Widget chat error:", err);
 
       const elapsed = Date.now() - startedAt;
       const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-      await new Promise((r) => setTimeout(r, remaining));
+      if (remaining) await new Promise((r) => setTimeout(r, remaining));
 
       typing.remove();
-      addMsg("Não consegui conectar agora. Tenta novamente em instantes.", "bot", {
-        personaLabel: "Nexus IA",
-      });
+
+      const msg = "Não consegui conectar agora. Tenta novamente em instantes.";
+      addMsg(msg, "bot", { personaLabel: "Nexus IA" });
+      history.push({ role: "assistant", content: msg });
+      history = history.slice(-8);
+      saveHistory(history);
     }
   });
 })();
