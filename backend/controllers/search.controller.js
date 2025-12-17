@@ -5,6 +5,9 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/* ===============================
+   CARREGA CATÁLOGO
+================================ */
 function carregarCatalogo() {
   try {
     const caminhos = [
@@ -28,6 +31,9 @@ function carregarCatalogo() {
   }
 }
 
+/* ===============================
+   NORMALIZA TEXTO
+================================ */
 function normalize(str) {
   return (str || "")
     .toString()
@@ -37,27 +43,48 @@ function normalize(str) {
     .trim();
 }
 
+/* ===============================
+   ROTACAO DIARIA (SEED)
+================================ */
+function getDailySeed() {
+  const d = new Date();
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+}
+
+/* ===============================
+   SHUFFLE COM SEED
+================================ */
+function shuffle(array, seed) {
+  let currentIndex = array.length;
+  let random;
+  let s = seed.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+
+  while (currentIndex !== 0) {
+    random = Math.floor(Math.abs(Math.sin(s++)) * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[random]] = [
+      array[random],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
+/* ===============================
+   CONTROLLER
+================================ */
 export const searchController = {
   catalog(req, res) {
     try {
       const q = normalize(req.query.q || "");
       const plan = (req.query.plan || "free").toLowerCase();
 
-      const catalogo = carregarCatalogo();
+      let produtos = carregarCatalogo();
 
-      if (!q) {
-        return res.json({
-          ok: true,
-          total: catalogo.length,
-          produtos: catalogo,
-        });
-      }
-
-      const rank = { free: 0, core: 1, hyper: 2, omega: 3 };
-      const userRank = rank[plan] ?? 0;
-
-      const resultados = catalogo
-        .filter((p) => {
+      /* ===== BUSCA TEXTO ===== */
+      if (q) {
+        produtos = produtos.filter((p) => {
           const texto =
             normalize(p.title) +
             " " +
@@ -72,17 +99,25 @@ export const searchController = {
             normalize((p.tags || []).join(" "));
 
           return texto.includes(q);
-        })
-        .filter((p) => {
-          const itemRank = rank[p.tier || "free"] ?? 0;
-          return userRank >= itemRank;
-        })
-        .slice(0, 120);
+        });
+      }
+
+      /* ===== BLOQUEIO INTELIGENTE ===== */
+      if (plan === "free") {
+        const seed = getDailySeed();
+
+        // Embaralha todo dia
+        produtos = shuffle(produtos, seed);
+
+        // FREE vê só 30% do catálogo
+        const limite = Math.max(1, Math.floor(produtos.length * 0.3));
+        produtos = produtos.slice(0, limite);
+      }
 
       return res.json({
         ok: true,
-        total: resultados.length,
-        produtos: resultados,
+        total: produtos.length,
+        produtos,
       });
     } catch (err) {
       console.error("[SEARCH] ERRO:", err);
