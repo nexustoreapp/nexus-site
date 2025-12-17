@@ -3,9 +3,8 @@
   if (document.getElementById("nexus-ia-widget")) return;
 
   const API = "https://nexus-site-oufm.onrender.com";
-  const MIN_TYPING_MS = 700;
+  const MIN_TYPING_MS = 650;
 
-  // ===== UI =====
   const widget = document.createElement("div");
   widget.id = "nexus-ia-widget";
 
@@ -19,7 +18,7 @@
         <div class="nexus-ia-title">
           <span class="nexus-ia-dot"></span>
           <strong>Nexus IA</strong>
-          <span class="nexus-ia-sub">Assistente</span>
+          <span class="nexus-ia-sub">Atendimento</span>
         </div>
         <button id="nexus-ia-close" class="nexus-ia-close" aria-label="Fechar">✕</button>
       </div>
@@ -28,7 +27,7 @@
 
       <form id="nexus-ia-form" class="nexus-ia-form">
         <div class="nexus-ia-row">
-          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar…" autocomplete="off" />
+          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar e seu orçamento…" autocomplete="off" />
           <button class="nexus-ia-send" type="submit">Enviar</button>
         </div>
       </form>
@@ -49,6 +48,7 @@
     panel.setAttribute("aria-hidden", "false");
     setTimeout(() => input.focus(), 50);
   }
+
   function closePanel() {
     panel.classList.remove("open");
     panel.setAttribute("aria-hidden", "true");
@@ -84,9 +84,9 @@
     return el;
   }
 
-  // Mensagem inicial (menos robótica)
+  // Mensagem inicial
   addMsg(
-    "Oi! Eu sou a Nexus IA 🙂\nMe diz o que você quer comprar e, se tiver, seu orçamento. Eu te ajudo a escolher com calma e sem pressão.",
+    "Oi! Eu sou a Nexus IA. Me fala o que você quer comprar + orçamento e eu te passo as melhores opções do catálogo.",
     "bot",
     { personaLabel: "Nexus IA" }
   );
@@ -107,8 +107,8 @@
       const resp = await fetch(`${API}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // ✅ Sem seletor de plano: o backend decide (por enquanto mandamos "auto")
-        body: JSON.stringify({ message: text, plan: "auto" })
+        // plano “por trás” (depois a gente liga ao login/CPF)
+        body: JSON.stringify({ message: text, plan: "free" }),
       });
 
       const data = await resp.json();
@@ -121,13 +121,13 @@
 
       if (!data.ok) {
         addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
-          personaLabel: "Nexus IA"
+          personaLabel: data.personaLabel || "Nexus IA",
         });
         return;
       }
 
       addMsg(data.reply, "bot", {
-        personaLabel: data.personaLabel || "Nexus IA"
+        personaLabel: data.personaLabel || "Nexus IA",
       });
     } catch (err) {
       console.error("Widget chat error:", err);
@@ -138,7 +138,7 @@
 
       typing.remove();
       addMsg("Não consegui conectar agora. Tenta novamente em instantes.", "bot", {
-        personaLabel: "Nexus IA"
+        personaLabel: "Nexus IA",
       });
     }
   });
