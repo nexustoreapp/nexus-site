@@ -10,25 +10,25 @@ export const chatController = {
       if (!message || typeof message !== "string") {
         return res.status(400).json({
           ok: false,
-          error: "Mensagem inválida.",
+          error: "Mensagem inválida."
         });
       }
 
-      const context = { plan: plan || "free" };
+      const context = { plan: (plan || "free").toLowerCase() };
 
-      // ✅ AGORA é async (porque pode chamar OpenAI)
+      // AGORA É async (porque pode chamar OpenAI)
       const result = await routeMessage(message, context);
 
       return res.json({
         ok: true,
-        ...result,
+        ...result
       });
     } catch (erro) {
       console.error("[NEXUS IA] Erro no chat:", erro);
       return res.status(500).json({
         ok: false,
-        error: "Erro interno no chat da Nexus.",
+        error: "Erro interno no chat da Nexus."
       });
     }
-  },
+  }
 };

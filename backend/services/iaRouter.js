@@ -4,234 +4,229 @@ import path from "path";
 import { fileURLToPath } from "url";
 import OpenAI from "openai";
 
-// --------------------
-// Carrega catálogo REAL (backend/data/catalogo.json)
-// --------------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const CATALOG_PATH = path.join(__dirname, "../data/catalogo.json");
+const personasPath = path.join(__dirname, "..", "data", "ia_personas.json");
+const cacheBasePath = path.join(__dirname, "..", "data", "ia_cache_base.json");
 
-function loadCatalog() {
+// ====== Carregamento de JSON ======
+let personas = [];
+let cacheBase = [];
+
+function loadJsonSafe(filePath, label) {
   try {
-    const raw = fs.readFileSync(CATALOG_PATH, "utf-8");
+    if (!fs.existsSync(filePath)) return [];
+    const raw = fs.readFileSync(filePath, "utf8");
     const parsed = JSON.parse(raw);
-    // Espera array de produtos
-    return Array.isArray(parsed) ? parsed : (parsed?.products || parsed?.results || []);
+    if (!Array.isArray(parsed)) return [];
+    return parsed;
   } catch (e) {
-    console.error("[CATALOGO] Falha ao ler catalogo.json:", e?.message || e);
+    console.error(`[IA] Falha ao carregar ${label}:`, e?.message || e);
     return [];
   }
 }
 
-const CATALOG = loadCatalog();
+function reloadData() {
+  personas = loadJsonSafe(personasPath, "ia_personas.json");
+  cacheBase = loadJsonSafe(cacheBasePath, "ia_cache_base.json");
+}
+reloadData();
 
-// --------------------
-// Busca simples (rápida) no catálogo
-// --------------------
-function normalize(str = "") {
-  return String(str)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .trim();
+// Recarrega a cada 30s (pra você editar JSON sem reiniciar)
+setInterval(reloadData, 30_000).unref();
+
+// ====== OpenAI (lazy init) ======
+let openai = null;
+function getOpenAIClient() {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) return null;
+  if (!openai) openai = new OpenAI({ apiKey: key });
+  return openai;
 }
 
-function scoreProduct(prod, q) {
-  const hay = normalize(
-    [
-      prod.id,
-      prod.title,
-      prod.subtitle,
-      prod.category,
-      ...(prod.tags || []),
-    ].join(" ")
-  );
-  const terms = normalize(q).split(/\s+/).filter(Boolean);
+// ====== Heurísticas rápidas (pra reduzir chamadas à OpenAI) ======
+function looksLikeNeedsAI(text) {
+  const t = (text || "").toLowerCase();
 
-  let score = 0;
-  for (const t of terms) {
-    if (hay.includes(t)) score += 2;
-  }
-  // bônus se bater categoria
-  if (normalize(prod.category || "").includes(terms[0] || "")) score += 1;
+  // perguntas “humanas” / complexas -> IA
+  if (
+    t.includes("me indica") ||
+    t.includes("recomenda") ||
+    t.includes("qual vale mais") ||
+    t.includes("custo benefício") ||
+    t.includes("qual é melhor") ||
+    t.includes("pra jogar") ||
+    t.includes("pra trabalhar") ||
+    t.includes("setup") ||
+    t.includes("config") ||
+    t.includes("montar pc") ||
+    t.includes("compatível") ||
+    t.includes("diferença entre") ||
+    t.includes("orçamento") ||
+    t.includes("parcel") ||
+    t.includes("frete") ||
+    t.includes("garantia")
+  ) return true;
 
-  // bônus se tiver estoque
-  if ((prod.stock ?? 0) > 0) score += 0.5;
+  // curto demais e genérico -> cache/template resolve
+  if (t.length <= 18) return false;
 
-  return score;
+  // se for uma pergunta direta
+  if (t.includes("?")) return true;
+
+  return false;
 }
 
-function findCatalogMatches(query, limit = 6) {
-  const q = normalize(query);
-  if (!q || q.length < 2) return [];
+function pickPersona(context = {}) {
+  // Se o teu JSON de personas tiver "default: true", prioriza.
+  const def = personas.find((p) => p?.default === true);
+  if (def) return def;
 
-  const ranked = CATALOG.map((p) => ({ p, s: scoreProduct(p, q) }))
-    .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, limit)
-    .map((x) => x.p);
-
-  return ranked;
+  // fallback: primeira persona
+  return personas[0] || {
+    id: "nexus_ia",
+    label: "Nexus IA",
+    role: "Atendimento"
+  };
 }
 
-function formatBRL(v) {
-  const n = Number(v);
-  if (!Number.isFinite(n)) return "";
-  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-}
+function findBestCacheTemplate(message) {
+  const text = (message || "").toLowerCase();
 
-// --------------------
-// Persona/estilo Nexus
-// --------------------
-function buildSystemPrompt({ plan, userMessage, matchedProducts }) {
-  const planSafe = plan || "free";
+  // cacheBase esperado: [{ id, intent, patterns:[], template }]
+  // seu arquivo pode estar em outro formato — então deixo tolerante:
+  let best = null;
+  let bestScore = 0;
 
-  const catalogContext = matchedProducts?.length
-    ? matchedProducts
-        .map((p) => {
-          return `- id: ${p.id}
-  title: ${p.title}
-  subtitle: ${p.subtitle || ""}
-  category: ${p.category || ""}
-  tags: ${(p.tags || []).join(", ")}
-  pricePublic: ${p.pricePublic}
-  pricePremium: ${p.pricePremium}
-  stock: ${p.stock}
-  premiumOnly: ${p.premiumOnly}
-  omegaExclusive: ${p.omegaExclusive}`;
-        })
-        .join("\n")
-    : "Nenhum produto relevante encontrado no catálogo para a mensagem atual.";
+  for (const item of cacheBase) {
+    const patterns = Array.isArray(item?.patterns) ? item.patterns : [];
+    if (!patterns.length) continue;
 
-  return `
-Você é a IA da Nexus (clube de compradores de tecnologia).
-Objetivo: fazer o cliente sentir segurança, vantagem, exclusividade e alívio financeiro.
-
-REGRAS DE OURO:
-- Responder rápido, direto e com elegância (sem parecer vendedora afobada).
-- No máximo 6 mensagens para levar do interesse ao “comprar agora”.
-- Faça no máximo 2-3 perguntas por vez (uso, orçamento, preferência).
-- NUNCA invente estoque, prazo, garantia, cupom. Se não tiver dado, diga que precisa confirmar.
-- Recomendações precisam ser baseadas no CATÁLOGO REAL fornecido abaixo.
-- Se o cliente estiver pronto pra comprar, guie para: "produto.html?id=ID_DO_PRODUTO" e ofereça 1 passo seguinte claro.
-
-PLANO DO USUÁRIO: ${planSafe}
-
-CATÁLOGO (matches para esta conversa):
-${catalogContext}
-
-MENSAGEM DO CLIENTE:
-${userMessage}
-`.trim();
-}
-
-// --------------------
-// OpenAI client (só se tiver chave no Render)
-// --------------------
-const hasOpenAI = !!process.env.OPENAI_API_KEY;
-const openai = hasOpenAI ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
-
-// --------------------
-// Roteador principal
-// --------------------
-export async function routeMessage(message, context = {}) {
-  const plan = context.plan || "free";
-  const text = String(message || "").trim();
-
-  // 1) Sempre tenta achar produto no catálogo primeiro (real, rápido)
-  const matches = findCatalogMatches(text, 6);
-
-  // 2) Se não tiver OpenAI, responde “real” com base no catálogo mesmo
-  if (!openai) {
-    if (!matches.length) {
-      return {
-        personaLabel: "Nexus IA",
-        reply:
-          "Me diz o que você quer comprar (ex: “monitor 144hz”, “mouse leve”, “teclado mecânico”) e, se puder, seu orçamento. Aí eu já te indico as melhores opções do catálogo Nexus.",
-        suggestedPlan: plan,
-        products: [],
-      };
+    let score = 0;
+    for (const p of patterns) {
+      const needle = String(p || "").toLowerCase().trim();
+      if (!needle) continue;
+      if (text.includes(needle)) score += Math.min(3, needle.length / 6);
     }
 
-    const top = matches.slice(0, 3);
-    const lines = top
-      .map((p, idx) => {
-        const price = plan === "free" ? formatBRL(p.pricePublic) : formatBRL(p.pricePremium);
-        return `${idx + 1}) ${p.title} — ${price} — abrir: produto.html?id=${p.id}`;
-      })
-      .join("\n");
+    if (score > bestScore) {
+      bestScore = score;
+      best = item;
+    }
+  }
 
+  if (best && best?.template) {
     return {
-      personaLabel: "Nexus IA",
-      reply:
-        `Achei opções no catálogo Nexus:\n\n${lines}\n\n` +
-        `Pra eu cravar a melhor: você vai usar pra quê (FPS/Trabalho/Estudo) e qual faixa de orçamento?`,
-      suggestedPlan: plan,
-      products: top,
+      intent: best.intent || "cached",
+      intentId: best.id || null,
+      template: String(best.template)
     };
   }
 
-  // 3) Com OpenAI: passa os produtos encontrados como contexto e pede recomendação elegante
-  const system = buildSystemPrompt({
-    plan,
-    userMessage: text,
-    matchedProducts: matches,
-  });
+  return null;
+}
+
+function buildSystemPrompt({ plan, persona }) {
+  // curto = rápido
+  return [
+    "Você é a Nexus IA, atendimento de um clube de compradores de tecnologia.",
+    "Objetivo: segurança + vantagem + exclusividade + alívio financeiro.",
+    "Regras:",
+    "- Responda em no máximo 6 mensagens curtas (sem textão).",
+    "- Seja direto e humano (nada robótico).",
+    "- Faça no máximo 2 perguntas por vez.",
+    "- Se o cliente estiver pronto pra comprar, guie com elegância (sem pressa).",
+    "- Nunca invente estoque/garantia/prazo. Se não souber, diga que precisa verificar.",
+    `Plano do cliente: ${plan || "free"}.`,
+    `Persona: ${persona?.label || "Nexus IA"} (${persona?.role || "Atendimento"}).`
+  ].join("\n");
+}
+
+// ====== Função principal (AGORA É ASYNC) ======
+export async function routeMessage(message, context = {}) {
+  const plan = (context?.plan || "free").toLowerCase();
+  const persona = pickPersona(context);
+
+  // 1) tenta cache/template (instantâneo)
+  const cached = findBestCacheTemplate(message);
+  const shouldUseAI = looksLikeNeedsAI(message);
+
+  if (cached && !shouldUseAI) {
+    return {
+      intent: cached.intent,
+      intentId: cached.intentId,
+      personaId: persona.id,
+      personaLabel: persona.label,
+      personaRole: persona.role,
+      reply: cached.template
+    };
+  }
+
+  // 2) tenta OpenAI (rápido, curto, com timeout)
+  const client = getOpenAIClient();
+  if (!client) {
+    // sem chave: volta pro cache ou fallback
+    return {
+      intent: cached?.intent || "fallback",
+      intentId: cached?.intentId || null,
+      personaId: persona.id,
+      personaLabel: persona.label,
+      personaRole: persona.role,
+      reply:
+        cached?.template ||
+        "Consigo te ajudar sim. Me diz 2 coisas rapidinho: (1) o que você quer comprar e (2) seu orçamento aproximado."
+    };
+  }
+
+  const model = "gpt-4o-mini";
+  const max_output_tokens = plan === "free" ? 180 : 260;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6500);
 
   try {
-    const model = "gpt-4o-mini";
-    const max_output_tokens = plan === "free" ? 260 : 420;
-
-    const response = await openai.responses.create({
-      model,
-      input: [
-        { role: "system", content: system },
-        { role: "user", content: text.slice(0, 2000) },
-      ],
-      max_output_tokens,
-    });
+    const resp = await client.responses.create(
+      {
+        model,
+        max_output_tokens,
+        temperature: 0.4,
+        input: [
+          { role: "system", content: buildSystemPrompt({ plan, persona }) },
+          { role: "user", content: String(message).slice(0, 1500) }
+        ]
+      },
+      { signal: controller.signal }
+    );
 
     const reply =
-      response.output_text?.trim() ||
-      "Tive um problema pra responder agora. Tenta de novo em instantes.";
+      resp.output_text?.trim() ||
+      cached?.template ||
+      "Me diz o que você quer comprar e o seu orçamento que eu te passo as melhores opções.";
 
-    // resposta já vem “bonita”, mas também devolvo os top produtos (pra você usar no front depois, se quiser)
     return {
-      personaLabel: "Nexus IA",
-      reply,
-      suggestedPlan: plan,
-      products: matches.slice(0, 3),
+      intent: "openai",
+      intentId: null,
+      personaId: persona.id,
+      personaLabel: persona.label,
+      personaRole: persona.role,
+      reply
     };
-  } catch (err) {
-    console.error("[OPENAI] Erro:", err?.message || err);
-
-    // fallback real (catálogo) se a OpenAI falhar
-    if (!matches.length) {
-      return {
-        personaLabel: "Nexus IA",
-        reply:
-          "Tive um erro com a IA agora. Me diz o que você quer comprar (ex: “monitor 144hz”) e seu orçamento, que eu te indico do catálogo Nexus.",
-        suggestedPlan: plan,
-        products: [],
-      };
-    }
-
-    const top = matches.slice(0, 3);
-    const lines = top
-      .map((p, idx) => {
-        const price = plan === "free" ? formatBRL(p.pricePublic) : formatBRL(p.pricePremium);
-        return `${idx + 1}) ${p.title} — ${price} — abrir: produto.html?id=${p.id}`;
-      })
-      .join("\n");
+  } catch (e) {
+    const msg = String(e?.message || e);
+    console.error("[IA] OpenAI error:", msg);
 
     return {
-      personaLabel: "Nexus IA",
+      intent: cached?.intent || "fallback",
+      intentId: cached?.intentId || null,
+      personaId: persona.id,
+      personaLabel: persona.label,
+      personaRole: persona.role,
       reply:
-        `Tive um erro com a IA, mas achei opções no catálogo Nexus:\n\n${lines}\n\n` +
-        `Você vai usar pra quê e qual seu orçamento?`,
-      suggestedPlan: plan,
-      products: top,
+        cached?.template ||
+        "Tive uma instabilidade rapidinha. Me manda de novo o que você quer comprar + seu orçamento que eu já resolvo."
     };
+  } finally {
+    clearTimeout(timeout);
   }
 }
