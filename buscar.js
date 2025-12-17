@@ -1,118 +1,110 @@
-// buscar.js
-const API =
-  window.NEXUS_API_BASE ||
-  "https://nexus-site-oufm.onrender.com";
+// buscar.js (VERSÃO FINAL - compatível com /api/search do backend)
 
-const PLAN_KEY = "nexus_user_plan";
+const API = window.NEXUS_API || "https://nexus-site-oufm.onrender.com";
+
+// Usa o mesmo localStorage do config.js
 function getUserPlan() {
-  const p = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
-  return p || "free";
-}
-function planRank(plan) {
-  if (plan === "omega") return 4;
-  if (plan === "hyper") return 3;
-  if (plan === "core") return 2;
-  return 1;
-}
-function tierLabel(tier) {
-  const t = (tier || "free").toLowerCase();
-  if (t === "omega") return "Conteúdo OMEGA";
-  if (t === "hyper") return "Conteúdo HYPER";
-  if (t === "core") return "Conteúdo CORE";
-  return "";
-}
-function formatBRL(n) {
   try {
-    return Number(n).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    return (localStorage.getItem("nexus_plan") || "free").toLowerCase().trim();
   } catch {
-    return `R$ ${n}`;
+    return "free";
   }
 }
 
-const resultsGrid = document.getElementById("results-grid");
-const metaEl = document.getElementById("search-meta");
-
-function getQueryFromUrl() {
-  const url = new URL(window.location.href);
-  return (url.searchParams.get("q") || "").trim();
+function money(v) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return "";
+  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-function renderCard(p) {
-  const plan = getUserPlan();
-  const userRank = planRank(plan);
-  const required = planRank((p.accessTier || "free").toLowerCase());
-  const locked = userRank < required;
+function getQueryParam() {
+  const sp = new URLSearchParams(window.location.search);
+  // aceita q ou query (se você usar os dois em algum lugar)
+  return (sp.get("q") || sp.get("query") || "").trim();
+}
 
-  const badge = tierLabel(p.accessTier);
-  const badgeHtml = badge
-    ? `<span class="badge badge-tier">${badge}</span>`
-    : "";
+function getPageParam() {
+  const sp = new URLSearchParams(window.location.search);
+  const p = Number(sp.get("page") || 1);
+  return Number.isFinite(p) && p > 0 ? p : 1;
+}
 
-  const img = (p.images && p.images[0]) ? p.images[0] : "";
-  const thumb = img
-    ? `<div class="result-thumb"><img src="${img}" alt=""></div>`
-    : `<div class="thumb-placeholder">Sem imagem</div>`;
+function renderCard(p, plan) {
+  const el = document.createElement("div");
+  el.className = "card-info"; // usa estilo já existente no seu CSS
 
-  const price = formatBRL(p.pricePublic ?? p.price ?? 0);
+  const title = p.title || "Produto";
+  const subtitle = p.subtitle || "";
+  const brand = p.brand ? `• ${p.brand}` : "";
+  const category = p.category ? `• ${p.category}` : "";
 
-  const actionHtml = locked
-    ? `<a class="btn-outline full" href="assinatura.html">Ver planos para desbloquear</a>`
-    : `<a class="btn-primary" href="produto.html?id=${encodeURIComponent(p.id)}">Ver detalhes</a>`;
+  // FREE vê pricePublic; premium vê pricePremium (se existir)
+  const price =
+    plan === "free" ? (p.pricePublic ?? p.pricePremium) : (p.pricePremium ?? p.pricePublic);
 
-  const div = document.createElement("div");
-  div.className = "result-card";
-
-  div.innerHTML = `
-    ${thumb}
-    <div class="result-body">
-      <div class="result-header">
-        <h2>${p.title}</h2>
-        ${badgeHtml}
-      </div>
-      <div class="result-store">${p.subtitle || ""}</div>
-
-      <div class="result-prices">
-        <div class="price-current">${price}</div>
+  el.innerHTML = `
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <div>
+        <div style="font-weight:800; font-size:1.05rem;">${title}</div>
+        <div style="opacity:.85; margin-top:4px;">${subtitle}</div>
+        <div style="opacity:.7; margin-top:6px; font-size:.95rem;">${brand} ${category}</div>
       </div>
 
-      <div class="result-actions">
-        ${actionHtml}
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <div style="font-weight:900; font-size:1.1rem;">${money(price)}</div>
+        <a class="btn" href="assinatura.html" style="text-decoration:none;">
+          ${plan === "free" ? "Desbloquear mais ofertas" : "Ver detalhes"}
+        </a>
       </div>
     </div>
   `;
 
-  return div;
+  return el;
 }
 
 async function runSearch() {
-  const q = getQueryFromUrl();
-  if (!q) {
-    metaEl.textContent = "Nenhuma busca informada.";
-    return;
-  }
+  const metaEl = document.getElementById("search-meta");
+  const resultsGrid = document.getElementById("results-grid");
 
-  metaEl.textContent = `Buscando: "${q}"…`;
+  const plan = getUserPlan();
+  const q = getQueryParam();
+  const page = getPageParam();
+  const limit = 24;
+
+  metaEl.textContent = "Buscando...";
+  resultsGrid.innerHTML = "";
 
   try {
-    const plan = getUserPlan();
-    const resp = await fetch(
-      `${API}/api/search?query=${encodeURIComponent(q)}&plan=${encodeURIComponent(plan)}`
-    );
-    const data = await resp.json();
+    const url =
+      `${API}/api/search` +
+      `?q=${encodeURIComponent(q)}` +
+      `&plan=${encodeURIComponent(plan)}` +
+      `&page=${encodeURIComponent(page)}` +
+      `&limit=${encodeURIComponent(limit)}`;
 
-    if (!data.ok) {
-      metaEl.textContent = "Falha ao buscar agora. Tenta novamente.";
+    const r = await fetch(url);
+    const data = await r.json();
+
+    // ✅ AQUI é o pulo do gato:
+    // seu backend devolve "produtos"
+    const items = data.produtos || data.items || [];
+    const total = Number.isFinite(data.total) ? data.total : items.length;
+
+    metaEl.textContent =
+      q
+        ? `${total} resultado(s) para "${q}" • plano: ${plan}`
+        : `${total} produto(s) • plano: ${plan}`;
+
+    if (!items.length) {
+      resultsGrid.innerHTML = `<div class="card-info">Nenhum resultado encontrado.</div>`;
       return;
     }
 
-    const items = data.items || [];
-    metaEl.textContent = `${items.length} resultado(s) para "${q}"`;
-
-    resultsGrid.innerHTML = "";
-    items.forEach((p) => resultsGrid.appendChild(renderCard(p)));
+    items.forEach((p) => resultsGrid.appendChild(renderCard(p, plan)));
   } catch (e) {
     console.error(e);
     metaEl.textContent = "Não consegui conectar no servidor agora.";
+    resultsGrid.innerHTML = `<div class="card-info">Erro ao buscar. Tente novamente.</div>`;
   }
 }
 
