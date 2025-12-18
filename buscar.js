@@ -117,20 +117,27 @@ function card(p) {
   if (locked) d.classList.add("card-locked");
 
   const catKey = catMap[p.category] || "mouse";
-  const imgMain = `images/products/${p.id}.jpg`;
-  const imgFallback = `images/categories/${catKey}.jpg`;
+  // 1) tenta imagem local real (se existir)
+const imgLocal = `images/products/${p.id}.jpg`;
+
+// 2) se não existir, usa uma imagem dinâmica por seed (sempre estável)
+const seed = encodeURIComponent(p.id);
+const imgAuto = `https://picsum.photos/seed/${seed}/600/600`;
+
+// 3) fallback final por categoria (as suas)
+const imgFallback = `images/categories/${catKey}.jpg`;
 
   const price =
     plan === "free" ? (p.pricePublic ?? p.pricePremium) : (p.pricePremium ?? p.pricePublic);
 
   d.innerHTML = `
     <div class="card-image">
-      <img
-        src="${imgMain}"
-        alt="${esc(p.title)}"
-        loading="lazy"
-        onerror="this.onerror=null; this.src='${imgFallback}';"
-      >
+     <img
+  src="${imgLocal}"
+  alt="${esc(p.title)}"
+  loading="lazy"
+  onerror="this.onerror=null; this.src='${imgAuto}'; this.onerror=function(){this.src='${imgFallback}'};"
+>
     </div>
 
     <div class="card-body">
