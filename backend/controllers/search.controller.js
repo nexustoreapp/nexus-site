@@ -89,25 +89,68 @@ export const searchController = {
         base = base.filter((p) => freeDailyGate(p?.id || "", 18));
       }
 
-  // 3) se tiver query: filtra por texto (tokens)
+  // 3) busca inteligente: tokens + categoria (headset gamer / notebook gamer / pc gamer etc.)
 let filtered = base;
 
-const tokens = normalize(qRaw).split(/\s+/).filter(Boolean);
+const rawTokens = normalize(qRaw).split(/\s+/).filter(Boolean);
 
-if (tokens.length) {
-  filtered = base.filter((p) => {
-    const hay =
-      normalize(p.title) + " " +
-      normalize(p.subtitle) + " " +
-      normalize(p.brand) + " " +
-      normalize(p.category) + " " +
-      normalize(p.description) + " " +
-      normalize((p.tags || []).join(" "));
+// remove palavras “genéricas” que só atrapalham
+const STOP = new Set(["gamer", "gaming", "barato", "oferta", "promo", "promocao", "menor", "preco", "preco", "pc"]);
+const tokens = rawTokens.filter(t => !STOP.has(t));
 
-    // precisa conter TODAS as palavras em qualquer ordem
-    return tokens.every((t) => hay.includes(t));
-  });
+// mapeia termos para categorias
+const CATEGORY_MAP = [
+  { keys: ["headset", "fone", "foneouvido", "fone-de-ouvido"], cat: "headset" },
+  { keys: ["teclado", "keyboard"], cat: "teclado" },
+  { keys: ["mouse"], cat: "mouse" },
+  { keys: ["monitor", "tela"], cat: "monitor" },
+  { keys: ["notebook", "laptop"], cat: "notebook" },
+  { keys: ["ssd", "nvme"], cat: "ssd" },
+  { keys: ["ram", "memoria"], cat: "memória ram" },
+  { keys: ["gpu", "placa", "video", "vga", "rtx", "radeon"], cat: "placa de vídeo" },
+  { keys: ["cpu", "processador", "ryzen", "intel", "core"], cat: "processador" },
+  { keys: ["fonte", "psu"], cat: "fonte" },
+  { keys: ["gabinete", "case"], cat: "gabinete" },
+  { keys: ["roteador", "router", "wifi"], cat: "roteador" },
+  { keys: ["controle", "controller"], cat: "controle" },
+  { keys: ["microfone", "mic"], cat: "microfone" },
+  { keys: ["webcam", "camera"], cat: "webcam" },
+  { keys: ["vr", "oculos", "quest", "psvr"], cat: "vr" },
+];
+
+// tenta detectar categoria pela query
+let detectedCategory = "";
+for (const m of CATEGORY_MAP) {
+  if (m.keys.some(k => rawTokens.includes(k))) {
+    detectedCategory = m.cat;
+    break;
+  }
 }
+
+// monta lista de candidatos
+filtered = base.filter((p) => {
+  const hay =
+    normalize(p.title) + " " +
+    normalize(p.subtitle) + " " +
+    normalize(p.brand) + " " +
+    normalize(p.category) + " " +
+    normalize(p.description) + " " +
+    normalize((p.tags || []).join(" "));
+
+  // 1) se detectou categoria: exige categoria bater
+  if (detectedCategory) {
+    const cat = normalize(p.category);
+    if (!cat.includes(detectedCategory)) return false;
+  }
+
+  // 2) tokens restantes precisam bater (se houver)
+  if (tokens.length) {
+    return tokens.every((t) => hay.includes(t));
+  }
+
+  // se só categoria já resolveu, deixa passar
+  return true;
+});
 
       // 4) ordenação: featured primeiro, depois por menor preço público (pra parecer “ML style”)
       filtered.sort((a, b) => {
