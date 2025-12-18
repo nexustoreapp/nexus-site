@@ -4,7 +4,6 @@ const API = "https://nexus-site-oufm.onrender.com";
    ELEMENTOS BASE
 ================================ */
 let pageRoot = document.getElementById("search-page");
-
 if (!pageRoot) {
   pageRoot = document.createElement("div");
   pageRoot.id = "search-page";
@@ -34,7 +33,6 @@ if (!grid) {
 
 main.appendChild(meta);
 main.appendChild(grid);
-
 layout.appendChild(sidebar);
 layout.appendChild(main);
 
@@ -62,7 +60,7 @@ const catMap = {
 };
 
 /* ===============================
-   STATE
+   STATE (filtros)
 ================================ */
 const state = {
   category: "",
@@ -106,6 +104,39 @@ function esc(s) {
 }
 
 /* ===============================
+   IMG (C) — fallback seguro
+   1) local products
+   2) auto seed
+   3) category fallback
+================================ */
+function buildImgElement(p) {
+  const productTier = (p.tier || "free").toLowerCase();
+  const catKey = catMap[p.category] || "mouse";
+
+  const imgLocal = `images/products/${p.id}.jpg`;
+  const seed = encodeURIComponent(p.id);
+  const imgAuto = `https://picsum.photos/seed/${seed}/600/600`;
+  const imgFallback = `images/categories/${catKey}.jpg`;
+
+  const img = document.createElement("img");
+  img.loading = "lazy";
+  img.alt = p.title || "Produto";
+  img.src = imgLocal;
+
+  // fallback 1 -> auto
+  img.onerror = () => {
+    img.onerror = () => {
+      // fallback 2 -> categoria
+      img.src = imgFallback;
+      img.onerror = null;
+    };
+    img.src = imgAuto;
+  };
+
+  return img;
+}
+
+/* ===============================
    CARD
 ================================ */
 function card(p) {
@@ -116,58 +147,40 @@ function card(p) {
   const locked = (rank[plan] || 1) < (rank[productTier] || 1);
   if (locked) d.classList.add("card-locked");
 
-  const catKey = catMap[p.category] || "mouse";
-  // 1) tenta imagem local real (se existir)
-const imgLocal = `images/products/${p.id}.jpg`;
-
-// 2) se não existir, usa uma imagem dinâmica por seed (sempre estável)
-const seed = encodeURIComponent(p.id);
-const imgAuto = `https://picsum.photos/seed/${seed}/600/600`;
-
-// 3) fallback final por categoria (as suas)
-const imgFallback = `images/categories/${catKey}.jpg`;
-
   const price =
     plan === "free" ? (p.pricePublic ?? p.pricePremium) : (p.pricePremium ?? p.pricePublic);
 
-  d.innerHTML = `
-    <div class="card-image">
-     <img
-  src="${imgLocal}"
-  alt="${esc(p.title)}"
-  loading="lazy"
-  onerror="this.onerror=null; this.src='${imgAuto}'; this.onerror=function(){this.src='${imgFallback}'};"
->
+  const imgWrap = document.createElement("div");
+  imgWrap.className = "card-image";
+  imgWrap.appendChild(buildImgElement(p));
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+  body.innerHTML = `
+    <div class="card-title">
+      ${esc(p.title)}
+      <span class="badge-tier badge-${productTier}">
+        ${tierLabel(productTier)}
+      </span>
     </div>
-
-    <div class="card-body">
-      <div class="card-title">
-        ${esc(p.title)}
-        <span class="badge-tier badge-${productTier}">
-          ${tierLabel(productTier)}
-        </span>
-      </div>
-
-      <div class="card-subtitle">${esc(p.subtitle || "")}</div>
-
-      <div class="card-price">${money(price)}</div>
-
-      <div class="card-action">
-        ${
-          locked
-            ? `
-              <div class="lock-overlay">
-                Disponível no plano ${productTier.toUpperCase()}
-              </div>
-              <a href="assinatura.html" class="btn-outline">Desbloquear</a>
-            `
-            : `
-              <a href="produto.html?id=${encodeURIComponent(p.id)}" class="btn-primary">Ver produto</a>
-            `
-        }
-      </div>
+    <div class="card-subtitle">${esc(p.subtitle || "")}</div>
+    <div class="card-price">${money(price)}</div>
+    <div class="card-action">
+      ${
+        locked
+          ? `
+            <div class="lock-overlay">Disponível no plano ${productTier.toUpperCase()}</div>
+            <a href="assinatura.html" class="btn-outline">Desbloquear</a>
+          `
+          : `
+            <a href="produto.html?id=${encodeURIComponent(p.id)}" class="btn-primary">Ver produto</a>
+          `
+      }
     </div>
   `;
+
+  d.appendChild(imgWrap);
+  d.appendChild(body);
   return d;
 }
 
@@ -191,12 +204,20 @@ function buildUrl(nextPage) {
 }
 
 async function fetchPage(nextPage) {
-  const r = await fetch(buildUrl(nextPage));
+  const url = buildUrl(nextPage);
+  const r = await fetch(url);
+
+  // se der erro HTTP, mostra o motivo
+  if (!r.ok) {
+    const txt = await r.text().catch(() => "");
+    throw new Error(`API ${r.status} ${r.statusText} :: ${txt}`);
+  }
+
   return r.json();
 }
 
 /* ===============================
-   FILTER UI
+   FILTER UI (mantém B)
 ================================ */
 function buildSelect(label, key, options, placeholder = "Todos") {
   const wrap = document.createElement("div");
@@ -208,11 +229,11 @@ function buildSelect(label, key, options, placeholder = "Todos") {
 
   const select = document.createElement("select");
   select.className = "filter-select";
-  select.innerHTML = `<option value="">${placeholder}</option>` +
+  select.innerHTML =
+    `<option value="">${placeholder}</option>` +
     options.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join("");
 
   select.value = state[key] || "";
-
   select.onchange = () => {
     state[key] = select.value;
     resetAndLoad();
@@ -278,8 +299,7 @@ function renderSidebar(facets) {
   sidebar.appendChild(buildSelect("Plano do produto", "tier", tiers, "Todos (do seu plano pra baixo)"));
   sidebar.appendChild(buildPriceRange(facets.priceMin, facets.priceMax));
 
-  const clearBtn = sidebar.querySelector("#clear-filters");
-  clearBtn.onclick = () => {
+  sidebar.querySelector("#clear-filters").onclick = () => {
     state.category = "";
     state.brand = "";
     state.tier = "";
@@ -290,7 +310,7 @@ function renderSidebar(facets) {
 }
 
 /* ===============================
-   LOAD
+   LOAD (scroll infinito)
 ================================ */
 function resetAndLoad() {
   page = 1;
@@ -324,7 +344,7 @@ async function loadMore(isReset = false) {
     meta.innerText = `${Math.min(page * limit, total)} de ${total} produto(s)`;
 
     if (page === 1 && !produtos.length) {
-      grid.innerHTML = "<p>Nenhum produto encontrado com esses filtros.</p>";
+      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
       return;
     }
 
@@ -340,7 +360,8 @@ async function loadMore(isReset = false) {
     }
   } catch (e) {
     console.error(e);
-    meta.innerText = "Erro ao carregar.";
+    meta.innerText = "Erro ao buscar produtos (veja o console).";
+    grid.innerHTML = `<p style="opacity:.8">Falha ao carregar: ${esc(e.message)}</p>`;
   } finally {
     loading = false;
   }
