@@ -89,25 +89,25 @@ export const searchController = {
         base = base.filter((p) => freeDailyGate(p?.id || "", 18));
       }
 
-      // 3) se tiver query: filtra por texto
-      let filtered = base;
-      if (q) {
-        filtered = base.filter((p) => {
-          const hay =
-            normalize(p.title) +
-            " " +
-            normalize(p.subtitle) +
-            " " +
-            normalize(p.brand) +
-            " " +
-            normalize(p.category) +
-            " " +
-            normalize(p.description) +
-            " " +
-            normalize((p.tags || []).join(" "));
-          return hay.includes(q);
-        });
-      }
+     
+const tokens = normalize(qRaw).split(/\s+/).filter(Boolean);
+
+if (tokens.length) {
+  filtered = base.filter((p) => {
+    const hay =
+      normalize(p.title) + " " +
+      normalize(p.subtitle) + " " +
+      normalize(p.brand) + " " +
+      normalize(p.category) + " " +
+      normalize(p.description) + " " +
+      normalize((p.tags || []).join(" "));
+
+    // precisa conter TODAS as palavras em qualquer ordem
+    return tokens.every((t) => hay.includes(t));
+  });
+} else {
+  filtered = base;
+}
 
       // 4) ordenação: featured primeiro, depois por menor preço público (pra parecer “ML style”)
       filtered.sort((a, b) => {
