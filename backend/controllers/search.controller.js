@@ -89,7 +89,9 @@ export const searchController = {
         base = base.filter((p) => freeDailyGate(p?.id || "", 18));
       }
 
-     
+  // 3) se tiver query: filtra por texto (tokens)
+let filtered = base;
+
 const tokens = normalize(qRaw).split(/\s+/).filter(Boolean);
 
 if (tokens.length) {
@@ -105,8 +107,6 @@ if (tokens.length) {
     // precisa conter TODAS as palavras em qualquer ordem
     return tokens.every((t) => hay.includes(t));
   });
-} else {
-  filtered = base;
 }
 
       // 4) ordenação: featured primeiro, depois por menor preço público (pra parecer “ML style”)
