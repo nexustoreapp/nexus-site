@@ -144,78 +144,93 @@ function card(p) {
   d.className = "result-card";
 
   const productTier = (p.tier || "free").toLowerCase();
-  const locked = (rank[plan] || 1) < (rank[productTier] || 1);
+  const locked = rank[plan] < rank[productTier];
+
   if (locked) d.classList.add("card-locked");
 
+  /* ===== IMAGEM (ORDEM CORRETA) ===== */
+
+  // 1) imagem por categoria (fallback)
+  const categoryMap = {
+    "headset": "headset.jpg",
+    "mouse": "mouse.jpg",
+    "teclado": "teclado.jpg",
+    "monitor": "monitor.jpg",
+    "notebook": "notebook.jpg",
+    "placa de vídeo": "gpu.jpg",
+    "processador": "cpu.jpg",
+    "memória ram": "ram.jpg",
+    "ssd": "ssd.jpg",
+    "fonte": "psu.jpg",
+    "gabinete": "case.jpg",
+    "controle": "controle.jpg",
+    "microfone": "microfone.jpg",
+    "webcam": "webcam.jpg",
+    "roteador": "roteador.jpg",
+    "vr": "vr.jpg"
+  };
+
+  const catKey = (p.category || "").toLowerCase();
+  const imgFallback = `/images/categories/${categoryMap[catKey] || "default.jpg"}`;
+
+  // 2) imagem específica do produto
+  const imgProduct = `/images/products/${p.id}.jpg`;
+
+  const imgSrc = imgProduct; // tenta produto primeiro
+
   const price =
-    plan === "free" ? (p.pricePublic ?? p.pricePremium) : (p.pricePremium ?? p.pricePublic);
+    plan === "free"
+      ? (p.pricePublic ?? p.pricePremium)
+      : (p.pricePremium ?? p.pricePublic);
 
-  const imgWrap = document.createElement("div");
-  imgWrap.className = "card-image";
-  imgWrap.appendChild(buildImgElement(p));
-
-  const body = document.createElement("div");
-  body.className = "card-body";
-  body.innerHTML = `
-    <div class="card-title">
-      ${esc(p.title)}
-      <span class="badge-tier badge-${productTier}">
-        ${tierLabel(productTier)}
-      </span>
+  d.innerHTML = `
+    <div class="card-image">
+      <img 
+        src="${imgSrc}" 
+        alt="${p.title}"
+        onerror="this.onerror=null;this.src='${imgFallback}'"
+      >
     </div>
-    <div class="card-subtitle">${esc(p.subtitle || "")}</div>
-    <div class="card-price">${money(price)}</div>
-    <div class="card-action">
-      ${
-        locked
-          ? `
-            <div class="lock-overlay">Disponível no plano ${productTier.toUpperCase()}</div>
-            <a href="assinatura.html" class="btn-outline">Desbloquear</a>
-          `
-          : `
-            <a href="produto.html?id=${encodeURIComponent(p.id)}" class="btn-primary">Ver produto</a>
-          `
-      }
+
+    <div class="card-body">
+      <div class="card-title">
+        ${p.title}
+        <span class="badge-tier badge-${productTier}">
+          ${productTier.toUpperCase()}
+        </span>
+      </div>
+
+      <div class="card-subtitle">
+        ${p.subtitle || ""}
+      </div>
+
+      <div class="card-price">
+        ${money(price)}
+      </div>
+
+      <div class="card-action">
+        ${
+          locked
+            ? `
+              <div class="lock-overlay">
+                Disponível no plano ${productTier.toUpperCase()}
+              </div>
+              <a href="assinatura.html" class="btn-outline">
+                Desbloquear
+              </a>
+            `
+            : `
+              <a href="produto.html?id=${p.id}" class="btn-primary">
+                Ver produto
+              </a>
+            `
+        }
+      </div>
     </div>
   `;
 
-  d.appendChild(imgWrap);
-  d.appendChild(body);
   return d;
 }
-
-/* ===============================
-   API
-================================ */
-function buildUrl(nextPage) {
-  const u = new URL(`${API}/api/search`);
-  u.searchParams.set("q", q);
-  u.searchParams.set("plan", plan);
-  u.searchParams.set("page", String(nextPage));
-  u.searchParams.set("limit", String(limit));
-
-  if (state.category) u.searchParams.set("category", state.category);
-  if (state.brand) u.searchParams.set("brand", state.brand);
-  if (state.tier) u.searchParams.set("tier", state.tier);
-  if (state.priceMin) u.searchParams.set("priceMin", state.priceMin);
-  if (state.priceMax) u.searchParams.set("priceMax", state.priceMax);
-
-  return u.toString();
-}
-
-async function fetchPage(nextPage) {
-  const url = buildUrl(nextPage);
-  const r = await fetch(url);
-
-  // se der erro HTTP, mostra o motivo
-  if (!r.ok) {
-    const txt = await r.text().catch(() => "");
-    throw new Error(`API ${r.status} ${r.statusText} :: ${txt}`);
-  }
-
-  return r.json();
-}
-
 /* ===============================
    FILTER UI (mantém B)
 ================================ */
