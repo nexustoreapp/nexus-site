@@ -3,20 +3,43 @@ const API = "https://nexus-site-oufm.onrender.com";
 /* ===============================
    ELEMENTOS BASE
 ================================ */
-let grid = document.getElementById("results-grid");
-let meta = document.getElementById("search-meta");
+let pageRoot = document.getElementById("search-page");
 
+if (!pageRoot) {
+  pageRoot = document.createElement("div");
+  pageRoot.id = "search-page";
+  document.body.appendChild(pageRoot);
+}
+
+let meta = document.getElementById("search-meta");
 if (!meta) {
   meta = document.createElement("div");
   meta.id = "search-meta";
-  document.body.prepend(meta);
 }
 
+const layout = document.createElement("div");
+layout.id = "search-layout";
+
+const sidebar = document.createElement("aside");
+sidebar.id = "search-filters";
+
+const main = document.createElement("main");
+main.id = "search-main";
+
+let grid = document.getElementById("results-grid");
 if (!grid) {
   grid = document.createElement("div");
   grid.id = "results-grid";
-  document.body.appendChild(grid);
 }
+
+main.appendChild(meta);
+main.appendChild(grid);
+
+layout.appendChild(sidebar);
+layout.appendChild(main);
+
+pageRoot.innerHTML = "";
+pageRoot.appendChild(layout);
 
 /* ===============================
    PARAMS
@@ -27,9 +50,6 @@ const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
 
 const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
-/* ===============================
-   MAPA DE CATEGORIA -> ARQUIVO
-================================ */
 const catMap = {
   "Mouse": "mouse",
   "Headset": "headset",
@@ -42,6 +62,35 @@ const catMap = {
 };
 
 /* ===============================
+   STATE
+================================ */
+const state = {
+  category: "",
+  brand: "",
+  tier: "",
+  priceMin: "",
+  priceMax: ""
+};
+
+let page = 1;
+const limit = 24;
+let total = 0;
+let totalPages = 1;
+let loading = false;
+let facetsCache = null;
+
+const loader = document.createElement("div");
+loader.id = "scroll-loader";
+loader.style.textAlign = "center";
+loader.style.opacity = "0.9";
+loader.style.padding = "10px 0";
+loader.innerText = "Carregando...";
+
+const sentinel = document.createElement("div");
+sentinel.id = "scroll-sentinel";
+sentinel.style.height = "40px";
+
+/* ===============================
    UTIL
 ================================ */
 function money(v) {
@@ -49,6 +98,11 @@ function money(v) {
 }
 function tierLabel(tier) {
   return (tier || "free").toUpperCase();
+}
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, m => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+  }[m]));
 }
 
 /* ===============================
@@ -63,8 +117,6 @@ function card(p) {
   if (locked) d.classList.add("card-locked");
 
   const catKey = catMap[p.category] || "mouse";
-
-  // ⚠️ caminhos RELATIVOS (evita bug de host puxar logo)
   const imgMain = `images/products/${p.id}.jpg`;
   const imgFallback = `images/categories/${catKey}.jpg`;
 
@@ -75,7 +127,7 @@ function card(p) {
     <div class="card-image">
       <img
         src="${imgMain}"
-        alt="${p.title}"
+        alt="${esc(p.title)}"
         loading="lazy"
         onerror="this.onerror=null; this.src='${imgFallback}';"
       >
@@ -83,13 +135,13 @@ function card(p) {
 
     <div class="card-body">
       <div class="card-title">
-        ${p.title}
+        ${esc(p.title)}
         <span class="badge-tier badge-${productTier}">
           ${tierLabel(productTier)}
         </span>
       </div>
 
-      <div class="card-subtitle">${p.subtitle || ""}</div>
+      <div class="card-subtitle">${esc(p.subtitle || "")}</div>
 
       <div class="card-price">${money(price)}</div>
 
@@ -103,7 +155,7 @@ function card(p) {
               <a href="assinatura.html" class="btn-outline">Desbloquear</a>
             `
             : `
-              <a href="produto.html?id=${p.id}" class="btn-primary">Ver produto</a>
+              <a href="produto.html?id=${encodeURIComponent(p.id)}" class="btn-primary">Ver produto</a>
             `
         }
       </div>
@@ -113,38 +165,136 @@ function card(p) {
 }
 
 /* ===============================
-   SCROLL INFINITO (PAGINAÇÃO)
+   API
 ================================ */
-let page = 1;
-const limit = 24;
-let total = 0;
-let totalPages = 1;
-let loading = false;
+function buildUrl(nextPage) {
+  const u = new URL(`${API}/api/search`);
+  u.searchParams.set("q", q);
+  u.searchParams.set("plan", plan);
+  u.searchParams.set("page", String(nextPage));
+  u.searchParams.set("limit", String(limit));
 
-const sentinel = document.createElement("div");
-sentinel.id = "scroll-sentinel";
-sentinel.style.height = "40px";
+  if (state.category) u.searchParams.set("category", state.category);
+  if (state.brand) u.searchParams.set("brand", state.brand);
+  if (state.tier) u.searchParams.set("tier", state.tier);
+  if (state.priceMin) u.searchParams.set("priceMin", state.priceMin);
+  if (state.priceMax) u.searchParams.set("priceMax", state.priceMax);
 
-const loader = document.createElement("div");
-loader.id = "scroll-loader";
-loader.style.textAlign = "center";
-loader.style.opacity = "0.9";
-loader.style.padding = "10px 0";
-loader.innerText = "Carregando mais produtos...";
-
-async function fetchPage(nextPage) {
-  const url =
-    `${API}/api/search` +
-    `?q=${encodeURIComponent(q)}` +
-    `&plan=${encodeURIComponent(plan)}` +
-    `&page=${nextPage}&limit=${limit}`;
-
-  const r = await fetch(url);
-  const data = await r.json();
-  return data;
+  return u.toString();
 }
 
-async function loadMore() {
+async function fetchPage(nextPage) {
+  const r = await fetch(buildUrl(nextPage));
+  return r.json();
+}
+
+/* ===============================
+   FILTER UI
+================================ */
+function buildSelect(label, key, options, placeholder = "Todos") {
+  const wrap = document.createElement("div");
+  wrap.className = "filter-block";
+
+  const h = document.createElement("div");
+  h.className = "filter-label";
+  h.innerText = label;
+
+  const select = document.createElement("select");
+  select.className = "filter-select";
+  select.innerHTML = `<option value="">${placeholder}</option>` +
+    options.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join("");
+
+  select.value = state[key] || "";
+
+  select.onchange = () => {
+    state[key] = select.value;
+    resetAndLoad();
+  };
+
+  wrap.appendChild(h);
+  wrap.appendChild(select);
+  return wrap;
+}
+
+function buildPriceRange(minV, maxV) {
+  const wrap = document.createElement("div");
+  wrap.className = "filter-block";
+
+  const h = document.createElement("div");
+  h.className = "filter-label";
+  h.innerText = "Faixa de preço";
+
+  const row = document.createElement("div");
+  row.className = "price-row";
+
+  const iMin = document.createElement("input");
+  iMin.type = "number";
+  iMin.placeholder = `Min (${minV ?? ""})`;
+  iMin.value = state.priceMin || "";
+
+  const iMax = document.createElement("input");
+  iMax.type = "number";
+  iMax.placeholder = `Max (${maxV ?? ""})`;
+  iMax.value = state.priceMax || "";
+
+  const btn = document.createElement("button");
+  btn.className = "btn-outline";
+  btn.innerText = "Aplicar";
+  btn.onclick = () => {
+    state.priceMin = iMin.value ? String(iMin.value) : "";
+    state.priceMax = iMax.value ? String(iMax.value) : "";
+    resetAndLoad();
+  };
+
+  row.appendChild(iMin);
+  row.appendChild(iMax);
+  wrap.appendChild(h);
+  wrap.appendChild(row);
+  wrap.appendChild(btn);
+  return wrap;
+}
+
+function renderSidebar(facets) {
+  sidebar.innerHTML = `
+    <div class="filters-head">
+      <div class="filters-title">Filtrar</div>
+      <button class="btn-outline" id="clear-filters">Limpar</button>
+    </div>
+  `;
+
+  const cats = Object.keys(facets.categories || {}).sort((a,b)=>a.localeCompare(b));
+  const brands = Object.keys(facets.brands || {}).sort((a,b)=>a.localeCompare(b));
+  const tiers = Object.keys(facets.tiers || {}).map(t => t.toLowerCase());
+
+  sidebar.appendChild(buildSelect("Categoria", "category", cats));
+  sidebar.appendChild(buildSelect("Marca", "brand", brands));
+  sidebar.appendChild(buildSelect("Plano do produto", "tier", tiers, "Todos (do seu plano pra baixo)"));
+  sidebar.appendChild(buildPriceRange(facets.priceMin, facets.priceMax));
+
+  const clearBtn = sidebar.querySelector("#clear-filters");
+  clearBtn.onclick = () => {
+    state.category = "";
+    state.brand = "";
+    state.tier = "";
+    state.priceMin = "";
+    state.priceMax = "";
+    resetAndLoad();
+  };
+}
+
+/* ===============================
+   LOAD
+================================ */
+function resetAndLoad() {
+  page = 1;
+  total = 0;
+  totalPages = 1;
+  grid.innerHTML = "";
+  grid.appendChild(sentinel);
+  loadMore(true);
+}
+
+async function loadMore(isReset = false) {
   if (loading) return;
   if (page > totalPages) return;
 
@@ -158,57 +308,47 @@ async function loadMore() {
     total = data.total ?? total;
     totalPages = data.totalPages ?? totalPages;
 
-    // meta
-    meta.innerText = `${Math.min(page * limit, total)} de ${total} produto(s) carregados`;
+    // facets só no primeiro load/reset
+    if (isReset || !facetsCache) {
+      facetsCache = data.facets || facetsCache;
+      if (facetsCache) renderSidebar(facetsCache);
+    }
+
+    meta.innerText = `${Math.min(page * limit, total)} de ${total} produto(s)`;
 
     if (page === 1 && !produtos.length) {
-      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
+      grid.innerHTML = "<p>Nenhum produto encontrado com esses filtros.</p>";
       return;
     }
 
     produtos.forEach(p => grid.appendChild(card(p)));
-
     page += 1;
 
-    // se acabou, remove loader
     if (page > totalPages) {
       loader.remove();
       const end = document.createElement("div");
-      end.style.textAlign = "center";
-      end.style.opacity = "0.7";
-      end.style.padding = "14px 0";
+      end.className = "end-results";
       end.innerText = "Fim dos resultados.";
       grid.appendChild(end);
     }
   } catch (e) {
     console.error(e);
-    meta.innerText = "Erro ao carregar mais produtos.";
+    meta.innerText = "Erro ao carregar.";
   } finally {
     loading = false;
   }
 }
 
-// inicial
-meta.innerText = "Buscando produtos...";
+/* init */
+meta.innerText = "Buscando...";
 grid.innerHTML = "";
 grid.appendChild(sentinel);
-loadMore();
+loadMore(true);
 
-// observa o final pra carregar automaticamente
+/* scroll */
 if ("IntersectionObserver" in window) {
   const io = new IntersectionObserver((entries) => {
-    const first = entries[0];
-    if (first.isIntersecting) loadMore();
-  }, { rootMargin: "600px" });
-
+    if (entries[0].isIntersecting) loadMore(false);
+  }, { rootMargin: "700px" });
   io.observe(sentinel);
-} else {
-  // fallback: botão
-  const btn = document.createElement("button");
-  btn.innerText = "Carregar mais";
-  btn.className = "btn-primary";
-  btn.style.display = "block";
-  btn.style.margin = "14px auto";
-  btn.onclick = loadMore;
-  grid.appendChild(btn);
 }
