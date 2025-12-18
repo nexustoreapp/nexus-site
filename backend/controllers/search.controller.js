@@ -6,12 +6,31 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// procura o catálogo nesses lugares (local + Render)
-const CANDIDATE_PATHS = [
-  path.resolve(process.cwd(), "backend", "data", "catalogo.json"),
-  path.resolve(process.cwd(), "data", "catalogo.json"),
-  path.resolve(__dirname, "..", "data", "catalogo.json"),
+const RANK = { free: 0, core: 1, hyper: 2, omega: 3 };
+
+// tenta achar o catálogo em local + Render
+const POSSIBLE_PATHS = [
+  path.join(process.cwd(), "backend", "data", "catalogo.json"),
+  path.join(process.cwd(), "data", "catalogo.json"),
+  path.join(__dirname, "..", "data", "catalogo.json"),
+  path.join(__dirname, "data", "catalogo.json"),
 ];
+
+function readCatalogOrThrow() {
+  for (const p of POSSIBLE_PATHS) {
+    if (fs.existsSync(p)) {
+      const raw = fs.readFileSync(p, "utf-8");
+      // se tiver BOM invisível, remove
+      const clean = raw.replace(/^\uFEFF/, "");
+      const parsed = JSON.parse(clean);
+      if (!Array.isArray(parsed)) {
+        throw new Error(`catalogo.json não é array em: ${p}`);
+      }
+      return { catalog: parsed, usedPath: p };
+    }
+  }
+  throw new Error("catalogo.json não encontrado (verifique backend/data/catalogo.json)");
+}
 
 function normalize(str) {
   return (str || "")
@@ -22,148 +41,110 @@ function normalize(str) {
     .trim();
 }
 
-function loadCatalogOrThrow() {
-  let lastErr = null;
-
-  for (const p of CANDIDATE_PATHS) {
-    try {
-      if (fs.existsSync(p)) {
-        const raw = fs.readFileSync(p, "utf8");
-        const parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed)) {
-          throw new Error("catalogo.json precisa ser um ARRAY [] de produtos");
-        }
-        console.log("[NEXUS] Catálogo carregado:", p, "items:", parsed.length);
-        return parsed;
-      }
-    } catch (e) {
-      lastErr = e;
-      console.warn("[NEXUS] Falha lendo catálogo em:", p, "-", e?.message || e);
-    }
+// hash simples e determinístico (pra rotação diária sem “random doido”)
+function hash32(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
   }
-
-  throw lastErr || new Error("catalogo.json não encontrado");
+  return h >>> 0;
 }
 
-// cache em memória (não relê o arquivo a cada request)
-let CATALOG = [];
-try {
-  CATALOG = loadCatalogOrThrow();
-} catch (e) {
-  console.error("[NEXUS] Catálogo NÃO carregado:", e?.message || e);
-  CATALOG = [];
-}
-
-const rank = { free: 0, core: 1, hyper: 2, omega: 3 };
-
-// “rotação diária” determinística (free vê uma amostra que muda todo dia)
-function dailySeed() {
+function dayKey() {
   const d = new Date();
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(d.getUTCDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
+  // rotação diária: YYYY-MM-DD
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
 }
 
-function seededShuffle(arr, seedStr) {
-  // xorshift32 baseado num hash simples da seed
-  let seed = 0;
-  for (let i = 0; i < seedStr.length; i++) seed = (seed * 31 + seedStr.charCodeAt(i)) >>> 0;
-
-  function rnd() {
-    seed ^= seed << 13; seed >>>= 0;
-    seed ^= seed >> 17; seed >>>= 0;
-    seed ^= seed << 5;  seed >>>= 0;
-    return (seed >>> 0) / 4294967296;
-  }
-
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function paginate(items, page, limit) {
-  const total = items.length;
-  const totalPages = Math.max(1, Math.ceil(total / limit));
-  const p = Math.min(Math.max(1, page), totalPages);
-  const start = (p - 1) * limit;
-  const end = start + limit;
-  return {
-    page: p,
-    limit,
-    total,
-    totalPages,
-    slice: items.slice(start, end),
-  };
+// regra: FREE vê só uma % do catálogo por dia (rotaciona), mas ainda pode conter itens core/hyper/omega (vai aparecer “bloqueado” no front)
+function freeDailyGate(itemId, pct = 18) {
+  const seed = dayKey(); // muda 1x por dia
+  const h = hash32(`${seed}::${itemId}`);
+  return (h % 100) < pct; // ~18% do catálogo por dia
 }
 
 export const searchController = {
-  // GET /api/search?q=&plan=&page=&limit=
-  search(req, res) {
+  catalog(req, res) {
     try {
       const qRaw = (req.query.q || "").toString();
-      const plan = (req.query.plan || "free").toString().toLowerCase();
-      const page = Number(req.query.page || 1);
-      const limit = Math.min(Math.max(Number(req.query.limit || 24), 1), 60);
-
-      const userRank = rank[plan] ?? 0;
       const q = normalize(qRaw);
 
-      // 1) filtra por plano (o item tem tier)
-      let base = CATALOG.filter((p) => {
-        const t = (p.tier || "free").toString().toLowerCase();
-        const itemRank = rank[t] ?? 0;
-        return userRank >= itemRank;
-      });
+      const plan = normalize(req.query.plan || "free");
+      const userRank = RANK[plan] ?? 0;
 
-      // 2) filtra por texto (se tiver query)
+      const page = Math.max(parseInt(req.query.page || "1", 10), 1);
+      const limit = Math.min(Math.max(parseInt(req.query.limit || "24", 10), 1), 60);
+
+      const { catalog, usedPath } = readCatalogOrThrow();
+
+      // 1) base = catálogo inteiro
+      let base = catalog;
+
+      // 2) se for FREE: aplica rotação diária (não deixa “ver tudo”)
+      if (userRank === 0) {
+        base = base.filter((p) => freeDailyGate(p?.id || "", 18));
+      }
+
+      // 3) se tiver query: filtra por texto
+      let filtered = base;
       if (q) {
-        base = base.filter((p) => {
+        filtered = base.filter((p) => {
           const hay =
-            normalize(p.title) + " " +
-            normalize(p.subtitle) + " " +
-            normalize(p.brand) + " " +
-            normalize(p.category) + " " +
-            normalize(p.description) + " " +
+            normalize(p.title) +
+            " " +
+            normalize(p.subtitle) +
+            " " +
+            normalize(p.brand) +
+            " " +
+            normalize(p.category) +
+            " " +
+            normalize(p.description) +
+            " " +
             normalize((p.tags || []).join(" "));
           return hay.includes(q);
         });
       }
 
-      // 3) ordena: featured primeiro, depois mais barato (public)
-      base.sort((a, b) => {
+      // 4) ordenação: featured primeiro, depois por menor preço público (pra parecer “ML style”)
+      filtered.sort((a, b) => {
         const fa = a.featured ? 1 : 0;
         const fb = b.featured ? 1 : 0;
         if (fb !== fa) return fb - fa;
-        return Number(a.pricePublic || 0) - Number(b.pricePublic || 0);
+
+        const pa = Number(a.pricePublic ?? a.pricePremium ?? 0);
+        const pb = Number(b.pricePublic ?? b.pricePremium ?? 0);
+        return pa - pb;
       });
 
-      // 4) regra do FREE: não pode ver tudo — vê amostra rotativa diária
-      if (plan === "free") {
-        const seed = dailySeed();
-        const shuffled = seededShuffle(base, seed);
-        const SAMPLE_SIZE = 60; // ajuste aqui (free vê 60/dia)
-        base = shuffled.slice(0, SAMPLE_SIZE);
-      }
+      const total = filtered.length;
+      const totalPages = Math.max(Math.ceil(total / limit), 1);
 
-      const pg = paginate(base, page, limit);
+      const start = (page - 1) * limit;
+      const produtos = filtered.slice(start, start + limit);
 
       return res.json({
         ok: true,
         query: qRaw,
         plan,
-        page: pg.page,
-        limit: pg.limit,
-        total: pg.total,
-        totalPages: pg.totalPages,
-        produtos: pg.slice,
+        page,
+        limit,
+        total,
+        totalPages,
+        produtos,
+        // debug leve (não atrapalha): ajuda se der ruim no Render
+        _catalogPath: usedPath,
+        _freeRotation: userRank === 0 ? dayKey() : null,
       });
     } catch (err) {
       console.error("[SEARCH] ERRO:", err?.message || err);
-      return res.status(500).json({ ok: false, error: "SEARCH_FAILED" });
+      return res.status(500).json({
+        ok: false,
+        error: "SEARCH_FAILED",
+      });
     }
   },
 };

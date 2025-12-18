@@ -4,7 +4,7 @@ import { searchController } from "../controllers/search.controller.js";
 
 const router = Router();
 
-// GET /api/search?q=...
-router.get("/", searchController.search);
+router.get("/", searchController.catalog);
+router.post("/", searchController.catalog);
 
 export default router;
