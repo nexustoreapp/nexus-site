@@ -1,13 +1,9 @@
-// backend/routes/search.routes.js
 import { Router } from "express";
 import { searchController } from "../controllers/search.controller.js";
 
 const router = Router();
 
-// GET /api/search?q=...
-router.get("/", searchController.catalog);
-
-// Se quiser permitir POST também (ex: busca enviada em JSON)
-router.post("/", searchController.catalog);
+// AQUI TEM QUE SER "/" (e não "/search")
+router.get("/", searchController);
 
 export default router;

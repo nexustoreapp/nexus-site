@@ -649,4 +649,98 @@ textarea {
   margin-top: 12px;
   width: 100%;
 }
+/* =========================
+   BUSCA — LAYOUT MARKETPLACE
+========================= */
 
+#search-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#search-filters {
+  position: sticky;
+  top: 14px;
+  align-self: start;
+  border: 1px solid rgba(120,120,255,0.25);
+  border-radius: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg, #0b0f1c, #070b16);
+}
+
+.filters-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filters-title {
+  font-weight: 800;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.filter-block {
+  margin-top: 12px;
+}
+
+.filter-label {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(120,120,255,0.25);
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  outline: none;
+}
+
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.price-row input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(120,120,255,0.25);
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  outline: none;
+}
+
+#results-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 16px;
+}
+
+.end-results {
+  text-align: center;
+  opacity: 0.7;
+  padding: 14px 0;
+}
+
+/* mobile: filtros viram topo */
+@media (max-width: 900px) {
+  #search-layout {
+    grid-template-columns: 1fr;
+  }
+  #search-filters {
+    position: relative;
+    top: auto;
+  }
+}
