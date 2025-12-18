@@ -29,7 +29,6 @@ const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
 /* ===============================
    MAPA DE CATEGORIA -> ARQUIVO
-   (precisa existir em /images/categories/)
 ================================ */
 const catMap = {
   "Mouse": "mouse",
@@ -46,12 +45,8 @@ const catMap = {
    UTIL
 ================================ */
 function money(v) {
-  return Number(v).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
+  return Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
-
 function tierLabel(tier) {
   return (tier || "free").toUpperCase();
 }
@@ -64,19 +59,17 @@ function card(p) {
   d.className = "result-card";
 
   const productTier = (p.tier || "free").toLowerCase();
-  const locked = rank[plan] < rank[productTier];
-
+  const locked = (rank[plan] || 1) < (rank[productTier] || 1);
   if (locked) d.classList.add("card-locked");
 
-  // imagem principal por ID + fallback por categoria
   const catKey = catMap[p.category] || "mouse";
-  const imgMain = `/images/products/${p.id}.jpg`;
-  const imgFallback = `/images/categories/${catKey}.jpg`;
+
+  // ⚠️ caminhos RELATIVOS (evita bug de host puxar logo)
+  const imgMain = `images/products/${p.id}.jpg`;
+  const imgFallback = `images/categories/${catKey}.jpg`;
 
   const price =
-    plan === "free"
-      ? (p.pricePublic ?? p.pricePremium)
-      : (p.pricePremium ?? p.pricePublic);
+    plan === "free" ? (p.pricePublic ?? p.pricePremium) : (p.pricePremium ?? p.pricePublic);
 
   d.innerHTML = `
     <div class="card-image">
@@ -96,13 +89,9 @@ function card(p) {
         </span>
       </div>
 
-      <div class="card-subtitle">
-        ${p.subtitle || ""}
-      </div>
+      <div class="card-subtitle">${p.subtitle || ""}</div>
 
-      <div class="card-price">
-        ${money(price)}
-      </div>
+      <div class="card-price">${money(price)}</div>
 
       <div class="card-action">
         ${
@@ -111,53 +100,115 @@ function card(p) {
               <div class="lock-overlay">
                 Disponível no plano ${productTier.toUpperCase()}
               </div>
-              <a href="assinatura.html" class="btn-outline">
-                Desbloquear
-              </a>
+              <a href="assinatura.html" class="btn-outline">Desbloquear</a>
             `
             : `
-              <a href="produto.html?id=${p.id}" class="btn-primary">
-                Ver produto
-              </a>
+              <a href="produto.html?id=${p.id}" class="btn-primary">Ver produto</a>
             `
         }
       </div>
     </div>
   `;
-
   return d;
 }
 
 /* ===============================
-   BUSCA
+   SCROLL INFINITO (PAGINAÇÃO)
 ================================ */
-(async () => {
-  meta.innerText = "Buscando produtos...";
-  grid.innerHTML = "";
+let page = 1;
+const limit = 24;
+let total = 0;
+let totalPages = 1;
+let loading = false;
+
+const sentinel = document.createElement("div");
+sentinel.id = "scroll-sentinel";
+sentinel.style.height = "40px";
+
+const loader = document.createElement("div");
+loader.id = "scroll-loader";
+loader.style.textAlign = "center";
+loader.style.opacity = "0.9";
+loader.style.padding = "10px 0";
+loader.innerText = "Carregando mais produtos...";
+
+async function fetchPage(nextPage) {
+  const url =
+    `${API}/api/search` +
+    `?q=${encodeURIComponent(q)}` +
+    `&plan=${encodeURIComponent(plan)}` +
+    `&page=${nextPage}&limit=${limit}`;
+
+  const r = await fetch(url);
+  const data = await r.json();
+  return data;
+}
+
+async function loadMore() {
+  if (loading) return;
+  if (page > totalPages) return;
+
+  loading = true;
+  grid.appendChild(loader);
 
   try {
-    const url =
-      `${API}/api/search` +
-      `?q=${encodeURIComponent(q)}` +
-      `&plan=${encodeURIComponent(plan)}` +
-      `&page=1&limit=24`;
-
-    const r = await fetch(url);
-    const data = await r.json();
+    const data = await fetchPage(page);
 
     const produtos = data.produtos || [];
+    total = data.total ?? total;
+    totalPages = data.totalPages ?? totalPages;
 
-    meta.innerText = `${produtos.length} produto(s) encontrados`;
+    // meta
+    meta.innerText = `${Math.min(page * limit, total)} de ${total} produto(s) carregados`;
 
-    if (!produtos.length) {
+    if (page === 1 && !produtos.length) {
       grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
       return;
     }
 
     produtos.forEach(p => grid.appendChild(card(p)));
 
+    page += 1;
+
+    // se acabou, remove loader
+    if (page > totalPages) {
+      loader.remove();
+      const end = document.createElement("div");
+      end.style.textAlign = "center";
+      end.style.opacity = "0.7";
+      end.style.padding = "14px 0";
+      end.innerText = "Fim dos resultados.";
+      grid.appendChild(end);
+    }
   } catch (e) {
     console.error(e);
-    meta.innerText = "Erro ao conectar ao servidor.";
+    meta.innerText = "Erro ao carregar mais produtos.";
+  } finally {
+    loading = false;
   }
-})();
+}
+
+// inicial
+meta.innerText = "Buscando produtos...";
+grid.innerHTML = "";
+grid.appendChild(sentinel);
+loadMore();
+
+// observa o final pra carregar automaticamente
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => {
+    const first = entries[0];
+    if (first.isIntersecting) loadMore();
+  }, { rootMargin: "600px" });
+
+  io.observe(sentinel);
+} else {
+  // fallback: botão
+  const btn = document.createElement("button");
+  btn.innerText = "Carregar mais";
+  btn.className = "btn-primary";
+  btn.style.display = "block";
+  btn.style.margin = "14px auto";
+  btn.onclick = loadMore;
+  grid.appendChild(btn);
+}

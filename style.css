@@ -490,3 +490,163 @@ textarea {
   color: #ff7675;
   margin-bottom: 6px;
 }
+/* =========================
+   BUSCA — LARGURA + GRID
+========================= */
+
+/* deixa a página usar mais a largura (sem estourar) */
+.container, .wrapper, main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* grid de resultados (Mercado Livre style) */
+#results-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* cartão ocupando melhor o espaço */
+.result-card {
+  width: 100%;
+}
+/* =========================
+   HOME — SEARCH BAR MAIOR
+========================= */
+
+.search-row, .search-wrap, .hero-search {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.search-row input, .search-wrap input, .hero-search input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.search-row button, .search-wrap button, .hero-search button {
+  white-space: nowrap;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+/* Remove a “linha de tags” (Notebooks / Monitores / Teclados / Headsets) */
+.quick-tags, .chips, .category-chips, .home-tags {
+  display: none !important;
+}
+/* =========================
+   ASSINATURA — MELHOR CTA
+========================= */
+
+.plans-grid, .pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.plan-card, .pricing-card {
+  padding: 22px;
+  border-radius: 18px;
+}
+
+/* bullets colados na parede -> arruma */
+.plan-card ul, .pricing-card ul {
+  padding-left: 22px;
+  margin-top: 10px;
+}
+
+.plan-card li, .pricing-card li {
+  margin: 10px 0;
+}
+
+/* botões com mais “força” */
+.btn-primary {
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 700;
+}
+
+.btn-outline {
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 700;
+}
+
+/* =========================
+   MINHA ÁREA — MENOS AGLOMERADO
+========================= */
+
+.dashboard, .my-area, .area-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.dashboard-grid, .area-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.card, .panel, .box {
+  padding: 18px;
+  border-radius: 16px;
+}
+
+.card h3, .panel h3, .box h3 {
+  margin-bottom: 10px;
+}
+/* =========================
+   MINHA ÁREA — LIMPA
+========================= */
+
+/* esconde carrinho premium */
+.cart-premium,
+.premium-cart,
+.cart-plan-premium {
+  display: none !important;
+}
+
+/* deixa só o carrinho principal */
+.cart, .cart-main {
+  grid-column: 1 / -1;
+}
+
+/* botão de plano menos chamativo */
+.btn-premium, .upgrade-btn {
+  opacity: 0.85;
+}
+/* =========================
+   ASSINATURAS — MAIS PODER
+========================= */
+
+.plan-card {
+  background: linear-gradient(180deg, #0b0f1c, #070b16);
+  border: 1px solid rgba(120,120,255,0.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(120,120,255,0.15);
+}
+
+/* plano atual */
+.plan-current {
+  border: 2px solid #7c7cff;
+  box-shadow: 0 0 0 1px rgba(124,124,255,0.4);
+}
+
+/* botão principal */
+.plan-card .btn-primary {
+  margin-top: 12px;
+  width: 100%;
+}
+
