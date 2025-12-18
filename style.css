@@ -404,3 +404,31 @@ textarea {
     height: 100%;
   }
 }
+/* ===== BADGES DE PLANO ===== */
+.badge-tier {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.badge-free { background: #2ecc71; }
+.badge-core { background: #3498db; }
+.badge-hyper { background: #9b59b6; }
+.badge-omega { background: #f1c40f; color: #000; }
+
+/* ===== BLOQUEIO VISUAL ===== */
+.card-locked {
+  opacity: 0.6;
+  filter: grayscale(0.7);
+}
+
+.lock-overlay {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ff7675;
+}

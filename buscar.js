@@ -23,24 +23,36 @@ const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
 /* ===== RENDER ===== */
 function card(p) {
   const d = document.createElement("div");
-  d.style.border = "1px solid #444";
-  d.style.padding = "12px";
-  d.style.margin = "10px 0";
-  d.style.borderRadius = "8px";
+  d.className = "result-card";
+
+  const tier = (p.tier || "free").toLowerCase();
+  const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
+
+  const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
+  const locked = rank[plan] < rank[tier];
+
+  if (locked) d.classList.add("card-locked");
 
   const price =
     plan === "free"
       ? (p.pricePublic ?? p.pricePremium)
       : (p.pricePremium ?? p.pricePublic);
 
+  const badge = `<span class="badge-tier badge-${tier}">${tier.toUpperCase()}</span>`;
+
   d.innerHTML = `
-    <strong>${p.title}</strong><br>
+    <strong>${p.title}</strong> ${badge}<br>
     <small>${p.subtitle || ""}</small><br>
     <b>R$ ${price}</b>
+    ${
+      locked
+        ? `<div class="lock-overlay">Disponível no plano ${tier.toUpperCase()}</div>
+           <a href="assinatura.html">Desbloquear</a>`
+        : `<a href="produto.html?id=${p.id}">Ver produto</a>`
+    }
   `;
   return d;
 }
-
 /* ===== BUSCA ===== */
 (async () => {
   meta.innerText = "Buscando produtos...";
