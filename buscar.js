@@ -28,6 +28,21 @@ const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
 const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
 /* ===============================
+   MAPA DE CATEGORIA -> ARQUIVO
+   (precisa existir em /images/categories/)
+================================ */
+const catMap = {
+  "Mouse": "mouse",
+  "Headset": "headset",
+  "Teclado": "teclado",
+  "Placa de Vídeo": "gpu",
+  "Monitor": "monitor",
+  "Notebook": "notebook",
+  "SSD": "ssd",
+  "Memória RAM": "ram",
+};
+
+/* ===============================
    UTIL
 ================================ */
 function money(v) {
@@ -38,7 +53,7 @@ function money(v) {
 }
 
 function tierLabel(tier) {
-  return tier.toUpperCase();
+  return (tier || "free").toUpperCase();
 }
 
 /* ===============================
@@ -53,7 +68,10 @@ function card(p) {
 
   if (locked) d.classList.add("card-locked");
 
-  const imgSrc = `/images/products/${p.id}.jpg`;
+  // imagem principal por ID + fallback por categoria
+  const catKey = catMap[p.category] || "mouse";
+  const imgMain = `/images/products/${p.id}.jpg`;
+  const imgFallback = `/images/categories/${catKey}.jpg`;
 
   const price =
     plan === "free"
@@ -62,7 +80,12 @@ function card(p) {
 
   d.innerHTML = `
     <div class="card-image">
-      <img src="${imgSrc}" alt="${p.title}">
+      <img
+        src="${imgMain}"
+        alt="${p.title}"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='${imgFallback}';"
+      >
     </div>
 
     <div class="card-body">
