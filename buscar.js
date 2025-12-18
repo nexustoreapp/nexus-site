@@ -115,7 +115,7 @@ function buildImgElement(p) {
 
   const imgLocal = `images/products/${p.id}.jpg`;
   const seed = encodeURIComponent(p.id);
-  const imgAuto = `https://picsum.photos/seed/${seed}/600/600`;
+  const imgAuto = imgFallback; // sem aleatório
   const imgFallback = `images/categories/${catKey}.jpg`;
 
   const img = document.createElement("img");
