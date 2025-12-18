@@ -27,6 +27,16 @@ const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
 
 const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
+window.__nexusPH = (cat = "") => {
+  const c = String(cat).toLowerCase();
+  if (c.includes("headset")) return "/images/placeholders/headset.jpg";
+  if (c.includes("teclad"))  return "/images/placeholders/teclado.jpg";
+  if (c.includes("mouse"))   return "/images/placeholders/mouse.jpg";
+  if (c.includes("monitor")) return "/images/placeholders/monitor.jpg";
+  if (c.includes("notebook")) return "/images/placeholders/notebook.jpg";
+  return "/images/placeholders/generic.jpg";
+};
+
 /* ===============================
    UTIL
 ================================ */
@@ -76,7 +86,11 @@ function card(p) {
 
   d.innerHTML = `
     <div class="card-image">
-      <img src="${imgProduct}" alt="${p.title}"
+     <img 
+  src="${imgSrc}" 
+  alt="${p.title}" 
+  onerror="this.onerror=null; this.src=(window.__nexusPH && window.__nexusPH('${p.category}')) || '/images/placeholders/generic.jpg';"
+/>
         onerror="this.onerror=null;this.src='${imgFallback}'">
     </div>
 
