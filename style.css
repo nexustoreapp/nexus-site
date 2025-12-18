@@ -1058,3 +1058,64 @@ main {
     padding-right: 26px;
   }
 }
+/* =========================================
+   NEXUS — PASSO A2 (capricho fino)
+========================================= */
+
+/* Dá mais largura real pro conteúdo */
+main, .search-container, .page-search {
+  max-width: 1380px;
+}
+
+/* Grid: cards maiores e mais “cheios” */
+#results-grid {
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* Card: mais alto e com padding melhor */
+.result-card {
+  min-height: 230px;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* Imagem maior (fica cara de marketplace) */
+.result-card .card-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+}
+
+/* Título + badge alinhados e com mais presença */
+.result-card .card-title {
+  font-size: 1.02rem;
+}
+
+/* Subtítulo mais legível */
+.result-card .card-subtitle {
+  font-size: 0.95rem;
+  min-height: 38px;
+}
+
+/* Preço com mais destaque */
+.result-card .card-price {
+  font-size: 1.08rem;
+}
+
+/* Botões mais “premium” */
+.result-card .btn-primary,
+.result-card .btn-outline {
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+/* Responsivo mais esperto */
+@media (max-width: 1100px) {
+  #results-grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+}
+@media (max-width: 680px) {
+  #results-grid { grid-template-columns: 1fr; }
+  .result-card { min-height: 210px; }
+}
