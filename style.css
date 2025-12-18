@@ -501,19 +501,6 @@ textarea {
   padding-left: 16px;
   padding-right: 16px;
 }
-
-/* grid de resultados (Mercado Livre style) */
-#results-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  align-items: stretch;
-}
-
-/* cartão ocupando melhor o espaço */
-.result-card {
-  width: 100%;
-}
 /* =========================
    HOME — SEARCH BAR MAIOR
 ========================= */
@@ -878,189 +865,6 @@ textarea {
   #results-grid{ grid-template-columns: 1fr; }
   .result-card{ grid-template-columns: 110px 1fr; }
 }
-/* ===== FORCE SEARCH WIDTH (FIX FIAPO) ===== */
-body {
-  overflow-x: hidden;
-}
-
-#search-meta,
-#results-grid {
-  width: min(1280px, 94vw) !important;
-  max-width: 1280px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-#results-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
-  gap: 16px !important;
-  align-items: stretch !important;
-}
-
-/* se existir algum container travando largura, destrava */
-.container,
-main,
-section,
-.wrapper,
-.page,
-.content {
-  max-width: none !important;
-}
-
-.result-card {
-  width: 100% !important;
-}
-
-@media (max-width: 1100px) {
-  #results-grid {
-    grid-template-columns: repeat(2, minmax(240px, 1fr)) !important;
-  }
-}
-@media (max-width: 760px) {
-  #results-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-/* =========================================
-   NEXUS — Search results (PASSO A)
-   Só layout/estética. Seguro.
-========================================= */
-
-/* Container geral da página de busca (se existir) */
-.search-container,
-.page-search,
-main {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 28px 18px;
-}
-
-/* Meta / título */
-#search-meta {
-  margin: 8px 0 18px;
-  opacity: 0.9;
-}
-
-/* Grid */
-#results-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(260px, 1fr));
-  gap: 22px;
-  align-items: stretch;
-}
-
-/* Responsivo */
-@media (max-width: 1100px) {
-  #results-grid {
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
-  }
-}
-@media (max-width: 680px) {
-  #results-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Card */
-.result-card {
-  border-radius: 16px;
-  overflow: hidden;
-  min-height: 190px;
-  display: flex;
-  gap: 14px;
-  padding: 14px;
-}
-
-/* Imagem do card */
-.result-card .card-image {
-  width: 92px;
-  height: 92px;
-  border-radius: 14px;
-  overflow: hidden;
-  flex: 0 0 auto;
-  background: rgba(255,255,255,0.04);
-}
-.result-card .card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Corpo */
-.result-card .card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
-}
-
-.result-card .card-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.result-card .card-subtitle {
-  opacity: 0.85;
-  font-size: 0.92rem;
-  line-height: 1.25;
-  min-height: 34px;
-}
-
-.result-card .card-price {
-  font-weight: 800;
-  letter-spacing: 0.2px;
-  margin-top: 2px;
-}
-
-/* Ação (botão) sempre embaixo */
-.result-card .card-action {
-  margin-top: auto;
-}
-
-/* Botões ocupando largura legal */
-.result-card .btn-primary,
-.result-card .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-}
-
-/* Estado locked mais “limpo” */
-.result-card.card-locked {
-  opacity: 0.78;
-}
-.result-card.card-locked .btn-outline {
-  opacity: 1;
-}
-
-/* Badge tier (se já existir, isso só dá “acabamento”) */
-.badge-tier {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-}
-
-/* Se seu layout estiver “muito estreito”, esse ajuste ajuda */
-@media (min-width: 1200px) {
-  .search-container,
-  .page-search,
-  main {
-    padding-left: 26px;
-    padding-right: 26px;
-  }
-}
 /* =========================================
    NEXUS — PASSO A2 (capricho fino)
 ========================================= */
@@ -1257,4 +1061,74 @@ main, .search-container, .page-search {
   max-width: 1280px;
   margin: 40px auto 80px;
   padding: 0 24px;
+}
+/* =========================================
+   SEARCH — LAYOUT FINAL (OFICIAL)
+========================================= */
+
+#search-page{
+  width: min(1380px, 96vw);
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+#search-layout{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+}
+
+#search-filters{
+  position: sticky;
+  top: 90px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+#results-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* CARD */
+.result-card{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.result-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+}
+
+/* IMAGEM */
+.card-image{
+  width: 110px;
+  height: 110px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.card-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1100px){
+  #results-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px){
+  #search-layout{ grid-template-columns: 1fr; }
+  #results-grid{ grid-template-columns: 1fr; }
 }
