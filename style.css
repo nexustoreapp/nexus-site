@@ -1132,3 +1132,226 @@ main, .search-container, .page-search {
   #search-layout{ grid-template-columns: 1fr; }
   #results-grid{ grid-template-columns: 1fr; }
 }
+/* =========================================================
+   PATCH LAYOUT (HOME + BUSCA + BADGES + PAGES)
+   Cole no FINAL do style.css
+   ========================================================= */
+
+/* HOME: busca mais “larga” e estilo marketplace */
+.hero-search{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  width:100%;
+  max-width: 980px;
+  margin-top: 14px;
+}
+
+.hero-search .input-search{
+  flex:1;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 1rem;
+}
+
+.hero-search .btn-primary{
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  white-space: nowrap;
+}
+
+/* Chips (Notebooks/Monitores/Teclados/Headsets) mais elegantes e menos “grudados” */
+.chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.chip{
+  border: 1px solid var(--stroke);
+  background: rgba(15,23,42,.55);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: .9rem;
+}
+
+/* BUSCA: grid real estilo marketplace */
+#results-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  margin-top: 14px;
+}
+
+.result-card{
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(15,23,42,.55);
+  display:flex;
+  flex-direction: column;
+  min-height: 330px;
+}
+
+.card-image{
+  width:100%;
+  aspect-ratio: 16/10;
+  background: rgba(2,6,23,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.card-image img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.card-body{
+  padding: 12px 12px 14px;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  flex:1;
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 650;
+}
+
+.card-subtitle{
+  opacity: .85;
+  font-size: .92rem;
+  line-height: 1.25rem;
+  min-height: 2.5rem;
+}
+
+.card-price{
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.card-action{
+  margin-top:auto;
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  justify-content: space-between;
+}
+
+/* Badge Tier (divisor de águas) */
+.badge-tier{
+  font-size: .72rem;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.badge-free{ background: rgba(148,163,184,.16); }
+.badge-core{ background: rgba(59,130,246,.18); }
+.badge-hyper{ background: rgba(168,85,247,.18); }
+.badge-omega{ background: rgba(245,158,11,.18); }
+
+.card-locked{
+  position: relative;
+  filter: saturate(.85);
+}
+
+.lock-overlay{
+  font-size: .85rem;
+  opacity: .9;
+  margin-bottom: 8px;
+}
+
+/* ASSINATURA + DASHBOARD: mais espaçamento e CTA mais “convincente” */
+.plans-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.plan-card{
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  background: rgba(15,23,42,.55);
+  padding: 16px;
+}
+
+.plan-price{
+  font-size: 1.15rem;
+  font-weight: 750;
+  margin: 6px 0 10px;
+}
+
+.plan-list{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 14px;
+  padding-left: 18px;
+}
+
+.btn-outline.full, .btn-primary.full{
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 640px){
+  .hero-search{ flex-direction: column; align-items: stretch; }
+  .hero-search .btn-primary{ width:100%; }
+}
+/* =========================
+   PATCH: LARGURA / GRID
+   ========================= */
+
+/* deixa o site menos "apertado" em desktop */
+.container, .wrapper, main {
+  max-width: 1400px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+/* Home: input e botão lado a lado no desktop */
+@media (min-width: 900px) {
+  .hero-search {
+    flex-direction: row;
+    align-items: center;
+  }
+  .hero-search .input-search {
+    flex: 1;
+    height: 52px;
+    font-size: 1rem;
+  }
+  .hero-search .btn-primary {
+    width: 260px;
+    height: 52px;
+    white-space: nowrap;
+  }
+}
+
+/* cards: um pouco maiores */
+#results-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+}
