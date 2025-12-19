@@ -1428,3 +1428,39 @@ main, .search-container, .page-search {
     width: 100%;
   }
 }
+/* ==============================
+   ASSINATURAS - MAIS CONVINCENTE
+============================== */
+.plans-grid {
+  width: min(1100px, calc(100% - 48px));
+  margin: 30px auto;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 780px) {
+  .plans-grid { grid-template-columns: 1fr; width: calc(100% - 24px); }
+}
+
+.plan-card {
+  border-radius: 22px;
+  padding: 22px;
+}
+
+.plan-card ul {
+  margin: 14px 0 18px 0;
+  padding-left: 18px;
+  line-height: 1.55;
+}
+
+.plan-card li {
+  margin: 8px 0;
+}
+
+.plan-card .btn-primary,
+.plan-card .btn-outline {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+}

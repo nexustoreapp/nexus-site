@@ -11,6 +11,7 @@ if (!meta) {
   meta.id = "search-meta";
   document.body.prepend(meta);
 }
+
 if (!grid) {
   grid = document.createElement("div");
   grid.id = "results-grid";
@@ -30,32 +31,29 @@ const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
    UTIL
 ================================ */
 function money(v) {
-  return Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  return Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-function tierLabel(tier) {
-  return String(tier || "free").toUpperCase();
+function norm(s = "") {
+  return String(s)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
-/* ===============================
-   IMAGENS (FALLBACK)
-================================ */
-// mapeia categoria -> imagem em /images/categories
-function categoryImage(category = "") {
-  const c = String(category).toLowerCase();
+function categoryFallback(category = "") {
+  const c = norm(category);
 
-  // cuidado com acento: "Placa de Vídeo"
-  if (c.includes("placa") || c.includes("vídeo") || c.includes("video") || c.includes("gpu")) return "/images/categories/gpu.jpg";
   if (c.includes("headset")) return "/images/categories/headset.jpg";
-  if (c.includes("teclad")) return "/images/categories/teclado.jpg";
-  if (c.includes("mouse")) return "/images/categories/mouse.jpg";
+  if (c.includes("teclad"))  return "/images/categories/teclado.jpg";
+  if (c.includes("mouse"))   return "/images/categories/mouse.jpg";
   if (c.includes("monitor")) return "/images/categories/monitor.jpg";
-  if (c.includes("notebook")) return "/images/categories/notebook.jpg";
-  if (c.includes("mem") || c.includes("ram")) return "/images/categories/ram.jpg";
+  if (c.includes("notebook"))return "/images/categories/notebook.jpg";
+  if (c.includes("placa") || c.includes("gpu") || c.includes("video")) return "/images/categories/gpu.jpg";
+  if (c.includes("ram") || c.includes("memoria")) return "/images/categories/ram.jpg";
   if (c.includes("ssd")) return "/images/categories/ssd.jpg";
 
-  // genérico
-  return "/images/categories/monitor.jpg";
+  return "/images/categories/default.jpg";
 }
 
 /* ===============================
@@ -69,8 +67,8 @@ function card(p) {
   const locked = (rank[plan] || 1) < (rank[productTier] || 1);
   if (locked) d.classList.add("card-locked");
 
-  const imgPrimary = `/images/products/${p.id}.jpg`;
-  const imgFallback = categoryImage(p.category);
+  // AQUI: como você não tem hs-001.jpg etc, a imagem é SEMPRE por categoria
+  const imgSrc = categoryFallback(p.category);
 
   const price =
     plan === "free"
@@ -79,41 +77,30 @@ function card(p) {
 
   d.innerHTML = `
     <div class="card-image">
-      <img
-        src="${imgPrimary}"
-        alt="${p.title}"
-        loading="lazy"
-        onerror="this.onerror=null; this.src='${imgFallback}'"
-      />
+      <img src="${imgSrc}" alt="${p.title}">
     </div>
 
     <div class="card-body">
       <div class="card-title">
         ${p.title}
         <span class="badge-tier badge-${productTier}">
-          ${tierLabel(productTier)}
+          ${productTier.toUpperCase()}
         </span>
       </div>
 
-      <div class="card-subtitle">
-        ${p.subtitle || ""}
-      </div>
+      <div class="card-subtitle">${p.subtitle || ""}</div>
 
-      <div class="card-price">
-        ${money(price)}
-      </div>
+      <div class="card-price">${money(price)}</div>
 
       <div class="card-action">
         ${
           locked
             ? `
-              <div class="lock-overlay">
-                Disponível no plano ${tierLabel(productTier)}
-              </div>
+              <div class="lock-overlay">Disponível no plano ${productTier.toUpperCase()}</div>
               <a href="assinatura.html" class="btn-outline">Desbloquear</a>
             `
             : `
-              <a href="produto.html?id=${p.id}" class="btn-primary">Ver produto</a>
+              <a href="produto.html?id=${encodeURIComponent(p.id)}" class="btn-primary">Ver produto</a>
             `
         }
       </div>
@@ -124,39 +111,40 @@ function card(p) {
 }
 
 /* ===============================
-   BUSCA + PAGINAÇÃO (base)
+   LOAD SEARCH
 ================================ */
-(async () => {
+async function loadSearch() {
   meta.innerText = "Buscando produtos...";
   grid.innerHTML = "";
 
-  try {
-    const url =
-      `${API}/api/search` +
-      `?q=${encodeURIComponent(q)}` +
-      `&plan=${encodeURIComponent(plan)}` +
-      `&page=1&limit=24`;
+  const url =
+    `${API}/api/search` +
+    `?q=${encodeURIComponent(q)}` +
+    `&plan=${encodeURIComponent(plan)}` +
+    `&page=1&limit=24`;
 
-    const r = await fetch(url);
-    const data = await r.json();
+  const r = await fetch(url);
 
-    if (!r.ok || data?.ok === false) {
-      throw new Error(`API ${r.status} :: ${JSON.stringify(data)}`);
-    }
-
-    const produtos = data.produtos || [];
-    meta.innerText = `${data.total ?? produtos.length} produto(s) encontrados`;
-
-    if (!produtos.length) {
-      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
-      return;
-    }
-
-    produtos.forEach(p => grid.appendChild(card(p)));
-
-  } catch (e) {
-    console.error(e);
-    meta.innerText = "Erro ao buscar produtos (veja o console).";
-    grid.innerHTML = `<p>Falha ao carregar: ${String(e.message || e)}</p>`;
+  if (!r.ok) {
+    const txt = await r.text().catch(() => "");
+    throw new Error(`API ${r.status} :: ${txt}`);
   }
-})();
+
+  const data = await r.json();
+  const produtos = data.produtos || [];
+
+  meta.innerText = `${data.total ?? produtos.length} produto(s) encontrados`;
+
+  if (!produtos.length) {
+    grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
+    return;
+  }
+
+  produtos.forEach((p) => grid.appendChild(card(p)));
+}
+
+loadSearch().catch((err) => {
+  console.error(err);
+  meta.innerText = "Erro ao buscar produtos (veja o console).";
+  grid.innerHTML = `<p>Falha ao carregar: ${err.message}</p>`;
+});
