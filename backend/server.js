@@ -1,4 +1,3 @@
-// backend/server.js
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -9,30 +8,66 @@ import routes from "./routes/index.js";
 
 const app = express();
 
-app.use(cors());
+/* ===============================
+   CORS — LIBERADO PARA O SITE
+================================ */
+const allowedOrigins = [
+  "https://nexustore.store",
+  "https://www.nexustore.store",
+  "https://nexus-site-oufm.onrender.com",
+  "http://localhost:3000"
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, true); // não bloquear em produção
+      }
+    },
+  })
+);
+
 app.use(express.json());
 
-// ---- SERVIR O FRONTEND (arquivos do site) ----
+/* ===============================
+   PATHS
+================================ */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Isso aponta pro "root" do repositório (onde fica seu index.html)
 const WEB_ROOT = path.resolve(__dirname, "..");
 
-// Serve arquivos estáticos: index.html, chat.html, css, js, imagens...
+/* ===============================
+   FRONTEND
+================================ */
 app.use(express.static(WEB_ROOT));
 
-// API continua em /api
+/* ===============================
+   API
+================================ */
 app.use("/api", routes);
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(WEB_ROOT, "index.html"));
+/* ❌ IMPORTANTE:
+   NUNCA deixar a API cair no index.html
+*/
+app.use("/api/*", (req, res) => {
+  res.status(404).json({
+    ok: false,
+    error: "API_ROUTE_NOT_FOUND",
+    path: req.originalUrl,
+  });
 });
 
-// (Opcional) Se tentar abrir uma rota que não existe como arquivo, cai pro index
+/* ===============================
+   SPA FALLBACK
+================================ */
 app.get("*", (req, res) => {
   res.sendFile(path.join(WEB_ROOT, "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Nexus rodando na porta ${PORT}`));
+app.listen(PORT, () =>
+  console.log(`🚀 Nexus rodando na porta ${PORT}`)
+);
