@@ -6,25 +6,17 @@ import productRoutes from "./product.routes.js";
 import searchRoutes from "./search.routes.js";
 import chatRoutes from "./chat.routes.js";
 
+console.log("[NEXUS] routes/index.js CARREGOU");
+
 const router = Router();
 
-console.log("[NEXUS] Loading API routes...");
-
-// health
 router.use("/health", healthRoutes);
-
-// plans
 router.use("/plans", plansRoutes);
-
-// products
 router.use("/products", productRoutes);
-
-// 🔥 SEARCH (ESSA É A ROTA QUE ESTÁ FALTANDO)
 router.use("/search", searchRoutes);
-
-// chat
 router.use("/chat", chatRoutes);
 
-console.log("[NEXUS] Search route enabled at /api/search");
+console.log("[NEXUS] Search ON at /api/search");
+console.log("[NEXUS] routes/index.js TERMINOU");
 
 export default router;
