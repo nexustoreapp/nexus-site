@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const CATALOG_PATH = path.resolve("backend/data/catalogo.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const CATALOG_PATH = path.join(__dirname, "..", "data", "catalogo.json");
 
 const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
@@ -94,3 +98,4 @@ export function searchController(req, res) {
     return res.status(500).json({ ok: false, error: "SEARCH_FAILED" });
   }
 }
+export { searchController };
