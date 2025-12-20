@@ -1,732 +1,1286 @@
 [
-  {
-    "id": "gpu-rtx-3060-12gb-nvidia",
-    "title": "RTX 3060 12GB",
-    "brand": "NVIDIA",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 3199.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rtx-3060-ti-8gb-nvidia",
-    "title": "RTX 3060 Ti 8GB",
-    "brand": "NVIDIA",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 3499.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rtx-3070-8gb-nvidia",
-    "title": "RTX 3070 8GB",
-    "brand": "NVIDIA",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 3899.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rtx-3080-10gb-nvidia",
-    "title": "RTX 3080 10GB",
-    "brand": "NVIDIA",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 4699.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rx-6600-8gb-amd",
-    "title": "Radeon RX 6600 8GB",
-    "brand": "AMD",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 1899.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rx-6650-xt-8gb-amd",
-    "title": "Radeon RX 6650 XT 8GB",
-    "brand": "AMD",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 2099.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-rx-6700-xt-12gb-amd",
-    "title": "Radeon RX 6700 XT 12GB",
-    "brand": "AMD",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 2399.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "gpu-gtx-1660-super-6gb-nvidia",
-    "title": "GTX 1660 Super 6GB",
-    "brand": "NVIDIA",
-    "category": "GPU (Placa de Vídeo)",
-    "price": 1599.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-ryzen-5-5600x-amd",
-    "title": "Ryzen 5 5600X",
-    "brand": "AMD",
-    "category": "CPU (Processador)",
-    "price": 999.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-ryzen-7-5800x-amd",
-    "title": "Ryzen 7 5800X",
-    "brand": "AMD",
-    "category": "CPU (Processador)",
-    "price": 1499.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-ryzen-9-5900x-amd",
-    "title": "Ryzen 9 5900X",
-    "brand": "AMD",
-    "category": "CPU (Processador)",
-    "price": 2199.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-intel-i5-12400f",
-    "title": "Intel Core i5-12400F",
-    "brand": "Intel",
-    "category": "CPU (Processador)",
-    "price": 899.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-intel-i7-12700k",
-    "title": "Intel Core i7-12700K",
-    "brand": "Intel",
-    "category": "CPU (Processador)",
-    "price": 1999.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "cpu-intel-i9-12900k",
-    "title": "Intel Core i9-12900K",
-    "brand": "Intel",
-    "category": "CPU (Processador)",
-    "price": 2799.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "nb-lenovo-ideapad-3-ryzen-5-5500u",
-    "title": "Notebook Lenovo IdeaPad 3 Ryzen 5 5500U",
-    "brand": "Lenovo",
-    "category": "Notebook",
-    "price": 2399.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "nb-acer-aspire-5-i5-1135g7",
-    "title": "Notebook Acer Aspire 5 Intel i5-1135G7",
-    "brand": "Acer",
-    "category": "Notebook",
-    "price": 2699.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "nb-asus-vivobook-15-ryzen-7-5700u",
-    "title": "Notebook ASUS VivoBook 15 Ryzen 7 5700U",
-    "brand": "ASUS",
-    "category": "Notebook",
-    "price": 3099.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "nb-dell-inspiron-15-i7-1165g7",
-    "title": "Notebook Dell Inspiron 15 Intel i7-1165G7",
-    "brand": "Dell",
-    "category": "Notebook",
-    "price": 3599.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "desktop-gamer-ryzen-5-5600-rtx-3060",
-    "title": "Desktop Gamer Ryzen 5 5600 com RTX 3060",
-    "brand": "Generic",
-    "category": "Desktop",
-    "price": 5299.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "desktop-gamer-i5-12400f-rtx-3050",
-    "title": "Desktop Gamer Intel i5-12400F com RTX 3050",
-    "brand": "Generic",
-    "category": "Desktop",
-    "price": 4799.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "desktop-office-i3-10100-ssd-480gb",
-    "title": "Desktop Office Intel i3-10100 SSD 480GB",
-    "brand": "Generic",
-    "category": "Desktop",
-    "price": 1899.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "minipc-intel-nuc-i5-8259u",
-    "title": "Mini PC Intel NUC i5-8259U",
-    "brand": "Intel",
-    "category": "Mini PC",
-    "price": 2399.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "minipc-beelink-ryzen-7-5800h",
-    "title": "Mini PC Beelink Ryzen 7 5800H",
-    "brand": "Beelink",
-    "category": "Mini PC",
-    "price": 3299.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "workstation-dell-precision-3640",
-    "title": "Workstation Dell Precision 3640",
-    "brand": "Dell",
-    "category": "Workstation",
-    "price": 6999.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "workstation-hp-z2-g5",
-    "title": "Workstation HP Z2 G5",
-    "brand": "HP",
-    "category": "Workstation",
-    "price": 7499.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "mob-usb-c-cable-xiawao-6pack",
-    "title": "Cabo USB para USB-C XIAWAO (Kit 6 unidades)",
-    "brand": "XIAWAO",
-    "category": "Acessórios Mobile (capas, carregadores, cabos)",
-    "price": 39.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "mob-usb-multi-plug-yishu",
-    "title": "Extensor USB com Múltiplas Portas YISHU",
-    "brand": "YISHU",
-    "category": "Acessórios Mobile (capas, carregadores, cabos)",
-    "price": 49.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "mob-car-mount-pocket-3-brdrc",
-    "title": "Suporte Veicular com Ventosa BRDRC Pocket 3",
-    "brand": "BRDRC",
-    "category": "Acessórios Mobile (capas, carregadores, cabos)",
-    "price": 89.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "mob-usb-wireless-remote-jlznlc",
-    "title": "Controle Remoto Touch Wireless JLZNLC",
-    "brand": "JLZNLC",
-    "category": "Acessórios Mobile (capas, carregadores, cabos)",
-    "price": 69.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "mob-usb-outlet-extender-yishu",
-    "title": "Extensor de Tomada com USB YISHU",
-    "brand": "YISHU",
-    "category": "Acessórios Mobile (capas, carregadores, cabos)",
-    "price": 59.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-mouse-logitech-m90",
-    "title": "Mouse Logitech M90 USB",
-    "brand": "Logitech",
-    "category": "Mouse",
-    "price": 49.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-mouse-redragon-cobra-m711",
-    "title": "Mouse Gamer Redragon Cobra M711",
-    "brand": "Redragon",
-    "category": "Mouse",
-    "price": 129.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-teclado-multilaser-tc193",
-    "title": "Teclado Multilaser USB TC193",
-    "brand": "Multilaser",
-    "category": "Teclado",
-    "price": 59.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-teclado-redragon-k552",
-    "title": "Teclado Mecânico Redragon Kumara K552",
-    "brand": "Redragon",
-    "category": "Teclado",
-    "price": 219.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-headset-havit-h2002d",
-    "title": "Headset Gamer Havit H2002D",
-    "brand": "Havit",
-    "category": "Headset",
-    "price": 189.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-headset-logitech-h390",
-    "title": "Headset Logitech H390 USB",
-    "brand": "Logitech",
-    "category": "Headset",
-    "price": 229.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-mousepad-fortrek-speed",
-    "title": "Mousepad Fortrek Speed Médio",
-    "brand": "Fortrek",
-    "category": "Mousepad",
-    "price": 29.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-webcam-logitech-c270",
-    "title": "Webcam Logitech C270 HD",
-    "brand": "Logitech",
-    "category": "Webcam",
-    "price": 249.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-microfone-fifine-k669b",
-    "title": "Microfone Condensador Fifine K669B",
-    "brand": "Fifine",
-    "category": "Microfone",
-    "price": 199.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-caixa-som-jbl-go-3",
-    "title": "Caixa de Som Bluetooth JBL GO 3",
-    "brand": "JBL",
-    "category": "Caixa de Som",
-    "price": 229.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "per-gamepad-redragon-g807",
-    "title": "Controle Gamepad Redragon Saturn G807",
-    "brand": "Redragon",
-    "category": "Controle (Gamepad)",
-    "price": 159.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-pendrive-sandisk-cruzer-blade-32gb",
-    "title": "Pen Drive SanDisk Cruzer Blade 32GB",
-    "brand": "SanDisk",
-    "category": "Pen Drive",
-    "price": 29.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-pendrive-kingston-datatraveler-64gb",
-    "title": "Pen Drive Kingston DataTraveler 64GB",
-    "brand": "Kingston",
-    "category": "Pen Drive",
-    "price": 49.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-cartao-sd-sandisk-ultra-128gb",
-    "title": "Cartão de Memória SanDisk Ultra SD 128GB",
-    "brand": "SanDisk",
-    "category": "Cartão de Memória",
-    "price": 89.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-cartao-micro-sd-samsung-evo-64gb",
-    "title": "Cartão de Memória Samsung EVO microSD 64GB",
-    "brand": "Samsung",
-    "category": "Cartão de Memória",
-    "price": 59.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-hd-externo-seagate-expansion-1tb",
-    "title": "HD Externo Seagate Expansion 1TB",
-    "brand": "Seagate",
-    "category": "HD Externo",
-    "price": 299.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-hd-externo-wd-elements-2tb",
-    "title": "HD Externo WD Elements 2TB",
-    "brand": "Western Digital",
-    "category": "HD Externo",
-    "price": 449.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-ssd-externo-sandisk-portable-1tb",
-    "title": "SSD Externo SanDisk Portable 1TB",
-    "brand": "SanDisk",
-    "category": "SSD Externo",
-    "price": 599.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-ssd-externo-samsung-t7-1tb",
-    "title": "SSD Externo Samsung T7 1TB",
-    "brand": "Samsung",
-    "category": "SSD Externo",
-    "price": 699.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-nas-synology-ds220j",
-    "title": "NAS Synology DiskStation DS220j",
-    "brand": "Synology",
-    "category": "NAS",
-    "price": 1799.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "stor-nas-qnap-ts-231k",
-    "title": "NAS QNAP TS-231K",
-    "brand": "QNAP",
-    "category": "NAS",
-    "price": 1699.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "net-router-tp-link-archer-c6",
-    "title": "Roteador TP-Link Archer C6 AC1200",
-    "brand": "TP-Link",
-    "category": "Roteador",
-    "price": 249.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "net-router-xiaomi-mi-4a",
-    "title": "Roteador Xiaomi Mi Router 4A",
-    "brand": "Xiaomi",
-    "category": "Roteador",
-    "price": 199.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "net-repetidor-tp-link-re200",
-    "title": "Repetidor Wi-Fi TP-Link RE200",
-    "brand": "TP-Link",
-    "category": "Repetidor Wi-Fi",
-    "price": 179.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "net-switch-tp-link-8p",
-    "title": "Switch TP-Link 8 Portas TL-SF1008D",
-    "brand": "TP-Link",
-    "category": "Switch",
-    "price": 129.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "net-placa-rede-tp-link-tg3468",
-    "title": "Placa de Rede TP-Link TG-3468 Gigabit",
-    "brand": "TP-Link",
-    "category": "Placa de Rede",
-    "price": 79.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "disp-monitor-lg-24mk430h",
-    "title": "Monitor LG 24MK430H 24” Full HD",
-    "brand": "LG",
-    "category": "Monitor",
-    "price": 699.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "disp-monitor-samsung-t350",
-    "title": "Monitor Samsung T350 24” Full HD",
-    "brand": "Samsung",
-    "category": "Monitor",
-    "price": 749.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "disp-tv-lg-43-uhd",
-    "title": "TV LG 43” UHD 4K",
-    "brand": "LG",
-    "category": "TV",
-    "price": 1999.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "disp-projetor-bettdow-1080p",
-    "title": "Projetor Bettdow Full HD 1080p",
-    "brand": "Bettdow",
-    "category": "Projetor",
-    "price": 899.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "game-console-ps4-slim",
-    "title": "Console PlayStation 4 Slim",
-    "brand": "Sony",
-    "category": "Console",
-    "price": 2199.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "game-console-xbox-series-s",
-    "title": "Console Xbox Series S",
-    "brand": "Microsoft",
-    "category": "Console",
-    "price": 2399.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "game-jogo-fifa-23-ps4",
-    "title": "Jogo FIFA 23 PS4 (Mídia Física)",
-    "brand": "EA Sports",
-    "category": "Jogo (Mídia Física)",
-    "price": 149.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "game-acessorio-controle-ps4",
-    "title": "Controle DualShock 4",
-    "brand": "Sony",
-    "category": "Acessórios para Console",
-    "price": 299.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "smart-speaker-echo-dot-5",
-    "title": "Smart Speaker Echo Dot 5ª Geração",
-    "brand": "Amazon",
-    "category": "Smart Speaker",
-    "price": 379.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "smart-plug-positivo",
-    "title": "Smart Plug Positivo Wi-Fi",
-    "brand": "Positivo",
-    "category": "Smart Plug",
-    "price": 79.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "smart-lamp-positvo-led",
-    "title": "Smart Lâmpada LED Positivo",
-    "brand": "Positivo",
-    "category": "Smart Lâmpada",
-    "price": 69.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "smart-camera-positivo-360",
-    "title": "Câmera de Segurança Positivo 360°",
-    "brand": "Positivo",
-    "category": "Câmera de Segurança",
-    "price": 199.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "ener-nobreak-ts-shara-600va",
-    "title": "Nobreak TS Shara 600VA",
-    "brand": "TS Shara",
-    "category": "Nobreak",
-    "price": 399.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "ener-estabilizador-ts-shara",
-    "title": "Estabilizador TS Shara 300VA",
-    "brand": "TS Shara",
-    "category": "Estabilizador",
-    "price": 129.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "office-impressora-hp-2774",
-    "title": "Impressora HP DeskJet 2774",
-    "brand": "HP",
-    "category": "Impressora",
-    "price": 429.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "office-scanner-epson-v39",
-    "title": "Scanner Epson Perfection V39",
-    "brand": "Epson",
-    "category": "Scanner",
-    "price": 599.90,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  },
-  {
-    "id": "office-monitor-profissional-dell-p2422h",
-    "title": "Monitor Profissional Dell P2422H",
-    "brand": "Dell",
-    "category": "Monitor Profissional",
-    "price": 1399.00,
-    "currency": "BRL",
-    "source": "csv",
-    "tier": "free"
-  }
+{
+  "id": "webcam-logitech-c920",
+  "title": "Webcam Logitech C920 Full HD",
+  "brand": "Logitech",
+  "category": "Webcam",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61JtZ0C3WDL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "webcam-logitech-c270",
+  "title": "Webcam Logitech C270 HD",
+  "brand": "Logitech",
+  "category": "Webcam",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61R8ZQv8lWL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "webcam-emeet-c960",
+  "title": "Webcam EMEET C960 Full HD",
+  "brand": "EMEET",
+  "category": "Webcam",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61v6E4VwQ2L._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "webcam-nexigo-n660p",
+  "title": "Webcam NEXiGO N660P Full HD",
+  "brand": "NEXiGO",
+  "category": "Webcam",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61iRrU7CwUL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},       
+
+
+
+
+{
+  "id": "headset-logitech-g435",
+  "title": "Headset Gamer Logitech G435 Lightspeed",
+  "brand": "Logitech",
+  "category": "Headset",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71y5X0ZzEoL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "headset-logitech-g733",
+  "title": "Headset Gamer Logitech G733 RGB Wireless",
+  "brand": "Logitech",
+  "category": "Headset",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71B0d6nMZBL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "headset-hyperx-cloud-stinger",
+  "title": "Headset HyperX Cloud Stinger",
+  "brand": "HyperX",
+  "category": "Headset",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61X5n2Z9uPL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "headset-hyperx-cloud-alpha",
+  "title": "Headset HyperX Cloud Alpha",
+  "brand": "HyperX",
+  "category": "Headset",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71tQm8xYpPL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "headset-redragon-zeus-x",
+  "title": "Headset Gamer Redragon Zeus X RGB",
+  "brand": "Redragon",
+  "category": "Headset",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71wM9kHkCWL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "teclado-logitech-g213",
+  "title": "Teclado Gamer Logitech G213 RGB",
+  "brand": "Logitech",
+  "category": "Teclado",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71G213.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "teclado-logitech-g512",
+  "title": "Teclado Mecânico Logitech G512 Carbon",
+  "brand": "Logitech",
+  "category": "Teclado",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71G512.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "teclado-redragon-kumara",
+  "title": "Teclado Mecânico Redragon Kumara K552",
+  "brand": "Redragon",
+  "category": "Teclado",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71K552.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "teclado-corsair-k55",
+  "title": "Teclado Gamer Corsair K55 RGB Pro",
+  "brand": "Corsair",
+  "category": "Teclado",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71K55.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "teclado-hyperx-alloy-fps",
+  "title": "Teclado Mecânico HyperX Alloy FPS",
+  "brand": "HyperX",
+  "category": "Teclado",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Alloy.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "mouse-logitech-g203",
+  "title": "Mouse Gamer Logitech G203 Lightsync",
+  "brand": "Logitech",
+  "category": "Mouse",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61UxfXTUyvL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mouse-logitech-g305",
+  "title": "Mouse Gamer Logitech G305 Lightspeed Wireless",
+  "brand": "Logitech",
+  "category": "Mouse",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mouse-razer-deathadder-essential",
+  "title": "Mouse Gamer Razer DeathAdder Essential",
+  "brand": "Razer",
+  "category": "Mouse",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61O+9O7F2DL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mouse-redragon-cobra",
+  "title": "Mouse Gamer Redragon Cobra M711",
+  "brand": "Redragon",
+  "category": "Mouse",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61bL8ZtqS0L._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mouse-hyperx-pulsefire-core",
+  "title": "Mouse Gamer HyperX Pulsefire Core",
+  "brand": "HyperX",
+  "category": "Mouse",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61tq6H+3x9L._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "mousepad-logitech-g240",
+  "title": "Mousepad Gamer Logitech G240 Cloth",
+  "brand": "Logitech",
+  "category": "Mousepad",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61rK6b5xZEL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mousepad-logitech-g640",
+  "title": "Mousepad Gamer Logitech G640 Large",
+  "brand": "Logitech",
+  "category": "Mousepad",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61lX2XH5YDL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mousepad-hyperx-fury-s",
+  "title": "Mousepad HyperX Fury S Speed Edition",
+  "brand": "HyperX",
+  "category": "Mousepad",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61gqN7KXkPL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mousepad-redragon-archelon",
+  "title": "Mousepad Gamer Redragon Archelon XL",
+  "brand": "Redragon",
+  "category": "Mousepad",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61m7dFqZ0XL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "mousepad-corsair-mm300",
+  "title": "Mousepad Gamer Corsair MM300 Extended",
+  "brand": "Corsair",
+  "category": "Mousepad",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61YpJ4pF5XL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+
+{
+  "id": "monitor-lg-24mp400",
+  "title": "Monitor LG 24MP400 24\" Full HD IPS",
+  "brand": "LG",
+  "category": "Monitor",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Qp8F1s6VL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "monitor-samsung-t350",
+  "title": "Monitor Samsung T350 24\" Full HD",
+  "brand": "Samsung",
+  "category": "Monitor",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71s3kZ2n0mL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "monitor-aoc-24g2",
+  "title": "Monitor Gamer AOC 24G2 144Hz IPS",
+  "brand": "AOC",
+  "category": "Monitor",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71H7Qb9y3zL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "monitor-acer-nitro-vg240y",
+  "title": "Monitor Gamer Acer Nitro VG240Y 144Hz",
+  "brand": "Acer",
+  "category": "Monitor",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71n9mC2XyVL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "monitor-dell-p2422h",
+  "title": "Monitor Dell P2422H 24\" IPS",
+  "brand": "Dell",
+  "category": "Monitor",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71D4GqfQmXL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "tv-samsung-au7700-50",
+  "title": "Smart TV Samsung AU7700 50\" 4K UHD",
+  "brand": "Samsung",
+  "category": "TV",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81vZ6m6qZDL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "tv-lg-ur8750-55",
+  "title": "Smart TV LG UR8750 55\" 4K UHD",
+  "brand": "LG",
+  "category": "TV",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81X6qY1zJUL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "tv-tcl-p615-50",
+  "title": "Smart TV TCL P615 50\" 4K Android TV",
+  "brand": "TCL",
+  "category": "TV",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81r1b6k1JVL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "tv-philips-7906-55",
+  "title": "Smart TV Philips 7906 55\" 4K UHD",
+  "brand": "Philips",
+  "category": "TV",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81c9dHq8pDL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "tv-samsung-q60b-55",
+  "title": "Smart TV Samsung Q60B 55\" QLED 4K",
+  "brand": "Samsung",
+  "category": "TV",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81QxY8z8qUL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "notebook-lenovo-ideapad-3-i5",
+  "title": "Notebook Lenovo IdeaPad 3 Intel Core i5",
+  "brand": "Lenovo",
+  "category": "Notebook",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Ideapad3.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "notebook-acer-aspire-5-i5",
+  "title": "Notebook Acer Aspire 5 Intel Core i5",
+  "brand": "Acer",
+  "category": "Notebook",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Aspire5.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "notebook-asus-vivobook-15-i5",
+  "title": "Notebook Asus VivoBook 15 Intel Core i5",
+  "brand": "Asus",
+  "category": "Notebook",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71VivoBook15.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "notebook-dell-inspiron-15-i5",
+  "title": "Notebook Dell Inspiron 15 Intel Core i5",
+  "brand": "Dell",
+  "category": "Notebook",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Inspiron15.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "notebook-lenovo-ideapad-gaming-3",
+  "title": "Notebook Lenovo IdeaPad Gaming 3",
+  "brand": "Lenovo",
+  "category": "Notebook",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71IdeapadGaming3.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "smartphone-samsung-galaxy-a54",
+  "title": "Smartphone Samsung Galaxy A54 5G",
+  "brand": "Samsung",
+  "category": "Smartphone",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71A54Samsung.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartphone-samsung-galaxy-s23",
+  "title": "Smartphone Samsung Galaxy S23",
+  "brand": "Samsung",
+  "category": "Smartphone",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71GalaxyS23.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartphone-xiaomi-redmi-note-12",
+  "title": "Smartphone Xiaomi Redmi Note 12",
+  "brand": "Xiaomi",
+  "category": "Smartphone",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71RedmiNote12.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartphone-motorola-moto-g54",
+  "title": "Smartphone Motorola Moto G54 5G",
+  "brand": "Motorola",
+  "category": "Smartphone",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71MotoG54.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartphone-apple-iphone-13",
+  "title": "iPhone 13 Apple",
+  "brand": "Apple",
+  "category": "Smartphone",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71iPhone13.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "smartwatch-samsung-galaxy-watch-5",
+  "title": "Smartwatch Samsung Galaxy Watch 5",
+  "brand": "Samsung",
+  "category": "Smartwatch",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71GalaxyWatch5.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartwatch-samsung-galaxy-watch-6",
+  "title": "Smartwatch Samsung Galaxy Watch 6",
+  "brand": "Samsung",
+  "category": "Smartwatch",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71GalaxyWatch6.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartwatch-xiaomi-mi-band-8",
+  "title": "Smartwatch Xiaomi Mi Band 8",
+  "brand": "Xiaomi",
+  "category": "Smartwatch",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71MiBand8.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartwatch-apple-watch-se",
+  "title": "Apple Watch SE",
+  "brand": "Apple",
+  "category": "Smartwatch",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71AppleWatchSE.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "smartwatch-amazfit-gts-4",
+  "title": "Smartwatch Amazfit GTS 4",
+  "brand": "Amazfit",
+  "category": "Smartwatch",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71AmazfitGTS4.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "acessorio-capa-silicone-iphone-13",
+  "title": "Capa de Silicone para iPhone 13",
+  "brand": "Genérica",
+  "category": "Acessórios Mobile",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61iPhoneCase.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-carregador-usb-c-20w",
+  "title": "Carregador USB-C 20W Fast Charge",
+  "brand": "Genérica",
+  "category": "Acessórios Mobile",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61Charger20W.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-cabo-usb-c",
+  "title": "Cabo USB-C Reforçado 1m",
+  "brand": "Genérica",
+  "category": "Acessórios Mobile",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61USBCable.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-pelicula-vidro-9h",
+  "title": "Película de Vidro Temperado 9H",
+  "brand": "Genérica",
+  "category": "Acessórios Mobile",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61GlassFilm.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-suporte-veicular",
+  "title": "Suporte Veicular Magnético para Smartphone",
+  "brand": "Genérica",
+  "category": "Acessórios Mobile",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61CarHolder.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "roteador-tp-link-archer-c6",
+  "title": "Roteador TP-Link Archer C6 AC1200 Dual Band",
+  "brand": "TP-Link",
+  "category": "Roteador",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71qf6s0ZKDL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "roteador-intelbras-rf-1200",
+  "title": "Roteador Intelbras RF 1200",
+  "brand": "Intelbras",
+  "category": "Roteador",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61z7Xx2N8PL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "adaptador-usb-wifi-ac600",
+  "title": "Adaptador USB Wi-Fi AC600 Dual Band",
+  "brand": "Genérica",
+  "category": "Placa de Rede",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61WiFiUSB.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "placa-rede-pci-e-gigabit",
+  "title": "Placa de Rede PCI-E Gigabit Ethernet",
+  "brand": "Genérica",
+  "category": "Placa de Rede",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61PCIENetwork.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "repetidor-wifi-tp-link-re305",
+  "title": "Repetidor Wi-Fi TP-Link RE305 AC1200",
+  "brand": "TP-Link",
+  "category": "Repetidor Wi-Fi",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/61RE305.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "ssd-kingston-a400-480gb",
+  "title": "SSD Kingston A400 480GB SATA",
+  "brand": "Kingston",
+  "category": "SSD",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71AqX8G6RWL._AC_SL1500_.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "ssd-crucial-bx500-1tb",
+  "title": "SSD Crucial BX500 1TB SATA",
+  "brand": "Crucial",
+  "category": "SSD",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71bx500.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "hd-seagate-barracuda-2tb",
+  "title": "HD Seagate Barracuda 2TB 7200RPM",
+  "brand": "Seagate",
+  "category": "HDD",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Barracuda.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "pendrive-sandisk-ultra-64gb",
+  "title": "Pen Drive SanDisk Ultra 64GB USB 3.0",
+  "brand": "SanDisk",
+  "category": "Pen Drive",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71SanDiskUltra.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cartao-sd-sandisk-128gb",
+  "title": "Cartão de Memória SanDisk SD 128GB",
+  "brand": "SanDisk",
+  "category": "Cartão de Memória",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71SanDiskSD128.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "gpu-nvidia-rtx-3060-12gb",
+  "title": "Placa de Vídeo NVIDIA GeForce RTX 3060 12GB",
+  "brand": "NVIDIA",
+  "category": "GPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81RTX3060.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gpu-nvidia-rtx-4060-8gb",
+  "title": "Placa de Vídeo NVIDIA GeForce RTX 4060 8GB",
+  "brand": "NVIDIA",
+  "category": "GPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81RTX4060.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gpu-amd-rx-6600-8gb",
+  "title": "Placa de Vídeo AMD Radeon RX 6600 8GB",
+  "brand": "AMD",
+  "category": "GPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81RX6600.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gpu-amd-rx-6700-xt-12gb",
+  "title": "Placa de Vídeo AMD Radeon RX 6700 XT 12GB",
+  "brand": "AMD",
+  "category": "GPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81RX6700XT.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gpu-nvidia-gtx-1660-super",
+  "title": "Placa de Vídeo NVIDIA GeForce GTX 1660 Super",
+  "brand": "NVIDIA",
+  "category": "GPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81GTX1660.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "cpu-intel-core-i5-12400f",
+  "title": "Processador Intel Core i5-12400F",
+  "brand": "Intel",
+  "category": "CPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71i512400f.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cpu-intel-core-i7-12700k",
+  "title": "Processador Intel Core i7-12700K",
+  "brand": "Intel",
+  "category": "CPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71i712700k.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cpu-amd-ryzen-5-5600",
+  "title": "Processador AMD Ryzen 5 5600",
+  "brand": "AMD",
+  "category": "CPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71ryzen5600.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cpu-amd-ryzen-7-5800x",
+  "title": "Processador AMD Ryzen 7 5800X",
+  "brand": "AMD",
+  "category": "CPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71ryzen5800x.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cpu-intel-core-i3-12100f",
+  "title": "Processador Intel Core i3-12100F",
+  "brand": "Intel",
+  "category": "CPU",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71i312100f.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "placa-mae-asus-prime-b660m-a",
+  "title": "Placa-mãe Asus Prime B660M-A D4",
+  "brand": "Asus",
+  "category": "Placa-mãe",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81AsusB660.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "placa-mae-gigabyte-b550m-ds3h",
+  "title": "Placa-mãe Gigabyte B550M DS3H",
+  "brand": "Gigabyte",
+  "category": "Placa-mãe",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81GigabyteB550.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "placa-mae-msi-b450m-pro-vdh",
+  "title": "Placa-mãe MSI B450M PRO-VDH MAX",
+  "brand": "MSI",
+  "category": "Placa-mãe",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81MSIB450.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "placa-mae-asrock-a520m-hdv",
+  "title": "Placa-mãe ASRock A520M-HDV",
+  "brand": "ASRock",
+  "category": "Placa-mãe",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81AsrockA520.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "placa-mae-asus-tuf-b550m-plus",
+  "title": "Placa-mãe Asus TUF Gaming B550M-Plus",
+  "brand": "Asus",
+  "category": "Placa-mãe",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/81AsusTUFB550.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "ram-kingston-fury-beast-16gb-ddr4",
+  "title": "Memória RAM Kingston Fury Beast 16GB DDR4 3200MHz",
+  "brand": "Kingston",
+  "category": "Memória RAM",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71FuryBeast.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "ram-corsair-vengeance-lpx-16gb-ddr4",
+  "title": "Memória RAM Corsair Vengeance LPX 16GB DDR4 3200MHz",
+  "brand": "Corsair",
+  "category": "Memória RAM",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71VengeanceLPX.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "ram-crucial-ballistix-16gb-ddr4",
+  "title": "Memória RAM Crucial Ballistix 16GB DDR4 3200MHz",
+  "brand": "Crucial",
+  "category": "Memória RAM",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Ballistix.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "ram-hyperx-fury-8gb-ddr4",
+  "title": "Memória RAM HyperX Fury 8GB DDR4 2666MHz",
+  "brand": "HyperX",
+  "category": "Memória RAM",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71HyperXFury.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "ram-teamgroup-t-force-delta-16gb-ddr4",
+  "title": "Memória RAM Team Group T-Force Delta RGB 16GB DDR4 3200MHz",
+  "brand": "Team Group",
+  "category": "Memória RAM",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71TForceDelta.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "psu-corsair-cv550",
+  "title": "Fonte Corsair CV550 550W 80 Plus Bronze",
+  "brand": "Corsair",
+  "category": "Fonte (PSU)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71CV550.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "psu-corsair-cx650",
+  "title": "Fonte Corsair CX650 650W 80 Plus Bronze",
+  "brand": "Corsair",
+  "category": "Fonte (PSU)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71CX650.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "psu-evga-600w1",
+  "title": "Fonte EVGA 600W 80 Plus White",
+  "brand": "EVGA",
+  "category": "Fonte (PSU)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71EVGA600.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "psu-xpg-pylon-650w",
+  "title": "Fonte XPG Pylon 650W 80 Plus Bronze",
+  "brand": "XPG",
+  "category": "Fonte (PSU)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71XPGPylon.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "psu-coolermaster-mwe-650",
+  "title": "Fonte Cooler Master MWE 650W 80 Plus Bronze",
+  "brand": "Cooler Master",
+  "category": "Fonte (PSU)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71MWECM.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "gabinete-redragon-sidewipe-gc-601",
+  "title": "Gabinete Gamer Redragon Sidewipe GC-601",
+  "brand": "Redragon",
+  "category": "Gabinete",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Sidewipe.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gabinete-corsair-4000d-airflow",
+  "title": "Gabinete Corsair 4000D Airflow",
+  "brand": "Corsair",
+  "category": "Gabinete",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/714000D.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gabinete-cooler-master-masterbox-q300l",
+  "title": "Gabinete Cooler Master MasterBox Q300L",
+  "brand": "Cooler Master",
+  "category": "Gabinete",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Q300L.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gabinete-nzxt-h510",
+  "title": "Gabinete NZXT H510",
+  "brand": "NZXT",
+  "category": "Gabinete",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71H510.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gabinete-aerocool-cylon",
+  "title": "Gabinete Aerocool Cylon RGB",
+  "brand": "Aerocool",
+  "category": "Gabinete",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Cylon.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "cooler-hyperx-air-cooler-212",
+  "title": "Cooler para CPU HyperX Air Cooler 212",
+  "brand": "HyperX",
+  "category": "Cooler / Water Cooler",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Cooler212.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cooler-cooler-master-hyper-212",
+  "title": "Cooler Master Hyper 212 Black Edition",
+  "brand": "Cooler Master",
+  "category": "Cooler / Water Cooler",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71Hyper212.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "watercooler-corsair-h100x",
+  "title": "Water Cooler Corsair H100x 240mm",
+  "brand": "Corsair",
+  "category": "Cooler / Water Cooler",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71H100x.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "watercooler-cooler-master-ml240l",
+  "title": "Water Cooler Cooler Master ML240L V2 RGB",
+  "brand": "Cooler Master",
+  "category": "Cooler / Water Cooler",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71ML240L.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "cooler-deepcool-ak400",
+  "title": "Cooler para CPU DeepCool AK400",
+  "brand": "DeepCool",
+  "category": "Cooler / Water Cooler",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71AK400.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "gamepad-xbox-wireless-series-x",
+  "title": "Controle Xbox Wireless Series X|S",
+  "brand": "Microsoft",
+  "category": "Controle (Gamepad)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71XBXController.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gamepad-ps5-dualsense",
+  "title": "Controle PlayStation 5 DualSense",
+  "brand": "Sony",
+  "category": "Controle (Gamepad)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71DualSense.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gamepad-ps4-dualshock-4",
+  "title": "Controle PlayStation 4 DualShock 4",
+  "brand": "Sony",
+  "category": "Controle (Gamepad)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71DualShock4.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gamepad-8bitdo-pro-2",
+  "title": "Controle 8BitDo Pro 2 Bluetooth",
+  "brand": "8BitDo",
+  "category": "Controle (Gamepad)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/718BitDoPro2.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "gamepad-redragon-harrow",
+  "title": "Controle Gamer Redragon Harrow Wireless",
+  "brand": "Redragon",
+  "category": "Controle (Gamepad)",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71RedragonHarrow.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+
+
+
+
+{
+  "id": "acessorio-console-base-carregadora-ps5",
+  "title": "Base Carregadora Dual para Controle PS5",
+  "brand": "Genérica",
+  "category": "Acessórios para Console",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71PS5Dock.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-console-base-carregadora-xbox",
+  "title": "Base Carregadora Dual para Controle Xbox",
+  "brand": "Genérica",
+  "category": "Acessórios para Console",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71XboxDock.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-console-headset-ps5",
+  "title": "Headset Gamer para PlayStation 5",
+  "brand": "Genérica",
+  "category": "Acessórios para Console",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71PS5Headset.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-console-volante-racing",
+  "title": "Volante Gamer Racing para Consoles",
+  "brand": "Genérica",
+  "category": "Acessórios para Console",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71RacingWheel.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+},
+{
+  "id": "acessorio-console-camera-ps5",
+  "title": "Câmera HD para PlayStation 5",
+  "brand": "Sony",
+  "category": "Acessórios para Console",
+  "price": null,
+  "image": "https://m.media-amazon.com/images/I/71PS5Camera.jpg",
+  "url": "https://www.amazon.com.br/",
+  "source": "amazon",
+  "tier": "free"
+}
 ]
