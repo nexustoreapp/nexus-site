@@ -1,49 +1,28 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// caminho certo do catálogo (backend/data/catalogo.json)
-const CATALOG_PATH = path.join(__dirname, "..", "data", "catalogo.json");
+const CATALOG_PATH = path.resolve("backend/data/catalogo.json");
 
 const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
 
-// normaliza string pra busca (remove acento, lower, trim)
-function norm(s = "") {
-  return String(s)
-    .toLowerCase()
+function norm(v) {
+  return String(v ?? "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
     .trim();
 }
 
-// lê catálogo com cache simples
-let _catalog = null;
-let _catalogMtime = 0;
+let _cache = null;
 function loadCatalog() {
-  try {
-    const st = fs.statSync(CATALOG_PATH);
-    const mtime = st.mtimeMs;
-    if (_catalog && mtime === _catalogMtime) return _catalog;
-
-    const raw = fs.readFileSync(CATALOG_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-
-    _catalog = Array.isArray(parsed) ? parsed : [];
-    _catalogMtime = mtime;
-
-    return _catalog;
-  } catch (e) {
-    console.error("[SEARCH] Falha ao carregar catálogo:", e?.message || e);
-    _catalog = [];
-    _catalogMtime = 0;
-    return _catalog;
-  }
+  if (_cache) return _cache;
+  if (!fs.existsSync(CATALOG_PATH)) return [];
+  const raw = fs.readFileSync(CATALOG_PATH, "utf-8");
+  _cache = JSON.parse(raw);
+  return _cache;
 }
 
-export function handleSearch(req, res) {
+export function searchController(req, res) {
   try {
     const catalog = loadCatalog();
 
@@ -57,7 +36,7 @@ export function handleSearch(req, res) {
     // 1) começa com tudo
     let filtered = catalog;
 
-    // 2) trava por plano (free vê só até o tier dele)
+    // 2) trava por plano
     const userRank = rank[plan] ?? 1;
     filtered = filtered.filter((p) => {
       const t = norm(p.tier || "free") || "free";
@@ -65,7 +44,7 @@ export function handleSearch(req, res) {
       return pr <= userRank;
     });
 
-    // 3) busca por termo (nome genérico tipo "headset gamer" funciona aqui)
+    // 3) busca por termo (genérico tipo "headset gamer")
     if (q) {
       const tokens = q.split(/\s+/).filter(Boolean);
 
@@ -81,12 +60,11 @@ export function handleSearch(req, res) {
           ].join(" ")
         );
 
-        // regra: todos os tokens precisam aparecer em algum lugar
         return tokens.every((tk) => hay.includes(tk));
       });
     }
 
-    // 4) ordenação simples: featured primeiro, depois alfabético
+    // 4) ordenação: featured primeiro, depois alfabético
     filtered.sort((a, b) => {
       const fa = a.featured ? 1 : 0;
       const fb = b.featured ? 1 : 0;
