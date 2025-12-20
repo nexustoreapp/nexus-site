@@ -24,7 +24,8 @@ app.use(express.static(WEB_ROOT));
 
 // API continua em /api
 app.use("/api", routes);
-
+console.log("[NEXUS] API routes mounted at /api");
+// Rota para lidar com APIs não existentes
 app.all("/api/*", (req, res) => {
   return res.status(404).json({
     ok: false,
