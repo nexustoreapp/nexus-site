@@ -98,4 +98,3 @@ export function searchController(req, res) {
     return res.status(500).json({ ok: false, error: "SEARCH_FAILED" });
   }
 }
-export { searchController };
