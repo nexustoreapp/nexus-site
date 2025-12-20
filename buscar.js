@@ -1,4 +1,5 @@
-const API = "";
+const API = "https://nexus-site-oufm.onrender.com";
+
 
 
 /* ===============================
@@ -118,18 +119,14 @@ async function loadSearch() {
   meta.innerText = "Buscando produtos...";
   grid.innerHTML = "";
 
-  const url =
-    `${API}/api/search` +
-    `?q=${encodeURIComponent(q)}` +
-    `&plan=${encodeURIComponent(plan)}` +
-    `&page=1&limit=24`;
-  const r = await fetch(`${API}/api/search?q=${encodeURIComponent(q)}&plan=${plan}&page=1&limit=24`);
- 
-  if (!r.ok) {
-    const txt = await r.text().catch(() => "");
-    throw new Error(`API ${r.status} :: ${txt}`);
-  }
+  const url = `${API}/api/search?q=${encodeURIComponent(q)}&plan=${plan}&page=1&limit=24`;
 
+const r = await fetch(url);
+
+if (!r.ok) {
+  const txt = await r.text().catch(() => "");
+  throw new Error(`API ${r.status}: ${txt}`);
+}
   const data = await r.json();
   const produtos = data.produtos || [];
 
