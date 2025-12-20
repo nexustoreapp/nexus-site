@@ -8,19 +8,23 @@ import chatRoutes from "./chat.routes.js";
 
 const router = Router();
 
-// Health check
+console.log("[NEXUS] Loading API routes...");
+
+// health
 router.use("/health", healthRoutes);
 
-// Planos
+// plans
 router.use("/plans", plansRoutes);
 
-// Produtos
+// products
 router.use("/products", productRoutes);
 
-// Busca
+// 🔥 SEARCH (ESSA É A ROTA QUE ESTÁ FALTANDO)
 router.use("/search", searchRoutes);
 
-// Chat
+// chat
 router.use("/chat", chatRoutes);
+
+console.log("[NEXUS] Search route enabled at /api/search");
 
 export default router;
