@@ -25,7 +25,15 @@ app.use(express.static(WEB_ROOT));
 // API continua em /api
 app.use("/api", routes);
 
-// Se abrir "/", mostra o site (index.html)
+app.all("/api/*", (req, res) => {
+  return res.status(404).json({
+    ok: false,
+    error: "API_ROUTE_NOT_FOUND",
+    method: req.method,
+    path: req.originalUrl
+  });
+});
+// Rota raiz: serve o index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(WEB_ROOT, "index.html"));
 });
