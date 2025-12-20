@@ -4,7 +4,7 @@ import { chatController } from "../controllers/chat.controller.js";
 
 const router = Router();
 
-// POST /api/chat
-router.post("/", chatController);
+// GET /api/chat
+router.get("/", chatController);
 
 export default router;
