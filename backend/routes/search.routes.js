@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { searchController } from "../controllers/search.controller.js";
+import { chatController } from "../controllers/chat.controller.js";
 
 const router = Router();
 
-// GET /api/search
-router.get("/", searchController);
+router.post("/", chatController);
 
 export default router;
