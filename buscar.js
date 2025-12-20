@@ -1,4 +1,5 @@
-const API = "https://nexus-site-oufm.onrender.com";
+const API = "";
+
 
 /* ===============================
    ELEMENTOS BASE
@@ -122,9 +123,8 @@ async function loadSearch() {
     `?q=${encodeURIComponent(q)}` +
     `&plan=${encodeURIComponent(plan)}` +
     `&page=1&limit=24`;
-
-  const r = await fetch(url);
-
+  const r = await fetch(`${API}/api/search?q=${encodeURIComponent(q)}&plan=${plan}&page=1&limit=24`);
+ 
   if (!r.ok) {
     const txt = await r.text().catch(() => "");
     throw new Error(`API ${r.status} :: ${txt}`);
