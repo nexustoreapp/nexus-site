@@ -141,7 +141,6 @@ if (!r.ok) {
 }
 
 loadSearch().catch((err) => {
-  console.error(err);
   meta.innerText = "Erro ao buscar produtos (veja o console).";
   grid.innerHTML = `<p>Falha ao carregar: ${err.message}</p>`;
 });
