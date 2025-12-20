@@ -251,7 +251,6 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
   {
     "id": "mob-usb-c-cable-xiawao-6pack",
     "title": "Cabo USB para USB-C XIAWAO (Kit 6 unidades)",
@@ -301,7 +300,6 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
   {
     "id": "per-mouse-logitech-m90",
     "title": "Mouse Logitech M90 USB",
@@ -411,7 +409,6 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
   {
     "id": "stor-pendrive-sandisk-cruzer-blade-32gb",
     "title": "Pen Drive SanDisk Cruzer Blade 32GB",
@@ -511,7 +508,6 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
   {
     "id": "net-router-tp-link-archer-c6",
     "title": "Roteador TP-Link Archer C6 AC1200",
@@ -561,7 +557,7 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
+  },
   {
     "id": "disp-monitor-lg-24mk430h",
     "title": "Monitor LG 24MK430H 24” Full HD",
@@ -601,7 +597,7 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
+  },
   {
     "id": "game-console-ps4-slim",
     "title": "Console PlayStation 4 Slim",
@@ -641,7 +637,7 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
+  },
   {
     "id": "smart-speaker-echo-dot-5",
     "title": "Smart Speaker Echo Dot 5ª Geração",
@@ -681,7 +677,7 @@
     "currency": "BRL",
     "source": "csv",
     "tier": "free"
-  }
+  },
   {
     "id": "ener-nobreak-ts-shara-600va",
     "title": "Nobreak TS Shara 600VA",
