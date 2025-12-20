@@ -1,321 +1,735 @@
 [
   {
-    "id": "gpu-1",
-    "title": "NVIDIA GeForce RTX 3060",
-    "category": "Placa de Vídeo",
-    "tier": "core",
-    "pricePublic": 1899,
-    "pricePremium": 1749,
-    "specs": {
-      "memoryOptions": [
-        "8GB",
-        "12GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rtx-3060-12gb-nvidia",
+    "title": "RTX 3060 12GB",
+    "brand": "NVIDIA",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 3199.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "gpu-2",
-    "title": "NVIDIA GeForce RTX 3060 Ti",
-    "category": "Placa de Vídeo",
-    "tier": "core",
-    "pricePublic": 2199,
-    "pricePremium": 2049,
-    "specs": {
-      "memoryOptions": [
-        "8GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rtx-3060-ti-8gb-nvidia",
+    "title": "RTX 3060 Ti 8GB",
+    "brand": "NVIDIA",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 3499.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "gpu-3",
-    "title": "NVIDIA GeForce RTX 3070",
-    "category": "Placa de Vídeo",
-    "tier": "hyper",
-    "pricePublic": 2899,
-    "pricePremium": 2749,
-    "specs": {
-      "memoryOptions": [
-        "8GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rtx-3070-8gb-nvidia",
+    "title": "RTX 3070 8GB",
+    "brand": "NVIDIA",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 3899.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "gpu-4",
-    "title": "NVIDIA GeForce RTX 4070",
-    "category": "Placa de Vídeo",
-    "tier": "hyper",
-    "pricePublic": 3999,
-    "pricePremium": 3849,
-    "specs": {
-      "memoryOptions": [
-        "12GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rtx-3080-10gb-nvidia",
+    "title": "RTX 3080 10GB",
+    "brand": "NVIDIA",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 4699.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "gpu-5",
-    "title": "NVIDIA GeForce RTX 4070 SUPER",
-    "category": "Placa de Vídeo",
-    "tier": "hyper",
-    "pricePublic": 4299,
-    "pricePremium": 4149,
-    "specs": {
-      "memoryOptions": [
-        "12GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rx-6600-8gb-amd",
+    "title": "Radeon RX 6600 8GB",
+    "brand": "AMD",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 1899.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "gpu-6",
-    "title": "NVIDIA GeForce RTX 4080",
-    "category": "Placa de Vídeo",
-    "tier": "omega",
-    "pricePublic": 5999,
-    "pricePremium": 5849,
-    "specs": {
-      "memoryOptions": [
-        "16GB"
-      ],
-      "brands": [
-        "ASUS",
-        "MSI",
-        "Gigabyte",
-        "Zotac",
-        "PNY"
-      ],
-      "memoryType": "GDDR6 / GDDR6X",
-      "interface": "PCIe 4.0"
-    },
-    "tags": [
-      "gpu",
-      "rtx",
-      "nvidia"
-    ],
-    "images": [],
-    "featured": false
+    "id": "gpu-rx-6650-xt-8gb-amd",
+    "title": "Radeon RX 6650 XT 8GB",
+    "brand": "AMD",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 2099.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "mouse-7",
-    "title": "Logitech G502 HERO",
+    "id": "gpu-rx-6700-xt-12gb-amd",
+    "title": "Radeon RX 6700 XT 12GB",
+    "brand": "AMD",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 2399.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "gpu-gtx-1660-super-6gb-nvidia",
+    "title": "GTX 1660 Super 6GB",
+    "brand": "NVIDIA",
+    "category": "GPU (Placa de Vídeo)",
+    "price": 1599.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+
+  {
+    "id": "cpu-ryzen-5-5600x-amd",
+    "title": "Ryzen 5 5600X",
+    "brand": "AMD",
+    "category": "CPU (Processador)",
+    "price": 999.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "cpu-ryzen-7-5800x-amd",
+    "title": "Ryzen 7 5800X",
+    "brand": "AMD",
+    "category": "CPU (Processador)",
+    "price": 1499.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "cpu-ryzen-9-5900x-amd",
+    "title": "Ryzen 9 5900X",
+    "brand": "AMD",
+    "category": "CPU (Processador)",
+    "price": 2199.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "cpu-intel-i5-12400f",
+    "title": "Intel Core i5-12400F",
+    "brand": "Intel",
+    "category": "CPU (Processador)",
+    "price": 899.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "cpu-intel-i7-12700k",
+    "title": "Intel Core i7-12700K",
+    "brand": "Intel",
+    "category": "CPU (Processador)",
+    "price": 1999.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "cpu-intel-i9-12900k",
+    "title": "Intel Core i9-12900K",
+    "brand": "Intel",
+    "category": "CPU (Processador)",
+    "price": 2799.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "nb-lenovo-ideapad-3-ryzen-5-5500u",
+    "title": "Notebook Lenovo IdeaPad 3 Ryzen 5 5500U",
+    "brand": "Lenovo",
+    "category": "Notebook",
+    "price": 2399.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "nb-acer-aspire-5-i5-1135g7",
+    "title": "Notebook Acer Aspire 5 Intel i5-1135G7",
+    "brand": "Acer",
+    "category": "Notebook",
+    "price": 2699.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "nb-asus-vivobook-15-ryzen-7-5700u",
+    "title": "Notebook ASUS VivoBook 15 Ryzen 7 5700U",
+    "brand": "ASUS",
+    "category": "Notebook",
+    "price": 3099.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "nb-dell-inspiron-15-i7-1165g7",
+    "title": "Notebook Dell Inspiron 15 Intel i7-1165G7",
+    "brand": "Dell",
+    "category": "Notebook",
+    "price": 3599.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+
+  {
+    "id": "desktop-gamer-ryzen-5-5600-rtx-3060",
+    "title": "Desktop Gamer Ryzen 5 5600 com RTX 3060",
+    "brand": "Generic",
+    "category": "Desktop",
+    "price": 5299.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "desktop-gamer-i5-12400f-rtx-3050",
+    "title": "Desktop Gamer Intel i5-12400F com RTX 3050",
+    "brand": "Generic",
+    "category": "Desktop",
+    "price": 4799.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "desktop-office-i3-10100-ssd-480gb",
+    "title": "Desktop Office Intel i3-10100 SSD 480GB",
+    "brand": "Generic",
+    "category": "Desktop",
+    "price": 1899.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "minipc-intel-nuc-i5-8259u",
+    "title": "Mini PC Intel NUC i5-8259U",
+    "brand": "Intel",
+    "category": "Mini PC",
+    "price": 2399.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "minipc-beelink-ryzen-7-5800h",
+    "title": "Mini PC Beelink Ryzen 7 5800H",
+    "brand": "Beelink",
+    "category": "Mini PC",
+    "price": 3299.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+
+  {
+    "id": "workstation-dell-precision-3640",
+    "title": "Workstation Dell Precision 3640",
+    "brand": "Dell",
+    "category": "Workstation",
+    "price": 6999.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "workstation-hp-z2-g5",
+    "title": "Workstation HP Z2 G5",
+    "brand": "HP",
+    "category": "Workstation",
+    "price": 7499.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "mob-usb-c-cable-xiawao-6pack",
+    "title": "Cabo USB para USB-C XIAWAO (Kit 6 unidades)",
+    "brand": "XIAWAO",
+    "category": "Acessórios Mobile (capas, carregadores, cabos)",
+    "price": 39.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "mob-usb-multi-plug-yishu",
+    "title": "Extensor USB com Múltiplas Portas YISHU",
+    "brand": "YISHU",
+    "category": "Acessórios Mobile (capas, carregadores, cabos)",
+    "price": 49.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "mob-car-mount-pocket-3-brdrc",
+    "title": "Suporte Veicular com Ventosa BRDRC Pocket 3",
+    "brand": "BRDRC",
+    "category": "Acessórios Mobile (capas, carregadores, cabos)",
+    "price": 89.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "mob-usb-wireless-remote-jlznlc",
+    "title": "Controle Remoto Touch Wireless JLZNLC",
+    "brand": "JLZNLC",
+    "category": "Acessórios Mobile (capas, carregadores, cabos)",
+    "price": 69.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "mob-usb-outlet-extender-yishu",
+    "title": "Extensor de Tomada com USB YISHU",
+    "brand": "YISHU",
+    "category": "Acessórios Mobile (capas, carregadores, cabos)",
+    "price": 59.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "per-mouse-logitech-m90",
+    "title": "Mouse Logitech M90 USB",
+    "brand": "Logitech",
     "category": "Mouse",
-    "tier": "free",
-    "pricePublic": 249,
-    "pricePremium": 211.65,
-    "specs": {
-      "brands": [
-        "Logitech",
-        "Razer",
-        "HyperX",
-        "SteelSeries"
-      ],
-      "sensor": "Óptico",
-      "dpiRange": "Até 25.000 DPI"
-    },
-    "tags": [
-      "mouse",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "price": 49.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "mouse-8",
-    "title": "Razer DeathAdder V2",
+    "id": "per-mouse-redragon-cobra-m711",
+    "title": "Mouse Gamer Redragon Cobra M711",
+    "brand": "Redragon",
     "category": "Mouse",
-    "tier": "free",
-    "pricePublic": 229,
-    "pricePremium": 194.65,
-    "specs": {
-      "brands": [
-        "Logitech",
-        "Razer",
-        "HyperX",
-        "SteelSeries"
-      ],
-      "sensor": "Óptico",
-      "dpiRange": "Até 25.000 DPI"
-    },
-    "tags": [
-      "mouse",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "price": 129.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "mouse-9",
-    "title": "SteelSeries Rival 600",
-    "category": "Mouse",
-    "tier": "core",
-    "pricePublic": 399,
-    "pricePremium": 339.15,
-    "specs": {
-      "brands": [
-        "Logitech",
-        "Razer",
-        "HyperX",
-        "SteelSeries"
-      ],
-      "sensor": "Óptico",
-      "dpiRange": "Até 25.000 DPI"
-    },
-    "tags": [
-      "mouse",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "id": "per-teclado-multilaser-tc193",
+    "title": "Teclado Multilaser USB TC193",
+    "brand": "Multilaser",
+    "category": "Teclado",
+    "price": 59.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "headset-10",
-    "title": "HyperX Cloud II",
+    "id": "per-teclado-redragon-k552",
+    "title": "Teclado Mecânico Redragon Kumara K552",
+    "brand": "Redragon",
+    "category": "Teclado",
+    "price": 219.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "per-headset-havit-h2002d",
+    "title": "Headset Gamer Havit H2002D",
+    "brand": "Havit",
     "category": "Headset",
-    "tier": "free",
-    "pricePublic": 399,
-    "pricePremium": 339.15,
-    "specs": {
-      "brands": [
-        "HyperX",
-        "Logitech",
-        "Razer",
-        "SteelSeries"
-      ],
-      "connection": "USB / P2",
-      "surround": "7.1"
-    },
-    "tags": [
-      "headset",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "price": 189.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "headset-11",
-    "title": "Logitech G Pro X",
+    "id": "per-headset-logitech-h390",
+    "title": "Headset Logitech H390 USB",
+    "brand": "Logitech",
     "category": "Headset",
-    "tier": "core",
-    "pricePublic": 899,
-    "pricePremium": 764.15,
-    "specs": {
-      "brands": [
-        "HyperX",
-        "Logitech",
-        "Razer",
-        "SteelSeries"
-      ],
-      "connection": "USB / P2",
-      "surround": "7.1"
-    },
-    "tags": [
-      "headset",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "price": 229.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   },
   {
-    "id": "headset-12",
-    "title": "Razer BlackShark V2",
-    "category": "Headset",
-    "tier": "core",
-    "pricePublic": 699,
-    "pricePremium": 594.15,
-    "specs": {
-      "brands": [
-        "HyperX",
-        "Logitech",
-        "Razer",
-        "SteelSeries"
-      ],
-      "connection": "USB / P2",
-      "surround": "7.1"
-    },
-    "tags": [
-      "headset",
-      "gamer"
-    ],
-    "images": [],
-    "featured": false
+    "id": "per-mousepad-fortrek-speed",
+    "title": "Mousepad Fortrek Speed Médio",
+    "brand": "Fortrek",
+    "category": "Mousepad",
+    "price": 29.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "per-webcam-logitech-c270",
+    "title": "Webcam Logitech C270 HD",
+    "brand": "Logitech",
+    "category": "Webcam",
+    "price": 249.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "per-microfone-fifine-k669b",
+    "title": "Microfone Condensador Fifine K669B",
+    "brand": "Fifine",
+    "category": "Microfone",
+    "price": 199.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "per-caixa-som-jbl-go-3",
+    "title": "Caixa de Som Bluetooth JBL GO 3",
+    "brand": "JBL",
+    "category": "Caixa de Som",
+    "price": 229.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "per-gamepad-redragon-g807",
+    "title": "Controle Gamepad Redragon Saturn G807",
+    "brand": "Redragon",
+    "category": "Controle (Gamepad)",
+    "price": 159.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "stor-pendrive-sandisk-cruzer-blade-32gb",
+    "title": "Pen Drive SanDisk Cruzer Blade 32GB",
+    "brand": "SanDisk",
+    "category": "Pen Drive",
+    "price": 29.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-pendrive-kingston-datatraveler-64gb",
+    "title": "Pen Drive Kingston DataTraveler 64GB",
+    "brand": "Kingston",
+    "category": "Pen Drive",
+    "price": 49.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-cartao-sd-sandisk-ultra-128gb",
+    "title": "Cartão de Memória SanDisk Ultra SD 128GB",
+    "brand": "SanDisk",
+    "category": "Cartão de Memória",
+    "price": 89.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-cartao-micro-sd-samsung-evo-64gb",
+    "title": "Cartão de Memória Samsung EVO microSD 64GB",
+    "brand": "Samsung",
+    "category": "Cartão de Memória",
+    "price": 59.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-hd-externo-seagate-expansion-1tb",
+    "title": "HD Externo Seagate Expansion 1TB",
+    "brand": "Seagate",
+    "category": "HD Externo",
+    "price": 299.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-hd-externo-wd-elements-2tb",
+    "title": "HD Externo WD Elements 2TB",
+    "brand": "Western Digital",
+    "category": "HD Externo",
+    "price": 449.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-ssd-externo-sandisk-portable-1tb",
+    "title": "SSD Externo SanDisk Portable 1TB",
+    "brand": "SanDisk",
+    "category": "SSD Externo",
+    "price": 599.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-ssd-externo-samsung-t7-1tb",
+    "title": "SSD Externo Samsung T7 1TB",
+    "brand": "Samsung",
+    "category": "SSD Externo",
+    "price": 699.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-nas-synology-ds220j",
+    "title": "NAS Synology DiskStation DS220j",
+    "brand": "Synology",
+    "category": "NAS",
+    "price": 1799.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "stor-nas-qnap-ts-231k",
+    "title": "NAS QNAP TS-231K",
+    "brand": "QNAP",
+    "category": "NAS",
+    "price": 1699.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "net-router-tp-link-archer-c6",
+    "title": "Roteador TP-Link Archer C6 AC1200",
+    "brand": "TP-Link",
+    "category": "Roteador",
+    "price": 249.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "net-router-xiaomi-mi-4a",
+    "title": "Roteador Xiaomi Mi Router 4A",
+    "brand": "Xiaomi",
+    "category": "Roteador",
+    "price": 199.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "net-repetidor-tp-link-re200",
+    "title": "Repetidor Wi-Fi TP-Link RE200",
+    "brand": "TP-Link",
+    "category": "Repetidor Wi-Fi",
+    "price": 179.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "net-switch-tp-link-8p",
+    "title": "Switch TP-Link 8 Portas TL-SF1008D",
+    "brand": "TP-Link",
+    "category": "Switch",
+    "price": 129.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "net-placa-rede-tp-link-tg3468",
+    "title": "Placa de Rede TP-Link TG-3468 Gigabit",
+    "brand": "TP-Link",
+    "category": "Placa de Rede",
+    "price": 79.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "disp-monitor-lg-24mk430h",
+    "title": "Monitor LG 24MK430H 24” Full HD",
+    "brand": "LG",
+    "category": "Monitor",
+    "price": 699.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "disp-monitor-samsung-t350",
+    "title": "Monitor Samsung T350 24” Full HD",
+    "brand": "Samsung",
+    "category": "Monitor",
+    "price": 749.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "disp-tv-lg-43-uhd",
+    "title": "TV LG 43” UHD 4K",
+    "brand": "LG",
+    "category": "TV",
+    "price": 1999.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "disp-projetor-bettdow-1080p",
+    "title": "Projetor Bettdow Full HD 1080p",
+    "brand": "Bettdow",
+    "category": "Projetor",
+    "price": 899.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "game-console-ps4-slim",
+    "title": "Console PlayStation 4 Slim",
+    "brand": "Sony",
+    "category": "Console",
+    "price": 2199.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "game-console-xbox-series-s",
+    "title": "Console Xbox Series S",
+    "brand": "Microsoft",
+    "category": "Console",
+    "price": 2399.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "game-jogo-fifa-23-ps4",
+    "title": "Jogo FIFA 23 PS4 (Mídia Física)",
+    "brand": "EA Sports",
+    "category": "Jogo (Mídia Física)",
+    "price": 149.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "game-acessorio-controle-ps4",
+    "title": "Controle DualShock 4",
+    "brand": "Sony",
+    "category": "Acessórios para Console",
+    "price": 299.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "smart-speaker-echo-dot-5",
+    "title": "Smart Speaker Echo Dot 5ª Geração",
+    "brand": "Amazon",
+    "category": "Smart Speaker",
+    "price": 379.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "smart-plug-positivo",
+    "title": "Smart Plug Positivo Wi-Fi",
+    "brand": "Positivo",
+    "category": "Smart Plug",
+    "price": 79.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "smart-lamp-positvo-led",
+    "title": "Smart Lâmpada LED Positivo",
+    "brand": "Positivo",
+    "category": "Smart Lâmpada",
+    "price": 69.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "smart-camera-positivo-360",
+    "title": "Câmera de Segurança Positivo 360°",
+    "brand": "Positivo",
+    "category": "Câmera de Segurança",
+    "price": 199.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  }
+  {
+    "id": "ener-nobreak-ts-shara-600va",
+    "title": "Nobreak TS Shara 600VA",
+    "brand": "TS Shara",
+    "category": "Nobreak",
+    "price": 399.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "ener-estabilizador-ts-shara",
+    "title": "Estabilizador TS Shara 300VA",
+    "brand": "TS Shara",
+    "category": "Estabilizador",
+    "price": 129.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "office-impressora-hp-2774",
+    "title": "Impressora HP DeskJet 2774",
+    "brand": "HP",
+    "category": "Impressora",
+    "price": 429.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "office-scanner-epson-v39",
+    "title": "Scanner Epson Perfection V39",
+    "brand": "Epson",
+    "category": "Scanner",
+    "price": 599.90,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
+  },
+  {
+    "id": "office-monitor-profissional-dell-p2422h",
+    "title": "Monitor Profissional Dell P2422H",
+    "brand": "Dell",
+    "category": "Monitor Profissional",
+    "price": 1399.00,
+    "currency": "BRL",
+    "source": "csv",
+    "tier": "free"
   }
 ]
