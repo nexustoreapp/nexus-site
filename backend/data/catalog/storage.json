@@ -196,5 +196,192 @@
     "url": "https://www.amazon.com.br/Samsung-1000-Express-V-NAND-NVMe/dp/B0BXX2PBXP/ref=sr_1_5?dib=eyJ2IjoiMSJ9.G6Tsw_sLWLDl00kVmEyodYZe5qWcZr7ulTgvh3cQDr1WkQ1klW-aW_OuHfDHfd4WlGmKqDlKdz3jEyyEcrTrefTyKVrLnXK6KJM0DB6N5dGagTWYsJ-TIaiopdO5SdhxYx047kBs4ZFr4-t33ZDYO3EqYcqZd_tryBGePAG4yom2LXgrAwk5EbAVeXYBjwcnQ57YMesyAW8uU7aA8JyhduopIU3206DzyWQTR3jL06IG5gRhz40lcLBzoDv_dKeTXQWTrTc3I96qHXm0SX5OLAvNCPTFNnGbGpi8DtR8nNE.k6iJyPdji5S1YAwH-TeAlzFis0wH2X-PMwsBdqmpCHg&dib_tag=se&keywords=samsung+990+pro+nvme&qid=1766332203&sr=8-5",
     "source": "www.amazon.com.br",
     "tier": "free"
+  },
+  {
+    "id": "storage-samsung-990-pro-nvme-2tb",
+    "title": "Samsung 990 PRO NVMe M.2 2TB",
+    "brand": "Samsung",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-samsung-990-pro-nvme-4tb",
+    "title": "Samsung 990 PRO NVMe M.2 4TB",
+    "brand": "Samsung",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-wd-black-sn850x-nvme-2tb",
+    "title": "WD Black SN850X NVMe M.2 2TB",
+    "brand": "Western Digital",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-wd-black-sn850x-nvme-4tb",
+    "title": "WD Black SN850X NVMe M.2 4TB",
+    "brand": "Western Digital",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-kingston-kc3000-nvme-2tb",
+    "title": "Kingston KC3000 NVMe M.2 2TB",
+    "brand": "Kingston",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-crucial-p5-plus-nvme-2tb",
+    "title": "Crucial P5 Plus NVMe M.2 2TB",
+    "brand": "Crucial",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-corsair-mp600-pro-nvme-2tb",
+    "title": "Corsair MP600 PRO NVMe M.2 2TB",
+    "brand": "Corsair",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-corsair-mp600-pro-xt-nvme",
+    "title": "Corsair MP600 PRO XT NVMe M.2",
+    "brand": "Corsair",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-seagate-firecuda-530-nvme-2tb",
+    "title": "Seagate FireCuda 530 NVMe M.2 2TB",
+    "brand": "Seagate",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-wd-green-sn350-nvme",
+    "title": "WD Green SN350 NVMe M.2",
+    "brand": "Western Digital",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-wd-blue-sn570-nvme-500gb",
+    "title": "WD Blue SN570 NVMe M.2 500GB",
+    "brand": "Western Digital",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-kingston-nv1-nvme",
+    "title": "Kingston NV1 NVMe M.2",
+    "brand": "Kingston",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-adata-legend-800-nvme",
+    "title": "ADATA Legend 800 NVMe M.2",
+    "brand": "ADATA",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-samsung-860-evo-sata",
+    "title": "Samsung 860 EVO SSD SATA 2.5\"",
+    "brand": "Samsung",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-adata-su800-sata",
+    "title": "ADATA SU800 SSD SATA 2.5\"",
+    "brand": "ADATA",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-pny-cs900-sata",
+    "title": "PNY CS900 SSD SATA 2.5\"",
+    "brand": "PNY",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
+  },
+  {
+    "id": "storage-teamgroup-gx1-sata",
+    "title": "TeamGroup GX1 SSD SATA 2.5\"",
+    "brand": "TeamGroup",
+    "category": "Storage",
+    "price": null,
+    "image": null,
+    "url": null,
+    "source": "manual",
+    "tier": "free"
   }
 ]
