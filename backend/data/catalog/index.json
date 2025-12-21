@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "files": {
+    "cpu": "cpu.json",
+    "gpu": "gpu.json",
+    "motherboard": "motherboard.json",
+    "ram": "ram.json",
+    "storage": "storage.json",
+    "psu": "psu.json",
+    "case": "case.json",
+    "cooling": "cooling.json",
+    "peripherals": "peripherals.json",
+    "display": "display.json",
+    "network": "network.json",
+    "mobile": "mobile.json",
+    "console": "console.json",
+    "notebooks": "notebooks.json"
+  }
+}
