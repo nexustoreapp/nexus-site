@@ -35,7 +35,6 @@ async function getCJAccessToken() {
 
   tokenCache = {
     accessToken: data.data.accessToken,
-    // guarda 12 dias (token normalmente dura bem mais, mas isso é seguro)
     expiryMs: Date.now() + 12 * 24 * 60 * 60 * 1000,
   };
 
@@ -47,11 +46,10 @@ function normPlan(v) {
   return ["free", "core", "hyper", "omega"].includes(p) ? p : "free";
 }
 
-// ✅ pega número mesmo se vier "US$ 12.34", "12,34", "12.34 USD"
 function parseMoney(v) {
   if (v == null) return null;
-  const s = String(v).replace(",", ".");            // 12,34 -> 12.34
-  const m = s.match(/(\d+(\.\d+)?)/);               // pega primeiro número
+  const s = String(v).replace(",", ".");
+  const m = s.match(/(\d+(\.\d+)?)/);
   if (!m) return null;
   const n = Number(m[1]);
   return Number.isFinite(n) ? n : null;
@@ -61,18 +59,15 @@ function computePriceBRL(usdValue, plan) {
   const usd = parseMoney(usdValue);
   if (!Number.isFinite(usd)) return null;
 
-  const base = usd * USD_BRL;
-
   let mk = MARKUP_FREE;
   if (plan === "core") mk = MARKUP_CORE;
   if (plan === "hyper") mk = MARKUP_HYPER;
   if (plan === "omega") mk = MARKUP_OMEGA;
 
-  const final = base * (1 + mk);
+  const final = usd * USD_BRL * (1 + mk);
   return Math.round(final * 100) / 100;
 }
 
-// ✅ tenta pegar imagem em vários campos possíveis
 function pickImage(p) {
   return (
     p?.bigImage ||
@@ -85,6 +80,16 @@ function pickImage(p) {
     p?.image ||
     null
   );
+}
+
+function buildCJProductUrl(id, sku) {
+  const q = encodeURIComponent(sku || id || "");
+  return `https://cjdropshipping.com/search?search=${q}`;
+}
+
+function stableIdFromCJ(p) {
+  const raw = `${p?.id || ""}|${p?.productId || ""}|${p?.sku || ""}|cj`;
+  return "cj-" + crypto.createHash("md5").update(raw).digest("hex").slice(0, 16);
 }
 
 function mapCategory(title) {
@@ -104,14 +109,25 @@ function mapCategory(title) {
   return "Acessórios";
 }
 
-function buildCJProductUrl(id, sku) {
-  const q = encodeURIComponent(sku || id || "");
-  return `https://cjdropshipping.com/search?search=${q}`;
-}
+// pega a lista independente do formato (CJ muda isso)
+function extractList(payload) {
+  const d = payload?.data;
 
-function stableIdFromCJ(p) {
-  const raw = `${p?.id || ""}|${p?.sku || ""}|cj`;
-  return "cj-" + crypto.createHash("md5").update(raw).digest("hex").slice(0, 16);
+  // formatos comuns
+  const a = d?.content?.[0]?.productList;
+  if (Array.isArray(a)) return a;
+
+  const b = d?.content?.productList;
+  if (Array.isArray(b)) return b;
+
+  const c = d?.productList;
+  if (Array.isArray(c)) return c;
+
+  // às vezes content é array de produtos direto
+  const e = d?.content;
+  if (Array.isArray(e)) return e;
+
+  return [];
 }
 
 export async function dropshipSearchController(req, res) {
@@ -121,6 +137,8 @@ export async function dropshipSearchController(req, res) {
 
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
     const limit = Math.min(Math.max(parseInt(req.query.limit || "24", 10), 1), 60);
+
+    const debug = String(req.query.debug || "") === "1";
 
     if (!q) {
       return res.json({ ok: true, query: "", total: 0, page, limit, produtos: [] });
@@ -134,32 +152,24 @@ export async function dropshipSearchController(req, res) {
     url.searchParams.set("keyWord", q);
     url.searchParams.set("orderBy", "0");
 
-    const r = await fetch(url.toString(), {
-      headers: { "CJ-Access-Token": token },
-    });
+    const r = await fetch(url.toString(), { headers: { "CJ-Access-Token": token } });
+    const payload = await r.json().catch(() => ({}));
 
-    const data = await r.json().catch(() => ({}));
-    if (!r.ok || data?.result !== true) {
-      throw new Error(`CJ_SEARCH_FAILED ${r.status} ${data?.message || "unknown"}`);
+    if (!r.ok || payload?.result !== true) {
+      return res.status(500).json({
+        ok: false,
+        error: "CJ_SEARCH_FAILED",
+        status: r.status,
+        message: payload?.message || "unknown",
+      });
     }
 
-    // ✅ CJ às vezes muda o formato, então tentamos os caminhos mais comuns:
-    const block =
-      data?.data?.content?.[0] ||
-      data?.data?.content?.[0]?.productList ||
-      data?.data;
+    const list = extractList(payload);
+    const sample = list[0] || null;
 
-    const list =
-      block?.productList ||
-      data?.data?.productList ||
-      data?.data?.content ||
-      [];
-
-    const produtos = (Array.isArray(list) ? list : []).map((p) => {
+    const produtos = list.map((p) => {
       const title = p?.nameEn || p?.name || p?.productName || p?.sku || "Produto CJ";
-      const image = pickImage(p);
 
-      // ✅ tenta várias chaves de preço
       const usd =
         p?.nowPrice ??
         p?.sellPrice ??
@@ -167,9 +177,6 @@ export async function dropshipSearchController(req, res) {
         p?.price ??
         p?.minPrice ??
         null;
-
-      const pricePublic = computePriceBRL(usd, "free");
-      const pricePremium = computePriceBRL(usd, "omega");
 
       return {
         id: stableIdFromCJ(p),
@@ -180,16 +187,31 @@ export async function dropshipSearchController(req, res) {
         brand: p?.brandName || p?.brand || "",
         category: mapCategory(title),
 
-        pricePublic,
-        pricePremium,
+        pricePublic: computePriceBRL(usd, "free"),
+        priceCore: computePriceBRL(usd, "core"),
+        priceHyper: computePriceBRL(usd, "hyper"),
+        pricePremium: computePriceBRL(usd, "omega"),
 
-        image,
+        image: pickImage(p),
         url: buildCJProductUrl(p?.id || p?.productId, p?.sku),
 
         source: "cj",
         tier: "free",
       };
     });
+
+    // DEBUG: mostra o “CJ cru” + chaves do primeiro item
+    if (debug) {
+      return res.json({
+        ok: true,
+        debug: true,
+        query: q,
+        gotItems: list.length,
+        sampleKeys: sample ? Object.keys(sample) : [],
+        sampleRaw: sample,
+        sampleParsed: produtos[0] || null,
+      });
+    }
 
     return res.json({
       ok: true,
@@ -198,7 +220,7 @@ export async function dropshipSearchController(req, res) {
       usd_brl: USD_BRL,
       page,
       limit,
-      total: data?.data?.totalRecords ?? produtos.length,
+      total: payload?.data?.totalRecords ?? produtos.length,
       produtos,
     });
   } catch (e) {
