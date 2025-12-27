@@ -1,0 +1,175 @@
+[
+  {
+    "id": "peripheral-keyboard-logitech-g213",
+    "title": "Logitech G213",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-logitech-g915",
+    "title": "Logitech G915",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-corsair-k55",
+    "title": "Corsair K55",
+    "brand": "Corsair",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-corsair-k70",
+    "title": "Corsair K70",
+    "brand": "Corsair",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-hyperx-alloy-origins",
+    "title": "HyperX Alloy Origins",
+    "brand": "HyperX",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-razer-huntsman-mini",
+    "title": "Razer Huntsman Mini",
+    "brand": "Razer",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+  {
+    "id": "peripheral-keyboard-redragon-kumara",
+    "title": "Redragon Kumara K552",
+    "brand": "Redragon",
+    "category": "Peripherals",
+    "type": "Keyboard"
+  },
+
+
+
+
+  {
+    "id": "peripheral-mouse-logitech-g203",
+    "title": "Logitech G203",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+  {
+    "id": "peripheral-mouse-logitech-g502-hero",
+    "title": "Logitech G502 HERO",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+  {
+    "id": "peripheral-mouse-corsair-m55",
+    "title": "Corsair M55 RGB Pro",
+    "brand": "Corsair",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+  {
+    "id": "peripheral-mouse-hyperx-pulsefire-surge",
+    "title": "HyperX Pulsefire Surge",
+    "brand": "HyperX",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+  {
+    "id": "peripheral-mouse-razer-deathadder-v2",
+    "title": "Razer DeathAdder V2",
+    "brand": "Razer",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+  {
+    "id": "peripheral-mouse-redragon-cobra",
+    "title": "Redragon Cobra M711",
+    "brand": "Redragon",
+    "category": "Peripherals",
+    "type": "Mouse"
+  },
+
+
+
+
+  {
+    "id": "peripheral-headset-logitech-g432",
+    "title": "Logitech G432",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+  {
+    "id": "peripheral-headset-logitech-g733",
+    "title": "Logitech G733",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+  {
+    "id": "peripheral-headset-hyperx-cloud-stinger",
+    "title": "HyperX Cloud Stinger",
+    "brand": "HyperX",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+  {
+    "id": "peripheral-headset-hyperx-cloud-ii",
+    "title": "HyperX Cloud II",
+    "brand": "HyperX",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+  {
+    "id": "peripheral-headset-corsair-hs35",
+    "title": "Corsair HS35",
+    "brand": "Corsair",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+  {
+    "id": "peripheral-headset-razer-blackshark-v2",
+    "title": "Razer BlackShark V2",
+    "brand": "Razer",
+    "category": "Peripherals",
+    "type": "Headset"
+  },
+
+
+
+
+  {
+    "id": "peripheral-controller-xbox-series",
+    "title": "Controle Xbox Series",
+    "brand": "Microsoft",
+    "category": "Peripherals",
+    "type": "Controller"
+  },
+  {
+    "id": "peripheral-controller-dualsense",
+    "title": "Controle Sony DualSense",
+    "brand": "Sony",
+    "category": "Peripherals",
+    "type": "Controller"
+  },
+  {
+    "id": "peripheral-controller-dualshock-4",
+    "title": "Controle Sony DualShock 4",
+    "brand": "Sony",
+    "category": "Peripherals",
+    "type": "Controller"
+  },
+  {
+    "id": "peripheral-controller-logitech-f310",
+    "title": "Logitech F310",
+    "brand": "Logitech",
+    "category": "Peripherals",
+    "type": "Controller"
+  }
+]

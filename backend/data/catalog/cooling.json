@@ -1,0 +1,183 @@
+[
+  {
+    "id": "cooler-air-cooler-master-hyper-212",
+    "title": "Cooler Master Hyper 212",
+    "brand": "Cooler Master",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-cooler-master-hyper-h410r",
+    "title": "Cooler Master Hyper H410R",
+    "brand": "Cooler Master",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-deepcool-gammaxx-300",
+    "title": "DeepCool GAMMAXX 300",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-deepcool-gammaxx-400",
+    "title": "DeepCool GAMMAXX 400",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-deepcool-ak400",
+    "title": "DeepCool AK400",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-deepcool-ak620",
+    "title": "DeepCool AK620",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-noctua-nh-u12s",
+    "title": "Noctua NH-U12S",
+    "brand": "Noctua",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-noctua-nh-d15",
+    "title": "Noctua NH-D15",
+    "brand": "Noctua",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-be-quiet-pure-rock-2",
+    "title": "be quiet! Pure Rock 2",
+    "brand": "be quiet!",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+  {
+    "id": "cooler-air-be-quiet-dark-rock-4",
+    "title": "be quiet! Dark Rock 4",
+    "brand": "be quiet!",
+    "category": "Cooling",
+    "type": "Air Cooler"
+  },
+
+  {
+    "id": "cooler-water-cooler-master-ml120l",
+    "title": "Cooler Master MasterLiquid ML120L",
+    "brand": "Cooler Master",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "120mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-cooler-master-ml240l",
+    "title": "Cooler Master MasterLiquid ML240L",
+    "brand": "Cooler Master",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "240mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-cooler-master-ml360l",
+    "title": "Cooler Master MasterLiquid ML360L",
+    "brand": "Cooler Master",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "360mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-corsair-h60",
+    "title": "Corsair Hydro Series H60",
+    "brand": "Corsair",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "120mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-corsair-h100x",
+    "title": "Corsair Hydro Series H100x",
+    "brand": "Corsair",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "240mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-corsair-h150i-elite",
+    "title": "Corsair iCUE H150i Elite",
+    "brand": "Corsair",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "360mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-deepcool-l120",
+    "title": "DeepCool GAMMAXX L120",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "120mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-deepcool-l240",
+    "title": "DeepCool GAMMAXX L240",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "240mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-deepcool-l360",
+    "title": "DeepCool GAMMAXX L360",
+    "brand": "DeepCool",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "360mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-nzxt-kraken-x53",
+    "title": "NZXT Kraken X53",
+    "brand": "NZXT",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "240mm" }
+    ]
+  },
+  {
+    "id": "cooler-water-nzxt-kraken-x73",
+    "title": "NZXT Kraken X73",
+    "brand": "NZXT",
+    "category": "Cooling",
+    "type": "Water Cooler",
+    "variants": [
+      { "radiator": "360mm" }
+    ]
+  }
+]

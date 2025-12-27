@@ -1,464 +1,67 @@
 [
   {
-    "id": "ram-kingston-ddr5-16gb-5600mhz-09fc0d",
-    "title": "Memória Kingston Fury Beast, 16Gb, 5600Mhz, Ddr5, Cl40, Preto - Kf556C40Bb-16",
+    "id": "ram-kingston-fury-ddr4",
+    "title": "Kingston Fury DDR4",
     "brand": "Kingston",
     "category": "RAM",
-    "price": 1400.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/349654/medium/Mem-ria-Kingston-Fury-Beast-16GB-5600MHz-DDR5-CL40-Preto-KF556C40BB-16_1764705215.jpg",
-    "url": "/produto/349654/memoria-kingston-fury-beast-16gb-5600mhz-ddr5-cl40-preto-kf556c40bb-16",
-    "source": "kabum",
-    "tier": "free"
+    "type": "DDR4",
+    "variants": [
+      { "capacity": "8GB", "mhz": 2666 },
+      { "capacity": "8GB", "mhz": 3200 },
+      { "capacity": "16GB", "mhz": 2666 },
+      { "capacity": "16GB", "mhz": 3200 },
+      { "capacity": "32GB", "mhz": 3200 },
+      { "capacity": "32GB", "mhz": 3600 }
+    ]
   },
   {
-    "id": "ram-kingston-ddr5-32gb-5600mhz-c6e80a",
-    "title": "Memória Ram Kingston Fury Beast, 32Gb 5600Mhz Ddr5 Cl40, Dimm, Preto - Kf556C40Bb-32",
-    "brand": "Kingston",
-    "category": "RAM",
-    "price": 1571.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/708328/memoria-ram-kingston-fury-beast-32gb-5600mhz-ddr5-cl40-dimm-preto-kf556c40bb-32_1741611807_m.jpg",
-    "url": "/produto/708328/memoria-ram-kingston-fury-beast-32gb-5600mhz-ddr5-cl40-dimm-preto-kf556c40bb-32",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-corsair-ddr5-32gb-6000mhz-68a96f",
-    "title": "De Memória Para Corsair Vengeance 32Gb 6000Mhz (2X16Gb) Ddr5 - Cmk32Gx5M2E6000C36 - 5823.",
+    "id": "ram-corsair-vengeance-ddr4",
+    "title": "Corsair Vengeance DDR4",
     "brand": "Corsair",
     "category": "RAM",
-    "price": 4434.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/693901/medium/Kit-De-Mem-ria-Para-PC-Corsair-Vengeance-32gb-6000mhz-2x16gb-Ddr5-Cmk32gx5m2e6000c36-5823-_1762281527.webp",
-    "url": "/produto/693901/kit-de-memoria-para-pc-corsair-vengeance-32gb-6000mhz-2x16gb-ddr5-cmk32gx5m2e6000c36-5823-",
-    "source": "kabum",
-    "tier": "free"
+    "type": "DDR4",
+    "variants": [
+      { "capacity": "8GB", "mhz": 2666 },
+      { "capacity": "8GB", "mhz": 3200 },
+      { "capacity": "16GB", "mhz": 3200 },
+      { "capacity": "32GB", "mhz": 3200 }
+    ]
   },
   {
-    "id": "ram-kingston-ddr5-16gb-mhz-03bdf2",
-    "title": "Memoria 16Gb Ddr5 5600 Cl46 1.1V 1Rx8 Kvr56U46Bs8-16 Kingston",
-    "brand": "Kingston",
-    "category": "RAM",
-    "price": 1287.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/689593/medium/Memoria-16gb-Ddr5-5600-Cl46-1-1v-1rx8-Kvr56u46bs8-16-Kingston_1764723214.jpg",
-    "url": "/produto/689593/memoria-16gb-kingston-kvr56u46bs8-16-5600mhz-ddr5-desktop",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-4800mhz-cb96e9",
-    "title": "Memoria 16Gb Ddr5 4800Mhz Hynix Dimm Hmcg78Mebua084N",
-    "brand": "",
-    "category": "RAM",
-    "price": 698.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/775878/medium/Memoria-16gb-Ddr5-4800mhz-Hynix-Dimm-Hmcg78mebua084n_1744725651.jpg",
-    "url": "/produto/775878/memoria-16gb-ddr5-4800mhz-hynix-dimm-hmcg78mebua084n",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-kingston-ddr5-16gb-5600mhz-2c7d65",
-    "title": "Memoria Desk Ddr5 16Gb Kingston 5600Mhz Kcp556Us8-16",
-    "brand": "Kingston",
-    "category": "RAM",
-    "price": 1132.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/955272/medium/Memoria-Desktop-Ddr5-16gb-Kingston-5600mhz-Kcp556us8-16_1762877914.jpg",
-    "url": "/produto/955272/memoria-desktop-ddr5-16gb-kingston-5600mhz-kcp556us8-16",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-corsair-ddr5-32gb-6000mhz-e9108c",
-    "title": "Memória Ddr5 32Gb 6000Mhz Corsair Vengeance 2X16Gb - Cmk32Gx5M2B6000C40",
-    "brand": "Corsair",
-    "category": "RAM",
-    "price": 4054.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/954056/medium/Mem-ria-Ddr5-32gb-6000mhz-Corsair-Vengeance-2x16gb-Cmk32gx5m2b6000c40_1765886322.jpg",
-    "url": "/produto/954056/memoria-ddr5-32gb-6000mhz-corsair-vengeance-2x16gb-cmk32gx5m2b6000c40",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-gskill-ddr5-32gb-6400mhz-e01065",
-    "title": "Memória Ddr5 32Gb 6400Mhz Cl30 Amd Expo G.Skill Trident Z5 Royal Neo (2X16Gb) F5-6400J3039G16Gx2-Tr5Ns",
-    "brand": "G Skill",
-    "category": "RAM",
-    "price": 5149.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/883650/medium/Mem-ria-DDR5-32GB-6400mhz-CL30-AMD-Expo-G-Skill-Trident-Z5-Royal-Neo-RGB-2x16gb-F5-6400J3039G16GX2-TR5NS_1765207715.png",
-    "url": "/produto/883650/memoria-ddr5-expo-amd-32gb-6000mhz-cl28-g-skill-trident-z5-royal-neo-rgb-2x16gb-f5-6000j2836g16gx2-tr5ns",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-5600mhz-0c3a74",
-    "title": "Memória Ddr5 16Gb 5600Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 1469.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707752/medium/Mem-ria-Gamer-Ddr5-16gb-5600-Mhz-Desktop-Dale7-No-Limits_1738851635.jpg",
-    "url": "/produto/707752/memoria-gamer-ddr5-16gb-5600-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-4800mhz-80b28b",
-    "title": "Memória Ddr5 16Gb 4800Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 1469.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707766/medium/Mem-ria-Gamer-Ddr5-16gb-4800-Mhz-Desktop-Dale7-No-Limits_1738851029.jpg",
-    "url": "/produto/707766/memoria-gamer-ddr5-16gb-4800-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-4800mhz-2331d3",
-    "title": "Memória Ddr5 8Gb 4800Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 761.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707768/medium/Mem-ria-Gamer-Ddr5-8GB-4800-Mhz-Desktop-Dale7-No-Limits_1738851027.jpg",
-    "url": "/produto/707768/memoria-gamer-ddr5-8gb-4800-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-corsair-ddr5-32gb-6400mhz-c63a81",
-    "title": "Memória De Computador Para Desk Corsair Vengeance Ddr5 Ram 32Gb (2X16Gb) 6400Mhz Cl36-48-48-104 1.35V Intel Xmp - Preto (Cmh32Gx5M2B6400C36",
-    "brand": "Corsair",
-    "category": "RAM",
-    "price": 5067.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/652011/medium/Mem-ria-De-Computador-Para-Desktop-Corsair-Vengeance-RGB-Ddr5-Ram-32gb-2x16gb-6400mhz-Cl36-48-48-104-1-35v-Intel-Xmp-Preto-cmh32gx5m2b6400c36_1746538239.jpg",
-    "url": "/produto/652011/memoria-de-computador-para-desktop-corsair-vengeance-rgb-ddr5-ram-32gb-2x16gb-6400mhz-cl36-48-48-104-1-35v-intel-xmp-preto-cmh32gx5m2b6400c36",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-5600mhz-9f8f2d",
-    "title": "Memória Dale7, 8Gb, 5600Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 735.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532686/Mem-ria-Dale7-8GB-5600Mhz-DDR5-Desktop-1-1v_1727881559_m.jpg",
-    "url": "/produto/532686/memoria-dale7-8gb-5600mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-mhz-2372e5",
-    "title": "Memória Lenovo Isg 32Gb 1Rx4 Ddr5-4800 4X77A77030 - 4X77A770",
-    "brand": "",
-    "category": "RAM",
-    "price": 4929.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/753211/medium/Mem-ria-Lenovo-Isg-32gb-1rx4-Ddr5-4800-4x77a77030-4x77a770_1760723016.png",
-    "url": "/produto/753211/memoria-lenovo-isg-32gb-1rx4-ddr5-4800-4x77a77030-4x77a770",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-5600mhz-d79559",
-    "title": "Memória Ddr5 8Gb 5600Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 761.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707754/medium/Mem-ria-Gamer-Ddr5-8GB-5600-Mhz-Desktop-Dale7-No-Limits_1738851632.jpg",
-    "url": "/produto/707754/memoria-gamer-ddr5-8gb-5600-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-4800mhz-ddb9d0",
-    "title": "Memória Pny Performance, 16Gb, 4800Mhz, Ddr5, Preto - Md16Gsd54800-Tb",
-    "brand": "",
-    "category": "RAM",
-    "price": 845.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/395196/medium/Mem-ria-Pny-Performance-16GB-4800MHz-DDR5-Preto-MD16GSD54800-TB_1741876230.jpg",
-    "url": "/produto/395196/memoria-pny-performance-16gb-4800mhz-ddr5-preto-md16gsd54800-tb",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-gskill-ddr5-32gb-6000mhz-1a9509",
-    "title": "Memória Ddr5 Expo Amd 32Gb 6000Mhz Cl26 G.Skill Trident Z5 Royal Neo (2X16Gb) F5-6000J2636G16Gx2-Tr5Ns",
-    "brand": "G Skill",
-    "category": "RAM",
-    "price": 6693.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/870902/medium/Mem-ria-DDR5-EXPO-AMD-32GB-6000mhz-CL26-G-Skill-Trident-Z5-Royal-Neo-RGB-2x16gb-F5-6000J2636G16GX2-TR5NS_1756153485.png",
-    "url": "/produto/870902/memoria-ddr5-expo-amd-32gb-6000mhz-cl28-g-skill-trident-z5-royal-neo-rgb-2x16gb-f5-6000j2836g16gx2-tr5ns",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-kingston-ddr5-256gb-mhz-607b0f",
-    "title": "Memória Ram Kingston, Fury Renegade Pro Expo, 256Gb, (8X32Gb), 5600Mt/S, Ddr5, Dimm, Cl28 - Kf556R28Rbe2K8-256",
-    "brand": "Kingston",
-    "category": "RAM",
-    "price": 14995.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/543651/memoria-kingston-fury-renegade-pro-expo-256gb-8x32gb-5600mt-s-ddr5-cl28-dimm-kf556r28rbe2k8-256_1716218607_m.jpg",
-    "url": "/produto/543651/memoria-ram-kingston-fury-renegade-pro-expo-256gb-8x32gb-5600mt-s-ddr5-dimm-cl28-kf556r28rbe2k8-256",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-5200mhz-30dd5b",
-    "title": "Memória Ddr5 8Gb 5200Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 761.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707753/medium/Mem-ria-Gamer-Ddr5-8GB-5200-Mhz-Desktop-Dale7-No-Limits_1738851028.jpg",
-    "url": "/produto/707753/memoria-gamer-ddr5-8gb-5200-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-gskill-ddr5-64gb-6000mhz-b3273e",
-    "title": "Memória Ddr5 Expo Amd 64Gb 6000Mhz Cl26 G.Skill Trident Z5 Royal Neo (2X32Gb) Dual Rank F5-6000J2636H32Gx2-Tr5Ns",
-    "brand": "G Skill",
-    "category": "RAM",
-    "price": 12349.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/885018/medium/Mem-ria-DDR5-Expo-AMD-64GB-6000mhz-CL26-G-Skill-Trident-Z5-Royal-Neo-RGB-2x32gb-Dual-Rank-F5-6000J2636H32GX2-TR5NS_1756219480.png",
-    "url": "/produto/885018/memoria-ddr5-expo-amd-64gb-6000mhz-cl26-g-skill-trident-z5-royal-neo-rgb-2x32gb-f5-6000j2636h32gx2-tr5ns",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-mhz-2083f5",
-    "title": "Memoria 32Gb Ddr5 Para Dell Precision 3570 3571 3580 3581",
-    "brand": "",
-    "category": "RAM",
-    "price": 1466.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/957183/medium/Memoria-32gb-Ddr5-Para-Dell-Precision-3570-3571-3580-3581_1764341618.jpg",
-    "url": "/produto/957183/memoria-16gb-ddr5-para-dell-precision-3570-3571-3580-3581",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-5200mhz-cf0cd1",
-    "title": "Memória Dale7, 8Gb, 5200Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 735.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532688/Mem-ria-Dale7-8GB-5200Mhz-DDR5-Desktop-1-1v_1727882158_m.jpg",
-    "url": "/produto/532688/memoria-dale7-8gb-5200mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-gskill-ddr5-32gb-6400mhz-4e94e6",
-    "title": "Memória Ddr5 32Gb 6400Mhz Cl30 Amd Expo G.Skill Trident Z5 Royal Neo (2X16Gb) F5-6400J3039G16Gx2-Tr5Ns",
-    "brand": "G Skill",
-    "category": "RAM",
-    "price": 5149.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/955933/medium/Mem-ria-Ddr5-32gb-6400mhz-Cl30-Amd-Expo-G-skill-Trident-Z5-Royal-Neo-RGB-2x16gb-F5-6400j3039g16gx2-tr5ns_1763040523.png",
-    "url": "/produto/955933/memoria-ddr5-32gb-6400mhz-cl30-amd-expo-g-skill-trident-z5-royal-neo-rgb-2x16gb-f5-6400j3039g16gx2-tr5ns",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-5600mhz-aa6231",
-    "title": "Memória Ddr5 32Gb 5600Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 2631.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707756/medium/Mem-ria-Gamer-Ddr5-32gb-5600-Mhz-Desktop-Dale7-No-Limits_1738851634.jpg",
-    "url": "/produto/707756/memoria-gamer-ddr5-32gb-5600-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-kingston-ddr5-256gb-mhz-3fb098",
-    "title": "Memória Ram Kingston, Fury Renegade Pro Xmp, 256Gb, (8X32Gb), 6800Mt/S, Ddr5, Dimm, Cl34 - Kf568R34Rb2K8-256",
-    "brand": "Kingston",
-    "category": "RAM",
-    "price": 22164.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/543662/memoria-kingston-fury-renegade-pro-xmp-256gb-8x32gb-6800mt-s-ddr5-cl34-dimm-kf568r34rb2k8-256_1716297677_m.jpg",
-    "url": "/produto/543662/memoria-ram-kingston-fury-renegade-pro-xmp-256gb-8x32gb-6800mt-s-ddr5-dimm-cl34-kf568r34rb2k8-256",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-8gb-4800mhz-d83a94",
-    "title": "Memória Dale7, 8Gb, 4800Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 735.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532696/Mem-ria-Dale7-8GB-4800Mhz-DDR5-Desktop-1-1v_1727882687_m.jpg",
-    "url": "/produto/532696/memoria-dale7-8gb-4800mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-corsair-ddr5-64gb-6000mhz-624d4e",
-    "title": "Memória De Computador Corsair Dominator Titanium Ddr5 Ram 64Gb (4X16Gb) Ddr5 6000Mhz Cl36 Intel Xmp Compatível Com Icue - Branca (Cmp64Gx5M4B6000C36W)",
-    "brand": "Corsair",
-    "category": "RAM",
-    "price": 3719.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/652014/Mem-ria-De-Computador-Corsair-Dominator-Titanium-RGB-Ddr5-Ram-64gb-4x16gb-Ddr5-6000mhz-Cl36-Intel-Xmp-Compat-vel-Com-Icue-Branca-cmp64gx5m4b6000c36w-_1729731757_m.jpg",
-    "url": "/produto/652014/memoria-de-computador-corsair-dominator-titanium-rgb-ddr5-ram-64gb-4x16gb-ddr5-6000mhz-cl36-intel-xmp-compativel-com-icue-branca-cmp64gx5m4b6000c36w-",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-crucial-ddr5-64gb-5600mhz-8908ab",
-    "title": "Ddr5 64Gb 5600Mhz Crucial Pro 2X32Gb - Cp2K32G56C48U5",
+    "id": "ram-crucial-ddr4",
+    "title": "Crucial DDR4",
     "brand": "Crucial",
     "category": "RAM",
-    "price": 6081.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/674951/Ddr5-64gb-5600mhz-Crucial-Pro-2x32gb-Cp2k32g56c48u5_1731757083_m.jpg",
-    "url": "/produto/674951/ddr5-64gb-5600mhz-crucial-pro-2x32gb-cp2k32g56c48u5",
-    "source": "kabum",
-    "tier": "free"
+    "type": "DDR4",
+    "variants": [
+      { "capacity": "8GB", "mhz": 2666 },
+      { "capacity": "16GB", "mhz": 2666 },
+      { "capacity": "16GB", "mhz": 3200 }
+    ]
   },
   {
-    "id": "ram-generic-ddr5-16gb-4800mhz-702351",
-    "title": "Memória 16Gb Ddr5 4800Mhz Fnx - Para Desk - Fnx648Us8/16Gb",
-    "brand": "",
+    "id": "ram-kingston-fury-ddr5",
+    "title": "Kingston Fury DDR5",
+    "brand": "Kingston",
     "category": "RAM",
-    "price": 1792.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/669439/Mem-ria-16gb-Ddr5-4800mhz-Fnx-Para-Desktop-Fnx648us8-16gb_1731443298_m.jpg",
-    "url": "/produto/669439/memoria-16gb-ddr5-4800mhz-fnx-para-desktop-fnx648us8-16gb",
-    "source": "kabum",
-    "tier": "free"
+    "type": "DDR5",
+    "variants": [
+      { "capacity": "16GB", "mhz": 5200 },
+      { "capacity": "16GB", "mhz": 5600 },
+      { "capacity": "32GB", "mhz": 5600 },
+      { "capacity": "32GB", "mhz": 6000 }
+    ]
   },
   {
-    "id": "ram-corsair-ddr5-96gb-5600mhz-3a7ee0",
-    "title": "Memória Ram Corsair Vengeance Ddr5 96Gb 5600Mhz",
+    "id": "ram-corsair-vengeance-ddr5",
+    "title": "Corsair Vengeance DDR5",
     "brand": "Corsair",
     "category": "RAM",
-    "price": 2271.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/880883/medium/Mem-ria-Ram-Corsair-Vengeance-Ddr5-96gb-5600mhz_1749417282.jpg",
-    "url": "/produto/880883/memoria-ram-corsair-vengeance-ddr5-96gb-5600mhz",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-5600mhz-b599c4",
-    "title": "Memória Dale7, 32Gb, 5600Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 2605.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532756/Mem-ria-Dale7-32GB-5600Mhz-DDR5-Desktop-1-1v_1727882758_m.jpg",
-    "url": "/produto/532756/memoria-dale7-32gb-5600mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-4800mhz-8de835",
-    "title": "Memória Dale7, 32Gb, 4800Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 2605.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532685/Mem-ria-Dale7-32GB-4800Mhz-DDR5-Desktop-1-1v_1727882277_m.jpg",
-    "url": "/produto/532685/memoria-dale7-32gb-4800mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-mhz-568c11",
-    "title": "Memória Lenovo Isg 16Gb 1Rx8 Ddr5-4800 4X77A88511 - 4X77A885",
-    "brand": "",
-    "category": "RAM",
-    "price": 2968.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/753210/medium/Mem-ria-Lenovo-Isg-16gb-1rx8-Ddr5-4800-4x77a88511-4x77a885_1760723016.png",
-    "url": "/produto/753210/memoria-lenovo-isg-16gb-1rx8-ddr5-4800-4x77a88511-4x77a885",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-5600mhz-82b299",
-    "title": "Memória Dale7, 16Gb, 5600Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 1443.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532757/Mem-ria-Dale7-16GB-5600Mhz-DDR5-Desktop-1-1v_1727882218_m.jpg",
-    "url": "/produto/532757/memoria-dale7-16gb-5600mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-5200mhz-cb08e9",
-    "title": "Memória Ddr5 32Gb 5200Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 2631.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707755/medium/Mem-ria-Gamer-Ddr5-32gb-5200-Mhz-Desktop-Dale7-No-Limits_1738851030.jpg",
-    "url": "/produto/707755/memoria-gamer-ddr5-32gb-5200-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-4800mhz-9cd1e0",
-    "title": "Memória Ddr5 32Gb 4800Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 2631.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707767/medium/Mem-ria-Gamer-Ddr5-32gb-4800-Mhz-Desktop-Dale7-No-Limits_1738851029.jpg",
-    "url": "/produto/707767/memoria-gamer-ddr5-32gb-4800-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-mhz-f98fed",
-    "title": "Mem 32Gb Ddr5 Para Dell Inspiron 16 Plus 7620 7630 Xps 15 95",
-    "brand": "",
-    "category": "RAM",
-    "price": 1513.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/990426/medium/Mem-32gb-Ddr5-Para-Dell-Inspiron-16-Plus-7620-7630-Xps-15-95_1766150951.jpg",
-    "url": "/produto/990426/memoria-32gb-ddr5-para-dell-inspiron-16-plus-7620-7630",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-5200mhz-5a6bf3",
-    "title": "Memória Dale7, 16Gb, 5200Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 1443.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532742/Mem-ria-Dale7-16GB-5200Mhz-DDR5-Desktop-1-1v_1727881562_m.jpg",
-    "url": "/produto/532742/memoria-dale7-16gb-5200mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-32gb-5200mhz-5cc985",
-    "title": "Memória Dale7, 32Gb, 5200Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 2605.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532697/Mem-ria-Dale7-32GB-5200Mhz-DDR5-Desktop-1-1v_1727882157_m.jpg",
-    "url": "/produto/532697/memoria-dale7-32gb-5200mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-4800mhz-58d43d",
-    "title": "Memória Dale7, 16Gb, 4800Mhz, Ddr5, Desk, 1.1V",
-    "brand": "",
-    "category": "RAM",
-    "price": 1443.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/532680/Mem-ria-Dale7-16GB-4800Mhz-DDR5-Desktop-1-1v_1727881559_m.jpg",
-    "url": "/produto/532680/memoria-dale7-16gb-4800mhz-ddr5-desktop-1-1v",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-5200mhz-5f20e5",
-    "title": "Memória Ddr5 16Gb 5200Mhz Desk Dale7",
-    "brand": "",
-    "category": "RAM",
-    "price": 1469.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/707757/medium/Mem-ria-Gamer-Ddr5-16gb-5200-Mhz-Desktop-Dale7-No-Limits_1738851030.jpg",
-    "url": "/produto/707757/memoria-gamer-ddr5-16gb-5200-mhz-desktop-dale7-no-limits",
-    "source": "kabum",
-    "tier": "free"
-  },
-  {
-    "id": "ram-generic-ddr5-16gb-5600mhz-98e4c4",
-    "title": "Memória Lenovo Isg 16Gb 1Rx8Truddr5 5600Mhz Udimm 4X77A99751",
-    "brand": "",
-    "category": "RAM",
-    "price": 4315.9,
-    "image": "https://images.kabum.com.br/produtos/fotos/sync_mirakl/991752/medium/Mem-ria-Lenovo-Isg-16gb-1rx8truDDR5-5600mhz-Udimm-4x77a99751_1765831122.jpg",
-    "url": "/produto/991752/memoria-lenovo-isg-16gb-1rx8truddr5-5600mhz-udimm-4x77a99751",
-    "source": "kabum",
-    "tier": "free"
+    "type": "DDR5",
+    "variants": [
+      { "capacity": "16GB", "mhz": 5200 },
+      { "capacity": "32GB", "mhz": 5600 },
+      { "capacity": "32GB", "mhz": 6000 }
+    ]
   }
 ]

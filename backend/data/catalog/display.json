@@ -1,0 +1,178 @@
+[
+  {
+    "id": "display-aoc-22b1h",
+    "title": "Monitor AOC 22B1H",
+    "brand": "AOC",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "21.5\"",
+    "resolution": "FHD",
+    "panel": "VA",
+    "refresh_rate_hz": 75
+  },
+  {
+    "id": "display-aoc-24b1h",
+    "title": "Monitor AOC 24B1H",
+    "brand": "AOC",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "23.8\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 75
+  },
+  {
+    "id": "display-aoc-24g2",
+    "title": "Monitor Gamer AOC 24G2",
+    "brand": "AOC",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "23.8\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-aoc-27g2",
+    "title": "Monitor Gamer AOC 27G2",
+    "brand": "AOC",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-lg-22mp410",
+    "title": "Monitor LG 22MP410-B",
+    "brand": "LG",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "21.5\"",
+    "resolution": "FHD",
+    "panel": "VA",
+    "refresh_rate_hz": 75
+  },
+  {
+    "id": "display-lg-24mp400",
+    "title": "Monitor LG 24MP400-B",
+    "brand": "LG",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "23.8\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 75
+  },
+  {
+    "id": "display-lg-24gn600",
+    "title": "Monitor Gamer LG UltraGear 24GN600-B",
+    "brand": "LG",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "23.8\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-lg-27gn800",
+    "title": "Monitor Gamer LG UltraGear 27GN800-B",
+    "brand": "LG",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "QHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-samsung-t350",
+    "title": "Monitor Samsung T350",
+    "brand": "Samsung",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "24\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 75
+  },
+  {
+    "id": "display-samsung-odyssey-g3-24",
+    "title": "Monitor Gamer Samsung Odyssey G3 24\"",
+    "brand": "Samsung",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "24\"",
+    "resolution": "FHD",
+    "panel": "VA",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-samsung-odyssey-g5-27",
+    "title": "Monitor Gamer Samsung Odyssey G5 27\"",
+    "brand": "Samsung",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "QHD",
+    "panel": "VA",
+    "refresh_rate_hz": 165
+  },
+  {
+    "id": "display-samsung-odyssey-g7-27",
+    "title": "Monitor Gamer Samsung Odyssey G7 27\"",
+    "brand": "Samsung",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "QHD",
+    "panel": "VA",
+    "refresh_rate_hz": 240
+  },
+  {
+    "id": "display-dell-p2422h",
+    "title": "Monitor Dell P2422H",
+    "brand": "Dell",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "24\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 60
+  },
+  {
+    "id": "display-dell-s2721dgf",
+    "title": "Monitor Gamer Dell S2721DGF",
+    "brand": "Dell",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "QHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 165
+  },
+  {
+    "id": "display-asus-vp249qgr",
+    "title": "Monitor ASUS VP249QGR",
+    "brand": "ASUS",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "23.8\"",
+    "resolution": "FHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 144
+  },
+  {
+    "id": "display-asus-tuf-vg27aq",
+    "title": "Monitor Gamer ASUS TUF VG27AQ",
+    "brand": "ASUS",
+    "category": "Display",
+    "type": "Monitor",
+    "size": "27\"",
+    "resolution": "QHD",
+    "panel": "IPS",
+    "refresh_rate_hz": 165
+  }
+]

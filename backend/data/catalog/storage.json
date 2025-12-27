@@ -1,387 +1,130 @@
 [
   {
-    "id": "storage-seagate-hdd-500gb-1f18ac",
-    "title": "HD Seagate 500GB 7200RPM 3.5'' Barracuda - ST500DM002",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 213.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Seagate-500GB-7200RPM-3-5-Barracuda/dp/B004HBAGRA/ref=sr_1_10?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-10&ufe=app_do%3Aamzn1.fos.a492fd4a-f54d-4e8d-8c31-35e0a04ce61e",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-500gb-919658",
-    "title": "HD SEAGATE 500GB SATA3 16MB ST500DM002HD",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 213.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/SEAGATE-500GB-SATA3-16MB-ST500DM002HD/dp/B005CT56R6/ref=sr_1_17?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-17&ufe=app_do%3Aamzn1.fos.6a09f7ec-d911-4889-ad70-de8dd83c8a74",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-1tb-000752",
-    "title": "SEBKO ST1000DM010 Seagate BarraCuda - HD 1TB, 3.5´",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 319.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Seagate-BarraCuda-1TB-3-5%C2%B4-SATA/dp/B01LNJBA2I/ref=sr_1_2?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-2&ufe=app_do%3Aamzn1.fos.fcd6d665-32ba-4479-9f21-b774e276a678",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-1tb-b14b08",
-    "title": "HD Seagate BarraCuda, 1TB, 3.5´, SATA - ST1000DM010",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 319.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Seagate-BarraCuda-1TB-3-5%C2%B4-SATA/dp/B01LY65EVG/ref=sr_1_11?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-11&ufe=app_do%3Aamzn1.fos.fcd6d665-32ba-4479-9f21-b774e276a678",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-1tb-29db0a",
-    "title": "HD Interno, Barracuda Compute HDD 2.5, 1TB, ST1000LM048, Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 425.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-BarraCuda-Notebook-Seagate-Prata/dp/B01LYNQXCP/ref=sr_1_18?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-18&ufe=app_do%3Aamzn1.fos.fcd6d665-32ba-4479-9f21-b774e276a678",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-5tb-27d583",
-    "title": "HD Interno, Barracuda Compute HDD 2.5, 5TB, ST5000LM000, Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 2334.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Barracuda-Compute-ST5000LM000-Seagate/dp/B01M0AADIX/ref=sr_1_36?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-36&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-4tb-fbe152",
-    "title": "HD Interno, Barracuda Compute HDD 3.5, 4TB, ST4000DM004, Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 955.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Barracuda-Compute-ST4000DM004-Seagate/dp/B0713R3Y6F/ref=sr_1_1?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-1&ufe=app_do%3Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-2tb-c27eaa",
-    "title": "HD Interno, Barracuda Compute HDD 3.5, 2TB, ST2000DM006, Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 743.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Seagate-7200rpm-64MB-Desktop-Barracuda/dp/B074TW3RG8/ref=sr_1_28?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-28&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-2tb-6fd120",
-    "title": "HD P/ Seagate BarraCuda 3.5\" 2TB SATA III - ST2000DM008",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 637.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Desktop-Seagate-BarraCuda-3-5-SATA/dp/B075QJTBVT/ref=sr_1_4?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-4&ufe=app_do%3Aamzn1.fos.cede3968-0a01-4da7-b7fa-174ca17dae70",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-2tb-a28628",
-    "title": "HD Interno Seagate | Barracuda Compute HDD 3, 5 | Prata | 2TB | ST2000DM008 Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 743.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Seagate-Barracuda-Compute-ST2000DM008/dp/B075WWN4QJ/ref=sr_1_13?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-13&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-8tb-70a635",
-    "title": "HD Interno Seagate | Barracuda Compute HDD 3, 5 | Prata | 8Tb | St8000Dm004 Seagate, HD Interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 1380.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Seagate-Barracuda-Compute-ST8000DM004/dp/B075WYBQXJ/ref=sr_1_3?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-3&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-1tb-4be1af",
-    "title": "HD 1tb Seagate Barracuda Interno 3.5 Sata3 (St1000dm010)",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 319.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Seagate-Desktop-BarraCuda-interno/dp/B0767D1BZY/ref=sr_1_8?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-8&ufe=app_do%3Aamzn1.fos.fcd6d665-32ba-4479-9f21-b774e276a678",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-samsung-nvme-500gb-99b773",
-    "title": "Samsung Unidade de estado sólido 500GB 970 EVO NVMe M.2",
-    "brand": "Samsung",
-    "category": "Storage",
-    "price": 772.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Samsung-Unidade-estado-s%C3%B3lido-Nvme/dp/B07CGGP7SV/ref=sr_1_9?dib=eyJ2IjoiMSJ9.0RbpNHmKisdEA-TTG7v-j_8-53q9a010SxoW6IZsl3TFLBmxHMgEjOBFbntHn1VDX6VAnUuyrnYjD89DsGer_rDPeU0sv8N64R6JEYldimb6gO0usFzuzMptJgKv_ypREsHl1RKuNLsCzaTWNBybCSUu6IijOS6hOx3BOcmi9nflZvGRCrtOH2Tewgk6TqGgiRiFrPWel43DRCMsu5W6U1t5T8naVEBtHsVjXaa6DcnK1PW458G-MDQtQ9LZmspXfLb5aGGbHpsnFtLBgUZjugvNCPTFNnGbGpi8DtR8nNE.Do-spkG-Uv2qbWfzoFRX-p9pNK3CwytMc1uxz6Dzlhc&dib_tag=se&keywords=samsung+970+evo+plus+nvme&qid=1766333125&sr=8-9",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-2tb-d4bb08",
-    "title": "HD Seagate ST2000DM008 BarraCuda 2TB 3.5´ SATA III",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 637.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Seagate-ST2000DM008-BarraCuda-3-5%C2%B4-SATA/dp/B07FFVYDF3/ref=sr_1_6?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-6&ufe=app_do%3Aamzn1.fos.cede3968-0a01-4da7-b7fa-174ca17dae70",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-hdd-2tb-23b56e",
-    "title": "HD Interno Seagate, Barracuda Computer HDD 2.5, 2TB, ST2000LM015 Seagate, HD interno, Prata",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": 350.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Interno-Seagate-Barracuda-Computer-ST2000LM015/dp/B07HCMMFK3/ref=sr_1_34?dib=eyJ2IjoiMSJ9.frfy0UMQYGSs04WltHoCJ2Ezx-NpIphzBrvAEx6cOr8ZyoRfxJwzLPxk-JqLMoS-VFSJgwxUHcwhEWsIpIkA12Xp8N34Vbj1nf3-G_uny-EPqx8GzAw7L1aI2punoBqDcp32y_nlHdKKD84Y_BfrDfVEi1NeGEyKSnWAec7zcEnYxqdhbywVyCqkpc_9sGdkday6Z3T6CSSCoGAva3R2GMgk06Mo49Q_17CHRI_7f07YEpNWLmiKWAbc1LEKpwPGps4Qy9HZtsNV9WACQb05D4pyU69iOvzsNZ-6m7bGJOA.5jfp2HSZouyPk4tp81XX35zkZSbc3RITfACUMgpWhL8&dib_tag=se&keywords=seagate+barracuda+hd&qid=1766336051&sr=8-34",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-xpg-nvme-512gb-ff85ba",
-    "title": "XPG Série S7: 512 GB PCIe Gen3 x 4 M.2 2280 3500/3000 MB/s Unidade de estado sólido",
-    "brand": "XPG",
-    "category": "Storage",
-    "price": 531.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/XPG-S%C3%A9rie-S7-Unidade-estado/dp/B08CNL6XSC/ref=sr_1_17?dib=eyJ2IjoiMSJ9.80O5xifsgS1hE23KEZdJTV9_SNvegBPpgGmBRIM0y7NpWwOPG3GA5FUEIPUzmbwAMWJQA5HH9IF9JR-sH1BVqzGvZs2ZDpd6ENEvI6qNA-4VjKNQBMIQaKVg3x0wS49aE4AnPyFT7KuapIauLtIfaY0jUvfSTa2jIuouqRejosE8Giy26f8J9vOp-iMZyWMhSUGiBPRP-SWmxI0j6rmX8pV87Sel-qSkeO3oj1DGQ1oljnYUuycqgqUfXrousLOmL937pMpMF0kPiX0UkJJR9VIp3qhH8ri8xR-vfi7rMe0.IpxNadrnQYzdYoJ_zqm8_Pi7K8acPrCut5YRj0mFwWI&dib_tag=se&keywords=xpg+s70+nvme&qid=1766335449&sr=8-17&ufe=app_do%3Aamzn1.fos.4bddec23-2dcf-4403-8597-e1a02442043d",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-adata-nvme-512gb-8a8a6f",
-    "title": "ADATA Unidade de estado sólido M.2 512GB Legend 700 (PCIe Gen 3.0 x4/NVMe 1.3)",
-    "brand": "ADATA",
-    "category": "Storage",
-    "price": 637.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/ADATA-Unidade-estado-s%C3%B3lido-Legend/dp/B09LV3Z7HG/ref=sr_1_29?dib=eyJ2IjoiMSJ9.FP15BfY0EIm1UlMmFR9J7emPMOacoTwwnYfNw-vLV0mGoZ1I7WqvCADVODtXMDbiMx1h_lxEo4GXyFnT2W3O2JwYFxbUkqxcxhJY1fm9EvqNsgWYrLXUq8nOejssKeem-2v-EceNQScPexl3FC3EM3C-xlqGKyIXycsVhx1ZAnxWi63vV5m9xnXnX3h5wfk6ptA7tQvgTV2DDaouW6_3QNgKIJEWejR1iBK2cg1EGTrAnjS4b9m-gn6Kebkna0EMULndgue6jm3FPMIIriRgBHimXk0umhm18qv-GUZ0SbA.9gBOVL-txWQKp3ZAUyCz7Ku2QTxw6c3np6yt49XrSlI&dib_tag=se&keywords=crucial+p3+nvme&qid=1766334946&sr=8-29&ufe=app_do%3Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-samsung-nvme-1tb-9a5d8c",
-    "title": "SAMSUNG 990 PRO M.2 1000 GB PCI Express 4.0 V-NAND MLC NVMe",
-    "brand": "Samsung",
-    "category": "Storage",
-    "price": 504.9,
-    "image": "https://m.media-amazon.com/images/G/32/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB546817485_.png",
-    "url": "https://www.amazon.com.br/Samsung-1000-Express-V-NAND-NVMe/dp/B0BXX2PBXP/ref=sr_1_5?dib=eyJ2IjoiMSJ9.G6Tsw_sLWLDl00kVmEyodYZe5qWcZr7ulTgvh3cQDr1WkQ1klW-aW_OuHfDHfd4WlGmKqDlKdz3jEyyEcrTrefTyKVrLnXK6KJM0DB6N5dGagTWYsJ-TIaiopdO5SdhxYx047kBs4ZFr4-t33ZDYO3EqYcqZd_tryBGePAG4yom2LXgrAwk5EbAVeXYBjwcnQ57YMesyAW8uU7aA8JyhduopIU3206DzyWQTR3jL06IG5gRhz40lcLBzoDv_dKeTXQWTrTc3I96qHXm0SX5OLAvNCPTFNnGbGpi8DtR8nNE.k6iJyPdji5S1YAwH-TeAlzFis0wH2X-PMwsBdqmpCHg&dib_tag=se&keywords=samsung+990+pro+nvme&qid=1766332203&sr=8-5",
-    "source": "www.amazon.com.br",
-    "tier": "free"
-  },
-  {
-    "id": "storage-samsung-990-pro-nvme-2tb",
-    "title": "Samsung 990 PRO NVMe M.2 2TB",
-    "brand": "Samsung",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-samsung-990-pro-nvme-4tb",
-    "title": "Samsung 990 PRO NVMe M.2 4TB",
-    "brand": "Samsung",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-wd-black-sn850x-nvme-2tb",
-    "title": "WD Black SN850X NVMe M.2 2TB",
-    "brand": "Western Digital",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-wd-black-sn850x-nvme-4tb",
-    "title": "WD Black SN850X NVMe M.2 4TB",
-    "brand": "Western Digital",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-kingston-kc3000-nvme-2tb",
-    "title": "Kingston KC3000 NVMe M.2 2TB",
+    "id": "ssd-kingston-a400-sata",
+    "title": "SSD Kingston A400 SATA",
     "brand": "Kingston",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "SATA",
+    "variants": [
+      { "capacity": "120GB" },
+      { "capacity": "240GB" },
+      { "capacity": "480GB" },
+      { "capacity": "960GB" }
+    ]
   },
   {
-    "id": "storage-crucial-p5-plus-nvme-2tb",
-    "title": "Crucial P5 Plus NVMe M.2 2TB",
+    "id": "ssd-kingston-nv2-nvme",
+    "title": "SSD Kingston NV2 NVMe",
+    "brand": "Kingston",
+    "category": "Storage",
+    "type": "SSD",
+    "interface": "NVMe",
+    "generation": "Gen4",
+    "variants": [
+      { "capacity": "250GB" },
+      { "capacity": "500GB" },
+      { "capacity": "1TB" },
+      { "capacity": "2TB" }
+    ]
+  },
+  {
+    "id": "ssd-crucial-bx500-sata",
+    "title": "SSD Crucial BX500 SATA",
     "brand": "Crucial",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "SATA",
+    "variants": [
+      { "capacity": "120GB" },
+      { "capacity": "240GB" },
+      { "capacity": "480GB" },
+      { "capacity": "1TB" }
+    ]
   },
   {
-    "id": "storage-corsair-mp600-pro-nvme-2tb",
-    "title": "Corsair MP600 PRO NVMe M.2 2TB",
-    "brand": "Corsair",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-corsair-mp600-pro-xt-nvme",
-    "title": "Corsair MP600 PRO XT NVMe M.2",
-    "brand": "Corsair",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-seagate-firecuda-530-nvme-2tb",
-    "title": "Seagate FireCuda 530 NVMe M.2 2TB",
-    "brand": "Seagate",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-wd-green-sn350-nvme",
-    "title": "WD Green SN350 NVMe M.2",
+    "id": "ssd-wd-green-sata",
+    "title": "SSD WD Green SATA",
     "brand": "Western Digital",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "SATA",
+    "variants": [
+      { "capacity": "120GB" },
+      { "capacity": "240GB" },
+      { "capacity": "480GB" }
+    ]
   },
   {
-    "id": "storage-wd-blue-sn570-nvme-500gb",
-    "title": "WD Blue SN570 NVMe M.2 500GB",
+    "id": "ssd-wd-blue-sn570-nvme",
+    "title": "SSD WD Blue SN570 NVMe",
     "brand": "Western Digital",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "NVMe",
+    "generation": "Gen3",
+    "variants": [
+      { "capacity": "250GB" },
+      { "capacity": "500GB" },
+      { "capacity": "1TB" }
+    ]
   },
   {
-    "id": "storage-kingston-nv1-nvme",
-    "title": "Kingston NV1 NVMe M.2",
-    "brand": "Kingston",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-adata-legend-800-nvme",
-    "title": "ADATA Legend 800 NVMe M.2",
-    "brand": "ADATA",
-    "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
-  },
-  {
-    "id": "storage-samsung-860-evo-sata",
-    "title": "Samsung 860 EVO SSD SATA 2.5\"",
+    "id": "ssd-samsung-970-evo-plus-nvme",
+    "title": "SSD Samsung 970 EVO Plus NVMe",
     "brand": "Samsung",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "NVMe",
+    "generation": "Gen3",
+    "variants": [
+      { "capacity": "250GB" },
+      { "capacity": "500GB" },
+      { "capacity": "1TB" },
+      { "capacity": "2TB" }
+    ]
   },
   {
-    "id": "storage-adata-su800-sata",
-    "title": "ADATA SU800 SSD SATA 2.5\"",
-    "brand": "ADATA",
+    "id": "ssd-samsung-980-nvme",
+    "title": "SSD Samsung 980 NVMe",
+    "brand": "Samsung",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "SSD",
+    "interface": "NVMe",
+    "generation": "Gen3",
+    "variants": [
+      { "capacity": "250GB" },
+      { "capacity": "500GB" },
+      { "capacity": "1TB" }
+    ]
   },
   {
-    "id": "storage-pny-cs900-sata",
-    "title": "PNY CS900 SSD SATA 2.5\"",
-    "brand": "PNY",
+    "id": "hd-seagate-barracuda",
+    "title": "HD Seagate Barracuda",
+    "brand": "Seagate",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "HDD",
+    "interface": "SATA",
+    "rpm": 7200,
+    "variants": [
+      { "capacity": "500GB" },
+      { "capacity": "1TB" },
+      { "capacity": "2TB" },
+      { "capacity": "4TB" }
+    ]
   },
   {
-    "id": "storage-teamgroup-gx1-sata",
-    "title": "TeamGroup GX1 SSD SATA 2.5\"",
-    "brand": "TeamGroup",
+    "id": "hd-wd-blue",
+    "title": "HD WD Blue",
+    "brand": "Western Digital",
     "category": "Storage",
-    "price": null,
-    "image": null,
-    "url": null,
-    "source": "manual",
-    "tier": "free"
+    "type": "HDD",
+    "interface": "SATA",
+    "rpm": 7200,
+    "variants": [
+      { "capacity": "500GB" },
+      { "capacity": "1TB" },
+      { "capacity": "2TB" }
+    ]
   }
 ]

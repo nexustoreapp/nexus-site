@@ -1,0 +1,135 @@
+[
+  {
+    "id": "network-tplink-archer-c6",
+    "title": "TP-Link Archer C6",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-tplink-archer-c7",
+    "title": "TP-Link Archer C7",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-tplink-archer-ax20",
+    "title": "TP-Link Archer AX20",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 6"
+  },
+  {
+    "id": "network-tplink-archer-ax50",
+    "title": "TP-Link Archer AX50",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 6"
+  },
+  {
+    "id": "network-tplink-deco-m4",
+    "title": "TP-Link Deco M4",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Mesh System",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-tplink-deco-x20",
+    "title": "TP-Link Deco X20",
+    "brand": "TP-Link",
+    "category": "Network",
+    "type": "Mesh System",
+    "wireless_standard": "Wi-Fi 6"
+  },
+
+  {
+    "id": "network-intel-ax200",
+    "title": "Intel Wi-Fi 6 AX200",
+    "brand": "Intel",
+    "category": "Network",
+    "type": "Network Card",
+    "wireless_standard": "Wi-Fi 6"
+  },
+  {
+    "id": "network-intel-ax210",
+    "title": "Intel Wi-Fi 6E AX210",
+    "brand": "Intel",
+    "category": "Network",
+    "type": "Network Card",
+    "wireless_standard": "Wi-Fi 6E"
+  },
+
+  {
+    "id": "network-asus-pce-ac56",
+    "title": "ASUS PCE-AC56",
+    "brand": "ASUS",
+    "category": "Network",
+    "type": "Network Card",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-asus-pce-ax3000",
+    "title": "ASUS PCE-AX3000",
+    "brand": "ASUS",
+    "category": "Network",
+    "type": "Network Card",
+    "wireless_standard": "Wi-Fi 6"
+  },
+
+  {
+    "id": "network-dlink-dir-615",
+    "title": "D-Link DIR-615",
+    "brand": "D-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 4"
+  },
+  {
+    "id": "network-dlink-dir-846",
+    "title": "D-Link DIR-846",
+    "brand": "D-Link",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 5"
+  },
+
+  {
+    "id": "network-mercusys-mr30g",
+    "title": "Mercusys MR30G",
+    "brand": "Mercusys",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-mercusys-mr70x",
+    "title": "Mercusys MR70X",
+    "brand": "Mercusys",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 6"
+  },
+
+  {
+    "id": "network-tenda-ac10",
+    "title": "Tenda AC10",
+    "brand": "Tenda",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 5"
+  },
+  {
+    "id": "network-tenda-tx3",
+    "title": "Tenda TX3",
+    "brand": "Tenda",
+    "category": "Network",
+    "type": "Router",
+    "wireless_standard": "Wi-Fi 6"
+  }
+]

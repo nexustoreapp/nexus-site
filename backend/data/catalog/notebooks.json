@@ -1,0 +1,184 @@
+[
+  {
+    "id": "notebook-apple-macbook-air-m1",
+    "title": "Apple MacBook Air M1",
+    "brand": "Apple",
+    "category": "Notebook",
+    "processor_family": "Apple M1",
+    "screen_size": "13.3\""
+  },
+  {
+    "id": "notebook-apple-macbook-air-m2",
+    "title": "Apple MacBook Air M2",
+    "brand": "Apple",
+    "category": "Notebook",
+    "processor_family": "Apple M2",
+    "screen_size": "13.6\""
+  },
+  {
+    "id": "notebook-apple-macbook-pro-14-m2",
+    "title": "Apple MacBook Pro 14\" M2",
+    "brand": "Apple",
+    "category": "Notebook",
+    "processor_family": "Apple M2",
+    "screen_size": "14\""
+  },
+
+  {
+    "id": "notebook-dell-inspiron-15-3511",
+    "title": "Dell Inspiron 15 3511",
+    "brand": "Dell",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-dell-inspiron-14-5420",
+    "title": "Dell Inspiron 14 5420",
+    "brand": "Dell",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "14\""
+  },
+  {
+    "id": "notebook-dell-g15",
+    "title": "Dell G15",
+    "brand": "Dell",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-dell-alienware-m15",
+    "title": "Alienware M15",
+    "brand": "Dell",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+
+  {
+    "id": "notebook-lenovo-ideapad-3",
+    "title": "Lenovo IdeaPad 3",
+    "brand": "Lenovo",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-lenovo-ideapad-gaming-3",
+    "title": "Lenovo IdeaPad Gaming 3",
+    "brand": "Lenovo",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-lenovo-legion-5",
+    "title": "Lenovo Legion 5",
+    "brand": "Lenovo",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+
+  {
+    "id": "notebook-acer-aspire-5",
+    "title": "Acer Aspire 5",
+    "brand": "Acer",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-acer-nitro-5",
+    "title": "Acer Nitro 5",
+    "brand": "Acer",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-acer-predator-helios-300",
+    "title": "Acer Predator Helios 300",
+    "brand": "Acer",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+
+  {
+    "id": "notebook-asus-vivobook-15",
+    "title": "ASUS VivoBook 15",
+    "brand": "ASUS",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-asus-tuf-f15",
+    "title": "ASUS TUF Gaming F15",
+    "brand": "ASUS",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-asus-rog-strix-g15",
+    "title": "ASUS ROG Strix G15",
+    "brand": "ASUS",
+    "category": "Notebook",
+    "processor_family": "AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+
+  {
+    "id": "notebook-hp-250-g8",
+    "title": "HP 250 G8",
+    "brand": "HP",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-hp-pavilion-15",
+    "title": "HP Pavilion 15",
+    "brand": "HP",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-hp-omen-16",
+    "title": "HP Omen 16",
+    "brand": "HP",
+    "category": "Notebook",
+    "processor_family": "Intel Core / AMD Ryzen",
+    "screen_size": "16.1\""
+  },
+
+  {
+    "id": "notebook-samsung-book",
+    "title": "Samsung Book",
+    "brand": "Samsung",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-samsung-book-2",
+    "title": "Samsung Book 2",
+    "brand": "Samsung",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  },
+  {
+    "id": "notebook-samsung-odyssey",
+    "title": "Samsung Odyssey",
+    "brand": "Samsung",
+    "category": "Notebook",
+    "processor_family": "Intel Core",
+    "screen_size": "15.6\""
+  }
+]
