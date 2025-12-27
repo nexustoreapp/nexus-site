@@ -1464,3 +1464,24 @@ main, .search-container, .page-search {
   padding: 12px 14px;
   border-radius: 14px;
 }
+/* =========================================
+   HOTFIX: REMOVE QUALQUER IMAGEM FORÇADA (GPU)
+   Isso mata background-image em cards.
+========================================= */
+.result-card .card-image,
+.result-card .card-image::before,
+.result-card .card-image::after,
+.result-card .card-image img,
+.result-card,
+.result-card::before,
+.result-card::after {
+  background-image: none !important;
+  background: none !important;
+}
+
+/* Se existir imagem <img> quebrada, não mostra */
+.result-card .card-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
