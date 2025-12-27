@@ -9,7 +9,7 @@ const CATALOG_DIR = path.join(__dirname, "..", "data", "catalog");
 const INDEX_PATH = path.join(CATALOG_DIR, "index.json");
 
 // =========================
-// NORMALIZAÇÃO
+// Normalização
 // =========================
 function norm(v) {
   return String(v ?? "")
@@ -19,12 +19,9 @@ function norm(v) {
     .trim();
 }
 
-// =========================
-// STOPWORDS
-// =========================
 const STOPWORDS = new Set([
-  "e", "de", "da", "do", "para", "pra", "com",
-  "um", "uma", "o", "a", "os", "as"
+  "e", "de", "da", "do", "para", "pra", "com", "sem", "um", "uma", "o", "a", "os", "as",
+  "no", "na", "nos", "nas", "por", "em"
 ]);
 
 function tokenize(q) {
@@ -34,108 +31,192 @@ function tokenize(q) {
 }
 
 // =========================
-// DICIONÁRIO DE INTENÇÃO (PESADO)
+// Cache (simples e rápido)
 // =========================
-const INTENT_CATEGORIES = {
-  cpu: ["cpu", "processador", "intel", "amd", "ryzen", "core", "i3", "i5", "i7", "i9"],
-  gpu: ["gpu", "placa", "placa de video", "placa grafica", "rtx", "gtx", "radeon"],
-  motherboard: ["placa mae", "motherboard", "b450", "b550", "b660", "z690"],
-  ram: ["ram", "memoria", "ddr4", "ddr5"],
-  storage: ["ssd", "hd", "hdd", "armazenamento", "nvme"],
-  psu: ["fonte", "psu", "power supply", "650w", "750w"],
-  cooling: ["cooler", "water cooler", "aio"],
-  case: ["gabinete", "case"],
-  peripherals: ["periferico", "teclado", "mouse", "headset", "webcam"],
-  notebook: ["notebook", "laptop"],
-  monitor: ["monitor", "tela"],
-  tv: ["tv", "televisao", "smart tv"],
-  mobile: ["celular", "smartphone", "telefone"],
-  smartwatch: ["smartwatch", "relogio"],
-  network: ["roteador", "wifi", "rede", "ethernet"],
-  console: ["console", "videogame", "ps5", "xbox"],
-  accessories: ["acessorio", "cabo", "adaptador", "carregador"]
-};
-
-const BRANDS = [
-  "intel", "amd", "nvidia", "asus", "msi", "gigabyte",
-  "corsair", "kingston", "hyperx", "logitech",
-  "razer", "redragon", "samsung", "lg", "dell",
-  "lenovo", "acer", "apple", "xiaomi"
-];
-
-// =========================
-// CACHE
-// =========================
-let indexCache = null;
-let fileCache = new Map();
+let _indexCache = null;
+const _fileCache = new Map();
 
 function loadIndex() {
-  if (indexCache) return indexCache;
+  if (_indexCache) return _indexCache;
   const raw = fs.readFileSync(INDEX_PATH, "utf-8");
-  indexCache = JSON.parse(raw);
-  return indexCache;
+  _indexCache = JSON.parse(raw);
+  return _indexCache;
 }
 
 function loadCategoryFile(file) {
-  if (fileCache.has(file)) return fileCache.get(file);
+  if (_fileCache.has(file)) return _fileCache.get(file);
   const abs = path.join(CATALOG_DIR, file);
   if (!fs.existsSync(abs)) return [];
   const data = JSON.parse(fs.readFileSync(abs, "utf-8"));
-  const arr = Array.isArray(data) ? data : data.products || [];
-  fileCache.set(file, arr);
+  const arr = Array.isArray(data) ? data : (data?.products || []);
+  _fileCache.set(file, arr);
   return arr;
 }
 
 // =========================
-// SEARCH CONTROLLER
+// Dicionário de intenções (pesado)
+// =========================
+const BRAND_WORDS = new Set([
+  "razer","logitech","corsair","hyperx","redragon","steelseries","asus","msi","gigabyte",
+  "intel","amd","nvidia","samsung","lg","dell","lenovo","acer","apple","xiaomi","motorola",
+  "kingston","crucial","wd","western","seagate","sandisk","synology","qnap","tplink","tp-link",
+  "intelbras","philips","tcl","aoc","nzxt","deepcool","cooler","master","evga","xpg","amazfit",
+  "8bitdo","microsoft","sony"
+]);
+
+// Palavras por “tipo”
+const TYPE_RULES = [
+  // Periféricos
+  { cat: "Teclado", match: ["teclado", "keyboard", "keycap", "switch", "mecanico", "mecânico"] },
+  { cat: "Mouse", match: ["mouse", "mice"] },
+  { cat: "Mousepad", match: ["mousepad", "pad", "deskmat", "desk mat"] },
+  { cat: "Headset", match: ["headset", "fone", "headphone", "auricular"] },
+  { cat: "Webcam", match: ["webcam", "camera usb", "câmera usb", "camera"] },
+  { cat: "Microfone", match: ["microfone", "mic", "microphone"] },
+  { cat: "Caixa de Som", match: ["caixa de som", "speaker", "soundbar", "sound bar"] },
+
+  // Display
+  { cat: "Monitor", match: ["monitor", "display", "ips", "144hz", "240hz", "ultrawide", "qhd"] },
+  { cat: "TV", match: ["tv", "smart tv", "oled", "qled", "uhd", "4k", "8k"] },
+  { cat: "Projetor", match: ["projetor", "projector"] },
+
+  // Computadores prontos
+  { cat: "Notebook", match: ["notebook", "laptop", "macbook"] },
+  { cat: "Desktop", match: ["desktop", "pc gamer", "computador", "cpu gamer"] },
+  { cat: "Mini PC", match: ["mini pc", "nuc"] },
+  { cat: "Workstation", match: ["workstation", "precision", "z2", "z4"] },
+
+  // Componentes
+  { cat: "GPU", match: ["gpu", "placa de video", "placa de vídeo", "rtx", "gtx", "radeon"] },
+  { cat: "CPU", match: ["cpu", "processador", "ryzen", "threadripper", "core i", "i3", "i5", "i7", "i9"] },
+  { cat: "Placa-mãe", match: ["placa mae", "placa-mãe", "motherboard", "b450", "b550", "b660", "z690", "x570"] },
+  { cat: "Memória RAM", match: ["ram", "memoria", "memória", "ddr4", "ddr5", "so-dimm", "sodimm"] },
+  { cat: "SSD", match: ["ssd", "nvme", "m.2", "m2", "sata ssd"] },
+  { cat: "HDD", match: ["hdd", "hd", "7200rpm", "5400rpm"] },
+  { cat: "Fonte (PSU)", match: ["fonte", "psu", "power supply", "650w", "750w", "850w", "1000w"] },
+  { cat: "Gabinete", match: ["gabinete", "case", "mid tower", "full tower"] },
+  { cat: "Cooler / Water Cooler", match: ["cooler", "water cooler", "aio", "radiador", "fan", "ventoinha"] },
+  { cat: "Pasta térmica", match: ["pasta termica", "pasta térmica", "thermal paste"] },
+
+  // Rede
+  { cat: "Roteador", match: ["roteador", "router", "wi-fi", "wifi", "mesh"] },
+  { cat: "Repetidor Wi-Fi", match: ["repetidor", "extensor", "range extender"] },
+  { cat: "Switch", match: ["switch", "8 portas", "16 portas"] },
+  { cat: "Modem", match: ["modem"] },
+  { cat: "Placa de Rede", match: ["placa de rede", "ethernet", "wifi usb", "adaptador wifi", "adaptador wi-fi", "bluetooth usb"] },
+
+  // Mobile
+  { cat: "Smartphone", match: ["smartphone", "celular", "iphone", "galaxy", "redmi", "moto g", "motorola"] },
+  { cat: "Tablet", match: ["tablet", "ipad"] },
+  { cat: "Smartwatch", match: ["smartwatch", "watch", "mi band", "galaxy watch", "amazfit"] },
+  { cat: "Acessórios Mobile", match: ["capa", "capinha", "pelicula", "película", "carregador", "cabo", "usb-c", "type-c", "suporte veicular"] },
+
+  // Armazenamento & mídia
+  { cat: "Pen Drive", match: ["pen drive", "pendrive", "flash drive"] },
+  { cat: "Cartão de Memória", match: ["cartao", "cartão", "micro sd", "microsd", "sd card"] },
+  { cat: "HD Externo", match: ["hd externo", "external hdd"] },
+  { cat: "SSD Externo", match: ["ssd externo", "external ssd"] },
+  { cat: "NAS", match: ["nas", "diskstation", "synology", "qnap"] },
+
+  // Games
+  { cat: "Console", match: ["console", "ps5", "ps4", "xbox", "switch"] },
+  { cat: "Controle (Gamepad)", match: ["controle", "gamepad", "dualsense", "dualshock"] },
+  { cat: "Acessórios para Console", match: ["base carregadora", "dock", "volante", "hd camera", "camera ps5"] }
+];
+
+function inferCategoryFromText(p) {
+  const text = norm([p?.title, p?.brand, p?.tags?.join?.(" "), p?.category].filter(Boolean).join(" "));
+  for (const rule of TYPE_RULES) {
+    for (const w of rule.match) {
+      if (text.includes(norm(w))) return rule.cat;
+    }
+  }
+  return p?.category || "";
+}
+
+// =========================
+// Busca inteligente (score)
+// =========================
+function scoreProduct(p, tokens, intentBrands) {
+  const hay = norm([p?.title, p?.brand, p?.category, (p?.tags || []).join(" ")].join(" "));
+  let score = 0;
+
+  for (const t of tokens) {
+    if (!t) continue;
+    if (hay.includes(t)) score += 2;
+    // match “forte” em title
+    if (p?.title && norm(p.title).includes(t)) score += 2;
+  }
+
+  // marca
+  if (intentBrands.size) {
+    const b = norm(p?.brand || "");
+    if (intentBrands.has(b)) score += 7;
+  }
+
+  // boost se categoria bate muito bem com o texto do produto
+  const cat = norm(p?.category || "");
+  if (cat.includes("teclad") && hay.includes("teclad")) score += 3;
+  if (cat.includes("mouse") && hay.includes("mouse")) score += 3;
+  if (cat.includes("gpu") && (hay.includes("rtx") || hay.includes("gtx") || hay.includes("radeon"))) score += 3;
+  if (cat.includes("cpu") && (hay.includes("ryzen") || hay.includes("intel") || hay.includes("core"))) score += 3;
+
+  return score;
+}
+
+// =========================
+// Controller
 // =========================
 export function searchController(req, res) {
   try {
-    const qRaw = req.query.q || "";
+    const qRaw = (req.query.q || "").toString();
     const q = norm(qRaw);
     const tokens = tokenize(q);
 
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
-    const limit = Math.min(parseInt(req.query.limit || "24", 10), 60);
+    const limit = Math.min(Math.max(parseInt(req.query.limit || "24", 10), 1), 60);
 
-    // Detecta intenção
-    const intentCats = new Set();
+    // Detecta marcas mencionadas
     const intentBrands = new Set();
-
     for (const t of tokens) {
-      for (const [cat, words] of Object.entries(INTENT_CATEGORIES)) {
-        if (words.some(w => t.includes(norm(w)))) {
-          intentCats.add(cat);
-        }
-      }
-      if (BRANDS.includes(t)) intentBrands.add(t);
+      if (BRAND_WORDS.has(t)) intentBrands.add(t);
     }
 
-    // Carrega catálogo
+    // Carrega tudo do catálogo modular
     const index = loadIndex();
-    let catalog = [];
+    const categories = Array.isArray(index?.categories) ? index.categories : [];
 
-    for (const c of index.categories) {
+    let catalog = [];
+    for (const c of categories) {
+      if (!c?.file) continue;
       catalog.push(...loadCategoryFile(c.file));
     }
 
-    // Score dos produtos
-    let results = catalog.map(p => {
-      let score = 0;
-      const hay = norm(`${p.title} ${p.brand} ${p.category}`);
+    // Corrige categoria na saída (sem mexer nos arquivos)
+    // ✅ Isso resolve teclado com imagem de GPU no seu front.
+    const fixed = catalog.map((p) => {
+      const original = p?.category || "";
+      const corrected = inferCategoryFromText(p);
 
-      tokens.forEach(t => {
-        if (hay.includes(t)) score += 2;
-      });
-
-      if (intentCats.size && intentCats.has(norm(p.category))) score += 5;
-      if (intentBrands.size && intentBrands.has(norm(p.brand))) score += 5;
-
-      return { ...p, _score: score };
+      // devolve categoria corrigida + guarda a antiga só pra debug
+      if (corrected && corrected !== original) {
+        return { ...p, category: corrected, _catOriginal: original };
+      }
+      return p;
     });
 
-    results = results.filter(p => p._score > 0);
-    results.sort((a, b) => b._score - a._score);
+    // Se não tem query, retorna pagina simples
+    let results = fixed;
+
+    if (tokens.length) {
+      results = fixed
+        .map((p) => {
+          const s = scoreProduct(p, tokens, intentBrands);
+          return { ...p, _score: s };
+        })
+        .filter((p) => p._score > 0)
+        .sort((a, b) => b._score - a._score);
+    }
 
     const total = results.length;
     const start = (page - 1) * limit;
@@ -150,7 +231,7 @@ export function searchController(req, res) {
       produtos
     });
   } catch (e) {
-    console.error("[SEARCH ERROR]", e);
+    console.error("[SEARCH ERROR]", e?.message || e);
     return res.status(500).json({ ok: false, error: "SEARCH_FAILED" });
   }
 }
