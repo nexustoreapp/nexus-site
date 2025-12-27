@@ -1,19 +1,35 @@
 {
-  "version": 1,
-  "files": {
-    "cpu": "cpu.json",
-    "gpu": "gpu.json",
-    "motherboard": "motherboard.json",
-    "ram": "ram.json",
-    "storage": "storage.json",
-    "psu": "psu.json",
-    "case": "case.json",
-    "cooling": "cooling.json",
-    "peripherals": "peripherals.json",
-    "display": "display.json",
-    "network": "network.json",
-    "mobile": "mobile.json",
-    "console": "console.json",
-    "notebooks": "notebooks.json"
-  }
+  "categories": [
+    { "id": "cpu", "title": "CPU (Processadores)", "file": "cpu.json" },
+    { "id": "gpu", "title": "GPU (Placas de Vídeo)", "file": "gpu.json" },
+    { "id": "motherboard", "title": "Placa-mãe", "file": "motherboard.json" },
+    { "id": "ram", "title": "Memória RAM", "file": "ram.json" },
+    { "id": "psu", "title": "Fonte (PSU)", "file": "psu.json" },
+    { "id": "cooling", "title": "Cooler / Water Cooler", "file": "cooling.json" },
+    { "id": "case", "title": "Gabinete", "file": "case.json" },
+
+    { "id": "storage", "title": "Armazenamento (SSD/HD)", "file": "storage.json" },
+    { "id": "storage_external", "title": "Armazenamento Externo", "file": "storage-external.json" },
+
+    { "id": "display", "title": "Monitor", "file": "display.json" },
+    { "id": "tv", "title": "TV", "file": "tv.json" },
+
+    { "id": "notebooks", "title": "Notebook", "file": "notebooks.json" },
+    { "id": "mobile", "title": "Mobile", "file": "mobile.json" },
+    { "id": "wearables", "title": "Wearables", "file": "wearables.json" },
+
+    { "id": "network", "title": "Rede & Conectividade", "file": "network.json" },
+
+    { "id": "peripherals", "title": "Periféricos", "file": "peripherals.json" },
+    { "id": "accessories", "title": "Acessórios", "file": "accessories.json" },
+    { "id": "audio", "title": "Áudio", "file": "audio.json" },
+    { "id": "camera", "title": "Câmeras", "file": "camera.json" },
+
+    { "id": "console", "title": "Games & Consoles", "file": "console.json" },
+
+    { "id": "office", "title": "Escritório", "file": "office.json" },
+    { "id": "printer", "title": "Impressora", "file": "printer.json" },
+
+    { "id": "smarthome", "title": "Casa Inteligente", "file": "smarthome.json" }
+  ]
 }

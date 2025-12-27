@@ -1,102 +1,212 @@
 [
   {
-    "id": "gpu-nvidia-gtx-1660-super-asus",
-    "title": "NVIDIA GeForce GTX 1660 Super ASUS",
+    "id": "gpu-nvidia-gtx-1650",
+    "title": "NVIDIA GeForce GTX 1650",
     "brand": "NVIDIA",
     "category": "GPU",
-    "chipset": "GTX 1660 Super",
-    "manufacturer": "ASUS",
-    "variants": [
-      { "vram": "6GB", "edition": "Dual" }
-    ]
+    "vram": "4GB"
   },
   {
-    "id": "gpu-nvidia-rtx-2060-gigabyte",
-    "title": "NVIDIA GeForce RTX 2060 Gigabyte",
+    "id": "gpu-nvidia-gtx-1660-super",
+    "title": "NVIDIA GeForce GTX 1660 Super",
     "brand": "NVIDIA",
     "category": "GPU",
-    "chipset": "RTX 2060",
-    "manufacturer": "Gigabyte",
-    "variants": [
-      { "vram": "6GB", "edition": "Windforce" }
-    ]
+    "vram": "6GB"
   },
   {
-    "id": "gpu-nvidia-rtx-3060-asus",
-    "title": "NVIDIA GeForce RTX 3060 ASUS",
+    "id": "gpu-nvidia-rtx-2060",
+    "title": "NVIDIA GeForce RTX 2060",
     "brand": "NVIDIA",
     "category": "GPU",
-    "chipset": "RTX 3060",
-    "manufacturer": "ASUS",
-    "variants": [
-      { "vram": "12GB", "edition": "Dual OC" }
-    ]
+    "vram": "6GB"
   },
   {
-    "id": "gpu-nvidia-rtx-4060-asus",
-    "title": "NVIDIA GeForce RTX 4060 ASUS",
+    "id": "gpu-nvidia-rtx-3060",
+    "title": "NVIDIA GeForce RTX 3060",
     "brand": "NVIDIA",
     "category": "GPU",
-    "chipset": "RTX 4060",
-    "manufacturer": "ASUS",
-    "variants": [
-      { "vram": "8GB", "edition": "Dual OC" }
-    ]
+    "vram": "12GB"
   },
   {
-    "id": "gpu-nvidia-rtx-4060-ti-asus",
-    "title": "NVIDIA GeForce RTX 4060 Ti ASUS",
+    "id": "gpu-nvidia-rtx-3060-ti",
+    "title": "NVIDIA GeForce RTX 3060 Ti",
     "brand": "NVIDIA",
     "category": "GPU",
-    "chipset": "RTX 4060 Ti",
-    "manufacturer": "ASUS",
-    "variants": [
-      { "vram": "8GB", "edition": "Dual OC" },
-      { "vram": "16GB", "edition": "Dual OC" }
-    ]
+    "vram": "8GB"
   },
   {
-    "id": "gpu-amd-rx-6600-asrock",
-    "title": "AMD Radeon RX 6600 ASRock",
+    "id": "gpu-nvidia-rtx-3070",
+    "title": "NVIDIA GeForce RTX 3070",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3070-ti",
+    "title": "NVIDIA GeForce RTX 3070 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3080",
+    "title": "NVIDIA GeForce RTX 3080",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "10GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3080-ti",
+    "title": "NVIDIA GeForce RTX 3080 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3090",
+    "title": "NVIDIA GeForce RTX 3090",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "24GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4060",
+    "title": "NVIDIA GeForce RTX 4060",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4060-ti",
+    "title": "NVIDIA GeForce RTX 4060 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB / 16GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4070",
+    "title": "NVIDIA GeForce RTX 4070",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4070-ti",
+    "title": "NVIDIA GeForce RTX 4070 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4080",
+    "title": "NVIDIA GeForce RTX 4080",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4090",
+    "title": "NVIDIA GeForce RTX 4090",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "24GB"
+  },
+  {
+    "id": "gpu-amd-rx-5500-xt",
+    "title": "AMD Radeon RX 5500 XT",
     "brand": "AMD",
     "category": "GPU",
-    "chipset": "RX 6600",
-    "manufacturer": "ASRock",
-    "variants": [
-      { "vram": "8GB", "edition": "Challenger" }
-    ]
+    "vram": "4GB / 8GB"
   },
   {
-    "id": "gpu-amd-rx-6650-xt-powercolor",
-    "title": "AMD Radeon RX 6650 XT PowerColor",
+    "id": "gpu-amd-rx-5600-xt",
+    "title": "AMD Radeon RX 5600 XT",
     "brand": "AMD",
     "category": "GPU",
-    "chipset": "RX 6650 XT",
-    "manufacturer": "PowerColor",
-    "variants": [
-      { "vram": "8GB", "edition": "Fighter" }
-    ]
+    "vram": "6GB"
   },
   {
-    "id": "gpu-amd-rx-6700-xt-gigabyte",
-    "title": "AMD Radeon RX 6700 XT Gigabyte",
+    "id": "gpu-amd-rx-5700-xt",
+    "title": "AMD Radeon RX 5700 XT",
     "brand": "AMD",
     "category": "GPU",
-    "chipset": "RX 6700 XT",
-    "manufacturer": "Gigabyte",
-    "variants": [
-      { "vram": "12GB", "edition": "Gaming OC" }
-    ]
+    "vram": "8GB"
   },
   {
-    "id": "gpu-amd-rx-7600-asus",
-    "title": "AMD Radeon RX 7600 ASUS",
+    "id": "gpu-amd-rx-6600",
+    "title": "AMD Radeon RX 6600",
     "brand": "AMD",
     "category": "GPU",
-    "chipset": "RX 7600",
-    "manufacturer": "ASUS",
-    "variants": [
-      { "vram": "8GB", "edition": "Dual OC" }
-    ]
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-6650-xt",
+    "title": "AMD Radeon RX 6650 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-6700-xt",
+    "title": "AMD Radeon RX 6700 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-amd-rx-6800",
+    "title": "AMD Radeon RX 6800",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-6800-xt",
+    "title": "AMD Radeon RX 6800 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-6900-xt",
+    "title": "AMD Radeon RX 6900 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-7600",
+    "title": "AMD Radeon RX 7600",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-7700-xt",
+    "title": "AMD Radeon RX 7700 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-amd-rx-7800-xt",
+    "title": "AMD Radeon RX 7800 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-7900-xt",
+    "title": "AMD Radeon RX 7900 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "20GB"
+  },
+  {
+    "id": "gpu-amd-rx-7900-xtx",
+    "title": "AMD Radeon RX 7900 XTX",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "24GB"
   }
 ]

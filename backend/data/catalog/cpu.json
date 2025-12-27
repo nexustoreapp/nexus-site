@@ -1,5 +1,14 @@
 [
   {
+    "id": "cpu-intel-core-i3-9100f",
+    "title": "Intel Core i3-9100F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 4,
+    "threads": 4
+  },
+  {
     "id": "cpu-intel-core-i3-10100f",
     "title": "Intel Core i3-10100F",
     "brand": "Intel",
@@ -9,8 +18,35 @@
     "threads": 8
   },
   {
+    "id": "cpu-intel-core-i3-12100f",
+    "title": "Intel Core i3-12100F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 4,
+    "threads": 8
+  },
+  {
+    "id": "cpu-intel-core-i5-9400f",
+    "title": "Intel Core i5-9400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 6,
+    "threads": 6
+  },
+  {
     "id": "cpu-intel-core-i5-10400f",
     "title": "Intel Core i5-10400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-intel-core-i5-11400f",
+    "title": "Intel Core i5-11400F",
     "brand": "Intel",
     "category": "CPU",
     "socket": "LGA1200",
@@ -36,6 +72,33 @@
     "threads": 16
   },
   {
+    "id": "cpu-intel-core-i7-9700k",
+    "title": "Intel Core i7-9700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 8,
+    "threads": 8
+  },
+  {
+    "id": "cpu-intel-core-i7-10700k",
+    "title": "Intel Core i7-10700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i7-11700k",
+    "title": "Intel Core i7-11700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
     "id": "cpu-intel-core-i7-12700k",
     "title": "Intel Core i7-12700K",
     "brand": "Intel",
@@ -54,6 +117,42 @@
     "threads": 24
   },
   {
+    "id": "cpu-intel-core-i9-9900k",
+    "title": "Intel Core i9-9900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i9-10900k",
+    "title": "Intel Core i9-10900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 10,
+    "threads": 20
+  },
+  {
+    "id": "cpu-intel-core-i9-11900k",
+    "title": "Intel Core i9-11900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i9-12900k",
+    "title": "Intel Core i9-12900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 16,
+    "threads": 24
+  },
+  {
     "id": "cpu-intel-core-i9-13900k",
     "title": "Intel Core i9-13900K",
     "brand": "Intel",
@@ -61,6 +160,24 @@
     "socket": "LGA1700",
     "cores": 24,
     "threads": 32
+  },
+  {
+    "id": "cpu-amd-ryzen-3-3100",
+    "title": "AMD Ryzen 3 3100",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 4,
+    "threads": 8
+  },
+  {
+    "id": "cpu-amd-ryzen-5-3600",
+    "title": "AMD Ryzen 5 3600",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 6,
+    "threads": 12
   },
   {
     "id": "cpu-amd-ryzen-5-5500",
@@ -90,6 +207,15 @@
     "threads": 12
   },
   {
+    "id": "cpu-amd-ryzen-7-3700x",
+    "title": "AMD Ryzen 7 3700X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 8,
+    "threads": 16
+  },
+  {
     "id": "cpu-amd-ryzen-7-5700x",
     "title": "AMD Ryzen 7 5700X",
     "brand": "AMD",
@@ -106,6 +232,24 @@
     "socket": "AM4",
     "cores": 8,
     "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-9-3900x",
+    "title": "AMD Ryzen 9 3900X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 12,
+    "threads": 24
+  },
+  {
+    "id": "cpu-amd-ryzen-9-5900x",
+    "title": "AMD Ryzen 9 5900X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 12,
+    "threads": 24
   },
   {
     "id": "cpu-amd-ryzen-5-7600",
@@ -142,5 +286,14 @@
     "socket": "AM5",
     "cores": 12,
     "threads": 24
+  },
+  {
+    "id": "cpu-amd-ryzen-9-7950x",
+    "title": "AMD Ryzen 9 7950X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 16,
+    "threads": 32
   }
 ]

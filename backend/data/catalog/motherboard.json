@@ -1,135 +1,146 @@
 [
   {
-    "id": "mb-asus-prime-a520m-k",
-    "title": "Placa-Mãe ASUS Prime A520M-K",
+    "id": "mb-asus-prime-h310m-e",
+    "title": "ASUS Prime H310M-E",
     "brand": "ASUS",
     "category": "Motherboard",
-    "chipset": "A520",
-    "socket": "AM4",
-    "form_factor": "mATX",
+    "socket": "LGA1151",
+    "chipset": "H310",
     "memory_type": "DDR4"
   },
   {
-    "id": "mb-gigabyte-a520m-s2h",
-    "title": "Placa-Mãe Gigabyte A520M S2H",
+    "id": "mb-gigabyte-b365m-ds3h",
+    "title": "Gigabyte B365M DS3H",
     "brand": "Gigabyte",
     "category": "Motherboard",
-    "chipset": "A520",
-    "socket": "AM4",
-    "form_factor": "mATX",
+    "socket": "LGA1151",
+    "chipset": "B365",
     "memory_type": "DDR4"
   },
   {
-    "id": "mb-msi-a520m-a-pro",
-    "title": "Placa-Mãe MSI A520M-A PRO",
+    "id": "mb-asus-tuf-b450m-plus",
+    "title": "ASUS TUF B450M-Plus Gaming",
+    "brand": "ASUS",
+    "category": "Motherboard",
+    "socket": "AM4",
+    "chipset": "B450",
+    "memory_type": "DDR4"
+  },
+  {
+    "id": "mb-msi-b450-tomahawk-max",
+    "title": "MSI B450 Tomahawk MAX",
     "brand": "MSI",
     "category": "Motherboard",
-    "chipset": "A520",
     "socket": "AM4",
-    "form_factor": "mATX",
-    "memory_type": "DDR4"
-  },
-  {
-    "id": "mb-gigabyte-b450m-ds3h-v2",
-    "title": "Placa-Mãe Gigabyte B450M DS3H V2",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
     "chipset": "B450",
-    "socket": "AM4",
-    "form_factor": "mATX",
-    "memory_type": "DDR4"
-  },
-  {
-    "id": "mb-asrock-b450m-hdv",
-    "title": "Placa-Mãe ASRock B450M-HDV",
-    "brand": "ASRock",
-    "category": "Motherboard",
-    "chipset": "B450",
-    "socket": "AM4",
-    "form_factor": "mATX",
     "memory_type": "DDR4"
   },
   {
     "id": "mb-gigabyte-b550m-ds3h",
-    "title": "Placa-Mãe Gigabyte B550M DS3H",
+    "title": "Gigabyte B550M DS3H",
     "brand": "Gigabyte",
     "category": "Motherboard",
-    "chipset": "B550",
     "socket": "AM4",
-    "form_factor": "mATX",
+    "chipset": "B550",
     "memory_type": "DDR4"
   },
   {
-    "id": "mb-gigabyte-b550m-aorus-elite",
-    "title": "Placa-Mãe Gigabyte B550M AORUS Elite",
-    "brand": "Gigabyte",
+    "id": "mb-asus-rog-strix-b550-f",
+    "title": "ASUS ROG Strix B550-F Gaming",
+    "brand": "ASUS",
     "category": "Motherboard",
-    "chipset": "B550",
     "socket": "AM4",
-    "form_factor": "mATX",
+    "chipset": "B550",
     "memory_type": "DDR4"
   },
   {
-    "id": "mb-msi-b550m-pro-vdh-wifi",
-    "title": "Placa-Mãe MSI B550M PRO-VDH WiFi",
+    "id": "mb-asus-prime-b660m-a",
+    "title": "ASUS Prime B660M-A",
+    "brand": "ASUS",
+    "category": "Motherboard",
+    "socket": "LGA1700",
+    "chipset": "B660",
+    "memory_type": "DDR4"
+  },
+  {
+    "id": "mb-gigabyte-b660m-aorus-pro",
+    "title": "Gigabyte B660M AORUS PRO",
+    "brand": "Gigabyte",
+    "category": "Motherboard",
+    "socket": "LGA1700",
+    "chipset": "B660",
+    "memory_type": "DDR4"
+  },
+  {
+    "id": "mb-msi-b760m-mortar",
+    "title": "MSI B760M Mortar",
     "brand": "MSI",
     "category": "Motherboard",
-    "chipset": "B550",
-    "socket": "AM4",
-    "form_factor": "mATX",
-    "memory_type": "DDR4",
-    "variants": [
-      { "wifi": true }
-    ]
-  },
-  {
-    "id": "mb-asus-prime-b660m-a-d4",
-    "title": "Placa-Mãe ASUS Prime B660M-A D4",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "chipset": "B660",
     "socket": "LGA1700",
-    "form_factor": "mATX",
-    "memory_type": "DDR4"
-  },
-  {
-    "id": "mb-gigabyte-b760m-aorus-elite",
-    "title": "Placa-Mãe Gigabyte B760M AORUS Elite",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
     "chipset": "B760",
-    "socket": "LGA1700",
-    "form_factor": "mATX",
     "memory_type": "DDR5"
   },
   {
-    "id": "mb-asus-prime-h610m-d4",
-    "title": "Placa-Mãe ASUS Prime H610M-D4",
+    "id": "mb-asus-rog-strix-b760-f",
+    "title": "ASUS ROG Strix B760-F Gaming",
     "brand": "ASUS",
     "category": "Motherboard",
-    "chipset": "H610",
     "socket": "LGA1700",
-    "form_factor": "mATX",
+    "chipset": "B760",
+    "memory_type": "DDR5"
+  },
+  {
+    "id": "mb-asus-prime-x570-p",
+    "title": "ASUS Prime X570-P",
+    "brand": "ASUS",
+    "category": "Motherboard",
+    "socket": "AM4",
+    "chipset": "X570",
     "memory_type": "DDR4"
   },
   {
-    "id": "mb-gigabyte-b650m-d3hp",
-    "title": "Placa-Mãe Gigabyte B650M D3HP",
+    "id": "mb-gigabyte-x570-aorus-elite",
+    "title": "Gigabyte X570 AORUS Elite",
     "brand": "Gigabyte",
     "category": "Motherboard",
-    "chipset": "B650",
+    "socket": "AM4",
+    "chipset": "X570",
+    "memory_type": "DDR4"
+  },
+  {
+    "id": "mb-asus-tuf-b650-plus",
+    "title": "ASUS TUF Gaming B650-PLUS",
+    "brand": "ASUS",
+    "category": "Motherboard",
     "socket": "AM5",
-    "form_factor": "mATX",
+    "chipset": "B650",
     "memory_type": "DDR5"
   },
   {
-    "id": "mb-asus-tuf-gaming-b650m-e",
-    "title": "Placa-Mãe ASUS TUF Gaming B650M-E",
+    "id": "mb-gigabyte-b650-aorus-elite",
+    "title": "Gigabyte B650 AORUS Elite",
+    "brand": "Gigabyte",
+    "category": "Motherboard",
+    "socket": "AM5",
+    "chipset": "B650",
+    "memory_type": "DDR5"
+  },
+  {
+    "id": "mb-asus-rog-strix-x670e-e",
+    "title": "ASUS ROG Strix X670E-E Gaming",
     "brand": "ASUS",
     "category": "Motherboard",
-    "chipset": "B650",
     "socket": "AM5",
-    "form_factor": "mATX",
+    "chipset": "X670E",
+    "memory_type": "DDR5"
+  },
+  {
+    "id": "mb-msi-meg-x670e-ace",
+    "title": "MSI MEG X670E ACE",
+    "brand": "MSI",
+    "category": "Motherboard",
+    "socket": "AM5",
+    "chipset": "X670E",
     "memory_type": "DDR5"
   }
 ]
