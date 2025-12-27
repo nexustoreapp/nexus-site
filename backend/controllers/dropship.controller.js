@@ -1,41 +1,26 @@
 import crypto from "crypto";
 
-// CJ endpoints (API 2.0)
 const CJ_BASE = "https://developers.cjdropshipping.com/api2.0/v1";
 const CJ_TOKEN_URL = `${CJ_BASE}/authentication/getAccessToken`;
 const CJ_LIST_URL = `${CJ_BASE}/product/listV2`;
 
-// ====== CONFIG ======
-const CJ_API_KEY = process.env.CJ_API_KEY || ""; // coloque no Render
-const USD_BRL = Number(process.env.USD_BRL || "5.0"); // ajuste no Render (ex: 5.10)
+const CJ_API_KEY = process.env.CJ_API_KEY || "";
+const USD_BRL = Number(process.env.USD_BRL || "5.0");
 
-// “preço sempre baixo”: markup pequeno por plano
-// você pode ajustar depois sem mexer no código (via Render env)
-const MARKUP_FREE = Number(process.env.MARKUP_FREE || "0.06");   // 6%
-const MARKUP_CORE = Number(process.env.MARKUP_CORE || "0.04");   // 4%
-const MARKUP_HYPER = Number(process.env.MARKUP_HYPER || "0.02"); // 2%
-const MARKUP_OMEGA = Number(process.env.MARKUP_OMEGA || "0.01"); // 1%
+const MARKUP_FREE = Number(process.env.MARKUP_FREE || "0.06");
+const MARKUP_CORE = Number(process.env.MARKUP_CORE || "0.04");
+const MARKUP_HYPER = Number(process.env.MARKUP_HYPER || "0.02");
+const MARKUP_OMEGA = Number(process.env.MARKUP_OMEGA || "0.01");
 
-const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
+let tokenCache = { accessToken: "", expiryMs: 0 };
 
-// ====== TOKEN CACHE ======
-let tokenCache = {
-  accessToken: "",
-  expiryMs: 0,
-  openId: null,
-};
-
-// CJ access token dura dias; a doc mostra “Default 15 days” :contentReference[oaicite:3]{index=3}
-function tokenLooksValid() {
+function tokenValid() {
   return tokenCache.accessToken && Date.now() < tokenCache.expiryMs;
 }
 
 async function getCJAccessToken() {
-  if (tokenLooksValid()) return tokenCache.accessToken;
-
-  if (!CJ_API_KEY) {
-    throw new Error("CJ_API_KEY_NOT_SET");
-  }
+  if (tokenValid()) return tokenCache.accessToken;
+  if (!CJ_API_KEY) throw new Error("CJ_API_KEY_NOT_SET");
 
   const r = await fetch(CJ_TOKEN_URL, {
     method: "POST",
@@ -45,20 +30,16 @@ async function getCJAccessToken() {
 
   const data = await r.json().catch(() => ({}));
   if (!r.ok || data?.result !== true || !data?.data?.accessToken) {
-    throw new Error(
-      `CJ_TOKEN_FAILED ${r.status} ${data?.message || "unknown"}`
-    );
+    throw new Error(`CJ_TOKEN_FAILED ${r.status} ${data?.message || "unknown"}`);
   }
 
-  const accessToken = data.data.accessToken;
-  // guarda token por 12 dias (buffer). Não dependemos de parse de timezone.
   tokenCache = {
-    accessToken,
-    openId: data.data.openId ?? null,
+    accessToken: data.data.accessToken,
+    // guarda 12 dias (token normalmente dura bem mais, mas isso é seguro)
     expiryMs: Date.now() + 12 * 24 * 60 * 60 * 1000,
   };
 
-  return accessToken;
+  return tokenCache.accessToken;
 }
 
 function normPlan(v) {
@@ -66,23 +47,46 @@ function normPlan(v) {
   return ["free", "core", "hyper", "omega"].includes(p) ? p : "free";
 }
 
-function computePriceBRL(usd, plan) {
-  const base = Number(usd);
-  if (!Number.isFinite(base)) return null;
+// ✅ pega número mesmo se vier "US$ 12.34", "12,34", "12.34 USD"
+function parseMoney(v) {
+  if (v == null) return null;
+  const s = String(v).replace(",", ".");            // 12,34 -> 12.34
+  const m = s.match(/(\d+(\.\d+)?)/);               // pega primeiro número
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? n : null;
+}
 
-  const brl = base * USD_BRL;
+function computePriceBRL(usdValue, plan) {
+  const usd = parseMoney(usdValue);
+  if (!Number.isFinite(usd)) return null;
+
+  const base = usd * USD_BRL;
 
   let mk = MARKUP_FREE;
   if (plan === "core") mk = MARKUP_CORE;
   if (plan === "hyper") mk = MARKUP_HYPER;
   if (plan === "omega") mk = MARKUP_OMEGA;
 
-  // preço “sempre baixo”: markup mínimo + arredonda bonito
-  const final = brl * (1 + mk);
+  const final = base * (1 + mk);
   return Math.round(final * 100) / 100;
 }
 
-// categoria CJ → sua categoria (bem básico; depois refinamos)
+// ✅ tenta pegar imagem em vários campos possíveis
+function pickImage(p) {
+  return (
+    p?.bigImage ||
+    p?.bigImg ||
+    p?.mainImage ||
+    p?.mainImg ||
+    p?.productImage ||
+    p?.productImg ||
+    p?.img ||
+    p?.image ||
+    null
+  );
+}
+
 function mapCategory(title) {
   const t = String(title || "").toLowerCase();
   if (t.includes("keyboard") || t.includes("teclado")) return "Teclado";
@@ -101,9 +105,6 @@ function mapCategory(title) {
 }
 
 function buildCJProductUrl(id, sku) {
-  // CJ listV2 retorna id e sku :contentReference[oaicite:4]{index=4}
-  // Link “bom o suficiente” para abrir o produto no CJ:
-  // (se você quiser o link exato de produto, usamos endpoint de detalhes depois)
   const q = encodeURIComponent(sku || id || "");
   return `https://cjdropshipping.com/search?search=${q}`;
 }
@@ -127,17 +128,14 @@ export async function dropshipSearchController(req, res) {
 
     const token = await getCJAccessToken();
 
-    // CJ listV2: page, size, keyWord :contentReference[oaicite:5]{index=5}
     const url = new URL(CJ_LIST_URL);
     url.searchParams.set("page", String(page));
     url.searchParams.set("size", String(limit));
     url.searchParams.set("keyWord", q);
-    url.searchParams.set("orderBy", "0"); // best match :contentReference[oaicite:6]{index=6}
+    url.searchParams.set("orderBy", "0");
 
     const r = await fetch(url.toString(), {
-      headers: {
-        "CJ-Access-Token": token,
-      },
+      headers: { "CJ-Access-Token": token },
     });
 
     const data = await r.json().catch(() => ({}));
@@ -145,42 +143,51 @@ export async function dropshipSearchController(req, res) {
       throw new Error(`CJ_SEARCH_FAILED ${r.status} ${data?.message || "unknown"}`);
     }
 
-    const content = data?.data?.content?.[0]?.productList || [];
-    // cada item tem bigImage e sellPrice em USD :contentReference[oaicite:7]{index=7}
-    const produtos = content.map((p) => {
-      const title = p?.nameEn || p?.sku || "Produto CJ";
-      const brand = ""; // CJ nem sempre dá brand; depois buscamos detalhes se quiser
-      const category = mapCategory(title);
-      const image = p?.bigImage || null;
+    // ✅ CJ às vezes muda o formato, então tentamos os caminhos mais comuns:
+    const block =
+      data?.data?.content?.[0] ||
+      data?.data?.content?.[0]?.productList ||
+      data?.data;
 
-      const usd = p?.nowPrice || p?.sellPrice || p?.discountPrice || null;
-      const priceOmega = computePriceBRL(usd, "omega");
-      const priceHyper = computePriceBRL(usd, "hyper");
-      const priceCore  = computePriceBRL(usd, "core");
-      const priceFree  = computePriceBRL(usd, "free");
+    const list =
+      block?.productList ||
+      data?.data?.productList ||
+      data?.data?.content ||
+      [];
 
-      // regra de “bloqueio por plano”:
-      // free vê tudo, mas alguns itens podem ir premium depois (você decide)
-      const tier = "free";
+    const produtos = (Array.isArray(list) ? list : []).map((p) => {
+      const title = p?.nameEn || p?.name || p?.productName || p?.sku || "Produto CJ";
+      const image = pickImage(p);
+
+      // ✅ tenta várias chaves de preço
+      const usd =
+        p?.nowPrice ??
+        p?.sellPrice ??
+        p?.discountPrice ??
+        p?.price ??
+        p?.minPrice ??
+        null;
+
+      const pricePublic = computePriceBRL(usd, "free");
+      const pricePremium = computePriceBRL(usd, "omega");
 
       return {
         id: stableIdFromCJ(p),
-        supplierId: p?.id || null,
+        supplierId: p?.id || p?.productId || null,
         sku: p?.sku || null,
 
         title,
-        brand,
-        category,
+        brand: p?.brandName || p?.brand || "",
+        category: mapCategory(title),
 
-        // preços em BRL já “baixos” por plano
-        pricePublic: priceFree,
-        pricePremium: priceOmega,
+        pricePublic,
+        pricePremium,
 
         image,
-        url: buildCJProductUrl(p?.id, p?.sku),
+        url: buildCJProductUrl(p?.id || p?.productId, p?.sku),
 
         source: "cj",
-        tier,
+        tier: "free",
       };
     });
 
@@ -188,7 +195,6 @@ export async function dropshipSearchController(req, res) {
       ok: true,
       query: q,
       source: "cj",
-      currencyBase: "USD",
       usd_brl: USD_BRL,
       page,
       limit,
