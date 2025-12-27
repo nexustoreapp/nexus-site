@@ -1,7 +1,5 @@
 const API = "https://nexus-site-oufm.onrender.com";
 
-
-
 /* ===============================
    ELEMENTOS BASE
 ================================ */
@@ -33,7 +31,9 @@ const rank = { free: 1, core: 2, hyper: 3, omega: 4 };
    UTIL
 ================================ */
 function money(v) {
-  return Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const n = Number(v);
+  if (Number.isNaN(n)) return "Sob consulta";
+  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 function norm(s = "") {
@@ -58,6 +58,14 @@ function categoryFallback(category = "") {
   return "/images/categories/default.jpg";
 }
 
+function safeImage(p) {
+  // 1) se o produto já tiver imagem, usa
+  if (p?.image && String(p.image).trim() !== "") return String(p.image).trim();
+
+  // 2) se não tiver, usa fallback por categoria (seu padrão atual)
+  return categoryFallback(p?.category || "");
+}
+
 /* ===============================
    CARD
 ================================ */
@@ -69,22 +77,22 @@ function card(p) {
   const locked = (rank[plan] || 1) < (rank[productTier] || 1);
   if (locked) d.classList.add("card-locked");
 
-  // AQUI: como você não tem hs-001.jpg etc, a imagem é SEMPRE por categoria
-  const imgSrc = categoryFallback(p.category);
+  // ✅ agora: usa p.image se existir; senão fallback por categoria
+  const imgSrc = safeImage(p);
 
   const price =
     plan === "free"
-      ? (p.pricePublic ?? p.pricePremium)
-      : (p.pricePremium ?? p.pricePublic);
+      ? (p.pricePublic ?? p.pricePremium ?? p.price)
+      : (p.pricePremium ?? p.pricePublic ?? p.price);
 
   d.innerHTML = `
     <div class="card-image">
-      <img src="${imgSrc}" alt="${p.title}">
+      <img src="${imgSrc}" alt="${p.title || ""}">
     </div>
 
     <div class="card-body">
       <div class="card-title">
-        ${p.title}
+        ${p.title || ""}
         <span class="badge-tier badge-${productTier}">
           ${productTier.toUpperCase()}
         </span>
@@ -109,6 +117,14 @@ function card(p) {
     </div>
   `;
 
+  // ✅ se a imagem quebrar, troca pra default (sem herdar imagem errada)
+  const imgEl = d.querySelector("img");
+  if (imgEl) {
+    imgEl.addEventListener("error", () => {
+      imgEl.src = "/images/categories/default.jpg";
+    });
+  }
+
   return d;
 }
 
@@ -121,12 +137,13 @@ async function loadSearch() {
 
   const url = `${API}/api/search?q=${encodeURIComponent(q)}&plan=${plan}&page=1&limit=24`;
 
-const r = await fetch(url);
+  const r = await fetch(url);
 
-if (!r.ok) {
-  const txt = await r.text().catch(() => "");
-  throw new Error(`API ${r.status}: ${txt}`);
-}
+  if (!r.ok) {
+    const txt = await r.text().catch(() => "");
+    throw new Error(`API ${r.status}: ${txt}`);
+  }
+
   const data = await r.json();
   const produtos = data.produtos || [];
 
