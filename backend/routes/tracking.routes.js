@@ -10,7 +10,6 @@ const QUEUE_PATH = path.join(__dirname, "../data/synceeQueue.json");
 
 const router = Router();
 
-// 🔎 Tracking por ID
 router.get("/:orderId", (req, res) => {
   try {
     if (!fs.existsSync(QUEUE_PATH)) {
@@ -24,7 +23,6 @@ router.get("/:orderId", (req, res) => {
       return res.status(404).json({ ok: false, error: "ORDER_NOT_FOUND" });
     }
 
-    // Resposta limpa para o cliente
     return res.json({
       ok: true,
       orderId: order.id,
@@ -41,36 +39,15 @@ router.get("/:orderId", (req, res) => {
 function buildTimeline(order) {
   const timeline = [];
 
-  timeline.push({
-    status: "EVALUATING",
-    at: order.createdAt
-  });
-
-  if (order.status === "BLOCKED") {
-    timeline.push({
-      status: "BLOCKED",
-      at: order.createdAt
-    });
-    return timeline;
-  }
-
-  timeline.push({
-    status: "PENDING",
-    at: order.createdAt
-  });
+  timeline.push({ status: "EVALUATING", at: order.createdAt });
+  timeline.push({ status: "PENDING", at: order.createdAt });
 
   if (order.sentAt) {
-    timeline.push({
-      status: "SENT_TO_SUPPLIER",
-      at: order.sentAt
-    });
+    timeline.push({ status: "SENT_TO_SUPPLIER", at: order.sentAt });
   }
 
   if (order.deliveredAt) {
-    timeline.push({
-      status: "DELIVERED",
-      at: order.deliveredAt
-    });
+    timeline.push({ status: "DELIVERED", at: order.deliveredAt });
   }
 
   return timeline;
