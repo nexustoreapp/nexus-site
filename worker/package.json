@@ -1,0 +1,12 @@
+{
+  "name": "nexus-worker",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node worker.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "playwright-chromium": "^1.57.0"
+  }
+}
