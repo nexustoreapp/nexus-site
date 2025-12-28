@@ -1,7 +1,20 @@
 {
+  "name": "nexus-backend",
+  "version": "1.0.0",
+  "description": "Backend do Nexus - robô gerente, dropshipping e automações",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.10.0",
     "csv-parse": "^6.1.0",
     "csv-parser": "^3.2.0",
-    "playwright": "^1.57.0"
+    "playwright-chromium": "^1.57.0"
   }
 }
