@@ -3,13 +3,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { getSupplierBySKU } from "../supplierMap.js";
 import { evaluateOrder } from "../robot/robotRules.js";
+import { calculatePrice } from "../robot/priceEngine.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const QUEUE_PATH = path.join(__dirname, "../data/synceeQueue.json");
 
-// garante que a fila existe
 function ensureQueue() {
   if (!fs.existsSync(QUEUE_PATH)) {
     fs.writeFileSync(QUEUE_PATH, "[]");
@@ -24,6 +24,9 @@ export async function robotManager({ sku, qty, customer, plan }) {
     return { ok: false, reason: "SKU_NOT_MAPPED" };
   }
 
+  // Preço base (do fornecedor)
+  const basePriceBRL = supplier.maxPrice;
+
   const order = {
     id: "order_" + Date.now(),
     sku,
@@ -31,11 +34,13 @@ export async function robotManager({ sku, qty, customer, plan }) {
     plan,
     customer,
     supplier,
+    basePriceBRL,
+    finalPriceBRL: calculatePrice({ basePriceBRL, plan }),
     status: "EVALUATING",
     createdAt: new Date().toISOString()
   };
 
-  // 🔍 AQUI ENTRA A IA / REGRAS
+  // 🧠 Regras inteligentes (PASSO B)
   const decision = evaluateOrder({ order, supplier });
 
   if (!decision.allowed) {
@@ -48,7 +53,12 @@ export async function robotManager({ sku, qty, customer, plan }) {
   order.status = "PENDING";
   save(order);
 
-  return { ok: true, status: "QUEUED", orderId: order.id };
+  return {
+    ok: true,
+    status: "QUEUED",
+    orderId: order.id,
+    price: order.finalPriceBRL
+  };
 }
 
 function save(order) {
