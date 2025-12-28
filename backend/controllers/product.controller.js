@@ -6,73 +6,85 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Caminho do catálogo
-const catalogPath = path.join(__dirname, "..", "data", "catalogo.json");
+// 📌 Caminhos base
+const DATA_DIR = path.join(__dirname, "..", "data");
+const INDEX_PATH = path.join(DATA_DIR, "index.json");
 
-let catalogo = [];
+// Cache simples em memória
+let catalogIndex = {};
 
-// Carrega o catálogo na subida do servidor
-try {
-  const raw = fs.readFileSync(catalogPath, "utf-8");
-  catalogo = JSON.parse(raw);
-  console.log(`[NEXUS] Catálogo (produto.controller) carregado com ${catalogo.length} produto(s).`);
-} catch (e) {
-  console.error("[NEXUS] Erro ao carregar catalogo.json em product.controller:", e.message);
-  catalogo = [];
+// 🔁 Carrega o index.json (catálogo canônico)
+function loadIndex() {
+  try {
+    const raw = fs.readFileSync(INDEX_PATH, "utf-8");
+    catalogIndex = JSON.parse(raw);
+    console.log(
+      `[NEXUS] CatalogIndex carregado com ${Object.keys(catalogIndex).length} SKU(s).`
+    );
+  } catch (e) {
+    console.error("[NEXUS] Erro ao carregar index.json:", e.message);
+    catalogIndex = {};
+  }
 }
 
-// Busca produto por ID
-function encontrarPorId(id) {
-  return catalogo.find((item) => item.id === id);
+// Carrega ao subir o servidor
+loadIndex();
+
+// 🔎 Busca produto completo por SKU
+function getProductBySKU(sku) {
+  const entry = catalogIndex[sku];
+  if (!entry || !entry.active) return null;
+
+  const nicheFile = path.join(DATA_DIR, entry.file);
+
+  try {
+    const raw = fs.readFileSync(nicheFile, "utf-8");
+    const nicheData = JSON.parse(raw);
+    return nicheData[sku] || null;
+  } catch (e) {
+    console.error(`[NEXUS] Erro ao abrir nicho ${entry.file}:`, e.message);
+    return null;
+  }
 }
 
 export const productController = {
-  // GET /api/product/:id
+  // GET /api/product/:sku
   getById: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { sku } = req.params;
 
-      if (!id) {
+      if (!sku) {
         return res.status(400).json({
           ok: false,
-          error: "Nenhum ID de produto informado.",
+          error: "Nenhum SKU informado.",
         });
       }
 
-      const produto = encontrarPorId(id);
+      const product = getProductBySKU(sku);
 
-      if (!produto) {
+      if (!product) {
         return res.status(404).json({
           ok: false,
-          error: "Produto não encontrado no catálogo Nexus.",
+          error: "Produto não encontrado ou inativo no catálogo.",
         });
       }
 
-      // Aqui no futuro dá pra adaptar dependendo do plano do usuário (Core / Hyper / Omega)
+      // 🔹 Produto base (preço entra depois via robô)
       return res.json({
         ok: true,
         mode: "catalogo_nexus",
         product: {
-          id: produto.id,
-          title: produto.title,
-          subtitle: produto.subtitle,
-          description: produto.description,
-          category: produto.category,
-          tags: produto.tags || [],
-          pricePublic: produto.pricePublic,
-          pricePremium: produto.pricePremium,
-          images: produto.images || [],
-          stock: produto.stock,
-          premiumOnly: !!produto.premiumOnly,
-          omegaExclusive: !!produto.omegaExclusive,
-          supplier: produto.supplier || null,
-          shipping: produto.shipping || null,
-          comboEligible: !!produto.comboEligible,
-          createdAt: produto.createdAt || null,
+          sku: product.sku,
+          title: product.title,
+          brand: product.brand || null,
+          category: catalogIndex[sku].category,
+          image: product.image || null,
+          images: product.images || [],
+          specs: product.specs || {},
         },
       });
-    } catch (erro) {
-      console.error("[NEXUS] Erro ao buscar produto por ID:", erro);
+    } catch (err) {
+      console.error("[NEXUS] Erro ao buscar produto:", err);
       return res.status(500).json({
         ok: false,
         error: "Erro interno ao buscar produto.",
@@ -80,17 +92,34 @@ export const productController = {
     }
   },
 
-  // GET /api/product (lista todos - opcional, mas já deixo pronto)
+  // GET /api/product (lista todos os ativos)
   listAll: async (_req, res) => {
     try {
+      const products = [];
+
+      for (const sku of Object.keys(catalogIndex)) {
+        const entry = catalogIndex[sku];
+        if (!entry.active) continue;
+
+        const product = getProductBySKU(sku);
+        if (product) {
+          products.push({
+            sku,
+            title: product.title,
+            category: entry.category,
+            image: product.image || null,
+          });
+        }
+      }
+
       return res.json({
         ok: true,
         mode: "catalogo_nexus",
-        total: catalogo.length,
-        products: catalogo,
+        total: products.length,
+        products,
       });
-    } catch (erro) {
-      console.error("[NEXUS] Erro ao listar produtos:", erro);
+    } catch (err) {
+      console.error("[NEXUS] Erro ao listar produtos:", err);
       return res.status(500).json({
         ok: false,
         error: "Erro interno ao listar produtos.",
