@@ -1,8 +1,14 @@
 // backend/controllers/robot.controller.js
 
 import { robotManager } from "../services/robotManager.js";
+import { getSupplierBySKU } from "../supplierMap.js";
+import fs from "fs";
+import path from "path";
 
-export async function submitRobotOrder(req, res) {
+// =======================
+// SUBMIT PEDIDO
+// =======================
+export async function robotSubmitOrder(req, res) {
   try {
     const { sku, qty, customer, plan } = req.body;
 
@@ -31,4 +37,55 @@ export async function submitRobotOrder(req, res) {
       reason: err?.message || "UNKNOWN_ERROR"
     });
   }
+}
+
+// =======================
+// LISTAR PEDIDOS DA FILA
+// =======================
+export function robotListOrders(req, res) {
+  try {
+    const queuePath = path.resolve("backend/data/synceeQueue.json");
+
+    if (!fs.existsSync(queuePath)) {
+      return res.json([]);
+    }
+
+    const data = JSON.parse(fs.readFileSync(queuePath, "utf8"));
+    return res.json(data);
+
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      error: "QUEUE_READ_FAILED"
+    });
+  }
+}
+
+// =======================
+// VER MAPA DE SKU
+// =======================
+export function robotGetMap(req, res) {
+  try {
+    return res.json({
+      ok: true,
+      map: getSupplierBySKU(req.query.sku || "")
+    });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      error: "MAP_READ_FAILED"
+    });
+  }
+}
+
+// =======================
+// VER REGRAS DO ROBÔ
+// =======================
+export function robotGetRules(req, res) {
+  return res.json({
+    maxPrice: 2000,
+    allowedCountries: ["BR"],
+    allowedSuppliers: ["syncee"],
+    mode: "CONTROLLED_NO_API"
+  });
 }
