@@ -1,92 +1,56 @@
-// backend/robot/robotManager.js
-
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { getSupplierBySKU } from "../supplierMap.js";
-import { pushOrderToSynceeQueue } from "../suppliers/synceeControlled.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 🔥 ÚNICO PATH DA FILA
+const QUEUE_PATH = path.join(__dirname, "../data/synceeQueue.json");
+
+// garante que a fila existe
+function ensureQueue() {
+  if (!fs.existsSync(QUEUE_PATH)) {
+    fs.writeFileSync(QUEUE_PATH, "[]");
+  }
+}
 
 // =======================
-// CONFIGURAÇÕES DO ROBÔ
+// ROBÔ GERENTE
 // =======================
-const MAX_PRICE = 2000;
-const ALLOWED_COUNTRIES = ["BR"];
-const ALLOWED_CATEGORIES = [
-  "CPU",
-  "GPU",
-  "Memória RAM",
-  "SSD",
-  "Placa-mãe",
-  "Fonte (PSU)",
-  "Gabinete",
-  "Cooler / Water Cooler",
-  "Acessórios Mobile",
-  "Roteador",
-  "Controle (Gamepad)"
-];
+export async function robotManager({ sku, qty, customer, plan }) {
+  ensureQueue();
 
-// =======================
-// ROBÔ GERENTE (SEM API)
-// =======================
-export async function robotManager(order) {
-  const { sku, qty, customer } = order;
+  const supplier = getSupplierBySKU(sku);
 
-  if (!sku || !qty || !customer?.country) {
-    return fail("INVALID_ORDER_DATA");
-  }
-
-  if (!ALLOWED_COUNTRIES.includes(customer.country)) {
-    return fail("COUNTRY_NOT_ALLOWED");
-  }
-
-  // 🔹 Mapa de SKU
-  const map = getSupplierBySKU(sku);
-  if (!map) {
-    return fail("SKU_NOT_MAPPED");
-  }
-
-  if (!ALLOWED_CATEGORIES.includes(map.category)) {
-    return fail("CATEGORY_BLOCKED");
-  }
-
-  // 🔹 Regra de preço
-  if (map.maxPrice > MAX_PRICE) {
-    return fail("PRICE_ABOVE_LIMIT");
-  }
-
-  // 🔹 Envio controlado para Syncee
-  const orderPayload = {
-    supplier: "syncee",
-    supplierProductId: map.supplierProductId,
-    sku,
-    qty,
-    priceLimit: MAX_PRICE,
-    customer
-  };
-
-  const queued = await pushOrderToSynceeQueue(orderPayload);
-
-  if (!queued) {
+  if (!supplier) {
     return {
-      ok: true,
-      status: "EXCEPTION",
-      reason: "QUEUE_FAILED"
+      ok: false,
+      reason: "SKU_NOT_MAPPED"
     };
   }
+
+  const queue = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf8"));
+
+  const order = {
+    id: "order_" + Date.now(),
+    sku,
+    qty,
+    plan,
+    customer,
+    supplier,
+    status: "PENDING",
+    createdAt: new Date().toISOString()
+  };
+
+  queue.push(order);
+
+  fs.writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2));
 
   return {
     ok: true,
     status: "QUEUED",
-    supplier: "syncee",
-    orderId: generateOrderId()
+    orderId: order.id
   };
-}
-
-
-// =======================
-// HELPERS
-// =======================
-function fail(reason) {
-  return { ok: false, reason };
-}
-
-function generateOrderId() {
-  return "ord-" + Math.random().toString(36).substring(2, 10);
 }
