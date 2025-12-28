@@ -1,79 +1,34 @@
-import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-import { runSynceeDispatcher } from "./robot/synceeDispatcher.js";
+import dotenv from "dotenv";
 
 import routes from "./routes/index.js";
 
+dotenv.config();
+
 const app = express();
 
-/* ===============================
-   CORS — LIBERADO PARA O SITE
-================================ */
-const allowedOrigins = [
-  "https://nexustore.store",
-  "https://www.nexustore.store",
-  "https://nexus-site-oufm.onrender.com",
-  "http://localhost:3000"
-];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(null, true); // não bloquear em produção
-      }
-    },
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 
-/* ===============================
-   PATHS
-================================ */
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const WEB_ROOT = path.resolve(__dirname, "..");
-
-/* ===============================
-   FRONTEND
-================================ */
-app.use(express.static(WEB_ROOT));
-
-/* ===============================
-   API
-================================ */
+// 🔥 ROTAS DA API (TEM QUE VIR ANTES DO 404)
 app.use("/api", routes);
 
-/* ❌ IMPORTANTE:
-   NUNCA deixar a API cair no index.html
-*/
+// 🔥 404 SÓ DEPOIS DE TODAS AS ROTAS
 app.use("/api/*", (req, res) => {
   res.status(404).json({
     ok: false,
     error: "API_ROUTE_NOT_FOUND",
-    path: req.originalUrl,
+    path: req.originalUrl
   });
 });
 
-/* ===============================
-   SPA FALLBACK
-================================ */
-app.get("*", (req, res) => {
-  res.sendFile(path.join(WEB_ROOT, "index.html"));
+// ROOT
+app.get("/", (req, res) => {
+  res.json({ ok: true, service: "NEXUS API" });
 });
 
-// roda o dispatcher a cada 30 segundos
-setInterval(() => {
-  runSynceeDispatcher();
-}, 30000);
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`🚀 Nexus rodando na porta ${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`🚀 Nexus rodando na porta ${PORT}`);
+});
