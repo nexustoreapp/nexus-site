@@ -1,7 +1,7 @@
 {
   "name": "nexus-backend",
   "version": "1.0.0",
-  "description": "Backend do Nexus - API de busca e planos",
+  "description": "Backend do Nexus - API de busca, robô gerente e dropshipping",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -12,6 +12,7 @@
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
-    "openai": "^6.10.0"
+    "openai": "^6.10.0",
+    "playwright": "^1.43.0"
   }
 }
