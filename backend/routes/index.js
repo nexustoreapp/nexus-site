@@ -5,9 +5,10 @@ import plansRoutes from "./plans.routes.js";
 import productRoutes from "./product.routes.js";
 import searchRoutes from "./search.routes.js";
 import chatRoutes from "./chat.routes.js";
-import dropshipRoutes from "./dropship.routes.js";
 
-console.log("[NEXUS] routes/index.js CARREGOU");
+import dropshipRoutes from "./dropship.routes.js"; // se você já tinha
+import robotRoutes from "./robot.routes.js";
+import supplierMapRoutes from "./supplierMap.routes.js";
 
 const router = Router();
 
@@ -17,11 +18,13 @@ router.use("/products", productRoutes);
 router.use("/search", searchRoutes);
 router.use("/chat", chatRoutes);
 
-// Dropshipping (CJ)
+// CJ (se quiser manter)
 router.use("/dropship", dropshipRoutes);
 
-console.log("[NEXUS] Search ON at /api/search");
-console.log("[NEXUS] Dropship ON at /api/dropship/search");
-console.log("[NEXUS] routes/index.js TERMINOU");
+// Robô-Gerente
+router.use("/robot", robotRoutes);
+
+// Mapa de SKU (mão dupla)
+router.use("/supplier-map", supplierMapRoutes);
 
 export default router;

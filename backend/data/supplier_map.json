@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "updatedAt": "2025-12-28T00:00:00Z",
+  "bySku": {
+    "RAM_GSKILL_64GB_DDR5_6400": {
+      "title": "Memória RAM G.Skill 64GB DDR5 6400MHz",
+      "category": "Memória RAM",
+      "brand": "G.Skill",
+      "providers": [
+        {
+          "provider": "syncee",
+          "providerProductId": "525168_81708_cc346a46-5a2f-469b-8fe2-c5d9731eccba",
+          "providerUrl": "https://syncee.com/product/525168_81708_cc346a46-5a2f-469b-8fe2-c5d9731eccba/memorie-ram-gskill-64gb-ddr5-6400mhz-f5-6400j3239g32gx2-rs5k",
+          "country": "HU",
+          "currency": "USD",
+          "maxPriceBRL": 2000
+        }
+      ]
+    },
+    "CPU_AMD_RYZEN_8600G_AM5": {
+      "title": "CPU AMD Ryzen 8600G AM5",
+      "category": "CPU",
+      "brand": "AMD",
+      "providers": [
+        {
+          "provider": "syncee",
+          "providerProductId": "525168_79622_38570cc8-42b9-4c45-9a50-4f2e5e3c7e10",
+          "providerUrl": "https://syncee.com/product/525168_79622_38570cc8-42b9-4c45-9a50-4f2e5e3c7e10/cpu-amd-am5-ryzen-8600g-43ghz-100-100001237box",
+          "country": "HU",
+          "currency": "USD",
+          "maxPriceBRL": 2000
+        }
+      ]
+    }
+  },
+  "byProvider": {
+    "syncee": {
+      "525168_81708_cc346a46-5a2f-469b-8fe2-c5d9731eccba": "RAM_GSKILL_64GB_DDR5_6400",
+      "525168_79622_38570cc8-42b9-4c45-9a50-4f2e5e3c7e10": "CPU_AMD_RYZEN_8600G_AM5"
+    },
+    "zendrop": {}
+  }
+}
