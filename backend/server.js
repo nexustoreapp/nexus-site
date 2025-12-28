@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import { runSynceeDispatcher } from "./robot/synceeDispatcher.js";
 
 import routes from "./routes/index.js";
 
@@ -66,6 +67,11 @@ app.use("/api/*", (req, res) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(WEB_ROOT, "index.html"));
 });
+
+// roda o dispatcher a cada 30 segundos
+setInterval(() => {
+  runSynceeDispatcher();
+}, 30000);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
