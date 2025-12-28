@@ -1,21 +1,11 @@
-import { Router } from "express";
-import {
-  robotSubmitOrder,
-  robotListOrders,
-  robotGetMap,
-  robotGetRules
-} from "../controllers/robot.controller.js";
+export function evaluateOrder(order) {
+  if (order.supplier.price > 2000) {
+    return { allowed: false, reason: "PRICE_TOO_HIGH" };
+  }
 
-import { testSynceeBrowser } from "../robot/synceeTest.js";
+  if (order.supplier.rating < 4.2) {
+    return { allowed: false, reason: "LOW_SUPPLIER_SCORE" };
+  }
 
-const router = Router();
-
-router.post("/submit", robotSubmitOrder);
-router.get("/orders", robotListOrders);
-router.get("/map", robotGetMap);
-router.get("/rules", robotGetRules);
-
-// 🔥 TESTE BROWSER SYNCEE
-router.get("/test-syncee", testSynceeBrowser);
-
-export default router;
+  return { allowed: true };
+}
