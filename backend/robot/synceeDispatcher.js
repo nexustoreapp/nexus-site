@@ -1,16 +1,13 @@
-// backend/robot/synceeDispatcher.js
-
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-// =======================
-// PATH DA FILA
-// =======================
-const QUEUE_PATH = path.resolve("backend/data/synceeQueue.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// =======================
-// DISPATCHER PRINCIPAL
-// =======================
+// 🔥 MESMO PATH DO CONTROLLER
+const QUEUE_PATH = path.join(__dirname, "../data/synceeQueue.json");
+
 export async function runSynceeDispatcher() {
   if (!fs.existsSync(QUEUE_PATH)) return;
 
@@ -20,26 +17,9 @@ export async function runSynceeDispatcher() {
   for (const order of queue) {
     if (order.status !== "PENDING") continue;
 
-    try {
-      // 🔴 AQUI É ONDE O PEDIDO REAL SERIA FEITO
-      // (browser automation / painel syncee / webhook futuro)
-
-      console.log("[SYNCEE DISPATCH]", order.sku);
-
-      // SIMULA SUCESSO CONTROLADO
-      order.status = "SENT_TO_SUPPLIER";
-      order.sentAt = new Date().toISOString();
-      order.supplierOrderId = "syncee-" + Math.random().toString(36).slice(2, 10);
-
-      changed = true;
-
-    } catch (err) {
-      console.error("[DISPATCH ERROR]", err.message);
-
-      order.status = "FAILED";
-      order.error = err.message;
-      changed = true;
-    }
+    order.status = "SENT_TO_SUPPLIER";
+    order.sentAt = new Date().toISOString();
+    changed = true;
   }
 
   if (changed) {
