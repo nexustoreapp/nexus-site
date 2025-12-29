@@ -2,17 +2,18 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus - Clube de Compradores Tech</title>
+  <title>Nexus — Tecnologia com preço inteligente</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus é um clube de compradores de tecnologia: preços mais acessíveis em eletrônicos, com atendimento por IA e planos para todos os perfis." />
+  <meta name="description" content="Nexus é uma loja de tecnologia com catálogo inteligente, preços calculados automaticamente e orientação por IA." />
 
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
+  <link rel="icon" type="image/png" href="favicon.png?v=3" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
 
 <body>
+
   <!-- NAVBAR -->
   <header class="topbar">
     <a href="index.html" class="brand">
@@ -28,115 +29,115 @@
 
     <nav class="nav" id="navMenu">
       <a href="index.html" class="nav-link active">Início</a>
+      <a href="buscar.html" class="nav-link">Buscar</a>
       <a href="dashboard.html" class="nav-link">Minha área</a>
-      <a href="assinatura.html" class="nav-link">Assinatura</a>
       <a href="login.html" class="nav-link">Entrar</a>
     </nav>
   </header>
 
   <main>
+
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
+
         <h1 class="hero-title">
-          Seu clube de compradores para
-          <span class="highlight">tecnologia mais barata e sem dor de cabeça</span>.
+          Tecnologia com
+          <span class="highlight">preço inteligente</span>.
+          <br />
+          Sem produto fantasma. Sem dor de cabeça.
         </h1>
 
         <p class="hero-subtitle">
-          Gadgets, periféricos, monitores, headsets, notebooks e muito mais.
-          A <strong>Nexus</strong> junta tudo em um só lugar pra você comprar com
-          <strong>segurança, vantagem e alívio financeiro</strong>.
+          A Nexus organiza um catálogo real de tecnologia e usa automação + IA
+          para te guiar até a melhor compra — pelo menor preço possível.
         </p>
 
         <!-- BUSCA -->
         <div class="hero-search">
-          <input type="text" id="home-query" class="input-search" placeholder="Ex: headset gamer, notebook i5, monitor 144Hz..." />
-          <button class="btn-primary" onclick="goToPremiumFromHome()">Buscar menor preço</button>
+          <input
+            type="text"
+            id="home-query"
+            class="input-search"
+            placeholder="Ex: RTX 4060, Ryzen 5, SSD 1TB, Headset gamer..."
+          />
+          <button class="btn-primary" onclick="goSearch()">
+            Buscar produto agora
+          </button>
+        </div>
+
       </div>
     </section>
 
-    <!-- COMO FUNCIONA -->
-    <section class="section section-steps">
+    <!-- CATEGORIAS -->
+    <section class="section">
       <div class="section-header">
-        <h2>Como a Nexus funciona</h2>
-        <p>Você fala o que quer, a Nexus organiza as opções do catálogo e te guia com IA pra fechar a compra com confiança e economia.</p>
-      </div>
-
-      <div class="grid-steps">
-        <article class="card-info">
-          <h3>1. Pedido rápido</h3>
-          <p>Você diz o que precisa e como pretende usar. Em poucos passos, a IA já filtra as melhores opções.</p>
-        </article>
-
-        <article class="card-info">
-          <h3>2. Recomendações certeiras</h3>
-          <p>A Nexus compara custo-benefício e te mostra o que faz sentido pro seu orçamento e perfil.</p>
-        </article>
-
-        <article class="card-info">
-          <h3>3. Compra com segurança</h3>
-          <p>Você recebe orientação, resumo do pedido e próximos passos sem pressão e sem enrolação.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- PLANOS -->
-    <section class="section section-plans">
-      <div class="section-header">
-        <h2>Planos para todos os perfis</h2>
-        <p>Comece no Free e suba quando fizer sentido (Core, Hyper, Omega).</p>
+        <h2>Principais categorias</h2>
+        <p>Explore o catálogo por tipo de produto.</p>
       </div>
 
       <div class="grid-cards">
-        <article class="card-plan">
-          <h3>Free</h3>
-          <p class="card-price">R$ 0,00</p>
-          <ul class="card-list">
-            <li>Acesso ao catálogo público</li>
-            <li>Atendimento Nexus IA</li>
-          </ul>
-          <a href="assinatura.html" class="btn-outline full">Começar no Free</a>
-        </article>
-
-        <article class="card-plan card-plan-featured">
-          <h3>Core</h3>
-          <p class="card-price">R$ 4,99 / semana</p>
-          <ul class="card-list">
-            <li>Até 5% OFF</li>
-            <li>Ofertas secretas (parcial)</li>
-          </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar Core</a>
-        </article>
-
-        <article class="card-plan">
-          <h3>Hyper</h3>
-          <p class="card-price">R$ 19,90 / mês</p>
-          <ul class="card-list">
-            <li>10%–20% OFF</li>
-            <li>Ofertas secretas (total)</li>
-          </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar Hyper</a>
-        </article>
-
-        <article class="card-plan">
-          <h3>Omega</h3>
-          <p class="card-price">R$ 149,90 / ano</p>
-          <ul class="card-list">
-            <li>20%–30% OFF</li>
-            <li>Frete grátis total (elegível)</li>
-          </ul>
-          <a href="assinatura.html" class="btn-outline full">Assinar Omega</a>
-        </article>
+        <a href="buscar.html?category=gpu" class="card-info">🎮 Placas de vídeo</a>
+        <a href="buscar.html?category=cpu" class="card-info">🧠 Processadores</a>
+        <a href="buscar.html?category=storage" class="card-info">💾 Armazenamento</a>
+        <a href="buscar.html?category=ram" class="card-info">🧬 Memória RAM</a>
+        <a href="buscar.html?category=peripherals" class="card-info">🖥️ Periféricos</a>
+        <a href="buscar.html?category=accessories" class="card-info">🔌 Acessórios</a>
       </div>
     </section>
+
+    <!-- DESTAQUES -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Destaques do catálogo</h2>
+        <p>Produtos selecionados com base em procura e custo-benefício.</p>
+      </div>
+
+      <div class="grid-cards">
+        <div class="card-info">RTX 4060 — Equilíbrio perfeito para jogos atuais</div>
+        <div class="card-info">Ryzen 5 — Performance sólida para trabalho e games</div>
+        <div class="card-info">SSD 1TB — Upgrade essencial de velocidade</div>
+      </div>
+    </section>
+
+    <!-- CONFIANÇA -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Por que comprar com a Nexus?</h2>
+      </div>
+
+      <div class="grid-steps">
+        <div class="card-info">🧠 Catálogo inteligente e validado</div>
+        <div class="card-info">💸 Preço calculado automaticamente</div>
+        <div class="card-info">🤖 IA que orienta, não empurra</div>
+      </div>
+    </section>
+
+    <!-- PLANOS (BENEFÍCIO) -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Quer pagar ainda menos?</h2>
+        <p>Planos opcionais com descontos progressivos e vantagens exclusivas.</p>
+      </div>
+
+      <a href="assinatura.html" class="btn-outline full">
+        Ver planos Nexus+
+      </a>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <p>Nexus © 2025 – Clube de Compradores Tech com IA.</p>
+    Nexus © 2025 — Tecnologia com decisão inteligente.
   </footer>
 
   <script>
+    function goSearch() {
+      const q = document.getElementById("home-query").value.trim();
+      if (!q) return;
+      window.location.href = `buscar.html?q=${encodeURIComponent(q)}`;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("navToggle");
       const menu = document.getElementById("navMenu");
@@ -144,7 +145,6 @@
     });
   </script>
 
-  <script src="script.js"></script>
   <script src="nexus-widget.js?v=3"></script>
 </body>
 </html>
