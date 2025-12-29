@@ -11,37 +11,23 @@ const meta = document.getElementById("search-meta");
 ================================ */
 const params = new URLSearchParams(window.location.search);
 const q = (params.get("q") || "").trim();
-const plan = (localStorage.getItem("nexus_user_plan") || "free").toLowerCase();
 
 /* ===============================
-   PREÇO
-================================ */
-function money(v) {
-  if (v == null) return "Sob consulta";
-  return Number(v).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-}
-
-/* ===============================
-   CARD
+   CARD (CANÔNICO)
 ================================ */
 function card(p) {
   const d = document.createElement("div");
   d.className = "result-card";
 
   d.innerHTML = `
-    <div class="card-image">
-      ${p.image ? `<img src="${p.image}" alt="${p.title}" />` : ""}
-    </div>
-
     <div class="card-body">
-      <div class="card-title">${p.title}</div>
-      <div class="card-price">${money(p.pricePublic)}</div>
+      <div class="card-title">${p.sku}</div>
+      <div class="card-category">${p.category}</div>
 
-      <a class="btn-primary" href="${p.url}" target="_blank">
-        Ver no fornecedor
+      <a class="btn-primary" href="produto.html?sku=${encodeURIComponent(
+        p.sku
+      )}">
+        Ver produto
       </a>
     </div>
   `;
@@ -50,21 +36,19 @@ function card(p) {
 }
 
 /* ===============================
-   LOAD SEARCH (CJ)
+   LOAD SEARCH (V2)
 ================================ */
 async function loadSearch() {
   meta.innerText = "Buscando produtos...";
   grid.innerHTML = "";
 
-  const url = `${API}/api/dropship/search?q=${encodeURIComponent(
-    q
-  )}&plan=${encodeURIComponent(plan)}&page=1&limit=24`;
+  const url = `${API}/api/search?q=${encodeURIComponent(q)}`;
 
   const r = await fetch(url);
   if (!r.ok) throw new Error("Erro na busca");
 
   const data = await r.json();
-  const produtos = data.produtos || [];
+  const produtos = data.products || [];
 
   meta.innerText = `${produtos.length} produto(s) encontrados`;
 
