@@ -1,4 +1,3 @@
-// backend/controllers/search.controller.js
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,28 +6,27 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_DIR = path.join(__dirname, "..", "data");
-const INDEX_PATH = path.join(DATA_DIR, "index.json");
+const CATALOG_INDEX_PATH = path.join(DATA_DIR, "catalog.index.json");
 
-// Cache simples
+// Cache
 let catalogIndex = {};
 
-// Carrega index.json
-function loadIndex() {
+// Load catalog index
+function loadCatalogIndex() {
   try {
-    catalogIndex = JSON.parse(fs.readFileSync(INDEX_PATH, "utf-8"));
+    catalogIndex = JSON.parse(fs.readFileSync(CATALOG_INDEX_PATH, "utf-8"));
     console.log(
-      `[NEXUS] SearchIndex carregado com ${Object.keys(catalogIndex).length} SKU(s).`
+      `[NEXUS] SearchCatalog carregado com ${Object.keys(catalogIndex).length} SKUs`
     );
   } catch (err) {
-    console.error("[NEXUS] Erro ao carregar index.json na busca:", err.message);
+    console.error("[NEXUS] Erro ao carregar catalog.index.json na busca:", err.message);
     catalogIndex = {};
   }
 }
 
-// Inicializa
-loadIndex();
+loadCatalogIndex();
 
-// Normaliza texto para busca
+// Normaliza texto
 function normalize(text) {
   return String(text)
     .toLowerCase()
@@ -36,21 +34,12 @@ function normalize(text) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-// Busca principal
 export const searchController = {
   // GET /api/search?q=texto&category=cpu
   search: async (req, res) => {
     try {
       const q = normalize(req.query.q || "");
       const categoryFilter = req.query.category || null;
-
-      if (!q && !categoryFilter) {
-        return res.json({
-          ok: true,
-          total: 0,
-          products: [],
-        });
-      }
 
       const results = [];
 
@@ -62,23 +51,18 @@ export const searchController = {
           continue;
         }
 
-        // Busca por SKU ou nome aproximado
-        const haystack = normalize(
-          `${sku} ${entry.category} ${entry.file}`
-        );
+        const haystack = normalize(`${sku} ${entry.category} ${entry.file}`);
 
         if (q && !haystack.includes(q)) continue;
 
         results.push({
           sku,
           category: entry.category,
-          file: entry.file,
         });
       }
 
       return res.json({
         ok: true,
-        mode: "catalogo_nexus",
         total: results.length,
         products: results,
       });
@@ -86,7 +70,7 @@ export const searchController = {
       console.error("[NEXUS] Erro na busca:", err);
       return res.status(500).json({
         ok: false,
-        error: "Erro interno na busca.",
+        error: "SEARCH_ERROR",
       });
     }
   },

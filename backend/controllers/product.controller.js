@@ -1,98 +1,99 @@
-// backend/controllers/product.controller.js
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { calculatePrice } from "../robot/priceEngine.js";
+import { getSupplierBySKU } from "../supplierMap.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 📌 Caminhos base
 const DATA_DIR = path.join(__dirname, "..", "data");
-const INDEX_PATH = path.join(DATA_DIR, "index.json");
+const CATALOG_INDEX_PATH = path.join(DATA_DIR, "catalog.index.json");
 
-// Cache simples em memória
+// Cache em memória
 let catalogIndex = {};
 
-// 🔁 Carrega o index.json (catálogo canônico)
-function loadIndex() {
+// Carrega o catálogo canônico
+function loadCatalogIndex() {
   try {
-    const raw = fs.readFileSync(INDEX_PATH, "utf-8");
-    catalogIndex = JSON.parse(raw);
+    catalogIndex = JSON.parse(fs.readFileSync(CATALOG_INDEX_PATH, "utf-8"));
     console.log(
-      `[NEXUS] CatalogIndex carregado com ${Object.keys(catalogIndex).length} SKU(s).`
+      `[NEXUS] CatalogIndex carregado com ${Object.keys(catalogIndex).length} SKUs`
     );
-  } catch (e) {
-    console.error("[NEXUS] Erro ao carregar index.json:", e.message);
+  } catch (err) {
+    console.error("[NEXUS] Erro ao carregar catalog.index.json:", err.message);
     catalogIndex = {};
   }
 }
 
-// Carrega ao subir o servidor
-loadIndex();
+// Carrega no boot
+loadCatalogIndex();
 
-// 🔎 Busca produto completo por SKU
-function getProductBySKU(sku) {
+// Busca produto base no nicho
+function getBaseProduct(sku) {
   const entry = catalogIndex[sku];
   if (!entry || !entry.active) return null;
 
-  const nicheFile = path.join(DATA_DIR, entry.file);
+  const nichePath = path.join(DATA_DIR, entry.file);
+  if (!fs.existsSync(nichePath)) return null;
 
-  try {
-    const raw = fs.readFileSync(nicheFile, "utf-8");
-    const nicheData = JSON.parse(raw);
-    return nicheData[sku] || null;
-  } catch (e) {
-    console.error(`[NEXUS] Erro ao abrir nicho ${entry.file}:`, e.message);
-    return null;
-  }
+  const nicheData = JSON.parse(fs.readFileSync(nichePath, "utf-8"));
+  return nicheData[sku] || null;
 }
 
 export const productController = {
-  // GET /api/product/:sku
+  // GET /api/product/:sku?plan=free
   getById: async (req, res) => {
     try {
       const { sku } = req.params;
+      const plan = req.query.plan || "free";
 
-      if (!sku) {
-        return res.status(400).json({
-          ok: false,
-          error: "Nenhum SKU informado.",
-        });
-      }
-
-      const product = getProductBySKU(sku);
-
-      if (!product) {
+      const baseProduct = getBaseProduct(sku);
+      if (!baseProduct) {
         return res.status(404).json({
           ok: false,
-          error: "Produto não encontrado ou inativo no catálogo.",
+          error: "PRODUCT_NOT_FOUND",
         });
       }
 
-      // 🔹 Produto base (preço entra depois via robô)
+      // Fornecedor (para preço)
+      const supplier = getSupplierBySKU(sku);
+      if (!supplier) {
+        return res.status(500).json({
+          ok: false,
+          error: "SUPPLIER_NOT_MAPPED",
+        });
+      }
+
+      const basePriceBRL = supplier.maxPrice;
+      const finalPriceBRL = calculatePrice({ basePriceBRL, plan });
+
       return res.json({
         ok: true,
         mode: "catalogo_nexus",
         product: {
-          sku: product.sku,
-          title: product.title,
-          brand: product.brand || null,
+          sku: baseProduct.sku,
+          title: baseProduct.title,
+          brand: baseProduct.brand || null,
           category: catalogIndex[sku].category,
-          image: product.image || null,
-          images: product.images || [],
-          specs: product.specs || {},
+          image: baseProduct.image || null,
+          images: baseProduct.images || [],
+          specs: baseProduct.specs || {},
+          price: finalPriceBRL,
+          basePrice: basePriceBRL,
+          plan,
         },
       });
     } catch (err) {
       console.error("[NEXUS] Erro ao buscar produto:", err);
       return res.status(500).json({
         ok: false,
-        error: "Erro interno ao buscar produto.",
+        error: "PRODUCT_FETCH_ERROR",
       });
     }
   },
 
-  // GET /api/product (lista todos os ativos)
+  // GET /api/product
   listAll: async (_req, res) => {
     try {
       const products = [];
@@ -101,20 +102,19 @@ export const productController = {
         const entry = catalogIndex[sku];
         if (!entry.active) continue;
 
-        const product = getProductBySKU(sku);
-        if (product) {
-          products.push({
-            sku,
-            title: product.title,
-            category: entry.category,
-            image: product.image || null,
-          });
-        }
+        const baseProduct = getBaseProduct(sku);
+        if (!baseProduct) continue;
+
+        products.push({
+          sku,
+          title: baseProduct.title,
+          category: entry.category,
+          image: baseProduct.image || null,
+        });
       }
 
       return res.json({
         ok: true,
-        mode: "catalogo_nexus",
         total: products.length,
         products,
       });
@@ -122,7 +122,7 @@ export const productController = {
       console.error("[NEXUS] Erro ao listar produtos:", err);
       return res.status(500).json({
         ok: false,
-        error: "Erro interno ao listar produtos.",
+        error: "PRODUCT_LIST_ERROR",
       });
     }
   },

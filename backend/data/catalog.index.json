@@ -1,0 +1,1922 @@
+{
+  "acc-anker-cabo-usb-c-1m": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-anker-cabo-usb-c-para-lightning-1m": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-ugreen-cabo-hdmi-2-1-2m": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-baseus-cabo-usb-a-para-micro-usb-1m": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-vention-cabo-displayport-1-4-2m": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-apple-adaptador-usb-c-para-usb-a": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-samsung-carregador-25w-usb-c": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-apple-carregador-20w-usb-c": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-xiaomi-carregador-33w-usb-a-usb-c": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-anker-hub-usb-c-7-em-1": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-ugreen-adaptador-usb-c-para-hdmi": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-tp-link-adaptador-usb-wi-fi-ac1300": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-tp-link-adaptador-usb-wi-fi-ax1800": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-anker-power-bank-10-000mah": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-anker-power-bank-20-000mah": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-baseus-power-bank-20-000mah-65w": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-xiaomi-power-bank-10-000mah": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-samsung-power-bank-10-000mah": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-sandisk-leitor-de-cart-o-sd-microsd-usb-3-0": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-kingston-leitor-de-cart-o-sd-microsd-usb-c": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-orico-case-ssd-nvme-m-2-usb-c": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-orico-case-ssd-sata-2-5-usb-3-0": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-spigen-capinha-rugged-armor-iphone": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-spigen-pel-cula-de-vidro-iphone": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-samsung-capa-silicone-galaxy": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-baseus-suporte-veicular-magn-tico": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "acc-anker-carregador-veicular-30w": {
+    "category": "accessories",
+    "file": "accessories.json",
+    "active": true
+  },
+  "audio-sony-wh-1000xm5": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-sony-wf-1000xm5": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-apple-airpods-pro-2-gera-o": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-apple-airpods-3-gera-o": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-jbl-tune-510bt": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-jbl-wave-buds": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-hyperx-cloud-ii": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-logitech-g-pro-x": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-razer-blackshark-v2": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-jbl-flip-6": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-jbl-charge-5": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-sony-srs-xb33": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-bose-soundlink-flex": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-edifier-r1280t": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-logitech-z313": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-blue-yeti": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-hyperx-quadcast-s": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-fifine-k669b": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "audio-shure-sm7b": {
+    "category": "audio",
+    "file": "audio.json",
+    "active": true
+  },
+  "cam-canon-eos-rebel-t7": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-canon-eos-r10": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-sony-alpha-a6400": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-sony-alpha-a7-iii": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-nikon-d3500": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-fujifilm-x-t30-ii": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-gopro-hero12-black": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-dji-osmo-action-4": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-dji-osmo-pocket-3": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-insta360-x3": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-canon-ef-50mm-f-1-8-stm": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-canon-rf-24-105mm-f-4-7-1": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-sony-e-35mm-f-1-8-oss": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-sony-fe-50mm-f-1-8": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "cam-nikon-af-s-50mm-f-1-8g": {
+    "category": "camera",
+    "file": "camera.json",
+    "active": true
+  },
+  "case-corsair-4000d-airflow": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-corsair-275r-airflow": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-nzxt-h510": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-nzxt-h5-flow": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-cooler-master-masterbox-q300l": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-cooler-master-masterbox-td500": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-aerocool-cylon": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-aerocool-bolt": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-mancer-goblin": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-mancer-kevlar": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-gamemax-infinity": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "case-gamemax-diamond": {
+    "category": "case",
+    "file": "case.json",
+    "active": true
+  },
+  "console-playstation-5": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-playstation-5-slim": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-playstation-4": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-playstation-4-slim": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-playstation-4-pro": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-xbox-series-x": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-xbox-series-s": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-xbox-one": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-xbox-one-s": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-xbox-one-x": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-nintendo-switch": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-nintendo-switch-oled": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "console-nintendo-switch-lite": {
+    "category": "console",
+    "file": "console.json",
+    "active": true
+  },
+  "cooler-air-cooler-master-hyper-212": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-cooler-master-hyper-h410r": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-deepcool-gammaxx-300": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-deepcool-gammaxx-400": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-deepcool-ak400": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-deepcool-ak620": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-noctua-nh-u12s": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-noctua-nh-d15": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-be-quiet-pure-rock-2": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-air-be-quiet-dark-rock-4": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-cooler-master-ml120l": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-cooler-master-ml240l": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-cooler-master-ml360l": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-corsair-h60": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-corsair-h100x": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-corsair-h150i-elite": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-deepcool-l120": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-deepcool-l240": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-deepcool-l360": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-nzxt-kraken-x53": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cooler-water-nzxt-kraken-x73": {
+    "category": "cooling",
+    "file": "cooling.json",
+    "active": true
+  },
+  "cpu-intel-core-i3-9100f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i3-10100f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i3-12100f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i5-9400f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i5-10400f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i5-11400f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i5-12400f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i5-13400f": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i7-9700k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i7-10700k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i7-11700k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i7-12700k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i7-13700k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i9-9900k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i9-10900k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i9-11900k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i9-12900k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-intel-core-i9-13900k": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-3-3100": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-5-3600": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-5-5500": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-5-5600": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-5-5600g": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-7-3700x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-7-5700x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-7-5800x3d": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-9-3900x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-9-5900x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-5-7600": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-7-7700": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-7-7800x3d": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-9-7900x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "cpu-amd-ryzen-9-7950x": {
+    "category": "cpu",
+    "file": "cpu.json",
+    "active": true
+  },
+  "display-aoc-22b1h": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-aoc-24b1h": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-aoc-24g2": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-aoc-27g2": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-lg-22mp410": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-lg-24mp400": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-lg-24gn600": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-lg-27gn800": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-samsung-t350": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-samsung-odyssey-g3-24": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-samsung-odyssey-g5-27": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-samsung-odyssey-g7-27": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-dell-p2422h": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-dell-s2721dgf": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-asus-vp249qgr": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "display-asus-tuf-vg27aq": {
+    "category": "display",
+    "file": "display.json",
+    "active": true
+  },
+  "gpu-nvidia-gtx-1650": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-gtx-1660-super": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-2060": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3060": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3060-ti": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3070": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3070-ti": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3080": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3080-ti": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-3090": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4060": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4060-ti": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4070": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4070-ti": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4080": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-nvidia-rtx-4090": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-5500-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-5600-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-5700-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6600": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6650-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6700-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6800": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6800-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-6900-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-7600": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-7700-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-7800-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-7900-xt": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "gpu-amd-rx-7900-xtx": {
+    "category": "gpu",
+    "file": "gpu.json",
+    "active": true
+  },
+  "mobile-apple-iphone-11": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-apple-iphone-12": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-apple-iphone-13": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-apple-iphone-14": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-apple-iphone-15": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-a14": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-a34": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-a54": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-s21-fe": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-s22": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-s23": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-samsung-galaxy-s24": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-motorola-moto-g14": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-motorola-moto-g54": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-motorola-edge-30": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-motorola-edge-40": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-xiaomi-redmi-note-12": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-xiaomi-redmi-note-13": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-xiaomi-poco-x5": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-xiaomi-poco-x6": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-realme-c55": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-realme-11-pro": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mobile-asus-rog-phone-6": {
+    "category": "mobile",
+    "file": "mobile.json",
+    "active": true
+  },
+  "mb-asus-prime-h310m-e": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-gigabyte-b365m-ds3h": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-tuf-b450m-plus": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-msi-b450-tomahawk-max": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-gigabyte-b550m-ds3h": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-rog-strix-b550-f": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-prime-b660m-a": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-gigabyte-b660m-aorus-pro": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-msi-b760m-mortar": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-rog-strix-b760-f": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-prime-x570-p": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-gigabyte-x570-aorus-elite": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-tuf-b650-plus": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-gigabyte-b650-aorus-elite": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-asus-rog-strix-x670e-e": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "mb-msi-meg-x670e-ace": {
+    "category": "motherboard",
+    "file": "motherboard.json",
+    "active": true
+  },
+  "network-tplink-archer-c6": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tplink-archer-c7": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tplink-archer-ax20": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tplink-archer-ax50": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tplink-deco-m4": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tplink-deco-x20": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-intel-ax200": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-intel-ax210": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-asus-pce-ac56": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-asus-pce-ax3000": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-dlink-dir-615": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-dlink-dir-846": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-mercusys-mr30g": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-mercusys-mr70x": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tenda-ac10": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "network-tenda-tx3": {
+    "category": "network",
+    "file": "network.json",
+    "active": true
+  },
+  "notebook-apple-macbook-air-m1": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-apple-macbook-air-m2": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-apple-macbook-pro-14-m2": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-dell-inspiron-15-3511": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-dell-inspiron-14-5420": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-dell-g15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-dell-alienware-m15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-lenovo-ideapad-3": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-lenovo-ideapad-gaming-3": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-lenovo-legion-5": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-acer-aspire-5": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-acer-nitro-5": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-acer-predator-helios-300": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-asus-vivobook-15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-asus-tuf-f15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-asus-rog-strix-g15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-hp-250-g8": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-hp-pavilion-15": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-hp-omen-16": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-samsung-book": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-samsung-book-2": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "notebook-samsung-odyssey": {
+    "category": "notebooks",
+    "file": "notebooks.json",
+    "active": true
+  },
+  "office-logitech-mx-master-3s": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-logitech-mx-keys": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-microsoft-surface-keyboard": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-logitech-c920-hd-pro": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-logitech-brio-4k": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-hp-deskjet-ink-advantage-2774": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-brother-hl-l2350dw": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-epson-ecotank-l3250": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-multilaser-cadeira-escrit-rio-ergon-mica": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-elg-suporte-de-monitor-articulado": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-sandisk-pen-drive-ultra-flair": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-kingston-pen-drive-datatraveler": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-seagate-backup-plus-hub": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "office-anker-dock-usb-c-para-notebook": {
+    "category": "office",
+    "file": "office.json",
+    "active": true
+  },
+  "peripheral-keyboard-logitech-g213": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-logitech-g915": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-corsair-k55": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-corsair-k70": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-hyperx-alloy-origins": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-razer-huntsman-mini": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-keyboard-redragon-kumara": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-logitech-g203": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-logitech-g502-hero": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-corsair-m55": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-hyperx-pulsefire-surge": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-razer-deathadder-v2": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-mouse-redragon-cobra": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-logitech-g432": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-logitech-g733": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-hyperx-cloud-stinger": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-hyperx-cloud-ii": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-corsair-hs35": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-headset-razer-blackshark-v2": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-controller-xbox-series": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-controller-dualsense": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-controller-dualshock-4": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "peripheral-controller-logitech-f310": {
+    "category": "peripherals",
+    "file": "peripherals.json",
+    "active": true
+  },
+  "printer-hp-laserjet-pro-m404dn": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-hp-deskjet-2874": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-epson-ecotank-l4260": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-epson-ecotank-l5590": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-brother-dcp-l2540dw": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-canon-pixma-g3110": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-hp-toner-58a-cf258a": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-brother-toner-tn-660": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-epson-kit-tintas-504": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-canon-kit-tintas-gi-190": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "printer-hp-papel-a4-500-folhas": {
+    "category": "printer",
+    "file": "printer.json",
+    "active": true
+  },
+  "psu-corsair-cv450": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-corsair-cv550": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-corsair-cx650": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-corsair-rm750x": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-corsair-rm850x": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-cooler-master-mwe-500": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-cooler-master-mwe-650": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-cooler-master-gx750": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-xpg-pylon-650": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-xpg-core-reactor-750": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-xpg-core-reactor-850": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-evga-600-w1": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-evga-700-br": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-gigabyte-p650b": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-gigabyte-aorus-750": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-seasonic-focus-gx-750": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "psu-seasonic-focus-gx-850": {
+    "category": "psu",
+    "file": "psu.json",
+    "active": true
+  },
+  "ram-kingston-fury-ddr4": {
+    "category": "ram",
+    "file": "ram.json",
+    "active": true
+  },
+  "ram-corsair-vengeance-ddr4": {
+    "category": "ram",
+    "file": "ram.json",
+    "active": true
+  },
+  "ram-crucial-ddr4": {
+    "category": "ram",
+    "file": "ram.json",
+    "active": true
+  },
+  "ram-kingston-fury-ddr5": {
+    "category": "ram",
+    "file": "ram.json",
+    "active": true
+  },
+  "ram-corsair-vengeance-ddr5": {
+    "category": "ram",
+    "file": "ram.json",
+    "active": true
+  },
+  "smarthome-amazon-echo-dot-5-gera-o": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-amazon-echo-show-8": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-google-nest-mini-2-gera-o": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-google-nest-hub-2-gera-o": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-tp-link-tapo-l530e": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-tp-link-tapo-l900": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-tp-link-tapo-p110": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-sonoff-basic-r3": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-sonoff-mini-r2": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-aqara-hub-m2": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-aqara-sensor-de-porta-e-janela": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-aqara-sensor-de-movimento": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-xiaomi-mi-smart-sensor-set": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-ring-video-doorbell": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-tp-link-tapo-c200": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-tp-link-tapo-c320ws": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-intelbras-im3-c": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "smarthome-philips-hue-hue-white-color-ambiance": {
+    "category": "smarthome",
+    "file": "smarthome.json",
+    "active": true
+  },
+  "storageext-samsung-ssd-externo-t7": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "storageext-sandisk-extreme-portable-ssd": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "storageext-crucial-x8-portable-ssd": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "storageext-seagate-expansion-portable": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "storageext-western-digital-my-passport": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "storageext-kingston-xs2000-portable-ssd": {
+    "category": "storage_external",
+    "file": "storage-external.json",
+    "active": true
+  },
+  "ssd-kingston-a400-sata": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-kingston-nv2-nvme": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-crucial-bx500-sata": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-wd-green-sata": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-wd-blue-sn570-nvme": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-samsung-970-evo-plus-nvme": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "ssd-samsung-980-nvme": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "hd-seagate-barracuda": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "hd-wd-blue": {
+    "category": "storage",
+    "file": "storage.json",
+    "active": true
+  },
+  "tv-samsung-smart-tv-crystal-uhd": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-lg-smart-tv-uhd": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-lg-oled-evo-c3": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-samsung-neo-qled": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-tcl-qled-4k": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-philips-ambilight-4k": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-amazon-fire-tv-stick-4k": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-google-chromecast-com-google-tv": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "tv-apple-apple-tv-4k": {
+    "category": "tv",
+    "file": "tv.json",
+    "active": true
+  },
+  "wear-apple-apple-watch-se": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-apple-apple-watch-series-9": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-apple-apple-watch-ultra-2": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-samsung-galaxy-watch6": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-samsung-galaxy-watch6-classic": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-xiaomi-mi-band-8": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-garmin-forerunner-245": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-garmin-fenix-7": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  },
+  "wear-meta-quest-3": {
+    "category": "wearables",
+    "file": "wearables.json",
+    "active": true
+  }
+}
