@@ -35,12 +35,12 @@ export const liveCatalogController = {
     }
 
     queue.set(sku, {
-      sku,
-      supplier,
-      supplierProductId,
-      priority: Number(priority || 1),
-      createdAt: Date.now(),
-    });
+  sku,
+  supplier,
+  supplierProductId: supplierProductId || null,
+  priority: Number(priority || 1),
+  createdAt: Date.now(),
+});
 
     return res.json({ ok: true, queued: true, size: queue.size });
   },
