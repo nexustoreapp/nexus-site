@@ -1,4 +1,4 @@
-const API = "https://nexus-site-oufm.onrender.com";
+const API = "/api";
 
 /* ===============================
    ELEMENTOS
@@ -13,54 +13,60 @@ const params = new URLSearchParams(window.location.search);
 const q = (params.get("q") || "").trim();
 
 /* ===============================
-   CARD (CANÔNICO)
-================================ */
-function card(p) {
-  const d = document.createElement("div");
-  d.className = "result-card";
-
-  d.innerHTML = `
-    <div class="card-body">
-      <div class="card-title">${p.sku}</div>
-      <div class="card-category">${p.category}</div>
-
-      <a class="btn-primary" href="produto.html?sku=${encodeURIComponent(
-        p.sku
-      )}">
-        Ver produto
-      </a>
-    </div>
-  `;
-
-  return d;
-}
-
-/* ===============================
-   LOAD SEARCH (V2)
+   LOAD SEARCH (V2 + LIVE)
 ================================ */
 async function loadSearch() {
-  meta.innerText = "Buscando produtos...";
-  grid.innerHTML = "";
+  try {
+    meta.innerText = "Buscando produtos...";
+    grid.innerHTML = "";
 
-  const url = `${API}/api/search?q=${encodeURIComponent(q)}`;
+    // 1️⃣ Busca canônica (SKUs)
+    const r = await fetch(`${API}/search?q=${encodeURIComponent(q)}`);
+    if (!r.ok) throw new Error("Erro na busca");
 
-  const r = await fetch(url);
-  if (!r.ok) throw new Error("Erro na busca");
+    const data = await r.json();
+    const produtos = data.products || [];
 
-  const data = await r.json();
-  const produtos = data.products || [];
+    if (!produtos.length) {
+      meta.innerText = "Nenhum produto encontrado.";
+      return;
+    }
 
-  meta.innerText = `${produtos.length} produto(s) encontrados`;
+    // 2️⃣ Busca dados vivos
+    const skus = produtos.map(p => p.sku);
+    const r2 = await fetch(`${API}/live/get?skus=${skus.join(",")}`);
+    const live = await r2.json();
 
-  if (!produtos.length) {
-    grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
-    return;
+    meta.innerText = `${live.items.length} produto(s) encontrados`;
+
+    grid.innerHTML = "";
+
+    live.items.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "result-card";
+
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${p.image || "/fallback.png"}" alt="${p.title}">
+        </div>
+        <div class="card-body">
+          <div class="card-title">${p.title}</div>
+          <div class="card-price">
+            ${p.priceBRL ? "R$ " + p.priceBRL.toLocaleString("pt-BR") : "Sob consulta"}
+          </div>
+          <a href="${p.url}" target="_blank" class="btn-primary">
+            Ver oferta
+          </a>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error(err);
+    meta.innerText = "Erro ao buscar produtos";
   }
-
-  produtos.forEach((p) => grid.appendChild(card(p)));
 }
 
-loadSearch().catch((err) => {
-  console.error(err);
-  meta.innerText = "Erro ao buscar produtos";
-});
+loadSearch();
