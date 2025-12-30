@@ -3,15 +3,43 @@ import { chromium } from "playwright-chromium";
 import { resolveProduct } from "./resolver.js";
 
 const API = process.env.NEXUS_API;
+const ZENDROP_EMAIL = process.env.ZENDROP_EMAIL;
+const ZENDROP_PASSWORD = process.env.ZENDROP_PASSWORD;
 
 if (!API) {
   console.error("[WORKER] ERRO: NEXUS_API não definido");
   process.exit(1);
 }
 
-// ===============================
-// FUNÇÕES AUXILIARES
-// ===============================
+if (!ZENDROP_EMAIL || !ZENDROP_PASSWORD) {
+  console.error("[WORKER] ERRO: credenciais do Zendrop não definidas");
+  process.exit(1);
+}
+
+/* ===============================
+   LOGIN ZENDROP (1x POR WORKER)
+================================ */
+async function loginZendrop(page) {
+  await page.goto("https://account.zendrop.com/login", {
+    waitUntil: "networkidle"
+  });
+
+  await page.waitForSelector('input[type="email"]', { timeout: 60000 });
+  await page.waitForSelector('input[type="password"]', { timeout: 60000 });
+
+  await page.fill('input[type="email"]', ZENDROP_EMAIL);
+  await page.fill('input[type="password"]', ZENDROP_PASSWORD);
+
+  await page.click('button[type="submit"]');
+
+  await page.waitForURL("**/app.zendrop.com/**", { timeout: 60000 });
+
+  console.log("[WORKER] Zendrop logado com sucesso");
+}
+
+/* ===============================
+   BACKEND HELPERS
+================================ */
 async function getJobs(limit = 3) {
   const r = await fetch(`${API}/api/live/jobs?limit=${limit}`);
   if (!r.ok) throw new Error(`Erro ao buscar jobs: ${r.status}`);
@@ -24,15 +52,14 @@ async function sendUpdate(sku, data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ sku, data })
   });
-
   if (!r.ok) {
     throw new Error(`Erro ao atualizar cache para ${sku}`);
   }
 }
 
-// ===============================
-// LOOP PRINCIPAL
-// ===============================
+/* ===============================
+   LOOP PRINCIPAL
+================================ */
 async function run() {
   try {
     const { jobs } = await getJobs(3);
@@ -44,13 +71,18 @@ async function run() {
 
     console.log(`[WORKER] Peguei ${jobs.length} job(s).`);
 
-    // 🔥 ABRE O BROWSER UMA VEZ
+    // 🔥 ABRE BROWSER UMA VEZ
     const browser = await chromium.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
 
     try {
+      // 🔐 LOGIN ZENDROP UMA VEZ
+      const loginPage = await browser.newPage();
+      await loginZendrop(loginPage);
+      await loginPage.close();
+
       // 🔁 PROCESSA JOBS
       for (const job of jobs) {
         const page = await browser.newPage();
@@ -83,12 +115,10 @@ async function run() {
             err.message
           );
         } finally {
-          // 🔒 FECHA APENAS A PÁGINA
           await page.close().catch(() => {});
         }
       }
     } finally {
-      // 🔒 FECHA O BROWSER UMA ÚNICA VEZ
       await browser.close();
     }
   } catch (err) {
@@ -96,12 +126,15 @@ async function run() {
   }
 }
 
-// ===============================
-// EXECUÇÃO CONTÍNUA
-// ===============================
+/* ===============================
+   EXECUÇÃO CONTÍNUA (COM JITTER)
+================================ */
 
 // roda imediatamente ao subir
 run();
 
-// roda a cada 30 segundos
-setInterval(run, 30_000);
+// roda com jitter para não sincronizar workers
+setInterval(
+  run,
+  25000 + Math.floor(Math.random() * 10000)
+);
