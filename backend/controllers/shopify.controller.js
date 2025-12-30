@@ -2,34 +2,10 @@ import fetch from "node-fetch";
 
 const SHOP = process.env.SHOPIFY_SHOP_DOMAIN;
 const TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
-const VERSION = process.env.SHOPIFY_API_VERSION || "2025-01";
+const VERSION = process.env.SHOPIFY_API_VERSION || "2024-10";
 
 if (!SHOP || !TOKEN) {
   console.warn("[SHOPIFY] Variáveis de ambiente não definidas");
-}
-
-async function shopifyGraphQL(query, variables = {}) {
-  const url = `https://${SHOP}/admin/api/${VERSION}/graphql.json`;
-
-  const r = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Access-Token": TOKEN,
-    },
-    body: JSON.stringify({ query, variables }),
-  });
-
-  if (!r.ok) {
-    const text = await r.text();
-    throw new Error(`Shopify GraphQL erro ${r.status}: ${text}`);
-  }
-
-  const json = await r.json();
-  if (json.errors) {
-    throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`);
-  }
-  return json.data;
 }
 
 export const shopifyController = {
@@ -38,56 +14,34 @@ export const shopifyController = {
     try {
       const limit = Math.min(Number(req.query.limit || 20), 50);
 
-      const query = `
-        query Products($first: Int!) {
-          products(first: $first) {
-            edges {
-              node {
-                id
-                title
-                vendor
-                images(first: 1) {
-                  edges {
-                    node {
-                      url
-                    }
-                  }
-                }
-                variants(first: 10) {
-                  edges {
-                    node {
-                      id
-                      sku
-                      price
-                      inventoryQuantity
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      `;
+      const url = `https://${SHOP}/admin/api/${VERSION}/products.json?limit=${limit}`;
 
-      const data = await shopifyGraphQL(query, { first: limit });
-
-      const products = data.products.edges.map(e => {
-        const p = e.node;
-        const image = p.images.edges[0]?.node?.url || null;
-
-        return {
-          id: p.id,
-          title: p.title,
-          vendor: p.vendor,
-          image,
-          variants: p.variants.edges.map(v => ({
-            id: v.node.id,
-            sku: v.node.sku,
-            price: Number(v.node.price),
-            inventoryQuantity: v.node.inventoryQuantity,
-          })),
-        };
+      const r = await fetch(url, {
+        headers: {
+          "X-Shopify-Access-Token": TOKEN,
+          "Content-Type": "application/json",
+        },
       });
+
+      if (!r.ok) {
+        const text = await r.text();
+        throw new Error(`Shopify REST erro ${r.status}: ${text}`);
+      }
+
+      const json = await r.json();
+
+      const products = (json.products || []).map(p => ({
+        id: p.id,
+        title: p.title,
+        vendor: p.vendor,
+        image: p.image?.src || null,
+        variants: (p.variants || []).map(v => ({
+          id: v.id,
+          sku: v.sku,
+          price: Number(v.price),
+          inventory_quantity: v.inventory_quantity,
+        })),
+      }));
 
       return res.json({ ok: true, products });
     } catch (err) {
