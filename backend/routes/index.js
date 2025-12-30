@@ -7,6 +7,7 @@ import searchRoutes from "./search.routes.js";
 import chatRoutes from "./chat.routes.js";
 import robotRoutes from "./robot.routes.js";
 import trackingRoutes from "./tracking.routes.js";
+import liveRoutes from "./live.routes.js";
 
 const router = Router();
 
@@ -16,8 +17,7 @@ router.use("/products", productRoutes);
 router.use("/search", searchRoutes);
 router.use("/chat", chatRoutes);
 router.use("/robot", robotRoutes);
-
-// 🆕 TRACKING
 router.use("/tracking", trackingRoutes);
+router.use("/live", liveRoutes);
 
 export default router;
