@@ -44,9 +44,7 @@ const __dirname = path.dirname(__filename);
 const CATALOG_INDEX_PATH = path.join(__dirname, "data", "catalog.index.json");
 
 // URL pública do próprio backend
-const PUBLIC_API =
-  process.env.PUBLIC_API_URL ||
-  `http://localhost:${process.env.PORT || 3000}`;
+const PUBLIC_API = "https://nexus-site-oufm.onrender.com";
 
 async function autoRefreshLiveCatalog() {
   try {
