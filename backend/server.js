@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 
 // =============================
 // AUTO-REFRESH COM PRIORIDADE
+// (SOMENTE SYNCEE)
 // =============================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,7 +45,6 @@ const PUBLIC_API = "https://nexus-site-oufm.onrender.com";
 async function autoRefreshLiveCatalog() {
   try {
     const index = JSON.parse(fs.readFileSync(CATALOG_INDEX_PATH, "utf-8"));
-
     const entries = Object.entries(index).filter(([, v]) => v?.active);
 
     function makeItems(filterFn) {
@@ -80,28 +80,18 @@ async function autoRefreshLiveCatalog() {
           items: g.items
         })
       });
-
-      await fetch(`${PUBLIC_API}/api/live/request-batch`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          supplier: "zendrop",
-          priority: g.prio - 1,
-          items: g.items
-        })
-      });
     }
 
-    console.log("[AUTO] Auto-refresh finalizado");
+    console.log("[AUTO] Auto-refresh finalizado (Syncee)");
   } catch (err) {
     console.error("[AUTO] Erro:", err.message);
   }
 }
 
-// 1 minuto após subir
+// roda 1 min após subir
 setTimeout(autoRefreshLiveCatalog, 60 * 1000);
 
-// a cada 6 horas
+// depois a cada 6 horas
 setInterval(autoRefreshLiveCatalog, 6 * 60 * 60 * 1000);
 
 // =============================
