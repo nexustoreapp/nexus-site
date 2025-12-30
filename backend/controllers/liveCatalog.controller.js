@@ -30,7 +30,7 @@ export const liveCatalogController = {
   // POST /api/live/request { sku, supplier, supplierProductId, priority }
   request: async (req, res) => {
     const { sku, supplier, supplierProductId, priority } = req.body || {};
-    if (!sku || !supplier || !supplierProductId) {
+    if (!sku || !supplier) {
       return res.status(400).json({ ok: false, error: "MISSING_FIELDS" });
     }
 
