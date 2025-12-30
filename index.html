@@ -58,13 +58,6 @@
       <button class="btn-primary" onclick="goSearch()">Buscar agora</button>
     </div>
 
-    <!-- MINI PRODUTOS NO HERO (DENSIDADE IMEDIATA) -->
-    <div class="grid-cards" style="margin-top:24px;">
-      <div class="card-info">🔥 RTX 4060 • Alta procura</div>
-      <div class="card-info">⚡ Ryzen 5 • Melhor custo</div>
-      <div class="card-info">🚀 SSD 1TB • Upgrade essencial</div>
-    </div>
-
   </div>
 </section>
 
@@ -85,74 +78,16 @@
   </div>
 </section>
 
-<!-- ================= EM ALTA ================= -->
+<!-- ================= PRODUTOS REAIS ================= -->
 <section class="section">
   <div class="section-header">
-    <h2>🔥 Em alta hoje</h2>
-    <p>Os produtos mais buscados no Nexus.</p>
+    <h2>🔥 Em destaque agora</h2>
+    <p>Produtos com preço e disponibilidade atualizados.</p>
   </div>
 
-  <div class="grid-cards">
-    <div class="card-info">RTX 4070</div>
-    <div class="card-info">RTX 4060</div>
-    <div class="card-info">Ryzen 5 5600</div>
-    <div class="card-info">SSD NVMe 1TB</div>
-    <div class="card-info">Headset Gamer</div>
-    <div class="card-info">Monitor 144Hz</div>
+  <div id="home-live-products" class="results-grid">
+    <!-- cards reais entram aqui -->
   </div>
-</section>
-
-<!-- ================= DESTAQUES ================= -->
-<section class="section" style="background:rgba(255,255,255,0.02);padding:32px 0;">
-  <div class="section-header">
-    <h2>Destaques do catálogo</h2>
-    <p>Selecionados por procura e custo-benefício.</p>
-  </div>
-
-  <div class="grid-cards">
-    <div class="card-info">RTX 3060 • Equilíbrio total</div>
-    <div class="card-info">Ryzen 7 • Performance avançada</div>
-    <div class="card-info">SSD 2TB • Velocidade máxima</div>
-    <div class="card-info">Placa-mãe B550</div>
-    <div class="card-info">Fonte 750W</div>
-    <div class="card-info">Teclado Mecânico</div>
-  </div>
-</section>
-
-<!-- ================= CONFIANÇA ================= -->
-<section class="section">
-  <div class="section-header">
-    <h2>Por que comprar com a Nexus?</h2>
-  </div>
-
-  <div class="grid-steps">
-    <div class="card-info">🧠 Catálogo validado, sem produto fantasma</div>
-    <div class="card-info">💸 Preço calculado automaticamente</div>
-    <div class="card-info">🤖 IA que orienta, não empurra</div>
-    <div class="card-info">🔄 Fornecedor é infraestrutura, não vitrine</div>
-  </div>
-</section>
-
-<!-- ================= PLANOS ================= -->
-<section class="section" style="background:rgba(99,102,241,0.08);padding:32px 0;">
-  <div class="section-header">
-    <h2>Quer pagar ainda menos?</h2>
-    <p>Planos Nexus+ liberam descontos progressivos.</p>
-  </div>
-
-  <a href="assinatura.html" class="btn-primary full">
-    Ver vantagens Nexus+
-  </a>
-</section>
-
-<!-- ================= CTA FINAL ================= -->
-<section class="section" style="text-align:center;">
-  <h2>Comece agora</h2>
-  <p style="opacity:.8;margin:12px 0 18px;">
-    Busque, compare e compre com inteligência.
-  </p>
-
-  <button class="btn-outline" onclick="goSearch()">Buscar produto</button>
 </section>
 
 </main>
@@ -161,6 +96,7 @@
   Nexus © 2025 — Loja de tecnologia com decisão inteligente.
 </footer>
 
+<!-- ================= JS ================= -->
 <script>
 function goSearch() {
   const q = document.getElementById("home-query").value.trim();
@@ -177,11 +113,10 @@ if (navToggle && navMenu) {
 }
 </script>
 
-<script src="nexus-widget.js?v=3"><
-script>
+<script src="nexus-widget.js?v=3"></script>
 
 <script>
-const API = "https://nexus-site-oufm.onrender.com";
+const API = "/api";
 
 const HOME_SKUS = [
   "gpu-nvidia-rtx-4060",
@@ -195,15 +130,15 @@ const HOME_SKUS = [
 async function loadHomeProducts() {
   try {
     const r = await fetch(
-      `${API}/api/live/get?skus=${HOME_SKUS.join(",")}`
+      `${API}/live/get?skus=${HOME_SKUS.join(",")}`
     );
     const data = await r.json();
     if (!data.ok) return;
 
-    const container = document.getElementById("home-live-products");
-    if (!container) return;
+    const grid = document.getElementById("home-live-products");
+    if (!grid) return;
 
-    container.innerHTML = "";
+    grid.innerHTML = "";
 
     data.items.forEach(p => {
       const card = document.createElement("div");
@@ -211,20 +146,20 @@ async function loadHomeProducts() {
 
       card.innerHTML = `
         <div class="card-image">
-          <img src="${p.image || "fallback.png"}" alt="${p.title}">
+          <img src="${p.image || "/fallback.png"}" alt="${p.title}">
         </div>
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-price">
-            ${p.priceBRL ? "R$ " + p.priceBRL.toFixed(2) : "Sob consulta"}
+            ${p.priceBRL ? "R$ " + p.priceBRL.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
-          <a class="btn-primary" href="${p.url}" target="_blank">
+          <a href="${p.url}" target="_blank" class="btn-primary">
             Ver oferta
           </a>
         </div>
       `;
 
-      container.appendChild(card);
+      grid.appendChild(card);
     });
   } catch (e) {
     console.error("Erro ao carregar produtos da home", e);
@@ -233,5 +168,6 @@ async function loadHomeProducts() {
 
 document.addEventListener("DOMContentLoaded", loadHomeProducts);
 </script>
+
 </body>
 </html>
