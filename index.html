@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Nexus — Tecnologia com preço inteligente</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus é uma loja de tecnologia com catálogo inteligente, preços automáticos e orientação por IA." />
 
   <link rel="icon" href="favicon.png?v=3" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
@@ -17,7 +16,7 @@
 <!-- ================= NAV ================= -->
 <header class="topbar">
   <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" alt="Nexus" />
+    <img src="logo.png" class="brand-logo" />
     <span class="brand-name">Nexus</span>
   </a>
 
@@ -38,54 +37,42 @@
 <main>
 
 <!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="hero-inner" style="display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;">
+<section class="hero" style="padding-bottom:24px;">
+  <div class="hero-inner">
 
-    <!-- TEXTO -->
-    <div>
-      <h1 class="hero-title">
-        Tecnologia com
-        <span class="highlight">preço inteligente</span>.
-      </h1>
+    <h1 class="hero-title">
+      Tecnologia com <span class="highlight">preço inteligente</span>.
+    </h1>
 
-      <p class="hero-subtitle">
-        Catálogo real de tecnologia, decisões claras e automação
-        para você comprar sem dor de cabeça.
-      </p>
+    <p class="hero-subtitle">
+      Catálogo real, produtos ativos e automação que trabalha para você comprar melhor.
+    </p>
 
-      <div class="hero-search">
-        <input
-          type="text"
-          id="home-query"
-          class="input-search"
-          placeholder="Ex: RTX 4060, Ryzen 5, SSD 1TB, Headset gamer..."
-        />
-        <button class="btn-primary" onclick="goSearch()">Buscar produto</button>
-      </div>
+    <div class="hero-search">
+      <input
+        type="text"
+        id="home-query"
+        class="input-search"
+        placeholder="Ex: RTX 4060, Ryzen 5, SSD 1TB, Headset gamer..."
+      />
+      <button class="btn-primary" onclick="goSearch()">Buscar agora</button>
     </div>
 
-    <!-- IMAGEM -->
-    <div>
-      <img
-        src="hero-tech.png"
-        alt="Produtos de tecnologia Nexus"
-        style="
-          width:100%;
-          max-width:520px;
-          border-radius:18px;
-          box-shadow:0 0 40px rgba(99,102,241,.35);
-        "
-      />
+    <!-- MINI PRODUTOS NO HERO (DENSIDADE IMEDIATA) -->
+    <div class="grid-cards" style="margin-top:24px;">
+      <div class="card-info">🔥 RTX 4060 • Alta procura</div>
+      <div class="card-info">⚡ Ryzen 5 • Melhor custo</div>
+      <div class="card-info">🚀 SSD 1TB • Upgrade essencial</div>
     </div>
 
   </div>
 </section>
 
 <!-- ================= CATEGORIAS ================= -->
-<section class="section">
+<section class="section" style="background:rgba(255,255,255,0.02);padding:32px 0;">
   <div class="section-header">
-    <h2>Categorias principais</h2>
-    <p>Explore o catálogo por tipo de produto.</p>
+    <h2>Explore por categoria</h2>
+    <p>O que você procura hoje?</p>
   </div>
 
   <div class="grid-cards">
@@ -98,17 +85,37 @@
   </div>
 </section>
 
-<!-- ================= DESTAQUES ================= -->
+<!-- ================= EM ALTA ================= -->
 <section class="section">
   <div class="section-header">
-    <h2>Destaques do catálogo</h2>
-    <p>Produtos em alta e com ótimo custo-benefício.</p>
+    <h2>🔥 Em alta hoje</h2>
+    <p>Os produtos mais buscados no Nexus.</p>
   </div>
 
   <div class="grid-cards">
-    <div class="card-info">RTX 4060 — desempenho atual para games modernos</div>
-    <div class="card-info">Ryzen 5 — equilíbrio perfeito para trabalho e jogos</div>
-    <div class="card-info">SSD 1TB — upgrade essencial de velocidade</div>
+    <div class="card-info">RTX 4070</div>
+    <div class="card-info">RTX 4060</div>
+    <div class="card-info">Ryzen 5 5600</div>
+    <div class="card-info">SSD NVMe 1TB</div>
+    <div class="card-info">Headset Gamer</div>
+    <div class="card-info">Monitor 144Hz</div>
+  </div>
+</section>
+
+<!-- ================= DESTAQUES ================= -->
+<section class="section" style="background:rgba(255,255,255,0.02);padding:32px 0;">
+  <div class="section-header">
+    <h2>Destaques do catálogo</h2>
+    <p>Selecionados por procura e custo-benefício.</p>
+  </div>
+
+  <div class="grid-cards">
+    <div class="card-info">RTX 3060 • Equilíbrio total</div>
+    <div class="card-info">Ryzen 7 • Performance avançada</div>
+    <div class="card-info">SSD 2TB • Velocidade máxima</div>
+    <div class="card-info">Placa-mãe B550</div>
+    <div class="card-info">Fonte 750W</div>
+    <div class="card-info">Teclado Mecânico</div>
   </div>
 </section>
 
@@ -119,44 +126,55 @@
   </div>
 
   <div class="grid-steps">
-    <div class="card-info">🧠 Catálogo validado e sem produto fantasma</div>
+    <div class="card-info">🧠 Catálogo validado, sem produto fantasma</div>
     <div class="card-info">💸 Preço calculado automaticamente</div>
     <div class="card-info">🤖 IA que orienta, não empurra</div>
+    <div class="card-info">🔄 Fornecedor é infraestrutura, não vitrine</div>
   </div>
 </section>
 
-<!-- ================= PLANOS (BENEFÍCIO) ================= -->
-<section class="section">
+<!-- ================= PLANOS ================= -->
+<section class="section" style="background:rgba(99,102,241,0.08);padding:32px 0;">
   <div class="section-header">
     <h2>Quer pagar ainda menos?</h2>
-    <p>Planos opcionais com descontos progressivos.</p>
+    <p>Planos Nexus+ liberam descontos progressivos.</p>
   </div>
 
-  <a href="assinatura.html" class="btn-outline full">
-    Ver planos Nexus+
+  <a href="assinatura.html" class="btn-primary full">
+    Ver vantagens Nexus+
   </a>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section" style="text-align:center;">
+  <h2>Comece agora</h2>
+  <p style="opacity:.8;margin:12px 0 18px;">
+    Busque, compare e compre com inteligência.
+  </p>
+
+  <button class="btn-outline" onclick="goSearch()">Buscar produto</button>
 </section>
 
 </main>
 
 <footer class="footer">
-  Nexus © 2025 — Tecnologia com decisão inteligente.
+  Nexus © 2025 — Loja de tecnologia com decisão inteligente.
 </footer>
 
 <script>
-  function goSearch() {
-    const q = document.getElementById("home-query").value.trim();
-    if (!q) return;
-    window.location.href = `buscar.html?q=${encodeURIComponent(q)}`;
-  }
+function goSearch() {
+  const q = document.getElementById("home-query").value.trim();
+  if (!q) return;
+  window.location.href = `buscar.html?q=${encodeURIComponent(q)}`;
+}
 
-  const navToggle = document.getElementById("navToggle");
-  const navMenu = document.getElementById("navMenu");
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("nav-open");
-    });
-  }
+const navToggle = document.getElementById("navToggle");
+const navMenu = document.getElementById("navMenu");
+if (navToggle && navMenu) {
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("nav-open");
+  });
+}
 </script>
 
 <script src="nexus-widget.js?v=3"></script>
