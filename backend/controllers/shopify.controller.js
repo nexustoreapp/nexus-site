@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-const STORE = process.env.SHOPIFY_SHOP_DOMAIN.replace(".myshopify.com", "");
+const SHOP = process.env.SHOPIFY_SHOP_DOMAIN; // ubejc-kq.myshopify.com
 const TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
 const VERSION = process.env.SHOPIFY_API_VERSION || "2024-10";
 
@@ -8,16 +8,16 @@ export const shopifyController = {
   // GET /api/shopify/products?limit=20
   products: async (req, res) => {
     try {
-      const limit = Math.min(Number(req.query.limit || 10), 50);
+      const limit = Math.min(Number(req.query.limit || 5), 50);
 
-      const url = `https://admin.shopify.com/store/${STORE}/admin/api/${VERSION}/products.json?limit=${limit}`;
+      const url = `https://${SHOP}/admin/api/${VERSION}/products.json?limit=${limit}`;
 
       const r = await fetch(url, {
         method: "GET",
         headers: {
           "X-Shopify-Access-Token": TOKEN,
-          "Content-Type": "application/json",
-        },
+          "Accept": "application/json"
+        }
       });
 
       const text = await r.text();
