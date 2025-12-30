@@ -8,6 +8,7 @@ import chatRoutes from "./chat.routes.js";
 import robotRoutes from "./robot.routes.js";
 import trackingRoutes from "./tracking.routes.js";
 import liveRoutes from "./live.routes.js";
+import shopifyRoutes from "./shopify.routes.js";
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use("/chat", chatRoutes);
 router.use("/robot", robotRoutes);
 router.use("/tracking", trackingRoutes);
 router.use("/live", liveRoutes);
+router.use("/shopify", shopifyRoutes);
 
 export default router;
