@@ -2,16 +2,19 @@ import fetch from "node-fetch";
 import { chromium } from "playwright-chromium";
 import { resolveProduct } from "./resolver.js";
 
-const API = process.env.NEXUS_API; // ex: https://nexus-site-oufm.onrender.com
+const API = process.env.NEXUS_API;
 
 if (!API) {
-  console.error("[WORKER] ERRO: Variável NEXUS_API não definida.");
+  console.error("[WORKER] ERRO: NEXUS_API não definido");
   process.exit(1);
 }
 
+// ===============================
+// FUNÇÕES AUXILIARES
+// ===============================
 async function getJobs(limit = 3) {
   const r = await fetch(`${API}/api/live/jobs?limit=${limit}`);
-  if (!r.ok) throw new Error(`Falha ao pegar jobs: ${r.status}`);
+  if (!r.ok) throw new Error(`Erro ao buscar jobs: ${r.status}`);
   return r.json();
 }
 
@@ -19,12 +22,17 @@ async function sendUpdate(sku, data) {
   const r = await fetch(`${API}/api/live/update`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sku, data }),
+    body: JSON.stringify({ sku, data })
   });
-  if (!r.ok) throw new Error(`Falha ao enviar update: ${r.status}`);
-  return r.json();
+
+  if (!r.ok) {
+    throw new Error(`Erro ao atualizar cache para ${sku}`);
+  }
 }
 
+// ===============================
+// LOOP PRINCIPAL
+// ===============================
 async function run() {
   try {
     const { jobs } = await getJobs(3);
@@ -36,47 +44,64 @@ async function run() {
 
     console.log(`[WORKER] Peguei ${jobs.length} job(s).`);
 
+    // 🔥 ABRE O BROWSER UMA VEZ
     const browser = await chromium.launch({
       headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
 
-    for (const job of jobs) {
-      const page = await browser.newPage();
+    try {
+      // 🔁 PROCESSA JOBS
+      for (const job of jobs) {
+        const page = await browser.newPage();
 
-      try {
-        console.log(`[WORKER] Resolvendo SKU=${job.sku} supplier=${job.supplier}`);
+        try {
+          console.log(
+            `[WORKER] Resolvendo SKU=${job.sku} supplier=${job.supplier}`
+          );
 
-        const result = await resolveProduct({
-          page,
-          sku: job.sku,
-          category: job.category,
-          title: job.title || job.sku, // se não vier title, usa sku
-          supplier: job.supplier,      // "syncee" ou "zendrop"
-          supplierProductId: job.supplierProductId || null,
-        });
+          const result = await resolveProduct({
+            page,
+            sku: job.sku,
+            category: job.category,
+            title: job.title || job.sku,
+            supplier: job.supplier,
+            supplierProductId: job.supplierProductId || null
+          });
 
-        if (result) {
-          await sendUpdate(job.sku, result);
-          console.log(`[WORKER] OK -> cache atualizado: ${job.sku}`);
-        } else {
-          console.log(`[WORKER] Não resolveu (sem match seguro): ${job.sku}`);
+          if (result) {
+            await sendUpdate(job.sku, result);
+            console.log(`[WORKER] OK -> cache atualizado: ${job.sku}`);
+          } else {
+            console.log(
+              `[WORKER] Não resolveu (sem match seguro): ${job.sku}`
+            );
+          }
+        } catch (err) {
+          console.error(
+            `[WORKER] Erro ao processar SKU=${job.sku}:`,
+            err.message
+          );
+        } finally {
+          // 🔒 FECHA APENAS A PÁGINA
+          await page.close().catch(() => {});
         }
-      } catch (err) {
-        console.error(`[WORKER] ERRO no job ${job.sku}:`, err.message);
-      } finally {
-        await page.close().catch(() => {});
       }
+    } finally {
+      // 🔒 FECHA O BROWSER UMA ÚNICA VEZ
+      await browser.close();
     }
-
-    await browser.close();
   } catch (err) {
-    console.error("[WORKER] ERRO no loop:", err.message);
+    console.error("[WORKER] ERRO no loop principal:", err.message);
   }
 }
 
-// roda a cada 30s
-setInterval(run, 30000);
+// ===============================
+// EXECUÇÃO CONTÍNUA
+// ===============================
 
-// roda imediatamente quando inicia
+// roda imediatamente ao subir
 run();
+
+// roda a cada 30 segundos
+setInterval(run, 30_000);
