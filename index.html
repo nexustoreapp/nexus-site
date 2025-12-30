@@ -177,6 +177,61 @@ if (navToggle && navMenu) {
 }
 </script>
 
-<script src="nexus-widget.js?v=3"></script>
+<script src="nexus-widget.js?v=3"><
+script>
+
+<script>
+const API = "https://nexus-site-oufm.onrender.com";
+
+const HOME_SKUS = [
+  "gpu-nvidia-rtx-4060",
+  "gpu-nvidia-rtx-4070",
+  "cpu-amd-ryzen-5-5600",
+  "storage-ssd-1tb",
+  "peripheral-headset-gamer",
+  "monitor-144hz"
+];
+
+async function loadHomeProducts() {
+  try {
+    const r = await fetch(
+      `${API}/api/live/get?skus=${HOME_SKUS.join(",")}`
+    );
+    const data = await r.json();
+    if (!data.ok) return;
+
+    const container = document.getElementById("home-live-products");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    data.items.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "result-card";
+
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${p.image || "fallback.png"}" alt="${p.title}">
+        </div>
+        <div class="card-body">
+          <div class="card-title">${p.title}</div>
+          <div class="card-price">
+            ${p.priceBRL ? "R$ " + p.priceBRL.toFixed(2) : "Sob consulta"}
+          </div>
+          <a class="btn-primary" href="${p.url}" target="_blank">
+            Ver oferta
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (e) {
+    console.error("Erro ao carregar produtos da home", e);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadHomeProducts);
+</script>
 </body>
 </html>
