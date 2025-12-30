@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const DATA_DIR = path.join(__dirname, "..", "data");
 const CACHE_PATH = path.join(DATA_DIR, "live.cache.json");
 
-// cache em disco (simples e eficiente)
+// cache em disco
 function readCache() {
   try {
     if (!fs.existsSync(CACHE_PATH)) return {};
@@ -22,12 +22,11 @@ function writeCache(cache) {
   fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2), "utf-8");
 }
 
-// fila simples em memória (pro worker pegar)
-const queue = new Map(); // sku -> { sku, supplier, supplierProductId, priority, createdAt }
+// fila simples em memória
+const queue = new Map();
 
 export const liveCatalogController = {
-  // FRONT chama isso para “pedir atualização” de um sku
-  // POST /api/live/request { sku, supplier, supplierProductId, priority }
+  // POST /api/live/request
   request: async (req, res) => {
     const { sku, supplier, supplierProductId, priority } = req.body || {};
     if (!sku || !supplier) {
@@ -35,18 +34,17 @@ export const liveCatalogController = {
     }
 
     queue.set(sku, {
-  sku,
-  supplier,
-  supplierProductId: supplierProductId || null,
-  priority: Number(priority || 1),
-  createdAt: Date.now(),
-});
+      sku,
+      supplier,
+      supplierProductId: supplierProductId || null,
+      priority: Number(priority || 1),
+      createdAt: Date.now(),
+    });
 
     return res.json({ ok: true, queued: true, size: queue.size });
   },
 
-  // WORKER puxa jobs
-  // GET /api/live/jobs?limit=10
+  // GET /api/live/jobs
   jobs: async (req, res) => {
     const limit = Math.min(Number(req.query.limit || 10), 50);
 
@@ -54,18 +52,17 @@ export const liveCatalogController = {
       .sort((a, b) => (b.priority - a.priority) || (a.createdAt - b.createdAt))
       .slice(0, limit);
 
-    // remove da fila (worker “pegou”)
     items.forEach((it) => queue.delete(it.sku));
 
     return res.json({ ok: true, jobs: items });
   },
 
-  // WORKER envia resultado de volta
-  // POST /api/live/update { sku, data }
-  // data: { title, priceBRL, image, url, updatedAt }
+  // POST /api/live/update
   update: async (req, res) => {
     const { sku, data } = req.body || {};
-    if (!sku || !data) return res.status(400).json({ ok: false, error: "MISSING_FIELDS" });
+    if (!sku || !data) {
+      return res.status(400).json({ ok: false, error: "MISSING_FIELDS" });
+    }
 
     const cache = readCache();
     cache[sku] = {
@@ -78,8 +75,7 @@ export const liveCatalogController = {
     return res.json({ ok: true, saved: true });
   },
 
-  // FRONT usa isso para renderizar cards com imagem + preço
-  // GET /api/live/get?skus=SKU1,SKU2
+  // GET /api/live/get
   get: async (req, res) => {
     const skus = String(req.query.skus || "")
       .split(",")
@@ -87,8 +83,35 @@ export const liveCatalogController = {
       .filter(Boolean);
 
     const cache = readCache();
-    const items = skus.map((sku) => ({ sku, ...(cache[sku] || null) })).filter(Boolean);
+    const items = skus
+      .map((sku) => ({ sku, ...(cache[sku] || null) }))
+      .filter(Boolean);
 
     return res.json({ ok: true, items });
   },
+
+  // POST /api/live/request-batch
+  requestBatch: async (req, res) => {
+    const { supplier, priority, items } = req.body || {};
+
+    if (!supplier || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ ok: false, error: "INVALID_BATCH" });
+    }
+
+    for (const it of items) {
+      if (!it?.sku) continue;
+
+      queue.set(it.sku, {
+        sku: it.sku,
+        category: it.category || null,
+        title: it.title || it.sku,
+        supplier,
+        supplierProductId: it.supplierProductId || null,
+        priority: Number(priority || 1),
+        createdAt: Date.now(),
+      });
+    }
+
+    return res.json({ ok: true, queued: items.length, size: queue.size });
+  }
 };
