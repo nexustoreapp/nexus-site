@@ -4,10 +4,10 @@ import { productController } from "../controllers/product.controller.js";
 
 const router = Router();
 
-// Lista todos (opcional, mas útil depois)
-router.get("/", productController.listAll);
+// Lista todos os produtos
+router.get("/", productController.list);
 
-// Detalhe de um produto específico
-router.get("/:id", productController.getById);
+// Busca produto por SKU
+router.get("/:sku", productController.getBySku);
 
 export default router;
