@@ -1,6 +1,6 @@
 // config.js
-// Base da API (Render)
-window.NEXUS_API = "https://nexus-site-oufm.onrender.com";
+// Base da API (Render) — SEMPRE COM /api
+window.NEXUS_API = "https://nexus-site-oufm.onrender.com/api";
 
 // Plano atual (se você quiser automatizar depois)
 window.getNexusPlan = function () {
