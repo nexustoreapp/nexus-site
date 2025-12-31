@@ -2,95 +2,147 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Produto - Nexus</title>
-
-  <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
 <body>
-  <header class="topbar">
-    <a href="index.html" class="brand">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
-      <span class="brand-name">Nexus</span>
-    </a>
-    <button class="nav-toggle" id="navToggle">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="dashboard.html" class="nav-link">Minha área</a>
-      <a href="assinatura.html" class="nav-link">Assinatura</a>
-      <a href="login.html" class="nav-link">Entrar</a>
-    </nav>
-  </header>
 
-  <main class="page product-page">
-    <section class="section product-hero" id="product-section">
-      <div class="product-layout">
-        <div class="product-gallery">
-          <img id="product-image-main" src="logo.png" alt="Produto Nexus" class="product-image-main" />
-          <div class="product-thumbs" id="product-thumbs"></div>
-        </div>
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo" alt="Nexus" />
+    <span class="brand-name">Nexus</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="buscar.html" class="nav-link">Buscar</a>
+  </nav>
+</header>
 
-        <div class="product-info">
-          <h1 id="product-title">Carregando produto...</h1>
-          <p id="product-subtitle" class="product-subtitle"></p>
+<main class="page">
+  <section class="section">
+    <div class="section-header">
+      <h1 id="p-title">Carregando...</h1>
+      <p id="p-vendor"></p>
+    </div>
 
-          <div class="product-flags" id="product-flags"></div>
+    <div class="results-grid" id="p-images"></div>
 
-          <div class="product-prices">
-            <p id="product-price-public" class="product-price-public"></p>
-            <p id="product-price-premium" class="product-price-premium"></p>
-          </div>
-
-          <div class="product-meta">
-            <p id="product-category"></p>
-            <div id="product-tags" class="product-tags"></div>
-            <p id="product-stock" class="product-stock"></p>
-          </div>
-
-          <div class="product-actions">
-            <button class="btn-primary" id="btn-buy">
-              Comprar agora
-            </button>
-            <button class="btn-outline" id="btn-see-plans">
-              Ver vantagens Nexus+
-            </button>
-          </div>
-
-          <p class="product-note" id="product-note">
-            Os preços e benefícios podem variar conforme seu plano (Free, Core, Hyper ou Omega).
-          </p>
-        </div>
+    <div class="card-info" style="margin-top:16px;">
+      <div><strong>Preço base:</strong> <span id="p-base">—</span></div>
+      <div style="margin-top:10px;">
+        <label><strong>Preferência de compra:</strong></label><br/>
+        <select id="pref" class="input-search" style="margin-top:8px;">
+          <option value="best">Melhor custo-benefício</option>
+          <option value="national">Compra nacional</option>
+          <option value="cheapest">Mais barato</option>
+        </select>
       </div>
-    </section>
 
-    <section class="section product-description">
-      <header class="section-header">
-        <h2>Descrição do produto</h2>
-      </header>
-      <p id="product-description" class="product-description-text">
-        Carregando descrição...
-      </p>
-    </section>
-
-    <section class="section product-shipping">
-      <header class="section-header">
-        <h2>Frete & Entrega</h2>
-      </header>
-      <div id="product-shipping-info" class="product-shipping-info">
-        <p>Carregando informações de frete...</p>
+      <div style="margin-top:10px;">
+        <label><strong>Região do cliente:</strong></label><br/>
+        <select id="region" class="input-search" style="margin-top:8px;">
+          <option value="BR">Brasil</option>
+          <option value="AF">África</option>
+          <option value="EU">Europa</option>
+          <option value="US">EUA</option>
+        </select>
       </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    Nexus © 2025 — Preço agressivo, atendimento inteligente.
-  </footer>
+      <button class="btn-primary" id="btn-calc" style="margin-top:12px;">Calcular melhor oferta</button>
+    </div>
 
-  <script src="nexus-widget.js?v=3"></script>
-  <script src="produto.js"></script>
+    <div class="section" style="margin-top:18px;">
+      <div class="section-header">
+        <h2>Oferta recomendada</h2>
+        <p id="decision-meta" style="opacity:.8"></p>
+      </div>
+      <div id="decision-box" class="card-info">Nenhuma oferta calculada ainda.</div>
+    </div>
+
+  </section>
+</main>
+
+<footer class="footer">Nexus © 2025</footer>
+
+<script src="config.js"></script>
+<script src="nexus-widget.js?v=3"></script>
+
+<script>
+const API = window.NEXUS_API;
+
+function getHandle() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("handle");
+}
+
+async function loadProduct(handle) {
+  const r = await fetch(`${API}/shopify/product?handle=${encodeURIComponent(handle)}`);
+  const data = await r.json();
+  if (!data.ok) throw new Error("Produto não encontrado");
+  return data.product;
+}
+
+function renderProduct(p) {
+  document.getElementById("p-title").innerText = p.title;
+  document.getElementById("p-vendor").innerText = p.vendor || "";
+
+  document.getElementById("p-base").innerText =
+    p.basePrice ? `R$ ${p.basePrice.toLocaleString("pt-BR")}` : "—";
+
+  const imgs = document.getElementById("p-images");
+  imgs.innerHTML = "";
+  (p.images || []).slice(0, 6).forEach(url => {
+    const d = document.createElement("div");
+    d.className = "result-card";
+    d.innerHTML = `<div class="card-image"><img src="${url}" /></div>`;
+    imgs.appendChild(d);
+  });
+}
+
+async function calcDecision(handle, basePrice) {
+  const pref = document.getElementById("pref").value;
+  const region = document.getElementById("region").value;
+
+  const r = await fetch(`${API}/decision/recommend?handle=${encodeURIComponent(handle)}&region=${region}&pref=${pref}&basePrice=${basePrice}`);
+  const data = await r.json();
+
+  if (!data.ok) {
+    document.getElementById("decision-box").innerText = "Erro ao calcular oferta.";
+    return;
+  }
+
+  const best = data.best;
+  document.getElementById("decision-meta").innerText =
+    `Região: ${data.region} | Preferência: ${data.pref}`;
+
+  document.getElementById("decision-box").innerHTML = `
+    <div><strong>Fornecedor:</strong> ${best.supplier}</div>
+    <div><strong>Origem:</strong> ${best.origin}</div>
+    <div><strong>Preço:</strong> R$ ${best.price.toLocaleString("pt-BR")}</div>
+    <div><strong>Frete:</strong> R$ ${best.shipping.toLocaleString("pt-BR")}</div>
+    <div><strong>Total:</strong> <strong>R$ ${best.totalPrice.toLocaleString("pt-BR")}</strong></div>
+    <div><strong>Prazo:</strong> ${best.deliveryDays} dias</div>
+  `;
+}
+
+(async () => {
+  const handle = getHandle();
+  if (!handle) {
+    document.getElementById("p-title").innerText = "Handle não informado.";
+    return;
+  }
+
+  const p = await loadProduct(handle);
+  renderProduct(p);
+
+  document.getElementById("btn-calc").addEventListener("click", () => {
+    if (!p.basePrice) return;
+    calcDecision(handle, p.basePrice);
+  });
+})();
+</script>
+
 </body>
 </html>
