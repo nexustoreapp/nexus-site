@@ -9,6 +9,7 @@ import robotRoutes from "./robot.routes.js";
 import trackingRoutes from "./tracking.routes.js";
 import liveRoutes from "./live.routes.js";
 import shopifyRoutes from "./shopify.routes.js";
+import decisionRoutes from "./decision.routes.js";
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.use("/robot", robotRoutes);
 router.use("/tracking", trackingRoutes);
 router.use("/live", liveRoutes);
 router.use("/shopify", shopifyRoutes);
+router.use("/decision", decisionRoutes);
 
 export default router;
