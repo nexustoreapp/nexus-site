@@ -13,7 +13,6 @@
 
 <body>
 
-<!-- ================= NAV ================= -->
 <header class="topbar">
   <a href="index.html" class="brand">
     <img src="logo.png" class="brand-logo" />
@@ -36,7 +35,6 @@
 
 <main>
 
-<!-- ================= HERO ================= -->
 <section class="hero" style="padding-bottom:24px;">
   <div class="hero-inner">
 
@@ -61,7 +59,6 @@
   </div>
 </section>
 
-<!-- ================= CATEGORIAS ================= -->
 <section class="section" style="background:rgba(255,255,255,0.02);padding:32px 0;">
   <div class="section-header">
     <h2>Explore por categoria</h2>
@@ -78,7 +75,6 @@
   </div>
 </section>
 
-<!-- ================= PRODUTOS REAIS ================= -->
 <section class="section">
   <div class="section-header">
     <h2>🔥 Em destaque agora</h2>
@@ -86,7 +82,7 @@
   </div>
 
   <div id="home-live-products" class="results-grid">
-    <!-- cards reais entram aqui -->
+    <!-- cards entram aqui -->
   </div>
 </section>
 
@@ -96,7 +92,6 @@
   Nexus © 2025 — Loja de tecnologia com decisão inteligente.
 </footer>
 
-<!-- ================= JS ================= -->
 <script>
 function goSearch() {
   const q = document.getElementById("home-query").value.trim();
@@ -113,20 +108,31 @@ if (navToggle && navMenu) {
 }
 </script>
 
+<!-- ✅ CONFIG CENTRAL -->
+<script src="config.js"></script>
+
 <script src="nexus-widget.js?v=3"></script>
 
 <script>
-<script>
-const API = "/api";
-
 async function loadHomeProducts() {
   try {
+    const API = window.NEXUS_API;
     const r = await fetch(`${API}/shopify/products?limit=12`);
     const data = await r.json();
-    if (!data.ok) return;
 
     const grid = document.getElementById("home-live-products");
     if (!grid) return;
+
+    // Se a API ainda não tem produtos, pelo menos não deixa vazio sem texto:
+    if (!data.ok) {
+      grid.innerHTML = "<p>Não foi possível carregar produtos agora.</p>";
+      return;
+    }
+
+    if (!data.products || data.products.length === 0) {
+      grid.innerHTML = "<p>Nenhum produto disponível ainda.</p>";
+      return;
+    }
 
     grid.innerHTML = "";
 
@@ -136,14 +142,14 @@ async function loadHomeProducts() {
 
       card.innerHTML = `
         <div class="card-image">
-          <img src="${p.image || "/fallback.png"}" alt="${p.title}">
+          <img src="${p.image || "fallback.png"}" alt="${p.title}">
         </div>
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-price">
             ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
-          <a href="produto.html?handle=${p.handle}" class="btn-primary">
+          <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
             Ver produto
           </a>
         </div>
@@ -152,12 +158,12 @@ async function loadHomeProducts() {
       grid.appendChild(card);
     });
   } catch (e) {
-    console.error("Erro ao carregar produtos da home", e);
+    const grid = document.getElementById("home-live-products");
+    if (grid) grid.innerHTML = "<p>Erro ao carregar produtos.</p>";
   }
 }
 
 document.addEventListener("DOMContentLoaded", loadHomeProducts);
-</script>
 </script>
 
 </body>
