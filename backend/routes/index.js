@@ -10,6 +10,7 @@ import trackingRoutes from "./tracking.routes.js";
 import liveRoutes from "./live.routes.js";
 import shopifyRoutes from "./shopify.routes.js";
 import decisionRoutes from "./decision.routes.js";
+import geoRoutes from "./geo.routes.js";
 
 const router = Router();
 
@@ -23,5 +24,6 @@ router.use("/tracking", trackingRoutes);
 router.use("/live", liveRoutes);
 router.use("/shopify", shopifyRoutes);
 router.use("/decision", decisionRoutes);
+router.use("/geo", geoRoutes);
 
 export default router;
