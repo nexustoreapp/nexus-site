@@ -10,38 +10,29 @@ const meta = document.getElementById("search-meta");
    PARAMS
 ================================ */
 const params = new URLSearchParams(window.location.search);
-const q = (params.get("q") || "").trim();
+const q = (params.get("q") || "").trim().toLowerCase();
 
 /* ===============================
-   LOAD SEARCH (V2 + LIVE)
+   LOAD SEARCH (SHOPIFY)
 ================================ */
 async function loadSearch() {
   try {
     meta.innerText = "Buscando produtos...";
     grid.innerHTML = "";
 
-    // 1️⃣ Busca canônica (SKUs)
-    const r = await fetch(`${API}/search?q=${encodeURIComponent(q)}`);
-    if (!r.ok) throw new Error("Erro na busca");
-
+    const r = await fetch(`${API}/shopify/products?limit=50`);
     const data = await r.json();
-    const produtos = data.products || [];
+    if (!data.ok) throw new Error("Erro ao buscar produtos");
 
-    if (!produtos.length) {
-      meta.innerText = "Nenhum produto encontrado.";
-      return;
-    }
+    const produtos = data.products.filter(p =>
+      p.title.toLowerCase().includes(q)
+    );
 
-    // 2️⃣ Busca dados vivos
-    const skus = produtos.map(p => p.sku);
-    const r2 = await fetch(`${API}/live/get?skus=${skus.join(",")}`);
-    const live = await r2.json();
+    meta.innerText = `${produtos.length} produto(s) encontrados`;
 
-    meta.innerText = `${live.items.length} produto(s) encontrados`;
+    if (!produtos.length) return;
 
-    grid.innerHTML = "";
-
-    live.items.forEach(p => {
+    produtos.forEach(p => {
       const card = document.createElement("div");
       card.className = "result-card";
 
@@ -52,17 +43,16 @@ async function loadSearch() {
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-price">
-            ${p.priceBRL ? "R$ " + p.priceBRL.toLocaleString("pt-BR") : "Sob consulta"}
+            ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
-          <a href="${p.url}" target="_blank" class="btn-primary">
-            Ver oferta
+          <a href="produto.html?handle=${p.handle}" class="btn-primary">
+            Ver produto
           </a>
         </div>
       `;
 
       grid.appendChild(card);
     });
-
   } catch (err) {
     console.error(err);
     meta.innerText = "Erro ao buscar produtos";
