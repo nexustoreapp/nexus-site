@@ -116,22 +116,12 @@ if (navToggle && navMenu) {
 <script src="nexus-widget.js?v=3"></script>
 
 <script>
+<script>
 const API = "/api";
-
-const HOME_SKUS = [
-  "gpu-nvidia-rtx-4060",
-  "gpu-nvidia-rtx-4070",
-  "cpu-amd-ryzen-5-5600",
-  "storage-ssd-1tb",
-  "peripheral-headset-gamer",
-  "monitor-144hz"
-];
 
 async function loadHomeProducts() {
   try {
-    const r = await fetch(
-      `${API}/live/get?skus=${HOME_SKUS.join(",")}`
-    );
+    const r = await fetch(`${API}/shopify/products?limit=12`);
     const data = await r.json();
     if (!data.ok) return;
 
@@ -140,7 +130,7 @@ async function loadHomeProducts() {
 
     grid.innerHTML = "";
 
-    data.items.forEach(p => {
+    data.products.forEach(p => {
       const card = document.createElement("div");
       card.className = "result-card";
 
@@ -151,10 +141,10 @@ async function loadHomeProducts() {
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-price">
-            ${p.priceBRL ? "R$ " + p.priceBRL.toLocaleString("pt-BR") : "Sob consulta"}
+            ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
-          <a href="${p.url}" target="_blank" class="btn-primary">
-            Ver oferta
+          <a href="produto.html?handle=${p.handle}" class="btn-primary">
+            Ver produto
           </a>
         </div>
       `;
@@ -167,6 +157,7 @@ async function loadHomeProducts() {
 }
 
 document.addEventListener("DOMContentLoaded", loadHomeProducts);
+</script>
 </script>
 
 </body>
