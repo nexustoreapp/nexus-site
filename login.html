@@ -1,93 +1,68 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Entrar - Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Entre na sua conta Nexus." />
+const API = window.NEXUS_API;
 
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css" />
+/* ===============================
+   ELEMENTOS
+================================ */
+const grid = document.getElementById("results-grid");
+const meta = document.getElementById("search-meta");
 
-  <!-- Widget Nexus IA -->
-  <link rel="stylesheet" href="./nexus-widget.css?v=3" />
-</head>
+/* ===============================
+   PARAMS
+================================ */
+const params = new URLSearchParams(window.location.search);
+const q = (params.get("q") || "").trim().toLowerCase();
 
-<body>
-  <header class="topbar">
-    <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" alt="Nexus" />
-      <span class="brand-name">Nexus</span>
-    </a>
+/* ===============================
+   LOAD SEARCH (SHOPIFY)
+================================ */
+async function loadSearch() {
+  try {
+    meta.innerText = "Buscando produtos...";
+    grid.innerHTML = "";
 
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+    const r = await fetch(`${API}/shopify/products?limit=50`);
+    const data = await r.json();
 
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="dashboard.html" class="nav-link">Minha área</a>
-      <a href="assinatura.html" class="nav-link">Assinatura</a>
-      <a href="login.html" class="nav-link active">Entrar</a>
-    </nav>
-  </header>
-
-  <main class="page">
-    <section class="section center">
-      <div class="section-header">
-        <h1>Entrar</h1>
-        <p>Área de login do cliente Nexus (fase inicial).</p>
-      </div>
-
-      <form class="form-card" onsubmit="return fakeLogin(event)">
-        <label>
-          E-mail
-          <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" />
-        </label>
-
-        <label>
-          Senha
-          <input type="password" id="login-password" required placeholder="••••••••" />
-        </label>
-
-        <button type="submit" class="btn-primary full">Entrar</button>
-
-        <p class="small-text">
-          Ainda não tem conta?
-          <a href="assinatura.html">Escolha um plano e crie seu acesso.</a>
-        </p>
-      </form>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>Nexus © 2025 – Login.</p>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("navToggle");
-      const menu = document.getElementById("navMenu");
-      if (toggle && menu) {
-        toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
-      }
-    });
-
-    function fakeLogin(e) {
-      e.preventDefault();
-      alert("Login ainda em fase inicial. Em breve vai validar no backend.");
-      return false;
+    if (!data.ok) {
+      meta.innerText = "Erro ao buscar produtos";
+      return;
     }
-  </script>
 
-  <!-- =========================
-     NEXUS IA WIDGET (GLOBAL)
-     ========================= -->
-<link rel="stylesheet" href="./nexus-widget.css?v=3" />
-<script src="./nexus-widget.js?v=3"></script>
-</body>
-</html>
+    const produtos = (data.products || []).filter(p =>
+      p.title.toLowerCase().includes(q)
+    );
+
+    meta.innerText = `${produtos.length} produto(s) encontrados`;
+
+    if (produtos.length === 0) {
+      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
+      return;
+    }
+
+    produtos.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "result-card";
+
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${p.image || "fallback.png"}" alt="${p.title}">
+        </div>
+        <div class="card-body">
+          <div class="card-title">${p.title}</div>
+          <div class="card-price">
+            ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
+          </div>
+          <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
+            Ver produto
+          </a>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  } catch (err) {
+    meta.innerText = "Erro ao buscar produtos";
+  }
+}
+
+loadSearch();
