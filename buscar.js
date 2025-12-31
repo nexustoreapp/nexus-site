@@ -1,4 +1,4 @@
-const API = "/api";
+const API = window.NEXUS_API;
 
 /* ===============================
    ELEMENTOS
@@ -22,15 +22,22 @@ async function loadSearch() {
 
     const r = await fetch(`${API}/shopify/products?limit=50`);
     const data = await r.json();
-    if (!data.ok) throw new Error("Erro ao buscar produtos");
 
-    const produtos = data.products.filter(p =>
+    if (!data.ok) {
+      meta.innerText = "Erro ao buscar produtos";
+      return;
+    }
+
+    const produtos = (data.products || []).filter(p =>
       p.title.toLowerCase().includes(q)
     );
 
     meta.innerText = `${produtos.length} produto(s) encontrados`;
 
-    if (!produtos.length) return;
+    if (produtos.length === 0) {
+      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
+      return;
+    }
 
     produtos.forEach(p => {
       const card = document.createElement("div");
@@ -38,14 +45,14 @@ async function loadSearch() {
 
       card.innerHTML = `
         <div class="card-image">
-          <img src="${p.image || "/fallback.png"}" alt="${p.title}">
+          <img src="${p.image || "fallback.png"}" alt="${p.title}">
         </div>
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-price">
             ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
-          <a href="produto.html?handle=${p.handle}" class="btn-primary">
+          <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
             Ver produto
           </a>
         </div>
@@ -54,7 +61,6 @@ async function loadSearch() {
       grid.appendChild(card);
     });
   } catch (err) {
-    console.error(err);
     meta.innerText = "Erro ao buscar produtos";
   }
 }
