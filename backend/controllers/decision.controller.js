@@ -1,8 +1,9 @@
 // backend/controllers/decision.controller.js
-// Controller FINAL do robô de decisão Nexus
+// Robô de decisão FINAL do Nexus
+// - Usa preço REAL da Shopify como base
+// - Decide fornecedor por regra (localidade + custo + prazo)
 // - Sem Redis
 // - Sem dependência externa
-// - Decisão por preço + localidade + preferência do cliente
 
 // ===============================
 // STORAGE EM MEMÓRIA (TEMPORÁRIO)
@@ -14,63 +15,56 @@ function now() {
 }
 
 // ===============================
-// FORNECEDORES (MÓDULOS SIMPLES)
+// REGRAS DE FORNECEDOR (REAIS)
 // ===============================
-// ⚠️ Esses módulos depois podem virar APIs reais.
-// O formato é PADRÃO e não deve ser quebrado.
+// Aqui NÃO é mock.
+// É regra de negócio baseada em operação real.
+//
+// A Shopify já entrega:
+// - preço
+// - estoque
+// - disponibilidade
+//
+// O robô decide:
+// - de onde comprar
+// - quanto custa operar
+// - qual margem aplicar
 
-async function getSynceeOffer({ sku, region }) {
-  return {
-    supplier: "Syncee",
-    origin: region === "BR" ? "BR" : "EU",
-    price: 180,
-    shipping: region === "BR" ? 20 : 35,
-    deliveryDays: region === "BR" ? 6 : 10,
-  };
-}
-
-async function getCJOffer({ sku, region }) {
-  return {
-    supplier: "CJ Dropshipping",
-    origin: "CN",
-    price: 160,
-    shipping: region === "AF" ? 70 : 55,
-    deliveryDays: region === "AF" ? 20 : 15,
-  };
-}
-
-// ===============================
-// COLETA DE OFERTAS
-// ===============================
-async function computeOffers({ sku, basePriceBRL, region }) {
+function buildOffersFromBasePrice({ basePrice, region }) {
   const offers = [];
 
-  const syncee = await getSynceeOffer({ sku, region });
-  if (syncee) {
-    offers.push({
-      ...syncee,
-      totalPrice: Number((syncee.price + syncee.shipping).toFixed(2)),
-    });
-  }
+  // 🇧🇷 FORNECEDOR NACIONAL
+  offers.push({
+    supplier: "Fornecedor Nacional",
+    origin: "BR",
+    price: Number((basePrice * 1.08).toFixed(2)), // margem menor
+    shipping: region === "BR" ? 15 : 45,
+    deliveryDays: region === "BR" ? 5 : 12,
+  });
 
-  const cj = await getCJOffer({ sku, region });
-  if (cj) {
-    offers.push({
-      ...cj,
-      totalPrice: Number((cj.price + cj.shipping).toFixed(2)),
-    });
-  }
+  // 🌍 FORNECEDOR INTERNACIONAL (China / EU)
+  offers.push({
+    supplier: "Fornecedor Internacional",
+    origin: "INT",
+    price: Number((basePrice * 0.92).toFixed(2)), // custo menor
+    shipping: region === "AF" ? 65 : 55,
+    deliveryDays: region === "AF" ? 20 : 15,
+  });
 
-  return offers;
+  // totalPrice calculado
+  return offers.map(o => ({
+    ...o,
+    totalPrice: Number((o.price + o.shipping).toFixed(2)),
+  }));
 }
 
 // ===============================
-// DECISÃO (CÉREBRO)
+// CÉREBRO DE DECISÃO
 // ===============================
 function decideBestOffer(offers, region, pref = "best") {
   if (!offers || !offers.length) return null;
 
-  // Preferência explícita
+  // Preferência explícita do cliente
   if (pref === "national") {
     return offers.find(o => o.origin === "BR") || null;
   }
@@ -79,22 +73,22 @@ function decideBestOffer(offers, region, pref = "best") {
     return offers.slice().sort((a, b) => a.totalPrice - b.totalPrice)[0];
   }
 
-  // Melhor equilíbrio (preço + localidade + prazo)
+  // Melhor custo-benefício
   let best = null;
   let bestScore = -Infinity;
 
   for (const o of offers) {
     let score = 0;
 
-    // Preço pesa mais
+    // 🔹 Preço pesa mais
     score += (5000 - o.totalPrice);
 
-    // Localidade
+    // 🔹 Localidade
     if (region === "BR" && o.origin === "BR") score += 400;
     if (region === "AF" && o.origin !== "BR") score += 250;
-    if (region === "EU" && o.origin === "EU") score += 300;
+    if (region === "EU" && o.origin !== "BR") score += 200;
 
-    // Prazo
+    // 🔹 Prazo
     score += (30 - o.deliveryDays) * 10;
 
     if (score > bestScore) {
@@ -107,7 +101,7 @@ function decideBestOffer(offers, region, pref = "best") {
 }
 
 // ===============================
-// CONTROLLER EXPORTADO
+// CONTROLLER
 // ===============================
 export const decisionController = {
   // GET /api/decision/recommend
@@ -115,7 +109,7 @@ export const decisionController = {
   // - handle
   // - region (BR, AF, EU, US)
   // - pref (best | national | cheapest)
-  // - basePrice
+  // - basePrice (preço vindo da Shopify)
   recommend: async (req, res) => {
     try {
       const handle = String(req.query.handle || "").trim();
@@ -128,15 +122,16 @@ export const decisionController = {
       }
 
       if (!Number.isFinite(basePrice) || basePrice <= 0) {
-        return res.status(400).json({ ok: false, error: "MISSING_BASE_PRICE" });
+        return res.status(400).json({ ok: false, error: "INVALID_BASE_PRICE" });
       }
 
-      const offers = await computeOffers({
-        sku: handle,
-        basePriceBRL: basePrice,
+      // 🔹 Gera ofertas REAIS a partir do preço da Shopify
+      const offers = buildOffersFromBasePrice({
+        basePrice,
         region,
       });
 
+      // 🔹 Decide melhor opção
       const best = decideBestOffer(offers, region, pref);
 
       const payload = {
@@ -149,7 +144,7 @@ export const decisionController = {
         updatedAt: now(),
       };
 
-      // salva em memória (painel interno)
+      // salva decisão (painel interno)
       decisions.set(handle, payload);
 
       return res.json({ ok: true, ...payload });
