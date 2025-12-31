@@ -1,56 +1,98 @@
 import fetch from "node-fetch";
 
-const SHOP = process.env.SHOPIFY_SHOP_DOMAIN; // ubejc-kq.myshopify.com
-const TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
-const VERSION = process.env.SHOPIFY_API_VERSION || "2024-10";
+const SHOP = process.env.SHOPIFY_SHOP_DOMAIN; // ex: ubejc-kq.myshopify.com
+const TOKEN = process.env.SHOPIFY_STOREFRONT_TOKEN;
+
+if (!SHOP || !TOKEN) {
+  console.error("[SHOPIFY] SHOPIFY_SHOP_DOMAIN ou SHOPIFY_STOREFRONT_TOKEN ausentes");
+}
 
 export const shopifyController = {
-  // GET /api/shopify/products?limit=20
+  // GET /api/shopify/products?limit=10
   products: async (req, res) => {
     try {
-      const limit = Math.min(Number(req.query.limit || 5), 50);
+      const limit = Math.min(Number(req.query.limit || 10), 50);
 
-      const url = `https://${SHOP}/admin/api/${VERSION}/products.json?limit=${limit}`;
-
-      const r = await fetch(url, {
-        method: "GET",
-        headers: {
-          "X-Shopify-Access-Token": TOKEN,
-          "Accept": "application/json"
+      const query = `
+        query GetProducts($first: Int!) {
+          products(first: $first) {
+            edges {
+              node {
+                id
+                title
+                vendor
+                availableForSale
+                images(first: 1) {
+                  edges {
+                    node {
+                      url
+                    }
+                  }
+                }
+                variants(first: 10) {
+                  edges {
+                    node {
+                      id
+                      sku
+                      availableForSale
+                      price {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
+      `;
+
+      const r = await fetch(`https://${SHOP}/api/2024-10/graphql.json`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": TOKEN,
+        },
+        body: JSON.stringify({
+          query,
+          variables: { first: limit },
+        }),
       });
 
-      const text = await r.text();
+      const json = await r.json();
 
-      if (!r.ok) {
-        return res.status(r.status).json({
+      if (json.errors) {
+        return res.status(400).json({
           ok: false,
-          status: r.status,
-          response: text,
-          usedUrl: url
+          errors: json.errors,
         });
       }
 
-      const json = JSON.parse(text);
-
-      const products = (json.products || []).map(p => ({
-        id: p.id,
-        title: p.title,
-        vendor: p.vendor,
-        image: p.image?.src || null,
-        variants: (p.variants || []).map(v => ({
-          id: v.id,
-          sku: v.sku,
-          price: Number(v.price),
-          inventory_quantity: v.inventory_quantity,
-        })),
-      }));
+      const products = json.data.products.edges.map(e => {
+        const p = e.node;
+        return {
+          id: p.id,
+          title: p.title,
+          vendor: p.vendor,
+          available: p.availableForSale,
+          image: p.images.edges[0]?.node?.url || null,
+          variants: p.variants.edges.map(v => ({
+            id: v.node.id,
+            sku: v.node.sku,
+            available: v.node.availableForSale,
+            price: Number(v.node.price.amount),
+            currency: v.node.price.currencyCode,
+          })),
+        };
+      });
 
       return res.json({ ok: true, products });
     } catch (err) {
+      console.error("[SHOPIFY] erro:", err.message);
       return res.status(500).json({
         ok: false,
-        error: err.message
+        error: err.message,
       });
     }
   },
