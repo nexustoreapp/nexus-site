@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Produto - Nexus</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
@@ -14,6 +15,7 @@
     <img src="logo.png" class="brand-logo" alt="Nexus" />
     <span class="brand-name">Nexus</span>
   </a>
+
   <nav class="nav">
     <a href="index.html" class="nav-link">Início</a>
     <a href="buscar.html" class="nav-link">Buscar</a>
@@ -21,62 +23,102 @@
 </header>
 
 <main class="page">
+
+  <!-- PRODUTO -->
   <section class="section">
     <div class="section-header">
-      <h1 id="p-title">Carregando...</h1>
-      <p id="p-vendor"></p>
+      <h1 id="p-title">Carregando produto…</h1>
+      <p id="p-vendor" style="opacity:.7"></p>
     </div>
 
-    <div class="results-grid" id="p-images"></div>
+    <!-- IMAGENS -->
+    <div id="p-images" class="results-grid"></div>
 
-    <div class="card-info" style="margin-top:16px;">
-      <div><strong>Preço base:</strong> <span id="p-base">—</span></div>
-      <div style="margin-top:10px;">
-        <label><strong>Preferência de compra:</strong></label><br/>
-        <select id="pref" class="input-search" style="margin-top:8px;">
+    <!-- INFO / DECISÃO -->
+    <div class="card-info" style="margin-top:20px">
+
+      <div>
+        <strong>Preço base:</strong>
+        <span id="p-base">—</span>
+      </div>
+
+      <div style="margin-top:14px">
+        <label><strong>Preferência de compra</strong></label><br />
+        <select id="pref" class="input-search" style="margin-top:6px">
           <option value="best">Melhor custo-benefício</option>
           <option value="national">Compra nacional</option>
           <option value="cheapest">Mais barato</option>
         </select>
       </div>
 
-      <div style="margin-top:10px;">
-        <label><strong>Região do cliente:</strong></label><br/>
-        <select id="region" class="input-search" style="margin-top:8px;">
+      <div style="margin-top:14px">
+        <label><strong>Região do cliente</strong></label><br />
+        <select id="region" class="input-search" style="margin-top:6px">
           <option value="BR">Brasil</option>
           <option value="AF">África</option>
           <option value="EU">Europa</option>
-          <option value="US">EUA</option>
+          <option value="US">Estados Unidos</option>
         </select>
       </div>
 
-      <button class="btn-primary" id="btn-calc" style="margin-top:12px;">Calcular melhor oferta</button>
+      <button id="btn-calc" class="btn-primary" style="margin-top:16px">
+        Calcular melhor oferta
+      </button>
+
     </div>
 
-    <div class="section" style="margin-top:18px;">
+    <!-- RESULTADO -->
+    <div class="section" style="margin-top:24px">
       <div class="section-header">
         <h2>Oferta recomendada</h2>
-        <p id="decision-meta" style="opacity:.8"></p>
+        <p id="decision-meta" style="opacity:.7"></p>
       </div>
-      <div id="decision-box" class="card-info">Nenhuma oferta calculada ainda.</div>
+
+      <div id="decision-box" class="card-info">
+        Nenhuma oferta calculada ainda.
+      </div>
     </div>
 
   </section>
+
 </main>
 
-<footer class="footer">Nexus © 2025</footer>
+<footer class="footer">
+  Nexus © 2025
+</footer>
 
+<!-- CONFIG -->
 <script src="config.js"></script>
 <script src="nexus-widget.js?v=3"></script>
 
 <script>
 const API = window.NEXUS_API;
 
+/* ===============================
+   HELPERS
+================================ */
 function getHandle() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("handle");
+  const p = new URLSearchParams(window.location.search);
+  return p.get("handle");
 }
 
+/* ===============================
+   GEO AUTO (IP → REGIÃO)
+================================ */
+async function autoDetectRegion() {
+  try {
+    const r = await fetch(`${API}/geo/region`);
+    const data = await r.json();
+    if (data.ok && data.region) {
+      const sel = document.getElementById("region");
+      if (sel) sel.value = data.region;
+    }
+  } catch (e) {}
+}
+
+/* ===============================
+   LOAD PRODUTO (SHOPIFY)
+================================ */
 async function loadProduct(handle) {
   const r = await fetch(`${API}/shopify/product?handle=${encodeURIComponent(handle)}`);
   const data = await r.json();
@@ -91,56 +133,76 @@ function renderProduct(p) {
   document.getElementById("p-base").innerText =
     p.basePrice ? `R$ ${p.basePrice.toLocaleString("pt-BR")}` : "—";
 
-  const imgs = document.getElementById("p-images");
-  imgs.innerHTML = "";
+  const grid = document.getElementById("p-images");
+  grid.innerHTML = "";
+
   (p.images || []).slice(0, 6).forEach(url => {
     const d = document.createElement("div");
     d.className = "result-card";
-    d.innerHTML = `<div class="card-image"><img src="${url}" /></div>`;
-    imgs.appendChild(d);
+    d.innerHTML = `
+      <div class="card-image">
+        <img src="${url}" alt="">
+      </div>
+    `;
+    grid.appendChild(d);
   });
 }
 
-async function calcDecision(handle, basePrice) {
+/* ===============================
+   CALCULAR DECISÃO
+================================ */
+async function calcDecision(handle, basePrice, vendor) {
   const pref = document.getElementById("pref").value;
   const region = document.getElementById("region").value;
 
-  const r = await fetch(`${API}/decision/recommend?handle=${encodeURIComponent(handle)}&region=${region}&pref=${pref}&basePrice=${basePrice}`);
-  const data = await r.json();
+  const r = await fetch(
+    `${API}/decision/recommend?handle=${encodeURIComponent(handle)}&vendor=${encodeURIComponent(vendor)}&region=${region}&pref=${pref}&basePrice=${basePrice}`
+  );
 
-  if (!data.ok) {
+  const data = await r.json();
+  if (!data.ok || !data.best) {
     document.getElementById("decision-box").innerText = "Erro ao calcular oferta.";
     return;
   }
 
-  const best = data.best;
   document.getElementById("decision-meta").innerText =
     `Região: ${data.region} | Preferência: ${data.pref}`;
 
+  const b = data.best;
+
   document.getElementById("decision-box").innerHTML = `
-    <div><strong>Fornecedor:</strong> ${best.supplier}</div>
-    <div><strong>Origem:</strong> ${best.origin}</div>
-    <div><strong>Preço:</strong> R$ ${best.price.toLocaleString("pt-BR")}</div>
-    <div><strong>Frete:</strong> R$ ${best.shipping.toLocaleString("pt-BR")}</div>
-    <div><strong>Total:</strong> <strong>R$ ${best.totalPrice.toLocaleString("pt-BR")}</strong></div>
-    <div><strong>Prazo:</strong> ${best.deliveryDays} dias</div>
+    <div><strong>Fornecedor:</strong> ${b.supplier}</div>
+    <div><strong>Origem:</strong> ${b.origin}</div>
+    <div><strong>Preço:</strong> R$ ${b.price.toLocaleString("pt-BR")}</div>
+    <div><strong>Frete:</strong> R$ ${b.shipping.toLocaleString("pt-BR")}</div>
+    <div><strong>Total:</strong> <strong>R$ ${b.totalPrice.toLocaleString("pt-BR")}</strong></div>
+    <div><strong>Prazo:</strong> ${b.deliveryDays} dias</div>
   `;
 }
 
+/* ===============================
+   INIT
+================================ */
 (async () => {
-  const handle = getHandle();
-  if (!handle) {
-    document.getElementById("p-title").innerText = "Handle não informado.";
-    return;
+  try {
+    const handle = getHandle();
+    if (!handle) {
+      document.getElementById("p-title").innerText = "Produto não informado.";
+      return;
+    }
+
+    const p = await loadProduct(handle);
+    renderProduct(p);
+    await autoDetectRegion();
+
+    document.getElementById("btn-calc").addEventListener("click", () => {
+      if (!p.basePrice) return;
+      calcDecision(p.handle, p.basePrice, p.vendor);
+    });
+
+  } catch (e) {
+    document.getElementById("p-title").innerText = "Erro ao carregar produto.";
   }
-
-  const p = await loadProduct(handle);
-  renderProduct(p);
-
-  document.getElementById("btn-calc").addEventListener("click", () => {
-    if (!p.basePrice) return;
-    calcDecision(handle, p.basePrice);
-  });
 })();
 </script>
 
