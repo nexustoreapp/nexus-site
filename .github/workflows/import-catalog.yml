@@ -1,0 +1,35 @@
+name: Import Catalog Feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *" # a cada 6 horas
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run catalog importer
+        env:
+          FEED_URL: https://data.icecat.biz/export/freexml/INT/
+        run: node worker/importer.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "chore: update catalog from feed" || echo "No changes"
+          git push
