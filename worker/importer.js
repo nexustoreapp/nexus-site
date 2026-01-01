@@ -4,7 +4,16 @@ import fetch from "node-fetch";
 import { parse } from "csv-parse/sync";
 
 // ========= CONFIG =========
-const FEED_URL = process.env.FEED_URL || "https://data.icecat.biz/export/freexml.int/INT/files.index.csv";
+const user = process.env.ICECAT_USER;
+const pass = process.env.ICECAT_PASS;
+
+if (!user || !pass) {
+  throw new Error("ICECAT_USER ou ICECAT_PASS não definidos");
+}
+
+const FEED_URL =
+  `https://${encodeURIComponent(user)}:${encodeURIComponent(pass)}` +
+  `@data.icecat.biz/export/freexml.int/INT/files.index.csv`;
 const MAX_PRODUCTS = Math.min(Number(process.env.MAX_PRODUCTS || 1200), 5000); // meta: 800+ sem explodir
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
