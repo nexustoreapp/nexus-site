@@ -23,6 +23,8 @@ jobs:
 
       - name: Run catalog importer
         env:
+          ICECAT_USER: ${{ secrets.ICECAT_USER }}
+          ICECAT_PASS: ${{ secrets.ICECAT_PASS }}
           FEED_URL: https://data.icecat.biz/export/freexml.int/INT/files.index.csv
           MAX_PRODUCTS: "1200"
         run: node worker/importer.js
