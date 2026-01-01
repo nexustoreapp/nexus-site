@@ -14,7 +14,7 @@ if (!ICECAT_USER || !ICECAT_PASS) {
   throw new Error("ICECAT_USER ou ICECAT_PASS não definidos");
 }
 
-// categorias aceitas
+// ===== filtros (nicho Kabum/ML tech) =====
 const TECH_WORDS = [
   "graphics","video","gpu","processor","cpu","memory","ram",
   "ssd","hdd","storage","motherboard","monitor","display",
@@ -64,7 +64,7 @@ function upsert(list, item){
 }
 
 async function main(){
-  console.log("[IMPORTER] Iniciando import ICECAT (stream)…");
+  console.log("[IMPORTER] Iniciando import ICECAT (stream tolerante)…");
   ensureDir(CATALOG_DIR);
 
   const auth = Buffer.from(`${ICECAT_USER}:${ICECAT_PASS}`).toString("base64");
@@ -76,7 +76,13 @@ async function main(){
   let added = 0;
   let processed = 0;
 
-  const parser = res.body.pipe(parse({ columns: true }));
+  const parser = res.body.pipe(parse({
+    columns: true,
+    relax_column_count: true,
+    relax_quotes: true,
+    skip_records_with_error: true,
+    from_line: 2
+  }));
 
   for await (const row of parser) {
     if (added >= MAX_PRODUCTS) break;
