@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Teste Cadastro Nexus</h2>
+
+<button onclick="register()">Registrar</button>
+<button onclick="verify()">Verificar OTP</button>
+<button onclick="login()">Login</button>
+
+<script>
+const API = "/api/auth";
+
+async function register(){
+  const r = await fetch(API + "/register", {
+    method: "POST",
+    headers: { "Content-Type":"application/json" },
+    body: JSON.stringify({
+      email: "teste@nexus.com",
+      password: "123456",
+      cpf: "12345678909"
+    })
+  });
+  alert(JSON.stringify(await r.json()));
+}
+
+async function verify(){
+  const otp = prompt("Digite o OTP recebido no e-mail:");
+  const r = await fetch(API + "/verify", {
+    method: "POST",
+    headers: { "Content-Type":"application/json" },
+    body: JSON.stringify({
+      email: "teste@nexus.com",
+      otp
+    })
+  });
+  alert(JSON.stringify(await r.json()));
+}
+
+async function login(){
+  const r = await fetch(API + "/login", {
+    method: "POST",
+    headers: { "Content-Type":"application/json" },
+    body: JSON.stringify({
+      email: "teste@nexus.com",
+      password: "123456"
+    })
+  });
+  alert(JSON.stringify(await r.json()));
+}
+</script>
+</body>
+</html>
