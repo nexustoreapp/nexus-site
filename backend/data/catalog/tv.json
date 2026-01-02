@@ -9,8 +9,8 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767391482222,
-    "image": "fallback.png",
+    "updatedAt": 1767393398335,
+    "image": "/images/categories/tv.png",
     "show": true,
     "featured": true,
     "priority": 4
@@ -25,8 +25,8 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767391482222,
-    "image": "fallback.png",
+    "updatedAt": 1767393398335,
+    "image": "/images/categories/tv.png",
     "show": true,
     "featured": true,
     "priority": 4

@@ -8,10 +8,10 @@
     "ean": null,
     "price": 0,
     "stock": 25,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -23,10 +23,10 @@
     "ean": null,
     "price": 0,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -38,10 +38,10 @@
     "ean": null,
     "price": 0,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -53,10 +53,10 @@
     "ean": null,
     "price": 0,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -68,10 +68,10 @@
     "ean": null,
     "price": 0,
     "stock": 6,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -83,10 +83,10 @@
     "ean": null,
     "price": 0,
     "stock": 12,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -98,10 +98,10 @@
     "ean": null,
     "price": 0,
     "stock": 7,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -113,10 +113,10 @@
     "ean": null,
     "price": 0,
     "stock": 2,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -128,10 +128,10 @@
     "ean": null,
     "price": 0,
     "stock": 18,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -143,10 +143,10 @@
     "ean": null,
     "price": 0,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   },
   {
@@ -158,10 +158,10 @@
     "ean": null,
     "price": 0,
     "stock": 19,
-    "image": "fallback.png",
+    "image": "/images/categories/peripherals.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767391482220,
+    "updatedAt": 1767393398334,
     "ready": true
   }
 ]

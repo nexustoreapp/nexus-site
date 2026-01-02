@@ -6,13 +6,15 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-500GB-SATA",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 1,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-samsung-ssd-1tb-sata",
@@ -21,13 +23,15 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-1TB-SATA",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-samsung-ssd-1tb-nvme",
@@ -36,13 +40,15 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-1TB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-samsung-ssd-2tb-nvme",
@@ -51,13 +57,15 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-2TB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-wd-ssd-500gb-nvme",
@@ -66,13 +74,15 @@
     "brand": "WD",
     "mpn": "WD-SSD-500GB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-wd-ssd-1tb-nvme",
@@ -81,13 +91,15 @@
     "brand": "WD",
     "mpn": "WD-SSD-1TB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 20,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-wd-ssd-2tb-nvme",
@@ -96,13 +108,15 @@
     "brand": "WD",
     "mpn": "WD-SSD-2TB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 2,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-wd-hdd-1tb",
@@ -111,13 +125,15 @@
     "brand": "WD",
     "mpn": "WD-HDD-1TB",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 11,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-wd-hdd-2tb",
@@ -126,13 +142,15 @@
     "brand": "WD",
     "mpn": "WD-HDD-2TB",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 12,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-kingston-ssd-480gb",
@@ -141,13 +159,15 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-480GB",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-kingston-ssd-960gb",
@@ -156,13 +176,15 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-960GB",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 1,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-kingston-ssd-1tb-nvme",
@@ -171,13 +193,15 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-1TB-NVME",
     "ean": null,
-    "price": 0,
+    "price": 2660,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/storage.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482222,
-    "ready": true
+    "updatedAt": 1767393398335,
+    "ready": true,
+    "currency": "BRL",
+    "priceConfidence": "low"
   },
   {
     "sku": "storage-ssd-1tb-nvme",
@@ -189,8 +213,8 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767391482222,
-    "image": "fallback.png",
+    "updatedAt": 1767393398335,
+    "image": "/images/categories/storage.png",
     "show": true,
     "featured": true,
     "priority": 4
@@ -205,8 +229,8 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767391482222,
-    "image": "fallback.png",
+    "updatedAt": 1767393398335,
+    "image": "/images/categories/storage.png",
     "show": true,
     "featured": true,
     "priority": 4

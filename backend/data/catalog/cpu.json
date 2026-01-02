@@ -8,10 +8,10 @@
     "ean": null,
     "price": 0,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -23,10 +23,10 @@
     "ean": null,
     "price": 0,
     "stock": 10,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -38,10 +38,10 @@
     "ean": null,
     "price": 0,
     "stock": 10,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -53,10 +53,10 @@
     "ean": null,
     "price": 0,
     "stock": 2,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -68,10 +68,10 @@
     "ean": null,
     "price": 0,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -83,10 +83,10 @@
     "ean": null,
     "price": 0,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -98,10 +98,10 @@
     "ean": null,
     "price": 0,
     "stock": 2,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -113,10 +113,10 @@
     "ean": null,
     "price": 0,
     "stock": 16,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -128,10 +128,10 @@
     "ean": null,
     "price": 0,
     "stock": 9,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -143,10 +143,10 @@
     "ean": null,
     "price": 0,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -158,10 +158,10 @@
     "ean": null,
     "price": 0,
     "stock": 4,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -173,10 +173,10 @@
     "ean": null,
     "price": 0,
     "stock": 5,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -188,10 +188,10 @@
     "ean": null,
     "price": 0,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -203,10 +203,10 @@
     "ean": null,
     "price": 0,
     "stock": 11,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -218,10 +218,10 @@
     "ean": null,
     "price": 0,
     "stock": 25,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -233,10 +233,10 @@
     "ean": null,
     "price": 0,
     "stock": 1,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -248,10 +248,10 @@
     "ean": null,
     "price": 0,
     "stock": 3,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -263,10 +263,10 @@
     "ean": null,
     "price": 0,
     "stock": 11,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   },
   {
@@ -278,10 +278,10 @@
     "ean": null,
     "price": 0,
     "stock": 1,
-    "image": "fallback.png",
+    "image": "/images/categories/cpu.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767391482199,
+    "updatedAt": 1767393398315,
     "ready": true
   }
 ]
