@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 // ===== CONFIG =====
-const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 1200);
+const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 600);
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
 function ensureDir(d){ if(!fs.existsSync(d)) fs.mkdirSync(d,{recursive:true}); }
@@ -10,99 +10,74 @@ function readJson(p, fb=[]){ return fs.existsSync(p) ? JSON.parse(fs.readFileSyn
 function writeJson(p, d){ fs.writeFileSync(p, JSON.stringify(d,null,2),"utf-8"); }
 function upsert(list, item){
   const i = list.findIndex(x=>x.sku===item.sku);
-  if(i>=0){ list[i]={...list[i],...item,updatedAt:Date.now()}; return false; }
-  list.push({...item,createdAt:Date.now(),updatedAt:Date.now()}); return true;
+  if(i>=0) return false;
+  list.push({...item,createdAt:Date.now(),updatedAt:Date.now()});
+  return true;
 }
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
 
-// ===== SEEDS REAIS =====
-const BRANDS = {
-  gpu: [
-    { brand:"NVIDIA", models:["RTX 3050","RTX 3060","RTX 3060 Ti","RTX 3070","RTX 3070 Ti","RTX 3080","RTX 3080 Ti","RTX 3090","RTX 3090 Ti","RTX 4060","RTX 4060 Ti","RTX 4070","RTX 4070 Ti","RTX 4080","RTX 4090"] },
-    { brand:"AMD", models:["RX 6600","RX 6650 XT","RX 6700 XT","RX 6750 XT","RX 6800","RX 6800 XT","RX 6900 XT","RX 6950 XT","RX 7600","RX 7700 XT","RX 7800 XT","RX 7900 XT","RX 7900 XTX"] }
-  ],
-  cpu: [
-    { brand:"Intel", models:["Core i3-10100","Core i5-10400","Core i5-11400","Core i5-12400","Core i5-13400","Core i7-11700","Core i7-12700","Core i7-13700","Core i9-12900","Core i9-13900"] },
-    { brand:"AMD", models:["Ryzen 3 3100","Ryzen 5 3600","Ryzen 5 5600","Ryzen 5 7600","Ryzen 7 3700X","Ryzen 7 5800X","Ryzen 7 7700","Ryzen 9 5900X","Ryzen 9 7950X"] }
-  ],
-  ram: [
-    { brand:"Kingston", models:["8GB DDR4 2666","16GB DDR4 3200","32GB DDR4 3200","16GB DDR5 5200","32GB DDR5 6000"] },
-    { brand:"Corsair", models:["8GB DDR4 3000","16GB DDR4 3600","32GB DDR4 3600","16GB DDR5 5600","32GB DDR5 6000"] }
-  ],
-  storage: [
-    { brand:"Samsung", models:["SSD 500GB SATA","SSD 1TB SATA","SSD 1TB NVMe","SSD 2TB NVMe"] },
-    { brand:"WD", models:["SSD 500GB NVMe","SSD 1TB NVMe","SSD 2TB NVMe","HDD 1TB","HDD 2TB"] },
-    { brand:"Kingston", models:["SSD 480GB","SSD 960GB","SSD 1TB NVMe"] }
-  ],
-  monitor: [
-    { brand:"AOC", models:["24\" 75Hz","24\" 144Hz","27\" 144Hz","27\" 165Hz"] },
-    { brand:"LG", models:["24\" IPS 75Hz","27\" IPS 144Hz","34\" Ultrawide 144Hz"] },
-    { brand:"Samsung", models:["24\" 75Hz","27\" 144Hz","32\" Curvo 165Hz"] }
-  ],
-  peripherals: [
-    { brand:"Logitech", models:["Mouse G203","Mouse G305","Teclado G213","Headset G435"] },
-    { brand:"Redragon", models:["Mouse Cobra","Teclado Kumara","Headset Zeus","Mouse M711"] },
-    { brand:"HyperX", models:["Headset Cloud Stinger","Headset Cloud II","Teclado Alloy Core"] }
-  ],
-  motherboard: [
-    { brand:"ASUS", models:["B450","B550","B660","Z690"] },
-    { brand:"MSI", models:["B450","B550","B660","Z790"] },
-    { brand:"Gigabyte", models:["B450","B550","B660","Z790"] }
-  ],
-  power: [
-    { brand:"Corsair", models:["550W 80+ Bronze","650W 80+ Gold","750W 80+ Gold","850W 80+ Gold"] },
-    { brand:"EVGA", models:["600W 80+ Bronze","700W 80+ Gold","850W 80+ Gold"] }
-  ],
-  network: [
-    { brand:"TP-Link", models:["Router AC1200","Router AX3000","Switch 8 portas","Switch 16 portas"] },
-    { brand:"D-Link", models:["Router AC750","Router AX1800","Switch 8 portas"] }
-  ]
+// ===== SEED POR CATEGORIA (ALFABÉTICO) =====
+const CATEGORIES = {
+  "access-point": ["Ubiquiti UniFi U6 Lite","TP-Link EAP245","MikroTik cAP ac"],
+  "adapters": ["USB-C to HDMI Adapter","USB-C to Ethernet Adapter","DisplayPort to HDMI Adapter"],
+  "audio-interface": ["Focusrite Scarlett 2i2","Behringer UMC22","Presonus AudioBox USB"],
+  "capture-card": ["Elgato HD60 X","AverMedia Live Gamer Mini","Elgato Cam Link 4K"],
+  "desk": ["Gaming Desk 120cm","Office Desk 140cm","Standing Desk Adjustable"],
+  "docking-station": ["Dell WD19 Dock","HP USB-C Dock G5","Lenovo ThinkPad Dock"],
+  "firewall": ["Fortinet FortiGate 40F","Sophos XGS 87","Ubiquiti Dream Machine"],
+  "gaming-chair": ["Secretlab Titan Evo","DXRacer Formula","ThunderX3 BC3"],
+  "lighting": ["Elgato Key Light","Ring Light 18in","Godox LED Panel"],
+  "mini-pc": ["Intel NUC i5","Beelink SER5","Minisforum UM560"],
+  "monitor-arm": ["Elgato Wave Arm","NB North Bayou F80","HUANUO Dual Arm"],
+  "network-enterprise": ["Cisco CBS110 Switch","Ubiquiti UniFi Switch 24","MikroTik CRS326"],
+  "pc-gamer": ["PC Gamer RTX 4060","PC Gamer RTX 4070","PC Gamer RX 7700 XT"],
+  "pc-office": ["PC Office i5 SSD","PC Office Ryzen 5","PC Office Mini"],
+  "pdu": ["APC PDU Basic","Intelbras PDU Rack","Tripp Lite PDU"],
+  "rack": ["Rack 12U","Rack 24U","Wall Mount Rack 9U"],
+  "servers": ["Dell PowerEdge T40","HPE ProLiant MicroServer","Lenovo ThinkSystem ST50"],
+  "stabilizer": ["APC Line-R 1200VA","SMS Revolution 1000VA","TS Shara 1200VA"],
+  "ups": ["APC Back-UPS 1200VA","SMS Station II 1400VA","Nobreak TS Shara 1500VA"],
+  "usb-hub": ["Anker USB-C Hub","Baseus 7-in-1 Hub","Ugreen USB Hub"],
+  "webcam-pro": ["Logitech Brio 4K","Elgato Facecam","Razer Kiyo Pro"],
+  "workstation": ["Workstation Xeon","Workstation Ryzen 9","Workstation Threadripper"]
 };
 
-// ===== GERADOR =====
 async function main(){
-  console.log("[SEED] Gerando catálogo realista…");
+  console.log("[SEED-ALPHA] Gerando categorias novas (A–Z)...");
   ensureDir(CATALOG_DIR);
 
   let total = 0;
 
-  for(const [category, brands] of Object.entries(BRANDS)){
+  for(const [category, items] of Object.entries(CATEGORIES)){
     const filePath = path.join(CATALOG_DIR, `${category}.json`);
     const list = readJson(filePath, []);
 
-    for(const b of brands){
-      for(const m of b.models){
-        if(total >= MAX_PRODUCTS) break;
-
-        const title = `${b.brand} ${m}`;
-        const sku = `${category}-${slug(title)}`;
-
-        const item = {
-          sku,
-          title,
-          category,
-          brand: b.brand,
-          mpn: slug(title).toUpperCase(),
-          ean: null,
-          price: null,
-          stock: null,
-          image: "fallback.png",
-          source: "seed-realista"
-        };
-
-        if(upsert(list, item)) total++;
-      }
+    for(const title of items){
       if(total >= MAX_PRODUCTS) break;
+
+      const sku = `${category}-${slug(title)}`;
+      const item = {
+        sku,
+        title,
+        category,
+        brand: title.split(" ")[0],
+        price: null,
+        stock: null,
+        image: "fallback.png",
+        source: "seed-complementar"
+      };
+
+      if(upsert(list, item)) total++;
     }
 
     writeJson(filePath, list);
     if(total >= MAX_PRODUCTS) break;
   }
 
-  console.log(`[SEED] Finalizado. Produtos gerados=${total}`);
+  console.log(`[SEED-ALPHA] Finalizado. Produtos adicionados=${total}`);
 }
 
 main().catch(e=>{
-  console.error("[SEED] ERRO:", e.message);
+  console.error("[SEED-ALPHA] ERRO:", e.message);
   process.exit(1);
 });
