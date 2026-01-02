@@ -1,0 +1,33 @@
+name: EXPAND MARKETPLACE REAL (APPEND ONLY)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run expansion (append-only)
+        env:
+          TARGET_MIN_ADD: "800"   # meta mínima; se já existir, ele adiciona menos
+          TARGET_MAX_ADD: "1600"  # teto de segurança por rodada
+        run: node worker/expand-marketplace-real.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "chore: expand marketplace real (append-only)" || echo "No changes"
+          git push origin main
