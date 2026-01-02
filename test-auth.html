@@ -7,45 +7,67 @@
 <button onclick="verify()">Verificar OTP</button>
 <button onclick="login()">Login</button>
 
+<pre id="out"></pre>
+
 <script>
 const API = "/api/auth";
+const out = document.getElementById("out");
+
+function show(x){
+  out.textContent = typeof x === "string" ? x : JSON.stringify(x, null, 2);
+}
 
 async function register(){
-  const r = await fetch(API + "/register", {
-    method: "POST",
-    headers: { "Content-Type":"application/json" },
-    body: JSON.stringify({
-      email: "teste@nexus.com",
-      password: "123456",
-      cpf: "12345678909"
-    })
-  });
-  alert(JSON.stringify(await r.json()));
+  try {
+    const r = await fetch(API + "/register", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: "teste@nexus.com",
+        password: "123456",
+        cpf: "12345678909"
+      })
+    });
+    const j = await r.json();
+    show(j);
+  } catch (e){
+    show("ERRO REGISTER: " + e.message);
+  }
 }
 
 async function verify(){
   const otp = prompt("Digite o OTP recebido no e-mail:");
-  const r = await fetch(API + "/verify", {
-    method: "POST",
-    headers: { "Content-Type":"application/json" },
-    body: JSON.stringify({
-      email: "teste@nexus.com",
-      otp
-    })
-  });
-  alert(JSON.stringify(await r.json()));
+  try {
+    const r = await fetch(API + "/verify", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: "teste@nexus.com",
+        otp
+      })
+    });
+    const j = await r.json();
+    show(j);
+  } catch (e){
+    show("ERRO VERIFY: " + e.message);
+  }
 }
 
 async function login(){
-  const r = await fetch(API + "/login", {
-    method: "POST",
-    headers: { "Content-Type":"application/json" },
-    body: JSON.stringify({
-      email: "teste@nexus.com",
-      password: "123456"
-    })
-  });
-  alert(JSON.stringify(await r.json()));
+  try {
+    const r = await fetch(API + "/login", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: "teste@nexus.com",
+        password: "123456"
+      })
+    });
+    const j = await r.json();
+    show(j);
+  } catch (e){
+    show("ERRO LOGIN: " + e.message);
+  }
 }
 </script>
 </body>
