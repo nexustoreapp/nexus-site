@@ -1,0 +1,30 @@
+name: PRICE INTELLIGENCE (LOW PRICE + IMAGES)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run price intelligence
+        run: node worker/price-intelligence.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "chore: price intelligence (low price + images)" || echo "No changes"
+          git push origin main
