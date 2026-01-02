@@ -5,7 +5,11 @@
     "brand": "Apple",
     "category": "Notebook",
     "processor_family": "Apple M1",
-    "screen_size": "13.3\""
+    "screen_size": "13.3\"",
+    "price": 1180,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-apple-macbook-air-m2",
@@ -13,7 +17,11 @@
     "brand": "Apple",
     "category": "Notebook",
     "processor_family": "Apple M2",
-    "screen_size": "13.6\""
+    "screen_size": "13.6\"",
+    "price": 1220,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-apple-macbook-pro-14-m2",
@@ -21,16 +29,23 @@
     "brand": "Apple",
     "category": "Notebook",
     "processor_family": "Apple M2",
-    "screen_size": "14\""
+    "screen_size": "14\"",
+    "price": 590,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-dell-inspiron-15-3511",
     "title": "Dell Inspiron 15 3511",
     "brand": "Dell",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 210,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-dell-inspiron-14-5420",
@@ -38,7 +53,11 @@
     "brand": "Dell",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "14\""
+    "screen_size": "14\"",
+    "price": 830,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-dell-g15",
@@ -46,7 +65,11 @@
     "brand": "Dell",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1350,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-dell-alienware-m15",
@@ -54,16 +77,23 @@
     "brand": "Dell",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 300,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-lenovo-ideapad-3",
     "title": "Lenovo IdeaPad 3",
     "brand": "Lenovo",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 420,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-lenovo-ideapad-gaming-3",
@@ -71,7 +101,11 @@
     "brand": "Lenovo",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 910,
+    "currency": "BRL",
+    "stock": 24,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-lenovo-legion-5",
@@ -79,16 +113,23 @@
     "brand": "Lenovo",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 950,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-acer-aspire-5",
     "title": "Acer Aspire 5",
     "brand": "Acer",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 160,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-acer-nitro-5",
@@ -96,7 +137,11 @@
     "brand": "Acer",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 300,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-acer-predator-helios-300",
@@ -104,16 +149,23 @@
     "brand": "Acer",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 800,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-asus-vivobook-15",
     "title": "ASUS VivoBook 15",
     "brand": "ASUS",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1030,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-asus-tuf-f15",
@@ -121,7 +173,11 @@
     "brand": "ASUS",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1610,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-asus-rog-strix-g15",
@@ -129,16 +185,23 @@
     "brand": "ASUS",
     "category": "Notebook",
     "processor_family": "AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 780,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-hp-250-g8",
     "title": "HP 250 G8",
     "brand": "HP",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1130,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-hp-pavilion-15",
@@ -146,7 +209,11 @@
     "brand": "HP",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 610,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-hp-omen-16",
@@ -154,16 +221,23 @@
     "brand": "HP",
     "category": "Notebook",
     "processor_family": "Intel Core / AMD Ryzen",
-    "screen_size": "16.1\""
+    "screen_size": "16.1\"",
+    "price": 1280,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284402
   },
-
   {
     "id": "notebook-samsung-book",
     "title": "Samsung Book",
     "brand": "Samsung",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 310,
+    "currency": "BRL",
+    "stock": 19,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-samsung-book-2",
@@ -171,7 +245,11 @@
     "brand": "Samsung",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1490,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "notebook-samsung-odyssey",
@@ -179,6 +257,10 @@
     "brand": "Samsung",
     "category": "Notebook",
     "processor_family": "Intel Core",
-    "screen_size": "15.6\""
+    "screen_size": "15.6\"",
+    "price": 1500,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284402
   }
 ]

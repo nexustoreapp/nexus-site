@@ -4,72 +4,111 @@
     "title": "Cooler Master Hyper 212",
     "brand": "Cooler Master",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 1220,
+    "currency": "BRL",
+    "stock": 17,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-cooler-master-hyper-h410r",
     "title": "Cooler Master Hyper H410R",
     "brand": "Cooler Master",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 460,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-deepcool-gammaxx-300",
     "title": "DeepCool GAMMAXX 300",
     "brand": "DeepCool",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 480,
+    "currency": "BRL",
+    "stock": 18,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-deepcool-gammaxx-400",
     "title": "DeepCool GAMMAXX 400",
     "brand": "DeepCool",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 1410,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-deepcool-ak400",
     "title": "DeepCool AK400",
     "brand": "DeepCool",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 550,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-deepcool-ak620",
     "title": "DeepCool AK620",
     "brand": "DeepCool",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 500,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-noctua-nh-u12s",
     "title": "Noctua NH-U12S",
     "brand": "Noctua",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 700,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-noctua-nh-d15",
     "title": "Noctua NH-D15",
     "brand": "Noctua",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 1920,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-be-quiet-pure-rock-2",
     "title": "be quiet! Pure Rock 2",
     "brand": "be quiet!",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 250,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-air-be-quiet-dark-rock-4",
     "title": "be quiet! Dark Rock 4",
     "brand": "be quiet!",
     "category": "Cooling",
-    "type": "Air Cooler"
+    "type": "Air Cooler",
+    "price": 870,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284397
   },
-
   {
     "id": "cooler-water-cooler-master-ml120l",
     "title": "Cooler Master MasterLiquid ML120L",
@@ -77,8 +116,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "120mm" }
-    ]
+      {
+        "radiator": "120mm"
+      }
+    ],
+    "price": 410,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-cooler-master-ml240l",
@@ -87,8 +132,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "240mm" }
-    ]
+      {
+        "radiator": "240mm"
+      }
+    ],
+    "price": 930,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-cooler-master-ml360l",
@@ -97,8 +148,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "360mm" }
-    ]
+      {
+        "radiator": "360mm"
+      }
+    ],
+    "price": 120,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-corsair-h60",
@@ -107,8 +164,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "120mm" }
-    ]
+      {
+        "radiator": "120mm"
+      }
+    ],
+    "price": 170,
+    "currency": "BRL",
+    "stock": 19,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-corsair-h100x",
@@ -117,8 +180,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "240mm" }
-    ]
+      {
+        "radiator": "240mm"
+      }
+    ],
+    "price": 540,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-corsair-h150i-elite",
@@ -127,8 +196,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "360mm" }
-    ]
+      {
+        "radiator": "360mm"
+      }
+    ],
+    "price": 1180,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-deepcool-l120",
@@ -137,8 +212,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "120mm" }
-    ]
+      {
+        "radiator": "120mm"
+      }
+    ],
+    "price": 1850,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-deepcool-l240",
@@ -147,8 +228,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "240mm" }
-    ]
+      {
+        "radiator": "240mm"
+      }
+    ],
+    "price": 120,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-deepcool-l360",
@@ -157,8 +244,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "360mm" }
-    ]
+      {
+        "radiator": "360mm"
+      }
+    ],
+    "price": 1660,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-nzxt-kraken-x53",
@@ -167,8 +260,14 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "240mm" }
-    ]
+      {
+        "radiator": "240mm"
+      }
+    ],
+    "price": 1220,
+    "currency": "BRL",
+    "stock": 20,
+    "updatedAt": 1767364284397
   },
   {
     "id": "cooler-water-nzxt-kraken-x73",
@@ -177,7 +276,13 @@
     "category": "Cooling",
     "type": "Water Cooler",
     "variants": [
-      { "radiator": "360mm" }
-    ]
+      {
+        "radiator": "360mm"
+      }
+    ],
+    "price": 1670,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284397
   }
 ]

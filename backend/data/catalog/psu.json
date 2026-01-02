@@ -5,7 +5,11 @@
     "brand": "Corsair",
     "category": "PSU",
     "wattage": 450,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 310,
+    "currency": "BRL",
+    "stock": 16,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-corsair-cv550",
@@ -13,7 +17,11 @@
     "brand": "Corsair",
     "category": "PSU",
     "wattage": 550,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 1170,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-corsair-cx650",
@@ -21,7 +29,11 @@
     "brand": "Corsair",
     "category": "PSU",
     "wattage": 650,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 260,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-corsair-rm750x",
@@ -29,7 +41,11 @@
     "brand": "Corsair",
     "category": "PSU",
     "wattage": 750,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1860,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-corsair-rm850x",
@@ -37,16 +53,23 @@
     "brand": "Corsair",
     "category": "PSU",
     "wattage": 850,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1170,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
-
   {
     "id": "psu-cooler-master-mwe-500",
     "title": "Cooler Master MWE 500",
     "brand": "Cooler Master",
     "category": "PSU",
     "wattage": 500,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 1880,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-cooler-master-mwe-650",
@@ -54,7 +77,11 @@
     "brand": "Cooler Master",
     "category": "PSU",
     "wattage": 650,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 220,
+    "currency": "BRL",
+    "stock": 17,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-cooler-master-gx750",
@@ -62,16 +89,23 @@
     "brand": "Cooler Master",
     "category": "PSU",
     "wattage": 750,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1030,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284404
   },
-
   {
     "id": "psu-xpg-pylon-650",
     "title": "XPG Pylon 650",
     "brand": "XPG",
     "category": "PSU",
     "wattage": 650,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 580,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-xpg-core-reactor-750",
@@ -79,7 +113,11 @@
     "brand": "XPG",
     "category": "PSU",
     "wattage": 750,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1550,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-xpg-core-reactor-850",
@@ -87,16 +125,23 @@
     "brand": "XPG",
     "category": "PSU",
     "wattage": 850,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1620,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284404
   },
-
   {
     "id": "psu-evga-600-w1",
     "title": "EVGA 600 W1",
     "brand": "EVGA",
     "category": "PSU",
     "wattage": 600,
-    "certification": "80 Plus White"
+    "certification": "80 Plus White",
+    "price": 600,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-evga-700-br",
@@ -104,16 +149,23 @@
     "brand": "EVGA",
     "category": "PSU",
     "wattage": 700,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 1720,
+    "currency": "BRL",
+    "stock": 20,
+    "updatedAt": 1767364284404
   },
-
   {
     "id": "psu-gigabyte-p650b",
     "title": "Gigabyte P650B",
     "brand": "Gigabyte",
     "category": "PSU",
     "wattage": 650,
-    "certification": "80 Plus Bronze"
+    "certification": "80 Plus Bronze",
+    "price": 600,
+    "currency": "BRL",
+    "stock": 12,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-gigabyte-aorus-750",
@@ -121,16 +173,23 @@
     "brand": "Gigabyte",
     "category": "PSU",
     "wattage": 750,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1730,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284404
   },
-
   {
     "id": "psu-seasonic-focus-gx-750",
     "title": "Seasonic Focus GX-750",
     "brand": "Seasonic",
     "category": "PSU",
     "wattage": 750,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 570,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284404
   },
   {
     "id": "psu-seasonic-focus-gx-850",
@@ -138,6 +197,10 @@
     "brand": "Seasonic",
     "category": "PSU",
     "wattage": 850,
-    "certification": "80 Plus Gold"
+    "certification": "80 Plus Gold",
+    "price": 1240,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284404
   }
 ]

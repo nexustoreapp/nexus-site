@@ -6,9 +6,19 @@
     "category": "Console",
     "generation": "9ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "825GB" },
-      { "edition": "Digital Edition", "storage": "825GB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "825GB"
+      },
+      {
+        "edition": "Digital Edition",
+        "storage": "825GB"
+      }
+    ],
+    "price": 880,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-playstation-5-slim",
@@ -17,9 +27,19 @@
     "category": "Console",
     "generation": "9ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "1TB" },
-      { "edition": "Digital Edition", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      },
+      {
+        "edition": "Digital Edition",
+        "storage": "1TB"
+      }
+    ],
+    "price": 580,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-playstation-4",
@@ -28,9 +48,19 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "500GB" },
-      { "edition": "Standard", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "500GB"
+      },
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      }
+    ],
+    "price": 860,
+    "currency": "BRL",
+    "stock": 23,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-playstation-4-slim",
@@ -39,9 +69,19 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Slim", "storage": "500GB" },
-      { "edition": "Slim", "storage": "1TB" }
-    ]
+      {
+        "edition": "Slim",
+        "storage": "500GB"
+      },
+      {
+        "edition": "Slim",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1610,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-playstation-4-pro",
@@ -50,8 +90,15 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Pro", "storage": "1TB" }
-    ]
+      {
+        "edition": "Pro",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1000,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-xbox-series-x",
@@ -60,8 +107,15 @@
     "category": "Console",
     "generation": "9ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1460,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-xbox-series-s",
@@ -70,9 +124,19 @@
     "category": "Console",
     "generation": "9ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "512GB" },
-      { "edition": "Standard", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "512GB"
+      },
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1500,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-xbox-one",
@@ -81,9 +145,19 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "500GB" },
-      { "edition": "Standard", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "500GB"
+      },
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1560,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-xbox-one-s",
@@ -92,9 +166,19 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "500GB" },
-      { "edition": "Standard", "storage": "1TB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "500GB"
+      },
+      {
+        "edition": "Standard",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1860,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-xbox-one-x",
@@ -103,8 +187,15 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "X", "storage": "1TB" }
-    ]
+      {
+        "edition": "X",
+        "storage": "1TB"
+      }
+    ],
+    "price": 1420,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-nintendo-switch",
@@ -113,8 +204,15 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Standard", "storage": "32GB" }
-    ]
+      {
+        "edition": "Standard",
+        "storage": "32GB"
+      }
+    ],
+    "price": 700,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-nintendo-switch-oled",
@@ -123,8 +221,15 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "OLED", "storage": "64GB" }
-    ]
+      {
+        "edition": "OLED",
+        "storage": "64GB"
+      }
+    ],
+    "price": 1480,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284397
   },
   {
     "id": "console-nintendo-switch-lite",
@@ -133,7 +238,14 @@
     "category": "Console",
     "generation": "8ª geração",
     "variants": [
-      { "edition": "Lite", "storage": "32GB" }
-    ]
+      {
+        "edition": "Lite",
+        "storage": "32GB"
+      }
+    ],
+    "price": 1890,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284397
   }
 ]

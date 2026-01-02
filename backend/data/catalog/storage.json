@@ -19,7 +19,11 @@
       {
         "capacity": "960GB"
       }
-    ]
+    ],
+    "price": 1690,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-kingston-nv2-nvme",
@@ -42,7 +46,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 860,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-crucial-bx500-sata",
@@ -64,7 +72,11 @@
       {
         "capacity": "1TB"
       }
-    ]
+    ],
+    "price": 170,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-wd-green-sata",
@@ -83,7 +95,11 @@
       {
         "capacity": "480GB"
       }
-    ]
+    ],
+    "price": 2270,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-wd-blue-sn570-nvme",
@@ -103,7 +119,11 @@
       {
         "capacity": "1TB"
       }
-    ]
+    ],
+    "price": 1750,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-samsung-970-evo-plus-nvme",
@@ -126,7 +146,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 750,
+    "currency": "BRL",
+    "stock": 19,
+    "updatedAt": 1767364284405
   },
   {
     "id": "ssd-samsung-980-nvme",
@@ -146,7 +170,11 @@
       {
         "capacity": "1TB"
       }
-    ]
+    ],
+    "price": 1960,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284405
   },
   {
     "id": "hd-seagate-barracuda",
@@ -169,7 +197,11 @@
       {
         "capacity": "4TB"
       }
-    ]
+    ],
+    "price": 2110,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284405
   },
   {
     "id": "hd-wd-blue",
@@ -189,7 +221,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 2350,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284405
   },
   {
     "sku": "storage-samsung-ssd-500gb-sata",
@@ -198,12 +234,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-500GB-SATA",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 630,
+    "stock": 11,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-samsung-ssd-1tb-sata",
@@ -212,12 +249,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-1TB-SATA",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1220,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-samsung-ssd-1tb-nvme",
@@ -226,12 +264,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-1TB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 210,
+    "stock": 18,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-samsung-ssd-2tb-nvme",
@@ -240,12 +279,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-SSD-2TB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 650,
+    "stock": 14,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-wd-ssd-500gb-nvme",
@@ -254,12 +294,13 @@
     "brand": "WD",
     "mpn": "WD-SSD-500GB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 350,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-wd-ssd-1tb-nvme",
@@ -268,12 +309,13 @@
     "brand": "WD",
     "mpn": "WD-SSD-1TB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 660,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-wd-ssd-2tb-nvme",
@@ -282,12 +324,13 @@
     "brand": "WD",
     "mpn": "WD-SSD-2TB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1970,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-wd-hdd-1tb",
@@ -296,12 +339,13 @@
     "brand": "WD",
     "mpn": "WD-HDD-1TB",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1510,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-wd-hdd-2tb",
@@ -310,12 +354,13 @@
     "brand": "WD",
     "mpn": "WD-HDD-2TB",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1330,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-kingston-ssd-480gb",
@@ -324,12 +369,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-480GB",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1760,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-kingston-ssd-960gb",
@@ -338,12 +384,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-960GB",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 200,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   },
   {
     "sku": "storage-kingston-ssd-1tb-nvme",
@@ -352,11 +399,12 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-SSD-1TB-NVME",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1490,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284405,
+    "currency": "BRL"
   }
 ]

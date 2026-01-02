@@ -5,9 +5,17 @@
     "brand": "Apple",
     "category": "Mobile",
     "variants": [
-      { "storage": "64GB" },
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "64GB"
+      },
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1200,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-apple-iphone-12",
@@ -15,9 +23,17 @@
     "brand": "Apple",
     "category": "Mobile",
     "variants": [
-      { "storage": "64GB" },
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "64GB"
+      },
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 440,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-apple-iphone-13",
@@ -25,9 +41,17 @@
     "brand": "Apple",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1910,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-apple-iphone-14",
@@ -35,9 +59,17 @@
     "brand": "Apple",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 530,
+    "currency": "BRL",
+    "stock": 25,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-apple-iphone-15",
@@ -45,21 +77,38 @@
     "brand": "Apple",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" },
-      { "storage": "512GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      },
+      {
+        "storage": "512GB"
+      }
+    ],
+    "price": 430,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
-
   {
     "id": "mobile-samsung-galaxy-a14",
     "title": "Samsung Galaxy A14",
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "64GB" },
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "64GB"
+      },
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1390,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-a34",
@@ -67,8 +116,14 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 490,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-a54",
@@ -76,9 +131,17 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 800,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-s21-fe",
@@ -86,8 +149,14 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 650,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-s22",
@@ -95,9 +164,17 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1360,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-s23",
@@ -105,9 +182,17 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1860,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-samsung-galaxy-s24",
@@ -115,19 +200,32 @@
     "brand": "Samsung",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1700,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284400
   },
-
   {
     "id": "mobile-motorola-moto-g14",
     "title": "Motorola Moto G14",
     "brand": "Motorola",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 730,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-motorola-moto-g54",
@@ -135,8 +233,14 @@
     "brand": "Motorola",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1540,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-motorola-edge-30",
@@ -144,8 +248,14 @@
     "brand": "Motorola",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1880,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-motorola-edge-40",
@@ -153,18 +263,29 @@
     "brand": "Motorola",
     "category": "Mobile",
     "variants": [
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1190,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284400
   },
-
   {
     "id": "mobile-xiaomi-redmi-note-12",
     "title": "Xiaomi Redmi Note 12",
     "brand": "Xiaomi",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1260,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-xiaomi-redmi-note-13",
@@ -172,9 +293,17 @@
     "brand": "Xiaomi",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" },
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1500,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-xiaomi-poco-x5",
@@ -182,8 +311,14 @@
     "brand": "Xiaomi",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1420,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-xiaomi-poco-x6",
@@ -191,18 +326,29 @@
     "brand": "Xiaomi",
     "category": "Mobile",
     "variants": [
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 1720,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   },
-
   {
     "id": "mobile-realme-c55",
     "title": "Realme C55",
     "brand": "Realme",
     "category": "Mobile",
     "variants": [
-      { "storage": "128GB" }
-    ]
+      {
+        "storage": "128GB"
+      }
+    ],
+    "price": 1530,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284400
   },
   {
     "id": "mobile-realme-11-pro",
@@ -210,18 +356,31 @@
     "brand": "Realme",
     "category": "Mobile",
     "variants": [
-      { "storage": "256GB" }
-    ]
+      {
+        "storage": "256GB"
+      }
+    ],
+    "price": 360,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284400
   },
-
   {
     "id": "mobile-asus-rog-phone-6",
     "title": "ASUS ROG Phone 6",
     "brand": "ASUS",
     "category": "Mobile",
     "variants": [
-      { "storage": "256GB" },
-      { "storage": "512GB" }
-    ]
+      {
+        "storage": "256GB"
+      },
+      {
+        "storage": "512GB"
+      }
+    ],
+    "price": 1040,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284400
   }
 ]

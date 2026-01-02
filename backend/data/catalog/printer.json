@@ -5,7 +5,11 @@
     "brand": "HP",
     "category": "Printer",
     "type": "Printer",
-    "printing": "Laser"
+    "printing": "Laser",
+    "price": 1150,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-hp-deskjet-2874",
@@ -14,7 +18,11 @@
     "category": "Printer",
     "type": "Printer",
     "printing": "Inkjet",
-    "wireless": true
+    "wireless": true,
+    "price": 1880,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-epson-ecotank-l4260",
@@ -23,7 +31,11 @@
     "category": "Printer",
     "type": "Printer",
     "printing": "Ink Tank",
-    "wireless": true
+    "wireless": true,
+    "price": 1630,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-epson-ecotank-l5590",
@@ -32,7 +44,11 @@
     "category": "Printer",
     "type": "Multifunction",
     "printing": "Ink Tank",
-    "wireless": true
+    "wireless": true,
+    "price": 980,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-brother-dcp-l2540dw",
@@ -41,7 +57,11 @@
     "category": "Printer",
     "type": "Multifunction",
     "printing": "Laser",
-    "wireless": true
+    "wireless": true,
+    "price": 1520,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-canon-pixma-g3110",
@@ -50,7 +70,11 @@
     "category": "Printer",
     "type": "Multifunction",
     "printing": "Ink Tank",
-    "wireless": true
+    "wireless": true,
+    "price": 1960,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-hp-toner-58a-cf258a",
@@ -58,7 +82,11 @@
     "brand": "HP",
     "category": "Printer",
     "type": "Supply",
-    "supply_type": "Toner"
+    "supply_type": "Toner",
+    "price": 740,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-brother-toner-tn-660",
@@ -66,7 +94,11 @@
     "brand": "Brother",
     "category": "Printer",
     "type": "Supply",
-    "supply_type": "Toner"
+    "supply_type": "Toner",
+    "price": 1310,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-epson-kit-tintas-504",
@@ -74,7 +106,11 @@
     "brand": "Epson",
     "category": "Printer",
     "type": "Supply",
-    "supply_type": "Ink"
+    "supply_type": "Ink",
+    "price": 1300,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-canon-kit-tintas-gi-190",
@@ -82,7 +118,11 @@
     "brand": "Canon",
     "category": "Printer",
     "type": "Supply",
-    "supply_type": "Ink"
+    "supply_type": "Ink",
+    "price": 980,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "printer-hp-papel-a4-500-folhas",
@@ -90,6 +130,10 @@
     "brand": "HP",
     "category": "Printer",
     "type": "Supply",
-    "supply_type": "Paper"
+    "supply_type": "Paper",
+    "price": 1720,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284404
   }
 ]

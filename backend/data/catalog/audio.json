@@ -7,7 +7,11 @@
     "type": "Headphone",
     "form_factor": "Over-ear",
     "wireless": true,
-    "noise_cancelling": true
+    "noise_cancelling": true,
+    "price": 850,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-sony-wf-1000xm5",
@@ -16,7 +20,11 @@
     "category": "Audio",
     "type": "Earbuds",
     "wireless": true,
-    "noise_cancelling": true
+    "noise_cancelling": true,
+    "price": 1690,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-apple-airpods-pro-2-gera-o",
@@ -25,7 +33,11 @@
     "category": "Audio",
     "type": "Earbuds",
     "wireless": true,
-    "noise_cancelling": true
+    "noise_cancelling": true,
+    "price": 190,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-apple-airpods-3-gera-o",
@@ -33,7 +45,11 @@
     "brand": "Apple",
     "category": "Audio",
     "type": "Earbuds",
-    "wireless": true
+    "wireless": true,
+    "price": 1640,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-jbl-tune-510bt",
@@ -42,7 +58,11 @@
     "category": "Audio",
     "type": "Headphone",
     "form_factor": "On-ear",
-    "wireless": true
+    "wireless": true,
+    "price": 1570,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-jbl-wave-buds",
@@ -50,7 +70,11 @@
     "brand": "JBL",
     "category": "Audio",
     "type": "Earbuds",
-    "wireless": true
+    "wireless": true,
+    "price": 1230,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-hyperx-cloud-ii",
@@ -58,7 +82,11 @@
     "brand": "HyperX",
     "category": "Audio",
     "type": "Headset",
-    "interface": "P2/USB"
+    "interface": "P2/USB",
+    "price": 1590,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-logitech-g-pro-x",
@@ -66,7 +94,11 @@
     "brand": "Logitech",
     "category": "Audio",
     "type": "Headset",
-    "interface": "USB"
+    "interface": "USB",
+    "price": 950,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-razer-blackshark-v2",
@@ -74,7 +106,11 @@
     "brand": "Razer",
     "category": "Audio",
     "type": "Headset",
-    "interface": "P2/USB"
+    "interface": "P2/USB",
+    "price": 420,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-jbl-flip-6",
@@ -83,7 +119,11 @@
     "category": "Audio",
     "type": "Speaker",
     "wireless": true,
-    "water_resistance": "IP67"
+    "water_resistance": "IP67",
+    "price": 380,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-jbl-charge-5",
@@ -92,7 +132,11 @@
     "category": "Audio",
     "type": "Speaker",
     "wireless": true,
-    "water_resistance": "IP67"
+    "water_resistance": "IP67",
+    "price": 900,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-sony-srs-xb33",
@@ -100,7 +144,11 @@
     "brand": "Sony",
     "category": "Audio",
     "type": "Speaker",
-    "wireless": true
+    "wireless": true,
+    "price": 510,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-bose-soundlink-flex",
@@ -109,7 +157,11 @@
     "category": "Audio",
     "type": "Speaker",
     "wireless": true,
-    "water_resistance": "IP67"
+    "water_resistance": "IP67",
+    "price": 510,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-edifier-r1280t",
@@ -118,7 +170,11 @@
     "category": "Audio",
     "type": "Speaker",
     "wireless": false,
-    "channels": "2.0"
+    "channels": "2.0",
+    "price": 860,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-logitech-z313",
@@ -127,7 +183,11 @@
     "category": "Audio",
     "type": "Speaker",
     "wireless": false,
-    "channels": "2.1"
+    "channels": "2.1",
+    "price": 420,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-blue-yeti",
@@ -135,7 +195,11 @@
     "brand": "Blue",
     "category": "Audio",
     "type": "Microphone",
-    "interface": "USB"
+    "interface": "USB",
+    "price": 700,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-hyperx-quadcast-s",
@@ -143,7 +207,11 @@
     "brand": "HyperX",
     "category": "Audio",
     "type": "Microphone",
-    "interface": "USB"
+    "interface": "USB",
+    "price": 190,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-fifine-k669b",
@@ -151,7 +219,11 @@
     "brand": "Fifine",
     "category": "Audio",
     "type": "Microphone",
-    "interface": "USB"
+    "interface": "USB",
+    "price": 600,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284395
   },
   {
     "id": "audio-shure-sm7b",
@@ -159,6 +231,10 @@
     "brand": "Shure",
     "category": "Audio",
     "type": "Microphone",
-    "interface": "XLR"
+    "interface": "XLR",
+    "price": 1210,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284395
   }
 ]

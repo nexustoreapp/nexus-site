@@ -4,136 +4,264 @@
     "title": "Gabinete Corsair 4000D Airflow",
     "brand": "Corsair",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" },
-      { "color": "White" }
-    ]
+      {
+        "color": "Black"
+      },
+      {
+        "color": "White"
+      }
+    ],
+    "price": 760,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-corsair-275r-airflow",
     "title": "Gabinete Corsair 275R Airflow",
     "brand": "Corsair",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" },
-      { "color": "White" }
-    ]
+      {
+        "color": "Black"
+      },
+      {
+        "color": "White"
+      }
+    ],
+    "price": 1970,
+    "currency": "BRL",
+    "stock": 16,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-nzxt-h510",
     "title": "Gabinete NZXT H510",
     "brand": "NZXT",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" },
-      { "color": "White" }
-    ]
+      {
+        "color": "Black"
+      },
+      {
+        "color": "White"
+      }
+    ],
+    "price": 330,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-nzxt-h5-flow",
     "title": "Gabinete NZXT H5 Flow",
     "brand": "NZXT",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" },
-      { "color": "White" }
-    ]
+      {
+        "color": "Black"
+      },
+      {
+        "color": "White"
+      }
+    ],
+    "price": 970,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-cooler-master-masterbox-q300l",
     "title": "Gabinete Cooler Master MasterBox Q300L",
     "brand": "Cooler Master",
     "category": "Case",
-    "form_factor_support": ["mATX", "ITX"],
+    "form_factor_support": [
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Acrylic",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 1310,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-cooler-master-masterbox-td500",
     "title": "Gabinete Cooler Master MasterBox TD500",
     "brand": "Cooler Master",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" },
-      { "color": "White" }
-    ]
+      {
+        "color": "Black"
+      },
+      {
+        "color": "White"
+      }
+    ],
+    "price": 1430,
+    "currency": "BRL",
+    "stock": 20,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-aerocool-cylon",
     "title": "Gabinete Aerocool Cylon",
     "brand": "Aerocool",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Acrylic",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 1300,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-aerocool-bolt",
     "title": "Gabinete Aerocool Bolt",
     "brand": "Aerocool",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Acrylic",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 1810,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-mancer-goblin",
     "title": "Gabinete Gamer Mancer Goblin",
     "brand": "Mancer",
     "category": "Case",
-    "form_factor_support": ["mATX", "ITX"],
+    "form_factor_support": [
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 190,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-mancer-kevlar",
     "title": "Gabinete Gamer Mancer Kevlar",
     "brand": "Mancer",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 1110,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-gamemax-infinity",
     "title": "Gabinete GameMax Infinity",
     "brand": "GameMax",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 960,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284396
   },
   {
     "id": "case-gamemax-diamond",
     "title": "Gabinete GameMax Diamond",
     "brand": "GameMax",
     "category": "Case",
-    "form_factor_support": ["ATX", "mATX", "ITX"],
+    "form_factor_support": [
+      "ATX",
+      "mATX",
+      "ITX"
+    ],
     "side_panel": "Tempered Glass",
     "variants": [
-      { "color": "Black" }
-    ]
+      {
+        "color": "Black"
+      }
+    ],
+    "price": 420,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284396
   }
 ]

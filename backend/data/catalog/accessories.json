@@ -5,7 +5,11 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Cable",
-    "connector": "USB-C"
+    "connector": "USB-C",
+    "price": 660,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-anker-cabo-usb-c-para-lightning-1m",
@@ -13,7 +17,11 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Cable",
-    "connector": "USB-C to Lightning"
+    "connector": "USB-C to Lightning",
+    "price": 1960,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-ugreen-cabo-hdmi-2-1-2m",
@@ -21,7 +29,11 @@
     "brand": "UGREEN",
     "category": "Accessories",
     "type": "Cable",
-    "connector": "HDMI"
+    "connector": "HDMI",
+    "price": 240,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-baseus-cabo-usb-a-para-micro-usb-1m",
@@ -29,7 +41,11 @@
     "brand": "Baseus",
     "category": "Accessories",
     "type": "Cable",
-    "connector": "USB-A to Micro-USB"
+    "connector": "USB-A to Micro-USB",
+    "price": 400,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-vention-cabo-displayport-1-4-2m",
@@ -37,7 +53,11 @@
     "brand": "Vention",
     "category": "Accessories",
     "type": "Cable",
-    "connector": "DisplayPort"
+    "connector": "DisplayPort",
+    "price": 1080,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-apple-adaptador-usb-c-para-usb-a",
@@ -45,7 +65,11 @@
     "brand": "Apple",
     "category": "Accessories",
     "type": "Adapter",
-    "connector": "USB-C to USB-A"
+    "connector": "USB-C to USB-A",
+    "price": 1240,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-samsung-carregador-25w-usb-c",
@@ -53,7 +77,11 @@
     "brand": "Samsung",
     "category": "Accessories",
     "type": "Charger",
-    "wattage_w": 25
+    "wattage_w": 25,
+    "price": 1090,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-apple-carregador-20w-usb-c",
@@ -61,7 +89,11 @@
     "brand": "Apple",
     "category": "Accessories",
     "type": "Charger",
-    "wattage_w": 20
+    "wattage_w": 20,
+    "price": 1410,
+    "currency": "BRL",
+    "stock": 24,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-xiaomi-carregador-33w-usb-a-usb-c",
@@ -69,7 +101,11 @@
     "brand": "Xiaomi",
     "category": "Accessories",
     "type": "Charger",
-    "wattage_w": 33
+    "wattage_w": 33,
+    "price": 1650,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-anker-hub-usb-c-7-em-1",
@@ -77,7 +113,11 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Hub",
-    "ports": "HDMI/USB-A/SD/PD"
+    "ports": "HDMI/USB-A/SD/PD",
+    "price": 1950,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-ugreen-adaptador-usb-c-para-hdmi",
@@ -85,7 +125,11 @@
     "brand": "UGREEN",
     "category": "Accessories",
     "type": "Adapter",
-    "connector": "USB-C to HDMI"
+    "connector": "USB-C to HDMI",
+    "price": 1110,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-tp-link-adaptador-usb-wi-fi-ac1300",
@@ -93,7 +137,11 @@
     "brand": "TP-Link",
     "category": "Accessories",
     "type": "Adapter",
-    "wireless_standard": "Wi‑Fi 5"
+    "wireless_standard": "Wi‑Fi 5",
+    "price": 630,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-tp-link-adaptador-usb-wi-fi-ax1800",
@@ -101,7 +149,11 @@
     "brand": "TP-Link",
     "category": "Accessories",
     "type": "Adapter",
-    "wireless_standard": "Wi‑Fi 6"
+    "wireless_standard": "Wi‑Fi 6",
+    "price": 1390,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-anker-power-bank-10-000mah",
@@ -109,7 +161,11 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Power Bank",
-    "capacity_mah": 10000
+    "capacity_mah": 10000,
+    "price": 1750,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-anker-power-bank-20-000mah",
@@ -117,7 +173,11 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Power Bank",
-    "capacity_mah": 20000
+    "capacity_mah": 20000,
+    "price": 1850,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-baseus-power-bank-20-000mah-65w",
@@ -125,7 +185,11 @@
     "brand": "Baseus",
     "category": "Accessories",
     "type": "Power Bank",
-    "capacity_mah": 20000
+    "capacity_mah": 20000,
+    "price": 400,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-xiaomi-power-bank-10-000mah",
@@ -133,7 +197,11 @@
     "brand": "Xiaomi",
     "category": "Accessories",
     "type": "Power Bank",
-    "capacity_mah": 10000
+    "capacity_mah": 10000,
+    "price": 1050,
+    "currency": "BRL",
+    "stock": 25,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-samsung-power-bank-10-000mah",
@@ -141,7 +209,11 @@
     "brand": "Samsung",
     "category": "Accessories",
     "type": "Power Bank",
-    "capacity_mah": 10000
+    "capacity_mah": 10000,
+    "price": 220,
+    "currency": "BRL",
+    "stock": 17,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-sandisk-leitor-de-cart-o-sd-microsd-usb-3-0",
@@ -149,7 +221,11 @@
     "brand": "SanDisk",
     "category": "Accessories",
     "type": "Card Reader",
-    "interface": "USB 3.0"
+    "interface": "USB 3.0",
+    "price": 1670,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-kingston-leitor-de-cart-o-sd-microsd-usb-c",
@@ -157,7 +233,11 @@
     "brand": "Kingston",
     "category": "Accessories",
     "type": "Card Reader",
-    "interface": "USB-C"
+    "interface": "USB-C",
+    "price": 1780,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-orico-case-ssd-nvme-m-2-usb-c",
@@ -166,7 +246,11 @@
     "category": "Accessories",
     "type": "Enclosure",
     "interface": "USB-C",
-    "drive_type": "M.2 NVMe"
+    "drive_type": "M.2 NVMe",
+    "price": 840,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-orico-case-ssd-sata-2-5-usb-3-0",
@@ -175,7 +259,11 @@
     "category": "Accessories",
     "type": "Enclosure",
     "interface": "USB 3.0",
-    "drive_type": "2.5\" SATA"
+    "drive_type": "2.5\" SATA",
+    "price": 1900,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-spigen-capinha-rugged-armor-iphone",
@@ -200,7 +288,11 @@
       {
         "model": "iPhone 15"
       }
-    ]
+    ],
+    "price": 600,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-spigen-pel-cula-de-vidro-iphone",
@@ -225,7 +317,11 @@
       {
         "model": "iPhone 15"
       }
-    ]
+    ],
+    "price": 1270,
+    "currency": "BRL",
+    "stock": 12,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-samsung-capa-silicone-galaxy",
@@ -247,14 +343,22 @@
       {
         "model": "Galaxy S23"
       }
-    ]
+    ],
+    "price": 1520,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-baseus-suporte-veicular-magn-tico",
     "title": "Suporte Veicular Magnético",
     "brand": "Baseus",
     "category": "Accessories",
-    "type": "Car Mount"
+    "type": "Car Mount",
+    "price": 1100,
+    "currency": "BRL",
+    "stock": 17,
+    "updatedAt": 1767364284394
   },
   {
     "id": "acc-anker-carregador-veicular-30w",
@@ -262,6 +366,10 @@
     "brand": "Anker",
     "category": "Accessories",
     "type": "Car Charger",
-    "wattage_w": 30
+    "wattage_w": 30,
+    "price": 1370,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284394
   }
 ]

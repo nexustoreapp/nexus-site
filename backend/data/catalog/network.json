@@ -5,7 +5,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 1470,
+    "currency": "BRL",
+    "stock": 22,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tplink-archer-c7",
@@ -13,7 +17,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 360,
+    "currency": "BRL",
+    "stock": 25,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tplink-archer-ax20",
@@ -21,7 +29,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 450,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tplink-archer-ax50",
@@ -29,7 +41,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 640,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tplink-deco-m4",
@@ -37,7 +53,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Mesh System",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 1160,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tplink-deco-x20",
@@ -45,7 +65,11 @@
     "brand": "TP-Link",
     "category": "Network",
     "type": "Mesh System",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 320,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-intel-ax200",
@@ -53,7 +77,11 @@
     "brand": "Intel",
     "category": "Network",
     "type": "Network Card",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 640,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-intel-ax210",
@@ -61,7 +89,11 @@
     "brand": "Intel",
     "category": "Network",
     "type": "Network Card",
-    "wireless_standard": "Wi-Fi 6E"
+    "wireless_standard": "Wi-Fi 6E",
+    "price": 1790,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-asus-pce-ac56",
@@ -69,7 +101,11 @@
     "brand": "ASUS",
     "category": "Network",
     "type": "Network Card",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 330,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-asus-pce-ax3000",
@@ -77,7 +113,11 @@
     "brand": "ASUS",
     "category": "Network",
     "type": "Network Card",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 400,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-dlink-dir-615",
@@ -85,7 +125,11 @@
     "brand": "D-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 4"
+    "wireless_standard": "Wi-Fi 4",
+    "price": 740,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-dlink-dir-846",
@@ -93,7 +137,11 @@
     "brand": "D-Link",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 1450,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-mercusys-mr30g",
@@ -101,7 +149,11 @@
     "brand": "Mercusys",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 1370,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-mercusys-mr70x",
@@ -109,7 +161,11 @@
     "brand": "Mercusys",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 1470,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tenda-ac10",
@@ -117,7 +173,11 @@
     "brand": "Tenda",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 5"
+    "wireless_standard": "Wi-Fi 5",
+    "price": 1750,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284401
   },
   {
     "id": "network-tenda-tx3",
@@ -125,7 +185,11 @@
     "brand": "Tenda",
     "category": "Network",
     "type": "Router",
-    "wireless_standard": "Wi-Fi 6"
+    "wireless_standard": "Wi-Fi 6",
+    "price": 1910,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284401
   },
   {
     "sku": "network-tp-link-router-ac1200",
@@ -134,12 +198,13 @@
     "brand": "TP-Link",
     "mpn": "TP-LINK-ROUTER-AC1200",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1970,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-tp-link-router-ax3000",
@@ -148,12 +213,13 @@
     "brand": "TP-Link",
     "mpn": "TP-LINK-ROUTER-AX3000",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 920,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-tp-link-switch-8-portas",
@@ -162,12 +228,13 @@
     "brand": "TP-Link",
     "mpn": "TP-LINK-SWITCH-8-PORTAS",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 390,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-tp-link-switch-16-portas",
@@ -176,12 +243,13 @@
     "brand": "TP-Link",
     "mpn": "TP-LINK-SWITCH-16-PORTAS",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 550,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-d-link-router-ac750",
@@ -190,12 +258,13 @@
     "brand": "D-Link",
     "mpn": "D-LINK-ROUTER-AC750",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 820,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-d-link-router-ax1800",
@@ -204,12 +273,13 @@
     "brand": "D-Link",
     "mpn": "D-LINK-ROUTER-AX1800",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1020,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   },
   {
     "sku": "network-d-link-switch-8-portas",
@@ -218,11 +288,12 @@
     "brand": "D-Link",
     "mpn": "D-LINK-SWITCH-8-PORTAS",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1360,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767327713661
+    "updatedAt": 1767364284401,
+    "currency": "BRL"
   }
 ]

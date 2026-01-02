@@ -5,7 +5,11 @@
     "brand": "Logitech",
     "category": "Office",
     "type": "Mouse",
-    "connectivity": "Bluetooth/USB Receiver"
+    "connectivity": "Bluetooth/USB Receiver",
+    "price": 1620,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-logitech-mx-keys",
@@ -13,7 +17,11 @@
     "brand": "Logitech",
     "category": "Office",
     "type": "Keyboard",
-    "connectivity": "Bluetooth/USB Receiver"
+    "connectivity": "Bluetooth/USB Receiver",
+    "price": 1740,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-microsoft-surface-keyboard",
@@ -21,7 +29,11 @@
     "brand": "Microsoft",
     "category": "Office",
     "type": "Keyboard",
-    "connectivity": "Bluetooth"
+    "connectivity": "Bluetooth",
+    "price": 1160,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-logitech-c920-hd-pro",
@@ -29,7 +41,11 @@
     "brand": "Logitech",
     "category": "Office",
     "type": "Webcam",
-    "resolution": "FHD"
+    "resolution": "FHD",
+    "price": 1990,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-logitech-brio-4k",
@@ -37,7 +53,11 @@
     "brand": "Logitech",
     "category": "Office",
     "type": "Webcam",
-    "resolution": "4K"
+    "resolution": "4K",
+    "price": 1670,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-hp-deskjet-ink-advantage-2774",
@@ -46,7 +66,11 @@
     "category": "Office",
     "type": "Printer",
     "printing": "Inkjet",
-    "wireless": true
+    "wireless": true,
+    "price": 650,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-brother-hl-l2350dw",
@@ -55,7 +79,11 @@
     "category": "Office",
     "type": "Printer",
     "printing": "Laser",
-    "wireless": true
+    "wireless": true,
+    "price": 1650,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-epson-ecotank-l3250",
@@ -64,21 +92,33 @@
     "category": "Office",
     "type": "Printer",
     "printing": "Ink Tank",
-    "wireless": true
+    "wireless": true,
+    "price": 1350,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-multilaser-cadeira-escrit-rio-ergon-mica",
     "title": "Cadeira Escritório Ergonômica",
     "brand": "Multilaser",
     "category": "Office",
-    "type": "Chair"
+    "type": "Chair",
+    "price": 1160,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-elg-suporte-de-monitor-articulado",
     "title": "Suporte de Monitor Articulado",
     "brand": "Elg",
     "category": "Office",
-    "type": "Monitor Arm"
+    "type": "Monitor Arm",
+    "price": 620,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-sandisk-pen-drive-ultra-flair",
@@ -97,7 +137,11 @@
       {
         "capacity": "128GB"
       }
-    ]
+    ],
+    "price": 350,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-kingston-pen-drive-datatraveler",
@@ -116,7 +160,11 @@
       {
         "capacity": "256GB"
       }
-    ]
+    ],
+    "price": 1810,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-seagate-backup-plus-hub",
@@ -135,7 +183,11 @@
       {
         "capacity": "8TB"
       }
-    ]
+    ],
+    "price": 450,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284402
   },
   {
     "id": "office-anker-dock-usb-c-para-notebook",
@@ -143,6 +195,10 @@
     "brand": "Anker",
     "category": "Office",
     "type": "Dock",
-    "ports": "HDMI/DP/USB/PD"
+    "ports": "HDMI/DP/USB/PD",
+    "price": 1150,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284402
   }
 ]

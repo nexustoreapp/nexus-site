@@ -8,7 +8,11 @@
     "size": "21.5\"",
     "resolution": "FHD",
     "panel": "VA",
-    "refresh_rate_hz": 75
+    "refresh_rate_hz": 75,
+    "price": 1350,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-aoc-24b1h",
@@ -19,7 +23,11 @@
     "size": "23.8\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 75
+    "refresh_rate_hz": 75,
+    "price": 1880,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-aoc-24g2",
@@ -30,7 +38,11 @@
     "size": "23.8\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 670,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-aoc-27g2",
@@ -41,7 +53,11 @@
     "size": "27\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 440,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-lg-22mp410",
@@ -52,7 +68,11 @@
     "size": "21.5\"",
     "resolution": "FHD",
     "panel": "VA",
-    "refresh_rate_hz": 75
+    "refresh_rate_hz": 75,
+    "price": 340,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-lg-24mp400",
@@ -63,7 +83,11 @@
     "size": "23.8\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 75
+    "refresh_rate_hz": 75,
+    "price": 1110,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-lg-24gn600",
@@ -74,7 +98,11 @@
     "size": "23.8\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 1620,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-lg-27gn800",
@@ -85,7 +113,11 @@
     "size": "27\"",
     "resolution": "QHD",
     "panel": "IPS",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 940,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-samsung-t350",
@@ -96,7 +128,11 @@
     "size": "24\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 75
+    "refresh_rate_hz": 75,
+    "price": 130,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-samsung-odyssey-g3-24",
@@ -107,7 +143,11 @@
     "size": "24\"",
     "resolution": "FHD",
     "panel": "VA",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 990,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-samsung-odyssey-g5-27",
@@ -118,7 +158,11 @@
     "size": "27\"",
     "resolution": "QHD",
     "panel": "VA",
-    "refresh_rate_hz": 165
+    "refresh_rate_hz": 165,
+    "price": 1730,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-samsung-odyssey-g7-27",
@@ -129,7 +173,11 @@
     "size": "27\"",
     "resolution": "QHD",
     "panel": "VA",
-    "refresh_rate_hz": 240
+    "refresh_rate_hz": 240,
+    "price": 1130,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-dell-p2422h",
@@ -140,7 +188,11 @@
     "size": "24\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 60
+    "refresh_rate_hz": 60,
+    "price": 650,
+    "currency": "BRL",
+    "stock": 10,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-dell-s2721dgf",
@@ -151,7 +203,11 @@
     "size": "27\"",
     "resolution": "QHD",
     "panel": "IPS",
-    "refresh_rate_hz": 165
+    "refresh_rate_hz": 165,
+    "price": 450,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-asus-vp249qgr",
@@ -162,7 +218,11 @@
     "size": "23.8\"",
     "resolution": "FHD",
     "panel": "IPS",
-    "refresh_rate_hz": 144
+    "refresh_rate_hz": 144,
+    "price": 1280,
+    "currency": "BRL",
+    "stock": 18,
+    "updatedAt": 1767364284398
   },
   {
     "id": "display-asus-tuf-vg27aq",
@@ -173,6 +233,10 @@
     "size": "27\"",
     "resolution": "QHD",
     "panel": "IPS",
-    "refresh_rate_hz": 165
+    "refresh_rate_hz": 165,
+    "price": 1910,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284398
   }
 ]

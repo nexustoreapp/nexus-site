@@ -5,7 +5,11 @@
     "brand": "Amazon",
     "category": "SmartHome",
     "type": "Smart Speaker",
-    "assistant": "Alexa"
+    "assistant": "Alexa",
+    "price": 270,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-amazon-echo-show-8",
@@ -13,7 +17,11 @@
     "brand": "Amazon",
     "category": "SmartHome",
     "type": "Smart Display",
-    "assistant": "Alexa"
+    "assistant": "Alexa",
+    "price": 1800,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-google-nest-mini-2-gera-o",
@@ -21,7 +29,11 @@
     "brand": "Google",
     "category": "SmartHome",
     "type": "Smart Speaker",
-    "assistant": "Google Assistant"
+    "assistant": "Google Assistant",
+    "price": 1950,
+    "currency": "BRL",
+    "stock": 14,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-google-nest-hub-2-gera-o",
@@ -29,7 +41,11 @@
     "brand": "Google",
     "category": "SmartHome",
     "type": "Smart Display",
-    "assistant": "Google Assistant"
+    "assistant": "Google Assistant",
+    "price": 1170,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-tp-link-tapo-l530e",
@@ -37,14 +53,22 @@
     "brand": "TP-Link",
     "category": "SmartHome",
     "type": "Smart Bulb",
-    "socket": "E27"
+    "socket": "E27",
+    "price": 860,
+    "currency": "BRL",
+    "stock": 15,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-tp-link-tapo-l900",
     "title": "Tapo L900",
     "brand": "TP-Link",
     "category": "SmartHome",
-    "type": "Smart LED Strip"
+    "type": "Smart LED Strip",
+    "price": 170,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-tp-link-tapo-p110",
@@ -52,28 +76,44 @@
     "brand": "TP-Link",
     "category": "SmartHome",
     "type": "Smart Plug",
-    "energy_monitoring": true
+    "energy_monitoring": true,
+    "price": 830,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-sonoff-basic-r3",
     "title": "Basic R3",
     "brand": "Sonoff",
     "category": "SmartHome",
-    "type": "Smart Switch"
+    "type": "Smart Switch",
+    "price": 1930,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-sonoff-mini-r2",
     "title": "Mini R2",
     "brand": "Sonoff",
     "category": "SmartHome",
-    "type": "Smart Switch"
+    "type": "Smart Switch",
+    "price": 1070,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-aqara-hub-m2",
     "title": "Hub M2",
     "brand": "Aqara",
     "category": "SmartHome",
-    "type": "Smart Hub"
+    "type": "Smart Hub",
+    "price": 840,
+    "currency": "BRL",
+    "stock": 12,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-aqara-sensor-de-porta-e-janela",
@@ -81,7 +121,11 @@
     "brand": "Aqara",
     "category": "SmartHome",
     "type": "Sensor",
-    "sensor_type": "Contact"
+    "sensor_type": "Contact",
+    "price": 780,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-aqara-sensor-de-movimento",
@@ -89,21 +133,33 @@
     "brand": "Aqara",
     "category": "SmartHome",
     "type": "Sensor",
-    "sensor_type": "Motion"
+    "sensor_type": "Motion",
+    "price": 1260,
+    "currency": "BRL",
+    "stock": 13,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-xiaomi-mi-smart-sensor-set",
     "title": "Mi Smart Sensor Set",
     "brand": "Xiaomi",
     "category": "SmartHome",
-    "type": "Sensor Kit"
+    "type": "Sensor Kit",
+    "price": 1610,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-ring-video-doorbell",
     "title": "Video Doorbell",
     "brand": "Ring",
     "category": "SmartHome",
-    "type": "Doorbell Camera"
+    "type": "Doorbell Camera",
+    "price": 1320,
+    "currency": "BRL",
+    "stock": 22,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-tp-link-tapo-c200",
@@ -111,7 +167,11 @@
     "brand": "TP-Link",
     "category": "SmartHome",
     "type": "Security Camera",
-    "resolution": "FHD"
+    "resolution": "FHD",
+    "price": 1640,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-tp-link-tapo-c320ws",
@@ -119,7 +179,11 @@
     "brand": "TP-Link",
     "category": "SmartHome",
     "type": "Security Camera",
-    "resolution": "2K"
+    "resolution": "2K",
+    "price": 1010,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-intelbras-im3-c",
@@ -127,7 +191,11 @@
     "brand": "Intelbras",
     "category": "SmartHome",
     "type": "Security Camera",
-    "resolution": "FHD"
+    "resolution": "FHD",
+    "price": 1650,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284404
   },
   {
     "id": "smarthome-philips-hue-hue-white-color-ambiance",
@@ -135,6 +203,10 @@
     "brand": "Philips Hue",
     "category": "SmartHome",
     "type": "Smart Bulb",
-    "socket": "E27"
+    "socket": "E27",
+    "price": 1720,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284404
   }
 ]

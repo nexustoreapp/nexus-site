@@ -17,7 +17,11 @@
       {
         "size": "65\""
       }
-    ]
+    ],
+    "price": 1170,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-lg-smart-tv-uhd",
@@ -37,7 +41,11 @@
       {
         "size": "65\""
       }
-    ]
+    ],
+    "price": 420,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-lg-oled-evo-c3",
@@ -57,7 +65,11 @@
       {
         "size": "65\""
       }
-    ]
+    ],
+    "price": 850,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-samsung-neo-qled",
@@ -77,7 +89,11 @@
       {
         "size": "75\""
       }
-    ]
+    ],
+    "price": 1070,
+    "currency": "BRL",
+    "stock": 20,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-tcl-qled-4k",
@@ -97,7 +113,11 @@
       {
         "size": "65\""
       }
-    ]
+    ],
+    "price": 1400,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-philips-ambilight-4k",
@@ -117,7 +137,11 @@
       {
         "size": "70\""
       }
-    ]
+    ],
+    "price": 430,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-amazon-fire-tv-stick-4k",
@@ -125,7 +149,11 @@
     "brand": "Amazon",
     "category": "TV",
     "type": "Streaming",
-    "resolution": "4K"
+    "resolution": "4K",
+    "price": 1750,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-google-chromecast-com-google-tv",
@@ -133,7 +161,11 @@
     "brand": "Google",
     "category": "TV",
     "type": "Streaming",
-    "resolution": "4K"
+    "resolution": "4K",
+    "price": 140,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284405
   },
   {
     "id": "tv-apple-apple-tv-4k",
@@ -149,6 +181,10 @@
       {
         "storage": "128GB"
       }
-    ]
+    ],
+    "price": 1620,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284405
   }
 ]

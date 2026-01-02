@@ -16,7 +16,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 1960,
+    "currency": "BRL",
+    "stock": 21,
+    "updatedAt": 1767364284405
   },
   {
     "id": "storageext-sandisk-extreme-portable-ssd",
@@ -35,7 +39,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 1710,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284405
   },
   {
     "id": "storageext-crucial-x8-portable-ssd",
@@ -51,7 +59,11 @@
       {
         "capacity": "2TB"
       }
-    ]
+    ],
+    "price": 200,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284405
   },
   {
     "id": "storageext-seagate-expansion-portable",
@@ -73,7 +85,11 @@
       {
         "capacity": "5TB"
       }
-    ]
+    ],
+    "price": 900,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284405
   },
   {
     "id": "storageext-western-digital-my-passport",
@@ -95,7 +111,11 @@
       {
         "capacity": "5TB"
       }
-    ]
+    ],
+    "price": 360,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284405
   },
   {
     "id": "storageext-kingston-xs2000-portable-ssd",
@@ -117,6 +137,10 @@
       {
         "capacity": "4TB"
       }
-    ]
+    ],
+    "price": 1990,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284405
   }
 ]

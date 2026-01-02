@@ -30,7 +30,11 @@
         "capacity": "32GB",
         "mhz": 3600
       }
-    ]
+    ],
+    "price": 130,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284404
   },
   {
     "id": "ram-corsair-vengeance-ddr4",
@@ -55,7 +59,11 @@
         "capacity": "32GB",
         "mhz": 3200
       }
-    ]
+    ],
+    "price": 720,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "ram-crucial-ddr4",
@@ -76,7 +84,11 @@
         "capacity": "16GB",
         "mhz": 3200
       }
-    ]
+    ],
+    "price": 1040,
+    "currency": "BRL",
+    "stock": 6,
+    "updatedAt": 1767364284404
   },
   {
     "id": "ram-kingston-fury-ddr5",
@@ -101,7 +113,11 @@
         "capacity": "32GB",
         "mhz": 6000
       }
-    ]
+    ],
+    "price": 280,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284404
   },
   {
     "id": "ram-corsair-vengeance-ddr5",
@@ -122,7 +138,11 @@
         "capacity": "32GB",
         "mhz": 6000
       }
-    ]
+    ],
+    "price": 860,
+    "currency": "BRL",
+    "stock": 9,
+    "updatedAt": 1767364284404
   },
   {
     "sku": "ram-kingston-8gb-ddr4-2666",
@@ -131,12 +151,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-8GB-DDR4-2666",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 290,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-kingston-16gb-ddr4-3200",
@@ -145,12 +166,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-16GB-DDR4-3200",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1000,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-kingston-32gb-ddr4-3200",
@@ -159,12 +181,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-32GB-DDR4-3200",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 370,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-kingston-16gb-ddr5-5200",
@@ -173,12 +196,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-16GB-DDR5-5200",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 440,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-kingston-32gb-ddr5-6000",
@@ -187,12 +211,13 @@
     "brand": "Kingston",
     "mpn": "KINGSTON-32GB-DDR5-6000",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1800,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-corsair-8gb-ddr4-3000",
@@ -201,12 +226,13 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-8GB-DDR4-3000",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 160,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-corsair-16gb-ddr4-3600",
@@ -215,12 +241,13 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-16GB-DDR4-3600",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1730,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-corsair-32gb-ddr4-3600",
@@ -229,12 +256,13 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-32GB-DDR4-3600",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1700,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-corsair-16gb-ddr5-5600",
@@ -243,12 +271,13 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-16GB-DDR5-5600",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 880,
+    "stock": 14,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   },
   {
     "sku": "ram-corsair-32gb-ddr5-6000",
@@ -257,11 +286,12 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-32GB-DDR5-6000",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 1740,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767327713659
+    "updatedAt": 1767364284404,
+    "currency": "BRL"
   }
 ]

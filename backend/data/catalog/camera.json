@@ -5,7 +5,11 @@
     "brand": "Canon",
     "category": "Camera",
     "type": "DSLR",
-    "sensor": "APS-C"
+    "sensor": "APS-C",
+    "price": 950,
+    "currency": "BRL",
+    "stock": 8,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-canon-eos-r10",
@@ -13,7 +17,11 @@
     "brand": "Canon",
     "category": "Camera",
     "type": "Mirrorless",
-    "sensor": "APS-C"
+    "sensor": "APS-C",
+    "price": 1390,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-sony-alpha-a6400",
@@ -21,7 +29,11 @@
     "brand": "Sony",
     "category": "Camera",
     "type": "Mirrorless",
-    "sensor": "APS-C"
+    "sensor": "APS-C",
+    "price": 1180,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-sony-alpha-a7-iii",
@@ -29,7 +41,11 @@
     "brand": "Sony",
     "category": "Camera",
     "type": "Mirrorless",
-    "sensor": "Full Frame"
+    "sensor": "Full Frame",
+    "price": 430,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-nikon-d3500",
@@ -37,7 +53,11 @@
     "brand": "Nikon",
     "category": "Camera",
     "type": "DSLR",
-    "sensor": "APS-C"
+    "sensor": "APS-C",
+    "price": 1590,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-fujifilm-x-t30-ii",
@@ -45,7 +65,11 @@
     "brand": "Fujifilm",
     "category": "Camera",
     "type": "Mirrorless",
-    "sensor": "APS-C"
+    "sensor": "APS-C",
+    "price": 150,
+    "currency": "BRL",
+    "stock": 22,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-gopro-hero12-black",
@@ -53,7 +77,11 @@
     "brand": "GoPro",
     "category": "Camera",
     "type": "Action Cam",
-    "resolution": "5.3K"
+    "resolution": "5.3K",
+    "price": 1620,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-dji-osmo-action-4",
@@ -61,7 +89,11 @@
     "brand": "DJI",
     "category": "Camera",
     "type": "Action Cam",
-    "resolution": "4K"
+    "resolution": "4K",
+    "price": 1020,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-dji-osmo-pocket-3",
@@ -69,7 +101,11 @@
     "brand": "DJI",
     "category": "Camera",
     "type": "Gimbal Cam",
-    "resolution": "4K"
+    "resolution": "4K",
+    "price": 1770,
+    "currency": "BRL",
+    "stock": 11,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-insta360-x3",
@@ -77,7 +113,11 @@
     "brand": "Insta360",
     "category": "Camera",
     "type": "360 Camera",
-    "resolution": "5.7K"
+    "resolution": "5.7K",
+    "price": 1580,
+    "currency": "BRL",
+    "stock": 5,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-canon-ef-50mm-f-1-8-stm",
@@ -85,7 +125,11 @@
     "brand": "Canon",
     "category": "Camera",
     "type": "Lens",
-    "mount": "Canon EF"
+    "mount": "Canon EF",
+    "price": 1850,
+    "currency": "BRL",
+    "stock": 7,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-canon-rf-24-105mm-f-4-7-1",
@@ -93,7 +137,11 @@
     "brand": "Canon",
     "category": "Camera",
     "type": "Lens",
-    "mount": "Canon RF"
+    "mount": "Canon RF",
+    "price": 330,
+    "currency": "BRL",
+    "stock": 3,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-sony-e-35mm-f-1-8-oss",
@@ -101,7 +149,11 @@
     "brand": "Sony",
     "category": "Camera",
     "type": "Lens",
-    "mount": "Sony E"
+    "mount": "Sony E",
+    "price": 130,
+    "currency": "BRL",
+    "stock": 1,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-sony-fe-50mm-f-1-8",
@@ -109,7 +161,11 @@
     "brand": "Sony",
     "category": "Camera",
     "type": "Lens",
-    "mount": "Sony FE"
+    "mount": "Sony FE",
+    "price": 1510,
+    "currency": "BRL",
+    "stock": 4,
+    "updatedAt": 1767364284396
   },
   {
     "id": "cam-nikon-af-s-50mm-f-1-8g",
@@ -117,6 +173,10 @@
     "brand": "Nikon",
     "category": "Camera",
     "type": "Lens",
-    "mount": "Nikon F"
+    "mount": "Nikon F",
+    "price": 1420,
+    "currency": "BRL",
+    "stock": 2,
+    "updatedAt": 1767364284396
   }
 ]
