@@ -4,35 +4,38 @@
     "title": "Workstation Xeon",
     "category": "workstation",
     "brand": "Workstation",
-    "price": null,
-    "stock": null,
+    "price": 9500,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966
+    "updatedAt": 1767328613966,
+    "currency": "BRL"
   },
   {
     "sku": "workstation-workstation-ryzen-9",
     "title": "Workstation Ryzen 9",
     "category": "workstation",
     "brand": "Workstation",
-    "price": null,
-    "stock": null,
+    "price": 17520,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966
+    "updatedAt": 1767328613966,
+    "currency": "BRL"
   },
   {
     "sku": "workstation-workstation-threadripper",
     "title": "Workstation Threadripper",
     "category": "workstation",
     "brand": "Workstation",
-    "price": null,
-    "stock": null,
+    "price": 13070,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966
+    "updatedAt": 1767328613966,
+    "currency": "BRL"
   }
 ]

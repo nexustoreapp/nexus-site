@@ -4,35 +4,38 @@
     "title": "Fortinet FortiGate 40F",
     "category": "firewall",
     "brand": "Fortinet",
-    "price": null,
-    "stock": null,
+    "price": 7230,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "firewall-sophos-xgs-87",
     "title": "Sophos XGS 87",
     "category": "firewall",
     "brand": "Sophos",
-    "price": null,
-    "stock": null,
+    "price": 5980,
+    "stock": 14,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "firewall-ubiquiti-dream-machine",
     "title": "Ubiquiti Dream Machine",
     "category": "firewall",
     "brand": "Ubiquiti",
-    "price": null,
-    "stock": null,
+    "price": 7940,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   }
 ]

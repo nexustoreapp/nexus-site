@@ -4,35 +4,38 @@
     "title": "Gaming Desk 120cm",
     "category": "desk",
     "brand": "Gaming",
-    "price": null,
-    "stock": null,
+    "price": 2000,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "desk-office-desk-140cm",
     "title": "Office Desk 140cm",
     "category": "desk",
     "brand": "Office",
-    "price": null,
-    "stock": null,
+    "price": 2010,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "desk-standing-desk-adjustable",
     "title": "Standing Desk Adjustable",
     "category": "desk",
     "brand": "Standing",
-    "price": null,
-    "stock": null,
+    "price": 1220,
+    "stock": 9,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   }
 ]

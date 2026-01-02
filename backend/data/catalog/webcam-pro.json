@@ -4,59 +4,64 @@
     "title": "Logitech Brio 4K",
     "category": "webcam-pro",
     "brand": "Logitech",
-    "price": null,
-    "stock": null,
+    "price": 1420,
+    "stock": 10,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "webcam-pro-elgato-facecam",
     "title": "Elgato Facecam",
     "category": "webcam-pro",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 2190,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "webcam-pro-razer-kiyo-pro",
     "title": "Razer Kiyo Pro",
     "category": "webcam-pro",
     "brand": "Razer",
-    "price": null,
-    "stock": null,
+    "price": 1690,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "webcam-pro-logitech-c922",
     "title": "Logitech C922",
     "category": "webcam-pro",
     "brand": "Logitech",
-    "price": null,
-    "stock": null,
+    "price": 2370,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "webcam-pro-razer-kiyo",
     "title": "Razer Kiyo",
     "category": "webcam-pro",
     "brand": "Razer",
-    "price": null,
-    "stock": null,
+    "price": 2960,
+    "stock": 12,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   }
 ]

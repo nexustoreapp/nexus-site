@@ -4,83 +4,90 @@
     "title": "Cisco CBS110 Switch",
     "category": "network-enterprise",
     "brand": "Cisco",
-    "price": null,
-    "stock": null,
+    "price": 3490,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-ubiquiti-unifi-switch-24",
     "title": "Ubiquiti UniFi Switch 24",
     "category": "network-enterprise",
     "brand": "Ubiquiti",
-    "price": null,
-    "stock": null,
+    "price": 2000,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-mikrotik-crs326",
     "title": "MikroTik CRS326",
     "category": "network-enterprise",
     "brand": "MikroTik",
-    "price": null,
-    "stock": null,
+    "price": 2070,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-ubiquiti-unifi-switch-8",
     "title": "Ubiquiti UniFi Switch 8",
     "category": "network-enterprise",
     "brand": "Ubiquiti",
-    "price": null,
-    "stock": null,
+    "price": 4080,
+    "stock": 6,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-mikrotik-crs112",
     "title": "MikroTik CRS112",
     "category": "network-enterprise",
     "brand": "MikroTik",
-    "price": null,
-    "stock": null,
+    "price": 2010,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-cisco-cbs110",
     "title": "Cisco CBS110",
     "category": "network-enterprise",
     "brand": "Cisco",
-    "price": null,
-    "stock": null,
+    "price": 1050,
+    "stock": 11,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "network-enterprise-cisco-cbs250",
     "title": "Cisco CBS250",
     "category": "network-enterprise",
     "brand": "Cisco",
-    "price": null,
-    "stock": null,
+    "price": 1630,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   }
 ]

@@ -4,83 +4,90 @@
     "title": "PC Gamer RTX 4060",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 10600,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-4070",
     "title": "PC Gamer RTX 4070",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 10850,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-7700-xt",
     "title": "PC Gamer RX 7700 XT",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 3880,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-3060",
     "title": "PC Gamer RTX 3060",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 4590,
+    "stock": 9,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-6700-xt",
     "title": "PC Gamer RX 6700 XT",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 4650,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-5",
     "title": "PC Gamer Ryzen 5",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 4980,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-7",
     "title": "PC Gamer Ryzen 7",
     "category": "pc-gamer",
     "brand": "PC",
-    "price": null,
-    "stock": null,
+    "price": 14670,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   }
 ]

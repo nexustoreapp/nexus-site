@@ -4,35 +4,38 @@
     "title": "Dell WD19 Dock",
     "category": "docking-station",
     "brand": "Dell",
-    "price": null,
-    "stock": null,
+    "price": 2640,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "docking-station-hp-usb-c-dock-g5",
     "title": "HP USB-C Dock G5",
     "category": "docking-station",
     "brand": "HP",
-    "price": null,
-    "stock": null,
+    "price": 2330,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "docking-station-lenovo-thinkpad-dock",
     "title": "Lenovo ThinkPad Dock",
     "category": "docking-station",
     "brand": "Lenovo",
-    "price": null,
-    "stock": null,
+    "price": 1140,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   }
 ]

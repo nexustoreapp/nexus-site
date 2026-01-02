@@ -4,71 +4,77 @@
     "title": "Elgato HD60 X",
     "category": "capture-card",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 780,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "capture-card-avermedia-live-gamer-mini",
     "title": "AverMedia Live Gamer Mini",
     "category": "capture-card",
     "brand": "AverMedia",
-    "price": null,
-    "stock": null,
+    "price": 1580,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "capture-card-elgato-cam-link-4k",
     "title": "Elgato Cam Link 4K",
     "category": "capture-card",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 1610,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "capture-card-elgato-hd60",
     "title": "Elgato HD60",
     "category": "capture-card",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 1390,
+    "stock": 15,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "capture-card-elgato-4k60-pro",
     "title": "Elgato 4K60 Pro",
     "category": "capture-card",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 2110,
+    "stock": 6,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "capture-card-avermedia-live-gamer-4k",
     "title": "AverMedia Live Gamer 4K",
     "category": "capture-card",
     "brand": "AverMedia",
-    "price": null,
-    "stock": null,
+    "price": 2330,
+    "stock": 14,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   }
 ]

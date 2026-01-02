@@ -4,59 +4,64 @@
     "title": "Secretlab Titan Evo",
     "category": "gaming-chair",
     "brand": "Secretlab",
-    "price": null,
-    "stock": null,
+    "price": 2520,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-dxracer-formula",
     "title": "DXRacer Formula",
     "category": "gaming-chair",
     "brand": "DXRacer",
-    "price": null,
-    "stock": null,
+    "price": 1690,
+    "stock": 10,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-thunderx3-bc3",
     "title": "ThunderX3 BC3",
     "category": "gaming-chair",
     "brand": "ThunderX3",
-    "price": null,
-    "stock": null,
+    "price": 2300,
+    "stock": 6,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-dxracer-air",
     "title": "DXRacer Air",
     "category": "gaming-chair",
     "brand": "DXRacer",
-    "price": null,
-    "stock": null,
+    "price": 2330,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-corsair-tc100",
     "title": "Corsair TC100",
     "category": "gaming-chair",
     "brand": "Corsair",
-    "price": null,
-    "stock": null,
+    "price": 2420,
+    "stock": 9,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   }
 ]

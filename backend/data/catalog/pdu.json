@@ -4,35 +4,38 @@
     "title": "APC PDU Basic",
     "category": "pdu",
     "brand": "APC",
-    "price": null,
-    "stock": null,
+    "price": 1260,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "pdu-intelbras-pdu-rack",
     "title": "Intelbras PDU Rack",
     "category": "pdu",
     "brand": "Intelbras",
-    "price": null,
-    "stock": null,
+    "price": 1090,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "pdu-tripp-lite-pdu",
     "title": "Tripp Lite PDU",
     "category": "pdu",
     "brand": "Tripp",
-    "price": null,
-    "stock": null,
+    "price": 820,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   }
 ]

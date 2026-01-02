@@ -4,143 +4,155 @@
     "title": "Intel NUC i5",
     "category": "mini-pc",
     "brand": "Intel",
-    "price": null,
-    "stock": null,
+    "price": 2320,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-beelink-ser5",
     "title": "Beelink SER5",
     "category": "mini-pc",
     "brand": "Beelink",
-    "price": null,
-    "stock": null,
+    "price": 1870,
+    "stock": 8,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-minisforum-um560",
     "title": "Minisforum UM560",
     "category": "mini-pc",
     "brand": "Minisforum",
-    "price": null,
-    "stock": null,
+    "price": 2600,
+    "stock": 12,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-intel-nuc-i3",
     "title": "Intel NUC i3",
     "category": "mini-pc",
     "brand": "Intel",
-    "price": null,
-    "stock": null,
+    "price": 2200,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-intel-nuc-i7",
     "title": "Intel NUC i7",
     "category": "mini-pc",
     "brand": "Intel",
-    "price": null,
-    "stock": null,
+    "price": 1540,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-beelink-ser3",
     "title": "Beelink SER3",
     "category": "mini-pc",
     "brand": "Beelink",
-    "price": null,
-    "stock": null,
+    "price": 3850,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-beelink-gtr",
     "title": "Beelink GTR",
     "category": "mini-pc",
     "brand": "Beelink",
-    "price": null,
-    "stock": null,
+    "price": 4500,
+    "stock": 12,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-minisforum-um350",
     "title": "Minisforum UM350",
     "category": "mini-pc",
     "brand": "Minisforum",
-    "price": null,
-    "stock": null,
+    "price": 3090,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-minisforum-hx90",
     "title": "Minisforum HX90",
     "category": "mini-pc",
     "brand": "Minisforum",
-    "price": null,
-    "stock": null,
+    "price": 2650,
+    "stock": 11,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-asus-pn50",
     "title": "ASUS PN50",
     "category": "mini-pc",
     "brand": "ASUS",
-    "price": null,
-    "stock": null,
+    "price": 4460,
+    "stock": 10,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-asus-pn64",
     "title": "ASUS PN64",
     "category": "mini-pc",
     "brand": "ASUS",
-    "price": null,
-    "stock": null,
+    "price": 4040,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   },
   {
     "sku": "mini-pc-asus-pn80",
     "title": "ASUS PN80",
     "category": "mini-pc",
     "brand": "ASUS",
-    "price": null,
-    "stock": null,
+    "price": 1570,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388
+    "updatedAt": 1767328896388,
+    "currency": "BRL"
   }
 ]

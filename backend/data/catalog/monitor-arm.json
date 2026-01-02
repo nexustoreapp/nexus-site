@@ -4,35 +4,38 @@
     "title": "Elgato Wave Arm",
     "category": "monitor-arm",
     "brand": "Elgato",
-    "price": null,
-    "stock": null,
+    "price": 1000,
+    "stock": 13,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "monitor-arm-nb-north-bayou-f80",
     "title": "NB North Bayou F80",
     "category": "monitor-arm",
     "brand": "NB",
-    "price": null,
-    "stock": null,
+    "price": 1180,
+    "stock": 14,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "monitor-arm-huanuo-dual-arm",
     "title": "HUANUO Dual Arm",
     "category": "monitor-arm",
     "brand": "HUANUO",
-    "price": null,
-    "stock": null,
+    "price": 730,
+    "stock": 7,
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   }
 ]
