@@ -47,7 +47,6 @@
     "type": "Mesh System",
     "wireless_standard": "Wi-Fi 6"
   },
-
   {
     "id": "network-intel-ax200",
     "title": "Intel Wi-Fi 6 AX200",
@@ -64,7 +63,6 @@
     "type": "Network Card",
     "wireless_standard": "Wi-Fi 6E"
   },
-
   {
     "id": "network-asus-pce-ac56",
     "title": "ASUS PCE-AC56",
@@ -81,7 +79,6 @@
     "type": "Network Card",
     "wireless_standard": "Wi-Fi 6"
   },
-
   {
     "id": "network-dlink-dir-615",
     "title": "D-Link DIR-615",
@@ -98,7 +95,6 @@
     "type": "Router",
     "wireless_standard": "Wi-Fi 5"
   },
-
   {
     "id": "network-mercusys-mr30g",
     "title": "Mercusys MR30G",
@@ -115,7 +111,6 @@
     "type": "Router",
     "wireless_standard": "Wi-Fi 6"
   },
-
   {
     "id": "network-tenda-ac10",
     "title": "Tenda AC10",
@@ -131,5 +126,103 @@
     "category": "Network",
     "type": "Router",
     "wireless_standard": "Wi-Fi 6"
+  },
+  {
+    "sku": "network-tp-link-router-ac1200",
+    "title": "TP-Link Router AC1200",
+    "category": "network",
+    "brand": "TP-Link",
+    "mpn": "TP-LINK-ROUTER-AC1200",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-tp-link-router-ax3000",
+    "title": "TP-Link Router AX3000",
+    "category": "network",
+    "brand": "TP-Link",
+    "mpn": "TP-LINK-ROUTER-AX3000",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-tp-link-switch-8-portas",
+    "title": "TP-Link Switch 8 portas",
+    "category": "network",
+    "brand": "TP-Link",
+    "mpn": "TP-LINK-SWITCH-8-PORTAS",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-tp-link-switch-16-portas",
+    "title": "TP-Link Switch 16 portas",
+    "category": "network",
+    "brand": "TP-Link",
+    "mpn": "TP-LINK-SWITCH-16-PORTAS",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-d-link-router-ac750",
+    "title": "D-Link Router AC750",
+    "category": "network",
+    "brand": "D-Link",
+    "mpn": "D-LINK-ROUTER-AC750",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-d-link-router-ax1800",
+    "title": "D-Link Router AX1800",
+    "category": "network",
+    "brand": "D-Link",
+    "mpn": "D-LINK-ROUTER-AX1800",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-d-link-switch-8-portas",
+    "title": "D-Link Switch 8 portas",
+    "category": "network",
+    "brand": "D-Link",
+    "mpn": "D-LINK-SWITCH-8-PORTAS",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
   }
 ]

@@ -6,12 +6,30 @@
     "category": "RAM",
     "type": "DDR4",
     "variants": [
-      { "capacity": "8GB", "mhz": 2666 },
-      { "capacity": "8GB", "mhz": 3200 },
-      { "capacity": "16GB", "mhz": 2666 },
-      { "capacity": "16GB", "mhz": 3200 },
-      { "capacity": "32GB", "mhz": 3200 },
-      { "capacity": "32GB", "mhz": 3600 }
+      {
+        "capacity": "8GB",
+        "mhz": 2666
+      },
+      {
+        "capacity": "8GB",
+        "mhz": 3200
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 2666
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 3200
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 3200
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 3600
+      }
     ]
   },
   {
@@ -21,10 +39,22 @@
     "category": "RAM",
     "type": "DDR4",
     "variants": [
-      { "capacity": "8GB", "mhz": 2666 },
-      { "capacity": "8GB", "mhz": 3200 },
-      { "capacity": "16GB", "mhz": 3200 },
-      { "capacity": "32GB", "mhz": 3200 }
+      {
+        "capacity": "8GB",
+        "mhz": 2666
+      },
+      {
+        "capacity": "8GB",
+        "mhz": 3200
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 3200
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 3200
+      }
     ]
   },
   {
@@ -34,9 +64,18 @@
     "category": "RAM",
     "type": "DDR4",
     "variants": [
-      { "capacity": "8GB", "mhz": 2666 },
-      { "capacity": "16GB", "mhz": 2666 },
-      { "capacity": "16GB", "mhz": 3200 }
+      {
+        "capacity": "8GB",
+        "mhz": 2666
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 2666
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 3200
+      }
     ]
   },
   {
@@ -46,10 +85,22 @@
     "category": "RAM",
     "type": "DDR5",
     "variants": [
-      { "capacity": "16GB", "mhz": 5200 },
-      { "capacity": "16GB", "mhz": 5600 },
-      { "capacity": "32GB", "mhz": 5600 },
-      { "capacity": "32GB", "mhz": 6000 }
+      {
+        "capacity": "16GB",
+        "mhz": 5200
+      },
+      {
+        "capacity": "16GB",
+        "mhz": 5600
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 5600
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 6000
+      }
     ]
   },
   {
@@ -59,9 +110,158 @@
     "category": "RAM",
     "type": "DDR5",
     "variants": [
-      { "capacity": "16GB", "mhz": 5200 },
-      { "capacity": "32GB", "mhz": 5600 },
-      { "capacity": "32GB", "mhz": 6000 }
+      {
+        "capacity": "16GB",
+        "mhz": 5200
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 5600
+      },
+      {
+        "capacity": "32GB",
+        "mhz": 6000
+      }
     ]
+  },
+  {
+    "sku": "ram-kingston-8gb-ddr4-2666",
+    "title": "Kingston 8GB DDR4 2666",
+    "category": "ram",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-8GB-DDR4-2666",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-kingston-16gb-ddr4-3200",
+    "title": "Kingston 16GB DDR4 3200",
+    "category": "ram",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-16GB-DDR4-3200",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-kingston-32gb-ddr4-3200",
+    "title": "Kingston 32GB DDR4 3200",
+    "category": "ram",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-32GB-DDR4-3200",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-kingston-16gb-ddr5-5200",
+    "title": "Kingston 16GB DDR5 5200",
+    "category": "ram",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-16GB-DDR5-5200",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-kingston-32gb-ddr5-6000",
+    "title": "Kingston 32GB DDR5 6000",
+    "category": "ram",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-32GB-DDR5-6000",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-corsair-8gb-ddr4-3000",
+    "title": "Corsair 8GB DDR4 3000",
+    "category": "ram",
+    "brand": "Corsair",
+    "mpn": "CORSAIR-8GB-DDR4-3000",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-corsair-16gb-ddr4-3600",
+    "title": "Corsair 16GB DDR4 3600",
+    "category": "ram",
+    "brand": "Corsair",
+    "mpn": "CORSAIR-16GB-DDR4-3600",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-corsair-32gb-ddr4-3600",
+    "title": "Corsair 32GB DDR4 3600",
+    "category": "ram",
+    "brand": "Corsair",
+    "mpn": "CORSAIR-32GB-DDR4-3600",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-corsair-16gb-ddr5-5600",
+    "title": "Corsair 16GB DDR5 5600",
+    "category": "ram",
+    "brand": "Corsair",
+    "mpn": "CORSAIR-16GB-DDR5-5600",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "ram-corsair-32gb-ddr5-6000",
+    "title": "Corsair 32GB DDR5 6000",
+    "category": "ram",
+    "brand": "Corsair",
+    "mpn": "CORSAIR-32GB-DDR5-6000",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
   }
 ]

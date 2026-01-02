@@ -7,10 +7,18 @@
     "type": "SSD",
     "interface": "SATA",
     "variants": [
-      { "capacity": "120GB" },
-      { "capacity": "240GB" },
-      { "capacity": "480GB" },
-      { "capacity": "960GB" }
+      {
+        "capacity": "120GB"
+      },
+      {
+        "capacity": "240GB"
+      },
+      {
+        "capacity": "480GB"
+      },
+      {
+        "capacity": "960GB"
+      }
     ]
   },
   {
@@ -22,10 +30,18 @@
     "interface": "NVMe",
     "generation": "Gen4",
     "variants": [
-      { "capacity": "250GB" },
-      { "capacity": "500GB" },
-      { "capacity": "1TB" },
-      { "capacity": "2TB" }
+      {
+        "capacity": "250GB"
+      },
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      },
+      {
+        "capacity": "2TB"
+      }
     ]
   },
   {
@@ -36,10 +52,18 @@
     "type": "SSD",
     "interface": "SATA",
     "variants": [
-      { "capacity": "120GB" },
-      { "capacity": "240GB" },
-      { "capacity": "480GB" },
-      { "capacity": "1TB" }
+      {
+        "capacity": "120GB"
+      },
+      {
+        "capacity": "240GB"
+      },
+      {
+        "capacity": "480GB"
+      },
+      {
+        "capacity": "1TB"
+      }
     ]
   },
   {
@@ -50,9 +74,15 @@
     "type": "SSD",
     "interface": "SATA",
     "variants": [
-      { "capacity": "120GB" },
-      { "capacity": "240GB" },
-      { "capacity": "480GB" }
+      {
+        "capacity": "120GB"
+      },
+      {
+        "capacity": "240GB"
+      },
+      {
+        "capacity": "480GB"
+      }
     ]
   },
   {
@@ -64,9 +94,15 @@
     "interface": "NVMe",
     "generation": "Gen3",
     "variants": [
-      { "capacity": "250GB" },
-      { "capacity": "500GB" },
-      { "capacity": "1TB" }
+      {
+        "capacity": "250GB"
+      },
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      }
     ]
   },
   {
@@ -78,10 +114,18 @@
     "interface": "NVMe",
     "generation": "Gen3",
     "variants": [
-      { "capacity": "250GB" },
-      { "capacity": "500GB" },
-      { "capacity": "1TB" },
-      { "capacity": "2TB" }
+      {
+        "capacity": "250GB"
+      },
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      },
+      {
+        "capacity": "2TB"
+      }
     ]
   },
   {
@@ -93,9 +137,15 @@
     "interface": "NVMe",
     "generation": "Gen3",
     "variants": [
-      { "capacity": "250GB" },
-      { "capacity": "500GB" },
-      { "capacity": "1TB" }
+      {
+        "capacity": "250GB"
+      },
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      }
     ]
   },
   {
@@ -107,10 +157,18 @@
     "interface": "SATA",
     "rpm": 7200,
     "variants": [
-      { "capacity": "500GB" },
-      { "capacity": "1TB" },
-      { "capacity": "2TB" },
-      { "capacity": "4TB" }
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      },
+      {
+        "capacity": "2TB"
+      },
+      {
+        "capacity": "4TB"
+      }
     ]
   },
   {
@@ -122,9 +180,183 @@
     "interface": "SATA",
     "rpm": 7200,
     "variants": [
-      { "capacity": "500GB" },
-      { "capacity": "1TB" },
-      { "capacity": "2TB" }
+      {
+        "capacity": "500GB"
+      },
+      {
+        "capacity": "1TB"
+      },
+      {
+        "capacity": "2TB"
+      }
     ]
+  },
+  {
+    "sku": "storage-samsung-ssd-500gb-sata",
+    "title": "Samsung SSD 500GB SATA",
+    "category": "storage",
+    "brand": "Samsung",
+    "mpn": "SAMSUNG-SSD-500GB-SATA",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-samsung-ssd-1tb-sata",
+    "title": "Samsung SSD 1TB SATA",
+    "category": "storage",
+    "brand": "Samsung",
+    "mpn": "SAMSUNG-SSD-1TB-SATA",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-samsung-ssd-1tb-nvme",
+    "title": "Samsung SSD 1TB NVMe",
+    "category": "storage",
+    "brand": "Samsung",
+    "mpn": "SAMSUNG-SSD-1TB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-samsung-ssd-2tb-nvme",
+    "title": "Samsung SSD 2TB NVMe",
+    "category": "storage",
+    "brand": "Samsung",
+    "mpn": "SAMSUNG-SSD-2TB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-wd-ssd-500gb-nvme",
+    "title": "WD SSD 500GB NVMe",
+    "category": "storage",
+    "brand": "WD",
+    "mpn": "WD-SSD-500GB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-wd-ssd-1tb-nvme",
+    "title": "WD SSD 1TB NVMe",
+    "category": "storage",
+    "brand": "WD",
+    "mpn": "WD-SSD-1TB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-wd-ssd-2tb-nvme",
+    "title": "WD SSD 2TB NVMe",
+    "category": "storage",
+    "brand": "WD",
+    "mpn": "WD-SSD-2TB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-wd-hdd-1tb",
+    "title": "WD HDD 1TB",
+    "category": "storage",
+    "brand": "WD",
+    "mpn": "WD-HDD-1TB",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-wd-hdd-2tb",
+    "title": "WD HDD 2TB",
+    "category": "storage",
+    "brand": "WD",
+    "mpn": "WD-HDD-2TB",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-kingston-ssd-480gb",
+    "title": "Kingston SSD 480GB",
+    "category": "storage",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-SSD-480GB",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-kingston-ssd-960gb",
+    "title": "Kingston SSD 960GB",
+    "category": "storage",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-SSD-960GB",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-kingston-ssd-1tb-nvme",
+    "title": "Kingston SSD 1TB NVMe",
+    "category": "storage",
+    "brand": "Kingston",
+    "mpn": "KINGSTON-SSD-1TB-NVME",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713659,
+    "updatedAt": 1767327713659
   }
 ]

@@ -48,10 +48,6 @@
     "category": "Peripherals",
     "type": "Keyboard"
   },
-
-
-
-
   {
     "id": "peripheral-mouse-logitech-g203",
     "title": "Logitech G203",
@@ -94,10 +90,6 @@
     "category": "Peripherals",
     "type": "Mouse"
   },
-
-
-
-
   {
     "id": "peripheral-headset-logitech-g432",
     "title": "Logitech G432",
@@ -140,10 +132,6 @@
     "category": "Peripherals",
     "type": "Headset"
   },
-
-
-
-
   {
     "id": "peripheral-controller-xbox-series",
     "title": "Controle Xbox Series",
@@ -171,5 +159,159 @@
     "brand": "Logitech",
     "category": "Peripherals",
     "type": "Controller"
+  },
+  {
+    "sku": "peripherals-logitech-mouse-g203",
+    "title": "Logitech Mouse G203",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "mpn": "LOGITECH-MOUSE-G203",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-logitech-mouse-g305",
+    "title": "Logitech Mouse G305",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "mpn": "LOGITECH-MOUSE-G305",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-logitech-teclado-g213",
+    "title": "Logitech Teclado G213",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "mpn": "LOGITECH-TECLADO-G213",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-logitech-headset-g435",
+    "title": "Logitech Headset G435",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "mpn": "LOGITECH-HEADSET-G435",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-redragon-mouse-cobra",
+    "title": "Redragon Mouse Cobra",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "mpn": "REDRAGON-MOUSE-COBRA",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-redragon-teclado-kumara",
+    "title": "Redragon Teclado Kumara",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "mpn": "REDRAGON-TECLADO-KUMARA",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-redragon-headset-zeus",
+    "title": "Redragon Headset Zeus",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "mpn": "REDRAGON-HEADSET-ZEUS",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-redragon-mouse-m711",
+    "title": "Redragon Mouse M711",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "mpn": "REDRAGON-MOUSE-M711",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-hyperx-headset-cloud-stinger",
+    "title": "HyperX Headset Cloud Stinger",
+    "category": "peripherals",
+    "brand": "HyperX",
+    "mpn": "HYPERX-HEADSET-CLOUD-STINGER",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-hyperx-headset-cloud-ii",
+    "title": "HyperX Headset Cloud II",
+    "category": "peripherals",
+    "brand": "HyperX",
+    "mpn": "HYPERX-HEADSET-CLOUD-II",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
+  },
+  {
+    "sku": "peripherals-hyperx-teclado-alloy-core",
+    "title": "HyperX Teclado Alloy Core",
+    "category": "peripherals",
+    "brand": "HyperX",
+    "mpn": "HYPERX-TECLADO-ALLOY-CORE",
+    "ean": null,
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-realista",
+    "createdAt": 1767327713661,
+    "updatedAt": 1767327713661
   }
 ]
