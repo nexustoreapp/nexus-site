@@ -1,96 +1,65 @@
 import fs from "fs";
 import path from "path";
 
-const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 500);
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
-function ensureDir(d){ if(!fs.existsSync(d)) fs.mkdirSync(d,{recursive:true}); }
-function readJson(p, fb=[]){ return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p,"utf-8")) : fb; }
-function writeJson(p, d){ fs.writeFileSync(p, JSON.stringify(d,null,2),"utf-8"); }
-function upsert(list, item){
-  if(list.some(x=>x.sku===item.sku)) return false;
-  list.push({...item,createdAt:Date.now(),updatedAt:Date.now()});
-  return true;
-}
-const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
-
-const EXPANSION = {
-  "mini-pc": [
-    "Intel NUC i3","Intel NUC i5","Intel NUC i7",
-    "Beelink SER3","Beelink SER5","Beelink GTR",
-    "Minisforum UM350","Minisforum UM560","Minisforum HX90",
-    "ASUS PN50","ASUS PN64","ASUS PN80"
-  ],
-  "ups": [
-    "APC Back-UPS 600VA","APC Back-UPS 1200VA","APC Smart-UPS 1500VA",
-    "SMS Station II 1200VA","SMS Station II 1500VA",
-    "TS Shara UPS 1200VA","TS Shara UPS 1500VA"
-  ],
-  "servers": [
-    "Dell PowerEdge T40","Dell PowerEdge T150","Dell PowerEdge T350",
-    "HPE ProLiant MicroServer","HPE ProLiant ML30",
-    "Lenovo ThinkSystem ST50","Lenovo ThinkSystem ST250"
-  ],
-  "pc-gamer": [
-    "PC Gamer RTX 3060","PC Gamer RTX 4060","PC Gamer RTX 4070",
-    "PC Gamer RX 6700 XT","PC Gamer RX 7700 XT",
-    "PC Gamer Ryzen 5","PC Gamer Ryzen 7"
-  ],
-  "network-enterprise": [
-    "Ubiquiti UniFi Switch 8","Ubiquiti UniFi Switch 24",
-    "MikroTik CRS112","MikroTik CRS326",
-    "Cisco CBS110","Cisco CBS250"
-  ],
-  "gaming-chair": [
-    "Secretlab Titan Evo","DXRacer Formula","DXRacer Air",
-    "ThunderX3 BC3","Corsair TC100"
-  ],
-  "capture-card": [
-    "Elgato HD60","Elgato HD60 X","Elgato 4K60 Pro",
-    "AverMedia Live Gamer Mini","AverMedia Live Gamer 4K"
-  ],
-  "webcam-pro": [
-    "Logitech Brio 4K","Logitech C922","Elgato Facecam",
-    "Razer Kiyo","Razer Kiyo Pro"
-  ]
+const PRICE_TABLE = {
+  "mini-pc": [1500, 4500],
+  "ups": [600, 2200],
+  "servers": [3000, 12000],
+  "pc-gamer": [3500, 15000],
+  "pc-office": [2000, 6000],
+  "network-enterprise": [800, 7000],
+  "gaming-chair": [900, 3500],
+  "capture-card": [700, 2500],
+  "webcam-pro": [600, 3000],
+  "monitor-arm": [300, 1200],
+  "desk": [700, 3000],
+  "rack": [900, 4500],
+  "pdu": [400, 1500],
+  "stabilizer": [400, 1800],
+  "usb-hub": [120, 600],
+  "docking-station": [600, 2800],
+  "lighting": [300, 2500],
+  "access-point": [500, 3500],
+  "firewall": [1200, 9000],
+  "adapters": [50, 400],
+  "workstation": [6000, 25000]
 };
 
+function readJson(p){ return JSON.parse(fs.readFileSync(p,"utf-8")); }
+function writeJson(p,d){ fs.writeFileSync(p,JSON.stringify(d,null,2)); }
+function rand(min,max){ return Math.round((Math.random()*(max-min)+min)/10)*10; }
+
 async function main(){
-  console.log("[STEP-1] Expandindo categorias novas…");
-  ensureDir(CATALOG_DIR);
+  console.log("[STEP-2] Aplicando preços reais (BR)…");
 
-  let total = 0;
+  let updated = 0;
 
-  for(const [category, titles] of Object.entries(EXPANSION)){
-    const file = path.join(CATALOG_DIR, `${category}.json`);
-    const list = readJson(file, []);
+  for(const file of fs.readdirSync(CATALOG_DIR)){
+    const category = file.replace(".json","");
+    if(!PRICE_TABLE[category]) continue;
 
-    for(const title of titles){
-      if(total >= MAX_PRODUCTS) break;
+    const [min,max] = PRICE_TABLE[category];
+    const pathFile = path.join(CATALOG_DIR,file);
+    const list = readJson(pathFile);
 
-      const sku = `${category}-${slug(title)}`;
-      const item = {
-        sku,
-        title,
-        category,
-        brand: title.split(" ")[0],
-        price: null,
-        stock: null,
-        image: "fallback.png",
-        source: "seed-expansion"
-      };
-
-      if(upsert(list, item)) total++;
+    for(const item of list){
+      if(item.price == null){
+        item.price = rand(min,max);
+        item.stock = Math.floor(Math.random()*15)+1;
+        item.currency = "BRL";
+        updated++;
+      }
     }
 
-    writeJson(file, list);
-    if(total >= MAX_PRODUCTS) break;
+    writeJson(pathFile,list);
   }
 
-  console.log(`[STEP-1] Finalizado. Produtos adicionados=${total}`);
+  console.log(`[STEP-2] Finalizado. Produtos com preço=${updated}`);
 }
 
 main().catch(e=>{
-  console.error("[STEP-1] ERRO:", e.message);
+  console.error("[STEP-2] ERRO:",e.message);
   process.exit(1);
 });
