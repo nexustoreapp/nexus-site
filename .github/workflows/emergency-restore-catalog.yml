@@ -1,0 +1,34 @@
+name: EMERGENCY RESTORE CATALOG (FORWARD)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore catalog from safe commit
+        run: |
+          echo "🔥 Restoring catalog from commit db2a147"
+
+          rm -rf backend/data/catalog
+          mkdir -p backend/data/catalog
+
+          git show db2a147:backend/data/catalog > /tmp/catalog.tar || true
+          git archive db2a147 backend/data/catalog | tar -x
+
+      - name: Commit restored catalog
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "EMERGENCY: restore original catalog (384 products)" || echo "Nothing to commit"
+
+      - name: Push restore forward
+        run: git push origin main
