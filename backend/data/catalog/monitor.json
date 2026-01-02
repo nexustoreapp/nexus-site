@@ -6,14 +6,12 @@
     "brand": "AOC",
     "mpn": "AOC-24-75HZ",
     "ean": null,
-    "price": 1290,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-aoc-24-144hz",
@@ -22,14 +20,12 @@
     "brand": "AOC",
     "mpn": "AOC-24-144HZ",
     "ean": null,
-    "price": 1940,
-    "stock": 10,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-aoc-27-144hz",
@@ -38,14 +34,12 @@
     "brand": "AOC",
     "mpn": "AOC-27-144HZ",
     "ean": null,
-    "price": 3530,
-    "stock": 14,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-aoc-27-165hz",
@@ -54,14 +48,12 @@
     "brand": "AOC",
     "mpn": "AOC-27-165HZ",
     "ean": null,
-    "price": 1380,
-    "stock": 14,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-lg-24-ips-75hz",
@@ -70,14 +62,12 @@
     "brand": "LG",
     "mpn": "LG-24-IPS-75HZ",
     "ean": null,
-    "price": 2640,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-lg-27-ips-144hz",
@@ -86,14 +76,12 @@
     "brand": "LG",
     "mpn": "LG-27-IPS-144HZ",
     "ean": null,
-    "price": 1680,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-lg-34-ultrawide-144hz",
@@ -102,14 +90,12 @@
     "brand": "LG",
     "mpn": "LG-34-ULTRAWIDE-144HZ",
     "ean": null,
-    "price": 1180,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-samsung-24-75hz",
@@ -118,14 +104,12 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-24-75HZ",
     "ean": null,
-    "price": 2680,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-samsung-27-144hz",
@@ -134,14 +118,12 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-27-144HZ",
     "ean": null,
-    "price": 5250,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   },
   {
     "sku": "monitor-samsung-32-curvo-165hz",
@@ -150,13 +132,11 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-32-CURVO-165HZ",
     "ean": null,
-    "price": 3570,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364965659,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713660
   }
 ]

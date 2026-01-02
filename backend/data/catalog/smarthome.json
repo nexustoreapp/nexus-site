@@ -1,1 +1,140 @@
-[]
+[
+  {
+    "id": "smarthome-amazon-echo-dot-5-gera-o",
+    "title": "Echo Dot (5ª geração)",
+    "brand": "Amazon",
+    "category": "SmartHome",
+    "type": "Smart Speaker",
+    "assistant": "Alexa"
+  },
+  {
+    "id": "smarthome-amazon-echo-show-8",
+    "title": "Echo Show 8",
+    "brand": "Amazon",
+    "category": "SmartHome",
+    "type": "Smart Display",
+    "assistant": "Alexa"
+  },
+  {
+    "id": "smarthome-google-nest-mini-2-gera-o",
+    "title": "Nest Mini (2ª geração)",
+    "brand": "Google",
+    "category": "SmartHome",
+    "type": "Smart Speaker",
+    "assistant": "Google Assistant"
+  },
+  {
+    "id": "smarthome-google-nest-hub-2-gera-o",
+    "title": "Nest Hub (2ª geração)",
+    "brand": "Google",
+    "category": "SmartHome",
+    "type": "Smart Display",
+    "assistant": "Google Assistant"
+  },
+  {
+    "id": "smarthome-tp-link-tapo-l530e",
+    "title": "Tapo L530E",
+    "brand": "TP-Link",
+    "category": "SmartHome",
+    "type": "Smart Bulb",
+    "socket": "E27"
+  },
+  {
+    "id": "smarthome-tp-link-tapo-l900",
+    "title": "Tapo L900",
+    "brand": "TP-Link",
+    "category": "SmartHome",
+    "type": "Smart LED Strip"
+  },
+  {
+    "id": "smarthome-tp-link-tapo-p110",
+    "title": "Tapo P110",
+    "brand": "TP-Link",
+    "category": "SmartHome",
+    "type": "Smart Plug",
+    "energy_monitoring": true
+  },
+  {
+    "id": "smarthome-sonoff-basic-r3",
+    "title": "Basic R3",
+    "brand": "Sonoff",
+    "category": "SmartHome",
+    "type": "Smart Switch"
+  },
+  {
+    "id": "smarthome-sonoff-mini-r2",
+    "title": "Mini R2",
+    "brand": "Sonoff",
+    "category": "SmartHome",
+    "type": "Smart Switch"
+  },
+  {
+    "id": "smarthome-aqara-hub-m2",
+    "title": "Hub M2",
+    "brand": "Aqara",
+    "category": "SmartHome",
+    "type": "Smart Hub"
+  },
+  {
+    "id": "smarthome-aqara-sensor-de-porta-e-janela",
+    "title": "Sensor de Porta e Janela",
+    "brand": "Aqara",
+    "category": "SmartHome",
+    "type": "Sensor",
+    "sensor_type": "Contact"
+  },
+  {
+    "id": "smarthome-aqara-sensor-de-movimento",
+    "title": "Sensor de Movimento",
+    "brand": "Aqara",
+    "category": "SmartHome",
+    "type": "Sensor",
+    "sensor_type": "Motion"
+  },
+  {
+    "id": "smarthome-xiaomi-mi-smart-sensor-set",
+    "title": "Mi Smart Sensor Set",
+    "brand": "Xiaomi",
+    "category": "SmartHome",
+    "type": "Sensor Kit"
+  },
+  {
+    "id": "smarthome-ring-video-doorbell",
+    "title": "Video Doorbell",
+    "brand": "Ring",
+    "category": "SmartHome",
+    "type": "Doorbell Camera"
+  },
+  {
+    "id": "smarthome-tp-link-tapo-c200",
+    "title": "Tapo C200",
+    "brand": "TP-Link",
+    "category": "SmartHome",
+    "type": "Security Camera",
+    "resolution": "FHD"
+  },
+  {
+    "id": "smarthome-tp-link-tapo-c320ws",
+    "title": "Tapo C320WS",
+    "brand": "TP-Link",
+    "category": "SmartHome",
+    "type": "Security Camera",
+    "resolution": "2K"
+  },
+  {
+    "id": "smarthome-intelbras-im3-c",
+    "title": "iM3 C",
+    "brand": "Intelbras",
+    "category": "SmartHome",
+    "type": "Security Camera",
+    "resolution": "FHD"
+  },
+  {
+    "id": "smarthome-philips-hue-hue-white-color-ambiance",
+    "title": "Hue White & Color Ambiance",
+    "brand": "Philips Hue",
+    "category": "SmartHome",
+    "type": "Smart Bulb",
+    "socket": "E27"
+  }
+]

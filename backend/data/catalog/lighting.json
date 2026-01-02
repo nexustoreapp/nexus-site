@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "lighting-ring-light-18in",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "lighting-godox-led-panel",
@@ -37,8 +35,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   }
 ]

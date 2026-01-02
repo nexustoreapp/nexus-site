@@ -1,19 +1,227 @@
 [
   {
+    "id": "gpu-nvidia-gtx-1650",
+    "title": "NVIDIA GeForce GTX 1650",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "4GB"
+  },
+  {
+    "id": "gpu-nvidia-gtx-1660-super",
+    "title": "NVIDIA GeForce GTX 1660 Super",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "6GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-2060",
+    "title": "NVIDIA GeForce RTX 2060",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "6GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3060",
+    "title": "NVIDIA GeForce RTX 3060",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3060-ti",
+    "title": "NVIDIA GeForce RTX 3060 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3070",
+    "title": "NVIDIA GeForce RTX 3070",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3070-ti",
+    "title": "NVIDIA GeForce RTX 3070 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3080",
+    "title": "NVIDIA GeForce RTX 3080",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "10GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3080-ti",
+    "title": "NVIDIA GeForce RTX 3080 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-3090",
+    "title": "NVIDIA GeForce RTX 3090",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "24GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4060",
+    "title": "NVIDIA GeForce RTX 4060",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4060-ti",
+    "title": "NVIDIA GeForce RTX 4060 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "8GB / 16GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4070",
+    "title": "NVIDIA GeForce RTX 4070",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4070-ti",
+    "title": "NVIDIA GeForce RTX 4070 Ti",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4080",
+    "title": "NVIDIA GeForce RTX 4080",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-nvidia-rtx-4090",
+    "title": "NVIDIA GeForce RTX 4090",
+    "brand": "NVIDIA",
+    "category": "GPU",
+    "vram": "24GB"
+  },
+  {
+    "id": "gpu-amd-rx-5500-xt",
+    "title": "AMD Radeon RX 5500 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "4GB / 8GB"
+  },
+  {
+    "id": "gpu-amd-rx-5600-xt",
+    "title": "AMD Radeon RX 5600 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "6GB"
+  },
+  {
+    "id": "gpu-amd-rx-5700-xt",
+    "title": "AMD Radeon RX 5700 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-6600",
+    "title": "AMD Radeon RX 6600",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-6650-xt",
+    "title": "AMD Radeon RX 6650 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-6700-xt",
+    "title": "AMD Radeon RX 6700 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-amd-rx-6800",
+    "title": "AMD Radeon RX 6800",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-6800-xt",
+    "title": "AMD Radeon RX 6800 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-6900-xt",
+    "title": "AMD Radeon RX 6900 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-7600",
+    "title": "AMD Radeon RX 7600",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "8GB"
+  },
+  {
+    "id": "gpu-amd-rx-7700-xt",
+    "title": "AMD Radeon RX 7700 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "12GB"
+  },
+  {
+    "id": "gpu-amd-rx-7800-xt",
+    "title": "AMD Radeon RX 7800 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "16GB"
+  },
+  {
+    "id": "gpu-amd-rx-7900-xt",
+    "title": "AMD Radeon RX 7900 XT",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "20GB"
+  },
+  {
+    "id": "gpu-amd-rx-7900-xtx",
+    "title": "AMD Radeon RX 7900 XTX",
+    "brand": "AMD",
+    "category": "GPU",
+    "vram": "24GB"
+  },
+  {
     "sku": "gpu-nvidia-rtx-3050",
     "title": "NVIDIA RTX 3050",
     "category": "gpu",
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3050",
     "ean": null,
-    "price": 8700,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713657,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713657
   },
   {
     "sku": "gpu-nvidia-rtx-3060",
@@ -22,14 +230,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3060",
     "ean": null,
-    "price": 10370,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713657,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713657
   },
   {
     "sku": "gpu-nvidia-rtx-3060-ti",
@@ -38,14 +244,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3060-TI",
     "ean": null,
-    "price": 5150,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713657,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713657
   },
   {
     "sku": "gpu-nvidia-rtx-3070",
@@ -54,14 +258,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3070",
     "ean": null,
-    "price": 8850,
-    "stock": 20,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713657,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713657
   },
   {
     "sku": "gpu-nvidia-rtx-3070-ti",
@@ -70,14 +272,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3070-TI",
     "ean": null,
-    "price": 2140,
-    "stock": 12,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713657,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713657
   },
   {
     "sku": "gpu-nvidia-rtx-3080",
@@ -86,14 +286,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3080",
     "ean": null,
-    "price": 7000,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-3080-ti",
@@ -102,14 +300,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3080-TI",
     "ean": null,
-    "price": 5800,
-    "stock": 10,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-3090",
@@ -118,14 +314,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3090",
     "ean": null,
-    "price": 5070,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-3090-ti",
@@ -134,14 +328,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-3090-TI",
     "ean": null,
-    "price": 4460,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4060",
@@ -150,14 +342,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4060",
     "ean": null,
-    "price": 2120,
-    "stock": 24,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4060-ti",
@@ -166,14 +356,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4060-TI",
     "ean": null,
-    "price": 2650,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4070",
@@ -182,14 +370,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4070",
     "ean": null,
-    "price": 11740,
-    "stock": 7,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4070-ti",
@@ -198,14 +384,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4070-TI",
     "ean": null,
-    "price": 1230,
-    "stock": 15,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4080",
@@ -214,14 +398,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4080",
     "ean": null,
-    "price": 3660,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-nvidia-rtx-4090",
@@ -230,14 +412,12 @@
     "brand": "NVIDIA",
     "mpn": "NVIDIA-RTX-4090",
     "ean": null,
-    "price": 9970,
-    "stock": 8,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6600",
@@ -246,14 +426,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6600",
     "ean": null,
-    "price": 3160,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6650-xt",
@@ -262,14 +440,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6650-XT",
     "ean": null,
-    "price": 9590,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6700-xt",
@@ -278,14 +454,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6700-XT",
     "ean": null,
-    "price": 11950,
-    "stock": 14,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6750-xt",
@@ -294,14 +468,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6750-XT",
     "ean": null,
-    "price": 3600,
-    "stock": 16,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6800",
@@ -310,14 +482,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6800",
     "ean": null,
-    "price": 9550,
-    "stock": 7,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6800-xt",
@@ -326,14 +496,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6800-XT",
     "ean": null,
-    "price": 9800,
-    "stock": 8,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6900-xt",
@@ -342,14 +510,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6900-XT",
     "ean": null,
-    "price": 4750,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-6950-xt",
@@ -358,14 +524,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-6950-XT",
     "ean": null,
-    "price": 6280,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-7600",
@@ -374,14 +538,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-7600",
     "ean": null,
-    "price": 4230,
-    "stock": 11,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-7700-xt",
@@ -390,14 +552,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-7700-XT",
     "ean": null,
-    "price": 7840,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-7800-xt",
@@ -406,14 +566,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-7800-XT",
     "ean": null,
-    "price": 8050,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-7900-xt",
@@ -422,14 +580,12 @@
     "brand": "AMD",
     "mpn": "AMD-RX-7900-XT",
     "ean": null,
-    "price": 10090,
-    "stock": 12,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "gpu-amd-rx-7900-xtx",
@@ -438,13 +594,11 @@
     "brand": "AMD",
     "mpn": "AMD-RX-7900-XTX",
     "ean": null,
-    "price": 9340,
-    "stock": 8,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   }
 ]

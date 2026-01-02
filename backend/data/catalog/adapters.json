@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364965654,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "adapters-usb-c-to-ethernet-adapter",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364965654,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   },
   {
     "sku": "adapters-displayport-to-hdmi-adapter",
@@ -37,8 +35,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364965654,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613963,
+    "currency": "BRL"
   }
 ]

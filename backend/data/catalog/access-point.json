@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767364965653,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613962,
+    "currency": "BRL"
   },
   {
     "sku": "access-point-tp-link-eap245",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767364965653,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613962,
+    "currency": "BRL"
   },
   {
     "sku": "access-point-mikrotik-cap-ac",
@@ -37,8 +35,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767364965653,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613962,
+    "currency": "BRL"
   }
 ]

@@ -1,1 +1,227 @@
-[]
+[
+  {
+    "id": "mobile-apple-iphone-11",
+    "title": "Apple iPhone 11",
+    "brand": "Apple",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "64GB" },
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-apple-iphone-12",
+    "title": "Apple iPhone 12",
+    "brand": "Apple",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "64GB" },
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-apple-iphone-13",
+    "title": "Apple iPhone 13",
+    "brand": "Apple",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-apple-iphone-14",
+    "title": "Apple iPhone 14",
+    "brand": "Apple",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-apple-iphone-15",
+    "title": "Apple iPhone 15",
+    "brand": "Apple",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" },
+      { "storage": "512GB" }
+    ]
+  },
+
+  {
+    "id": "mobile-samsung-galaxy-a14",
+    "title": "Samsung Galaxy A14",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "64GB" },
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-a34",
+    "title": "Samsung Galaxy A34",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-a54",
+    "title": "Samsung Galaxy A54",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-s21-fe",
+    "title": "Samsung Galaxy S21 FE",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-s22",
+    "title": "Samsung Galaxy S22",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-s23",
+    "title": "Samsung Galaxy S23",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-samsung-galaxy-s24",
+    "title": "Samsung Galaxy S24",
+    "brand": "Samsung",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+
+  {
+    "id": "mobile-motorola-moto-g14",
+    "title": "Motorola Moto G14",
+    "brand": "Motorola",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-motorola-moto-g54",
+    "title": "Motorola Moto G54",
+    "brand": "Motorola",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-motorola-edge-30",
+    "title": "Motorola Edge 30",
+    "brand": "Motorola",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-motorola-edge-40",
+    "title": "Motorola Edge 40",
+    "brand": "Motorola",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "256GB" }
+    ]
+  },
+
+  {
+    "id": "mobile-xiaomi-redmi-note-12",
+    "title": "Xiaomi Redmi Note 12",
+    "brand": "Xiaomi",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-xiaomi-redmi-note-13",
+    "title": "Xiaomi Redmi Note 13",
+    "brand": "Xiaomi",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" },
+      { "storage": "256GB" }
+    ]
+  },
+  {
+    "id": "mobile-xiaomi-poco-x5",
+    "title": "Xiaomi POCO X5",
+    "brand": "Xiaomi",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-xiaomi-poco-x6",
+    "title": "Xiaomi POCO X6",
+    "brand": "Xiaomi",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "256GB" }
+    ]
+  },
+
+  {
+    "id": "mobile-realme-c55",
+    "title": "Realme C55",
+    "brand": "Realme",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "128GB" }
+    ]
+  },
+  {
+    "id": "mobile-realme-11-pro",
+    "title": "Realme 11 Pro",
+    "brand": "Realme",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "256GB" }
+    ]
+  },
+
+  {
+    "id": "mobile-asus-rog-phone-6",
+    "title": "ASUS ROG Phone 6",
+    "brand": "ASUS",
+    "category": "Mobile",
+    "variants": [
+      { "storage": "256GB" },
+      { "storage": "512GB" }
+    ]
+  }
+]

@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "usb-hub-baseus-7-in-1-hub",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "usb-hub-ugreen-usb-hub",
@@ -37,8 +35,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   }
 ]

@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-dxracer-formula",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-thunderx3-bc3",
@@ -37,9 +35,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613964,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-dxracer-air",
@@ -51,9 +48,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   },
   {
     "sku": "gaming-chair-corsair-tc100",
@@ -65,8 +61,7 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767364965658,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896390,
+    "currency": "BRL"
   }
 ]

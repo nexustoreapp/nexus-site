@@ -1,19 +1,314 @@
 [
   {
+    "id": "cpu-intel-core-i3-9100f",
+    "title": "Intel Core i3-9100F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 4,
+    "threads": 4
+  },
+  {
+    "id": "cpu-intel-core-i3-10100f",
+    "title": "Intel Core i3-10100F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 4,
+    "threads": 8
+  },
+  {
+    "id": "cpu-intel-core-i3-12100f",
+    "title": "Intel Core i3-12100F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 4,
+    "threads": 8
+  },
+  {
+    "id": "cpu-intel-core-i5-9400f",
+    "title": "Intel Core i5-9400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 6,
+    "threads": 6
+  },
+  {
+    "id": "cpu-intel-core-i5-10400f",
+    "title": "Intel Core i5-10400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-intel-core-i5-11400f",
+    "title": "Intel Core i5-11400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-intel-core-i5-12400f",
+    "title": "Intel Core i5-12400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-intel-core-i5-13400f",
+    "title": "Intel Core i5-13400F",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 10,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i7-9700k",
+    "title": "Intel Core i7-9700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 8,
+    "threads": 8
+  },
+  {
+    "id": "cpu-intel-core-i7-10700k",
+    "title": "Intel Core i7-10700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i7-11700k",
+    "title": "Intel Core i7-11700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i7-12700k",
+    "title": "Intel Core i7-12700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 12,
+    "threads": 20
+  },
+  {
+    "id": "cpu-intel-core-i7-13700k",
+    "title": "Intel Core i7-13700K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 16,
+    "threads": 24
+  },
+  {
+    "id": "cpu-intel-core-i9-9900k",
+    "title": "Intel Core i9-9900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1151",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i9-10900k",
+    "title": "Intel Core i9-10900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 10,
+    "threads": 20
+  },
+  {
+    "id": "cpu-intel-core-i9-11900k",
+    "title": "Intel Core i9-11900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1200",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-intel-core-i9-12900k",
+    "title": "Intel Core i9-12900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 16,
+    "threads": 24
+  },
+  {
+    "id": "cpu-intel-core-i9-13900k",
+    "title": "Intel Core i9-13900K",
+    "brand": "Intel",
+    "category": "CPU",
+    "socket": "LGA1700",
+    "cores": 24,
+    "threads": 32
+  },
+  {
+    "id": "cpu-amd-ryzen-3-3100",
+    "title": "AMD Ryzen 3 3100",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 4,
+    "threads": 8
+  },
+  {
+    "id": "cpu-amd-ryzen-5-3600",
+    "title": "AMD Ryzen 5 3600",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-amd-ryzen-5-5500",
+    "title": "AMD Ryzen 5 5500",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-amd-ryzen-5-5600",
+    "title": "AMD Ryzen 5 5600",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-amd-ryzen-5-5600g",
+    "title": "AMD Ryzen 5 5600G",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-amd-ryzen-7-3700x",
+    "title": "AMD Ryzen 7 3700X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-7-5700x",
+    "title": "AMD Ryzen 7 5700X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-7-5800x3d",
+    "title": "AMD Ryzen 7 5800X3D",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-9-3900x",
+    "title": "AMD Ryzen 9 3900X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 12,
+    "threads": 24
+  },
+  {
+    "id": "cpu-amd-ryzen-9-5900x",
+    "title": "AMD Ryzen 9 5900X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM4",
+    "cores": 12,
+    "threads": 24
+  },
+  {
+    "id": "cpu-amd-ryzen-5-7600",
+    "title": "AMD Ryzen 5 7600",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 6,
+    "threads": 12
+  },
+  {
+    "id": "cpu-amd-ryzen-7-7700",
+    "title": "AMD Ryzen 7 7700",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-7-7800x3d",
+    "title": "AMD Ryzen 7 7800X3D",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 8,
+    "threads": 16
+  },
+  {
+    "id": "cpu-amd-ryzen-9-7900x",
+    "title": "AMD Ryzen 9 7900X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 12,
+    "threads": 24
+  },
+  {
+    "id": "cpu-amd-ryzen-9-7950x",
+    "title": "AMD Ryzen 9 7950X",
+    "brand": "AMD",
+    "category": "CPU",
+    "socket": "AM5",
+    "cores": 16,
+    "threads": 32
+  },
+  {
     "sku": "cpu-intel-core-i3-10100",
     "title": "Intel Core i3-10100",
     "category": "cpu",
     "brand": "Intel",
     "mpn": "INTEL-CORE-I3-10100",
     "ean": null,
-    "price": 5020,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i5-10400",
@@ -22,14 +317,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I5-10400",
     "ean": null,
-    "price": 3010,
-    "stock": 11,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i5-11400",
@@ -38,14 +331,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I5-11400",
     "ean": null,
-    "price": 3300,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i5-12400",
@@ -54,14 +345,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I5-12400",
     "ean": null,
-    "price": 2740,
-    "stock": 12,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i5-13400",
@@ -70,14 +359,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I5-13400",
     "ean": null,
-    "price": 4310,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i7-11700",
@@ -86,14 +373,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I7-11700",
     "ean": null,
-    "price": 5260,
-    "stock": 13,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i7-12700",
@@ -102,14 +387,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I7-12700",
     "ean": null,
-    "price": 2960,
-    "stock": 14,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i7-13700",
@@ -118,14 +401,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I7-13700",
     "ean": null,
-    "price": 5620,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i9-12900",
@@ -134,14 +415,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I9-12900",
     "ean": null,
-    "price": 3870,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-intel-core-i9-13900",
@@ -150,14 +429,12 @@
     "brand": "Intel",
     "mpn": "INTEL-CORE-I9-13900",
     "ean": null,
-    "price": 5220,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-amd-ryzen-3-3100",
@@ -166,14 +443,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-3-3100",
     "ean": null,
-    "price": 5110,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-amd-ryzen-5-3600",
@@ -182,14 +457,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-5-3600",
     "ean": null,
-    "price": 5960,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-amd-ryzen-5-5600",
@@ -198,14 +471,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-5-5600",
     "ean": null,
-    "price": 3290,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-amd-ryzen-5-7600",
@@ -214,14 +485,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-5-7600",
     "ean": null,
-    "price": 2260,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713658,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713658
   },
   {
     "sku": "cpu-amd-ryzen-7-3700x",
@@ -230,14 +499,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-7-3700X",
     "ean": null,
-    "price": 660,
-    "stock": 6,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713659
   },
   {
     "sku": "cpu-amd-ryzen-7-5800x",
@@ -246,14 +513,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-7-5800X",
     "ean": null,
-    "price": 3960,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713659
   },
   {
     "sku": "cpu-amd-ryzen-7-7700",
@@ -262,14 +527,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-7-7700",
     "ean": null,
-    "price": 500,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713659
   },
   {
     "sku": "cpu-amd-ryzen-9-5900x",
@@ -278,14 +541,12 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-9-5900X",
     "ean": null,
-    "price": 2830,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713659
   },
   {
     "sku": "cpu-amd-ryzen-9-7950x",
@@ -294,13 +555,11 @@
     "brand": "AMD",
     "mpn": "AMD-RYZEN-9-7950X",
     "ean": null,
-    "price": 4330,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364965656,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713659
   }
 ]

@@ -6,14 +6,12 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-550W-80-BRONZE",
     "ean": null,
-    "price": 1430,
-    "stock": 3,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-corsair-650w-80-gold",
@@ -22,14 +20,12 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-650W-80-GOLD",
     "ean": null,
-    "price": 1660,
-    "stock": 14,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-corsair-750w-80-gold",
@@ -38,14 +34,12 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-750W-80-GOLD",
     "ean": null,
-    "price": 1140,
-    "stock": 15,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-corsair-850w-80-gold",
@@ -54,14 +48,12 @@
     "brand": "Corsair",
     "mpn": "CORSAIR-850W-80-GOLD",
     "ean": null,
-    "price": 450,
-    "stock": 4,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-evga-600w-80-bronze",
@@ -70,14 +62,12 @@
     "brand": "EVGA",
     "mpn": "EVGA-600W-80-BRONZE",
     "ean": null,
-    "price": 910,
-    "stock": 1,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-evga-700w-80-gold",
@@ -86,14 +76,12 @@
     "brand": "EVGA",
     "mpn": "EVGA-700W-80-GOLD",
     "ean": null,
-    "price": 1930,
-    "stock": 2,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   },
   {
     "sku": "power-evga-850w-80-gold",
@@ -102,13 +90,11 @@
     "brand": "EVGA",
     "mpn": "EVGA-850W-80-GOLD",
     "ean": null,
-    "price": 1690,
-    "stock": 5,
+    "price": null,
+    "stock": null,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364965662,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767327713661
   }
 ]

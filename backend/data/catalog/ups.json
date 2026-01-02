@@ -9,9 +9,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "ups-sms-station-ii-1400va",
@@ -23,9 +22,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "ups-nobreak-ts-shara-1500va",
@@ -37,9 +35,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328613965,
+    "currency": "BRL"
   },
   {
     "sku": "ups-apc-back-ups-600va",
@@ -51,9 +48,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "ups-apc-smart-ups-1500va",
@@ -65,9 +61,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "ups-sms-station-ii-1200va",
@@ -79,9 +74,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "ups-sms-station-ii-1500va",
@@ -93,9 +87,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "ups-ts-shara-ups-1200va",
@@ -107,9 +100,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   },
   {
     "sku": "ups-ts-shara-ups-1500va",
@@ -121,8 +113,7 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767364965664,
-    "currency": "BRL",
-    "ready": true
+    "updatedAt": 1767328896389,
+    "currency": "BRL"
   }
 ]

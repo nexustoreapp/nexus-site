@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "id": "wear-apple-apple-watch-se",
+    "title": "Apple Watch SE",
+    "brand": "Apple",
+    "category": "Wearables",
+    "type": "Smartwatch",
+    "variants": [
+      {
+        "size": "40mm"
+      },
+      {
+        "size": "44mm"
+      }
+    ]
+  },
+  {
+    "id": "wear-apple-apple-watch-series-9",
+    "title": "Apple Watch Series 9",
+    "brand": "Apple",
+    "category": "Wearables",
+    "type": "Smartwatch",
+    "variants": [
+      {
+        "size": "41mm"
+      },
+      {
+        "size": "45mm"
+      }
+    ]
+  },
+  {
+    "id": "wear-apple-apple-watch-ultra-2",
+    "title": "Apple Watch Ultra 2",
+    "brand": "Apple",
+    "category": "Wearables",
+    "type": "Smartwatch",
+    "variants": [
+      {
+        "size": "49mm"
+      }
+    ]
+  },
+  {
+    "id": "wear-samsung-galaxy-watch6",
+    "title": "Galaxy Watch6",
+    "brand": "Samsung",
+    "category": "Wearables",
+    "type": "Smartwatch",
+    "variants": [
+      {
+        "size": "40mm"
+      },
+      {
+        "size": "44mm"
+      }
+    ]
+  },
+  {
+    "id": "wear-samsung-galaxy-watch6-classic",
+    "title": "Galaxy Watch6 Classic",
+    "brand": "Samsung",
+    "category": "Wearables",
+    "type": "Smartwatch",
+    "variants": [
+      {
+        "size": "43mm"
+      },
+      {
+        "size": "47mm"
+      }
+    ]
+  },
+  {
+    "id": "wear-xiaomi-mi-band-8",
+    "title": "Mi Band 8",
+    "brand": "Xiaomi",
+    "category": "Wearables",
+    "type": "Fitness Band"
+  },
+  {
+    "id": "wear-garmin-forerunner-245",
+    "title": "Forerunner 245",
+    "brand": "Garmin",
+    "category": "Wearables",
+    "type": "Sports Watch"
+  },
+  {
+    "id": "wear-garmin-fenix-7",
+    "title": "Fenix 7",
+    "brand": "Garmin",
+    "category": "Wearables",
+    "type": "Sports Watch"
+  },
+  {
+    "id": "wear-meta-quest-3",
+    "title": "Quest 3",
+    "brand": "Meta",
+    "category": "Wearables",
+    "type": "VR Headset",
+    "variants": [
+      {
+        "storage": "128GB"
+      },
+      {
+        "storage": "512GB"
+      }
+    ]
+  }
+]

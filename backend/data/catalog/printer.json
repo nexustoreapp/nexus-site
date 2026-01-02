@@ -1,1 +1,95 @@
-[]
+[
+  {
+    "id": "printer-hp-laserjet-pro-m404dn",
+    "title": "LaserJet Pro M404dn",
+    "brand": "HP",
+    "category": "Printer",
+    "type": "Printer",
+    "printing": "Laser"
+  },
+  {
+    "id": "printer-hp-deskjet-2874",
+    "title": "DeskJet 2874",
+    "brand": "HP",
+    "category": "Printer",
+    "type": "Printer",
+    "printing": "Inkjet",
+    "wireless": true
+  },
+  {
+    "id": "printer-epson-ecotank-l4260",
+    "title": "EcoTank L4260",
+    "brand": "Epson",
+    "category": "Printer",
+    "type": "Printer",
+    "printing": "Ink Tank",
+    "wireless": true
+  },
+  {
+    "id": "printer-epson-ecotank-l5590",
+    "title": "EcoTank L5590",
+    "brand": "Epson",
+    "category": "Printer",
+    "type": "Multifunction",
+    "printing": "Ink Tank",
+    "wireless": true
+  },
+  {
+    "id": "printer-brother-dcp-l2540dw",
+    "title": "DCP-L2540DW",
+    "brand": "Brother",
+    "category": "Printer",
+    "type": "Multifunction",
+    "printing": "Laser",
+    "wireless": true
+  },
+  {
+    "id": "printer-canon-pixma-g3110",
+    "title": "PIXMA G3110",
+    "brand": "Canon",
+    "category": "Printer",
+    "type": "Multifunction",
+    "printing": "Ink Tank",
+    "wireless": true
+  },
+  {
+    "id": "printer-hp-toner-58a-cf258a",
+    "title": "Toner 58A (CF258A)",
+    "brand": "HP",
+    "category": "Printer",
+    "type": "Supply",
+    "supply_type": "Toner"
+  },
+  {
+    "id": "printer-brother-toner-tn-660",
+    "title": "Toner TN-660",
+    "brand": "Brother",
+    "category": "Printer",
+    "type": "Supply",
+    "supply_type": "Toner"
+  },
+  {
+    "id": "printer-epson-kit-tintas-504",
+    "title": "Kit Tintas 504",
+    "brand": "Epson",
+    "category": "Printer",
+    "type": "Supply",
+    "supply_type": "Ink"
+  },
+  {
+    "id": "printer-canon-kit-tintas-gi-190",
+    "title": "Kit Tintas GI-190",
+    "brand": "Canon",
+    "category": "Printer",
+    "type": "Supply",
+    "supply_type": "Ink"
+  },
+  {
+    "id": "printer-hp-papel-a4-500-folhas",
+    "title": "Papel A4 500 folhas",
+    "brand": "HP",
+    "category": "Printer",
+    "type": "Supply",
+    "supply_type": "Paper"
+  }
+]
