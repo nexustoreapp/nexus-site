@@ -1,58 +1,71 @@
 import fs from "fs";
 import path from "path";
 
-// ===== CONFIG =====
-const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 600);
+const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 500);
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
 function ensureDir(d){ if(!fs.existsSync(d)) fs.mkdirSync(d,{recursive:true}); }
 function readJson(p, fb=[]){ return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p,"utf-8")) : fb; }
 function writeJson(p, d){ fs.writeFileSync(p, JSON.stringify(d,null,2),"utf-8"); }
 function upsert(list, item){
-  const i = list.findIndex(x=>x.sku===item.sku);
-  if(i>=0) return false;
+  if(list.some(x=>x.sku===item.sku)) return false;
   list.push({...item,createdAt:Date.now(),updatedAt:Date.now()});
   return true;
 }
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
 
-// ===== SEED POR CATEGORIA (ALFABÉTICO) =====
-const CATEGORIES = {
-  "access-point": ["Ubiquiti UniFi U6 Lite","TP-Link EAP245","MikroTik cAP ac"],
-  "adapters": ["USB-C to HDMI Adapter","USB-C to Ethernet Adapter","DisplayPort to HDMI Adapter"],
-  "audio-interface": ["Focusrite Scarlett 2i2","Behringer UMC22","Presonus AudioBox USB"],
-  "capture-card": ["Elgato HD60 X","AverMedia Live Gamer Mini","Elgato Cam Link 4K"],
-  "desk": ["Gaming Desk 120cm","Office Desk 140cm","Standing Desk Adjustable"],
-  "docking-station": ["Dell WD19 Dock","HP USB-C Dock G5","Lenovo ThinkPad Dock"],
-  "firewall": ["Fortinet FortiGate 40F","Sophos XGS 87","Ubiquiti Dream Machine"],
-  "gaming-chair": ["Secretlab Titan Evo","DXRacer Formula","ThunderX3 BC3"],
-  "lighting": ["Elgato Key Light","Ring Light 18in","Godox LED Panel"],
-  "mini-pc": ["Intel NUC i5","Beelink SER5","Minisforum UM560"],
-  "monitor-arm": ["Elgato Wave Arm","NB North Bayou F80","HUANUO Dual Arm"],
-  "network-enterprise": ["Cisco CBS110 Switch","Ubiquiti UniFi Switch 24","MikroTik CRS326"],
-  "pc-gamer": ["PC Gamer RTX 4060","PC Gamer RTX 4070","PC Gamer RX 7700 XT"],
-  "pc-office": ["PC Office i5 SSD","PC Office Ryzen 5","PC Office Mini"],
-  "pdu": ["APC PDU Basic","Intelbras PDU Rack","Tripp Lite PDU"],
-  "rack": ["Rack 12U","Rack 24U","Wall Mount Rack 9U"],
-  "servers": ["Dell PowerEdge T40","HPE ProLiant MicroServer","Lenovo ThinkSystem ST50"],
-  "stabilizer": ["APC Line-R 1200VA","SMS Revolution 1000VA","TS Shara 1200VA"],
-  "ups": ["APC Back-UPS 1200VA","SMS Station II 1400VA","Nobreak TS Shara 1500VA"],
-  "usb-hub": ["Anker USB-C Hub","Baseus 7-in-1 Hub","Ugreen USB Hub"],
-  "webcam-pro": ["Logitech Brio 4K","Elgato Facecam","Razer Kiyo Pro"],
-  "workstation": ["Workstation Xeon","Workstation Ryzen 9","Workstation Threadripper"]
+const EXPANSION = {
+  "mini-pc": [
+    "Intel NUC i3","Intel NUC i5","Intel NUC i7",
+    "Beelink SER3","Beelink SER5","Beelink GTR",
+    "Minisforum UM350","Minisforum UM560","Minisforum HX90",
+    "ASUS PN50","ASUS PN64","ASUS PN80"
+  ],
+  "ups": [
+    "APC Back-UPS 600VA","APC Back-UPS 1200VA","APC Smart-UPS 1500VA",
+    "SMS Station II 1200VA","SMS Station II 1500VA",
+    "TS Shara UPS 1200VA","TS Shara UPS 1500VA"
+  ],
+  "servers": [
+    "Dell PowerEdge T40","Dell PowerEdge T150","Dell PowerEdge T350",
+    "HPE ProLiant MicroServer","HPE ProLiant ML30",
+    "Lenovo ThinkSystem ST50","Lenovo ThinkSystem ST250"
+  ],
+  "pc-gamer": [
+    "PC Gamer RTX 3060","PC Gamer RTX 4060","PC Gamer RTX 4070",
+    "PC Gamer RX 6700 XT","PC Gamer RX 7700 XT",
+    "PC Gamer Ryzen 5","PC Gamer Ryzen 7"
+  ],
+  "network-enterprise": [
+    "Ubiquiti UniFi Switch 8","Ubiquiti UniFi Switch 24",
+    "MikroTik CRS112","MikroTik CRS326",
+    "Cisco CBS110","Cisco CBS250"
+  ],
+  "gaming-chair": [
+    "Secretlab Titan Evo","DXRacer Formula","DXRacer Air",
+    "ThunderX3 BC3","Corsair TC100"
+  ],
+  "capture-card": [
+    "Elgato HD60","Elgato HD60 X","Elgato 4K60 Pro",
+    "AverMedia Live Gamer Mini","AverMedia Live Gamer 4K"
+  ],
+  "webcam-pro": [
+    "Logitech Brio 4K","Logitech C922","Elgato Facecam",
+    "Razer Kiyo","Razer Kiyo Pro"
+  ]
 };
 
 async function main(){
-  console.log("[SEED-ALPHA] Gerando categorias novas (A–Z)...");
+  console.log("[STEP-1] Expandindo categorias novas…");
   ensureDir(CATALOG_DIR);
 
   let total = 0;
 
-  for(const [category, items] of Object.entries(CATEGORIES)){
-    const filePath = path.join(CATALOG_DIR, `${category}.json`);
-    const list = readJson(filePath, []);
+  for(const [category, titles] of Object.entries(EXPANSION)){
+    const file = path.join(CATALOG_DIR, `${category}.json`);
+    const list = readJson(file, []);
 
-    for(const title of items){
+    for(const title of titles){
       if(total >= MAX_PRODUCTS) break;
 
       const sku = `${category}-${slug(title)}`;
@@ -64,20 +77,20 @@ async function main(){
         price: null,
         stock: null,
         image: "fallback.png",
-        source: "seed-complementar"
+        source: "seed-expansion"
       };
 
       if(upsert(list, item)) total++;
     }
 
-    writeJson(filePath, list);
+    writeJson(file, list);
     if(total >= MAX_PRODUCTS) break;
   }
 
-  console.log(`[SEED-ALPHA] Finalizado. Produtos adicionados=${total}`);
+  console.log(`[STEP-1] Finalizado. Produtos adicionados=${total}`);
 }
 
 main().catch(e=>{
-  console.error("[SEED-ALPHA] ERRO:", e.message);
+  console.error("[STEP-1] ERRO:", e.message);
   process.exit(1);
 });
