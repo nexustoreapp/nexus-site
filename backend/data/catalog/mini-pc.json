@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-beelink-ser5",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-minisforum-um560",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-intel-nuc-i3",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-intel-nuc-i7",
@@ -61,8 +65,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-beelink-ser3",
@@ -74,8 +79,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-beelink-gtr",
@@ -87,8 +93,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-minisforum-um350",
@@ -100,8 +107,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-minisforum-hx90",
@@ -113,8 +121,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-asus-pn50",
@@ -126,8 +135,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-asus-pn64",
@@ -139,8 +149,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "mini-pc-asus-pn80",
@@ -152,7 +163,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767328896388,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   }
 ]

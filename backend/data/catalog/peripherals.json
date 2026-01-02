@@ -1,258 +1,5 @@
 [
   {
-    "id": "peripheral-keyboard-logitech-g213",
-    "title": "Logitech G213",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 1690,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-logitech-g915",
-    "title": "Logitech G915",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 1050,
-    "currency": "BRL",
-    "stock": 13,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-corsair-k55",
-    "title": "Corsair K55",
-    "brand": "Corsair",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 440,
-    "currency": "BRL",
-    "stock": 2,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-corsair-k70",
-    "title": "Corsair K70",
-    "brand": "Corsair",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 540,
-    "currency": "BRL",
-    "stock": 9,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-hyperx-alloy-origins",
-    "title": "HyperX Alloy Origins",
-    "brand": "HyperX",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 1050,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-razer-huntsman-mini",
-    "title": "Razer Huntsman Mini",
-    "brand": "Razer",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 530,
-    "currency": "BRL",
-    "stock": 10,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-keyboard-redragon-kumara",
-    "title": "Redragon Kumara K552",
-    "brand": "Redragon",
-    "category": "Peripherals",
-    "type": "Keyboard",
-    "price": 630,
-    "currency": "BRL",
-    "stock": 9,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-logitech-g203",
-    "title": "Logitech G203",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 390,
-    "currency": "BRL",
-    "stock": 8,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-logitech-g502-hero",
-    "title": "Logitech G502 HERO",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 690,
-    "currency": "BRL",
-    "stock": 2,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-corsair-m55",
-    "title": "Corsair M55 RGB Pro",
-    "brand": "Corsair",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 630,
-    "currency": "BRL",
-    "stock": 3,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-hyperx-pulsefire-surge",
-    "title": "HyperX Pulsefire Surge",
-    "brand": "HyperX",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 230,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-razer-deathadder-v2",
-    "title": "Razer DeathAdder V2",
-    "brand": "Razer",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 1390,
-    "currency": "BRL",
-    "stock": 15,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-mouse-redragon-cobra",
-    "title": "Redragon Cobra M711",
-    "brand": "Redragon",
-    "category": "Peripherals",
-    "type": "Mouse",
-    "price": 720,
-    "currency": "BRL",
-    "stock": 13,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-logitech-g432",
-    "title": "Logitech G432",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 890,
-    "currency": "BRL",
-    "stock": 12,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-logitech-g733",
-    "title": "Logitech G733",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 1760,
-    "currency": "BRL",
-    "stock": 3,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-hyperx-cloud-stinger",
-    "title": "HyperX Cloud Stinger",
-    "brand": "HyperX",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 1730,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-hyperx-cloud-ii",
-    "title": "HyperX Cloud II",
-    "brand": "HyperX",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 1070,
-    "currency": "BRL",
-    "stock": 9,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-corsair-hs35",
-    "title": "Corsair HS35",
-    "brand": "Corsair",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 640,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-headset-razer-blackshark-v2",
-    "title": "Razer BlackShark V2",
-    "brand": "Razer",
-    "category": "Peripherals",
-    "type": "Headset",
-    "price": 180,
-    "currency": "BRL",
-    "stock": 13,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-controller-xbox-series",
-    "title": "Controle Xbox Series",
-    "brand": "Microsoft",
-    "category": "Peripherals",
-    "type": "Controller",
-    "price": 440,
-    "currency": "BRL",
-    "stock": 15,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-controller-dualsense",
-    "title": "Controle Sony DualSense",
-    "brand": "Sony",
-    "category": "Peripherals",
-    "type": "Controller",
-    "price": 1160,
-    "currency": "BRL",
-    "stock": 10,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-controller-dualshock-4",
-    "title": "Controle Sony DualShock 4",
-    "brand": "Sony",
-    "category": "Peripherals",
-    "type": "Controller",
-    "price": 480,
-    "currency": "BRL",
-    "stock": 25,
-    "updatedAt": 1767364284403
-  },
-  {
-    "id": "peripheral-controller-logitech-f310",
-    "title": "Logitech F310",
-    "brand": "Logitech",
-    "category": "Peripherals",
-    "type": "Controller",
-    "price": 670,
-    "currency": "BRL",
-    "stock": 10,
-    "updatedAt": 1767364284403
-  },
-  {
     "sku": "peripherals-logitech-mouse-g203",
     "title": "Logitech Mouse G203",
     "category": "peripherals",
@@ -264,8 +11,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-logitech-mouse-g305",
@@ -279,8 +27,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-logitech-teclado-g213",
@@ -294,8 +43,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-logitech-headset-g435",
@@ -309,8 +59,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-redragon-mouse-cobra",
@@ -324,8 +75,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-redragon-teclado-kumara",
@@ -339,8 +91,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-redragon-headset-zeus",
@@ -354,8 +107,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-redragon-mouse-m711",
@@ -369,8 +123,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-hyperx-headset-cloud-stinger",
@@ -384,8 +139,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-hyperx-headset-cloud-ii",
@@ -399,8 +155,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "peripherals-hyperx-teclado-alloy-core",
@@ -414,7 +171,8 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284403,
-    "currency": "BRL"
+    "updatedAt": 1767364965662,
+    "currency": "BRL",
+    "ready": true
   }
 ]

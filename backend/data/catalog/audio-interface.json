@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364284395,
-    "currency": "BRL"
+    "updatedAt": 1767364965654,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "audio-interface-behringer-umc22",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364284395,
-    "currency": "BRL"
+    "updatedAt": 1767364965654,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "audio-interface-presonus-audiobox-usb",
@@ -35,7 +37,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767364284395,
-    "currency": "BRL"
+    "updatedAt": 1767364965654,
+    "currency": "BRL",
+    "ready": true
   }
 ]

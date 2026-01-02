@@ -11,8 +11,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-aoc-24-144hz",
@@ -26,8 +27,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-aoc-27-144hz",
@@ -41,8 +43,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-aoc-27-165hz",
@@ -56,8 +59,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-lg-24-ips-75hz",
@@ -71,8 +75,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-lg-27-ips-144hz",
@@ -86,8 +91,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-lg-34-ultrawide-144hz",
@@ -101,8 +107,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-samsung-24-75hz",
@@ -116,8 +123,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-samsung-27-144hz",
@@ -131,8 +139,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-samsung-32-curvo-165hz",
@@ -146,7 +155,8 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767364284400,
-    "currency": "BRL"
+    "updatedAt": 1767364965659,
+    "currency": "BRL",
+    "ready": true
   }
 ]

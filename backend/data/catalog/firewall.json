@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965657,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "firewall-sophos-xgs-87",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965657,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "firewall-ubiquiti-dream-machine",
@@ -35,7 +37,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767364965657,
+    "currency": "BRL",
+    "ready": true
   }
 ]

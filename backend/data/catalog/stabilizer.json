@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767364965663,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "stabilizer-sms-revolution-1000va",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767364965663,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "stabilizer-ts-shara-1200va",
@@ -35,7 +37,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767364965663,
+    "currency": "BRL",
+    "ready": true
   }
 ]

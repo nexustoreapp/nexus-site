@@ -1,213 +1,5 @@
 [
   {
-    "id": "mb-asus-prime-h310m-e",
-    "title": "ASUS Prime H310M-E",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "LGA1151",
-    "chipset": "H310",
-    "memory_type": "DDR4",
-    "price": 680,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-gigabyte-b365m-ds3h",
-    "title": "Gigabyte B365M DS3H",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
-    "socket": "LGA1151",
-    "chipset": "B365",
-    "memory_type": "DDR4",
-    "price": 1200,
-    "currency": "BRL",
-    "stock": 3,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-tuf-b450m-plus",
-    "title": "ASUS TUF B450M-Plus Gaming",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "B450",
-    "memory_type": "DDR4",
-    "price": 480,
-    "currency": "BRL",
-    "stock": 13,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-msi-b450-tomahawk-max",
-    "title": "MSI B450 Tomahawk MAX",
-    "brand": "MSI",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "B450",
-    "memory_type": "DDR4",
-    "price": 1000,
-    "currency": "BRL",
-    "stock": 4,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-gigabyte-b550m-ds3h",
-    "title": "Gigabyte B550M DS3H",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "B550",
-    "memory_type": "DDR4",
-    "price": 1590,
-    "currency": "BRL",
-    "stock": 2,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-rog-strix-b550-f",
-    "title": "ASUS ROG Strix B550-F Gaming",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "B550",
-    "memory_type": "DDR4",
-    "price": 1850,
-    "currency": "BRL",
-    "stock": 13,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-prime-b660m-a",
-    "title": "ASUS Prime B660M-A",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "LGA1700",
-    "chipset": "B660",
-    "memory_type": "DDR4",
-    "price": 2000,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-gigabyte-b660m-aorus-pro",
-    "title": "Gigabyte B660M AORUS PRO",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
-    "socket": "LGA1700",
-    "chipset": "B660",
-    "memory_type": "DDR4",
-    "price": 270,
-    "currency": "BRL",
-    "stock": 3,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-msi-b760m-mortar",
-    "title": "MSI B760M Mortar",
-    "brand": "MSI",
-    "category": "Motherboard",
-    "socket": "LGA1700",
-    "chipset": "B760",
-    "memory_type": "DDR5",
-    "price": 1470,
-    "currency": "BRL",
-    "stock": 4,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-rog-strix-b760-f",
-    "title": "ASUS ROG Strix B760-F Gaming",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "LGA1700",
-    "chipset": "B760",
-    "memory_type": "DDR5",
-    "price": 1840,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-prime-x570-p",
-    "title": "ASUS Prime X570-P",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "X570",
-    "memory_type": "DDR4",
-    "price": 1250,
-    "currency": "BRL",
-    "stock": 12,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-gigabyte-x570-aorus-elite",
-    "title": "Gigabyte X570 AORUS Elite",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
-    "socket": "AM4",
-    "chipset": "X570",
-    "memory_type": "DDR4",
-    "price": 1310,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-tuf-b650-plus",
-    "title": "ASUS TUF Gaming B650-PLUS",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "AM5",
-    "chipset": "B650",
-    "memory_type": "DDR5",
-    "price": 810,
-    "currency": "BRL",
-    "stock": 2,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-gigabyte-b650-aorus-elite",
-    "title": "Gigabyte B650 AORUS Elite",
-    "brand": "Gigabyte",
-    "category": "Motherboard",
-    "socket": "AM5",
-    "chipset": "B650",
-    "memory_type": "DDR5",
-    "price": 1720,
-    "currency": "BRL",
-    "stock": 2,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-asus-rog-strix-x670e-e",
-    "title": "ASUS ROG Strix X670E-E Gaming",
-    "brand": "ASUS",
-    "category": "Motherboard",
-    "socket": "AM5",
-    "chipset": "X670E",
-    "memory_type": "DDR5",
-    "price": 1070,
-    "currency": "BRL",
-    "stock": 15,
-    "updatedAt": 1767364284401
-  },
-  {
-    "id": "mb-msi-meg-x670e-ace",
-    "title": "MSI MEG X670E ACE",
-    "brand": "MSI",
-    "category": "Motherboard",
-    "socket": "AM5",
-    "chipset": "X670E",
-    "memory_type": "DDR5",
-    "price": 560,
-    "currency": "BRL",
-    "stock": 12,
-    "updatedAt": 1767364284401
-  },
-  {
     "sku": "motherboard-asus-b450",
     "title": "ASUS B450",
     "category": "motherboard",
@@ -219,8 +11,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-asus-b550",
@@ -234,8 +27,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-asus-b660",
@@ -249,8 +43,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-asus-z690",
@@ -264,8 +59,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-msi-b450",
@@ -279,8 +75,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-msi-b550",
@@ -294,8 +91,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-msi-b660",
@@ -309,8 +107,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-msi-z790",
@@ -324,8 +123,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-gigabyte-b450",
@@ -339,8 +139,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-gigabyte-b550",
@@ -354,8 +155,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-gigabyte-b660",
@@ -369,8 +171,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "motherboard-gigabyte-z790",
@@ -384,7 +187,8 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767364284401,
-    "currency": "BRL"
+    "updatedAt": 1767364965660,
+    "currency": "BRL",
+    "ready": true
   }
 ]

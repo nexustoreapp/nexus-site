@@ -1,233 +1,5 @@
 [
   {
-    "id": "ssd-kingston-a400-sata",
-    "title": "SSD Kingston A400 SATA",
-    "brand": "Kingston",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "SATA",
-    "variants": [
-      {
-        "capacity": "120GB"
-      },
-      {
-        "capacity": "240GB"
-      },
-      {
-        "capacity": "480GB"
-      },
-      {
-        "capacity": "960GB"
-      }
-    ],
-    "price": 1690,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-kingston-nv2-nvme",
-    "title": "SSD Kingston NV2 NVMe",
-    "brand": "Kingston",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "NVMe",
-    "generation": "Gen4",
-    "variants": [
-      {
-        "capacity": "250GB"
-      },
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      },
-      {
-        "capacity": "2TB"
-      }
-    ],
-    "price": 860,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-crucial-bx500-sata",
-    "title": "SSD Crucial BX500 SATA",
-    "brand": "Crucial",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "SATA",
-    "variants": [
-      {
-        "capacity": "120GB"
-      },
-      {
-        "capacity": "240GB"
-      },
-      {
-        "capacity": "480GB"
-      },
-      {
-        "capacity": "1TB"
-      }
-    ],
-    "price": 170,
-    "currency": "BRL",
-    "stock": 9,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-wd-green-sata",
-    "title": "SSD WD Green SATA",
-    "brand": "Western Digital",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "SATA",
-    "variants": [
-      {
-        "capacity": "120GB"
-      },
-      {
-        "capacity": "240GB"
-      },
-      {
-        "capacity": "480GB"
-      }
-    ],
-    "price": 2270,
-    "currency": "BRL",
-    "stock": 1,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-wd-blue-sn570-nvme",
-    "title": "SSD WD Blue SN570 NVMe",
-    "brand": "Western Digital",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "NVMe",
-    "generation": "Gen3",
-    "variants": [
-      {
-        "capacity": "250GB"
-      },
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      }
-    ],
-    "price": 1750,
-    "currency": "BRL",
-    "stock": 21,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-samsung-970-evo-plus-nvme",
-    "title": "SSD Samsung 970 EVO Plus NVMe",
-    "brand": "Samsung",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "NVMe",
-    "generation": "Gen3",
-    "variants": [
-      {
-        "capacity": "250GB"
-      },
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      },
-      {
-        "capacity": "2TB"
-      }
-    ],
-    "price": 750,
-    "currency": "BRL",
-    "stock": 19,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "ssd-samsung-980-nvme",
-    "title": "SSD Samsung 980 NVMe",
-    "brand": "Samsung",
-    "category": "Storage",
-    "type": "SSD",
-    "interface": "NVMe",
-    "generation": "Gen3",
-    "variants": [
-      {
-        "capacity": "250GB"
-      },
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      }
-    ],
-    "price": 1960,
-    "currency": "BRL",
-    "stock": 6,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "hd-seagate-barracuda",
-    "title": "HD Seagate Barracuda",
-    "brand": "Seagate",
-    "category": "Storage",
-    "type": "HDD",
-    "interface": "SATA",
-    "rpm": 7200,
-    "variants": [
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      },
-      {
-        "capacity": "2TB"
-      },
-      {
-        "capacity": "4TB"
-      }
-    ],
-    "price": 2110,
-    "currency": "BRL",
-    "stock": 3,
-    "updatedAt": 1767364284405
-  },
-  {
-    "id": "hd-wd-blue",
-    "title": "HD WD Blue",
-    "brand": "Western Digital",
-    "category": "Storage",
-    "type": "HDD",
-    "interface": "SATA",
-    "rpm": 7200,
-    "variants": [
-      {
-        "capacity": "500GB"
-      },
-      {
-        "capacity": "1TB"
-      },
-      {
-        "capacity": "2TB"
-      }
-    ],
-    "price": 2350,
-    "currency": "BRL",
-    "stock": 5,
-    "updatedAt": 1767364284405
-  },
-  {
     "sku": "storage-samsung-ssd-500gb-sata",
     "title": "Samsung SSD 500GB SATA",
     "category": "storage",
@@ -239,8 +11,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-samsung-ssd-1tb-sata",
@@ -254,8 +27,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-samsung-ssd-1tb-nvme",
@@ -269,8 +43,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-samsung-ssd-2tb-nvme",
@@ -284,8 +59,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-wd-ssd-500gb-nvme",
@@ -299,8 +75,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-wd-ssd-1tb-nvme",
@@ -314,8 +91,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-wd-ssd-2tb-nvme",
@@ -329,8 +107,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-wd-hdd-1tb",
@@ -344,8 +123,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-wd-hdd-2tb",
@@ -359,8 +139,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-kingston-ssd-480gb",
@@ -374,8 +155,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-kingston-ssd-960gb",
@@ -389,8 +171,9 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "storage-kingston-ssd-1tb-nvme",
@@ -404,7 +187,8 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713659,
-    "updatedAt": 1767364284405,
-    "currency": "BRL"
+    "updatedAt": 1767364965664,
+    "currency": "BRL",
+    "ready": true
   }
 ]

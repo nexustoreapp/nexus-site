@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "capture-card-avermedia-live-gamer-mini",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "capture-card-elgato-cam-link-4k",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "capture-card-elgato-hd60",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "capture-card-elgato-4k60-pro",
@@ -61,8 +65,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "capture-card-avermedia-live-gamer-4k",
@@ -74,7 +79,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767364965655,
+    "currency": "BRL",
+    "ready": true
   }
 ]

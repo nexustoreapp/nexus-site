@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966,
-    "currency": "BRL"
+    "updatedAt": 1767364965665,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "workstation-workstation-ryzen-9",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966,
-    "currency": "BRL"
+    "updatedAt": 1767364965665,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "workstation-workstation-threadripper",
@@ -35,7 +37,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613966,
-    "updatedAt": 1767328613966,
-    "currency": "BRL"
+    "updatedAt": 1767364965665,
+    "currency": "BRL",
+    "ready": true
   }
 ]
