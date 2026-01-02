@@ -1,0 +1,27 @@
+name: FINALIZE CATALOG (B1+B2+B3)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run final catalog fixes
+        run: node worker/finalize-catalog-b.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "chore: finalize catalog (price fix + images + confidence)" || echo "No changes"
+          git push origin main
