@@ -118,5 +118,41 @@
     "category": "Camera",
     "type": "Lens",
     "mount": "Nikon F"
+  },
+  {
+    "sku": "camera-webcam-full-hd",
+    "title": "Webcam Full HD",
+    "category": "camera",
+    "price": 2686,
+    "stock": 6,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
+  },
+  {
+    "sku": "camera-webcam-4k",
+    "title": "Webcam 4K",
+    "category": "camera",
+    "price": 604,
+    "stock": 5,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
+  },
+  {
+    "sku": "camera-c-mera-de-seguran-a-wi-fi",
+    "title": "Câmera de Segurança Wi-Fi",
+    "category": "camera",
+    "price": 1488,
+    "stock": 13,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
   }
 ]

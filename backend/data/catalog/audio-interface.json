@@ -34,5 +34,17 @@
     "source": "seed-complementar",
     "createdAt": 1767328613963,
     "updatedAt": 1767328613963
+  },
+  {
+    "sku": "audio-interface-presonus-audiobox",
+    "title": "PreSonus AudioBox",
+    "category": "audio-interface",
+    "price": 1661,
+    "stock": 18,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
   }
 ]

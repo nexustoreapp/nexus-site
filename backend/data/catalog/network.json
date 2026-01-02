@@ -224,5 +224,29 @@
     "source": "seed-realista",
     "createdAt": 1767327713661,
     "updatedAt": 1767327713661
+  },
+  {
+    "sku": "network-roteador-wi-fi-6",
+    "title": "Roteador Wi-Fi 6",
+    "category": "network",
+    "price": 2814,
+    "stock": 6,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651846,
+    "updatedAt": 1767377651846
+  },
+  {
+    "sku": "network-switch-gigabit-8-portas",
+    "title": "Switch Gigabit 8 portas",
+    "category": "network",
+    "price": 237,
+    "stock": 16,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651846,
+    "updatedAt": 1767377651846
   }
 ]

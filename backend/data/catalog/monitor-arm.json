@@ -37,5 +37,17 @@
     "createdAt": 1767328613964,
     "updatedAt": 1767328613964,
     "currency": "BRL"
+  },
+  {
+    "sku": "monitor-arm-bra-o-articulado-para-monitor",
+    "title": "Braço Articulado para Monitor",
+    "category": "monitor-arm",
+    "price": 1106,
+    "stock": 6,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651846,
+    "updatedAt": 1767377651846
   }
 ]

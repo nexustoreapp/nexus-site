@@ -263,5 +263,101 @@
     "category": "Accessories",
     "type": "Car Charger",
     "wattage_w": 30
+  },
+  {
+    "sku": "accessories-cabo-usb-c-1m",
+    "title": "Cabo USB-C 1m",
+    "category": "accessories",
+    "price": 1869,
+    "stock": 12,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-cabo-usb-c-2m",
+    "title": "Cabo USB-C 2m",
+    "category": "accessories",
+    "price": 3335,
+    "stock": 9,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-cabo-hdmi-2-1",
+    "title": "Cabo HDMI 2.1",
+    "category": "accessories",
+    "price": 1510,
+    "stock": 7,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-adaptador-usb-c-para-hdmi",
+    "title": "Adaptador USB-C para HDMI",
+    "category": "accessories",
+    "price": 3387,
+    "stock": 1,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-hub-usb-3-0",
+    "title": "Hub USB 3.0",
+    "category": "accessories",
+    "price": 2930,
+    "stock": 6,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-hub-usb-c-7-em-1",
+    "title": "Hub USB-C 7 em 1",
+    "category": "accessories",
+    "price": 2837,
+    "stock": 8,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-leitor-de-cart-o-sd",
+    "title": "Leitor de Cartão SD",
+    "category": "accessories",
+    "price": 508,
+    "stock": 1,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "accessories-adaptador-bluetooth-usb",
+    "title": "Adaptador Bluetooth USB",
+    "category": "accessories",
+    "price": 330,
+    "stock": 10,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
   }
 ]

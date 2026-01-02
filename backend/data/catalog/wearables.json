@@ -106,5 +106,29 @@
         "storage": "512GB"
       }
     ]
+  },
+  {
+    "sku": "wearables-smartwatch",
+    "title": "Smartwatch",
+    "category": "wearables",
+    "price": 1454,
+    "stock": 12,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651849,
+    "updatedAt": 1767377651849
+  },
+  {
+    "sku": "wearables-pulseira-fitness",
+    "title": "Pulseira Fitness",
+    "category": "wearables",
+    "price": 1912,
+    "stock": 12,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651849,
+    "updatedAt": 1767377651849
   }
 ]

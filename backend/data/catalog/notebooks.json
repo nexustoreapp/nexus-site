@@ -23,7 +23,6 @@
     "processor_family": "Apple M2",
     "screen_size": "14\""
   },
-
   {
     "id": "notebook-dell-inspiron-15-3511",
     "title": "Dell Inspiron 15 3511",
@@ -56,7 +55,6 @@
     "processor_family": "Intel Core",
     "screen_size": "15.6\""
   },
-
   {
     "id": "notebook-lenovo-ideapad-3",
     "title": "Lenovo IdeaPad 3",
@@ -81,7 +79,6 @@
     "processor_family": "Intel Core / AMD Ryzen",
     "screen_size": "15.6\""
   },
-
   {
     "id": "notebook-acer-aspire-5",
     "title": "Acer Aspire 5",
@@ -106,7 +103,6 @@
     "processor_family": "Intel Core",
     "screen_size": "15.6\""
   },
-
   {
     "id": "notebook-asus-vivobook-15",
     "title": "ASUS VivoBook 15",
@@ -131,7 +127,6 @@
     "processor_family": "AMD Ryzen",
     "screen_size": "15.6\""
   },
-
   {
     "id": "notebook-hp-250-g8",
     "title": "HP 250 G8",
@@ -156,7 +151,6 @@
     "processor_family": "Intel Core / AMD Ryzen",
     "screen_size": "16.1\""
   },
-
   {
     "id": "notebook-samsung-book",
     "title": "Samsung Book",
@@ -180,5 +174,29 @@
     "category": "Notebook",
     "processor_family": "Intel Core",
     "screen_size": "15.6\""
+  },
+  {
+    "sku": "notebooks-notebook-i5-ssd",
+    "title": "Notebook i5 SSD",
+    "category": "notebooks",
+    "price": 3646,
+    "stock": 1,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651846,
+    "updatedAt": 1767377651846
+  },
+  {
+    "sku": "notebooks-notebook-ryzen-7",
+    "title": "Notebook Ryzen 7",
+    "category": "notebooks",
+    "price": 1440,
+    "stock": 8,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651846,
+    "updatedAt": 1767377651846
   }
 ]

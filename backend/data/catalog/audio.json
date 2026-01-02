@@ -160,5 +160,53 @@
     "category": "Audio",
     "type": "Microphone",
     "interface": "XLR"
+  },
+  {
+    "sku": "audio-caixa-de-som-bluetooth",
+    "title": "Caixa de Som Bluetooth",
+    "category": "audio",
+    "price": 449,
+    "stock": 3,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
+  },
+  {
+    "sku": "audio-soundbar-compacta",
+    "title": "Soundbar Compacta",
+    "category": "audio",
+    "price": 3121,
+    "stock": 3,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
+  },
+  {
+    "sku": "audio-headphone-over-ear",
+    "title": "Headphone Over-Ear",
+    "category": "audio",
+    "price": 1106,
+    "stock": 13,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
+  },
+  {
+    "sku": "audio-fone-in-ear",
+    "title": "Fone In-Ear",
+    "category": "audio",
+    "price": 367,
+    "stock": 7,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651843,
+    "updatedAt": 1767377651843
   }
 ]

@@ -358,5 +358,29 @@
     "source": "seed-realista",
     "createdAt": 1767327713659,
     "updatedAt": 1767327713659
+  },
+  {
+    "sku": "storage-ssd-1tb-nvme",
+    "title": "SSD 1TB NVMe",
+    "category": "storage",
+    "price": 2583,
+    "stock": 19,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
+  },
+  {
+    "sku": "storage-hd-2tb",
+    "title": "HD 2TB",
+    "category": "storage",
+    "price": 2724,
+    "stock": 11,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
   }
 ]

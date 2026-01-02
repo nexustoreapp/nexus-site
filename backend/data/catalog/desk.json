@@ -37,5 +37,29 @@
     "createdAt": 1767328613963,
     "updatedAt": 1767328613963,
     "currency": "BRL"
+  },
+  {
+    "sku": "desk-mesa-gamer-120cm",
+    "title": "Mesa Gamer 120cm",
+    "category": "desk",
+    "price": 1006,
+    "stock": 13,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651844,
+    "updatedAt": 1767377651844
+  },
+  {
+    "sku": "desk-mesa-escrit-rio-140cm",
+    "title": "Mesa Escritório 140cm",
+    "category": "desk",
+    "price": 3776,
+    "stock": 16,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651844,
+    "updatedAt": 1767377651844
   }
 ]

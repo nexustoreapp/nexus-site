@@ -150,5 +150,29 @@
         "storage": "128GB"
       }
     ]
+  },
+  {
+    "sku": "tv-smart-tv-50-4k",
+    "title": "Smart TV 50\" 4K",
+    "category": "tv",
+    "price": 2772,
+    "stock": 3,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
+  },
+  {
+    "sku": "tv-smart-tv-65-qled",
+    "title": "Smart TV 65\" QLED",
+    "category": "tv",
+    "price": 1683,
+    "stock": 11,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
   }
 ]

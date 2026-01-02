@@ -37,5 +37,17 @@
     "createdAt": 1767328613964,
     "updatedAt": 1767328613964,
     "currency": "BRL"
+  },
+  {
+    "sku": "lighting-painel-led-para-est-dio",
+    "title": "Painel LED para Estúdio",
+    "category": "lighting",
+    "price": 548,
+    "stock": 8,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651845,
+    "updatedAt": 1767377651845
   }
 ]

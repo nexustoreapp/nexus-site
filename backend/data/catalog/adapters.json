@@ -37,5 +37,41 @@
     "createdAt": 1767328613963,
     "updatedAt": 1767328613963,
     "currency": "BRL"
+  },
+  {
+    "sku": "adapters-adaptador-usb-a-para-usb-c",
+    "title": "Adaptador USB-A para USB-C",
+    "category": "adapters",
+    "price": 2444,
+    "stock": 12,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "adapters-adaptador-hdmi-para-vga",
+    "title": "Adaptador HDMI para VGA",
+    "category": "adapters",
+    "price": 1645,
+    "stock": 14,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
+  },
+  {
+    "sku": "adapters-adaptador-displayport-para-hdmi",
+    "title": "Adaptador DisplayPort para HDMI",
+    "category": "adapters",
+    "price": 2951,
+    "stock": 15,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651842,
+    "updatedAt": 1767377651842
   }
 ]

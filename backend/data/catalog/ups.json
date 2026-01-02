@@ -115,5 +115,29 @@
     "createdAt": 1767328896389,
     "updatedAt": 1767328896389,
     "currency": "BRL"
+  },
+  {
+    "sku": "ups-nobreak-1200va",
+    "title": "Nobreak 1200VA",
+    "category": "ups",
+    "price": 3891,
+    "stock": 16,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
+  },
+  {
+    "sku": "ups-nobreak-2200va",
+    "title": "Nobreak 2200VA",
+    "category": "ups",
+    "price": 3455,
+    "stock": 17,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651848,
+    "updatedAt": 1767377651848
   }
 ]

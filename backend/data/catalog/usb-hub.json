@@ -37,5 +37,29 @@
     "createdAt": 1767328613965,
     "updatedAt": 1767328613965,
     "currency": "BRL"
+  },
+  {
+    "sku": "usb-hub-hub-usb-c-6-em-1",
+    "title": "Hub USB-C 6 em 1",
+    "category": "usb-hub",
+    "price": 2916,
+    "stock": 5,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651849,
+    "updatedAt": 1767377651849
+  },
+  {
+    "sku": "usb-hub-hub-usb-4-portas",
+    "title": "Hub USB 4 portas",
+    "category": "usb-hub",
+    "price": 3217,
+    "stock": 12,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651849,
+    "updatedAt": 1767377651849
   }
 ]

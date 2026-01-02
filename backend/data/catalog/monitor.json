@@ -138,5 +138,29 @@
     "source": "seed-realista",
     "createdAt": 1767327713660,
     "updatedAt": 1767327713660
+  },
+  {
+    "sku": "monitor-monitor-24-144hz",
+    "title": "Monitor 24\" 144Hz",
+    "category": "monitor",
+    "price": 3384,
+    "stock": 15,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651845,
+    "updatedAt": 1767377651845
+  },
+  {
+    "sku": "monitor-monitor-27-165hz",
+    "title": "Monitor 27\" 165Hz",
+    "category": "monitor",
+    "price": 3886,
+    "stock": 17,
+    "currency": "BRL",
+    "ready": true,
+    "source": "seed-marketplace",
+    "createdAt": 1767377651845,
+    "updatedAt": 1767377651845
   }
 ]
