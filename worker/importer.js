@@ -14,7 +14,7 @@ if (!ICECAT_USER || !ICECAT_PASS) {
   throw new Error("ICECAT_USER ou ICECAT_PASS não definidos");
 }
 
-// ===== filtros (nicho Kabum/ML tech) =====
+// ===== filtros (nicho eletrônicos / Kabum-like) =====
 const TECH_WORDS = [
   "graphics","video","gpu","processor","cpu","memory","ram",
   "ssd","hdd","storage","motherboard","monitor","display",
@@ -22,7 +22,8 @@ const TECH_WORDS = [
   "laptop","notebook","desktop","router","switch","network"
 ];
 
-const BRANDS = [
+// marcas conhecidas (usadas só quando existir brand)
+const KNOWN_BRANDS = [
   "nvidia","amd","intel","asus","msi","gigabyte","asrock",
   "corsair","kingston","crucial","samsung","seagate","wd",
   "logitech","razer","hyperx","steelseries","redragon",
@@ -31,10 +32,10 @@ const BRANDS = [
 
 const norm = s => String(s || "").toLowerCase();
 const hasTech = s => TECH_WORDS.some(w => norm(s).includes(w));
-const hasBrand = b => BRANDS.includes(norm(b));
+const isKnownBrand = b => KNOWN_BRANDS.includes(norm(b));
 
-function detectCategory(t) {
-  t = norm(t);
+function detectCategory(text) {
+  const t = norm(text);
   if (t.includes("rtx") || t.includes("gtx") || t.includes("radeon")) return "gpu";
   if (t.includes("cpu") || t.includes("processor") || t.includes("ryzen")) return "cpu";
   if (t.includes("ram") || t.includes("ddr")) return "ram";
@@ -42,36 +43,45 @@ function detectCategory(t) {
   if (t.includes("motherboard")) return "motherboard";
   if (t.includes("monitor") || t.includes("display")) return "monitor";
   if (t.includes("psu") || t.includes("power supply")) return "power";
-  if (t.includes("router") || t.includes("switch")) return "network";
+  if (t.includes("router") || t.includes("switch") || t.includes("network")) return "network";
   if (t.includes("keyboard") || t.includes("mouse") || t.includes("headset")) return "peripherals";
   return null;
 }
 
-function readJson(p, fb=[]) {
-  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p,"utf-8")) : fb;
+function readJson(p, fallback = []) {
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf-8")) : fallback;
 }
-function writeJson(p, d) {
-  fs.writeFileSync(p, JSON.stringify(d,null,2));
+
+function writeJson(p, data) {
+  fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf-8");
 }
+
 function ensureDir(d) {
-  if (!fs.existsSync(d)) fs.mkdirSync(d,{recursive:true});
+  if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
 }
 
-function upsert(list, item){
-  const i = list.findIndex(x => x.sku === item.sku);
-  if (i >= 0){ list[i] = {...list[i], ...item}; return false; }
-  list.push(item); return true;
+function upsert(list, item) {
+  const idx = list.findIndex(x => x.sku === item.sku);
+  if (idx >= 0) {
+    list[idx] = { ...list[idx], ...item, updatedAt: Date.now() };
+    return false;
+  }
+  list.push({ ...item, createdAt: Date.now(), updatedAt: Date.now() });
+  return true;
 }
 
-async function main(){
-  console.log("[IMPORTER] Iniciando import ICECAT (stream tolerante)…");
+async function main() {
+  console.log("[IMPORTER] Iniciando import ICECAT (stream tolerante)...");
   ensureDir(CATALOG_DIR);
 
   const auth = Buffer.from(`${ICECAT_USER}:${ICECAT_PASS}`).toString("base64");
   const res = await fetch(FEED_URL, {
     headers: { Authorization: `Basic ${auth}` }
   });
-  if (!res.ok) throw new Error(`ICECAT ${res.status}`);
+
+  if (!res.ok) {
+    throw new Error(`ICECAT ${res.status}`);
+  }
 
   let added = 0;
   let processed = 0;
@@ -91,22 +101,29 @@ async function main(){
     const brand = row.Brand || row.Supplier || "";
     const catName = row.CatName || "";
 
+    // mantém SOMENTE nicho técnico
     if (!hasTech(title) && !hasTech(catName)) continue;
-    if (!hasBrand(brand)) continue;
 
-    const cat = detectCategory(title + " " + catName);
-    if (!cat) continue;
+    const category = detectCategory(`${title} ${catName}`);
+    if (!category) continue;
 
+    // 🔥 REGRA NOVA:
+    // - se NÃO tiver marca → aceita
+    // - se TIVER marca → aceita qualquer marca (não bloqueia mais)
+    // (marca será refinada depois)
     const mpn = row.Prod_ID || row.MPN || "";
     const ean = row.EAN || row.UPC || "";
-    const sku = `${cat}-${(mpn || ean || title).slice(0,80)}`
-      .replace(/[^a-zA-Z0-9\-_]/g,"-");
+
+    const skuBase = (mpn || ean || title).slice(0, 80);
+    const sku = `${category}-${skuBase}`
+      .replace(/[^a-zA-Z0-9\-_]/g, "-")
+      .toLowerCase();
 
     const item = {
       sku,
       title,
-      category: cat,
-      brand,
+      category,
+      brand: brand || "generic",
       mpn,
       ean,
       price: null,
@@ -115,10 +132,10 @@ async function main(){
       source: "icecat"
     };
 
-    const file = path.join(CATALOG_DIR, `${cat}.json`);
-    const list = readJson(file, []);
+    const filePath = path.join(CATALOG_DIR, `${category}.json`);
+    const list = readJson(filePath, []);
     if (upsert(list, item)) {
-      writeJson(file, list);
+      writeJson(filePath, list);
       added++;
     }
 
@@ -131,7 +148,7 @@ async function main(){
   console.log(`[IMPORTER] Finalizado. Adicionados=${added}`);
 }
 
-main().catch(e => {
-  console.error("[IMPORTER] ERRO:", e.message);
+main().catch(err => {
+  console.error("[IMPORTER] ERRO:", err.message);
   process.exit(1);
 });
