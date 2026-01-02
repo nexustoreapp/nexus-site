@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-ubiquiti-unifi-switch-24",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-mikrotik-crs326",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-ubiquiti-unifi-switch-8",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-mikrotik-crs112",
@@ -61,8 +65,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-cisco-cbs110",
@@ -74,8 +79,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "network-enterprise-cisco-cbs250",
@@ -87,7 +93,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   }
 ]

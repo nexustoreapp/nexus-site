@@ -1,167 +1,5 @@
 [
   {
-    "id": "audio-sony-wh-1000xm5",
-    "title": "WH-1000XM5",
-    "brand": "Sony",
-    "category": "Audio",
-    "type": "Headphone",
-    "form_factor": "Over-ear",
-    "wireless": true,
-    "noise_cancelling": true
-  },
-  {
-    "id": "audio-sony-wf-1000xm5",
-    "title": "WF-1000XM5",
-    "brand": "Sony",
-    "category": "Audio",
-    "type": "Earbuds",
-    "wireless": true,
-    "noise_cancelling": true
-  },
-  {
-    "id": "audio-apple-airpods-pro-2-gera-o",
-    "title": "AirPods Pro (2ª geração)",
-    "brand": "Apple",
-    "category": "Audio",
-    "type": "Earbuds",
-    "wireless": true,
-    "noise_cancelling": true
-  },
-  {
-    "id": "audio-apple-airpods-3-gera-o",
-    "title": "AirPods (3ª geração)",
-    "brand": "Apple",
-    "category": "Audio",
-    "type": "Earbuds",
-    "wireless": true
-  },
-  {
-    "id": "audio-jbl-tune-510bt",
-    "title": "Tune 510BT",
-    "brand": "JBL",
-    "category": "Audio",
-    "type": "Headphone",
-    "form_factor": "On-ear",
-    "wireless": true
-  },
-  {
-    "id": "audio-jbl-wave-buds",
-    "title": "Wave Buds",
-    "brand": "JBL",
-    "category": "Audio",
-    "type": "Earbuds",
-    "wireless": true
-  },
-  {
-    "id": "audio-hyperx-cloud-ii",
-    "title": "Cloud II",
-    "brand": "HyperX",
-    "category": "Audio",
-    "type": "Headset",
-    "interface": "P2/USB"
-  },
-  {
-    "id": "audio-logitech-g-pro-x",
-    "title": "G Pro X",
-    "brand": "Logitech",
-    "category": "Audio",
-    "type": "Headset",
-    "interface": "USB"
-  },
-  {
-    "id": "audio-razer-blackshark-v2",
-    "title": "BlackShark V2",
-    "brand": "Razer",
-    "category": "Audio",
-    "type": "Headset",
-    "interface": "P2/USB"
-  },
-  {
-    "id": "audio-jbl-flip-6",
-    "title": "Flip 6",
-    "brand": "JBL",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": true,
-    "water_resistance": "IP67"
-  },
-  {
-    "id": "audio-jbl-charge-5",
-    "title": "Charge 5",
-    "brand": "JBL",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": true,
-    "water_resistance": "IP67"
-  },
-  {
-    "id": "audio-sony-srs-xb33",
-    "title": "SRS-XB33",
-    "brand": "Sony",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": true
-  },
-  {
-    "id": "audio-bose-soundlink-flex",
-    "title": "SoundLink Flex",
-    "brand": "Bose",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": true,
-    "water_resistance": "IP67"
-  },
-  {
-    "id": "audio-edifier-r1280t",
-    "title": "R1280T",
-    "brand": "Edifier",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": false,
-    "channels": "2.0"
-  },
-  {
-    "id": "audio-logitech-z313",
-    "title": "Z313",
-    "brand": "Logitech",
-    "category": "Audio",
-    "type": "Speaker",
-    "wireless": false,
-    "channels": "2.1"
-  },
-  {
-    "id": "audio-blue-yeti",
-    "title": "Yeti",
-    "brand": "Blue",
-    "category": "Audio",
-    "type": "Microphone",
-    "interface": "USB"
-  },
-  {
-    "id": "audio-hyperx-quadcast-s",
-    "title": "QuadCast S",
-    "brand": "HyperX",
-    "category": "Audio",
-    "type": "Microphone",
-    "interface": "USB"
-  },
-  {
-    "id": "audio-fifine-k669b",
-    "title": "K669B",
-    "brand": "Fifine",
-    "category": "Audio",
-    "type": "Microphone",
-    "interface": "USB"
-  },
-  {
-    "id": "audio-shure-sm7b",
-    "title": "SM7B",
-    "brand": "Shure",
-    "category": "Audio",
-    "type": "Microphone",
-    "interface": "XLR"
-  },
-  {
     "sku": "audio-caixa-de-som-bluetooth",
     "title": "Caixa de Som Bluetooth",
     "category": "audio",
@@ -171,7 +9,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   },
   {
     "sku": "audio-soundbar-compacta",
@@ -183,7 +21,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   },
   {
     "sku": "audio-headphone-over-ear",
@@ -195,7 +33,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   },
   {
     "sku": "audio-fone-in-ear",
@@ -207,6 +45,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   }
 ]

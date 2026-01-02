@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479230,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "desk-office-desk-140cm",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479230,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "desk-standing-desk-adjustable",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479230,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "desk-mesa-gamer-120cm",
@@ -48,7 +51,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651844,
-    "updatedAt": 1767377651844
+    "updatedAt": 1767378479230
   },
   {
     "sku": "desk-mesa-escrit-rio-140cm",
@@ -60,6 +63,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651844,
-    "updatedAt": 1767377651844
+    "updatedAt": 1767378479230
   }
 ]

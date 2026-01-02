@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479228,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "adapters-usb-c-to-ethernet-adapter",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479228,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "adapters-displayport-to-hdmi-adapter",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767328613963,
-    "currency": "BRL"
+    "updatedAt": 1767378479228,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "adapters-adaptador-usb-a-para-usb-c",
@@ -48,7 +51,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "adapters-adaptador-hdmi-para-vga",
@@ -60,7 +63,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "adapters-adaptador-displayport-para-hdmi",
@@ -72,6 +75,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   }
 ]

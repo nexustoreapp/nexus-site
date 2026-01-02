@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479231,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "lighting-ring-light-18in",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479231,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "lighting-godox-led-panel",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479231,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "lighting-painel-led-para-est-dio",
@@ -48,6 +51,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651845,
-    "updatedAt": 1767377651845
+    "updatedAt": 1767378479231
   }
 ]

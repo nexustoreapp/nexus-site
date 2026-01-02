@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "usb-hub-baseus-7-in-1-hub",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "usb-hub-ugreen-usb-hub",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "usb-hub-hub-usb-c-6-em-1",
@@ -48,7 +51,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651849,
-    "updatedAt": 1767377651849
+    "updatedAt": 1767378479234
   },
   {
     "sku": "usb-hub-hub-usb-4-portas",
@@ -60,6 +63,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651849,
-    "updatedAt": 1767377651849
+    "updatedAt": 1767378479234
   }
 ]

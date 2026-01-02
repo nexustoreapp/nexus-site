@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-hpe-proliant-microserver",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-lenovo-thinksystem-st50",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-dell-poweredge-t150",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-dell-poweredge-t350",
@@ -61,8 +65,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-hpe-proliant-ml30",
@@ -74,8 +79,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "servers-lenovo-thinksystem-st250",
@@ -87,7 +93,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479234,
+    "currency": "BRL",
+    "ready": true
   }
 ]

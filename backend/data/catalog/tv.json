@@ -1,157 +1,5 @@
 [
   {
-    "id": "tv-samsung-smart-tv-crystal-uhd",
-    "title": "Smart TV Crystal UHD",
-    "brand": "Samsung",
-    "category": "TV",
-    "type": "TV",
-    "panel": "LED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "50\""
-      },
-      {
-        "size": "55\""
-      },
-      {
-        "size": "65\""
-      }
-    ]
-  },
-  {
-    "id": "tv-lg-smart-tv-uhd",
-    "title": "Smart TV UHD",
-    "brand": "LG",
-    "category": "TV",
-    "type": "TV",
-    "panel": "LED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "50\""
-      },
-      {
-        "size": "55\""
-      },
-      {
-        "size": "65\""
-      }
-    ]
-  },
-  {
-    "id": "tv-lg-oled-evo-c3",
-    "title": "OLED evo C3",
-    "brand": "LG",
-    "category": "TV",
-    "type": "TV",
-    "panel": "OLED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "48\""
-      },
-      {
-        "size": "55\""
-      },
-      {
-        "size": "65\""
-      }
-    ]
-  },
-  {
-    "id": "tv-samsung-neo-qled",
-    "title": "Neo QLED",
-    "brand": "Samsung",
-    "category": "TV",
-    "type": "TV",
-    "panel": "Mini-LED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "55\""
-      },
-      {
-        "size": "65\""
-      },
-      {
-        "size": "75\""
-      }
-    ]
-  },
-  {
-    "id": "tv-tcl-qled-4k",
-    "title": "QLED 4K",
-    "brand": "TCL",
-    "category": "TV",
-    "type": "TV",
-    "panel": "QLED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "50\""
-      },
-      {
-        "size": "55\""
-      },
-      {
-        "size": "65\""
-      }
-    ]
-  },
-  {
-    "id": "tv-philips-ambilight-4k",
-    "title": "Ambilight 4K",
-    "brand": "Philips",
-    "category": "TV",
-    "type": "TV",
-    "panel": "LED",
-    "resolution": "4K",
-    "variants": [
-      {
-        "size": "50\""
-      },
-      {
-        "size": "58\""
-      },
-      {
-        "size": "70\""
-      }
-    ]
-  },
-  {
-    "id": "tv-amazon-fire-tv-stick-4k",
-    "title": "Fire TV Stick 4K",
-    "brand": "Amazon",
-    "category": "TV",
-    "type": "Streaming",
-    "resolution": "4K"
-  },
-  {
-    "id": "tv-google-chromecast-com-google-tv",
-    "title": "Chromecast com Google TV",
-    "brand": "Google",
-    "category": "TV",
-    "type": "Streaming",
-    "resolution": "4K"
-  },
-  {
-    "id": "tv-apple-apple-tv-4k",
-    "title": "Apple TV 4K",
-    "brand": "Apple",
-    "category": "TV",
-    "type": "Streaming",
-    "resolution": "4K",
-    "variants": [
-      {
-        "storage": "64GB"
-      },
-      {
-        "storage": "128GB"
-      }
-    ]
-  },
-  {
     "sku": "tv-smart-tv-50-4k",
     "title": "Smart TV 50\" 4K",
     "category": "tv",
@@ -161,7 +9,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767377651848
+    "updatedAt": 1767378479234
   },
   {
     "sku": "tv-smart-tv-65-qled",
@@ -173,6 +21,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651848,
-    "updatedAt": 1767377651848
+    "updatedAt": 1767378479234
   }
 ]

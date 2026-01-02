@@ -6,12 +6,13 @@
     "brand": "AOC",
     "mpn": "AOC-24-75HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-aoc-24-144hz",
@@ -20,12 +21,13 @@
     "brand": "AOC",
     "mpn": "AOC-24-144HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-aoc-27-144hz",
@@ -34,12 +36,13 @@
     "brand": "AOC",
     "mpn": "AOC-27-144HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-aoc-27-165hz",
@@ -48,12 +51,13 @@
     "brand": "AOC",
     "mpn": "AOC-27-165HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-lg-24-ips-75hz",
@@ -62,12 +66,13 @@
     "brand": "LG",
     "mpn": "LG-24-IPS-75HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 2,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-lg-27-ips-144hz",
@@ -76,12 +81,13 @@
     "brand": "LG",
     "mpn": "LG-27-IPS-144HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 5,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-lg-34-ultrawide-144hz",
@@ -90,12 +96,13 @@
     "brand": "LG",
     "mpn": "LG-34-ULTRAWIDE-144HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 1,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-samsung-24-75hz",
@@ -104,12 +111,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-24-75HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 20,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-samsung-27-144hz",
@@ -118,12 +126,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-27-144HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 3,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-samsung-32-curvo-165hz",
@@ -132,12 +141,13 @@
     "brand": "Samsung",
     "mpn": "SAMSUNG-32-CURVO-165HZ",
     "ean": null,
-    "price": null,
-    "stock": null,
+    "price": 0,
+    "stock": 4,
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767327713660
+    "updatedAt": 1767378479232,
+    "ready": true
   },
   {
     "sku": "monitor-monitor-24-144hz",
@@ -149,7 +159,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651845,
-    "updatedAt": 1767377651845
+    "updatedAt": 1767378479232
   },
   {
     "sku": "monitor-monitor-27-165hz",
@@ -161,6 +171,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651845,
-    "updatedAt": 1767377651845
+    "updatedAt": 1767378479232
   }
 ]

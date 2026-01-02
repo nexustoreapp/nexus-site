@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-arm-nb-north-bayou-f80",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-arm-huanuo-dual-arm",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767328613964,
-    "currency": "BRL"
+    "updatedAt": 1767378479232,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "monitor-arm-bra-o-articulado-para-monitor",
@@ -48,6 +51,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651846,
-    "updatedAt": 1767377651846
+    "updatedAt": 1767378479232
   }
 ]

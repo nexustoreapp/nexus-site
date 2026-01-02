@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-4070",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-7700-xt",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-3060",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-6700-xt",
@@ -61,8 +65,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-5",
@@ -74,8 +79,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-7",
@@ -87,7 +93,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767328896389,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   }
 ]

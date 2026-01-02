@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479235,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "webcam-pro-elgato-facecam",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479235,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "webcam-pro-razer-kiyo-pro",
@@ -35,8 +37,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479235,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "webcam-pro-logitech-c922",
@@ -48,8 +51,9 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767378479235,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "webcam-pro-razer-kiyo",
@@ -61,7 +65,8 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767328896390,
-    "currency": "BRL"
+    "updatedAt": 1767378479235,
+    "currency": "BRL",
+    "ready": true
   }
 ]

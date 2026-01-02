@@ -1,270 +1,5 @@
 [
   {
-    "id": "acc-anker-cabo-usb-c-1m",
-    "title": "Cabo USB-C 1m",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Cable",
-    "connector": "USB-C"
-  },
-  {
-    "id": "acc-anker-cabo-usb-c-para-lightning-1m",
-    "title": "Cabo USB-C para Lightning 1m",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Cable",
-    "connector": "USB-C to Lightning"
-  },
-  {
-    "id": "acc-ugreen-cabo-hdmi-2-1-2m",
-    "title": "Cabo HDMI 2.1 2m",
-    "brand": "UGREEN",
-    "category": "Accessories",
-    "type": "Cable",
-    "connector": "HDMI"
-  },
-  {
-    "id": "acc-baseus-cabo-usb-a-para-micro-usb-1m",
-    "title": "Cabo USB-A para Micro-USB 1m",
-    "brand": "Baseus",
-    "category": "Accessories",
-    "type": "Cable",
-    "connector": "USB-A to Micro-USB"
-  },
-  {
-    "id": "acc-vention-cabo-displayport-1-4-2m",
-    "title": "Cabo DisplayPort 1.4 2m",
-    "brand": "Vention",
-    "category": "Accessories",
-    "type": "Cable",
-    "connector": "DisplayPort"
-  },
-  {
-    "id": "acc-apple-adaptador-usb-c-para-usb-a",
-    "title": "Adaptador USB-C para USB-A",
-    "brand": "Apple",
-    "category": "Accessories",
-    "type": "Adapter",
-    "connector": "USB-C to USB-A"
-  },
-  {
-    "id": "acc-samsung-carregador-25w-usb-c",
-    "title": "Carregador 25W USB-C",
-    "brand": "Samsung",
-    "category": "Accessories",
-    "type": "Charger",
-    "wattage_w": 25
-  },
-  {
-    "id": "acc-apple-carregador-20w-usb-c",
-    "title": "Carregador 20W USB-C",
-    "brand": "Apple",
-    "category": "Accessories",
-    "type": "Charger",
-    "wattage_w": 20
-  },
-  {
-    "id": "acc-xiaomi-carregador-33w-usb-a-usb-c",
-    "title": "Carregador 33W USB-A/USB-C",
-    "brand": "Xiaomi",
-    "category": "Accessories",
-    "type": "Charger",
-    "wattage_w": 33
-  },
-  {
-    "id": "acc-anker-hub-usb-c-7-em-1",
-    "title": "Hub USB-C 7 em 1",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Hub",
-    "ports": "HDMI/USB-A/SD/PD"
-  },
-  {
-    "id": "acc-ugreen-adaptador-usb-c-para-hdmi",
-    "title": "Adaptador USB-C para HDMI",
-    "brand": "UGREEN",
-    "category": "Accessories",
-    "type": "Adapter",
-    "connector": "USB-C to HDMI"
-  },
-  {
-    "id": "acc-tp-link-adaptador-usb-wi-fi-ac1300",
-    "title": "Adaptador USB Wi‑Fi AC1300",
-    "brand": "TP-Link",
-    "category": "Accessories",
-    "type": "Adapter",
-    "wireless_standard": "Wi‑Fi 5"
-  },
-  {
-    "id": "acc-tp-link-adaptador-usb-wi-fi-ax1800",
-    "title": "Adaptador USB Wi‑Fi AX1800",
-    "brand": "TP-Link",
-    "category": "Accessories",
-    "type": "Adapter",
-    "wireless_standard": "Wi‑Fi 6"
-  },
-  {
-    "id": "acc-anker-power-bank-10-000mah",
-    "title": "Power Bank 10.000mAh",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Power Bank",
-    "capacity_mah": 10000
-  },
-  {
-    "id": "acc-anker-power-bank-20-000mah",
-    "title": "Power Bank 20.000mAh",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Power Bank",
-    "capacity_mah": 20000
-  },
-  {
-    "id": "acc-baseus-power-bank-20-000mah-65w",
-    "title": "Power Bank 20.000mAh 65W",
-    "brand": "Baseus",
-    "category": "Accessories",
-    "type": "Power Bank",
-    "capacity_mah": 20000
-  },
-  {
-    "id": "acc-xiaomi-power-bank-10-000mah",
-    "title": "Power Bank 10.000mAh",
-    "brand": "Xiaomi",
-    "category": "Accessories",
-    "type": "Power Bank",
-    "capacity_mah": 10000
-  },
-  {
-    "id": "acc-samsung-power-bank-10-000mah",
-    "title": "Power Bank 10.000mAh",
-    "brand": "Samsung",
-    "category": "Accessories",
-    "type": "Power Bank",
-    "capacity_mah": 10000
-  },
-  {
-    "id": "acc-sandisk-leitor-de-cart-o-sd-microsd-usb-3-0",
-    "title": "Leitor de Cartão SD/MicroSD USB 3.0",
-    "brand": "SanDisk",
-    "category": "Accessories",
-    "type": "Card Reader",
-    "interface": "USB 3.0"
-  },
-  {
-    "id": "acc-kingston-leitor-de-cart-o-sd-microsd-usb-c",
-    "title": "Leitor de Cartão SD/MicroSD USB-C",
-    "brand": "Kingston",
-    "category": "Accessories",
-    "type": "Card Reader",
-    "interface": "USB-C"
-  },
-  {
-    "id": "acc-orico-case-ssd-nvme-m-2-usb-c",
-    "title": "Case SSD NVMe M.2 USB-C",
-    "brand": "Orico",
-    "category": "Accessories",
-    "type": "Enclosure",
-    "interface": "USB-C",
-    "drive_type": "M.2 NVMe"
-  },
-  {
-    "id": "acc-orico-case-ssd-sata-2-5-usb-3-0",
-    "title": "Case SSD SATA 2.5\" USB 3.0",
-    "brand": "Orico",
-    "category": "Accessories",
-    "type": "Enclosure",
-    "interface": "USB 3.0",
-    "drive_type": "2.5\" SATA"
-  },
-  {
-    "id": "acc-spigen-capinha-rugged-armor-iphone",
-    "title": "Capinha Rugged Armor (iPhone)",
-    "brand": "Spigen",
-    "category": "Accessories",
-    "type": "Case",
-    "device": "iPhone",
-    "variants": [
-      {
-        "model": "iPhone 11"
-      },
-      {
-        "model": "iPhone 12"
-      },
-      {
-        "model": "iPhone 13"
-      },
-      {
-        "model": "iPhone 14"
-      },
-      {
-        "model": "iPhone 15"
-      }
-    ]
-  },
-  {
-    "id": "acc-spigen-pel-cula-de-vidro-iphone",
-    "title": "Película de Vidro (iPhone)",
-    "brand": "Spigen",
-    "category": "Accessories",
-    "type": "Screen Protector",
-    "device": "iPhone",
-    "variants": [
-      {
-        "model": "iPhone 11"
-      },
-      {
-        "model": "iPhone 12"
-      },
-      {
-        "model": "iPhone 13"
-      },
-      {
-        "model": "iPhone 14"
-      },
-      {
-        "model": "iPhone 15"
-      }
-    ]
-  },
-  {
-    "id": "acc-samsung-capa-silicone-galaxy",
-    "title": "Capa Silicone (Galaxy)",
-    "brand": "Samsung",
-    "category": "Accessories",
-    "type": "Case",
-    "device": "Galaxy",
-    "variants": [
-      {
-        "model": "Galaxy A14"
-      },
-      {
-        "model": "Galaxy A54"
-      },
-      {
-        "model": "Galaxy S22"
-      },
-      {
-        "model": "Galaxy S23"
-      }
-    ]
-  },
-  {
-    "id": "acc-baseus-suporte-veicular-magn-tico",
-    "title": "Suporte Veicular Magnético",
-    "brand": "Baseus",
-    "category": "Accessories",
-    "type": "Car Mount"
-  },
-  {
-    "id": "acc-anker-carregador-veicular-30w",
-    "title": "Carregador Veicular 30W",
-    "brand": "Anker",
-    "category": "Accessories",
-    "type": "Car Charger",
-    "wattage_w": 30
-  },
-  {
     "sku": "accessories-cabo-usb-c-1m",
     "title": "Cabo USB-C 1m",
     "category": "accessories",
@@ -274,7 +9,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-cabo-usb-c-2m",
@@ -286,7 +21,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-cabo-hdmi-2-1",
@@ -298,7 +33,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-adaptador-usb-c-para-hdmi",
@@ -310,7 +45,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-hub-usb-3-0",
@@ -322,7 +57,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-hub-usb-c-7-em-1",
@@ -334,7 +69,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-leitor-de-cart-o-sd",
@@ -346,7 +81,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   },
   {
     "sku": "accessories-adaptador-bluetooth-usb",
@@ -358,6 +93,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767377651842
+    "updatedAt": 1767378479228
   }
 ]

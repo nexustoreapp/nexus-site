@@ -1,125 +1,5 @@
 [
   {
-    "id": "cam-canon-eos-rebel-t7",
-    "title": "EOS Rebel T7",
-    "brand": "Canon",
-    "category": "Camera",
-    "type": "DSLR",
-    "sensor": "APS-C"
-  },
-  {
-    "id": "cam-canon-eos-r10",
-    "title": "EOS R10",
-    "brand": "Canon",
-    "category": "Camera",
-    "type": "Mirrorless",
-    "sensor": "APS-C"
-  },
-  {
-    "id": "cam-sony-alpha-a6400",
-    "title": "Alpha a6400",
-    "brand": "Sony",
-    "category": "Camera",
-    "type": "Mirrorless",
-    "sensor": "APS-C"
-  },
-  {
-    "id": "cam-sony-alpha-a7-iii",
-    "title": "Alpha a7 III",
-    "brand": "Sony",
-    "category": "Camera",
-    "type": "Mirrorless",
-    "sensor": "Full Frame"
-  },
-  {
-    "id": "cam-nikon-d3500",
-    "title": "D3500",
-    "brand": "Nikon",
-    "category": "Camera",
-    "type": "DSLR",
-    "sensor": "APS-C"
-  },
-  {
-    "id": "cam-fujifilm-x-t30-ii",
-    "title": "X-T30 II",
-    "brand": "Fujifilm",
-    "category": "Camera",
-    "type": "Mirrorless",
-    "sensor": "APS-C"
-  },
-  {
-    "id": "cam-gopro-hero12-black",
-    "title": "HERO12 Black",
-    "brand": "GoPro",
-    "category": "Camera",
-    "type": "Action Cam",
-    "resolution": "5.3K"
-  },
-  {
-    "id": "cam-dji-osmo-action-4",
-    "title": "Osmo Action 4",
-    "brand": "DJI",
-    "category": "Camera",
-    "type": "Action Cam",
-    "resolution": "4K"
-  },
-  {
-    "id": "cam-dji-osmo-pocket-3",
-    "title": "Osmo Pocket 3",
-    "brand": "DJI",
-    "category": "Camera",
-    "type": "Gimbal Cam",
-    "resolution": "4K"
-  },
-  {
-    "id": "cam-insta360-x3",
-    "title": "X3",
-    "brand": "Insta360",
-    "category": "Camera",
-    "type": "360 Camera",
-    "resolution": "5.7K"
-  },
-  {
-    "id": "cam-canon-ef-50mm-f-1-8-stm",
-    "title": "EF 50mm f/1.8 STM",
-    "brand": "Canon",
-    "category": "Camera",
-    "type": "Lens",
-    "mount": "Canon EF"
-  },
-  {
-    "id": "cam-canon-rf-24-105mm-f-4-7-1",
-    "title": "RF 24-105mm f/4-7.1",
-    "brand": "Canon",
-    "category": "Camera",
-    "type": "Lens",
-    "mount": "Canon RF"
-  },
-  {
-    "id": "cam-sony-e-35mm-f-1-8-oss",
-    "title": "E 35mm f/1.8 OSS",
-    "brand": "Sony",
-    "category": "Camera",
-    "type": "Lens",
-    "mount": "Sony E"
-  },
-  {
-    "id": "cam-sony-fe-50mm-f-1-8",
-    "title": "FE 50mm f/1.8",
-    "brand": "Sony",
-    "category": "Camera",
-    "type": "Lens",
-    "mount": "Sony FE"
-  },
-  {
-    "id": "cam-nikon-af-s-50mm-f-1-8g",
-    "title": "AF-S 50mm f/1.8G",
-    "brand": "Nikon",
-    "category": "Camera",
-    "type": "Lens",
-    "mount": "Nikon F"
-  },
-  {
     "sku": "camera-webcam-full-hd",
     "title": "Webcam Full HD",
     "category": "camera",
@@ -129,7 +9,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   },
   {
     "sku": "camera-webcam-4k",
@@ -141,7 +21,7 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   },
   {
     "sku": "camera-c-mera-de-seguran-a-wi-fi",
@@ -153,6 +33,6 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767377651843
+    "updatedAt": 1767378479229
   }
 ]

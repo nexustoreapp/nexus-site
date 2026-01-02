@@ -9,8 +9,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "rack-rack-24u",
@@ -22,8 +23,9 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   },
   {
     "sku": "rack-wall-mount-rack-9u",
@@ -35,7 +37,8 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767328613965,
-    "currency": "BRL"
+    "updatedAt": 1767378479233,
+    "currency": "BRL",
+    "ready": true
   }
 ]
