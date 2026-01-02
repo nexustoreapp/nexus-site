@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "network-enterprise-cisco-cbs110-switch",
+    "title": "Cisco CBS110 Switch",
+    "category": "network-enterprise",
+    "brand": "Cisco",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "network-enterprise-ubiquiti-unifi-switch-24",
+    "title": "Ubiquiti UniFi Switch 24",
+    "category": "network-enterprise",
+    "brand": "Ubiquiti",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "network-enterprise-mikrotik-crs326",
+    "title": "MikroTik CRS326",
+    "category": "network-enterprise",
+    "brand": "MikroTik",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  }
+]

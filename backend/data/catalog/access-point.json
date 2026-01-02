@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "access-point-ubiquiti-unifi-u6-lite",
+    "title": "Ubiquiti UniFi U6 Lite",
+    "category": "access-point",
+    "brand": "Ubiquiti",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613962,
+    "updatedAt": 1767328613962
+  },
+  {
+    "sku": "access-point-tp-link-eap245",
+    "title": "TP-Link EAP245",
+    "category": "access-point",
+    "brand": "TP-Link",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613962,
+    "updatedAt": 1767328613962
+  },
+  {
+    "sku": "access-point-mikrotik-cap-ac",
+    "title": "MikroTik cAP ac",
+    "category": "access-point",
+    "brand": "MikroTik",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613962,
+    "updatedAt": 1767328613962
+  }
+]

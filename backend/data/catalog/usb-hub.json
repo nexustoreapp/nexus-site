@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "usb-hub-anker-usb-c-hub",
+    "title": "Anker USB-C Hub",
+    "category": "usb-hub",
+    "brand": "Anker",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "usb-hub-baseus-7-in-1-hub",
+    "title": "Baseus 7-in-1 Hub",
+    "category": "usb-hub",
+    "brand": "Baseus",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "usb-hub-ugreen-usb-hub",
+    "title": "Ugreen USB Hub",
+    "category": "usb-hub",
+    "brand": "Ugreen",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

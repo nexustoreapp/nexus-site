@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "gaming-chair-secretlab-titan-evo",
+    "title": "Secretlab Titan Evo",
+    "category": "gaming-chair",
+    "brand": "Secretlab",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "gaming-chair-dxracer-formula",
+    "title": "DXRacer Formula",
+    "category": "gaming-chair",
+    "brand": "DXRacer",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "gaming-chair-thunderx3-bc3",
+    "title": "ThunderX3 BC3",
+    "category": "gaming-chair",
+    "brand": "ThunderX3",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  }
+]

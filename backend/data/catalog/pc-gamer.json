@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "pc-gamer-pc-gamer-rtx-4060",
+    "title": "PC Gamer RTX 4060",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-rtx-4070",
+    "title": "PC Gamer RTX 4070",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-rx-7700-xt",
+    "title": "PC Gamer RX 7700 XT",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

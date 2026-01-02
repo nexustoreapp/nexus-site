@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "webcam-pro-logitech-brio-4k",
+    "title": "Logitech Brio 4K",
+    "category": "webcam-pro",
+    "brand": "Logitech",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "webcam-pro-elgato-facecam",
+    "title": "Elgato Facecam",
+    "category": "webcam-pro",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "webcam-pro-razer-kiyo-pro",
+    "title": "Razer Kiyo Pro",
+    "category": "webcam-pro",
+    "brand": "Razer",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

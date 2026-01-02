@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "pc-office-pc-office-i5-ssd",
+    "title": "PC Office i5 SSD",
+    "category": "pc-office",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "pc-office-pc-office-ryzen-5",
+    "title": "PC Office Ryzen 5",
+    "category": "pc-office",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "pc-office-pc-office-mini",
+    "title": "PC Office Mini",
+    "category": "pc-office",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

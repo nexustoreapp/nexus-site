@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "rack-rack-12u",
+    "title": "Rack 12U",
+    "category": "rack",
+    "brand": "Rack",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "rack-rack-24u",
+    "title": "Rack 24U",
+    "category": "rack",
+    "brand": "Rack",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "rack-wall-mount-rack-9u",
+    "title": "Wall Mount Rack 9U",
+    "category": "rack",
+    "brand": "Wall",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "servers-dell-poweredge-t40",
+    "title": "Dell PowerEdge T40",
+    "category": "servers",
+    "brand": "Dell",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "servers-hpe-proliant-microserver",
+    "title": "HPE ProLiant MicroServer",
+    "category": "servers",
+    "brand": "HPE",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "servers-lenovo-thinksystem-st50",
+    "title": "Lenovo ThinkSystem ST50",
+    "category": "servers",
+    "brand": "Lenovo",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

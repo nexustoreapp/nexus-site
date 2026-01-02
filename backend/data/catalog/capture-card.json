@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "capture-card-elgato-hd60-x",
+    "title": "Elgato HD60 X",
+    "category": "capture-card",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "capture-card-avermedia-live-gamer-mini",
+    "title": "AverMedia Live Gamer Mini",
+    "category": "capture-card",
+    "brand": "AverMedia",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "capture-card-elgato-cam-link-4k",
+    "title": "Elgato Cam Link 4K",
+    "category": "capture-card",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "lighting-elgato-key-light",
+    "title": "Elgato Key Light",
+    "category": "lighting",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "lighting-ring-light-18in",
+    "title": "Ring Light 18in",
+    "category": "lighting",
+    "brand": "Ring",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "lighting-godox-led-panel",
+    "title": "Godox LED Panel",
+    "category": "lighting",
+    "brand": "Godox",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  }
+]

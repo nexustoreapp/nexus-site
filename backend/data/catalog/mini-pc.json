@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "mini-pc-intel-nuc-i5",
+    "title": "Intel NUC i5",
+    "category": "mini-pc",
+    "brand": "Intel",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "mini-pc-beelink-ser5",
+    "title": "Beelink SER5",
+    "category": "mini-pc",
+    "brand": "Beelink",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  },
+  {
+    "sku": "mini-pc-minisforum-um560",
+    "title": "Minisforum UM560",
+    "category": "mini-pc",
+    "brand": "Minisforum",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613964,
+    "updatedAt": 1767328613964
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "adapters-usb-c-to-hdmi-adapter",
+    "title": "USB-C to HDMI Adapter",
+    "category": "adapters",
+    "brand": "USB-C",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "adapters-usb-c-to-ethernet-adapter",
+    "title": "USB-C to Ethernet Adapter",
+    "category": "adapters",
+    "brand": "USB-C",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "adapters-displayport-to-hdmi-adapter",
+    "title": "DisplayPort to HDMI Adapter",
+    "category": "adapters",
+    "brand": "DisplayPort",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  }
+]

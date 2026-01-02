@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "ups-apc-back-ups-1200va",
+    "title": "APC Back-UPS 1200VA",
+    "category": "ups",
+    "brand": "APC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "ups-sms-station-ii-1400va",
+    "title": "SMS Station II 1400VA",
+    "category": "ups",
+    "brand": "SMS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "ups-nobreak-ts-shara-1500va",
+    "title": "Nobreak TS Shara 1500VA",
+    "category": "ups",
+    "brand": "Nobreak",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]

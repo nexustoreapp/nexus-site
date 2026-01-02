@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "audio-interface-focusrite-scarlett-2i2",
+    "title": "Focusrite Scarlett 2i2",
+    "category": "audio-interface",
+    "brand": "Focusrite",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "audio-interface-behringer-umc22",
+    "title": "Behringer UMC22",
+    "category": "audio-interface",
+    "brand": "Behringer",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  },
+  {
+    "sku": "audio-interface-presonus-audiobox-usb",
+    "title": "Presonus AudioBox USB",
+    "category": "audio-interface",
+    "brand": "Presonus",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613963,
+    "updatedAt": 1767328613963
+  }
+]

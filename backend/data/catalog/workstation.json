@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "workstation-workstation-xeon",
+    "title": "Workstation Xeon",
+    "category": "workstation",
+    "brand": "Workstation",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613966,
+    "updatedAt": 1767328613966
+  },
+  {
+    "sku": "workstation-workstation-ryzen-9",
+    "title": "Workstation Ryzen 9",
+    "category": "workstation",
+    "brand": "Workstation",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613966,
+    "updatedAt": 1767328613966
+  },
+  {
+    "sku": "workstation-workstation-threadripper",
+    "title": "Workstation Threadripper",
+    "category": "workstation",
+    "brand": "Workstation",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613966,
+    "updatedAt": 1767328613966
+  }
+]

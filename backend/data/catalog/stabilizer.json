@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "stabilizer-apc-line-r-1200va",
+    "title": "APC Line-R 1200VA",
+    "category": "stabilizer",
+    "brand": "APC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "stabilizer-sms-revolution-1000va",
+    "title": "SMS Revolution 1000VA",
+    "category": "stabilizer",
+    "brand": "SMS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  },
+  {
+    "sku": "stabilizer-ts-shara-1200va",
+    "title": "TS Shara 1200VA",
+    "category": "stabilizer",
+    "brand": "TS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-complementar",
+    "createdAt": 1767328613965,
+    "updatedAt": 1767328613965
+  }
+]
