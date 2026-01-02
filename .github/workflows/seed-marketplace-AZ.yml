@@ -1,0 +1,29 @@
+name: SEED MARKETPLACE A-Z (SAFE)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Seed marketplace (A-Z, append-only)
+        run: node worker/seed-marketplace-AZ.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "nexus-bot"
+          git config user.email "bot@nexus.local"
+          git add backend/data/catalog
+          git commit -m "chore: seed marketplace A-Z (append-only)" || echo "No changes"
+
+      - name: Push
+        run: git push origin main
