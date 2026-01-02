@@ -1,154 +1,108 @@
 import fs from "fs";
 import path from "path";
-import fetch from "node-fetch";
-import { parse } from "csv-parse";
 
-// ========= CONFIG =========
-const ICECAT_USER = process.env.ICECAT_USER;
-const ICECAT_PASS = process.env.ICECAT_PASS;
-const FEED_URL = "https://data.icecat.biz/export/freexml.int/INT/files.index.csv";
-const MAX_PRODUCTS = Math.min(Number(process.env.MAX_PRODUCTS || 1200), 5000);
+// ===== CONFIG =====
+const MAX_PRODUCTS = Number(process.env.MAX_PRODUCTS || 1200);
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
-if (!ICECAT_USER || !ICECAT_PASS) {
-  throw new Error("ICECAT_USER ou ICECAT_PASS não definidos");
+function ensureDir(d){ if(!fs.existsSync(d)) fs.mkdirSync(d,{recursive:true}); }
+function readJson(p, fb=[]){ return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p,"utf-8")) : fb; }
+function writeJson(p, d){ fs.writeFileSync(p, JSON.stringify(d,null,2),"utf-8"); }
+function upsert(list, item){
+  const i = list.findIndex(x=>x.sku===item.sku);
+  if(i>=0){ list[i]={...list[i],...item,updatedAt:Date.now()}; return false; }
+  list.push({...item,createdAt:Date.now(),updatedAt:Date.now()}); return true;
 }
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
 
-// ===== filtros (nicho eletrônicos / Kabum-like) =====
-const TECH_WORDS = [
-  "graphics","video","gpu","processor","cpu","memory","ram",
-  "ssd","hdd","storage","motherboard","monitor","display",
-  "keyboard","mouse","headset","microphone","power","psu",
-  "laptop","notebook","desktop","router","switch","network"
-];
+// ===== SEEDS REAIS =====
+const BRANDS = {
+  gpu: [
+    { brand:"NVIDIA", models:["RTX 3050","RTX 3060","RTX 3060 Ti","RTX 3070","RTX 3070 Ti","RTX 3080","RTX 3080 Ti","RTX 3090","RTX 3090 Ti","RTX 4060","RTX 4060 Ti","RTX 4070","RTX 4070 Ti","RTX 4080","RTX 4090"] },
+    { brand:"AMD", models:["RX 6600","RX 6650 XT","RX 6700 XT","RX 6750 XT","RX 6800","RX 6800 XT","RX 6900 XT","RX 6950 XT","RX 7600","RX 7700 XT","RX 7800 XT","RX 7900 XT","RX 7900 XTX"] }
+  ],
+  cpu: [
+    { brand:"Intel", models:["Core i3-10100","Core i5-10400","Core i5-11400","Core i5-12400","Core i5-13400","Core i7-11700","Core i7-12700","Core i7-13700","Core i9-12900","Core i9-13900"] },
+    { brand:"AMD", models:["Ryzen 3 3100","Ryzen 5 3600","Ryzen 5 5600","Ryzen 5 7600","Ryzen 7 3700X","Ryzen 7 5800X","Ryzen 7 7700","Ryzen 9 5900X","Ryzen 9 7950X"] }
+  ],
+  ram: [
+    { brand:"Kingston", models:["8GB DDR4 2666","16GB DDR4 3200","32GB DDR4 3200","16GB DDR5 5200","32GB DDR5 6000"] },
+    { brand:"Corsair", models:["8GB DDR4 3000","16GB DDR4 3600","32GB DDR4 3600","16GB DDR5 5600","32GB DDR5 6000"] }
+  ],
+  storage: [
+    { brand:"Samsung", models:["SSD 500GB SATA","SSD 1TB SATA","SSD 1TB NVMe","SSD 2TB NVMe"] },
+    { brand:"WD", models:["SSD 500GB NVMe","SSD 1TB NVMe","SSD 2TB NVMe","HDD 1TB","HDD 2TB"] },
+    { brand:"Kingston", models:["SSD 480GB","SSD 960GB","SSD 1TB NVMe"] }
+  ],
+  monitor: [
+    { brand:"AOC", models:["24\" 75Hz","24\" 144Hz","27\" 144Hz","27\" 165Hz"] },
+    { brand:"LG", models:["24\" IPS 75Hz","27\" IPS 144Hz","34\" Ultrawide 144Hz"] },
+    { brand:"Samsung", models:["24\" 75Hz","27\" 144Hz","32\" Curvo 165Hz"] }
+  ],
+  peripherals: [
+    { brand:"Logitech", models:["Mouse G203","Mouse G305","Teclado G213","Headset G435"] },
+    { brand:"Redragon", models:["Mouse Cobra","Teclado Kumara","Headset Zeus","Mouse M711"] },
+    { brand:"HyperX", models:["Headset Cloud Stinger","Headset Cloud II","Teclado Alloy Core"] }
+  ],
+  motherboard: [
+    { brand:"ASUS", models:["B450","B550","B660","Z690"] },
+    { brand:"MSI", models:["B450","B550","B660","Z790"] },
+    { brand:"Gigabyte", models:["B450","B550","B660","Z790"] }
+  ],
+  power: [
+    { brand:"Corsair", models:["550W 80+ Bronze","650W 80+ Gold","750W 80+ Gold","850W 80+ Gold"] },
+    { brand:"EVGA", models:["600W 80+ Bronze","700W 80+ Gold","850W 80+ Gold"] }
+  ],
+  network: [
+    { brand:"TP-Link", models:["Router AC1200","Router AX3000","Switch 8 portas","Switch 16 portas"] },
+    { brand:"D-Link", models:["Router AC750","Router AX1800","Switch 8 portas"] }
+  ]
+};
 
-// marcas conhecidas (usadas só quando existir brand)
-const KNOWN_BRANDS = [
-  "nvidia","amd","intel","asus","msi","gigabyte","asrock",
-  "corsair","kingston","crucial","samsung","seagate","wd",
-  "logitech","razer","hyperx","steelseries","redragon",
-  "aoc","lg","dell","acer","hp","lenovo","tp-link","d-link"
-];
-
-const norm = s => String(s || "").toLowerCase();
-const hasTech = s => TECH_WORDS.some(w => norm(s).includes(w));
-const isKnownBrand = b => KNOWN_BRANDS.includes(norm(b));
-
-function detectCategory(text) {
-  const t = norm(text);
-  if (t.includes("rtx") || t.includes("gtx") || t.includes("radeon")) return "gpu";
-  if (t.includes("cpu") || t.includes("processor") || t.includes("ryzen")) return "cpu";
-  if (t.includes("ram") || t.includes("ddr")) return "ram";
-  if (t.includes("ssd") || t.includes("nvme") || t.includes("hdd")) return "storage";
-  if (t.includes("motherboard")) return "motherboard";
-  if (t.includes("monitor") || t.includes("display")) return "monitor";
-  if (t.includes("psu") || t.includes("power supply")) return "power";
-  if (t.includes("router") || t.includes("switch") || t.includes("network")) return "network";
-  if (t.includes("keyboard") || t.includes("mouse") || t.includes("headset")) return "peripherals";
-  return null;
-}
-
-function readJson(p, fallback = []) {
-  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf-8")) : fallback;
-}
-
-function writeJson(p, data) {
-  fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf-8");
-}
-
-function ensureDir(d) {
-  if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
-}
-
-function upsert(list, item) {
-  const idx = list.findIndex(x => x.sku === item.sku);
-  if (idx >= 0) {
-    list[idx] = { ...list[idx], ...item, updatedAt: Date.now() };
-    return false;
-  }
-  list.push({ ...item, createdAt: Date.now(), updatedAt: Date.now() });
-  return true;
-}
-
-async function main() {
-  console.log("[IMPORTER] Iniciando import ICECAT (stream tolerante)...");
+// ===== GERADOR =====
+async function main(){
+  console.log("[SEED] Gerando catálogo realista…");
   ensureDir(CATALOG_DIR);
 
-  const auth = Buffer.from(`${ICECAT_USER}:${ICECAT_PASS}`).toString("base64");
-  const res = await fetch(FEED_URL, {
-    headers: { Authorization: `Basic ${auth}` }
-  });
+  let total = 0;
 
-  if (!res.ok) {
-    throw new Error(`ICECAT ${res.status}`);
-  }
-
-  let added = 0;
-  let processed = 0;
-
-  const parser = res.body.pipe(parse({
-    columns: true,
-    relax_column_count: true,
-    relax_quotes: true,
-    skip_records_with_error: true,
-    from_line: 2
-  }));
-
-  for await (const row of parser) {
-    if (added >= MAX_PRODUCTS) break;
-
-    const title = row.ProductName || row.Title || "";
-    const brand = row.Brand || row.Supplier || "";
-    const catName = row.CatName || "";
-
-    // mantém SOMENTE nicho técnico
-    if (!hasTech(title) && !hasTech(catName)) continue;
-
-    const category = detectCategory(`${title} ${catName}`);
-    if (!category) continue;
-
-    // 🔥 REGRA NOVA:
-    // - se NÃO tiver marca → aceita
-    // - se TIVER marca → aceita qualquer marca (não bloqueia mais)
-    // (marca será refinada depois)
-    const mpn = row.Prod_ID || row.MPN || "";
-    const ean = row.EAN || row.UPC || "";
-
-    const skuBase = (mpn || ean || title).slice(0, 80);
-    const sku = `${category}-${skuBase}`
-      .replace(/[^a-zA-Z0-9\-_]/g, "-")
-      .toLowerCase();
-
-    const item = {
-      sku,
-      title,
-      category,
-      brand: brand || "generic",
-      mpn,
-      ean,
-      price: null,
-      stock: null,
-      image: "fallback.png",
-      source: "icecat"
-    };
-
+  for(const [category, brands] of Object.entries(BRANDS)){
     const filePath = path.join(CATALOG_DIR, `${category}.json`);
     const list = readJson(filePath, []);
-    if (upsert(list, item)) {
-      writeJson(filePath, list);
-      added++;
+
+    for(const b of brands){
+      for(const m of b.models){
+        if(total >= MAX_PRODUCTS) break;
+
+        const title = `${b.brand} ${m}`;
+        const sku = `${category}-${slug(title)}`;
+
+        const item = {
+          sku,
+          title,
+          category,
+          brand: b.brand,
+          mpn: slug(title).toUpperCase(),
+          ean: null,
+          price: null,
+          stock: null,
+          image: "fallback.png",
+          source: "seed-realista"
+        };
+
+        if(upsert(list, item)) total++;
+      }
+      if(total >= MAX_PRODUCTS) break;
     }
 
-    processed++;
-    if (processed % 500 === 0) {
-      console.log(`[IMPORTER] Processados ${processed}, adicionados ${added}`);
-    }
+    writeJson(filePath, list);
+    if(total >= MAX_PRODUCTS) break;
   }
 
-  console.log(`[IMPORTER] Finalizado. Adicionados=${added}`);
+  console.log(`[SEED] Finalizado. Produtos gerados=${total}`);
 }
 
-main().catch(err => {
-  console.error("[IMPORTER] ERRO:", err.message);
+main().catch(e=>{
+  console.error("[SEED] ERRO:", e.message);
   process.exit(1);
 });
