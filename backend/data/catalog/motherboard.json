@@ -11,7 +11,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -26,7 +26,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -41,7 +41,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -56,7 +56,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -71,7 +71,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -86,7 +86,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -101,7 +101,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -116,7 +116,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -131,7 +131,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -146,7 +146,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -161,7 +161,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -176,7 +176,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482209,
     "ready": true
   },
   {
@@ -191,7 +191,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1850,
+    "nexusPriceBRL": 1740,
+    "pricesByPlan": {
+      "free": 1740,
+      "core": 1710,
+      "hype": 1690,
+      "omega": 1660
+    }
   },
   {
     "sku": "motherboard-asrock-a520-am5-motherboard",
@@ -205,7 +217,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1310,
+    "nexusPriceBRL": 1230,
+    "pricesByPlan": {
+      "free": 1230,
+      "core": 1210,
+      "hype": 1190,
+      "omega": 1170
+    }
   },
   {
     "sku": "motherboard-asrock-a520-lga1200-motherboard",
@@ -219,7 +243,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 850,
+    "nexusPriceBRL": 800,
+    "pricesByPlan": {
+      "free": 800,
+      "core": 790,
+      "hype": 780,
+      "omega": 760
+    }
   },
   {
     "sku": "motherboard-asrock-a520-lga1700-motherboard",
@@ -233,7 +269,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1630,
+    "nexusPriceBRL": 1530,
+    "pricesByPlan": {
+      "free": 1530,
+      "core": 1510,
+      "hype": 1480,
+      "omega": 1460
+    }
   },
   {
     "sku": "motherboard-asrock-b450-am4-motherboard",
@@ -247,7 +295,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "motherboard-asrock-b450-am5-motherboard",
@@ -261,7 +321,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 2590,
+    "nexusPriceBRL": 2430,
+    "pricesByPlan": {
+      "free": 2430,
+      "core": 2390,
+      "hype": 2360,
+      "omega": 2320
+    }
   },
   {
     "sku": "motherboard-asrock-b450-lga1200-motherboard",
@@ -275,7 +347,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 2230,
+    "nexusPriceBRL": 2100,
+    "pricesByPlan": {
+      "free": 2100,
+      "core": 2070,
+      "hype": 2040,
+      "omega": 2010
+    }
   },
   {
     "sku": "motherboard-asrock-b450-lga1700-motherboard",
@@ -289,7 +373,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 650,
+    "nexusPriceBRL": 610,
+    "pricesByPlan": {
+      "free": 610,
+      "core": 600,
+      "hype": 590,
+      "omega": 580
+    }
   },
   {
     "sku": "motherboard-asrock-b550-am4-motherboard",
@@ -303,7 +399,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 2890,
+    "nexusPriceBRL": 2720,
+    "pricesByPlan": {
+      "free": 2720,
+      "core": 2680,
+      "hype": 2640,
+      "omega": 2600
+    }
   },
   {
     "sku": "motherboard-asrock-b550-am5-motherboard",
@@ -317,7 +425,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1900,
+    "nexusPriceBRL": 1790,
+    "pricesByPlan": {
+      "free": 1790,
+      "core": 1760,
+      "hype": 1740,
+      "omega": 1710
+    }
   },
   {
     "sku": "motherboard-asrock-b550-lga1200-motherboard",
@@ -331,7 +451,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 850,
+    "nexusPriceBRL": 800,
+    "pricesByPlan": {
+      "free": 800,
+      "core": 790,
+      "hype": 780,
+      "omega": 760
+    }
   },
   {
     "sku": "motherboard-asrock-b550-lga1700-motherboard",
@@ -345,7 +477,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 2890,
+    "nexusPriceBRL": 2720,
+    "pricesByPlan": {
+      "free": 2720,
+      "core": 2680,
+      "hype": 2640,
+      "omega": 2600
+    }
   },
   {
     "sku": "motherboard-asrock-b660-am4-motherboard",
@@ -359,7 +503,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 88,
+    "marketPriceBRL": 2150,
+    "nexusPriceBRL": 2020,
+    "pricesByPlan": {
+      "free": 2020,
+      "core": 1990,
+      "hype": 1960,
+      "omega": 1930
+    }
   },
   {
     "sku": "motherboard-asrock-b660-am5-motherboard",
@@ -373,7 +529,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1610,
+    "nexusPriceBRL": 1510,
+    "pricesByPlan": {
+      "free": 1510,
+      "core": 1490,
+      "hype": 1460,
+      "omega": 1440
+    }
   },
   {
     "sku": "motherboard-asrock-b660-lga1200-motherboard",
@@ -387,7 +555,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 3180,
+    "nexusPriceBRL": 2990,
+    "pricesByPlan": {
+      "free": 2990,
+      "core": 2950,
+      "hype": 2900,
+      "omega": 2860
+    }
   },
   {
     "sku": "motherboard-asrock-b660-lga1700-motherboard",
@@ -401,7 +581,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1590,
+    "nexusPriceBRL": 1490,
+    "pricesByPlan": {
+      "free": 1490,
+      "core": 1470,
+      "hype": 1450,
+      "omega": 1420
+    }
   },
   {
     "sku": "motherboard-asrock-x570-am4-motherboard",
@@ -415,7 +607,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 2300,
+    "nexusPriceBRL": 2160,
+    "pricesByPlan": {
+      "free": 2160,
+      "core": 2130,
+      "hype": 2100,
+      "omega": 2060
+    }
   },
   {
     "sku": "motherboard-asrock-x570-am5-motherboard",
@@ -429,7 +633,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 2840,
+    "nexusPriceBRL": 2670,
+    "pricesByPlan": {
+      "free": 2670,
+      "core": 2630,
+      "hype": 2590,
+      "omega": 2550
+    }
   },
   {
     "sku": "motherboard-asrock-x570-lga1200-motherboard",
@@ -443,7 +659,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1860,
+    "nexusPriceBRL": 1750,
+    "pricesByPlan": {
+      "free": 1750,
+      "core": 1720,
+      "hype": 1700,
+      "omega": 1670
+    }
   },
   {
     "sku": "motherboard-asrock-x570-lga1700-motherboard",
@@ -457,7 +685,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 3330,
+    "nexusPriceBRL": 3130,
+    "pricesByPlan": {
+      "free": 3130,
+      "core": 3080,
+      "hype": 3040,
+      "omega": 2990
+    }
   },
   {
     "sku": "motherboard-asrock-z690-am4-motherboard",
@@ -471,7 +711,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1480,
+    "nexusPriceBRL": 1390,
+    "pricesByPlan": {
+      "free": 1390,
+      "core": 1370,
+      "hype": 1350,
+      "omega": 1330
+    }
   },
   {
     "sku": "motherboard-asrock-z690-am5-motherboard",
@@ -485,7 +737,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 940,
+    "nexusPriceBRL": 880,
+    "pricesByPlan": {
+      "free": 880,
+      "core": 870,
+      "hype": 850,
+      "omega": 840
+    }
   },
   {
     "sku": "motherboard-asrock-z690-lga1200-motherboard",
@@ -499,7 +763,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 86,
+    "marketPriceBRL": 2210,
+    "nexusPriceBRL": 2080,
+    "pricesByPlan": {
+      "free": 2080,
+      "core": 2050,
+      "hype": 2020,
+      "omega": 1990
+    }
   },
   {
     "sku": "motherboard-asrock-z690-lga1700-motherboard",
@@ -513,7 +789,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1530,
+    "nexusPriceBRL": 1440,
+    "pricesByPlan": {
+      "free": 1440,
+      "core": 1420,
+      "hype": 1400,
+      "omega": 1380
+    }
   },
   {
     "sku": "motherboard-asrock-z790-am4-motherboard",
@@ -527,7 +815,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 3300,
+    "nexusPriceBRL": 3100,
+    "pricesByPlan": {
+      "free": 3100,
+      "core": 3050,
+      "hype": 3010,
+      "omega": 2960
+    }
   },
   {
     "sku": "motherboard-asrock-z790-am5-motherboard",
@@ -541,7 +841,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 790,
+    "nexusPriceBRL": 740,
+    "pricesByPlan": {
+      "free": 740,
+      "core": 730,
+      "hype": 720,
+      "omega": 710
+    }
   },
   {
     "sku": "motherboard-asrock-z790-lga1200-motherboard",
@@ -555,7 +867,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 3010,
+    "nexusPriceBRL": 2830,
+    "pricesByPlan": {
+      "free": 2830,
+      "core": 2790,
+      "hype": 2750,
+      "omega": 2700
+    }
   },
   {
     "sku": "motherboard-asrock-z790-lga1700-motherboard",
@@ -569,7 +893,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1550,
+    "nexusPriceBRL": 1460,
+    "pricesByPlan": {
+      "free": 1460,
+      "core": 1440,
+      "hype": 1420,
+      "omega": 1390
+    }
   },
   {
     "sku": "motherboard-asus-a520-am4-motherboard",
@@ -583,7 +919,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1540,
+    "nexusPriceBRL": 1450,
+    "pricesByPlan": {
+      "free": 1450,
+      "core": 1430,
+      "hype": 1410,
+      "omega": 1380
+    }
   },
   {
     "sku": "motherboard-asus-a520-am5-motherboard",
@@ -597,7 +945,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1000,
+    "nexusPriceBRL": 940,
+    "pricesByPlan": {
+      "free": 940,
+      "core": 930,
+      "hype": 910,
+      "omega": 900
+    }
   },
   {
     "sku": "motherboard-asus-a520-lga1200-motherboard",
@@ -611,7 +971,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 950,
+    "nexusPriceBRL": 890,
+    "pricesByPlan": {
+      "free": 890,
+      "core": 880,
+      "hype": 860,
+      "omega": 850
+    }
   },
   {
     "sku": "motherboard-asus-a520-lga1700-motherboard",
@@ -625,7 +997,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 79,
+    "marketPriceBRL": 2410,
+    "nexusPriceBRL": 2270,
+    "pricesByPlan": {
+      "free": 2270,
+      "core": 2240,
+      "hype": 2200,
+      "omega": 2170
+    }
   },
   {
     "sku": "motherboard-asus-b450-am4-motherboard",
@@ -639,7 +1023,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 2360,
+    "nexusPriceBRL": 2220,
+    "pricesByPlan": {
+      "free": 2220,
+      "core": 2190,
+      "hype": 2150,
+      "omega": 2120
+    }
   },
   {
     "sku": "motherboard-asus-b450-am5-motherboard",
@@ -653,7 +1049,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 78,
+    "marketPriceBRL": 2430,
+    "nexusPriceBRL": 2280,
+    "pricesByPlan": {
+      "free": 2280,
+      "core": 2250,
+      "hype": 2210,
+      "omega": 2180
+    }
   },
   {
     "sku": "motherboard-asus-b450-lga1200-motherboard",
@@ -667,7 +1075,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 3000,
+    "nexusPriceBRL": 2820,
+    "pricesByPlan": {
+      "free": 2820,
+      "core": 2780,
+      "hype": 2740,
+      "omega": 2690
+    }
   },
   {
     "sku": "motherboard-asus-b450-lga1700-motherboard",
@@ -681,7 +1101,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1530,
+    "nexusPriceBRL": 1440,
+    "pricesByPlan": {
+      "free": 1440,
+      "core": 1420,
+      "hype": 1400,
+      "omega": 1380
+    }
   },
   {
     "sku": "motherboard-asus-b550-am4-motherboard",
@@ -695,7 +1127,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 2130,
+    "nexusPriceBRL": 2000,
+    "pricesByPlan": {
+      "free": 2000,
+      "core": 1970,
+      "hype": 1940,
+      "omega": 1910
+    }
   },
   {
     "sku": "motherboard-asus-b550-am5-motherboard",
@@ -709,7 +1153,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1590,
+    "nexusPriceBRL": 1490,
+    "pricesByPlan": {
+      "free": 1490,
+      "core": 1470,
+      "hype": 1450,
+      "omega": 1420
+    }
   },
   {
     "sku": "motherboard-asus-b550-lga1200-motherboard",
@@ -723,7 +1179,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 59,
+    "marketPriceBRL": 3200,
+    "nexusPriceBRL": 3010,
+    "pricesByPlan": {
+      "free": 3010,
+      "core": 2960,
+      "hype": 2920,
+      "omega": 2870
+    }
   },
   {
     "sku": "motherboard-asus-b550-lga1700-motherboard",
@@ -737,7 +1205,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 2340,
+    "nexusPriceBRL": 2200,
+    "pricesByPlan": {
+      "free": 2200,
+      "core": 2170,
+      "hype": 2130,
+      "omega": 2100
+    }
   },
   {
     "sku": "motherboard-asus-b660-am4-motherboard",
@@ -751,7 +1231,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 90,
+    "marketPriceBRL": 2110,
+    "nexusPriceBRL": 1980,
+    "pricesByPlan": {
+      "free": 1980,
+      "core": 1950,
+      "hype": 1920,
+      "omega": 1890
+    }
   },
   {
     "sku": "motherboard-asus-b660-am5-motherboard",
@@ -765,7 +1257,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 2650,
+    "nexusPriceBRL": 2490,
+    "pricesByPlan": {
+      "free": 2490,
+      "core": 2450,
+      "hype": 2420,
+      "omega": 2380
+    }
   },
   {
     "sku": "motherboard-asus-b660-lga1200-motherboard",
@@ -779,7 +1283,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "motherboard-asus-b660-lga1700-motherboard",
@@ -793,7 +1309,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 580,
+    "nexusPriceBRL": 550,
+    "pricesByPlan": {
+      "free": 550,
+      "core": 540,
+      "hype": 530,
+      "omega": 530
+    }
   },
   {
     "sku": "motherboard-asus-x570-am4-motherboard",
@@ -807,7 +1335,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 2600,
+    "nexusPriceBRL": 2440,
+    "pricesByPlan": {
+      "free": 2440,
+      "core": 2400,
+      "hype": 2370,
+      "omega": 2330
+    }
   },
   {
     "sku": "motherboard-asus-x570-am5-motherboard",
@@ -821,7 +1361,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 3140,
+    "nexusPriceBRL": 2950,
+    "pricesByPlan": {
+      "free": 2950,
+      "core": 2910,
+      "hype": 2860,
+      "omega": 2820
+    }
   },
   {
     "sku": "motherboard-asus-x570-lga1200-motherboard",
@@ -835,7 +1387,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 3360,
+    "nexusPriceBRL": 3160,
+    "pricesByPlan": {
+      "free": 3160,
+      "core": 3110,
+      "hype": 3070,
+      "omega": 3020
+    }
   },
   {
     "sku": "motherboard-asus-x570-lga1700-motherboard",
@@ -849,7 +1413,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1900,
+    "nexusPriceBRL": 1790,
+    "pricesByPlan": {
+      "free": 1790,
+      "core": 1760,
+      "hype": 1740,
+      "omega": 1710
+    }
   },
   {
     "sku": "motherboard-asus-z690-am4-motherboard",
@@ -863,7 +1439,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 2770,
+    "nexusPriceBRL": 2600,
+    "pricesByPlan": {
+      "free": 2600,
+      "core": 2560,
+      "hype": 2520,
+      "omega": 2480
+    }
   },
   {
     "sku": "motherboard-asus-z690-am5-motherboard",
@@ -877,7 +1465,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 3310,
+    "nexusPriceBRL": 3110,
+    "pricesByPlan": {
+      "free": 3110,
+      "core": 3060,
+      "hype": 3020,
+      "omega": 2970
+    }
   },
   {
     "sku": "motherboard-asus-z690-lga1200-motherboard",
@@ -891,7 +1491,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1840,
+    "nexusPriceBRL": 1730,
+    "pricesByPlan": {
+      "free": 1730,
+      "core": 1700,
+      "hype": 1680,
+      "omega": 1650
+    }
   },
   {
     "sku": "motherboard-asus-z690-lga1700-motherboard",
@@ -905,7 +1517,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 650,
+    "nexusPriceBRL": 610,
+    "pricesByPlan": {
+      "free": 610,
+      "core": 600,
+      "hype": 590,
+      "omega": 580
+    }
   },
   {
     "sku": "motherboard-asus-z790-am4-motherboard",
@@ -919,7 +1543,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 560,
+    "nexusPriceBRL": 530,
+    "pricesByPlan": {
+      "free": 530,
+      "core": 520,
+      "hype": 510,
+      "omega": 510
+    }
   },
   {
     "sku": "motherboard-asus-z790-am5-motherboard",
@@ -933,7 +1569,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1100,
+    "nexusPriceBRL": 1030,
+    "pricesByPlan": {
+      "free": 1030,
+      "core": 1010,
+      "hype": 1000,
+      "omega": 980
+    }
   },
   {
     "sku": "motherboard-asus-z790-lga1200-motherboard",
@@ -947,7 +1595,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1030,
+    "nexusPriceBRL": 970,
+    "pricesByPlan": {
+      "free": 970,
+      "core": 960,
+      "hype": 940,
+      "omega": 930
+    }
   },
   {
     "sku": "motherboard-asus-z790-lga1700-motherboard",
@@ -961,7 +1621,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 2500,
+    "nexusPriceBRL": 2350,
+    "pricesByPlan": {
+      "free": 2350,
+      "core": 2310,
+      "hype": 2280,
+      "omega": 2240
+    }
   },
   {
     "sku": "motherboard-gigabyte-a520-am4-motherboard",
@@ -975,7 +1647,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 610,
+    "nexusPriceBRL": 570,
+    "pricesByPlan": {
+      "free": 570,
+      "core": 560,
+      "hype": 550,
+      "omega": 540
+    }
   },
   {
     "sku": "motherboard-gigabyte-a520-am5-motherboard",
@@ -989,7 +1673,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1150,
+    "nexusPriceBRL": 1080,
+    "pricesByPlan": {
+      "free": 1080,
+      "core": 1060,
+      "hype": 1050,
+      "omega": 1030
+    }
   },
   {
     "sku": "motherboard-gigabyte-a520-lga1200-motherboard",
@@ -1003,7 +1699,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1260,
+    "nexusPriceBRL": 1180,
+    "pricesByPlan": {
+      "free": 1180,
+      "core": 1160,
+      "hype": 1140,
+      "omega": 1130
+    }
   },
   {
     "sku": "motherboard-gigabyte-a520-lga1700-motherboard",
@@ -1017,7 +1725,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 2480,
+    "nexusPriceBRL": 2330,
+    "pricesByPlan": {
+      "free": 2330,
+      "core": 2300,
+      "hype": 2260,
+      "omega": 2230
+    }
   },
   {
     "sku": "motherboard-gigabyte-b450-am4-motherboard",
@@ -1031,7 +1751,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1720,
+    "nexusPriceBRL": 1620,
+    "pricesByPlan": {
+      "free": 1620,
+      "core": 1600,
+      "hype": 1570,
+      "omega": 1550
+    }
   },
   {
     "sku": "motherboard-gigabyte-b450-am5-motherboard",
@@ -1045,7 +1777,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1180,
+    "nexusPriceBRL": 1110,
+    "pricesByPlan": {
+      "free": 1110,
+      "core": 1090,
+      "hype": 1080,
+      "omega": 1060
+    }
   },
   {
     "sku": "motherboard-gigabyte-b450-lga1200-motherboard",
@@ -1059,7 +1803,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 2930,
+    "nexusPriceBRL": 2750,
+    "pricesByPlan": {
+      "free": 2750,
+      "core": 2710,
+      "hype": 2670,
+      "omega": 2630
+    }
   },
   {
     "sku": "motherboard-gigabyte-b450-lga1700-motherboard",
@@ -1073,7 +1829,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1460,
+    "nexusPriceBRL": 1370,
+    "pricesByPlan": {
+      "free": 1370,
+      "core": 1350,
+      "hype": 1330,
+      "omega": 1310
+    }
   },
   {
     "sku": "motherboard-gigabyte-b550-am4-motherboard",
@@ -1087,7 +1855,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 890,
+    "nexusPriceBRL": 840,
+    "pricesByPlan": {
+      "free": 840,
+      "core": 830,
+      "hype": 810,
+      "omega": 800
+    }
   },
   {
     "sku": "motherboard-gigabyte-b550-am5-motherboard",
@@ -1101,7 +1881,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 56,
+    "marketPriceBRL": 3400,
+    "nexusPriceBRL": 3200,
+    "pricesByPlan": {
+      "free": 3200,
+      "core": 3150,
+      "hype": 3100,
+      "omega": 3060
+    }
   },
   {
     "sku": "motherboard-gigabyte-b550-lga1200-motherboard",
@@ -1115,7 +1907,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 3270,
+    "nexusPriceBRL": 3070,
+    "pricesByPlan": {
+      "free": 3070,
+      "core": 3020,
+      "hype": 2980,
+      "omega": 2930
+    }
   },
   {
     "sku": "motherboard-gigabyte-b550-lga1700-motherboard",
@@ -1129,7 +1933,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 2270,
+    "nexusPriceBRL": 2130,
+    "pricesByPlan": {
+      "free": 2130,
+      "core": 2100,
+      "hype": 2070,
+      "omega": 2030
+    }
   },
   {
     "sku": "motherboard-gigabyte-b660-am4-motherboard",
@@ -1143,7 +1959,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 3350,
+    "nexusPriceBRL": 3150,
+    "pricesByPlan": {
+      "free": 3150,
+      "core": 3100,
+      "hype": 3060,
+      "omega": 3010
+    }
   },
   {
     "sku": "motherboard-gigabyte-b660-am5-motherboard",
@@ -1157,7 +1985,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 840,
+    "nexusPriceBRL": 790,
+    "pricesByPlan": {
+      "free": 790,
+      "core": 780,
+      "hype": 770,
+      "omega": 750
+    }
   },
   {
     "sku": "motherboard-gigabyte-b660-lga1200-motherboard",
@@ -1171,7 +2011,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 97,
+    "marketPriceBRL": 1970,
+    "nexusPriceBRL": 1850,
+    "pricesByPlan": {
+      "free": 1850,
+      "core": 1820,
+      "hype": 1790,
+      "omega": 1770
+    }
   },
   {
     "sku": "motherboard-gigabyte-b660-lga1700-motherboard",
@@ -1185,7 +2037,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 520,
+    "nexusPriceBRL": 490,
+    "pricesByPlan": {
+      "free": 490,
+      "core": 480,
+      "hype": 480,
+      "omega": 470
+    }
   },
   {
     "sku": "motherboard-gigabyte-x570-am4-motherboard",
@@ -1199,7 +2063,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 800,
+    "nexusPriceBRL": 750,
+    "pricesByPlan": {
+      "free": 750,
+      "core": 740,
+      "hype": 730,
+      "omega": 720
+    }
   },
   {
     "sku": "motherboard-gigabyte-x570-am5-motherboard",
@@ -1213,7 +2089,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1340,
+    "nexusPriceBRL": 1260,
+    "pricesByPlan": {
+      "free": 1260,
+      "core": 1240,
+      "hype": 1220,
+      "omega": 1200
+    }
   },
   {
     "sku": "motherboard-gigabyte-x570-lga1200-motherboard",
@@ -1227,7 +2115,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 3300,
+    "nexusPriceBRL": 3100,
+    "pricesByPlan": {
+      "free": 3100,
+      "core": 3050,
+      "hype": 3010,
+      "omega": 2960
+    }
   },
   {
     "sku": "motherboard-gigabyte-x570-lga1700-motherboard",
@@ -1241,7 +2141,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1830,
+    "nexusPriceBRL": 1720,
+    "pricesByPlan": {
+      "free": 1720,
+      "core": 1690,
+      "hype": 1670,
+      "omega": 1640
+    }
   },
   {
     "sku": "motherboard-gigabyte-z690-am4-motherboard",
@@ -1255,7 +2167,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 970,
+    "nexusPriceBRL": 910,
+    "pricesByPlan": {
+      "free": 910,
+      "core": 900,
+      "hype": 880,
+      "omega": 870
+    }
   },
   {
     "sku": "motherboard-gigabyte-z690-am5-motherboard",
@@ -1269,7 +2193,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1510,
+    "nexusPriceBRL": 1420,
+    "pricesByPlan": {
+      "free": 1420,
+      "core": 1400,
+      "hype": 1380,
+      "omega": 1360
+    }
   },
   {
     "sku": "motherboard-gigabyte-z690-lga1200-motherboard",
@@ -1283,7 +2219,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1910,
+    "nexusPriceBRL": 1800,
+    "pricesByPlan": {
+      "free": 1800,
+      "core": 1770,
+      "hype": 1750,
+      "omega": 1720
+    }
   },
   {
     "sku": "motherboard-gigabyte-z690-lga1700-motherboard",
@@ -1297,7 +2245,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 580,
+    "nexusPriceBRL": 550,
+    "pricesByPlan": {
+      "free": 550,
+      "core": 540,
+      "hype": 530,
+      "omega": 530
+    }
   },
   {
     "sku": "motherboard-gigabyte-z790-am4-motherboard",
@@ -1311,7 +2271,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1800,
+    "nexusPriceBRL": 1690,
+    "pricesByPlan": {
+      "free": 1690,
+      "core": 1660,
+      "hype": 1640,
+      "omega": 1610
+    }
   },
   {
     "sku": "motherboard-gigabyte-z790-am5-motherboard",
@@ -1325,7 +2297,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 2980,
+    "nexusPriceBRL": 2800,
+    "pricesByPlan": {
+      "free": 2800,
+      "core": 2760,
+      "hype": 2720,
+      "omega": 2670
+    }
   },
   {
     "sku": "motherboard-gigabyte-z790-lga1200-motherboard",
@@ -1339,7 +2323,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1170,
+    "nexusPriceBRL": 1100,
+    "pricesByPlan": {
+      "free": 1100,
+      "core": 1080,
+      "hype": 1070,
+      "omega": 1050
+    }
   },
   {
     "sku": "motherboard-gigabyte-z790-lga1700-motherboard",
@@ -1353,7 +2349,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 2570,
+    "nexusPriceBRL": 2420,
+    "pricesByPlan": {
+      "free": 2420,
+      "core": 2380,
+      "hype": 2350,
+      "omega": 2310
+    }
   },
   {
     "sku": "motherboard-msi-a520-am4-motherboard",
@@ -1367,7 +2375,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 3160,
+    "nexusPriceBRL": 2970,
+    "pricesByPlan": {
+      "free": 2970,
+      "core": 2930,
+      "hype": 2880,
+      "omega": 2840
+    }
   },
   {
     "sku": "motherboard-msi-a520-am5-motherboard",
@@ -1381,7 +2401,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 650,
+    "nexusPriceBRL": 610,
+    "pricesByPlan": {
+      "free": 610,
+      "core": 600,
+      "hype": 590,
+      "omega": 580
+    }
   },
   {
     "sku": "motherboard-msi-a520-lga1200-motherboard",
@@ -1395,7 +2427,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 860,
+    "nexusPriceBRL": 810,
+    "pricesByPlan": {
+      "free": 810,
+      "core": 800,
+      "hype": 790,
+      "omega": 770
+    }
   },
   {
     "sku": "motherboard-msi-a520-lga1700-motherboard",
@@ -1409,7 +2453,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 78,
+    "marketPriceBRL": 2450,
+    "nexusPriceBRL": 2300,
+    "pricesByPlan": {
+      "free": 2300,
+      "core": 2270,
+      "hype": 2230,
+      "omega": 2200
+    }
   },
   {
     "sku": "motherboard-msi-b450-am4-motherboard",
@@ -1423,7 +2479,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 86,
+    "marketPriceBRL": 2220,
+    "nexusPriceBRL": 2090,
+    "pricesByPlan": {
+      "free": 2090,
+      "core": 2060,
+      "hype": 2030,
+      "omega": 2000
+    }
   },
   {
     "sku": "motherboard-msi-b450-am5-motherboard",
@@ -1437,7 +2505,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1680,
+    "nexusPriceBRL": 1580,
+    "pricesByPlan": {
+      "free": 1580,
+      "core": 1560,
+      "hype": 1530,
+      "omega": 1510
+    }
   },
   {
     "sku": "motherboard-msi-b450-lga1200-motherboard",
@@ -1451,7 +2531,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1420,
+    "nexusPriceBRL": 1330,
+    "pricesByPlan": {
+      "free": 1330,
+      "core": 1310,
+      "hype": 1290,
+      "omega": 1270
+    }
   },
   {
     "sku": "motherboard-msi-b450-lga1700-motherboard",
@@ -1465,7 +2557,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1070,
+    "nexusPriceBRL": 1010,
+    "pricesByPlan": {
+      "free": 1010,
+      "core": 990,
+      "hype": 980,
+      "omega": 960
+    }
   },
   {
     "sku": "motherboard-msi-b550-am4-motherboard",
@@ -1479,7 +2583,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 2570,
+    "nexusPriceBRL": 2420,
+    "pricesByPlan": {
+      "free": 2420,
+      "core": 2380,
+      "hype": 2350,
+      "omega": 2310
+    }
   },
   {
     "sku": "motherboard-msi-b550-am5-motherboard",
@@ -1493,7 +2609,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 3110,
+    "nexusPriceBRL": 2920,
+    "pricesByPlan": {
+      "free": 2920,
+      "core": 2880,
+      "hype": 2830,
+      "omega": 2790
+    }
   },
   {
     "sku": "motherboard-msi-b550-lga1200-motherboard",
@@ -1507,7 +2635,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 610,
+    "nexusPriceBRL": 570,
+    "pricesByPlan": {
+      "free": 570,
+      "core": 560,
+      "hype": 550,
+      "omega": 540
+    }
   },
   {
     "sku": "motherboard-msi-b550-lga1700-motherboard",
@@ -1521,7 +2661,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 2080,
+    "nexusPriceBRL": 1960,
+    "pricesByPlan": {
+      "free": 1960,
+      "core": 1930,
+      "hype": 1900,
+      "omega": 1870
+    }
   },
   {
     "sku": "motherboard-msi-b660-am4-motherboard",
@@ -1535,7 +2687,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 2850,
+    "nexusPriceBRL": 2680,
+    "pricesByPlan": {
+      "free": 2680,
+      "core": 2640,
+      "hype": 2600,
+      "omega": 2560
+    }
   },
   {
     "sku": "motherboard-msi-b660-am5-motherboard",
@@ -1549,7 +2713,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 99,
+    "marketPriceBRL": 1930,
+    "nexusPriceBRL": 1810,
+    "pricesByPlan": {
+      "free": 1810,
+      "core": 1780,
+      "hype": 1760,
+      "omega": 1730
+    }
   },
   {
     "sku": "motherboard-msi-b660-lga1200-motherboard",
@@ -1563,7 +2739,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 2370,
+    "nexusPriceBRL": 2230,
+    "pricesByPlan": {
+      "free": 2230,
+      "core": 2200,
+      "hype": 2160,
+      "omega": 2130
+    }
   },
   {
     "sku": "motherboard-msi-b660-lga1700-motherboard",
@@ -1577,7 +2765,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 3170,
+    "nexusPriceBRL": 2980,
+    "pricesByPlan": {
+      "free": 2980,
+      "core": 2940,
+      "hype": 2890,
+      "omega": 2850
+    }
   },
   {
     "sku": "motherboard-msi-x570-am4-motherboard",
@@ -1591,7 +2791,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 96,
+    "marketPriceBRL": 1980,
+    "nexusPriceBRL": 1860,
+    "pricesByPlan": {
+      "free": 1860,
+      "core": 1830,
+      "hype": 1800,
+      "omega": 1780
+    }
   },
   {
     "sku": "motherboard-msi-x570-am5-motherboard",
@@ -1605,7 +2817,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1440,
+    "nexusPriceBRL": 1350,
+    "pricesByPlan": {
+      "free": 1350,
+      "core": 1330,
+      "hype": 1310,
+      "omega": 1290
+    }
   },
   {
     "sku": "motherboard-msi-x570-lga1200-motherboard",
@@ -1619,7 +2843,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1050,
+    "nexusPriceBRL": 990,
+    "pricesByPlan": {
+      "free": 990,
+      "core": 980,
+      "hype": 960,
+      "omega": 950
+    }
   },
   {
     "sku": "motherboard-msi-x570-lga1700-motherboard",
@@ -1633,7 +2869,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1430,
+    "nexusPriceBRL": 1340,
+    "pricesByPlan": {
+      "free": 1340,
+      "core": 1320,
+      "hype": 1300,
+      "omega": 1280
+    }
   },
   {
     "sku": "motherboard-msi-z690-am4-motherboard",
@@ -1647,7 +2895,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 470,
+    "nexusPriceBRL": 440,
+    "pricesByPlan": {
+      "free": 440,
+      "core": 430,
+      "hype": 430,
+      "omega": 420
+    }
   },
   {
     "sku": "motherboard-msi-z690-am5-motherboard",
@@ -1661,7 +2921,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1260,
+    "nexusPriceBRL": 1180,
+    "pricesByPlan": {
+      "free": 1180,
+      "core": 1160,
+      "hype": 1140,
+      "omega": 1130
+    }
   },
   {
     "sku": "motherboard-msi-z690-lga1200-motherboard",
@@ -1675,7 +2947,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 2300,
+    "nexusPriceBRL": 2160,
+    "pricesByPlan": {
+      "free": 2160,
+      "core": 2130,
+      "hype": 2100,
+      "omega": 2060
+    }
   },
   {
     "sku": "motherboard-msi-z690-lga1700-motherboard",
@@ -1689,7 +2973,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 720,
+    "nexusPriceBRL": 680,
+    "pricesByPlan": {
+      "free": 680,
+      "core": 670,
+      "hype": 660,
+      "omega": 650
+    }
   },
   {
     "sku": "motherboard-msi-z790-am4-motherboard",
@@ -1703,7 +2999,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 970,
+    "nexusPriceBRL": 910,
+    "pricesByPlan": {
+      "free": 910,
+      "core": 900,
+      "hype": 880,
+      "omega": 870
+    }
   },
   {
     "sku": "motherboard-msi-z790-am5-motherboard",
@@ -1717,7 +3025,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 55,
+    "marketPriceBRL": 3480,
+    "nexusPriceBRL": 3270,
+    "pricesByPlan": {
+      "free": 3270,
+      "core": 3220,
+      "hype": 3170,
+      "omega": 3120
+    }
   },
   {
     "sku": "motherboard-msi-z790-lga1200-motherboard",
@@ -1731,7 +3051,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 780,
+    "nexusPriceBRL": 730,
+    "pricesByPlan": {
+      "free": 730,
+      "core": 720,
+      "hype": 710,
+      "omega": 700
+    }
   },
   {
     "sku": "motherboard-msi-z790-lga1700-motherboard",
@@ -1745,6 +3077,18 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482209,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 2960,
+    "nexusPriceBRL": 2780,
+    "pricesByPlan": {
+      "free": 2780,
+      "core": 2740,
+      "hype": 2700,
+      "omega": 2650
+    }
   }
 ]

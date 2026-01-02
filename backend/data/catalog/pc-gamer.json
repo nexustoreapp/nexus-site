@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 10600,
+    "nexusPriceBRL": 9960,
+    "pricesByPlan": {
+      "free": 9960,
+      "core": 9810,
+      "hype": 9660,
+      "omega": 9510
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-4070",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 10850,
+    "nexusPriceBRL": 10200,
+    "pricesByPlan": {
+      "free": 10200,
+      "core": 10050,
+      "hype": 9890,
+      "omega": 9740
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-7700-xt",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 3880,
+    "nexusPriceBRL": 3650,
+    "pricesByPlan": {
+      "free": 3650,
+      "core": 3600,
+      "hype": 3540,
+      "omega": 3490
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-rtx-3060",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 4590,
+    "nexusPriceBRL": 4310,
+    "pricesByPlan": {
+      "free": 4310,
+      "core": 4250,
+      "hype": 4180,
+      "omega": 4120
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-rx-6700-xt",
@@ -65,9 +113,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 4650,
+    "nexusPriceBRL": 4370,
+    "pricesByPlan": {
+      "free": 4370,
+      "core": 4300,
+      "hype": 4240,
+      "omega": 4170
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-5",
@@ -79,9 +139,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 4980,
+    "nexusPriceBRL": 4680,
+    "pricesByPlan": {
+      "free": 4680,
+      "core": 4610,
+      "hype": 4540,
+      "omega": 4470
+    }
   },
   {
     "sku": "pc-gamer-pc-gamer-ryzen-7",
@@ -93,8 +165,20 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482219,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 53,
+    "marketPriceBRL": 14670,
+    "nexusPriceBRL": 13790,
+    "pricesByPlan": {
+      "free": 13790,
+      "core": 13580,
+      "hype": 13380,
+      "omega": 13170
+    }
   }
 ]

@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2000,
+    "nexusPriceBRL": 1880,
+    "pricesByPlan": {
+      "free": 1880,
+      "core": 1850,
+      "hype": 1820,
+      "omega": 1800
+    }
   },
   {
     "sku": "desk-office-desk-140cm",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2010,
+    "nexusPriceBRL": 1890,
+    "pricesByPlan": {
+      "free": 1890,
+      "core": 1860,
+      "hype": 1830,
+      "omega": 1800
+    }
   },
   {
     "sku": "desk-standing-desk-adjustable",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1220,
+    "nexusPriceBRL": 1150,
+    "pricesByPlan": {
+      "free": 1150,
+      "core": 1130,
+      "hype": 1120,
+      "omega": 1100
+    }
   },
   {
     "sku": "desk-mesa-gamer-120cm",
@@ -51,7 +87,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651844,
-    "updatedAt": 1767378479230
+    "updatedAt": 1767391482199,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1010,
+    "nexusPriceBRL": 950,
+    "pricesByPlan": {
+      "free": 950,
+      "core": 940,
+      "hype": 920,
+      "omega": 910
+    }
   },
   {
     "sku": "desk-mesa-escrit-rio-140cm",
@@ -63,6 +112,19 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651844,
-    "updatedAt": 1767378479230
+    "updatedAt": 1767391482199,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 53,
+    "marketPriceBRL": 3780,
+    "nexusPriceBRL": 3550,
+    "pricesByPlan": {
+      "free": 3550,
+      "core": 3500,
+      "hype": 3440,
+      "omega": 3390
+    }
   }
 ]

@@ -11,7 +11,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -26,7 +26,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -41,7 +41,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -56,7 +56,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -71,7 +71,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -86,7 +86,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -101,7 +101,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713661,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482210,
     "ready": true
   },
   {
@@ -114,7 +114,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651846,
-    "updatedAt": 1767378479232
+    "updatedAt": 1767391482210,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 2810,
+    "nexusPriceBRL": 2650,
+    "pricesByPlan": {
+      "free": 2650,
+      "core": 2610,
+      "hype": 2570,
+      "omega": 2530
+    }
   },
   {
     "sku": "network-switch-gigabit-8-portas",
@@ -126,7 +139,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651846,
-    "updatedAt": 1767378479232
+    "updatedAt": 1767391482210,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 240,
+    "nexusPriceBRL": 220,
+    "pricesByPlan": {
+      "free": 220,
+      "core": 220,
+      "hype": 210,
+      "omega": 210
+    }
   },
   {
     "sku": "network-d-link-access-point-ac",
@@ -140,7 +166,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 2090,
+    "nexusPriceBRL": 1960,
+    "pricesByPlan": {
+      "free": 1960,
+      "core": 1930,
+      "hype": 1900,
+      "omega": 1870
+    }
   },
   {
     "sku": "network-d-link-access-point-ax",
@@ -154,7 +192,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 2070,
+    "nexusPriceBRL": 1950,
+    "pricesByPlan": {
+      "free": 1950,
+      "core": 1920,
+      "hype": 1890,
+      "omega": 1860
+    }
   },
   {
     "sku": "network-d-link-roteador-wi-fi-5-ac1200",
@@ -168,7 +218,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 2670,
+    "nexusPriceBRL": 2510,
+    "pricesByPlan": {
+      "free": 2510,
+      "core": 2470,
+      "hype": 2430,
+      "omega": 2400
+    }
   },
   {
     "sku": "network-d-link-roteador-wi-fi-6-ax1800",
@@ -182,7 +244,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 52,
+    "marketPriceBRL": 3360,
+    "nexusPriceBRL": 3160,
+    "pricesByPlan": {
+      "free": 3160,
+      "core": 3110,
+      "hype": 3070,
+      "omega": 3020
+    }
   },
   {
     "sku": "network-d-link-roteador-wi-fi-6-ax3000",
@@ -196,7 +270,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1160,
+    "nexusPriceBRL": 1090,
+    "pricesByPlan": {
+      "free": 1090,
+      "core": 1070,
+      "hype": 1060,
+      "omega": 1040
+    }
   },
   {
     "sku": "network-d-link-switch-16-portas-gigabit",
@@ -210,7 +296,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 150,
+    "nexusPriceBRL": 140,
+    "pricesByPlan": {
+      "free": 140,
+      "core": 140,
+      "hype": 140,
+      "omega": 130
+    }
   },
   {
     "sku": "network-d-link-switch-8-portas-gigabit",
@@ -224,7 +322,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 2500,
+    "nexusPriceBRL": 2350,
+    "pricesByPlan": {
+      "free": 2350,
+      "core": 2310,
+      "hype": 2280,
+      "omega": 2240
+    }
   },
   {
     "sku": "network-intelbras-access-point-ac",
@@ -238,7 +348,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 990,
+    "nexusPriceBRL": 930,
+    "pricesByPlan": {
+      "free": 930,
+      "core": 920,
+      "hype": 900,
+      "omega": 890
+    }
   },
   {
     "sku": "network-intelbras-access-point-ax",
@@ -252,7 +374,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 970,
+    "nexusPriceBRL": 910,
+    "pricesByPlan": {
+      "free": 910,
+      "core": 900,
+      "hype": 880,
+      "omega": 870
+    }
   },
   {
     "sku": "network-intelbras-roteador-wi-fi-5-ac1200",
@@ -266,7 +400,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 2440,
+    "nexusPriceBRL": 2290,
+    "pricesByPlan": {
+      "free": 2290,
+      "core": 2260,
+      "hype": 2220,
+      "omega": 2190
+    }
   },
   {
     "sku": "network-intelbras-roteador-wi-fi-6-ax1800",
@@ -280,7 +426,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226709
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 620,
+    "nexusPriceBRL": 580,
+    "pricesByPlan": {
+      "free": 580,
+      "core": 570,
+      "hype": 560,
+      "omega": 550
+    }
   },
   {
     "sku": "network-intelbras-roteador-wi-fi-6-ax3000",
@@ -294,7 +452,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226709,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 2820,
+    "nexusPriceBRL": 2650,
+    "pricesByPlan": {
+      "free": 2650,
+      "core": 2610,
+      "hype": 2570,
+      "omega": 2530
+    }
   },
   {
     "sku": "network-intelbras-switch-16-portas-gigabit",
@@ -308,7 +478,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 2270,
+    "nexusPriceBRL": 2130,
+    "pricesByPlan": {
+      "free": 2130,
+      "core": 2100,
+      "hype": 2070,
+      "omega": 2030
+    }
   },
   {
     "sku": "network-intelbras-switch-8-portas-gigabit",
@@ -322,7 +504,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1480,
+    "nexusPriceBRL": 1390,
+    "pricesByPlan": {
+      "free": 1390,
+      "core": 1370,
+      "hype": 1350,
+      "omega": 1330
+    }
   },
   {
     "sku": "network-mikrotik-access-point-ac",
@@ -336,7 +530,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 3050,
+    "nexusPriceBRL": 2870,
+    "pricesByPlan": {
+      "free": 2870,
+      "core": 2830,
+      "hype": 2780,
+      "omega": 2740
+    }
   },
   {
     "sku": "network-mikrotik-access-point-ax",
@@ -350,7 +556,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 3030,
+    "nexusPriceBRL": 2850,
+    "pricesByPlan": {
+      "free": 2850,
+      "core": 2810,
+      "hype": 2760,
+      "omega": 2720
+    }
   },
   {
     "sku": "network-mikrotik-roteador-wi-fi-5-ac1200",
@@ -364,7 +582,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "network-mikrotik-roteador-wi-fi-6-ax1800",
@@ -378,7 +608,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 2650,
+    "nexusPriceBRL": 2490,
+    "pricesByPlan": {
+      "free": 2490,
+      "core": 2450,
+      "hype": 2420,
+      "omega": 2380
+    }
   },
   {
     "sku": "network-mikrotik-roteador-wi-fi-6-ax3000",
@@ -392,7 +634,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1470,
+    "nexusPriceBRL": 1380,
+    "pricesByPlan": {
+      "free": 1380,
+      "core": 1360,
+      "hype": 1340,
+      "omega": 1320
+    }
   },
   {
     "sku": "network-mikrotik-switch-16-portas-gigabit",
@@ -406,7 +660,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1270,
+    "nexusPriceBRL": 1190,
+    "pricesByPlan": {
+      "free": 1190,
+      "core": 1170,
+      "hype": 1150,
+      "omega": 1140
+    }
   },
   {
     "sku": "network-mikrotik-switch-8-portas-gigabit",
@@ -420,7 +686,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 50,
+    "marketPriceBRL": 3490,
+    "nexusPriceBRL": 3280,
+    "pricesByPlan": {
+      "free": 3280,
+      "core": 3230,
+      "hype": 3180,
+      "omega": 3130
+    }
   },
   {
     "sku": "network-tp-link-access-point-ac",
@@ -434,7 +712,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1200,
+    "nexusPriceBRL": 1130,
+    "pricesByPlan": {
+      "free": 1130,
+      "core": 1110,
+      "hype": 1100,
+      "omega": 1080
+    }
   },
   {
     "sku": "network-tp-link-access-point-ax",
@@ -448,7 +738,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1220,
+    "nexusPriceBRL": 1150,
+    "pricesByPlan": {
+      "free": 1150,
+      "core": 1130,
+      "hype": 1120,
+      "omega": 1100
+    }
   },
   {
     "sku": "network-tp-link-roteador-wi-fi-5-ac1200",
@@ -462,7 +764,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 54,
+    "marketPriceBRL": 3250,
+    "nexusPriceBRL": 3060,
+    "pricesByPlan": {
+      "free": 3060,
+      "core": 3010,
+      "hype": 2970,
+      "omega": 2920
+    }
   },
   {
     "sku": "network-tp-link-roteador-wi-fi-6-ax1800",
@@ -476,7 +790,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 55,
+    "marketPriceBRL": 3190,
+    "nexusPriceBRL": 3000,
+    "pricesByPlan": {
+      "free": 3000,
+      "core": 2960,
+      "hype": 2910,
+      "omega": 2870
+    }
   },
   {
     "sku": "network-tp-link-roteador-wi-fi-6-ax3000",
@@ -490,7 +816,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 2020,
+    "nexusPriceBRL": 1900,
+    "pricesByPlan": {
+      "free": 1900,
+      "core": 1870,
+      "hype": 1840,
+      "omega": 1810
+    }
   },
   {
     "sku": "network-tp-link-switch-16-portas-gigabit",
@@ -504,7 +842,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 210,
+    "nexusPriceBRL": 200,
+    "pricesByPlan": {
+      "free": 200,
+      "core": 200,
+      "hype": 190,
+      "omega": 190
+    }
   },
   {
     "sku": "network-tp-link-switch-8-portas-gigabit",
@@ -518,7 +868,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 680,
+    "nexusPriceBRL": 640,
+    "pricesByPlan": {
+      "free": 640,
+      "core": 630,
+      "hype": 620,
+      "omega": 610
+    }
   },
   {
     "sku": "network-ubiquiti-access-point-ac",
@@ -532,7 +894,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 980,
+    "nexusPriceBRL": 920,
+    "pricesByPlan": {
+      "free": 920,
+      "core": 910,
+      "hype": 890,
+      "omega": 880
+    }
   },
   {
     "sku": "network-ubiquiti-access-point-ax",
@@ -546,7 +920,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1000,
+    "nexusPriceBRL": 940,
+    "pricesByPlan": {
+      "free": 940,
+      "core": 930,
+      "hype": 910,
+      "omega": 900
+    }
   },
   {
     "sku": "network-ubiquiti-roteador-wi-fi-5-ac1200",
@@ -560,7 +946,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1160,
+    "nexusPriceBRL": 1090,
+    "pricesByPlan": {
+      "free": 1090,
+      "core": 1070,
+      "hype": 1060,
+      "omega": 1040
+    }
   },
   {
     "sku": "network-ubiquiti-roteador-wi-fi-6-ax1800",
@@ -574,7 +972,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 1900,
+    "nexusPriceBRL": 1790,
+    "pricesByPlan": {
+      "free": 1790,
+      "core": 1760,
+      "hype": 1740,
+      "omega": 1710
+    }
   },
   {
     "sku": "network-ubiquiti-roteador-wi-fi-6-ax3000",
@@ -588,7 +998,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 720,
+    "nexusPriceBRL": 680,
+    "pricesByPlan": {
+      "free": 680,
+      "core": 670,
+      "hype": 660,
+      "omega": 650
+    }
   },
   {
     "sku": "network-ubiquiti-switch-16-portas-gigabit",
@@ -602,7 +1024,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 370,
+    "nexusPriceBRL": 350,
+    "pricesByPlan": {
+      "free": 350,
+      "core": 340,
+      "hype": 340,
+      "omega": 330
+    }
   },
   {
     "sku": "network-ubiquiti-switch-8-portas-gigabit",
@@ -616,6 +1050,18 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226710,
-    "updatedAt": 1767390226710
+    "updatedAt": 1767391482210,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 2760,
+    "nexusPriceBRL": 2590,
+    "pricesByPlan": {
+      "free": 2590,
+      "core": 2550,
+      "hype": 2510,
+      "omega": 2470
+    }
   }
 ]

@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 780,
+    "nexusPriceBRL": 730,
+    "pricesByPlan": {
+      "free": 730,
+      "core": 720,
+      "hype": 710,
+      "omega": 700
+    }
   },
   {
     "sku": "capture-card-avermedia-live-gamer-mini",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1580,
+    "nexusPriceBRL": 1490,
+    "pricesByPlan": {
+      "free": 1490,
+      "core": 1470,
+      "hype": 1450,
+      "omega": 1420
+    }
   },
   {
     "sku": "capture-card-elgato-cam-link-4k",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1610,
+    "nexusPriceBRL": 1510,
+    "pricesByPlan": {
+      "free": 1510,
+      "core": 1490,
+      "hype": 1460,
+      "omega": 1440
+    }
   },
   {
     "sku": "capture-card-elgato-hd60",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1390,
+    "nexusPriceBRL": 1310,
+    "pricesByPlan": {
+      "free": 1310,
+      "core": 1290,
+      "hype": 1270,
+      "omega": 1250
+    }
   },
   {
     "sku": "capture-card-elgato-4k60-pro",
@@ -65,9 +113,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 2110,
+    "nexusPriceBRL": 1980,
+    "pricesByPlan": {
+      "free": 1980,
+      "core": 1950,
+      "hype": 1920,
+      "omega": 1890
+    }
   },
   {
     "sku": "capture-card-avermedia-live-gamer-4k",
@@ -79,8 +139,20 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479229,
+    "updatedAt": 1767391482198,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 2330,
+    "nexusPriceBRL": 2190,
+    "pricesByPlan": {
+      "free": 2190,
+      "core": 2160,
+      "hype": 2120,
+      "omega": 2090
+    }
   }
 ]

@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479231,
+    "updatedAt": 1767391482200,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 2520,
+    "nexusPriceBRL": 2370,
+    "pricesByPlan": {
+      "free": 2370,
+      "core": 2330,
+      "hype": 2300,
+      "omega": 2260
+    }
   },
   {
     "sku": "gaming-chair-dxracer-formula",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479231,
+    "updatedAt": 1767391482200,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1690,
+    "nexusPriceBRL": 1590,
+    "pricesByPlan": {
+      "free": 1590,
+      "core": 1570,
+      "hype": 1540,
+      "omega": 1520
+    }
   },
   {
     "sku": "gaming-chair-thunderx3-bc3",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479231,
+    "updatedAt": 1767391482200,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 98,
+    "marketPriceBRL": 2300,
+    "nexusPriceBRL": 2160,
+    "pricesByPlan": {
+      "free": 2160,
+      "core": 2130,
+      "hype": 2100,
+      "omega": 2060
+    }
   },
   {
     "sku": "gaming-chair-dxracer-air",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479231,
+    "updatedAt": 1767391482200,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 97,
+    "marketPriceBRL": 2330,
+    "nexusPriceBRL": 2190,
+    "pricesByPlan": {
+      "free": 2190,
+      "core": 2160,
+      "hype": 2120,
+      "omega": 2090
+    }
   },
   {
     "sku": "gaming-chair-corsair-tc100",
@@ -65,8 +113,20 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479231,
+    "updatedAt": 1767391482200,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 2420,
+    "nexusPriceBRL": 2270,
+    "pricesByPlan": {
+      "free": 2270,
+      "core": 2240,
+      "hype": 2200,
+      "omega": 2170
+    }
   }
 ]

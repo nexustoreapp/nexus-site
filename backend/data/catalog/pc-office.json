@@ -9,9 +9,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482220,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "pc-office-pc-office-ryzen-5",
@@ -23,9 +26,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482220,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "pc-office-pc-office-mini",
@@ -37,8 +43,11 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479233,
+    "updatedAt": 1767391482220,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

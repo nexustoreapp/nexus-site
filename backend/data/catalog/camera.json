@@ -9,7 +9,11 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "camera-webcam-4k",
@@ -21,7 +25,11 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "camera-c-mera-de-seguran-a-wi-fi",
@@ -33,6 +41,10 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

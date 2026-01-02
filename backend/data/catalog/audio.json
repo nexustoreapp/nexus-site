@@ -9,7 +9,11 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "audio-soundbar-compacta",
@@ -21,7 +25,11 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": false,
+    "priority": 1
   },
   {
     "sku": "audio-headphone-over-ear",
@@ -33,7 +41,11 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "audio-fone-in-ear",
@@ -45,6 +57,10 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479229
+    "updatedAt": 1767391482198,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

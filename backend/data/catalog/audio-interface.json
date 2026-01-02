@@ -9,7 +9,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482197,
     "ready": true
   },
   {
@@ -22,7 +22,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482197,
     "ready": true
   },
   {
@@ -35,7 +35,7 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482197,
     "ready": true
   },
   {
@@ -48,6 +48,10 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651843,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482197,
+    "image": "fallback.png",
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

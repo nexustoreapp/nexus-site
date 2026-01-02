@@ -9,9 +9,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482195,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "access-point-tp-link-eap245",
@@ -23,9 +26,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482195,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "access-point-mikrotik-cap-ac",
@@ -37,8 +43,11 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613962,
-    "updatedAt": 1767378479228,
+    "updatedAt": 1767391482195,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

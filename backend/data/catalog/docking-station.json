@@ -9,9 +9,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "docking-station-hp-usb-c-dock-g5",
@@ -23,9 +26,12 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   },
   {
     "sku": "docking-station-lenovo-thinkpad-dock",
@@ -37,8 +43,11 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613963,
-    "updatedAt": 1767378479230,
+    "updatedAt": 1767391482199,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 4
   }
 ]

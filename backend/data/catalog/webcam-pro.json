@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479235,
+    "updatedAt": 1767391482223,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1420,
+    "nexusPriceBRL": 1330,
+    "pricesByPlan": {
+      "free": 1330,
+      "core": 1310,
+      "hype": 1290,
+      "omega": 1270
+    }
   },
   {
     "sku": "webcam-pro-elgato-facecam",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479235,
+    "updatedAt": 1767391482223,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 97,
+    "marketPriceBRL": 2190,
+    "nexusPriceBRL": 2060,
+    "pricesByPlan": {
+      "free": 2060,
+      "core": 2030,
+      "hype": 2000,
+      "omega": 1970
+    }
   },
   {
     "sku": "webcam-pro-razer-kiyo-pro",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479235,
+    "updatedAt": 1767391482223,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1690,
+    "nexusPriceBRL": 1590,
+    "pricesByPlan": {
+      "free": 1590,
+      "core": 1570,
+      "hype": 1540,
+      "omega": 1520
+    }
   },
   {
     "sku": "webcam-pro-logitech-c922",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479235,
+    "updatedAt": 1767391482223,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 90,
+    "marketPriceBRL": 2370,
+    "nexusPriceBRL": 2230,
+    "pricesByPlan": {
+      "free": 2230,
+      "core": 2200,
+      "hype": 2160,
+      "omega": 2130
+    }
   },
   {
     "sku": "webcam-pro-razer-kiyo",
@@ -65,8 +113,20 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896390,
-    "updatedAt": 1767378479235,
+    "updatedAt": 1767391482223,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 2960,
+    "nexusPriceBRL": 2780,
+    "pricesByPlan": {
+      "free": 2780,
+      "core": 2740,
+      "hype": 2700,
+      "omega": 2650
+    }
   }
 ]

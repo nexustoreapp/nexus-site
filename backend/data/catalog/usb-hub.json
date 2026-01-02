@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482222,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 570,
+    "nexusPriceBRL": 540,
+    "pricesByPlan": {
+      "free": 540,
+      "core": 530,
+      "hype": 520,
+      "omega": 520
+    }
   },
   {
     "sku": "usb-hub-baseus-7-in-1-hub",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482222,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 200,
+    "nexusPriceBRL": 190,
+    "pricesByPlan": {
+      "free": 190,
+      "core": 190,
+      "hype": 180,
+      "omega": 180
+    }
   },
   {
     "sku": "usb-hub-ugreen-usb-hub",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482222,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 440,
+    "nexusPriceBRL": 410,
+    "pricesByPlan": {
+      "free": 410,
+      "core": 400,
+      "hype": 400,
+      "omega": 390
+    }
   },
   {
     "sku": "usb-hub-hub-usb-c-6-em-1",
@@ -51,7 +87,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651849,
-    "updatedAt": 1767378479234
+    "updatedAt": 1767391482222,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 50,
+    "marketPriceBRL": 2920,
+    "nexusPriceBRL": 2740,
+    "pricesByPlan": {
+      "free": 2740,
+      "core": 2700,
+      "hype": 2660,
+      "omega": 2620
+    }
   },
   {
     "sku": "usb-hub-hub-usb-4-portas",
@@ -63,6 +112,19 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651849,
-    "updatedAt": 1767378479234
+    "updatedAt": 1767391482222,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 46,
+    "marketPriceBRL": 3220,
+    "nexusPriceBRL": 3020,
+    "pricesByPlan": {
+      "free": 3020,
+      "core": 2970,
+      "hype": 2930,
+      "omega": 2880
+    }
   }
 ]

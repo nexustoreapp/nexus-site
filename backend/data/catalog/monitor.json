@@ -11,7 +11,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -26,7 +26,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -41,7 +41,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -56,7 +56,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -71,7 +71,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -86,7 +86,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -101,7 +101,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -116,7 +116,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -131,7 +131,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -146,7 +146,7 @@
     "image": "fallback.png",
     "source": "seed-realista",
     "createdAt": 1767327713660,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482207,
     "ready": true
   },
   {
@@ -159,7 +159,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651845,
-    "updatedAt": 1767378479232
+    "updatedAt": 1767391482207,
+    "image": "fallback.png",
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3380,
+    "nexusPriceBRL": 3180,
+    "pricesByPlan": {
+      "free": 3180,
+      "core": 3130,
+      "hype": 3080,
+      "omega": 3040
+    }
   },
   {
     "sku": "monitor-monitor-27-165hz",
@@ -171,7 +184,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651845,
-    "updatedAt": 1767378479232
+    "updatedAt": 1767391482207,
+    "image": "fallback.png",
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 3890,
+    "nexusPriceBRL": 3650,
+    "pricesByPlan": {
+      "free": 3650,
+      "core": 3600,
+      "hype": 3540,
+      "omega": 3490
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-ips-144hz",
@@ -185,7 +211,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2860,
+    "nexusPriceBRL": 2690,
+    "pricesByPlan": {
+      "free": 2690,
+      "core": 2650,
+      "hype": 2610,
+      "omega": 2570
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-ips-165hz",
@@ -199,7 +237,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 5930,
+    "nexusPriceBRL": 5570,
+    "pricesByPlan": {
+      "free": 5570,
+      "core": 5490,
+      "hype": 5400,
+      "omega": 5320
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-ips-240hz",
@@ -213,7 +263,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 5560,
+    "nexusPriceBRL": 5230,
+    "pricesByPlan": {
+      "free": 5230,
+      "core": 5150,
+      "hype": 5070,
+      "omega": 4990
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-ips-75hz",
@@ -227,7 +289,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3410,
+    "nexusPriceBRL": 3210,
+    "pricesByPlan": {
+      "free": 3210,
+      "core": 3160,
+      "hype": 3110,
+      "omega": 3070
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-va-144hz",
@@ -241,7 +315,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3460,
+    "nexusPriceBRL": 3250,
+    "pricesByPlan": {
+      "free": 3250,
+      "core": 3200,
+      "hype": 3150,
+      "omega": 3100
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-va-165hz",
@@ -255,7 +341,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 5690,
+    "nexusPriceBRL": 5350,
+    "pricesByPlan": {
+      "free": 5350,
+      "core": 5270,
+      "hype": 5190,
+      "omega": 5110
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-va-240hz",
@@ -269,7 +367,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 760,
+    "nexusPriceBRL": 710,
+    "pricesByPlan": {
+      "free": 710,
+      "core": 700,
+      "hype": 690,
+      "omega": 680
+    }
   },
   {
     "sku": "monitor-acer-monitor-24-va-75hz",
@@ -283,7 +393,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5480,
+    "nexusPriceBRL": 5150,
+    "pricesByPlan": {
+      "free": 5150,
+      "core": 5070,
+      "hype": 5000,
+      "omega": 4920
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-ips-144hz",
@@ -297,7 +419,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3310,
+    "nexusPriceBRL": 3110,
+    "pricesByPlan": {
+      "free": 3110,
+      "core": 3060,
+      "hype": 3020,
+      "omega": 2970
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-ips-165hz",
@@ -311,7 +445,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1080,
+    "nexusPriceBRL": 1020,
+    "pricesByPlan": {
+      "free": 1020,
+      "core": 1000,
+      "hype": 990,
+      "omega": 970
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-ips-240hz",
@@ -325,7 +471,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 700,
+    "nexusPriceBRL": 660,
+    "pricesByPlan": {
+      "free": 660,
+      "core": 650,
+      "hype": 640,
+      "omega": 630
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-ips-75hz",
@@ -339,7 +497,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3000,
+    "nexusPriceBRL": 2820,
+    "pricesByPlan": {
+      "free": 2820,
+      "core": 2780,
+      "hype": 2740,
+      "omega": 2690
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-va-144hz",
@@ -353,7 +523,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 3650,
+    "nexusPriceBRL": 3430,
+    "pricesByPlan": {
+      "free": 3430,
+      "core": 3380,
+      "hype": 3330,
+      "omega": 3280
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-va-165hz",
@@ -367,7 +549,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1410,
+    "nexusPriceBRL": 1330,
+    "pricesByPlan": {
+      "free": 1330,
+      "core": 1310,
+      "hype": 1290,
+      "omega": 1270
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-va-240hz",
@@ -381,7 +575,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1040,
+    "nexusPriceBRL": 980,
+    "pricesByPlan": {
+      "free": 980,
+      "core": 970,
+      "hype": 950,
+      "omega": 940
+    }
   },
   {
     "sku": "monitor-acer-monitor-27-va-75hz",
@@ -395,7 +601,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1840,
+    "nexusPriceBRL": 1730,
+    "pricesByPlan": {
+      "free": 1730,
+      "core": 1700,
+      "hype": 1680,
+      "omega": 1650
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-ips-144hz",
@@ -409,7 +627,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1520,
+    "nexusPriceBRL": 1430,
+    "pricesByPlan": {
+      "free": 1430,
+      "core": 1410,
+      "hype": 1390,
+      "omega": 1370
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-ips-165hz",
@@ -423,7 +653,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 4590,
+    "nexusPriceBRL": 4310,
+    "pricesByPlan": {
+      "free": 4310,
+      "core": 4250,
+      "hype": 4180,
+      "omega": 4120
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-ips-240hz",
@@ -437,7 +679,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 4210,
+    "nexusPriceBRL": 3960,
+    "pricesByPlan": {
+      "free": 3960,
+      "core": 3900,
+      "hype": 3840,
+      "omega": 3780
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-ips-75hz",
@@ -451,7 +705,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1200,
+    "nexusPriceBRL": 1130,
+    "pricesByPlan": {
+      "free": 1130,
+      "core": 1110,
+      "hype": 1100,
+      "omega": 1080
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-va-144hz",
@@ -465,7 +731,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5450,
+    "nexusPriceBRL": 5120,
+    "pricesByPlan": {
+      "free": 5120,
+      "core": 5040,
+      "hype": 4970,
+      "omega": 4890
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-va-165hz",
@@ -479,7 +757,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3220,
+    "nexusPriceBRL": 3030,
+    "pricesByPlan": {
+      "free": 3030,
+      "core": 2980,
+      "hype": 2940,
+      "omega": 2890
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-va-240hz",
@@ -493,7 +783,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2850,
+    "nexusPriceBRL": 2680,
+    "pricesByPlan": {
+      "free": 2680,
+      "core": 2640,
+      "hype": 2600,
+      "omega": 2560
+    }
   },
   {
     "sku": "monitor-acer-monitor-32-va-75hz",
@@ -507,7 +809,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5040,
+    "nexusPriceBRL": 4740,
+    "pricesByPlan": {
+      "free": 4740,
+      "core": 4670,
+      "hype": 4600,
+      "omega": 4530
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-ips-144hz",
@@ -521,7 +835,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1040,
+    "nexusPriceBRL": 980,
+    "pricesByPlan": {
+      "free": 980,
+      "core": 970,
+      "hype": 950,
+      "omega": 940
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-ips-165hz",
@@ -535,7 +861,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4110,
+    "nexusPriceBRL": 3860,
+    "pricesByPlan": {
+      "free": 3860,
+      "core": 3800,
+      "hype": 3740,
+      "omega": 3690
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-ips-240hz",
@@ -549,7 +887,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 3740,
+    "nexusPriceBRL": 3520,
+    "pricesByPlan": {
+      "free": 3520,
+      "core": 3470,
+      "hype": 3410,
+      "omega": 3360
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-ips-75hz",
@@ -563,7 +913,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 4440,
+    "nexusPriceBRL": 4170,
+    "pricesByPlan": {
+      "free": 4170,
+      "core": 4110,
+      "hype": 4040,
+      "omega": 3980
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-va-144hz",
@@ -577,7 +939,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2210,
+    "nexusPriceBRL": 2080,
+    "pricesByPlan": {
+      "free": 2080,
+      "core": 2050,
+      "hype": 2020,
+      "omega": 1990
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-va-165hz",
@@ -591,7 +965,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 5270,
+    "nexusPriceBRL": 4950,
+    "pricesByPlan": {
+      "free": 4950,
+      "core": 4880,
+      "hype": 4800,
+      "omega": 4730
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-va-240hz",
@@ -605,7 +991,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 4900,
+    "nexusPriceBRL": 4610,
+    "pricesByPlan": {
+      "free": 4610,
+      "core": 4540,
+      "hype": 4470,
+      "omega": 4400
+    }
   },
   {
     "sku": "monitor-acer-monitor-34-ultrawide-va-75hz",
@@ -619,7 +1017,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 890,
+    "nexusPriceBRL": 840,
+    "pricesByPlan": {
+      "free": 840,
+      "core": 830,
+      "hype": 810,
+      "omega": 800
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-ips-144hz",
@@ -633,7 +1043,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 59,
+    "marketPriceBRL": 5790,
+    "nexusPriceBRL": 5440,
+    "pricesByPlan": {
+      "free": 5440,
+      "core": 5360,
+      "hype": 5280,
+      "omega": 5200
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-ips-165hz",
@@ -647,7 +1069,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2720,
+    "nexusPriceBRL": 2560,
+    "pricesByPlan": {
+      "free": 2560,
+      "core": 2520,
+      "hype": 2480,
+      "omega": 2440
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-ips-240hz",
@@ -661,7 +1095,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3100,
+    "nexusPriceBRL": 2910,
+    "pricesByPlan": {
+      "free": 2910,
+      "core": 2870,
+      "hype": 2820,
+      "omega": 2780
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-ips-75hz",
@@ -675,7 +1121,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1550,
+    "nexusPriceBRL": 1460,
+    "pricesByPlan": {
+      "free": 1460,
+      "core": 1440,
+      "hype": 1420,
+      "omega": 1390
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-va-144hz",
@@ -689,7 +1147,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5100,
+    "nexusPriceBRL": 4790,
+    "pricesByPlan": {
+      "free": 4790,
+      "core": 4720,
+      "hype": 4650,
+      "omega": 4570
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-va-165hz",
@@ -703,7 +1173,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2870,
+    "nexusPriceBRL": 2700,
+    "pricesByPlan": {
+      "free": 2700,
+      "core": 2660,
+      "hype": 2620,
+      "omega": 2580
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-va-240hz",
@@ -717,7 +1199,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2500,
+    "nexusPriceBRL": 2350,
+    "pricesByPlan": {
+      "free": 2350,
+      "core": 2310,
+      "hype": 2280,
+      "omega": 2240
+    }
   },
   {
     "sku": "monitor-aoc-monitor-24-va-75hz",
@@ -731,7 +1225,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 3650,
+    "nexusPriceBRL": 3430,
+    "pricesByPlan": {
+      "free": 3430,
+      "core": 3380,
+      "hype": 3330,
+      "omega": 3280
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-ips-144hz",
@@ -745,7 +1251,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 5340,
+    "nexusPriceBRL": 5020,
+    "pricesByPlan": {
+      "free": 5020,
+      "core": 4940,
+      "hype": 4870,
+      "omega": 4790
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-ips-165hz",
@@ -759,7 +1277,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2280,
+    "nexusPriceBRL": 2140,
+    "pricesByPlan": {
+      "free": 2140,
+      "core": 2110,
+      "hype": 2080,
+      "omega": 2040
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-ips-240hz",
@@ -773,7 +1303,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2650,
+    "nexusPriceBRL": 2490,
+    "pricesByPlan": {
+      "free": 2490,
+      "core": 2450,
+      "hype": 2420,
+      "omega": 2380
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-ips-75hz",
@@ -787,7 +1329,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1150,
+    "nexusPriceBRL": 1080,
+    "pricesByPlan": {
+      "free": 1080,
+      "core": 1060,
+      "hype": 1050,
+      "omega": 1030
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-va-144hz",
@@ -801,7 +1355,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5500,
+    "nexusPriceBRL": 5170,
+    "pricesByPlan": {
+      "free": 5170,
+      "core": 5090,
+      "hype": 5010,
+      "omega": 4940
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-va-165hz",
@@ -815,7 +1381,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3270,
+    "nexusPriceBRL": 3070,
+    "pricesByPlan": {
+      "free": 3070,
+      "core": 3020,
+      "hype": 2980,
+      "omega": 2930
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-va-240hz",
@@ -829,7 +1407,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2900,
+    "nexusPriceBRL": 2730,
+    "pricesByPlan": {
+      "free": 2730,
+      "core": 2690,
+      "hype": 2650,
+      "omega": 2610
+    }
   },
   {
     "sku": "monitor-aoc-monitor-27-va-75hz",
@@ -843,7 +1433,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4110,
+    "nexusPriceBRL": 3860,
+    "pricesByPlan": {
+      "free": 3860,
+      "core": 3800,
+      "hype": 3740,
+      "omega": 3690
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-ips-144hz",
@@ -857,7 +1459,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1830,
+    "nexusPriceBRL": 1720,
+    "pricesByPlan": {
+      "free": 1720,
+      "core": 1690,
+      "hype": 1670,
+      "omega": 1640
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-ips-165hz",
@@ -871,7 +1485,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4070,
+    "nexusPriceBRL": 3830,
+    "pricesByPlan": {
+      "free": 3830,
+      "core": 3770,
+      "hype": 3720,
+      "omega": 3660
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-ips-240hz",
@@ -885,7 +1511,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 4440,
+    "nexusPriceBRL": 4170,
+    "pricesByPlan": {
+      "free": 4170,
+      "core": 4110,
+      "hype": 4040,
+      "omega": 3980
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-ips-75hz",
@@ -899,7 +1537,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2060,
+    "nexusPriceBRL": 1940,
+    "pricesByPlan": {
+      "free": 1940,
+      "core": 1910,
+      "hype": 1880,
+      "omega": 1850
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-va-144hz",
@@ -913,7 +1563,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2010,
+    "nexusPriceBRL": 1890,
+    "pricesByPlan": {
+      "free": 1890,
+      "core": 1860,
+      "hype": 1830,
+      "omega": 1800
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-va-165hz",
@@ -927,7 +1589,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5080,
+    "nexusPriceBRL": 4780,
+    "pricesByPlan": {
+      "free": 4780,
+      "core": 4710,
+      "hype": 4640,
+      "omega": 4560
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-va-240hz",
@@ -941,7 +1615,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 4700,
+    "nexusPriceBRL": 4420,
+    "pricesByPlan": {
+      "free": 4420,
+      "core": 4350,
+      "hype": 4290,
+      "omega": 4220
+    }
   },
   {
     "sku": "monitor-aoc-monitor-32-va-75hz",
@@ -955,7 +1641,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2170,
+    "nexusPriceBRL": 2040,
+    "pricesByPlan": {
+      "free": 2040,
+      "core": 2010,
+      "hype": 1980,
+      "omega": 1950
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-ips-144hz",
@@ -969,7 +1667,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 5380,
+    "nexusPriceBRL": 5060,
+    "pricesByPlan": {
+      "free": 5060,
+      "core": 4980,
+      "hype": 4910,
+      "omega": 4830
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-ips-165hz",
@@ -983,7 +1693,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2310,
+    "nexusPriceBRL": 2170,
+    "pricesByPlan": {
+      "free": 2170,
+      "core": 2140,
+      "hype": 2100,
+      "omega": 2070
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-ips-240hz",
@@ -997,7 +1719,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2680,
+    "nexusPriceBRL": 2520,
+    "pricesByPlan": {
+      "free": 2520,
+      "core": 2480,
+      "hype": 2440,
+      "omega": 2410
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-ips-75hz",
@@ -1011,7 +1745,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 4020,
+    "nexusPriceBRL": 3780,
+    "pricesByPlan": {
+      "free": 3780,
+      "core": 3720,
+      "hype": 3670,
+      "omega": 3610
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-va-144hz",
@@ -1025,7 +1771,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 4410,
+    "nexusPriceBRL": 4150,
+    "pricesByPlan": {
+      "free": 4150,
+      "core": 4090,
+      "hype": 4030,
+      "omega": 3960
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-va-165hz",
@@ -1039,7 +1797,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1340,
+    "nexusPriceBRL": 1260,
+    "pricesByPlan": {
+      "free": 1260,
+      "core": 1240,
+      "hype": 1220,
+      "omega": 1200
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-va-240hz",
@@ -1053,7 +1823,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1710,
+    "nexusPriceBRL": 1610,
+    "pricesByPlan": {
+      "free": 1610,
+      "core": 1590,
+      "hype": 1560,
+      "omega": 1540
+    }
   },
   {
     "sku": "monitor-aoc-monitor-34-ultrawide-va-75hz",
@@ -1067,7 +1849,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1460,
+    "nexusPriceBRL": 1370,
+    "pricesByPlan": {
+      "free": 1370,
+      "core": 1350,
+      "hype": 1330,
+      "omega": 1310
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-ips-144hz",
@@ -1081,7 +1875,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3300,
+    "nexusPriceBRL": 3100,
+    "pricesByPlan": {
+      "free": 3100,
+      "core": 3050,
+      "hype": 3010,
+      "omega": 2960
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-ips-165hz",
@@ -1095,7 +1901,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 5530,
+    "nexusPriceBRL": 5200,
+    "pricesByPlan": {
+      "free": 5200,
+      "core": 5120,
+      "hype": 5040,
+      "omega": 4970
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-ips-240hz",
@@ -1109,7 +1927,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 5900,
+    "nexusPriceBRL": 5550,
+    "pricesByPlan": {
+      "free": 5550,
+      "core": 5470,
+      "hype": 5380,
+      "omega": 5300
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-ips-75hz",
@@ -1123,7 +1953,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2710,
+    "nexusPriceBRL": 2550,
+    "pricesByPlan": {
+      "free": 2550,
+      "core": 2510,
+      "hype": 2470,
+      "omega": 2440
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-va-144hz",
@@ -1137,7 +1979,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2760,
+    "nexusPriceBRL": 2590,
+    "pricesByPlan": {
+      "free": 2590,
+      "core": 2550,
+      "hype": 2510,
+      "omega": 2470
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-va-165hz",
@@ -1151,7 +2005,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 68,
+    "marketPriceBRL": 5000,
+    "nexusPriceBRL": 4700,
+    "pricesByPlan": {
+      "free": 4700,
+      "core": 4630,
+      "hype": 4560,
+      "omega": 4490
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-va-240hz",
@@ -1165,7 +2031,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 5370,
+    "nexusPriceBRL": 5050,
+    "pricesByPlan": {
+      "free": 5050,
+      "core": 4970,
+      "hype": 4900,
+      "omega": 4820
+    }
   },
   {
     "sku": "monitor-dell-monitor-24-va-75hz",
@@ -1179,7 +2057,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 4940,
+    "nexusPriceBRL": 4640,
+    "pricesByPlan": {
+      "free": 4640,
+      "core": 4570,
+      "hype": 4500,
+      "omega": 4430
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-ips-144hz",
@@ -1193,7 +2083,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 88,
+    "marketPriceBRL": 3850,
+    "nexusPriceBRL": 3620,
+    "pricesByPlan": {
+      "free": 3620,
+      "core": 3570,
+      "hype": 3510,
+      "omega": 3460
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-ips-165hz",
@@ -1207,7 +2109,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1620,
+    "nexusPriceBRL": 1520,
+    "pricesByPlan": {
+      "free": 1520,
+      "core": 1500,
+      "hype": 1470,
+      "omega": 1450
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-ips-240hz",
@@ -1221,7 +2135,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5450,
+    "nexusPriceBRL": 5120,
+    "pricesByPlan": {
+      "free": 5120,
+      "core": 5040,
+      "hype": 4970,
+      "omega": 4890
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-ips-75hz",
@@ -1235,7 +2161,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2310,
+    "nexusPriceBRL": 2170,
+    "pricesByPlan": {
+      "free": 2170,
+      "core": 2140,
+      "hype": 2100,
+      "omega": 2070
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-va-144hz",
@@ -1249,7 +2187,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 78,
+    "marketPriceBRL": 4340,
+    "nexusPriceBRL": 4080,
+    "pricesByPlan": {
+      "free": 4080,
+      "core": 4020,
+      "hype": 3960,
+      "omega": 3900
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-va-165hz",
@@ -1263,7 +2213,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2110,
+    "nexusPriceBRL": 1980,
+    "pricesByPlan": {
+      "free": 1980,
+      "core": 1950,
+      "hype": 1920,
+      "omega": 1890
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-va-240hz",
@@ -1277,7 +2239,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1740,
+    "nexusPriceBRL": 1640,
+    "pricesByPlan": {
+      "free": 1640,
+      "core": 1620,
+      "hype": 1590,
+      "omega": 1570
+    }
   },
   {
     "sku": "monitor-dell-monitor-27-va-75hz",
@@ -1291,7 +2265,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 5550,
+    "nexusPriceBRL": 5220,
+    "pricesByPlan": {
+      "free": 5220,
+      "core": 5140,
+      "hype": 5060,
+      "omega": 4990
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-ips-144hz",
@@ -1305,7 +2291,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 4640,
+    "nexusPriceBRL": 4360,
+    "pricesByPlan": {
+      "free": 4360,
+      "core": 4290,
+      "hype": 4230,
+      "omega": 4160
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-ips-165hz",
@@ -1319,7 +2317,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1570,
+    "nexusPriceBRL": 1480,
+    "pricesByPlan": {
+      "free": 1480,
+      "core": 1460,
+      "hype": 1440,
+      "omega": 1410
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-ips-240hz",
@@ -1333,7 +2343,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1940,
+    "nexusPriceBRL": 1820,
+    "pricesByPlan": {
+      "free": 1820,
+      "core": 1790,
+      "hype": 1770,
+      "omega": 1740
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-ips-75hz",
@@ -1347,7 +2369,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 900,
+    "nexusPriceBRL": 850,
+    "pricesByPlan": {
+      "free": 850,
+      "core": 840,
+      "hype": 820,
+      "omega": 810
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-va-144hz",
@@ -1361,7 +2395,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 840,
+    "nexusPriceBRL": 790,
+    "pricesByPlan": {
+      "free": 790,
+      "core": 780,
+      "hype": 770,
+      "omega": 750
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-va-165hz",
@@ -1375,7 +2421,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 3910,
+    "nexusPriceBRL": 3680,
+    "pricesByPlan": {
+      "free": 3680,
+      "core": 3620,
+      "hype": 3570,
+      "omega": 3510
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-va-240hz",
@@ -1389,7 +2447,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 96,
+    "marketPriceBRL": 3540,
+    "nexusPriceBRL": 3330,
+    "pricesByPlan": {
+      "free": 3330,
+      "core": 3280,
+      "hype": 3230,
+      "omega": 3180
+    }
   },
   {
     "sku": "monitor-dell-monitor-32-va-75hz",
@@ -1403,7 +2473,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3450,
+    "nexusPriceBRL": 3240,
+    "pricesByPlan": {
+      "free": 3240,
+      "core": 3190,
+      "hype": 3140,
+      "omega": 3090
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-ips-144hz",
@@ -1417,7 +2499,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 95,
+    "marketPriceBRL": 3590,
+    "nexusPriceBRL": 3370,
+    "pricesByPlan": {
+      "free": 3370,
+      "core": 3320,
+      "hype": 3270,
+      "omega": 3220
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-ips-165hz",
@@ -1431,7 +2525,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 5820,
+    "nexusPriceBRL": 5470,
+    "pricesByPlan": {
+      "free": 5470,
+      "core": 5390,
+      "hype": 5310,
+      "omega": 5220
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-ips-240hz",
@@ -1445,7 +2551,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 900,
+    "nexusPriceBRL": 850,
+    "pricesByPlan": {
+      "free": 850,
+      "core": 840,
+      "hype": 820,
+      "omega": 810
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-ips-75hz",
@@ -1459,7 +2577,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 4220,
+    "nexusPriceBRL": 3970,
+    "pricesByPlan": {
+      "free": 3970,
+      "core": 3910,
+      "hype": 3850,
+      "omega": 3790
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-va-144hz",
@@ -1473,7 +2603,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2430,
+    "nexusPriceBRL": 2280,
+    "pricesByPlan": {
+      "free": 2280,
+      "core": 2250,
+      "hype": 2210,
+      "omega": 2180
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-va-165hz",
@@ -1487,7 +2629,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5500,
+    "nexusPriceBRL": 5170,
+    "pricesByPlan": {
+      "free": 5170,
+      "core": 5090,
+      "hype": 5010,
+      "omega": 4940
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-va-240hz",
@@ -1501,7 +2655,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5130,
+    "nexusPriceBRL": 4820,
+    "pricesByPlan": {
+      "free": 4820,
+      "core": 4750,
+      "hype": 4680,
+      "omega": 4600
+    }
   },
   {
     "sku": "monitor-dell-monitor-34-ultrawide-va-75hz",
@@ -1515,7 +2681,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3130,
+    "nexusPriceBRL": 2940,
+    "pricesByPlan": {
+      "free": 2940,
+      "core": 2900,
+      "hype": 2850,
+      "omega": 2810
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-ips-144hz",
@@ -1529,7 +2707,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1520,
+    "nexusPriceBRL": 1430,
+    "pricesByPlan": {
+      "free": 1430,
+      "core": 1410,
+      "hype": 1390,
+      "omega": 1370
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-ips-165hz",
@@ -1543,7 +2733,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 3750,
+    "nexusPriceBRL": 3530,
+    "pricesByPlan": {
+      "free": 3530,
+      "core": 3480,
+      "hype": 3420,
+      "omega": 3370
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-ips-240hz",
@@ -1557,7 +2759,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 82,
+    "marketPriceBRL": 4130,
+    "nexusPriceBRL": 3880,
+    "pricesByPlan": {
+      "free": 3880,
+      "core": 3820,
+      "hype": 3760,
+      "omega": 3710
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-ips-75hz",
@@ -1571,7 +2785,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1080,
+    "nexusPriceBRL": 1020,
+    "pricesByPlan": {
+      "free": 1020,
+      "core": 1000,
+      "hype": 990,
+      "omega": 970
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-va-144hz",
@@ -1585,7 +2811,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-va-165hz",
@@ -1599,7 +2837,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 79,
+    "marketPriceBRL": 4280,
+    "nexusPriceBRL": 4020,
+    "pricesByPlan": {
+      "free": 4020,
+      "core": 3960,
+      "hype": 3900,
+      "omega": 3840
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-va-240hz",
@@ -1613,7 +2863,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 4660,
+    "nexusPriceBRL": 4380,
+    "pricesByPlan": {
+      "free": 4380,
+      "core": 4310,
+      "hype": 4250,
+      "omega": 4180
+    }
   },
   {
     "sku": "monitor-lg-monitor-24-va-75hz",
@@ -1627,7 +2889,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-ips-144hz",
@@ -1641,7 +2915,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1070,
+    "nexusPriceBRL": 1010,
+    "pricesByPlan": {
+      "free": 1010,
+      "core": 990,
+      "hype": 980,
+      "omega": 960
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-ips-165hz",
@@ -1655,7 +2941,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3300,
+    "nexusPriceBRL": 3100,
+    "pricesByPlan": {
+      "free": 3100,
+      "core": 3050,
+      "hype": 3010,
+      "omega": 2960
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-ips-240hz",
@@ -1669,7 +2967,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 3680,
+    "nexusPriceBRL": 3460,
+    "pricesByPlan": {
+      "free": 3460,
+      "core": 3410,
+      "hype": 3360,
+      "omega": 3300
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-ips-75hz",
@@ -1683,7 +2993,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1600,
+    "nexusPriceBRL": 1500,
+    "pricesByPlan": {
+      "free": 1500,
+      "core": 1480,
+      "hype": 1460,
+      "omega": 1430
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-va-144hz",
@@ -1697,7 +3019,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1650,
+    "nexusPriceBRL": 1550,
+    "pricesByPlan": {
+      "free": 1550,
+      "core": 1530,
+      "hype": 1500,
+      "omega": 1480
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-va-165hz",
@@ -1711,7 +3045,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 88,
+    "marketPriceBRL": 3880,
+    "nexusPriceBRL": 3650,
+    "pricesByPlan": {
+      "free": 3650,
+      "core": 3600,
+      "hype": 3540,
+      "omega": 3490
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-va-240hz",
@@ -1725,7 +3071,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 4250,
+    "nexusPriceBRL": 4000,
+    "pricesByPlan": {
+      "free": 4000,
+      "core": 3940,
+      "hype": 3880,
+      "omega": 3820
+    }
   },
   {
     "sku": "monitor-lg-monitor-27-va-75hz",
@@ -1739,7 +3097,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2670,
+    "nexusPriceBRL": 2510,
+    "pricesByPlan": {
+      "free": 2510,
+      "core": 2470,
+      "hype": 2430,
+      "omega": 2400
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-ips-144hz",
@@ -1753,7 +3123,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2860,
+    "nexusPriceBRL": 2690,
+    "pricesByPlan": {
+      "free": 2690,
+      "core": 2650,
+      "hype": 2610,
+      "omega": 2570
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-ips-165hz",
@@ -1767,7 +3149,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5100,
+    "nexusPriceBRL": 4790,
+    "pricesByPlan": {
+      "free": 4790,
+      "core": 4720,
+      "hype": 4650,
+      "omega": 4570
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-ips-240hz",
@@ -1781,7 +3175,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 5470,
+    "nexusPriceBRL": 5140,
+    "pricesByPlan": {
+      "free": 5140,
+      "core": 5060,
+      "hype": 4990,
+      "omega": 4910
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-ips-75hz",
@@ -1795,7 +3201,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5090,
+    "nexusPriceBRL": 4780,
+    "pricesByPlan": {
+      "free": 4780,
+      "core": 4710,
+      "hype": 4640,
+      "omega": 4560
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-va-144hz",
@@ -1809,7 +3227,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5140,
+    "nexusPriceBRL": 4830,
+    "pricesByPlan": {
+      "free": 4830,
+      "core": 4760,
+      "hype": 4690,
+      "omega": 4610
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-va-165hz",
@@ -1823,7 +3253,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2080,
+    "nexusPriceBRL": 1960,
+    "pricesByPlan": {
+      "free": 1960,
+      "core": 1930,
+      "hype": 1900,
+      "omega": 1870
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-va-240hz",
@@ -1837,7 +3279,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2450,
+    "nexusPriceBRL": 2300,
+    "pricesByPlan": {
+      "free": 2300,
+      "core": 2270,
+      "hype": 2230,
+      "omega": 2200
+    }
   },
   {
     "sku": "monitor-lg-monitor-32-va-75hz",
@@ -1851,7 +3305,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 58,
+    "marketPriceBRL": 5870,
+    "nexusPriceBRL": 5520,
+    "pricesByPlan": {
+      "free": 5520,
+      "core": 5440,
+      "hype": 5350,
+      "omega": 5270
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-ips-144hz",
@@ -1865,7 +3331,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1910,
+    "nexusPriceBRL": 1800,
+    "pricesByPlan": {
+      "free": 1800,
+      "core": 1770,
+      "hype": 1750,
+      "omega": 1720
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-ips-165hz",
@@ -1879,7 +3357,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 68,
+    "marketPriceBRL": 4980,
+    "nexusPriceBRL": 4680,
+    "pricesByPlan": {
+      "free": 4680,
+      "core": 4610,
+      "hype": 4540,
+      "omega": 4470
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-ips-240hz",
@@ -1893,7 +3383,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 4610,
+    "nexusPriceBRL": 4330,
+    "pricesByPlan": {
+      "free": 4330,
+      "core": 4270,
+      "hype": 4200,
+      "omega": 4140
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-ips-75hz",
@@ -1907,7 +3409,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 4730,
+    "nexusPriceBRL": 4450,
+    "pricesByPlan": {
+      "free": 4450,
+      "core": 4380,
+      "hype": 4320,
+      "omega": 4250
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-va-144hz",
@@ -1921,7 +3435,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 3700,
+    "nexusPriceBRL": 3480,
+    "pricesByPlan": {
+      "free": 3480,
+      "core": 3430,
+      "hype": 3380,
+      "omega": 3320
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-va-165hz",
@@ -1935,7 +3461,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 57,
+    "marketPriceBRL": 5940,
+    "nexusPriceBRL": 5580,
+    "pricesByPlan": {
+      "free": 5580,
+      "core": 5500,
+      "hype": 5410,
+      "omega": 5330
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-va-240hz",
@@ -1949,7 +3487,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1010,
+    "nexusPriceBRL": 950,
+    "pricesByPlan": {
+      "free": 950,
+      "core": 940,
+      "hype": 920,
+      "omega": 910
+    }
   },
   {
     "sku": "monitor-lg-monitor-34-ultrawide-va-75hz",
@@ -1963,7 +3513,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 59,
+    "marketPriceBRL": 5750,
+    "nexusPriceBRL": 5410,
+    "pricesByPlan": {
+      "free": 5410,
+      "core": 5330,
+      "hype": 5250,
+      "omega": 5170
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-ips-144hz",
@@ -1977,7 +3539,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 4840,
+    "nexusPriceBRL": 4550,
+    "pricesByPlan": {
+      "free": 4550,
+      "core": 4480,
+      "hype": 4410,
+      "omega": 4350
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-ips-165hz",
@@ -1991,7 +3565,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2610,
+    "nexusPriceBRL": 2450,
+    "pricesByPlan": {
+      "free": 2450,
+      "core": 2410,
+      "hype": 2380,
+      "omega": 2340
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-ips-240hz",
@@ -2005,7 +3591,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2240,
+    "nexusPriceBRL": 2110,
+    "pricesByPlan": {
+      "free": 2110,
+      "core": 2080,
+      "hype": 2050,
+      "omega": 2020
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-ips-75hz",
@@ -2019,7 +3617,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 840,
+    "nexusPriceBRL": 790,
+    "pricesByPlan": {
+      "free": 790,
+      "core": 780,
+      "hype": 770,
+      "omega": 750
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-va-144hz",
@@ -2033,7 +3643,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2290,
+    "nexusPriceBRL": 2150,
+    "pricesByPlan": {
+      "free": 2150,
+      "core": 2120,
+      "hype": 2090,
+      "omega": 2050
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-va-165hz",
@@ -2047,7 +3669,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 75,
+    "marketPriceBRL": 4520,
+    "nexusPriceBRL": 4250,
+    "pricesByPlan": {
+      "free": 4250,
+      "core": 4190,
+      "hype": 4120,
+      "omega": 4060
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-va-240hz",
@@ -2061,7 +3695,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 4890,
+    "nexusPriceBRL": 4600,
+    "pricesByPlan": {
+      "free": 4600,
+      "core": 4530,
+      "hype": 4460,
+      "omega": 4390
+    }
   },
   {
     "sku": "monitor-samsung-monitor-24-va-75hz",
@@ -2075,7 +3721,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 68,
+    "marketPriceBRL": 4960,
+    "nexusPriceBRL": 4660,
+    "pricesByPlan": {
+      "free": 4660,
+      "core": 4590,
+      "hype": 4520,
+      "omega": 4450
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-ips-144hz",
@@ -2089,7 +3747,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 5290,
+    "nexusPriceBRL": 4970,
+    "pricesByPlan": {
+      "free": 4970,
+      "core": 4900,
+      "hype": 4820,
+      "omega": 4750
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-ips-165hz",
@@ -2103,7 +3773,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3060,
+    "nexusPriceBRL": 2880,
+    "pricesByPlan": {
+      "free": 2880,
+      "core": 2840,
+      "hype": 2790,
+      "omega": 2750
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-ips-240hz",
@@ -2117,7 +3799,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2690,
+    "nexusPriceBRL": 2530,
+    "pricesByPlan": {
+      "free": 2530,
+      "core": 2490,
+      "hype": 2450,
+      "omega": 2420
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-ips-75hz",
@@ -2131,7 +3825,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1250,
+    "nexusPriceBRL": 1180,
+    "pricesByPlan": {
+      "free": 1180,
+      "core": 1160,
+      "hype": 1140,
+      "omega": 1130
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-va-144hz",
@@ -2145,7 +3851,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 1890,
+    "nexusPriceBRL": 1780,
+    "pricesByPlan": {
+      "free": 1780,
+      "core": 1750,
+      "hype": 1730,
+      "omega": 1700
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-va-165hz",
@@ -2159,7 +3877,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 82,
+    "marketPriceBRL": 4120,
+    "nexusPriceBRL": 3870,
+    "pricesByPlan": {
+      "free": 3870,
+      "core": 3810,
+      "hype": 3750,
+      "omega": 3700
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-va-240hz",
@@ -2173,7 +3903,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 4490,
+    "nexusPriceBRL": 4220,
+    "pricesByPlan": {
+      "free": 4220,
+      "core": 4160,
+      "hype": 4090,
+      "omega": 4030
+    }
   },
   {
     "sku": "monitor-samsung-monitor-27-va-75hz",
@@ -2187,7 +3929,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 5580,
+    "nexusPriceBRL": 5250,
+    "pricesByPlan": {
+      "free": 5250,
+      "core": 5170,
+      "hype": 5090,
+      "omega": 5010
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-ips-144hz",
@@ -2201,7 +3955,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 97,
+    "marketPriceBRL": 3500,
+    "nexusPriceBRL": 3290,
+    "pricesByPlan": {
+      "free": 3290,
+      "core": 3240,
+      "hype": 3190,
+      "omega": 3140
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-ips-165hz",
@@ -2215,7 +3981,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1270,
+    "nexusPriceBRL": 1190,
+    "pricesByPlan": {
+      "free": 1190,
+      "core": 1170,
+      "hype": 1150,
+      "omega": 1140
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-ips-240hz",
@@ -2229,7 +4007,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 900,
+    "nexusPriceBRL": 850,
+    "pricesByPlan": {
+      "free": 850,
+      "core": 840,
+      "hype": 820,
+      "omega": 810
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-ips-75hz",
@@ -2243,7 +4033,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 5330,
+    "nexusPriceBRL": 5010,
+    "pricesByPlan": {
+      "free": 5010,
+      "core": 4930,
+      "hype": 4860,
+      "omega": 4780
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-va-144hz",
@@ -2257,7 +4059,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 5380,
+    "nexusPriceBRL": 5060,
+    "pricesByPlan": {
+      "free": 5060,
+      "core": 4980,
+      "hype": 4910,
+      "omega": 4830
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-va-165hz",
@@ -2271,7 +4085,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2310,
+    "nexusPriceBRL": 2170,
+    "pricesByPlan": {
+      "free": 2170,
+      "core": 2140,
+      "hype": 2100,
+      "omega": 2070
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-va-240hz",
@@ -2285,7 +4111,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2680,
+    "nexusPriceBRL": 2520,
+    "pricesByPlan": {
+      "free": 2520,
+      "core": 2480,
+      "hype": 2440,
+      "omega": 2410
+    }
   },
   {
     "sku": "monitor-samsung-monitor-32-va-75hz",
@@ -2299,7 +4137,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3470,
+    "nexusPriceBRL": 3260,
+    "pricesByPlan": {
+      "free": 3260,
+      "core": 3210,
+      "hype": 3160,
+      "omega": 3110
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-ips-144hz",
@@ -2313,7 +4163,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1440,
+    "nexusPriceBRL": 1350,
+    "pricesByPlan": {
+      "free": 1350,
+      "core": 1330,
+      "hype": 1310,
+      "omega": 1290
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-ips-165hz",
@@ -2327,7 +4189,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 3680,
+    "nexusPriceBRL": 3460,
+    "pricesByPlan": {
+      "free": 3460,
+      "core": 3410,
+      "hype": 3360,
+      "omega": 3300
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-ips-240hz",
@@ -2341,7 +4215,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 4050,
+    "nexusPriceBRL": 3810,
+    "pricesByPlan": {
+      "free": 3810,
+      "core": 3750,
+      "hype": 3700,
+      "omega": 3640
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-ips-75hz",
@@ -2355,7 +4241,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2120,
+    "nexusPriceBRL": 1990,
+    "pricesByPlan": {
+      "free": 1990,
+      "core": 1960,
+      "hype": 1930,
+      "omega": 1900
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-va-144hz",
@@ -2369,7 +4267,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2170,
+    "nexusPriceBRL": 2040,
+    "pricesByPlan": {
+      "free": 2040,
+      "core": 2010,
+      "hype": 1980,
+      "omega": 1950
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-va-165hz",
@@ -2383,7 +4293,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 4410,
+    "nexusPriceBRL": 4150,
+    "pricesByPlan": {
+      "free": 4150,
+      "core": 4090,
+      "hype": 4030,
+      "omega": 3960
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-va-240hz",
@@ -2397,7 +4319,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 4780,
+    "nexusPriceBRL": 4490,
+    "pricesByPlan": {
+      "free": 4490,
+      "core": 4420,
+      "hype": 4360,
+      "omega": 4290
+    }
   },
   {
     "sku": "monitor-samsung-monitor-34-ultrawide-va-75hz",
@@ -2411,6 +4345,18 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226708,
-    "updatedAt": 1767390226708
+    "updatedAt": 1767391482207,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 5600,
+    "nexusPriceBRL": 5260,
+    "pricesByPlan": {
+      "free": 5260,
+      "core": 5180,
+      "hype": 5100,
+      "omega": 5020
+    }
   }
 ]

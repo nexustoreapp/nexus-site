@@ -9,7 +9,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 24,
+    "marketPriceBRL": 1870,
+    "nexusPriceBRL": 1760,
+    "pricesByPlan": {
+      "free": 1760,
+      "core": 1730,
+      "hype": 1710,
+      "omega": 1680
+    }
   },
   {
     "sku": "accessories-cabo-usb-c-2m",
@@ -21,7 +34,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 14,
+    "marketPriceBRL": 3340,
+    "nexusPriceBRL": 3130,
+    "pricesByPlan": {
+      "free": 3130,
+      "core": 3080,
+      "hype": 3040,
+      "omega": 2990
+    }
   },
   {
     "sku": "accessories-cabo-hdmi-2-1",
@@ -33,7 +59,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 30,
+    "marketPriceBRL": 1510,
+    "nexusPriceBRL": 1420,
+    "pricesByPlan": {
+      "free": 1420,
+      "core": 1400,
+      "hype": 1380,
+      "omega": 1360
+    }
   },
   {
     "sku": "accessories-adaptador-usb-c-para-hdmi",
@@ -45,7 +84,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 13,
+    "marketPriceBRL": 3390,
+    "nexusPriceBRL": 3180,
+    "pricesByPlan": {
+      "free": 3180,
+      "core": 3130,
+      "hype": 3080,
+      "omega": 3040
+    }
   },
   {
     "sku": "accessories-hub-usb-3-0",
@@ -57,7 +109,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 15,
+    "marketPriceBRL": 2930,
+    "nexusPriceBRL": 2750,
+    "pricesByPlan": {
+      "free": 2750,
+      "core": 2710,
+      "hype": 2670,
+      "omega": 2630
+    }
   },
   {
     "sku": "accessories-hub-usb-c-7-em-1",
@@ -69,7 +134,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 16,
+    "marketPriceBRL": 2840,
+    "nexusPriceBRL": 2670,
+    "pricesByPlan": {
+      "free": 2670,
+      "core": 2630,
+      "hype": 2590,
+      "omega": 2550
+    }
   },
   {
     "sku": "accessories-leitor-de-cart-o-sd",
@@ -81,7 +159,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 510,
+    "nexusPriceBRL": 480,
+    "pricesByPlan": {
+      "free": 480,
+      "core": 470,
+      "hype": 470,
+      "omega": 460
+    }
   },
   {
     "sku": "accessories-adaptador-bluetooth-usb",
@@ -93,7 +184,20 @@
     "ready": true,
     "source": "seed-marketplace",
     "createdAt": 1767377651842,
-    "updatedAt": 1767378479228
+    "updatedAt": 1767391482196,
+    "image": "fallback.png",
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 330,
+    "nexusPriceBRL": 310,
+    "pricesByPlan": {
+      "free": 310,
+      "core": 310,
+      "hype": 300,
+      "omega": 300
+    }
   },
   {
     "sku": "accessories-anker-adaptador-displayport-para-hdmi",
@@ -107,7 +211,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226703,
-    "updatedAt": 1767390226703
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 80,
+    "nexusPriceBRL": 80,
+    "pricesByPlan": {
+      "free": 80,
+      "core": 80,
+      "hype": 80,
+      "omega": 80
+    }
   },
   {
     "sku": "accessories-anker-adaptador-hdmi-para-vga",
@@ -121,7 +237,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226703,
-    "updatedAt": 1767390226703
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 140,
+    "nexusPriceBRL": 130,
+    "pricesByPlan": {
+      "free": 130,
+      "core": 130,
+      "hype": 130,
+      "omega": 120
+    }
   },
   {
     "sku": "accessories-anker-adaptador-usb-c-para-ethernet",
@@ -135,7 +263,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 180,
+    "nexusPriceBRL": 170,
+    "pricesByPlan": {
+      "free": 170,
+      "core": 170,
+      "hype": 160,
+      "omega": 160
+    }
   },
   {
     "sku": "accessories-anker-adaptador-usb-c-para-hdmi",
@@ -149,7 +289,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 210,
+    "nexusPriceBRL": 200,
+    "pricesByPlan": {
+      "free": 200,
+      "core": 200,
+      "hype": 190,
+      "omega": 190
+    }
   },
   {
     "sku": "accessories-anker-cabo-displayport-1-4-2m",
@@ -163,7 +315,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 210,
+    "nexusPriceBRL": 200,
+    "pricesByPlan": {
+      "free": 200,
+      "core": 200,
+      "hype": 190,
+      "omega": 190
+    }
   },
   {
     "sku": "accessories-anker-cabo-hdmi-2-0-2m",
@@ -177,7 +341,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-anker-cabo-hdmi-2-1-2m",
@@ -191,7 +367,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-anker-cabo-usb-c-1m",
@@ -205,7 +393,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 400,
+    "nexusPriceBRL": 380,
+    "pricesByPlan": {
+      "free": 380,
+      "core": 370,
+      "hype": 370,
+      "omega": 360
+    }
   },
   {
     "sku": "accessories-anker-cabo-usb-c-2m",
@@ -219,7 +419,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 430,
+    "nexusPriceBRL": 400,
+    "pricesByPlan": {
+      "free": 400,
+      "core": 390,
+      "hype": 390,
+      "omega": 380
+    }
   },
   {
     "sku": "accessories-anker-dock-usb-c-simples",
@@ -233,7 +445,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 40,
+    "nexusPriceBRL": 40,
+    "pricesByPlan": {
+      "free": 40,
+      "core": 40,
+      "hype": 40,
+      "omega": 40
+    }
   },
   {
     "sku": "accessories-anker-extens-o-hdmi-3m",
@@ -247,7 +471,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 200,
+    "nexusPriceBRL": 190,
+    "pricesByPlan": {
+      "free": 190,
+      "core": 190,
+      "hype": 180,
+      "omega": 180
+    }
   },
   {
     "sku": "accessories-anker-extens-o-usb-2m",
@@ -261,7 +497,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 390,
+    "nexusPriceBRL": 370,
+    "pricesByPlan": {
+      "free": 370,
+      "core": 360,
+      "hype": 360,
+      "omega": 350
+    }
   },
   {
     "sku": "accessories-anker-hub-usb-3-0-4-portas",
@@ -275,7 +523,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 440,
+    "nexusPriceBRL": 410,
+    "pricesByPlan": {
+      "free": 410,
+      "core": 400,
+      "hype": 400,
+      "omega": 390
+    }
   },
   {
     "sku": "accessories-anker-hub-usb-c-7-em-1",
@@ -289,7 +549,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 400,
+    "nexusPriceBRL": 380,
+    "pricesByPlan": {
+      "free": 380,
+      "core": 370,
+      "hype": 370,
+      "omega": 360
+    }
   },
   {
     "sku": "accessories-anker-leitor-de-cart-o-microsd",
@@ -303,7 +575,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 400,
+    "nexusPriceBRL": 380,
+    "pricesByPlan": {
+      "free": 380,
+      "core": 370,
+      "hype": 370,
+      "omega": 360
+    }
   },
   {
     "sku": "accessories-anker-leitor-de-cart-o-sd",
@@ -317,7 +601,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 440,
+    "nexusPriceBRL": 410,
+    "pricesByPlan": {
+      "free": 410,
+      "core": 400,
+      "hype": 400,
+      "omega": 390
+    }
   },
   {
     "sku": "accessories-anker-organizador-de-cabos",
@@ -331,7 +627,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 450,
+    "nexusPriceBRL": 420,
+    "pricesByPlan": {
+      "free": 420,
+      "core": 410,
+      "hype": 410,
+      "omega": 400
+    }
   },
   {
     "sku": "accessories-baseus-adaptador-displayport-para-hdmi",
@@ -345,7 +653,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 40,
+    "nexusPriceBRL": 40,
+    "pricesByPlan": {
+      "free": 40,
+      "core": 40,
+      "hype": 40,
+      "omega": 40
+    }
   },
   {
     "sku": "accessories-baseus-adaptador-hdmi-para-vga",
@@ -359,7 +679,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 70,
+    "nexusPriceBRL": 70,
+    "pricesByPlan": {
+      "free": 70,
+      "core": 70,
+      "hype": 70,
+      "omega": 70
+    }
   },
   {
     "sku": "accessories-baseus-adaptador-usb-c-para-ethernet",
@@ -373,7 +705,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 220,
+    "nexusPriceBRL": 210,
+    "pricesByPlan": {
+      "free": 210,
+      "core": 210,
+      "hype": 200,
+      "omega": 200
+    }
   },
   {
     "sku": "accessories-baseus-adaptador-usb-c-para-hdmi",
@@ -387,7 +731,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 160,
+    "nexusPriceBRL": 150,
+    "pricesByPlan": {
+      "free": 150,
+      "core": 150,
+      "hype": 150,
+      "omega": 140
+    }
   },
   {
     "sku": "accessories-baseus-cabo-displayport-1-4-2m",
@@ -401,7 +757,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 140,
+    "nexusPriceBRL": 130,
+    "pricesByPlan": {
+      "free": 130,
+      "core": 130,
+      "hype": 130,
+      "omega": 120
+    }
   },
   {
     "sku": "accessories-baseus-cabo-hdmi-2-0-2m",
@@ -415,7 +783,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-baseus-cabo-hdmi-2-1-2m",
@@ -429,7 +809,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-baseus-cabo-usb-c-1m",
@@ -443,7 +835,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 420,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-baseus-cabo-usb-c-2m",
@@ -457,7 +861,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 450,
+    "nexusPriceBRL": 420,
+    "pricesByPlan": {
+      "free": 420,
+      "core": 410,
+      "hype": 410,
+      "omega": 400
+    }
   },
   {
     "sku": "accessories-baseus-dock-usb-c-simples",
@@ -471,7 +887,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 50,
+    "nexusPriceBRL": 50,
+    "pricesByPlan": {
+      "free": 50,
+      "core": 50,
+      "hype": 50,
+      "omega": 50
+    }
   },
   {
     "sku": "accessories-baseus-extens-o-hdmi-3m",
@@ -485,7 +913,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 500,
+    "nexusPriceBRL": 470,
+    "pricesByPlan": {
+      "free": 470,
+      "core": 460,
+      "hype": 460,
+      "omega": 450
+    }
   },
   {
     "sku": "accessories-baseus-extens-o-usb-2m",
@@ -499,7 +939,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 130,
+    "nexusPriceBRL": 120,
+    "pricesByPlan": {
+      "free": 120,
+      "core": 120,
+      "hype": 120,
+      "omega": 110
+    }
   },
   {
     "sku": "accessories-baseus-hub-usb-3-0-4-portas",
@@ -513,7 +965,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-baseus-hub-usb-c-7-em-1",
@@ -527,7 +991,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 110,
+    "nexusPriceBRL": 100,
+    "pricesByPlan": {
+      "free": 100,
+      "core": 100,
+      "hype": 100,
+      "omega": 100
+    }
   },
   {
     "sku": "accessories-baseus-leitor-de-cart-o-microsd",
@@ -541,7 +1017,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 270,
+    "nexusPriceBRL": 250,
+    "pricesByPlan": {
+      "free": 250,
+      "core": 250,
+      "hype": 240,
+      "omega": 240
+    }
   },
   {
     "sku": "accessories-baseus-leitor-de-cart-o-sd",
@@ -555,7 +1043,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 190,
+    "nexusPriceBRL": 180,
+    "pricesByPlan": {
+      "free": 180,
+      "core": 180,
+      "hype": 170,
+      "omega": 170
+    }
   },
   {
     "sku": "accessories-baseus-organizador-de-cabos",
@@ -569,7 +1069,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 95,
+    "marketPriceBRL": 480,
+    "nexusPriceBRL": 450,
+    "pricesByPlan": {
+      "free": 450,
+      "core": 440,
+      "hype": 440,
+      "omega": 430
+    }
   },
   {
     "sku": "accessories-intelbras-adaptador-displayport-para-hdmi",
@@ -583,7 +1095,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-intelbras-adaptador-hdmi-para-vga",
@@ -597,7 +1121,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 400,
+    "nexusPriceBRL": 380,
+    "pricesByPlan": {
+      "free": 380,
+      "core": 370,
+      "hype": 370,
+      "omega": 360
+    }
   },
   {
     "sku": "accessories-intelbras-adaptador-usb-c-para-ethernet",
@@ -611,7 +1147,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 160,
+    "nexusPriceBRL": 150,
+    "pricesByPlan": {
+      "free": 150,
+      "core": 150,
+      "hype": 150,
+      "omega": 140
+    }
   },
   {
     "sku": "accessories-intelbras-adaptador-usb-c-para-hdmi",
@@ -625,7 +1173,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 450,
+    "nexusPriceBRL": 420,
+    "pricesByPlan": {
+      "free": 420,
+      "core": 410,
+      "hype": 410,
+      "omega": 400
+    }
   },
   {
     "sku": "accessories-intelbras-cabo-displayport-1-4-2m",
@@ -639,7 +1199,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 190,
+    "nexusPriceBRL": 180,
+    "pricesByPlan": {
+      "free": 180,
+      "core": 180,
+      "hype": 170,
+      "omega": 170
+    }
   },
   {
     "sku": "accessories-intelbras-cabo-hdmi-2-0-2m",
@@ -653,7 +1225,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 370,
+    "nexusPriceBRL": 350,
+    "pricesByPlan": {
+      "free": 350,
+      "core": 340,
+      "hype": 340,
+      "omega": 330
+    }
   },
   {
     "sku": "accessories-intelbras-cabo-hdmi-2-1-2m",
@@ -667,7 +1251,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 340,
+    "nexusPriceBRL": 320,
+    "pricesByPlan": {
+      "free": 320,
+      "core": 320,
+      "hype": 310,
+      "omega": 310
+    }
   },
   {
     "sku": "accessories-intelbras-cabo-usb-c-1m",
@@ -681,7 +1277,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 280,
+    "nexusPriceBRL": 260,
+    "pricesByPlan": {
+      "free": 260,
+      "core": 260,
+      "hype": 250,
+      "omega": 250
+    }
   },
   {
     "sku": "accessories-intelbras-cabo-usb-c-2m",
@@ -695,7 +1303,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 250,
+    "nexusPriceBRL": 240,
+    "pricesByPlan": {
+      "free": 240,
+      "core": 240,
+      "hype": 230,
+      "omega": 230
+    }
   },
   {
     "sku": "accessories-intelbras-dock-usb-c-simples",
@@ -709,7 +1329,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 170,
+    "nexusPriceBRL": 160,
+    "pricesByPlan": {
+      "free": 160,
+      "core": 160,
+      "hype": 160,
+      "omega": 150
+    }
   },
   {
     "sku": "accessories-intelbras-extens-o-hdmi-3m",
@@ -723,7 +1355,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 60,
+    "nexusPriceBRL": 60,
+    "pricesByPlan": {
+      "free": 60,
+      "core": 60,
+      "hype": 60,
+      "omega": 60
+    }
   },
   {
     "sku": "accessories-intelbras-extens-o-usb-2m",
@@ -737,7 +1381,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 340,
+    "nexusPriceBRL": 320,
+    "pricesByPlan": {
+      "free": 320,
+      "core": 320,
+      "hype": 310,
+      "omega": 310
+    }
   },
   {
     "sku": "accessories-intelbras-hub-usb-3-0-4-portas",
@@ -751,7 +1407,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 430,
+    "nexusPriceBRL": 400,
+    "pricesByPlan": {
+      "free": 400,
+      "core": 390,
+      "hype": 390,
+      "omega": 380
+    }
   },
   {
     "sku": "accessories-intelbras-hub-usb-c-7-em-1",
@@ -765,7 +1433,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 350,
+    "nexusPriceBRL": 330,
+    "pricesByPlan": {
+      "free": 330,
+      "core": 330,
+      "hype": 320,
+      "omega": 320
+    }
   },
   {
     "sku": "accessories-intelbras-leitor-de-cart-o-microsd",
@@ -779,7 +1459,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 360,
+    "nexusPriceBRL": 340,
+    "pricesByPlan": {
+      "free": 340,
+      "core": 330,
+      "hype": 330,
+      "omega": 320
+    }
   },
   {
     "sku": "accessories-intelbras-leitor-de-cart-o-sd",
@@ -793,7 +1485,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 110,
+    "nexusPriceBRL": 100,
+    "pricesByPlan": {
+      "free": 100,
+      "core": 100,
+      "hype": 100,
+      "omega": 100
+    }
   },
   {
     "sku": "accessories-intelbras-organizador-de-cabos",
@@ -807,7 +1511,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 97,
+    "marketPriceBRL": 470,
+    "nexusPriceBRL": 440,
+    "pricesByPlan": {
+      "free": 440,
+      "core": 430,
+      "hype": 430,
+      "omega": 420
+    }
   },
   {
     "sku": "accessories-multilaser-adaptador-displayport-para-hdmi",
@@ -821,7 +1537,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 420,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-multilaser-adaptador-hdmi-para-vga",
@@ -835,7 +1563,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 310,
+    "nexusPriceBRL": 290,
+    "pricesByPlan": {
+      "free": 290,
+      "core": 290,
+      "hype": 280,
+      "omega": 280
+    }
   },
   {
     "sku": "accessories-multilaser-adaptador-usb-c-para-ethernet",
@@ -849,7 +1589,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 500,
+    "nexusPriceBRL": 470,
+    "pricesByPlan": {
+      "free": 470,
+      "core": 460,
+      "hype": 460,
+      "omega": 450
+    }
   },
   {
     "sku": "accessories-multilaser-adaptador-usb-c-para-hdmi",
@@ -863,7 +1615,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 210,
+    "nexusPriceBRL": 200,
+    "pricesByPlan": {
+      "free": 200,
+      "core": 200,
+      "hype": 190,
+      "omega": 190
+    }
   },
   {
     "sku": "accessories-multilaser-cabo-displayport-1-4-2m",
@@ -877,7 +1641,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-multilaser-cabo-hdmi-2-0-2m",
@@ -891,7 +1667,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 250,
+    "nexusPriceBRL": 240,
+    "pricesByPlan": {
+      "free": 240,
+      "core": 240,
+      "hype": 230,
+      "omega": 230
+    }
   },
   {
     "sku": "accessories-multilaser-cabo-hdmi-2-1-2m",
@@ -905,7 +1693,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 280,
+    "nexusPriceBRL": 260,
+    "pricesByPlan": {
+      "free": 260,
+      "core": 260,
+      "hype": 250,
+      "omega": 250
+    }
   },
   {
     "sku": "accessories-multilaser-cabo-usb-c-1m",
@@ -919,7 +1719,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 500,
+    "nexusPriceBRL": 470,
+    "pricesByPlan": {
+      "free": 470,
+      "core": 460,
+      "hype": 460,
+      "omega": 450
+    }
   },
   {
     "sku": "accessories-multilaser-cabo-usb-c-2m",
@@ -933,7 +1745,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 97,
+    "marketPriceBRL": 470,
+    "nexusPriceBRL": 440,
+    "pricesByPlan": {
+      "free": 440,
+      "core": 430,
+      "hype": 430,
+      "omega": 420
+    }
   },
   {
     "sku": "accessories-multilaser-dock-usb-c-simples",
@@ -947,7 +1771,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 260,
+    "nexusPriceBRL": 240,
+    "pricesByPlan": {
+      "free": 240,
+      "core": 240,
+      "hype": 230,
+      "omega": 230
+    }
   },
   {
     "sku": "accessories-multilaser-extens-o-hdmi-3m",
@@ -961,7 +1797,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 330,
+    "nexusPriceBRL": 310,
+    "pricesByPlan": {
+      "free": 310,
+      "core": 310,
+      "hype": 300,
+      "omega": 300
+    }
   },
   {
     "sku": "accessories-multilaser-extens-o-usb-2m",
@@ -975,7 +1823,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 400,
+    "nexusPriceBRL": 380,
+    "pricesByPlan": {
+      "free": 380,
+      "core": 370,
+      "hype": 370,
+      "omega": 360
+    }
   },
   {
     "sku": "accessories-multilaser-hub-usb-3-0-4-portas",
@@ -989,7 +1849,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 97,
+    "marketPriceBRL": 470,
+    "nexusPriceBRL": 440,
+    "pricesByPlan": {
+      "free": 440,
+      "core": 430,
+      "hype": 430,
+      "omega": 420
+    }
   },
   {
     "sku": "accessories-multilaser-hub-usb-c-7-em-1",
@@ -1003,7 +1875,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 280,
+    "nexusPriceBRL": 260,
+    "pricesByPlan": {
+      "free": 260,
+      "core": 260,
+      "hype": 250,
+      "omega": 250
+    }
   },
   {
     "sku": "accessories-multilaser-leitor-de-cart-o-microsd",
@@ -1017,7 +1901,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 60,
+    "nexusPriceBRL": 60,
+    "pricesByPlan": {
+      "free": 60,
+      "core": 60,
+      "hype": 60,
+      "omega": 60
+    }
   },
   {
     "sku": "accessories-multilaser-leitor-de-cart-o-sd",
@@ -1031,7 +1927,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 490,
+    "nexusPriceBRL": 460,
+    "pricesByPlan": {
+      "free": 460,
+      "core": 450,
+      "hype": 450,
+      "omega": 440
+    }
   },
   {
     "sku": "accessories-multilaser-organizador-de-cabos",
@@ -1045,7 +1953,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 120,
+    "nexusPriceBRL": 110,
+    "pricesByPlan": {
+      "free": 110,
+      "core": 110,
+      "hype": 110,
+      "omega": 110
+    }
   },
   {
     "sku": "accessories-ugreen-adaptador-displayport-para-hdmi",
@@ -1059,7 +1979,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 60,
+    "nexusPriceBRL": 60,
+    "pricesByPlan": {
+      "free": 60,
+      "core": 60,
+      "hype": 60,
+      "omega": 60
+    }
   },
   {
     "sku": "accessories-ugreen-adaptador-hdmi-para-vga",
@@ -1073,7 +2005,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 99,
+    "marketPriceBRL": 460,
+    "nexusPriceBRL": 430,
+    "pricesByPlan": {
+      "free": 430,
+      "core": 420,
+      "hype": 420,
+      "omega": 410
+    }
   },
   {
     "sku": "accessories-ugreen-adaptador-usb-c-para-ethernet",
@@ -1087,7 +2031,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 130,
+    "nexusPriceBRL": 120,
+    "pricesByPlan": {
+      "free": 120,
+      "core": 120,
+      "hype": 120,
+      "omega": 110
+    }
   },
   {
     "sku": "accessories-ugreen-adaptador-usb-c-para-hdmi",
@@ -1101,7 +2057,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 350,
+    "nexusPriceBRL": 330,
+    "pricesByPlan": {
+      "free": 330,
+      "core": 330,
+      "hype": 320,
+      "omega": 320
+    }
   },
   {
     "sku": "accessories-ugreen-cabo-displayport-1-4-2m",
@@ -1115,7 +2083,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 440,
+    "nexusPriceBRL": 410,
+    "pricesByPlan": {
+      "free": 410,
+      "core": 400,
+      "hype": 400,
+      "omega": 390
+    }
   },
   {
     "sku": "accessories-ugreen-cabo-hdmi-2-0-2m",
@@ -1129,7 +2109,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 260,
+    "nexusPriceBRL": 240,
+    "pricesByPlan": {
+      "free": 240,
+      "core": 240,
+      "hype": 230,
+      "omega": 230
+    }
   },
   {
     "sku": "accessories-ugreen-cabo-hdmi-2-1-2m",
@@ -1143,7 +2135,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 230,
+    "nexusPriceBRL": 220,
+    "pricesByPlan": {
+      "free": 220,
+      "core": 220,
+      "hype": 210,
+      "omega": 210
+    }
   },
   {
     "sku": "accessories-ugreen-cabo-usb-c-1m",
@@ -1157,7 +2161,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-ugreen-cabo-usb-c-2m",
@@ -1171,7 +2187,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-ugreen-dock-usb-c-simples",
@@ -1185,7 +2213,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 380,
+    "nexusPriceBRL": 360,
+    "pricesByPlan": {
+      "free": 360,
+      "core": 350,
+      "hype": 350,
+      "omega": 340
+    }
   },
   {
     "sku": "accessories-ugreen-extens-o-hdmi-3m",
@@ -1199,7 +2239,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 350,
+    "nexusPriceBRL": 330,
+    "pricesByPlan": {
+      "free": 330,
+      "core": 330,
+      "hype": 320,
+      "omega": 320
+    }
   },
   {
     "sku": "accessories-ugreen-extens-o-usb-2m",
@@ -1213,7 +2265,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 140,
+    "nexusPriceBRL": 130,
+    "pricesByPlan": {
+      "free": 130,
+      "core": 130,
+      "hype": 130,
+      "omega": 120
+    }
   },
   {
     "sku": "accessories-ugreen-hub-usb-3-0-4-portas",
@@ -1227,7 +2291,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 410,
+    "nexusPriceBRL": 390,
+    "pricesByPlan": {
+      "free": 390,
+      "core": 380,
+      "hype": 380,
+      "omega": 370
+    }
   },
   {
     "sku": "accessories-ugreen-hub-usb-c-7-em-1",
@@ -1241,7 +2317,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 260,
+    "nexusPriceBRL": 240,
+    "pricesByPlan": {
+      "free": 240,
+      "core": 240,
+      "hype": 230,
+      "omega": 230
+    }
   },
   {
     "sku": "accessories-ugreen-leitor-de-cart-o-microsd",
@@ -1255,7 +2343,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 180,
+    "nexusPriceBRL": 170,
+    "pricesByPlan": {
+      "free": 170,
+      "core": 170,
+      "hype": 160,
+      "omega": 160
+    }
   },
   {
     "sku": "accessories-ugreen-leitor-de-cart-o-sd",
@@ -1269,7 +2369,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 280,
+    "nexusPriceBRL": 260,
+    "pricesByPlan": {
+      "free": 260,
+      "core": 260,
+      "hype": 250,
+      "omega": 250
+    }
   },
   {
     "sku": "accessories-ugreen-organizador-de-cabos",
@@ -1283,6 +2395,18 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226704,
-    "updatedAt": 1767390226704
+    "updatedAt": 1767391482196,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 330,
+    "nexusPriceBRL": 310,
+    "pricesByPlan": {
+      "free": 310,
+      "core": 310,
+      "hype": 300,
+      "omega": 300
+    }
   }
 ]

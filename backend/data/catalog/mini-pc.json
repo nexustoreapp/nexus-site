@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482203,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2320,
+    "nexusPriceBRL": 2180,
+    "pricesByPlan": {
+      "free": 2180,
+      "core": 2150,
+      "hype": 2110,
+      "omega": 2080
+    }
   },
   {
     "sku": "mini-pc-beelink-ser5",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482203,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1870,
+    "nexusPriceBRL": 1760,
+    "pricesByPlan": {
+      "free": 1760,
+      "core": 1730,
+      "hype": 1710,
+      "omega": 1680
+    }
   },
   {
     "sku": "mini-pc-minisforum-um560",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613964,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482203,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2600,
+    "nexusPriceBRL": 2440,
+    "pricesByPlan": {
+      "free": 2440,
+      "core": 2400,
+      "hype": 2370,
+      "omega": 2330
+    }
   },
   {
     "sku": "mini-pc-intel-nuc-i3",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482203,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2200,
+    "nexusPriceBRL": 2070,
+    "pricesByPlan": {
+      "free": 2070,
+      "core": 2040,
+      "hype": 2010,
+      "omega": 1980
+    }
   },
   {
     "sku": "mini-pc-intel-nuc-i7",
@@ -65,9 +113,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1540,
+    "nexusPriceBRL": 1450,
+    "pricesByPlan": {
+      "free": 1450,
+      "core": 1430,
+      "hype": 1410,
+      "omega": 1380
+    }
   },
   {
     "sku": "mini-pc-beelink-ser3",
@@ -79,9 +139,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3850,
+    "nexusPriceBRL": 3620,
+    "pricesByPlan": {
+      "free": 3620,
+      "core": 3570,
+      "hype": 3510,
+      "omega": 3460
+    }
   },
   {
     "sku": "mini-pc-beelink-gtr",
@@ -93,9 +165,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 4500,
+    "nexusPriceBRL": 4230,
+    "pricesByPlan": {
+      "free": 4230,
+      "core": 4170,
+      "hype": 4100,
+      "omega": 4040
+    }
   },
   {
     "sku": "mini-pc-minisforum-um350",
@@ -107,9 +191,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3090,
+    "nexusPriceBRL": 2900,
+    "pricesByPlan": {
+      "free": 2900,
+      "core": 2860,
+      "hype": 2810,
+      "omega": 2770
+    }
   },
   {
     "sku": "mini-pc-minisforum-hx90",
@@ -121,9 +217,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2650,
+    "nexusPriceBRL": 2490,
+    "pricesByPlan": {
+      "free": 2490,
+      "core": 2450,
+      "hype": 2420,
+      "omega": 2380
+    }
   },
   {
     "sku": "mini-pc-asus-pn50",
@@ -135,9 +243,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 4460,
+    "nexusPriceBRL": 4190,
+    "pricesByPlan": {
+      "free": 4190,
+      "core": 4130,
+      "hype": 4060,
+      "omega": 4000
+    }
   },
   {
     "sku": "mini-pc-asus-pn64",
@@ -149,9 +269,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 96,
+    "marketPriceBRL": 4040,
+    "nexusPriceBRL": 3800,
+    "pricesByPlan": {
+      "free": 3800,
+      "core": 3740,
+      "hype": 3690,
+      "omega": 3630
+    }
   },
   {
     "sku": "mini-pc-asus-pn80",
@@ -163,9 +295,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896388,
-    "updatedAt": 1767378479232,
+    "updatedAt": 1767391482204,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1570,
+    "nexusPriceBRL": 1480,
+    "pricesByPlan": {
+      "free": 1480,
+      "core": 1460,
+      "hype": 1440,
+      "omega": 1410
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-16gb-ssd-1tb",
@@ -179,7 +323,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4570,
+    "nexusPriceBRL": 4300,
+    "pricesByPlan": {
+      "free": 4300,
+      "core": 4240,
+      "hype": 4170,
+      "omega": 4110
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-16gb-ssd-256gb",
@@ -193,7 +349,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3060,
+    "nexusPriceBRL": 2880,
+    "pricesByPlan": {
+      "free": 2880,
+      "core": 2840,
+      "hype": 2790,
+      "omega": 2750
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-16gb-ssd-512gb",
@@ -207,7 +375,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 6040,
+    "nexusPriceBRL": 5680,
+    "pricesByPlan": {
+      "free": 5680,
+      "core": 5590,
+      "hype": 5510,
+      "omega": 5420
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-32gb-ssd-1tb",
@@ -221,7 +401,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4600,
+    "nexusPriceBRL": 4320,
+    "pricesByPlan": {
+      "free": 4320,
+      "core": 4260,
+      "hype": 4190,
+      "omega": 4130
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-32gb-ssd-256gb",
@@ -235,7 +427,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5780,
+    "nexusPriceBRL": 5430,
+    "pricesByPlan": {
+      "free": 5430,
+      "core": 5350,
+      "hype": 5270,
+      "omega": 5190
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-32gb-ssd-512gb",
@@ -249,7 +453,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3750,
+    "nexusPriceBRL": 3530,
+    "pricesByPlan": {
+      "free": 3530,
+      "core": 3480,
+      "hype": 3420,
+      "omega": 3370
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-8gb-ssd-1tb",
@@ -263,7 +479,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 5640,
+    "nexusPriceBRL": 5300,
+    "pricesByPlan": {
+      "free": 5300,
+      "core": 5220,
+      "hype": 5140,
+      "omega": 5060
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-8gb-ssd-256gb",
@@ -277,7 +505,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 5500,
+    "nexusPriceBRL": 5170,
+    "pricesByPlan": {
+      "free": 5170,
+      "core": 5090,
+      "hype": 5010,
+      "omega": 4940
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i3-8gb-ssd-512gb",
@@ -291,7 +531,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2520,
+    "nexusPriceBRL": 2370,
+    "pricesByPlan": {
+      "free": 2370,
+      "core": 2330,
+      "hype": 2300,
+      "omega": 2260
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-16gb-ssd-1tb",
@@ -305,7 +557,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 86,
+    "marketPriceBRL": 4510,
+    "nexusPriceBRL": 4240,
+    "pricesByPlan": {
+      "free": 4240,
+      "core": 4180,
+      "hype": 4110,
+      "omega": 4050
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-16gb-ssd-256gb",
@@ -319,7 +583,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 4230,
+    "nexusPriceBRL": 3980,
+    "pricesByPlan": {
+      "free": 3980,
+      "core": 3920,
+      "hype": 3860,
+      "omega": 3800
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-16gb-ssd-512gb",
@@ -333,7 +609,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 6260,
+    "nexusPriceBRL": 5880,
+    "pricesByPlan": {
+      "free": 5880,
+      "core": 5790,
+      "hype": 5700,
+      "omega": 5620
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-32gb-ssd-1tb",
@@ -347,7 +635,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3470,
+    "nexusPriceBRL": 3260,
+    "pricesByPlan": {
+      "free": 3260,
+      "core": 3210,
+      "hype": 3160,
+      "omega": 3110
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-32gb-ssd-256gb",
@@ -361,7 +661,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 78,
+    "marketPriceBRL": 4960,
+    "nexusPriceBRL": 4660,
+    "pricesByPlan": {
+      "free": 4660,
+      "core": 4590,
+      "hype": 4520,
+      "omega": 4450
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-32gb-ssd-512gb",
@@ -375,7 +687,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2930,
+    "nexusPriceBRL": 2750,
+    "pricesByPlan": {
+      "free": 2750,
+      "core": 2710,
+      "hype": 2670,
+      "omega": 2630
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-8gb-ssd-1tb",
@@ -389,7 +713,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1960,
+    "nexusPriceBRL": 1840,
+    "pricesByPlan": {
+      "free": 1840,
+      "core": 1810,
+      "hype": 1780,
+      "omega": 1760
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-8gb-ssd-256gb",
@@ -403,7 +739,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2740,
+    "nexusPriceBRL": 2580,
+    "pricesByPlan": {
+      "free": 2580,
+      "core": 2540,
+      "hype": 2500,
+      "omega": 2460
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i5-8gb-ssd-512gb",
@@ -417,7 +765,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 82,
+    "marketPriceBRL": 4760,
+    "nexusPriceBRL": 4470,
+    "pricesByPlan": {
+      "free": 4470,
+      "core": 4400,
+      "hype": 4340,
+      "omega": 4270
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-16gb-ssd-1tb",
@@ -431,7 +791,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3560,
+    "nexusPriceBRL": 3350,
+    "pricesByPlan": {
+      "free": 3350,
+      "core": 3300,
+      "hype": 3250,
+      "omega": 3200
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-16gb-ssd-256gb",
@@ -445,7 +817,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 5050,
+    "nexusPriceBRL": 4750,
+    "pricesByPlan": {
+      "free": 4750,
+      "core": 4680,
+      "hype": 4610,
+      "omega": 4540
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-16gb-ssd-512gb",
@@ -459,7 +843,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2080,
+    "nexusPriceBRL": 1960,
+    "pricesByPlan": {
+      "free": 1960,
+      "core": 1930,
+      "hype": 1900,
+      "omega": 1870
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-32gb-ssd-1tb",
@@ -473,7 +869,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3530,
+    "nexusPriceBRL": 3320,
+    "pricesByPlan": {
+      "free": 3320,
+      "core": 3270,
+      "hype": 3220,
+      "omega": 3170
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-32gb-ssd-256gb",
@@ -487,7 +895,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2340,
+    "nexusPriceBRL": 2200,
+    "pricesByPlan": {
+      "free": 2200,
+      "core": 2170,
+      "hype": 2130,
+      "omega": 2100
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-32gb-ssd-512gb",
@@ -501,7 +921,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4360,
+    "nexusPriceBRL": 4100,
+    "pricesByPlan": {
+      "free": 4100,
+      "core": 4040,
+      "hype": 3980,
+      "omega": 3920
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-8gb-ssd-1tb",
@@ -515,7 +947,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3290,
+    "nexusPriceBRL": 3090,
+    "pricesByPlan": {
+      "free": 3090,
+      "core": 3040,
+      "hype": 3000,
+      "omega": 2950
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-8gb-ssd-256gb",
@@ -529,7 +973,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3020,
+    "nexusPriceBRL": 2840,
+    "pricesByPlan": {
+      "free": 2840,
+      "core": 2800,
+      "hype": 2750,
+      "omega": 2710
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-i7-8gb-ssd-512gb",
@@ -543,7 +999,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 5990,
+    "nexusPriceBRL": 5630,
+    "pricesByPlan": {
+      "free": 5630,
+      "core": 5550,
+      "hype": 5460,
+      "omega": 5380
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -557,7 +1025,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6210,
+    "nexusPriceBRL": 5840,
+    "pricesByPlan": {
+      "free": 5840,
+      "core": 5750,
+      "hype": 5660,
+      "omega": 5580
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -571,7 +1051,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 5510,
+    "nexusPriceBRL": 5180,
+    "pricesByPlan": {
+      "free": 5180,
+      "core": 5100,
+      "hype": 5020,
+      "omega": 4950
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -585,7 +1077,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3490,
+    "nexusPriceBRL": 3280,
+    "pricesByPlan": {
+      "free": 3280,
+      "core": 3230,
+      "hype": 3180,
+      "omega": 3130
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -599,7 +1103,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 5300,
+    "nexusPriceBRL": 4980,
+    "pricesByPlan": {
+      "free": 4980,
+      "core": 4910,
+      "hype": 4830,
+      "omega": 4760
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -613,7 +1129,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3230,
+    "nexusPriceBRL": 3040,
+    "pricesByPlan": {
+      "free": 3040,
+      "core": 2990,
+      "hype": 2950,
+      "omega": 2900
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -627,7 +1155,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6200,
+    "nexusPriceBRL": 5830,
+    "pricesByPlan": {
+      "free": 5830,
+      "core": 5740,
+      "hype": 5660,
+      "omega": 5570
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -641,7 +1181,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2110,
+    "nexusPriceBRL": 1980,
+    "pricesByPlan": {
+      "free": 1980,
+      "core": 1950,
+      "hype": 1920,
+      "omega": 1890
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -655,7 +1207,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 5380,
+    "nexusPriceBRL": 5060,
+    "pricesByPlan": {
+      "free": 5060,
+      "core": 4980,
+      "hype": 4910,
+      "omega": 4830
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -669,7 +1233,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2400,
+    "nexusPriceBRL": 2260,
+    "pricesByPlan": {
+      "free": 2260,
+      "core": 2230,
+      "hype": 2190,
+      "omega": 2160
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -683,7 +1259,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 6270,
+    "nexusPriceBRL": 5890,
+    "pricesByPlan": {
+      "free": 5890,
+      "core": 5800,
+      "hype": 5710,
+      "omega": 5620
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -697,7 +1285,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4700,
+    "nexusPriceBRL": 4420,
+    "pricesByPlan": {
+      "free": 4420,
+      "core": 4350,
+      "hype": 4290,
+      "omega": 4220
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -711,7 +1311,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2670,
+    "nexusPriceBRL": 2510,
+    "pricesByPlan": {
+      "free": 2510,
+      "core": 2470,
+      "hype": 2430,
+      "omega": 2400
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -725,7 +1337,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 5230,
+    "nexusPriceBRL": 4920,
+    "pricesByPlan": {
+      "free": 4920,
+      "core": 4850,
+      "hype": 4770,
+      "omega": 4700
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -739,7 +1363,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2410,
+    "nexusPriceBRL": 2270,
+    "pricesByPlan": {
+      "free": 2270,
+      "core": 2240,
+      "hype": 2200,
+      "omega": 2170
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -753,7 +1389,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 5380,
+    "nexusPriceBRL": 5060,
+    "pricesByPlan": {
+      "free": 5060,
+      "core": 4980,
+      "hype": 4910,
+      "omega": 4830
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -767,7 +1415,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4570,
+    "nexusPriceBRL": 4300,
+    "pricesByPlan": {
+      "free": 4300,
+      "core": 4240,
+      "hype": 4170,
+      "omega": 4110
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -781,7 +1441,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 5380,
+    "nexusPriceBRL": 5060,
+    "pricesByPlan": {
+      "free": 5060,
+      "core": 4980,
+      "hype": 4910,
+      "omega": 4830
+    }
   },
   {
     "sku": "mini-pc-asus-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -795,7 +1467,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3360,
+    "nexusPriceBRL": 3160,
+    "pricesByPlan": {
+      "free": 3160,
+      "core": 3110,
+      "hype": 3070,
+      "omega": 3020
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-16gb-ssd-1tb",
@@ -809,7 +1493,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2600,
+    "nexusPriceBRL": 2440,
+    "pricesByPlan": {
+      "free": 2440,
+      "core": 2400,
+      "hype": 2370,
+      "omega": 2330
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-16gb-ssd-256gb",
@@ -823,7 +1519,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1830,
+    "nexusPriceBRL": 1720,
+    "pricesByPlan": {
+      "free": 1720,
+      "core": 1690,
+      "hype": 1670,
+      "omega": 1640
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-16gb-ssd-512gb",
@@ -837,7 +1545,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 4800,
+    "nexusPriceBRL": 4510,
+    "pricesByPlan": {
+      "free": 4510,
+      "core": 4440,
+      "hype": 4370,
+      "omega": 4310
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-32gb-ssd-1tb",
@@ -851,7 +1571,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3900,
+    "nexusPriceBRL": 3670,
+    "pricesByPlan": {
+      "free": 3670,
+      "core": 3610,
+      "hype": 3560,
+      "omega": 3500
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-32gb-ssd-256gb",
@@ -865,7 +1597,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 86,
+    "marketPriceBRL": 4540,
+    "nexusPriceBRL": 4270,
+    "pricesByPlan": {
+      "free": 4270,
+      "core": 4210,
+      "hype": 4140,
+      "omega": 4080
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-32gb-ssd-512gb",
@@ -879,7 +1623,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2520,
+    "nexusPriceBRL": 2370,
+    "pricesByPlan": {
+      "free": 2370,
+      "core": 2330,
+      "hype": 2300,
+      "omega": 2260
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-8gb-ssd-1tb",
@@ -893,7 +1649,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5780,
+    "nexusPriceBRL": 5430,
+    "pricesByPlan": {
+      "free": 5430,
+      "core": 5350,
+      "hype": 5270,
+      "omega": 5190
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-8gb-ssd-256gb",
@@ -907,7 +1675,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2170,
+    "nexusPriceBRL": 2040,
+    "pricesByPlan": {
+      "free": 2040,
+      "core": 2010,
+      "hype": 1980,
+      "omega": 1950
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i3-8gb-ssd-512gb",
@@ -921,7 +1701,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 4200,
+    "nexusPriceBRL": 3950,
+    "pricesByPlan": {
+      "free": 3950,
+      "core": 3890,
+      "hype": 3830,
+      "omega": 3770
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-16gb-ssd-1tb",
@@ -935,7 +1727,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2670,
+    "nexusPriceBRL": 2510,
+    "pricesByPlan": {
+      "free": 2510,
+      "core": 2470,
+      "hype": 2430,
+      "omega": 2400
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-16gb-ssd-256gb",
@@ -949,7 +1753,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 6010,
+    "nexusPriceBRL": 5650,
+    "pricesByPlan": {
+      "free": 5650,
+      "core": 5570,
+      "hype": 5480,
+      "omega": 5400
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-16gb-ssd-512gb",
@@ -963,7 +1779,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3980,
+    "nexusPriceBRL": 3740,
+    "pricesByPlan": {
+      "free": 3740,
+      "core": 3680,
+      "hype": 3630,
+      "omega": 3570
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-32gb-ssd-1tb",
@@ -977,7 +1805,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3840,
+    "nexusPriceBRL": 3610,
+    "pricesByPlan": {
+      "free": 3610,
+      "core": 3560,
+      "hype": 3500,
+      "omega": 3450
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-32gb-ssd-256gb",
@@ -991,7 +1831,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3720,
+    "nexusPriceBRL": 3500,
+    "pricesByPlan": {
+      "free": 3500,
+      "core": 3450,
+      "hype": 3400,
+      "omega": 3340
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-32gb-ssd-512gb",
@@ -1005,7 +1857,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1700,
+    "nexusPriceBRL": 1600,
+    "pricesByPlan": {
+      "free": 1600,
+      "core": 1580,
+      "hype": 1550,
+      "omega": 1530
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-8gb-ssd-1tb",
@@ -1019,7 +1883,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2020,
+    "nexusPriceBRL": 1900,
+    "pricesByPlan": {
+      "free": 1900,
+      "core": 1870,
+      "hype": 1840,
+      "omega": 1810
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-8gb-ssd-256gb",
@@ -1033,7 +1909,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3590,
+    "nexusPriceBRL": 3370,
+    "pricesByPlan": {
+      "free": 3370,
+      "core": 3320,
+      "hype": 3270,
+      "omega": 3220
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i5-8gb-ssd-512gb",
@@ -1047,7 +1935,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1560,
+    "nexusPriceBRL": 1470,
+    "pricesByPlan": {
+      "free": 1470,
+      "core": 1450,
+      "hype": 1430,
+      "omega": 1400
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-16gb-ssd-1tb",
@@ -1061,7 +1961,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3740,
+    "nexusPriceBRL": 3520,
+    "pricesByPlan": {
+      "free": 3520,
+      "core": 3470,
+      "hype": 3410,
+      "omega": 3360
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-16gb-ssd-256gb",
@@ -1075,7 +1987,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 6290,
+    "nexusPriceBRL": 5910,
+    "pricesByPlan": {
+      "free": 5910,
+      "core": 5820,
+      "hype": 5730,
+      "omega": 5640
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-16gb-ssd-512gb",
@@ -1089,7 +2013,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3310,
+    "nexusPriceBRL": 3110,
+    "pricesByPlan": {
+      "free": 3110,
+      "core": 3060,
+      "hype": 3020,
+      "omega": 2970
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-32gb-ssd-1tb",
@@ -1103,7 +2039,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3770,
+    "nexusPriceBRL": 3540,
+    "pricesByPlan": {
+      "free": 3540,
+      "core": 3490,
+      "hype": 3430,
+      "omega": 3380
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-32gb-ssd-256gb",
@@ -1117,7 +2065,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3570,
+    "nexusPriceBRL": 3360,
+    "pricesByPlan": {
+      "free": 3360,
+      "core": 3310,
+      "hype": 3260,
+      "omega": 3210
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-32gb-ssd-512gb",
@@ -1131,7 +2091,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 5600,
+    "nexusPriceBRL": 5260,
+    "pricesByPlan": {
+      "free": 5260,
+      "core": 5180,
+      "hype": 5100,
+      "omega": 5020
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-8gb-ssd-1tb",
@@ -1145,7 +2117,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3340,
+    "nexusPriceBRL": 3140,
+    "pricesByPlan": {
+      "free": 3140,
+      "core": 3090,
+      "hype": 3050,
+      "omega": 3000
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-8gb-ssd-256gb",
@@ -1159,7 +2143,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6350,
+    "nexusPriceBRL": 5970,
+    "pricesByPlan": {
+      "free": 5970,
+      "core": 5880,
+      "hype": 5790,
+      "omega": 5700
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-i7-8gb-ssd-512gb",
@@ -1173,7 +2169,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 90,
+    "marketPriceBRL": 4320,
+    "nexusPriceBRL": 4060,
+    "pricesByPlan": {
+      "free": 4060,
+      "core": 4000,
+      "hype": 3940,
+      "omega": 3880
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -1187,7 +2195,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4350,
+    "nexusPriceBRL": 4090,
+    "pricesByPlan": {
+      "free": 4090,
+      "core": 4030,
+      "hype": 3970,
+      "omega": 3910
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -1201,7 +2221,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3820,
+    "nexusPriceBRL": 3590,
+    "pricesByPlan": {
+      "free": 3590,
+      "core": 3540,
+      "hype": 3480,
+      "omega": 3430
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -1215,7 +2247,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5850,
+    "nexusPriceBRL": 5500,
+    "pricesByPlan": {
+      "free": 5500,
+      "core": 5420,
+      "hype": 5340,
+      "omega": 5250
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -1229,7 +2273,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 90,
+    "marketPriceBRL": 4320,
+    "nexusPriceBRL": 4060,
+    "pricesByPlan": {
+      "free": 4060,
+      "core": 4000,
+      "hype": 3940,
+      "omega": 3880
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -1243,7 +2299,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 6110,
+    "nexusPriceBRL": 5740,
+    "pricesByPlan": {
+      "free": 5740,
+      "core": 5650,
+      "hype": 5570,
+      "omega": 5480
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -1257,7 +2325,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3130,
+    "nexusPriceBRL": 2940,
+    "pricesByPlan": {
+      "free": 2940,
+      "core": 2900,
+      "hype": 2850,
+      "omega": 2810
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -1271,7 +2351,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6200,
+    "nexusPriceBRL": 5830,
+    "pricesByPlan": {
+      "free": 5830,
+      "core": 5740,
+      "hype": 5660,
+      "omega": 5570
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -1285,7 +2377,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2120,
+    "nexusPriceBRL": 1990,
+    "pricesByPlan": {
+      "free": 1990,
+      "core": 1960,
+      "hype": 1930,
+      "omega": 1900
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -1299,7 +2403,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 94,
+    "marketPriceBRL": 4140,
+    "nexusPriceBRL": 3890,
+    "pricesByPlan": {
+      "free": 3890,
+      "core": 3830,
+      "hype": 3770,
+      "omega": 3710
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -1313,7 +2429,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 88,
+    "marketPriceBRL": 4420,
+    "nexusPriceBRL": 4150,
+    "pricesByPlan": {
+      "free": 4150,
+      "core": 4090,
+      "hype": 4030,
+      "omega": 3960
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -1327,7 +2455,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 4640,
+    "nexusPriceBRL": 4360,
+    "pricesByPlan": {
+      "free": 4360,
+      "core": 4290,
+      "hype": 4230,
+      "omega": 4160
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -1341,7 +2481,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1660,
+    "nexusPriceBRL": 1560,
+    "pricesByPlan": {
+      "free": 1560,
+      "core": 1540,
+      "hype": 1510,
+      "omega": 1490
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -1355,7 +2507,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2090,
+    "nexusPriceBRL": 1960,
+    "pricesByPlan": {
+      "free": 1960,
+      "core": 1930,
+      "hype": 1900,
+      "omega": 1870
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -1369,7 +2533,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1920,
+    "nexusPriceBRL": 1800,
+    "pricesByPlan": {
+      "free": 1800,
+      "core": 1770,
+      "hype": 1750,
+      "omega": 1720
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -1383,7 +2559,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 99,
+    "marketPriceBRL": 3950,
+    "nexusPriceBRL": 3710,
+    "pricesByPlan": {
+      "free": 3710,
+      "core": 3650,
+      "hype": 3600,
+      "omega": 3540
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -1397,7 +2585,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 5480,
+    "nexusPriceBRL": 5150,
+    "pricesByPlan": {
+      "free": 5150,
+      "core": 5070,
+      "hype": 5000,
+      "omega": 4920
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -1411,7 +2611,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3640,
+    "nexusPriceBRL": 3420,
+    "pricesByPlan": {
+      "free": 3420,
+      "core": 3370,
+      "hype": 3320,
+      "omega": 3270
+    }
   },
   {
     "sku": "mini-pc-beelink-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -1425,7 +2637,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1620,
+    "nexusPriceBRL": 1520,
+    "pricesByPlan": {
+      "free": 1520,
+      "core": 1500,
+      "hype": 1470,
+      "omega": 1450
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-16gb-ssd-1tb",
@@ -1439,7 +2663,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3850,
+    "nexusPriceBRL": 3620,
+    "pricesByPlan": {
+      "free": 3620,
+      "core": 3570,
+      "hype": 3510,
+      "omega": 3460
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-16gb-ssd-256gb",
@@ -1453,7 +2689,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2180,
+    "nexusPriceBRL": 2050,
+    "pricesByPlan": {
+      "free": 2050,
+      "core": 2020,
+      "hype": 1990,
+      "omega": 1960
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-16gb-ssd-512gb",
@@ -1467,7 +2715,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 4210,
+    "nexusPriceBRL": 3960,
+    "pricesByPlan": {
+      "free": 3960,
+      "core": 3900,
+      "hype": 3840,
+      "omega": 3780
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-32gb-ssd-1tb",
@@ -1481,7 +2741,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2660,
+    "nexusPriceBRL": 2500,
+    "pricesByPlan": {
+      "free": 2500,
+      "core": 2460,
+      "hype": 2430,
+      "omega": 2390
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-32gb-ssd-256gb",
@@ -1495,7 +2767,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 4470,
+    "nexusPriceBRL": 4200,
+    "pricesByPlan": {
+      "free": 4200,
+      "core": 4140,
+      "hype": 4070,
+      "omega": 4010
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-32gb-ssd-512gb",
@@ -1509,7 +2793,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 6500,
+    "nexusPriceBRL": 6110,
+    "pricesByPlan": {
+      "free": 6110,
+      "core": 6020,
+      "hype": 5930,
+      "omega": 5840
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-8gb-ssd-1tb",
@@ -1523,7 +2819,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2010,
+    "nexusPriceBRL": 1890,
+    "pricesByPlan": {
+      "free": 1890,
+      "core": 1860,
+      "hype": 1830,
+      "omega": 1800
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-8gb-ssd-256gb",
@@ -1537,7 +2845,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 6010,
+    "nexusPriceBRL": 5650,
+    "pricesByPlan": {
+      "free": 5650,
+      "core": 5570,
+      "hype": 5480,
+      "omega": 5400
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i3-8gb-ssd-512gb",
@@ -1551,7 +2871,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3980,
+    "nexusPriceBRL": 3740,
+    "pricesByPlan": {
+      "free": 3740,
+      "core": 3680,
+      "hype": 3630,
+      "omega": 3570
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-16gb-ssd-1tb",
@@ -1565,7 +2897,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2560,
+    "nexusPriceBRL": 2410,
+    "pricesByPlan": {
+      "free": 2410,
+      "core": 2370,
+      "hype": 2340,
+      "omega": 2300
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-16gb-ssd-256gb",
@@ -1579,7 +2923,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3000,
+    "nexusPriceBRL": 2820,
+    "pricesByPlan": {
+      "free": 2820,
+      "core": 2780,
+      "hype": 2740,
+      "omega": 2690
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-16gb-ssd-512gb",
@@ -1593,7 +2949,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 5030,
+    "nexusPriceBRL": 4730,
+    "pricesByPlan": {
+      "free": 4730,
+      "core": 4660,
+      "hype": 4590,
+      "omega": 4520
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-32gb-ssd-1tb",
@@ -1607,7 +2975,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2590,
+    "nexusPriceBRL": 2430,
+    "pricesByPlan": {
+      "free": 2430,
+      "core": 2390,
+      "hype": 2360,
+      "omega": 2320
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-32gb-ssd-256gb",
@@ -1621,7 +3001,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 5290,
+    "nexusPriceBRL": 4970,
+    "pricesByPlan": {
+      "free": 4970,
+      "core": 4900,
+      "hype": 4820,
+      "omega": 4750
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-32gb-ssd-512gb",
@@ -1635,7 +3027,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2310,
+    "nexusPriceBRL": 2170,
+    "pricesByPlan": {
+      "free": 2170,
+      "core": 2140,
+      "hype": 2100,
+      "omega": 2070
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-8gb-ssd-1tb",
@@ -1649,7 +3053,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 68,
+    "marketPriceBRL": 5690,
+    "nexusPriceBRL": 5350,
+    "pricesByPlan": {
+      "free": 5350,
+      "core": 5270,
+      "hype": 5190,
+      "omega": 5110
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-8gb-ssd-256gb",
@@ -1663,7 +3079,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2710,
+    "nexusPriceBRL": 2550,
+    "pricesByPlan": {
+      "free": 2550,
+      "core": 2510,
+      "hype": 2470,
+      "omega": 2440
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i5-8gb-ssd-512gb",
@@ -1677,7 +3105,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 82,
+    "marketPriceBRL": 4740,
+    "nexusPriceBRL": 4460,
+    "pricesByPlan": {
+      "free": 4460,
+      "core": 4390,
+      "hype": 4330,
+      "omega": 4260
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-16gb-ssd-1tb",
@@ -1691,7 +3131,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2490,
+    "nexusPriceBRL": 2340,
+    "pricesByPlan": {
+      "free": 2340,
+      "core": 2300,
+      "hype": 2270,
+      "omega": 2230
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-16gb-ssd-256gb",
@@ -1705,7 +3157,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 4180,
+    "nexusPriceBRL": 3930,
+    "pricesByPlan": {
+      "free": 3930,
+      "core": 3870,
+      "hype": 3810,
+      "omega": 3750
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-16gb-ssd-512gb",
@@ -1719,7 +3183,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2150,
+    "nexusPriceBRL": 2020,
+    "pricesByPlan": {
+      "free": 2020,
+      "core": 1990,
+      "hype": 1960,
+      "omega": 1930
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-32gb-ssd-1tb",
@@ -1733,7 +3209,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 5480,
+    "nexusPriceBRL": 5150,
+    "pricesByPlan": {
+      "free": 5150,
+      "core": 5070,
+      "hype": 5000,
+      "omega": 4920
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-32gb-ssd-256gb",
@@ -1747,7 +3235,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1890,
+    "nexusPriceBRL": 1780,
+    "pricesByPlan": {
+      "free": 1780,
+      "core": 1750,
+      "hype": 1730,
+      "omega": 1700
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-32gb-ssd-512gb",
@@ -1761,7 +3261,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 4870,
+    "nexusPriceBRL": 4580,
+    "pricesByPlan": {
+      "free": 4580,
+      "core": 4510,
+      "hype": 4440,
+      "omega": 4370
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-8gb-ssd-1tb",
@@ -1775,7 +3287,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4360,
+    "nexusPriceBRL": 4100,
+    "pricesByPlan": {
+      "free": 4100,
+      "core": 4040,
+      "hype": 3980,
+      "omega": 3920
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-8gb-ssd-256gb",
@@ -1789,7 +3313,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3050,
+    "nexusPriceBRL": 2870,
+    "pricesByPlan": {
+      "free": 2870,
+      "core": 2830,
+      "hype": 2780,
+      "omega": 2740
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-i7-8gb-ssd-512gb",
@@ -1803,7 +3339,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 6020,
+    "nexusPriceBRL": 5660,
+    "pricesByPlan": {
+      "free": 5660,
+      "core": 5580,
+      "hype": 5490,
+      "omega": 5410
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -1817,7 +3365,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4560,
+    "nexusPriceBRL": 4290,
+    "pricesByPlan": {
+      "free": 4290,
+      "core": 4230,
+      "hype": 4160,
+      "omega": 4100
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -1831,7 +3391,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 4250,
+    "nexusPriceBRL": 4000,
+    "pricesByPlan": {
+      "free": 4000,
+      "core": 3940,
+      "hype": 3880,
+      "omega": 3820
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -1845,7 +3417,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 6280,
+    "nexusPriceBRL": 5900,
+    "pricesByPlan": {
+      "free": 5900,
+      "core": 5810,
+      "hype": 5720,
+      "omega": 5630
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -1859,7 +3443,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3410,
+    "nexusPriceBRL": 3210,
+    "pricesByPlan": {
+      "free": 3210,
+      "core": 3160,
+      "hype": 3110,
+      "omega": 3070
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -1873,7 +3469,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1540,
+    "nexusPriceBRL": 1450,
+    "pricesByPlan": {
+      "free": 1450,
+      "core": 1430,
+      "hype": 1410,
+      "omega": 1380
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -1887,7 +3495,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3570,
+    "nexusPriceBRL": 3360,
+    "pricesByPlan": {
+      "free": 3360,
+      "core": 3310,
+      "hype": 3260,
+      "omega": 3210
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -1901,7 +3521,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3170,
+    "nexusPriceBRL": 2980,
+    "pricesByPlan": {
+      "free": 2980,
+      "core": 2940,
+      "hype": 2890,
+      "omega": 2850
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -1915,7 +3547,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1970,
+    "nexusPriceBRL": 1850,
+    "pricesByPlan": {
+      "free": 1850,
+      "core": 1820,
+      "hype": 1790,
+      "omega": 1770
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -1929,7 +3573,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 79,
+    "marketPriceBRL": 4950,
+    "nexusPriceBRL": 4650,
+    "pricesByPlan": {
+      "free": 4650,
+      "core": 4580,
+      "hype": 4510,
+      "omega": 4440
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -1943,7 +3599,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3510,
+    "nexusPriceBRL": 3300,
+    "pricesByPlan": {
+      "free": 3300,
+      "core": 3250,
+      "hype": 3200,
+      "omega": 3150
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -1957,7 +3625,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 5070,
+    "nexusPriceBRL": 4770,
+    "pricesByPlan": {
+      "free": 4770,
+      "core": 4700,
+      "hype": 4630,
+      "omega": 4560
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -1971,7 +3651,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2100,
+    "nexusPriceBRL": 1970,
+    "pricesByPlan": {
+      "free": 1970,
+      "core": 1940,
+      "hype": 1910,
+      "omega": 1880
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -1985,7 +3677,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3480,
+    "nexusPriceBRL": 3270,
+    "pricesByPlan": {
+      "free": 3270,
+      "core": 3220,
+      "hype": 3170,
+      "omega": 3120
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -1999,7 +3703,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2360,
+    "nexusPriceBRL": 2220,
+    "pricesByPlan": {
+      "free": 2220,
+      "core": 2190,
+      "hype": 2150,
+      "omega": 2120
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -2013,7 +3729,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4380,
+    "nexusPriceBRL": 4120,
+    "pricesByPlan": {
+      "free": 4120,
+      "core": 4060,
+      "hype": 4000,
+      "omega": 3930
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -2027,7 +3755,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1840,
+    "nexusPriceBRL": 1730,
+    "pricesByPlan": {
+      "free": 1730,
+      "core": 1700,
+      "hype": 1680,
+      "omega": 1650
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -2041,7 +3781,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1750,
+    "nexusPriceBRL": 1650,
+    "pricesByPlan": {
+      "free": 1650,
+      "core": 1630,
+      "hype": 1600,
+      "omega": 1580
+    }
   },
   {
     "sku": "mini-pc-hp-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -2055,7 +3807,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3770,
+    "nexusPriceBRL": 3540,
+    "pricesByPlan": {
+      "free": 3540,
+      "core": 3490,
+      "hype": 3430,
+      "omega": 3380
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-16gb-ssd-1tb",
@@ -2069,7 +3833,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 4840,
+    "nexusPriceBRL": 4550,
+    "pricesByPlan": {
+      "free": 4550,
+      "core": 4480,
+      "hype": 4410,
+      "omega": 4350
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-16gb-ssd-256gb",
@@ -2083,7 +3859,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1680,
+    "nexusPriceBRL": 1580,
+    "pricesByPlan": {
+      "free": 1580,
+      "core": 1560,
+      "hype": 1530,
+      "omega": 1510
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-16gb-ssd-512gb",
@@ -2097,7 +3885,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226706,
-    "updatedAt": 1767390226706
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3710,
+    "nexusPriceBRL": 3490,
+    "pricesByPlan": {
+      "free": 3490,
+      "core": 3440,
+      "hype": 3390,
+      "omega": 3330
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-32gb-ssd-1tb",
@@ -2111,7 +3911,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3140,
+    "nexusPriceBRL": 2950,
+    "pricesByPlan": {
+      "free": 2950,
+      "core": 2910,
+      "hype": 2860,
+      "omega": 2820
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-32gb-ssd-256gb",
@@ -2125,7 +3937,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3970,
+    "nexusPriceBRL": 3730,
+    "pricesByPlan": {
+      "free": 3730,
+      "core": 3670,
+      "hype": 3620,
+      "omega": 3560
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-32gb-ssd-512gb",
@@ -2139,7 +3963,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 5990,
+    "nexusPriceBRL": 5630,
+    "pricesByPlan": {
+      "free": 5630,
+      "core": 5550,
+      "hype": 5460,
+      "omega": 5380
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-8gb-ssd-1tb",
@@ -2153,7 +3989,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 75,
+    "marketPriceBRL": 5220,
+    "nexusPriceBRL": 4910,
+    "pricesByPlan": {
+      "free": 4910,
+      "core": 4840,
+      "hype": 4760,
+      "omega": 4690
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-8gb-ssd-256gb",
@@ -2167,7 +4015,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1590,
+    "nexusPriceBRL": 1490,
+    "pricesByPlan": {
+      "free": 1490,
+      "core": 1470,
+      "hype": 1450,
+      "omega": 1420
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i3-8gb-ssd-512gb",
@@ -2181,7 +4041,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4570,
+    "nexusPriceBRL": 4300,
+    "pricesByPlan": {
+      "free": 4300,
+      "core": 4240,
+      "hype": 4170,
+      "omega": 4110
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-16gb-ssd-1tb",
@@ -2195,7 +4067,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3230,
+    "nexusPriceBRL": 3040,
+    "pricesByPlan": {
+      "free": 3040,
+      "core": 2990,
+      "hype": 2950,
+      "omega": 2900
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-16gb-ssd-256gb",
@@ -2209,7 +4093,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 5500,
+    "nexusPriceBRL": 5170,
+    "pricesByPlan": {
+      "free": 5170,
+      "core": 5090,
+      "hype": 5010,
+      "omega": 4940
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-16gb-ssd-512gb",
@@ -2223,7 +4119,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3480,
+    "nexusPriceBRL": 3270,
+    "pricesByPlan": {
+      "free": 3270,
+      "core": 3220,
+      "hype": 3170,
+      "omega": 3120
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-32gb-ssd-1tb",
@@ -2237,7 +4145,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3200,
+    "nexusPriceBRL": 3010,
+    "pricesByPlan": {
+      "free": 3010,
+      "core": 2960,
+      "hype": 2920,
+      "omega": 2870
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-32gb-ssd-256gb",
@@ -2251,7 +4171,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3220,
+    "nexusPriceBRL": 3030,
+    "pricesByPlan": {
+      "free": 3030,
+      "core": 2980,
+      "hype": 2940,
+      "omega": 2890
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-32gb-ssd-512gb",
@@ -2265,7 +4197,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6190,
+    "nexusPriceBRL": 5820,
+    "pricesByPlan": {
+      "free": 5820,
+      "core": 5730,
+      "hype": 5650,
+      "omega": 5560
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-8gb-ssd-1tb",
@@ -2279,7 +4223,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 6460,
+    "nexusPriceBRL": 6070,
+    "pricesByPlan": {
+      "free": 6070,
+      "core": 5980,
+      "hype": 5890,
+      "omega": 5800
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-8gb-ssd-256gb",
@@ -2293,7 +4249,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2130,
+    "nexusPriceBRL": 2000,
+    "pricesByPlan": {
+      "free": 2000,
+      "core": 1970,
+      "hype": 1940,
+      "omega": 1910
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i5-8gb-ssd-512gb",
@@ -2307,7 +4275,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 94,
+    "marketPriceBRL": 4150,
+    "nexusPriceBRL": 3900,
+    "pricesByPlan": {
+      "free": 3900,
+      "core": 3840,
+      "hype": 3780,
+      "omega": 3720
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-16gb-ssd-1tb",
@@ -2321,7 +4301,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3300,
+    "nexusPriceBRL": 3100,
+    "pricesByPlan": {
+      "free": 3100,
+      "core": 3050,
+      "hype": 3010,
+      "omega": 2960
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-16gb-ssd-256gb",
@@ -2335,7 +4327,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4680,
+    "nexusPriceBRL": 4400,
+    "pricesByPlan": {
+      "free": 4400,
+      "core": 4330,
+      "hype": 4270,
+      "omega": 4200
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-16gb-ssd-512gb",
@@ -2349,7 +4353,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2660,
+    "nexusPriceBRL": 2500,
+    "pricesByPlan": {
+      "free": 2500,
+      "core": 2460,
+      "hype": 2430,
+      "omega": 2390
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-32gb-ssd-1tb",
@@ -2363,7 +4379,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3200,
+    "nexusPriceBRL": 3010,
+    "pricesByPlan": {
+      "free": 3010,
+      "core": 2960,
+      "hype": 2920,
+      "omega": 2870
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-32gb-ssd-256gb",
@@ -2377,7 +4405,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2400,
+    "nexusPriceBRL": 2260,
+    "pricesByPlan": {
+      "free": 2260,
+      "core": 2230,
+      "hype": 2190,
+      "omega": 2160
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-32gb-ssd-512gb",
@@ -2391,7 +4431,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 72,
+    "marketPriceBRL": 5370,
+    "nexusPriceBRL": 5050,
+    "pricesByPlan": {
+      "free": 5050,
+      "core": 4970,
+      "hype": 4900,
+      "omega": 4820
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-8gb-ssd-1tb",
@@ -2405,7 +4457,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 5130,
+    "nexusPriceBRL": 4820,
+    "pricesByPlan": {
+      "free": 4820,
+      "core": 4750,
+      "hype": 4680,
+      "omega": 4600
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-8gb-ssd-256gb",
@@ -2419,7 +4483,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4370,
+    "nexusPriceBRL": 4110,
+    "pricesByPlan": {
+      "free": 4110,
+      "core": 4050,
+      "hype": 3990,
+      "omega": 3930
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-i7-8gb-ssd-512gb",
@@ -2433,7 +4509,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6400,
+    "nexusPriceBRL": 6020,
+    "pricesByPlan": {
+      "free": 6020,
+      "core": 5930,
+      "hype": 5840,
+      "omega": 5750
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -2447,7 +4535,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 92,
+    "marketPriceBRL": 4240,
+    "nexusPriceBRL": 3990,
+    "pricesByPlan": {
+      "free": 3990,
+      "core": 3930,
+      "hype": 3870,
+      "omega": 3810
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -2461,7 +4561,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1660,
+    "nexusPriceBRL": 1560,
+    "pricesByPlan": {
+      "free": 1560,
+      "core": 1540,
+      "hype": 1510,
+      "omega": 1490
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -2475,7 +4587,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 4640,
+    "nexusPriceBRL": 4360,
+    "pricesByPlan": {
+      "free": 4360,
+      "core": 4290,
+      "hype": 4230,
+      "omega": 4160
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -2489,7 +4613,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3740,
+    "nexusPriceBRL": 3520,
+    "pricesByPlan": {
+      "free": 3520,
+      "core": 3470,
+      "hype": 3410,
+      "omega": 3360
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -2503,7 +4639,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4380,
+    "nexusPriceBRL": 4120,
+    "pricesByPlan": {
+      "free": 4120,
+      "core": 4060,
+      "hype": 4000,
+      "omega": 3930
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -2517,7 +4665,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2350,
+    "nexusPriceBRL": 2210,
+    "pricesByPlan": {
+      "free": 2210,
+      "core": 2180,
+      "hype": 2140,
+      "omega": 2110
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -2531,7 +4691,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 64,
+    "marketPriceBRL": 6100,
+    "nexusPriceBRL": 5730,
+    "pricesByPlan": {
+      "free": 5730,
+      "core": 5640,
+      "hype": 5560,
+      "omega": 5470
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -2545,7 +4717,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4370,
+    "nexusPriceBRL": 4110,
+    "pricesByPlan": {
+      "free": 4110,
+      "core": 4050,
+      "hype": 3990,
+      "omega": 3930
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -2559,7 +4743,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6400,
+    "nexusPriceBRL": 6020,
+    "pricesByPlan": {
+      "free": 6020,
+      "core": 5930,
+      "hype": 5840,
+      "omega": 5750
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -2573,7 +4769,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3830,
+    "nexusPriceBRL": 3600,
+    "pricesByPlan": {
+      "free": 3600,
+      "core": 3550,
+      "hype": 3490,
+      "omega": 3440
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -2587,7 +4795,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5840,
+    "nexusPriceBRL": 5490,
+    "pricesByPlan": {
+      "free": 5490,
+      "core": 5410,
+      "hype": 5330,
+      "omega": 5240
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -2601,7 +4821,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3820,
+    "nexusPriceBRL": 3590,
+    "pricesByPlan": {
+      "free": 3590,
+      "core": 3540,
+      "hype": 3480,
+      "omega": 3430
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -2615,7 +4847,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3800,
+    "nexusPriceBRL": 3570,
+    "pricesByPlan": {
+      "free": 3570,
+      "core": 3520,
+      "hype": 3460,
+      "omega": 3410
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -2629,7 +4873,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3560,
+    "nexusPriceBRL": 3350,
+    "pricesByPlan": {
+      "free": 3350,
+      "core": 3300,
+      "hype": 3250,
+      "omega": 3200
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -2643,7 +4899,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1530,
+    "nexusPriceBRL": 1440,
+    "pricesByPlan": {
+      "free": 1440,
+      "core": 1420,
+      "hype": 1400,
+      "omega": 1380
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -2657,7 +4925,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1700,
+    "nexusPriceBRL": 1600,
+    "pricesByPlan": {
+      "free": 1600,
+      "core": 1580,
+      "hype": 1550,
+      "omega": 1530
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -2671,7 +4951,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6390,
+    "nexusPriceBRL": 6010,
+    "pricesByPlan": {
+      "free": 6010,
+      "core": 5920,
+      "hype": 5830,
+      "omega": 5740
+    }
   },
   {
     "sku": "mini-pc-intel-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -2685,7 +4977,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4360,
+    "nexusPriceBRL": 4100,
+    "pricesByPlan": {
+      "free": 4100,
+      "core": 4040,
+      "hype": 3980,
+      "omega": 3920
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-16gb-ssd-1tb",
@@ -2699,7 +5003,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2270,
+    "nexusPriceBRL": 2130,
+    "pricesByPlan": {
+      "free": 2130,
+      "core": 2100,
+      "hype": 2070,
+      "omega": 2030
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-16gb-ssd-256gb",
@@ -2713,7 +5029,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 5250,
+    "nexusPriceBRL": 4940,
+    "pricesByPlan": {
+      "free": 4940,
+      "core": 4870,
+      "hype": 4790,
+      "omega": 4720
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-16gb-ssd-512gb",
@@ -2727,7 +5055,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3220,
+    "nexusPriceBRL": 3030,
+    "pricesByPlan": {
+      "free": 3030,
+      "core": 2980,
+      "hype": 2940,
+      "omega": 2890
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-32gb-ssd-1tb",
@@ -2741,7 +5081,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2240,
+    "nexusPriceBRL": 2110,
+    "pricesByPlan": {
+      "free": 2110,
+      "core": 2080,
+      "hype": 2050,
+      "omega": 2020
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-32gb-ssd-256gb",
@@ -2755,7 +5107,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2960,
+    "nexusPriceBRL": 2780,
+    "pricesByPlan": {
+      "free": 2780,
+      "core": 2740,
+      "hype": 2700,
+      "omega": 2650
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-32gb-ssd-512gb",
@@ -2769,7 +5133,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5940,
+    "nexusPriceBRL": 5580,
+    "pricesByPlan": {
+      "free": 5580,
+      "core": 5500,
+      "hype": 5410,
+      "omega": 5330
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-8gb-ssd-1tb",
@@ -2783,7 +5159,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 5580,
+    "nexusPriceBRL": 5250,
+    "pricesByPlan": {
+      "free": 5250,
+      "core": 5170,
+      "hype": 5090,
+      "omega": 5010
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-8gb-ssd-256gb",
@@ -2797,7 +5185,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5930,
+    "nexusPriceBRL": 5570,
+    "pricesByPlan": {
+      "free": 5570,
+      "core": 5490,
+      "hype": 5400,
+      "omega": 5320
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i3-8gb-ssd-512gb",
@@ -2811,7 +5211,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3910,
+    "nexusPriceBRL": 3680,
+    "pricesByPlan": {
+      "free": 3680,
+      "core": 3620,
+      "hype": 3570,
+      "omega": 3510
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-16gb-ssd-1tb",
@@ -2825,7 +5237,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2330,
+    "nexusPriceBRL": 2190,
+    "pricesByPlan": {
+      "free": 2190,
+      "core": 2160,
+      "hype": 2120,
+      "omega": 2090
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-16gb-ssd-256gb",
@@ -2839,7 +5263,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-16gb-ssd-512gb",
@@ -2853,7 +5289,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 96,
+    "marketPriceBRL": 4070,
+    "nexusPriceBRL": 3830,
+    "pricesByPlan": {
+      "free": 3830,
+      "core": 3770,
+      "hype": 3720,
+      "omega": 3660
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-32gb-ssd-1tb",
@@ -2867,7 +5315,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 93,
+    "marketPriceBRL": 4170,
+    "nexusPriceBRL": 3920,
+    "pricesByPlan": {
+      "free": 3920,
+      "core": 3860,
+      "hype": 3800,
+      "omega": 3740
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-32gb-ssd-256gb",
@@ -2881,7 +5341,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 90,
+    "marketPriceBRL": 4330,
+    "nexusPriceBRL": 4070,
+    "pricesByPlan": {
+      "free": 4070,
+      "core": 4010,
+      "hype": 3950,
+      "omega": 3890
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-32gb-ssd-512gb",
@@ -2895,7 +5367,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6360,
+    "nexusPriceBRL": 5980,
+    "pricesByPlan": {
+      "free": 5980,
+      "core": 5890,
+      "hype": 5800,
+      "omega": 5710
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-8gb-ssd-1tb",
@@ -2909,7 +5393,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1900,
+    "nexusPriceBRL": 1790,
+    "pricesByPlan": {
+      "free": 1790,
+      "core": 1760,
+      "hype": 1740,
+      "omega": 1710
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-8gb-ssd-256gb",
@@ -2923,7 +5419,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3690,
+    "nexusPriceBRL": 3470,
+    "pricesByPlan": {
+      "free": 3470,
+      "core": 3420,
+      "hype": 3370,
+      "omega": 3310
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i5-8gb-ssd-512gb",
@@ -2937,7 +5445,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1660,
+    "nexusPriceBRL": 1560,
+    "pricesByPlan": {
+      "free": 1560,
+      "core": 1540,
+      "hype": 1510,
+      "omega": 1490
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-16gb-ssd-1tb",
@@ -2951,7 +5471,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 96,
+    "marketPriceBRL": 4070,
+    "nexusPriceBRL": 3830,
+    "pricesByPlan": {
+      "free": 3830,
+      "core": 3770,
+      "hype": 3720,
+      "omega": 3660
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-16gb-ssd-256gb",
@@ -2965,7 +5497,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2870,
+    "nexusPriceBRL": 2700,
+    "pricesByPlan": {
+      "free": 2700,
+      "core": 2660,
+      "hype": 2620,
+      "omega": 2580
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-16gb-ssd-512gb",
@@ -2979,7 +5523,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 80,
+    "marketPriceBRL": 4890,
+    "nexusPriceBRL": 4600,
+    "pricesByPlan": {
+      "free": 4600,
+      "core": 4530,
+      "hype": 4460,
+      "omega": 4390
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-32gb-ssd-1tb",
@@ -2993,7 +5549,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 95,
+    "marketPriceBRL": 4100,
+    "nexusPriceBRL": 3850,
+    "pricesByPlan": {
+      "free": 3850,
+      "core": 3790,
+      "hype": 3730,
+      "omega": 3680
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-32gb-ssd-256gb",
@@ -3007,7 +5575,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 76,
+    "marketPriceBRL": 5150,
+    "nexusPriceBRL": 4840,
+    "pricesByPlan": {
+      "free": 4840,
+      "core": 4770,
+      "hype": 4690,
+      "omega": 4620
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-32gb-ssd-512gb",
@@ -3021,7 +5601,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2180,
+    "nexusPriceBRL": 2050,
+    "pricesByPlan": {
+      "free": 2050,
+      "core": 2020,
+      "hype": 1990,
+      "omega": 1960
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-8gb-ssd-1tb",
@@ -3035,7 +5627,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3220,
+    "nexusPriceBRL": 3030,
+    "pricesByPlan": {
+      "free": 3030,
+      "core": 2980,
+      "hype": 2940,
+      "omega": 2890
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-8gb-ssd-256gb",
@@ -3049,7 +5653,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 77,
+    "marketPriceBRL": 5030,
+    "nexusPriceBRL": 4730,
+    "pricesByPlan": {
+      "free": 4730,
+      "core": 4660,
+      "hype": 4590,
+      "omega": 4520
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-i7-8gb-ssd-512gb",
@@ -3063,7 +5679,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2050,
+    "nexusPriceBRL": 1930,
+    "pricesByPlan": {
+      "free": 1930,
+      "core": 1900,
+      "hype": 1870,
+      "omega": 1840
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -3077,7 +5705,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1850,
+    "nexusPriceBRL": 1740,
+    "pricesByPlan": {
+      "free": 1740,
+      "core": 1710,
+      "hype": 1690,
+      "omega": 1660
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -3091,7 +5731,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1820,
+    "nexusPriceBRL": 1710,
+    "pricesByPlan": {
+      "free": 1710,
+      "core": 1680,
+      "hype": 1660,
+      "omega": 1630
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -3105,7 +5757,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 4800,
+    "nexusPriceBRL": 4510,
+    "pricesByPlan": {
+      "free": 4510,
+      "core": 4440,
+      "hype": 4370,
+      "omega": 4310
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -3119,7 +5783,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 84,
+    "marketPriceBRL": 4660,
+    "nexusPriceBRL": 4380,
+    "pricesByPlan": {
+      "free": 4380,
+      "core": 4310,
+      "hype": 4250,
+      "omega": 4180
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -3133,7 +5809,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 86,
+    "marketPriceBRL": 4540,
+    "nexusPriceBRL": 4270,
+    "pricesByPlan": {
+      "free": 4270,
+      "core": 4210,
+      "hype": 4140,
+      "omega": 4080
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -3147,7 +5835,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2510,
+    "nexusPriceBRL": 2360,
+    "pricesByPlan": {
+      "free": 2360,
+      "core": 2320,
+      "hype": 2290,
+      "omega": 2250
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -3161,7 +5861,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3350,
+    "nexusPriceBRL": 3150,
+    "pricesByPlan": {
+      "free": 3150,
+      "core": 3100,
+      "hype": 3060,
+      "omega": 3010
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -3175,7 +5887,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3570,
+    "nexusPriceBRL": 3360,
+    "pricesByPlan": {
+      "free": 3360,
+      "core": 3310,
+      "hype": 3260,
+      "omega": 3210
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -3189,7 +5913,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1540,
+    "nexusPriceBRL": 1450,
+    "pricesByPlan": {
+      "free": 1450,
+      "core": 1430,
+      "hype": 1410,
+      "omega": 1380
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -3203,7 +5939,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4560,
+    "nexusPriceBRL": 4290,
+    "pricesByPlan": {
+      "free": 4290,
+      "core": 4230,
+      "hype": 4160,
+      "omega": 4100
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -3217,7 +5965,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 65,
+    "marketPriceBRL": 6000,
+    "nexusPriceBRL": 5640,
+    "pricesByPlan": {
+      "free": 5640,
+      "core": 5560,
+      "hype": 5470,
+      "omega": 5390
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -3231,7 +5991,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 98,
+    "marketPriceBRL": 3980,
+    "nexusPriceBRL": 3740,
+    "pricesByPlan": {
+      "free": 3740,
+      "core": 3680,
+      "hype": 3630,
+      "omega": 3570
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -3245,7 +6017,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4590,
+    "nexusPriceBRL": 4310,
+    "pricesByPlan": {
+      "free": 4310,
+      "core": 4250,
+      "hype": 4180,
+      "omega": 4120
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -3259,7 +6043,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3720,
+    "nexusPriceBRL": 3500,
+    "pricesByPlan": {
+      "free": 3500,
+      "core": 3450,
+      "hype": 3400,
+      "omega": 3340
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -3273,7 +6069,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1690,
+    "nexusPriceBRL": 1590,
+    "pricesByPlan": {
+      "free": 1590,
+      "core": 1570,
+      "hype": 1540,
+      "omega": 1520
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -3287,7 +6095,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 83,
+    "marketPriceBRL": 4680,
+    "nexusPriceBRL": 4400,
+    "pricesByPlan": {
+      "free": 4400,
+      "core": 4330,
+      "hype": 4270,
+      "omega": 4200
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -3301,7 +6121,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 62,
+    "marketPriceBRL": 6320,
+    "nexusPriceBRL": 5940,
+    "pricesByPlan": {
+      "free": 5940,
+      "core": 5850,
+      "hype": 5760,
+      "omega": 5670
+    }
   },
   {
     "sku": "mini-pc-lenovo-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -3315,7 +6147,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 91,
+    "marketPriceBRL": 4300,
+    "nexusPriceBRL": 4040,
+    "pricesByPlan": {
+      "free": 4040,
+      "core": 3980,
+      "hype": 3920,
+      "omega": 3860
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-16gb-ssd-1tb",
@@ -3329,7 +6173,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 4450,
+    "nexusPriceBRL": 4180,
+    "pricesByPlan": {
+      "free": 4180,
+      "core": 4120,
+      "hype": 4050,
+      "omega": 3990
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-16gb-ssd-256gb",
@@ -3343,7 +6199,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 4480,
+    "nexusPriceBRL": 4210,
+    "pricesByPlan": {
+      "free": 4210,
+      "core": 4150,
+      "hype": 4080,
+      "omega": 4020
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-16gb-ssd-512gb",
@@ -3357,7 +6225,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2450,
+    "nexusPriceBRL": 2300,
+    "pricesByPlan": {
+      "free": 2300,
+      "core": 2270,
+      "hype": 2230,
+      "omega": 2200
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-32gb-ssd-1tb",
@@ -3371,7 +6251,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3530,
+    "nexusPriceBRL": 3320,
+    "pricesByPlan": {
+      "free": 3320,
+      "core": 3270,
+      "hype": 3220,
+      "omega": 3170
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-32gb-ssd-256gb",
@@ -3385,7 +6277,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2190,
+    "nexusPriceBRL": 2060,
+    "pricesByPlan": {
+      "free": 2060,
+      "core": 2030,
+      "hype": 2000,
+      "omega": 1970
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-32gb-ssd-512gb",
@@ -3399,7 +6303,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 75,
+    "marketPriceBRL": 5170,
+    "nexusPriceBRL": 4860,
+    "pricesByPlan": {
+      "free": 4860,
+      "core": 4790,
+      "hype": 4710,
+      "omega": 4640
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-8gb-ssd-1tb",
@@ -3413,7 +6329,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2120,
+    "nexusPriceBRL": 1990,
+    "pricesByPlan": {
+      "free": 1990,
+      "core": 1960,
+      "hype": 1930,
+      "omega": 1900
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-8gb-ssd-256gb",
@@ -3427,7 +6355,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3190,
+    "nexusPriceBRL": 3000,
+    "pricesByPlan": {
+      "free": 3000,
+      "core": 2960,
+      "hype": 2910,
+      "omega": 2870
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i3-8gb-ssd-512gb",
@@ -3441,7 +6381,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6170,
+    "nexusPriceBRL": 5800,
+    "pricesByPlan": {
+      "free": 5800,
+      "core": 5710,
+      "hype": 5630,
+      "omega": 5540
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-16gb-ssd-1tb",
@@ -3455,7 +6407,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3620,
+    "nexusPriceBRL": 3400,
+    "pricesByPlan": {
+      "free": 3400,
+      "core": 3350,
+      "hype": 3300,
+      "omega": 3250
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-16gb-ssd-256gb",
@@ -3469,7 +6433,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3660,
+    "nexusPriceBRL": 3440,
+    "pricesByPlan": {
+      "free": 3440,
+      "core": 3390,
+      "hype": 3340,
+      "omega": 3290
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-16gb-ssd-512gb",
@@ -3483,7 +6459,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1630,
+    "nexusPriceBRL": 1530,
+    "pricesByPlan": {
+      "free": 1530,
+      "core": 1510,
+      "hype": 1480,
+      "omega": 1460
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-32gb-ssd-1tb",
@@ -3497,7 +6485,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3590,
+    "nexusPriceBRL": 3370,
+    "pricesByPlan": {
+      "free": 3370,
+      "core": 3320,
+      "hype": 3270,
+      "omega": 3220
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-32gb-ssd-256gb",
@@ -3511,7 +6511,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 61,
+    "marketPriceBRL": 6370,
+    "nexusPriceBRL": 5990,
+    "pricesByPlan": {
+      "free": 5990,
+      "core": 5900,
+      "hype": 5810,
+      "omega": 5720
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-32gb-ssd-512gb",
@@ -3525,7 +6537,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 89,
+    "marketPriceBRL": 4350,
+    "nexusPriceBRL": 4090,
+    "pricesByPlan": {
+      "free": 4090,
+      "core": 4030,
+      "hype": 3970,
+      "omega": 3910
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-8gb-ssd-1tb",
@@ -3539,7 +6563,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 5680,
+    "nexusPriceBRL": 5340,
+    "pricesByPlan": {
+      "free": 5340,
+      "core": 5260,
+      "hype": 5180,
+      "omega": 5100
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-8gb-ssd-256gb",
@@ -3553,7 +6589,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 70,
+    "marketPriceBRL": 5530,
+    "nexusPriceBRL": 5200,
+    "pricesByPlan": {
+      "free": 5200,
+      "core": 5120,
+      "hype": 5040,
+      "omega": 4970
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i5-8gb-ssd-512gb",
@@ -3567,7 +6615,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2550,
+    "nexusPriceBRL": 2400,
+    "pricesByPlan": {
+      "free": 2400,
+      "core": 2360,
+      "hype": 2330,
+      "omega": 2290
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-16gb-ssd-1tb",
@@ -3581,7 +6641,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3690,
+    "nexusPriceBRL": 3470,
+    "pricesByPlan": {
+      "free": 3470,
+      "core": 3420,
+      "hype": 3370,
+      "omega": 3310
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-16gb-ssd-256gb",
@@ -3595,7 +6667,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3640,
+    "nexusPriceBRL": 3420,
+    "pricesByPlan": {
+      "free": 3420,
+      "core": 3370,
+      "hype": 3320,
+      "omega": 3270
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-16gb-ssd-512gb",
@@ -3609,7 +6693,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 5660,
+    "nexusPriceBRL": 5320,
+    "pricesByPlan": {
+      "free": 5320,
+      "core": 5240,
+      "hype": 5160,
+      "omega": 5080
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-32gb-ssd-1tb",
@@ -3623,7 +6719,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2820,
+    "nexusPriceBRL": 2650,
+    "pricesByPlan": {
+      "free": 2650,
+      "core": 2610,
+      "hype": 2570,
+      "omega": 2530
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-32gb-ssd-256gb",
@@ -3637,7 +6745,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5920,
+    "nexusPriceBRL": 5560,
+    "pricesByPlan": {
+      "free": 5560,
+      "core": 5480,
+      "hype": 5390,
+      "omega": 5310
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-32gb-ssd-512gb",
@@ -3651,7 +6771,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2950,
+    "nexusPriceBRL": 2770,
+    "pricesByPlan": {
+      "free": 2770,
+      "core": 2730,
+      "hype": 2690,
+      "omega": 2650
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-8gb-ssd-1tb",
@@ -3665,7 +6797,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 2000,
+    "nexusPriceBRL": 1880,
+    "pricesByPlan": {
+      "free": 1880,
+      "core": 1850,
+      "hype": 1820,
+      "omega": 1800
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-8gb-ssd-256gb",
@@ -3679,7 +6823,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2770,
+    "nexusPriceBRL": 2600,
+    "pricesByPlan": {
+      "free": 2600,
+      "core": 2560,
+      "hype": 2520,
+      "omega": 2480
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-i7-8gb-ssd-512gb",
@@ -3693,7 +6849,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 81,
+    "marketPriceBRL": 4790,
+    "nexusPriceBRL": 4500,
+    "pricesByPlan": {
+      "free": 4500,
+      "core": 4430,
+      "hype": 4370,
+      "omega": 4300
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-16gb-ssd-1tb",
@@ -3707,7 +6875,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2720,
+    "nexusPriceBRL": 2560,
+    "pricesByPlan": {
+      "free": 2560,
+      "core": 2520,
+      "hype": 2480,
+      "omega": 2440
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-16gb-ssd-256gb",
@@ -3721,7 +6901,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5820,
+    "nexusPriceBRL": 5470,
+    "pricesByPlan": {
+      "free": 5470,
+      "core": 5390,
+      "hype": 5310,
+      "omega": 5220
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-16gb-ssd-512gb",
@@ -3735,7 +6927,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3790,
+    "nexusPriceBRL": 3560,
+    "pricesByPlan": {
+      "free": 3560,
+      "core": 3510,
+      "hype": 3450,
+      "omega": 3400
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-32gb-ssd-1tb",
@@ -3749,7 +6953,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 74,
+    "marketPriceBRL": 5250,
+    "nexusPriceBRL": 4940,
+    "pricesByPlan": {
+      "free": 4940,
+      "core": 4870,
+      "hype": 4790,
+      "omega": 4720
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-32gb-ssd-256gb",
@@ -3763,7 +6979,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3530,
+    "nexusPriceBRL": 3320,
+    "pricesByPlan": {
+      "free": 3320,
+      "core": 3270,
+      "hype": 3220,
+      "omega": 3170
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-32gb-ssd-512gb",
@@ -3777,7 +7005,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 1510,
+    "nexusPriceBRL": 1420,
+    "pricesByPlan": {
+      "free": 1420,
+      "core": 1400,
+      "hype": 1380,
+      "omega": 1360
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-8gb-ssd-1tb",
@@ -3791,7 +7031,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 67,
+    "marketPriceBRL": 5800,
+    "nexusPriceBRL": 5450,
+    "pricesByPlan": {
+      "free": 5450,
+      "core": 5370,
+      "hype": 5290,
+      "omega": 5200
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-8gb-ssd-256gb",
@@ -3805,7 +7057,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 85,
+    "marketPriceBRL": 4580,
+    "nexusPriceBRL": 4310,
+    "pricesByPlan": {
+      "free": 4310,
+      "core": 4250,
+      "hype": 4180,
+      "omega": 4120
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-5-8gb-ssd-512gb",
@@ -3819,7 +7083,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2550,
+    "nexusPriceBRL": 2400,
+    "pricesByPlan": {
+      "free": 2400,
+      "core": 2360,
+      "hype": 2330,
+      "omega": 2290
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-16gb-ssd-1tb",
@@ -3833,7 +7109,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2650,
+    "nexusPriceBRL": 2490,
+    "pricesByPlan": {
+      "free": 2490,
+      "core": 2450,
+      "hype": 2420,
+      "omega": 2380
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-16gb-ssd-256gb",
@@ -3847,7 +7135,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": false,
+    "featured": false,
+    "priority": 0,
+    "score": 60,
+    "marketPriceBRL": 6480,
+    "nexusPriceBRL": 6090,
+    "pricesByPlan": {
+      "free": 6090,
+      "core": 6000,
+      "hype": 5910,
+      "omega": 5820
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-16gb-ssd-512gb",
@@ -3861,7 +7161,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 3500,
+    "nexusPriceBRL": 3290,
+    "pricesByPlan": {
+      "free": 3290,
+      "core": 3240,
+      "hype": 3190,
+      "omega": 3140
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-32gb-ssd-1tb",
@@ -3875,7 +7187,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 73,
+    "marketPriceBRL": 5320,
+    "nexusPriceBRL": 5000,
+    "pricesByPlan": {
+      "free": 5000,
+      "core": 4930,
+      "hype": 4850,
+      "omega": 4780
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-32gb-ssd-256gb",
@@ -3889,7 +7213,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 100,
+    "marketPriceBRL": 2710,
+    "nexusPriceBRL": 2550,
+    "pricesByPlan": {
+      "free": 2550,
+      "core": 2510,
+      "hype": 2470,
+      "omega": 2440
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-32gb-ssd-512gb",
@@ -3903,7 +7239,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 68,
+    "marketPriceBRL": 5690,
+    "nexusPriceBRL": 5350,
+    "pricesByPlan": {
+      "free": 5350,
+      "core": 5270,
+      "hype": 5190,
+      "omega": 5110
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-8gb-ssd-1tb",
@@ -3917,7 +7265,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 66,
+    "marketPriceBRL": 5880,
+    "nexusPriceBRL": 5530,
+    "pricesByPlan": {
+      "free": 5530,
+      "core": 5450,
+      "hype": 5360,
+      "omega": 5280
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-8gb-ssd-256gb",
@@ -3931,7 +7291,19 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 94,
+    "marketPriceBRL": 4140,
+    "nexusPriceBRL": 3890,
+    "pricesByPlan": {
+      "free": 3890,
+      "core": 3830,
+      "hype": 3770,
+      "omega": 3710
+    }
   },
   {
     "sku": "mini-pc-minisforum-mini-pc-ryzen-7-8gb-ssd-512gb",
@@ -3945,6 +7317,18 @@
     "currency": "BRL",
     "source": "marketplace-expansion",
     "createdAt": 1767390226707,
-    "updatedAt": 1767390226707
+    "updatedAt": 1767391482204,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 63,
+    "marketPriceBRL": 6170,
+    "nexusPriceBRL": 5800,
+    "pricesByPlan": {
+      "free": 5800,
+      "core": 5710,
+      "hype": 5630,
+      "omega": 5540
+    }
   }
 ]

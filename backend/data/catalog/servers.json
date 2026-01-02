@@ -9,9 +9,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 71,
+    "marketPriceBRL": 11510,
+    "nexusPriceBRL": 10820,
+    "pricesByPlan": {
+      "free": 10820,
+      "core": 10660,
+      "hype": 10500,
+      "omega": 10330
+    }
   },
   {
     "sku": "servers-hpe-proliant-microserver",
@@ -23,9 +35,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 4670,
+    "nexusPriceBRL": 4390,
+    "pricesByPlan": {
+      "free": 4390,
+      "core": 4320,
+      "hype": 4260,
+      "omega": 4190
+    }
   },
   {
     "sku": "servers-lenovo-thinksystem-st50",
@@ -37,9 +61,21 @@
     "image": "fallback.png",
     "source": "seed-complementar",
     "createdAt": 1767328613965,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 99,
+    "marketPriceBRL": 8220,
+    "nexusPriceBRL": 7730,
+    "pricesByPlan": {
+      "free": 7730,
+      "core": 7610,
+      "hype": 7500,
+      "omega": 7380
+    }
   },
   {
     "sku": "servers-dell-poweredge-t150",
@@ -51,9 +87,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 6880,
+    "nexusPriceBRL": 6470,
+    "pricesByPlan": {
+      "free": 6470,
+      "core": 6370,
+      "hype": 6280,
+      "omega": 6180
+    }
   },
   {
     "sku": "servers-dell-poweredge-t350",
@@ -65,9 +113,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 69,
+    "marketPriceBRL": 11740,
+    "nexusPriceBRL": 11040,
+    "pricesByPlan": {
+      "free": 11040,
+      "core": 10870,
+      "hype": 10710,
+      "omega": 10540
+    }
   },
   {
     "sku": "servers-hpe-proliant-ml30",
@@ -79,9 +139,21 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": true,
+    "priority": 5,
+    "score": 100,
+    "marketPriceBRL": 4470,
+    "nexusPriceBRL": 4200,
+    "pricesByPlan": {
+      "free": 4200,
+      "core": 4140,
+      "hype": 4070,
+      "omega": 4010
+    }
   },
   {
     "sku": "servers-lenovo-thinksystem-st250",
@@ -93,8 +165,20 @@
     "image": "fallback.png",
     "source": "seed-expansion",
     "createdAt": 1767328896389,
-    "updatedAt": 1767378479234,
+    "updatedAt": 1767391482221,
     "currency": "BRL",
-    "ready": true
+    "ready": true,
+    "show": true,
+    "featured": false,
+    "priority": 2,
+    "score": 87,
+    "marketPriceBRL": 9340,
+    "nexusPriceBRL": 8780,
+    "pricesByPlan": {
+      "free": 8780,
+      "core": 8650,
+      "hype": 8520,
+      "omega": 8380
+    }
   }
 ]
