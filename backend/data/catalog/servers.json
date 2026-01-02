@@ -34,5 +34,53 @@
     "source": "seed-complementar",
     "createdAt": 1767328613965,
     "updatedAt": 1767328613965
+  },
+  {
+    "sku": "servers-dell-poweredge-t150",
+    "title": "Dell PowerEdge T150",
+    "category": "servers",
+    "brand": "Dell",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "servers-dell-poweredge-t350",
+    "title": "Dell PowerEdge T350",
+    "category": "servers",
+    "brand": "Dell",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "servers-hpe-proliant-ml30",
+    "title": "HPE ProLiant ML30",
+    "category": "servers",
+    "brand": "HPE",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "servers-lenovo-thinksystem-st250",
+    "title": "Lenovo ThinkSystem ST250",
+    "category": "servers",
+    "brand": "Lenovo",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
   }
 ]

@@ -34,5 +34,53 @@
     "source": "seed-complementar",
     "createdAt": 1767328613964,
     "updatedAt": 1767328613964
+  },
+  {
+    "sku": "network-enterprise-ubiquiti-unifi-switch-8",
+    "title": "Ubiquiti UniFi Switch 8",
+    "category": "network-enterprise",
+    "brand": "Ubiquiti",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "network-enterprise-mikrotik-crs112",
+    "title": "MikroTik CRS112",
+    "category": "network-enterprise",
+    "brand": "MikroTik",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "network-enterprise-cisco-cbs110",
+    "title": "Cisco CBS110",
+    "category": "network-enterprise",
+    "brand": "Cisco",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
+  },
+  {
+    "sku": "network-enterprise-cisco-cbs250",
+    "title": "Cisco CBS250",
+    "category": "network-enterprise",
+    "brand": "Cisco",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
   }
 ]

@@ -34,5 +34,41 @@
     "source": "seed-complementar",
     "createdAt": 1767328613963,
     "updatedAt": 1767328613963
+  },
+  {
+    "sku": "capture-card-elgato-hd60",
+    "title": "Elgato HD60",
+    "category": "capture-card",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
+  },
+  {
+    "sku": "capture-card-elgato-4k60-pro",
+    "title": "Elgato 4K60 Pro",
+    "category": "capture-card",
+    "brand": "Elgato",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
+  },
+  {
+    "sku": "capture-card-avermedia-live-gamer-4k",
+    "title": "AverMedia Live Gamer 4K",
+    "category": "capture-card",
+    "brand": "AverMedia",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
   }
 ]

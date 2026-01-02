@@ -34,5 +34,77 @@
     "source": "seed-complementar",
     "createdAt": 1767328613965,
     "updatedAt": 1767328613965
+  },
+  {
+    "sku": "ups-apc-back-ups-600va",
+    "title": "APC Back-UPS 600VA",
+    "category": "ups",
+    "brand": "APC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "ups-apc-smart-ups-1500va",
+    "title": "APC Smart-UPS 1500VA",
+    "category": "ups",
+    "brand": "APC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "ups-sms-station-ii-1200va",
+    "title": "SMS Station II 1200VA",
+    "category": "ups",
+    "brand": "SMS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "ups-sms-station-ii-1500va",
+    "title": "SMS Station II 1500VA",
+    "category": "ups",
+    "brand": "SMS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "ups-ts-shara-ups-1200va",
+    "title": "TS Shara UPS 1200VA",
+    "category": "ups",
+    "brand": "TS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "ups-ts-shara-ups-1500va",
+    "title": "TS Shara UPS 1500VA",
+    "category": "ups",
+    "brand": "TS",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
   }
 ]

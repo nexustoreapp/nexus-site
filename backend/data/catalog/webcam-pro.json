@@ -34,5 +34,29 @@
     "source": "seed-complementar",
     "createdAt": 1767328613965,
     "updatedAt": 1767328613965
+  },
+  {
+    "sku": "webcam-pro-logitech-c922",
+    "title": "Logitech C922",
+    "category": "webcam-pro",
+    "brand": "Logitech",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
+  },
+  {
+    "sku": "webcam-pro-razer-kiyo",
+    "title": "Razer Kiyo",
+    "category": "webcam-pro",
+    "brand": "Razer",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896390,
+    "updatedAt": 1767328896390
   }
 ]

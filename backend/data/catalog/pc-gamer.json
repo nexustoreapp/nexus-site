@@ -34,5 +34,53 @@
     "source": "seed-complementar",
     "createdAt": 1767328613965,
     "updatedAt": 1767328613965
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-rtx-3060",
+    "title": "PC Gamer RTX 3060",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-rx-6700-xt",
+    "title": "PC Gamer RX 6700 XT",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-ryzen-5",
+    "title": "PC Gamer Ryzen 5",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
+  },
+  {
+    "sku": "pc-gamer-pc-gamer-ryzen-7",
+    "title": "PC Gamer Ryzen 7",
+    "category": "pc-gamer",
+    "brand": "PC",
+    "price": null,
+    "stock": null,
+    "image": "fallback.png",
+    "source": "seed-expansion",
+    "createdAt": 1767328896389,
+    "updatedAt": 1767328896389
   }
 ]
