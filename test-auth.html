@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teste Auth Nexus</title>
+</head>
 <body>
+
 <h2>Teste Cadastro Nexus</h2>
 
 <button onclick="register()">Registrar</button>
@@ -10,18 +15,20 @@
 <pre id="out"></pre>
 
 <script>
-const API = "https://SEU_BACKEND.onrender.com/api/auth";
+const API = "https://nexus-site-oufm.onrender.com/api/auth";
 const out = document.getElementById("out");
 
 function show(x){
-  out.textContent = typeof x === "string" ? x : JSON.stringify(x, null, 2);
+  out.textContent = typeof x === "string"
+    ? x
+    : JSON.stringify(x, null, 2);
 }
 
 async function register(){
   try {
     const r = await fetch(API + "/register", {
       method: "POST",
-      headers: { "Content-Type":"application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: "teste@nexus.com",
         password: "123456",
@@ -36,10 +43,12 @@ async function register(){
 
 async function verify(){
   const otp = prompt("Digite o OTP recebido no e-mail:");
+  if (!otp) return;
+
   try {
     const r = await fetch(API + "/verify-otp", {
       method: "POST",
-      headers: { "Content-Type":"application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: "teste@nexus.com",
         otp
@@ -55,7 +64,7 @@ async function login(){
   try {
     const r = await fetch(API + "/login", {
       method: "POST",
-      headers: { "Content-Type":"application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: "teste@nexus.com",
         password: "123456"
@@ -67,5 +76,6 @@ async function login(){
   }
 }
 </script>
+
 </body>
 </html>
