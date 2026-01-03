@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 const users = new Map();
 const otps = new Map();
 
-// SMTP (mantém, mas não depende)
+// SMTP (mantém, mas não bloqueia fluxo)
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // ==============================
-// REGISTER
+// REGISTER (CORRIGIDO)
 // ==============================
 export async function register(req, res) {
   try {
@@ -24,21 +24,49 @@ export async function register(req, res) {
       return res.status(400).json({ ok: false, error: "INVALID_DATA" });
     }
 
-    if (users.has(email)) {
-      return res.status(400).json({ ok: false, error: "USER_EXISTS" });
+    let user = users.get(email);
+
+    // 🔥 USUÁRIO JÁ EXISTE E NÃO VERIFICADO → REENVIA OTP
+    if (user && !user.verified) {
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      otps.set(email, otp);
+
+      try {
+        await transporter.sendMail({
+          from: `"Nexus" <${process.env.SMTP_USER}>`,
+          to: email,
+          subject: "Código de verificação",
+          text: `Seu código OTP é: ${otp}`
+        });
+
+        return res.json({ ok: true, message: "OTP_RESENT" });
+
+      } catch {
+        return res.json({
+          ok: true,
+          message: "OTP_RESENT_DEV",
+          otp
+        });
+      }
     }
 
+    // 🔒 USUÁRIO JÁ VERIFICADO
+    if (user && user.verified) {
+      return res.status(400).json({ ok: false, error: "USER_ALREADY_VERIFIED" });
+    }
+
+    // 🆕 CRIAR USUÁRIO NOVO
     const hash = await bcrypt.hash(password, 10);
-    users.set(email, {
+    user = {
       email,
       password: hash,
       verified: false
-    });
+    };
+    users.set(email, user);
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otps.set(email, otp);
 
-    // tenta enviar email
     try {
       await transporter.sendMail({
         from: `"Nexus" <${process.env.SMTP_USER}>`,
@@ -49,10 +77,7 @@ export async function register(req, res) {
 
       return res.json({ ok: true, message: "OTP_SENT" });
 
-    } catch (mailErr) {
-      console.error("SMTP FALHOU, MODO DEV:", mailErr.message);
-
-      // 🔥 MODO DEV: devolve OTP
+    } catch {
       return res.json({
         ok: true,
         message: "OTP_SENT_DEV",
@@ -71,6 +96,7 @@ export async function register(req, res) {
 // ==============================
 export function verifyOtp(req, res) {
   const { email, otp } = req.body;
+
   if (!email || !otp) {
     return res.status(400).json({ ok: false, error: "INVALID_DATA" });
   }
