@@ -10,7 +10,7 @@
 <pre id="out"></pre>
 
 <script>
-const API = "/api/auth";
+const API = "https://SEU_BACKEND.onrender.com/api/auth";
 const out = document.getElementById("out");
 
 function show(x){
@@ -28,8 +28,7 @@ async function register(){
         cpf: "12345678909"
       })
     });
-    const j = await r.json();
-    show(j);
+    show(await r.json());
   } catch (e){
     show("ERRO REGISTER: " + e.message);
   }
@@ -38,7 +37,7 @@ async function register(){
 async function verify(){
   const otp = prompt("Digite o OTP recebido no e-mail:");
   try {
-    const r = await fetch(API + "/verify", {
+    const r = await fetch(API + "/verify-otp", {
       method: "POST",
       headers: { "Content-Type":"application/json" },
       body: JSON.stringify({
@@ -46,8 +45,7 @@ async function verify(){
         otp
       })
     });
-    const j = await r.json();
-    show(j);
+    show(await r.json());
   } catch (e){
     show("ERRO VERIFY: " + e.message);
   }
@@ -63,8 +61,7 @@ async function login(){
         password: "123456"
       })
     });
-    const j = await r.json();
-    show(j);
+    show(await r.json());
   } catch (e){
     show("ERRO LOGIN: " + e.message);
   }
