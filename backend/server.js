@@ -8,20 +8,13 @@ dotenv.config();
 
 const app = express();
 
-// =============================
-// MIDDLEWARES
-// =============================
 app.use(cors());
 app.use(express.json());
 
-// =============================
-// ROTAS DA API
-// =============================
+// API
 app.use("/api", apiRoutes);
 
-// =============================
-// FALLBACK PADRONIZADO DA API
-// =============================
+// Fallback JSON (nunca HTML)
 app.use("/api/*", (req, res) => {
   res.status(404).json({
     ok: false,
@@ -30,16 +23,11 @@ app.use("/api/*", (req, res) => {
   });
 });
 
-// =============================
-// ROOT (health simples)
- // =============================
+// Root
 app.get("/", (req, res) => {
   res.json({ ok: true, service: "NEXUS API" });
 });
 
-// =============================
-// START SERVER
-// =============================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
