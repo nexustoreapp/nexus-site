@@ -1,10 +1,14 @@
-import { Router } from "express";
-import { AuthController } from "../controllers/auth.controller.js";
+import express from "express";
+import {
+  register,
+  login,
+  verifyOtp
+} from "../controllers/auth.controller.js";
 
-const r = Router();
+const router = express.Router();
 
-r.post("/register", AuthController.register);
-r.post("/verify", AuthController.verifyOTP);
-r.post("/login", AuthController.login);
+router.post("/register", register);
+router.post("/login", login);
+router.post("/verify-otp", verifyOtp);
 
-export default r;
+export default router;
