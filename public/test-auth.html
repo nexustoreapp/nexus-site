@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teste Auth Nexus V2</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 16px; }
+    button { padding: 10px 14px; margin: 6px 6px 6px 0; }
+    input { padding: 10px; width: 100%; margin: 6px 0; }
+    pre { background: #111; color:#0f0; padding: 12px; border-radius: 8px; overflow:auto; }
+  </style>
+</head>
+<body>
+
+<h2>Teste Auth Nexus (V2)</h2>
+
+<label>Email</label>
+<input id="email" value="teste@nexus.com" />
+
+<label>Senha</label>
+<input id="password" value="123456" />
+
+<label>CPF (só números)</label>
+<input id="cpf" value="12345678909" />
+
+<button onclick="register()">Registrar</button>
+<button onclick="verifyOtp()">Verificar OTP</button>
+<button onclick="login()">Login</button>
+
+<h3>Resposta</h3>
+<pre id="out">Pronto.</pre>
+
+<script>
+const BACKEND = "https://nexus-site-oufm.onrender.com";
+const API = BACKEND + "/api/auth";
+const out = document.getElementById("out");
+
+function show(x){
+  out.textContent = typeof x === "string" ? x : JSON.stringify(x, null, 2);
+}
+
+async function safeJson(r){
+  const text = await r.text();
+  try { return JSON.parse(text); }
+  catch { return { ok:false, error:"NOT_JSON", status:r.status, raw:text.slice(0,200) }; }
+}
+
+async function register(){
+  try{
+    show("Registrando...");
+    const r = await fetch(API + "/register", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+      })
+    });
+    const j = await safeJson(r);
+    show(j);
+  }catch(e){
+    show("ERRO REGISTER: " + e.message);
+  }
+}
+
+async function verifyOtp(){
+  const otp = prompt("Digite o OTP (6 dígitos):");
+  if(!otp) return;
+  try{
+    show("Verificando OTP...");
+    const r = await fetch(API + "/verify-otp", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value.trim(),
+        otp: otp.trim()
+      })
+    });
+    const j = await safeJson(r);
+    show(j);
+  }catch(e){
+    show("ERRO OTP: " + e.message);
+  }
+}
+
+async function login(){
+  try{
+    show("Logando...");
+    const r = await fetch(API + "/login", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value.trim()
+      })
+    });
+    const j = await safeJson(r);
+    show(j);
+  }catch(e){
+    show("ERRO LOGIN: " + e.message);
+  }
+}
+</script>
+
+</body>
+</html>
