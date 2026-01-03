@@ -1,22 +1,14 @@
-import fs from "fs";
-import path from "path";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import { onlyDigits, isValidCPF } from "../utils/cpf.js";
-import { genOTP } from "../utils/otp.js";
-import { sign } from "../utils/jwt.js";
 
-const USERS = path.resolve("backend/data/users.json");
+const users = new Map(); // memória (depois vira DB)
+const otps = new Map();
 
-function readUsers(){
-  if(!fs.existsSync(USERS)) return [];
-  return JSON.parse(fs.readFileSync(USERS,"utf-8"));
-}
-function writeUsers(u){
-  fs.writeFileSync(USERS, JSON.stringify(u,null,2));
-}
-
-const mailer = nodemailer.createTransport({
+// ==============================
+// EMAIL (SMTP)
+// ==============================
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.SMTP_USER,
@@ -24,69 +16,105 @@ const mailer = nodemailer.createTransport({
   }
 });
 
-export const AuthController = {
-  register: async (req,res)=>{
-    const { email, password, cpf } = req.body;
-    if(!email || !password || !cpf) return res.status(400).json({ ok:false });
+// ==============================
+// REGISTER
+// ==============================
+export async function register(req, res) {
+  try {
+    const { email, password } = req.body;
 
-    const cleanCPF = onlyDigits(cpf);
-    if(!isValidCPF(cleanCPF)) return res.status(400).json({ ok:false, error:"CPF_INVALID" });
+    if (!email || !password) {
+      return res.status(400).json({ ok: false, error: "Dados inválidos" });
+    }
 
-    const users = readUsers();
-    if(users.some(u=>u.cpf===cleanCPF)) return res.status(409).json({ ok:false, error:"CPF_EXISTS" });
-    if(users.some(u=>u.email===email)) return res.status(409).json({ ok:false, error:"EMAIL_EXISTS" });
+    if (users.has(email)) {
+      return res.status(400).json({ ok: false, error: "Usuário já existe" });
+    }
 
     const hash = await bcrypt.hash(password, 10);
-    const otp = genOTP();
 
-    const user = {
-      id: Date.now().toString(),
+    users.set(email, {
       email,
-      cpf: cleanCPF,
       password: hash,
-      plan: "free",
-      verified: false,
-      otp,
-      createdAt: Date.now()
-    };
-
-    users.push(user);
-    writeUsers(users);
-
-    await mailer.sendMail({
-      to: email,
-      subject: "Nexus — Confirmação de cadastro",
-      text: `Seu código de confirmação é: ${otp}`
+      verified: false
     });
 
-    res.json({ ok:true, message:"OTP_SENT" });
-  },
+    // gera OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    otps.set(email, otp);
 
-  verifyOTP: (req,res)=>{
-    const { email, otp } = req.body;
-    const users = readUsers();
-    const u = users.find(x=>x.email===email);
-    if(!u || u.otp!==otp) return res.status(400).json({ ok:false });
+    await transporter.sendMail({
+      from: `"Nexus" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject: "Seu código de verificação",
+      text: `Seu código OTP é: ${otp}`
+    });
 
-    u.verified = true;
-    u.otp = null;
-    writeUsers(users);
+    return res.json({ ok: true, message: "OTP enviado para o email" });
 
-    const token = sign({ id:u.id, email:u.email, plan:u.plan });
-    res.json({ ok:true, token });
-  },
-
-  login: async (req,res)=>{
-    const { email, password } = req.body;
-    const users = readUsers();
-    const u = users.find(x=>x.email===email);
-    if(!u) return res.status(401).json({ ok:false });
-
-    const ok = await bcrypt.compare(password, u.password);
-    if(!ok) return res.status(401).json({ ok:false });
-    if(!u.verified) return res.status(403).json({ ok:false, error:"NOT_VERIFIED" });
-
-    const token = sign({ id:u.id, email:u.email, plan:u.plan });
-    res.json({ ok:true, token });
+  } catch (err) {
+    console.error("REGISTER ERROR", err);
+    return res.status(500).json({ ok: false, error: "Erro interno" });
   }
-};
+}
+
+// ==============================
+// VERIFY OTP
+// ==============================
+export function verifyOtp(req, res) {
+  const { email, otp } = req.body;
+
+  if (!email || !otp) {
+    return res.status(400).json({ ok: false, error: "Dados inválidos" });
+  }
+
+  const savedOtp = otps.get(email);
+  if (savedOtp !== otp) {
+    return res.status(400).json({ ok: false, error: "OTP inválido" });
+  }
+
+  const user = users.get(email);
+  if (!user) {
+    return res.status(400).json({ ok: false, error: "Usuário não encontrado" });
+  }
+
+  user.verified = true;
+  otps.delete(email);
+
+  return res.json({ ok: true, message: "Conta verificada com sucesso" });
+}
+
+// ==============================
+// LOGIN
+// ==============================
+export async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    const user = users.get(email);
+    if (!user) {
+      return res.status(401).json({ ok: false, error: "Credenciais inválidas" });
+    }
+
+    if (!user.verified) {
+      return res.status(401).json({ ok: false, error: "Conta não verificada" });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(401).json({ ok: false, error: "Credenciais inválidas" });
+    }
+
+    const token = jwt.sign(
+      { email },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    return res.json({ ok: true, token });
+
+  } catch (err) {
+    console.error("LOGIN ERROR", err);
+    return res.status(500).json({ ok: false, error: "Erro interno" });
+  }
+}
