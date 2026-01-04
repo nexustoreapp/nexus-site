@@ -2,168 +2,55 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus — Tecnologia com preço inteligente</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="icon" href="favicon.png?v=3" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="nexus-widget.css?v=3" />
+  <title>Nexus Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #eaeaea;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    p { opacity: .8; margin-bottom: 24px; }
+    .card {
+      background: #161616;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      background: #4f46e5;
+      color: #fff;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+    }
+    .loader {
+      display: none;
+      margin-top: 12px;
+      text-align: center;
+      opacity: .7;
+    }
+  </style>
 </head>
-
 <body>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" />
-    <span class="brand-name">Nexus</span>
-  </a>
+<h1>Nexus</h1>
+<p>Marketplace inteligente com preços baixos e planos.</p>
 
-  <button class="nav-toggle" id="navToggle">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-
-  <nav class="nav" id="navMenu">
-    <a href="index.html" class="nav-link active">Início</a>
-    <a href="buscar.html" class="nav-link">Buscar</a>
-    <a href="dashboard.html" class="nav-link">Minha área</a>
-    <a href="login.html" class="nav-link">Entrar</a>
-  </nav>
-</header>
-
-<main>
-
-<section class="hero" style="padding-bottom:24px;">
-  <div class="hero-inner">
-
-    <h1 class="hero-title">
-      Tecnologia com <span class="highlight">preço inteligente</span>.
-    </h1>
-
-    <p class="hero-subtitle">
-      Catálogo real, produtos ativos e automação que trabalha para você comprar melhor.
-    </p>
-
-    <div class="hero-search">
-      <input
-        type="text"
-        id="home-query"
-        class="input-search"
-        placeholder="Ex: RTX 4060, Ryzen 5, SSD 1TB, Headset gamer..."
-      />
-      <button class="btn-primary" onclick="goSearch()">Buscar agora</button>
-    </div>
-
-  </div>
-</section>
-
-<section class="section" style="background:rgba(255,255,255,0.02);padding:32px 0;">
-  <div class="section-header">
-    <h2>Explore por categoria</h2>
-    <p>O que você procura hoje?</p>
-  </div>
-
-  <div class="grid-cards">
-    <a href="buscar.html?category=gpu" class="card-info">🎮 Placas de vídeo</a>
-    <a href="buscar.html?category=cpu" class="card-info">🧠 Processadores</a>
-    <a href="buscar.html?category=storage" class="card-info">💾 Armazenamento</a>
-    <a href="buscar.html?category=ram" class="card-info">🧬 Memória RAM</a>
-    <a href="buscar.html?category=peripherals" class="card-info">🖥️ Periféricos</a>
-    <a href="buscar.html?category=accessories" class="card-info">🔌 Acessórios</a>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-header">
-    <h2>🔥 Em destaque agora</h2>
-    <p>Produtos com preço e disponibilidade atualizados.</p>
-  </div>
-
-  <div id="home-live-products" class="results-grid">
-    <!-- cards entram aqui -->
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  Nexus © 2025 — Loja de tecnologia com decisão inteligente.
-</footer>
+<div class="card">
+  <button class="btn" onclick="showLoader()">Cadastrar</button>
+  <div id="loader" class="loader">Processando...</div>
+</div>
 
 <script>
-function goSearch() {
-  const q = document.getElementById("home-query").value.trim();
-  if (!q) return;
-  window.location.href = `buscar.html?q=${encodeURIComponent(q)}`;
+function showLoader(){
+  document.getElementById("loader").style.display = "block";
 }
-
-const navToggle = document.getElementById("navToggle");
-const navMenu = document.getElementById("navMenu");
-if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("nav-open");
-  });
-}
-</script>
-
-<!-- ✅ CONFIG CENTRAL -->
-<script src="config.js"></script>
-
-<script src="nexus-widget.js?v=3"></script>
-
-<script>
-async function loadHomeProducts() {
-  try {
-    const API = window.NEXUS_API;
-    const r = await fetch(`${API}/shopify/products?limit=12`);
-    const data = await r.json();
-
-    const grid = document.getElementById("home-live-products");
-    if (!grid) return;
-
-    // Se a API ainda não tem produtos, pelo menos não deixa vazio sem texto:
-    if (!data.ok) {
-      grid.innerHTML = "<p>Não foi possível carregar produtos agora.</p>";
-      return;
-    }
-
-    if (!data.products || data.products.length === 0) {
-      grid.innerHTML = "<p>Nenhum produto disponível ainda.</p>";
-      return;
-    }
-
-    grid.innerHTML = "";
-
-    data.products.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "result-card";
-
-      card.innerHTML = `
-        <div class="card-image">
-          <img src="${p.image || "fallback.png"}" alt="${p.title}">
-        </div>
-        <div class="card-body">
-          <div class="card-title">${p.title}</div>
-          <div class="card-price">
-            ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
-          </div>
-          <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
-            Ver produto
-          </a>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
-  } catch (e) {
-    const grid = document.getElementById("home-live-products");
-    if (grid) grid.innerHTML = "<p>Erro ao carregar produtos.</p>";
-  }
-}
-
-document.addEventListener("DOMContentLoaded", loadHomeProducts);
 </script>
 
 </body>
