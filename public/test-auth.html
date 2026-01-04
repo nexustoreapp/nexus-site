@@ -16,9 +16,9 @@
 
 <h2>Teste Auth Nexus</h2>
 
-<input id="email" placeholder="Email" value="teste@nexus.com" />
-<input id="password" placeholder="Senha" type="password" value="123456" />
-<input id="cpf" placeholder="CPF (só números)" value="12345678909" />
+<input id="email" placeholder="Email" />
+<input id="password" placeholder="Senha" type="password" />
+<input id="cpf" placeholder="CPF (pode colar com ponto e traço)" />
 
 <button id="btn-register">Registrar</button>
 <button id="btn-verify">Verificar OTP</button>
@@ -34,6 +34,35 @@ function show(v){
   out.textContent = typeof v === "string" ? v : JSON.stringify(v, null, 2);
 }
 
+// 🔹 remove tudo que não é número (ponto/traço somem)
+function onlyNumbers(v) {
+  return v.replace(/\D/g, "");
+}
+
+// 🔹 valida CPF (algoritmo oficial)
+function isValidCPF(cpf) {
+  cpf = onlyNumbers(cpf);
+  if (cpf.length !== 11) return false;
+  if (/^(\d)\1+$/.test(cpf)) return false;
+
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += cpf[i] * (10 - i);
+  let d1 = (sum * 10) % 11;
+  if (d1 === 10) d1 = 0;
+  if (d1 != cpf[9]) return false;
+
+  sum = 0;
+  for (let i = 0; i < 10; i++) sum += cpf[i] * (11 - i);
+  let d2 = (sum * 10) % 11;
+  if (d2 === 10) d2 = 0;
+  return d2 == cpf[10];
+}
+
+// 🔹 limpa automaticamente quando cola
+document.getElementById("cpf").addEventListener("input", (e) => {
+  e.target.value = onlyNumbers(e.target.value);
+});
+
 async function post(url, body){
   const r = await fetch(url, {
     method: "POST",
@@ -47,44 +76,39 @@ async function post(url, body){
 
 document.getElementById("btn-register").onclick = async () => {
   show("Registrando...");
-  try{
-    const data = await post(API + "/register", {
-      email: document.getElementById("email").value.trim(),
-      password: document.getElementById("password").value,
-      cpf: document.getElementById("cpf").value.replace(/\D/g,"")
-    });
-    show(data);
-  }catch(e){
-    show("ERRO REGISTER: " + e.message);
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const cpfRaw = document.getElementById("cpf").value;
+  const cpf = onlyNumbers(cpfRaw);
+
+  if (!isValidCPF(cpf)) {
+    show("CPF inválido. Verifique e tente novamente.");
+    return;
   }
+
+  const data = await post(API + "/register", { email, password, cpf });
+  show(data);
 };
 
 document.getElementById("btn-verify").onclick = async () => {
   const otp = prompt("Digite o OTP:");
-  if(!otp) return;
+  if (!otp) return;
   show("Verificando OTP...");
-  try{
-    const data = await post(API + "/verify-otp", {
-      email: document.getElementById("email").value.trim(),
-      otp: otp.trim()
-    });
-    show(data);
-  }catch(e){
-    show("ERRO OTP: " + e.message);
-  }
+  const data = await post(API + "/verify-otp", {
+    email: document.getElementById("email").value.trim(),
+    otp: otp.trim()
+  });
+  show(data);
 };
 
 document.getElementById("btn-login").onclick = async () => {
   show("Logando...");
-  try{
-    const data = await post(API + "/login", {
-      email: document.getElementById("email").value.trim(),
-      password: document.getElementById("password").value
-    });
-    show(data);
-  }catch(e){
-    show("ERRO LOGIN: " + e.message);
-  }
+  const data = await post(API + "/login", {
+    email: document.getElementById("email").value.trim(),
+    password: document.getElementById("password").value
+  });
+  show(data);
 };
 </script>
 
