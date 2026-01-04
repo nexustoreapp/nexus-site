@@ -6,6 +6,7 @@ import searchRoutes from "./search.routes.js";
 import decisionRoutes from "./decision.routes.js";
 import geoRoutes from "./geo.routes.js";
 import authRoutes from "./auth.routes.js";
+import checkoutRoutes from "./checkout.routes.js";
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.use("/search", searchRoutes);
 router.use("/decision", decisionRoutes);
 router.use("/geo", geoRoutes);
 router.use("/auth", authRoutes);
+router.use("/checkout", checkoutRoutes);
 
 export default router;
