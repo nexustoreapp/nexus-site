@@ -9,11 +9,11 @@ import authRoutes from "./auth.routes.js";
 
 const router = Router();
 
-router.use("/auth", authRoutes);
 router.use("/health", healthRoutes);
 router.use("/products", productRoutes);
 router.use("/search", searchRoutes);
 router.use("/decision", decisionRoutes);
 router.use("/geo", geoRoutes);
+router.use("/auth", authRoutes);
 
 export default router;
