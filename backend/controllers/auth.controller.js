@@ -5,89 +5,68 @@ import nodemailer from "nodemailer";
 const users = new Map();
 const otps = new Map();
 
-// SMTP (mantém, mas não bloqueia fluxo)
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS
-  }
+  },
+  pool: true,
+  maxConnections: 1,
+  maxMessages: 5
 });
 
-// ==============================
-// REGISTER (CORRIGIDO)
-// ==============================
-export async function register(req, res) {
-  try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ ok: false, error: "INVALID_DATA" });
-    }
-
-    let user = users.get(email);
-
-    // 🔥 USUÁRIO JÁ EXISTE E NÃO VERIFICADO → REENVIA OTP
-    if (user && !user.verified) {
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      otps.set(email, otp);
-
-      try {
-        await transporter.sendMail({
-          from: `"Nexus" <${process.env.SMTP_USER}>`,
-          to: email,
-          subject: "Código de verificação",
-          text: `Seu código OTP é: ${otp}`
-        });
-
-        return res.json({ ok: true, message: "OTP_RESENT" });
-
-      } catch {
-        return res.json({
-          ok: true,
-          message: "OTP_RESENT_DEV",
-          otp
-        });
-      }
-    }
-
-    // 🔒 USUÁRIO JÁ VERIFICADO
-    if (user && user.verified) {
-      return res.status(400).json({ ok: false, error: "USER_ALREADY_VERIFIED" });
-    }
-
-    // 🆕 CRIAR USUÁRIO NOVO
-    const hash = await bcrypt.hash(password, 10);
-    user = {
-      email,
-      password: hash,
-      verified: false
-    };
-    users.set(email, user);
-
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otps.set(email, otp);
-
+// 🔥 ENVIO ASSÍNCRONO COM RETRY (NÃO BLOQUEIA)
+async function sendOtpEmail(email, otp) {
+  for (let i = 0; i < 3; i++) {
     try {
       await transporter.sendMail({
         from: `"Nexus" <${process.env.SMTP_USER}>`,
         to: email,
-        subject: "Código de verificação",
-        text: `Seu código OTP é: ${otp}`
+        subject: "Código de verificação Nexus",
+        text: `Seu código de verificação é: ${otp}`
       });
-
-      return res.json({ ok: true, message: "OTP_SENT" });
-
-    } catch {
-      return res.json({
-        ok: true,
-        message: "OTP_SENT_DEV",
-        otp
-      });
+      return true;
+    } catch (err) {
+      console.error("SMTP tentativa falhou:", err.message);
+      await new Promise(r => setTimeout(r, 1500));
     }
+  }
+  return false;
+}
 
-  } catch (err) {
-    console.error("REGISTER ERROR", err);
-    return res.status(500).json({ ok: false, error: "SERVER_ERROR" });
+// ==============================
+// REGISTER (RÁPIDO)
+// ==============================
+export async function register(req, res) {
+  const { email, password, cpf } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ ok: false, error: "INVALID_DATA" });
+  }
+
+  let user = users.get(email);
+
+  // gera OTP sempre
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  otps.set(email, otp);
+
+  // cria usuário se não existir
+  if (!user) {
+    const hash = await bcrypt.hash(password, 10);
+    user = { email, password: hash, verified: false };
+    users.set(email, user);
+  }
+
+  // 🔥 RESPONDE IMEDIATO (≤ 1s)
+  res.json({
+    ok: true,
+    message: user.verified ? "USER_ALREADY_VERIFIED" : "OTP_SENT"
+  });
+
+  // 🔥 ENVIO EM BACKGROUND (NÃO BLOQUEIA)
+  const sent = await sendOtpEmail(email, otp);
+  if (!sent) {
+    console.warn("SMTP falhou, OTP disponível apenas em DEV:", otp);
   }
 }
 
@@ -96,19 +75,11 @@ export async function register(req, res) {
 // ==============================
 export function verifyOtp(req, res) {
   const { email, otp } = req.body;
-
-  if (!email || !otp) {
-    return res.status(400).json({ ok: false, error: "INVALID_DATA" });
-  }
-
-  const savedOtp = otps.get(email);
-  if (savedOtp !== otp) {
-    return res.status(400).json({ ok: false, error: "OTP_INVALID" });
-  }
-
+  const saved = otps.get(email);
   const user = users.get(email);
-  if (!user) {
-    return res.status(400).json({ ok: false, error: "USER_NOT_FOUND" });
+
+  if (!user || saved !== otp) {
+    return res.status(400).json({ ok: false, error: "OTP_INVALID" });
   }
 
   user.verified = true;
@@ -121,33 +92,20 @@ export function verifyOtp(req, res) {
 // LOGIN
 // ==============================
 export async function login(req, res) {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
+  const user = users.get(email);
 
-    const user = users.get(email);
-    if (!user) {
-      return res.status(401).json({ ok: false, error: "INVALID_CREDENTIALS" });
-    }
+  if (!user) return res.status(401).json({ ok: false });
+  if (!user.verified) return res.status(401).json({ ok: false, error: "NOT_VERIFIED" });
 
-    if (!user.verified) {
-      return res.status(401).json({ ok: false, error: "NOT_VERIFIED" });
-    }
+  const ok = await bcrypt.compare(password, user.password);
+  if (!ok) return res.status(401).json({ ok: false });
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.status(401).json({ ok: false, error: "INVALID_CREDENTIALS" });
-    }
+  const token = jwt.sign(
+    { email },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
 
-    const token = jwt.sign(
-      { email },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
-
-    return res.json({ ok: true, token });
-
-  } catch (err) {
-    console.error("LOGIN ERROR", err);
-    return res.status(500).json({ ok: false, error: "SERVER_ERROR" });
-  }
+  return res.json({ ok: true, token });
 }
