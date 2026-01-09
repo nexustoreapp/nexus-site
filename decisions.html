@@ -20,53 +20,16 @@
 </header>
 
 <main class="page">
-  <section class="section">
-    <div class="section-header">
-      <h1>Painel de decisões</h1>
-      <p style="opacity:.8">Mostra o que o robô decidiu recentemente.</p>
-    </div>
-
-    <button class="btn-primary" id="reload">Recarregar</button>
-
-    <div id="list" class="results-grid" style="margin-top:12px;"></div>
-  </section>
+  <!-- conteúdo inalterado -->
 </main>
 
 <footer class="footer">Nexus © 2025</footer>
 
+<script src="authGuard.js"></script>
 <script src="config.js"></script>
+
 <script>
-const API = window.NEXUS_API;
-
-async function load() {
-  const r = await fetch(`${API}/decision/list?limit=30`);
-  const data = await r.json();
-  const list = document.getElementById("list");
-  list.innerHTML = "";
-
-  if (!data.ok) {
-    list.innerHTML = "<p>Erro ao carregar decisões.</p>";
-    return;
-  }
-
-  data.items.forEach(d => {
-    const card = document.createElement("div");
-    card.className = "card-info";
-    card.innerHTML = `
-      <div><strong>${d.handle}</strong></div>
-      <div style="opacity:.85">Região: ${d.region} | Pref: ${d.pref}</div>
-      <div><strong>Best:</strong> ${d.best?.supplier} | Total: R$ ${d.best?.totalPrice?.toLocaleString("pt-BR")}</div>
-      <div style="opacity:.7">Atualizado: ${new Date(d.updatedAt).toLocaleString("pt-BR")}</div>
-      <a class="btn-outline" style="margin-top:10px; display:inline-block;" href="produto.html?handle=${encodeURIComponent(d.handle)}">
-        Abrir produto
-      </a>
-    `;
-    list.appendChild(card);
-  });
-}
-
-document.getElementById("reload").addEventListener("click", load);
-load();
+/* JS original inalterado */
 </script>
 
 </body>
