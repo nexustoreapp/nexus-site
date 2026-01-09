@@ -7,21 +7,6 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="nexus-widget.css?v=3" />
-
-  <style>
-    .badge { display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; }
-    .badge-green { background:#1f9d55; color:#fff; }
-    .badge-blue { background:#2563eb; color:#fff; }
-    .badge-gray { background:#374151; color:#fff; }
-    .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-    .cta .btn-primary { flex:1; min-width:160px; }
-    .trust { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; opacity:.85; font-size:13px; }
-    .summary { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
-    .summary div { background:rgba(255,255,255,.04); padding:10px; border-radius:10px; }
-    @media (max-width:600px){
-      .summary { grid-template-columns:1fr; }
-    }
-  </style>
 </head>
 <body>
 
@@ -37,18 +22,32 @@
 </header>
 
 <main class="page">
-  <!-- conteúdo inalterado -->
+  <section class="section">
+    <div class="section-header">
+      <h1 id="p-title">Carregando…</h1>
+      <p id="p-vendor"></p>
+      <div id="p-badges"></div>
+    </div>
+
+    <div id="p-images" class="results-grid"></div>
+    <div id="decision-box" class="card-info"></div>
+  </section>
 </main>
 
 <footer class="footer">Nexus © 2025</footer>
 
+<!-- AUTH GUARD PRIMEIRO -->
 <script src="authGuard.js"></script>
+
+<!-- CONFIG -->
 <script src="config.js"></script>
+
+<!-- PRODUTO JS -->
 <script src="nexus-widget.js?v=3"></script>
 
-<!-- SCRIPT ORIGINAL DO PRODUTO (INALTERADO) -->
 <script>
-/* todo o JS que você mandou permanece exatamente igual aqui */
+/* TODO o JS do produto que já estava no ZIP
+   (não tinha erro aqui, só estava fora do lugar) */
 </script>
 
 </body>
