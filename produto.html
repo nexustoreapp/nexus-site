@@ -34,41 +34,68 @@
   </section>
 </main>
 
-<script src="authGuard.js"></script>
 <script src="config.js"></script>
 <script>
 const PRODUCT_ID = "produto-001";
 const msg = document.getElementById("msg");
+const token = localStorage.getItem("nexus_token");
 
+/* ===============================
+   NAV
+================================ */
 (function(){
   const link = document.getElementById("loginLink");
-  if (localStorage.getItem("nexus_token")) {
+  if (token) {
     link.innerText = "Minha conta";
-    link.href = "dashboard.html";
+    link.href = "index.html";
   }
 })();
 
-document.getElementById("buyBtn").onclick = async () => {
-  if (!requireAuth("buy:" + PRODUCT_ID)) return;
+/* ===============================
+   PLANO & BLOQUEIO
+================================ */
+function getPlan(){
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.plan || "free";
+  } catch {
+    return "free";
+  }
+}
 
-  msg.innerText = "Verificando acesso...";
+function isBlockedByPlan(plan, productId){
+  if (plan === "omega") return false;
 
-  const r = await fetch(`${NEXUS_API}/checkout/prepare`, {
-    method: "POST",
-    headers: {
-      "Content-Type":"application/json",
-      "Authorization":"Bearer " + localStorage.getItem("nexus_token")
-    },
-    body: JSON.stringify({ productId: PRODUCT_ID })
-  });
+  const seed = productId + new Date().toDateString();
+  let hash = 0;
+  for (let i=0;i<seed.length;i++) hash += seed.charCodeAt(i);
 
-  const d = await r.json();
+  const mod = hash % 100;
 
-  if (!d.ok) {
-    msg.innerText = d.message || "Acesso negado.";
-    if (d.error === "PLAN_REQUIRED") {
-      setTimeout(() => window.location.href = "assinatura.html", 900);
-    }
+  if (plan === "free") return mod < 70;
+  if (plan === "core") return mod < 45;
+  if (plan === "hyper") return mod < 30;
+
+  return true;
+}
+
+/* ===============================
+   BUY
+================================ */
+document.getElementById("buyBtn").onclick = () => {
+  if (!token) {
+    localStorage.setItem("nexus_intent", "buy:" + PRODUCT_ID);
+    window.location.href = "login.html";
+    return;
+  }
+
+  const plan = getPlan();
+
+  if (isBlockedByPlan(plan, PRODUCT_ID)) {
+    msg.innerText = "Este produto exige um plano superior.";
+    setTimeout(() => {
+      window.location.href = "assinatura.html";
+    }, 1000);
     return;
   }
 
