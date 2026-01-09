@@ -1,4 +1,3 @@
-// authGuard.js
 function getToken() {
   try {
     return localStorage.getItem("nexus_token");
@@ -10,14 +9,19 @@ function getToken() {
 function requireAuth(action) {
   if (getToken()) return true;
 
-  // guarda intenção do usuário
   try {
     localStorage.setItem("nexus_intent", action);
   } catch {}
 
-  // redireciona para planos, NÃO para login
   window.location.href = "assinatura.html";
   return false;
+}
+
+function requirePlan(requiredPlan) {
+  const plan = localStorage.getItem("nexus_plan") || "free";
+  const order = ["free", "core", "hyper", "omega"];
+
+  return order.indexOf(plan) >= order.indexOf(requiredPlan);
 }
 
 function consumeIntent() {
