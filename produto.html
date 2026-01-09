@@ -24,8 +24,8 @@
 
 <main class="page">
   <section class="section">
-    <h1>Produto Exemplo Premium</h1>
-    <p>Produto com acesso controlado por plano.</p>
+    <h1>Produto Premium Exemplo</h1>
+    <p>Acesso controlado por plano.</p>
 
     <div class="card-info">
       <p><strong>Preço:</strong> R$ 1.999,00</p>
@@ -46,8 +46,8 @@
 /* ===============================
    CONFIG DO PRODUTO
 ================================ */
-const PRODUCT_ID = "produto-exemplo-001";
-const REQUIRED_PLAN = "hyper"; // free | core | hyper | omega
+const PRODUCT_ID = "produto-001";
+const REQUIRED_PLAN = "core"; // core | hyper | omega
 
 /* ===============================
    HEADER DINÂMICO
@@ -61,13 +61,24 @@ const REQUIRED_PLAN = "hyper"; // free | core | hyper | omega
 })();
 
 /* ===============================
-   COMPRA COM BLOQUEIO
+   COMPRA
 ================================ */
 document.getElementById("buyBtn").onclick = () => {
   localStorage.setItem("nexus_intent", "buy:" + PRODUCT_ID);
 
   if (!requireAuth("buy:" + PRODUCT_ID)) return;
 
+  // BLOQUEIO ALEATÓRIO (Free / Core / Hyper)
+  if (isBlockedRandomly(PRODUCT_ID)) {
+    document.getElementById("blockMsg").innerText =
+      "Este produto está temporariamente indisponível no seu plano hoje.";
+    setTimeout(() => {
+      window.location.href = "assinatura.html";
+    }, 900);
+    return;
+  }
+
+  // PLANO MÍNIMO FIXO
   if (!hasRequiredPlan(REQUIRED_PLAN)) {
     document.getElementById("blockMsg").innerText =
       `Este produto exige plano ${REQUIRED_PLAN.toUpperCase()} ou superior.`;
