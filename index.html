@@ -4,54 +4,29 @@
   <meta charset="UTF-8" />
   <title>Nexus Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      background: #0f0f0f;
-      color: #eaeaea;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 16px;
-    }
-    h1 { font-size: 28px; margin-bottom: 8px; }
-    p { opacity: .8; margin-bottom: 24px; }
-    .card {
-      background: #161616;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .btn {
-      background: #4f46e5;
-      color: #fff;
-      padding: 14px;
-      border-radius: 8px;
-      border: none;
-      width: 100%;
-      font-size: 16px;
-    }
-    .loader {
-      display: none;
-      margin-top: 12px;
-      text-align: center;
-      opacity: .7;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Nexus</h1>
-<p>Marketplace inteligente com preços baixos e planos.</p>
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo" />
+    <span class="brand-name">Nexus</span>
+  </a>
+  <nav class="nav">
+    <a href="login.html" class="nav-link">Entrar</a>
+  </nav>
+</header>
 
-<div class="card">
-  <button class="btn" onclick="showLoader()">Cadastrar</button>
-  <div id="loader" class="loader">Processando...</div>
-</div>
+<main class="page">
+  <h1>Nexus</h1>
+  <p>Marketplace inteligente com preços baixos e planos.</p>
+</main>
 
-<script>
-function showLoader(){
-  document.getElementById("loader").style.display = "block";
-}
-</script>
+<footer class="footer">Nexus © 2025</footer>
+
+<script src="config.js"></script>
+<script src="nexus-widget.js?v=3"></script>
 
 </body>
 </html>
