@@ -2,42 +2,108 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus — Entrar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Google reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <title>Entrar ou Criar conta — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png"/>
+
+  <!-- reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <style>
+    .auth-box {
+      max-width: 420px;
+      margin: 60px auto;
+      padding: 32px;
+      background: #0f0f0f;
+      border-radius: 14px;
+      box-shadow: 0 0 40px rgba(0,0,0,.4);
+    }
+    .auth-box h1 {
+      margin-bottom: 8px;
+    }
+    .auth-box p {
+      opacity: .7;
+      margin-bottom: 20px;
+    }
+    .auth-box input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      background: #111;
+      color: #fff;
+    }
+    .auth-box button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      background: #4f46e5;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .auth-box button:disabled {
+      opacity: .6;
+    }
+    .auth-message {
+      margin-top: 12px;
+      font-size: 14px;
+      min-height: 18px;
+    }
+    .toggle {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      color: #9ca3af;
+    }
+    .password-hint {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
 
-  <main class="auth-container">
-    <h1 id="form-title">Entrar</h1>
+<div class="auth-box">
+  <h1 id="title">Entrar</h1>
+  <p id="subtitle">Acesse sua conta Nexus</p>
 
-    <form id="auth-form">
-      <input id="email" type="email" placeholder="E-mail" required />
+  <form id="auth-form">
+    <input id="email" type="email" placeholder="E-mail" required />
+    <input id="password" type="password" placeholder="Senha" required />
 
-      <input id="password" type="password" placeholder="Senha forte" required />
+    <div id="password-hint" class="password-hint hidden">
+      A senha deve conter no mínimo 8 caracteres, incluindo letra maiúscula,
+      minúscula, número e símbolo.
+    </div>
 
-      <input id="cpf" type="text" placeholder="CPF (somente números)" />
+    <input id="cpf" class="hidden" placeholder="CPF (somente números)" />
 
-      <!-- CAPTCHA -->
-      <div
-        class="g-recaptcha"
-        data-sitekey="6Lfu50QsAAAAAJNoJNLk4plvQNeWxWzoMTXMtEHN">
-      </div>
+    <div id="captcha-box" class="g-recaptcha hidden"
+         data-sitekey="6Lfu50QsAAAAAJNoJNLk4plvQNeWxWzoMTXMtEHN">
+    </div>
 
-      <button id="submit-btn" type="submit">Entrar</button>
-    </form>
+    <input id="otp" class="hidden" placeholder="Código enviado ao e-mail" />
 
-    <p id="auth-message"></p>
+    <button id="submit-btn">Entrar</button>
+  </form>
 
-    <button id="toggle-mode">Criar conta</button>
-  </main>
+  <div id="message" class="auth-message"></div>
 
-  <script src="config.js"></script>
-  <script src="login.js"></script>
+  <div id="toggle" class="toggle">Criar conta</div>
+</div>
 
+<script src="config.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
