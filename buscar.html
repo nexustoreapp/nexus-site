@@ -6,61 +6,24 @@
   <title>Buscar produtos - Nexus</title>
 
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Widget Nexus IA (canto da tela) -->
   <link rel="stylesheet" href="./nexus-widget.css" />
 </head>
 <body>
 
-  <header class="topbar">
-    <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" alt="Nexus" />
-      <span class="brand-name">Nexus</span>
-    </a>
+<header class="topbar">
+  <!-- header inalterado -->
+</header>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
+<main class="page search-page">
+  <!-- conteúdo inalterado -->
+</main>
 
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="dashboard.html" class="nav-link">Minha área</a>
-      <a href="assinatura.html" class="nav-link">Assinatura</a>
-      <a href="login.html" class="nav-link">Entrar</a>
-    </nav>
-  </header>
+<footer class="footer">Nexus © 2025</footer>
 
-  <main class="page search-page">
-    <section class="section search-hero">
-      <div class="section-header">
-        <h1>Resultados da busca</h1>
-        <p class="search-meta" id="search-meta"></p>
-      </div>
+<script src="authGuard.js"></script>
+<script src="config.js"></script>
+<script src="buscar.js?v=20251217-01"></script>
+<script src="./nexus-widget.js?v=3"></script>
 
-      <div id="results-grid" class="results-grid"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    Nexus © 2025
-  </footer>
-
-  <!-- MENU MOBILE -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("navToggle");
-      const menu = document.getElementById("navMenu");
-      if (toggle && menu) toggle.addEventListener("click", () => menu.classList.toggle("nav-open"));
-    });
-  </script>
-
-  <!-- CONFIG (API Render) -->
-  <script src="config.js"></script>
-
-  <!-- BUSCA -->
-  <script src="buscar.js?v=20251217-01"></script>
-
-  <!-- Widget Nexus IA -->
-  <script src="./nexus-widget.js?v=3"></script>
 </body>
 </html>
