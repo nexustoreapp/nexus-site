@@ -2,12 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Planos Nexus+</title>
+  <title>Assinatura — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
 </head>
+
 <body>
 
 <header class="topbar">
@@ -15,54 +14,35 @@
     <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
-
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="assinatura.html" class="nav-link active">Assinatura</a>
-    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
-  </nav>
 </header>
 
 <main class="page">
   <section class="section">
-    <h1>Nexus+</h1>
-    <p>Escolha o plano ideal para desbloquear compras.</p>
+    <h1>Escolha seu plano</h1>
 
     <div class="plans-grid">
-
       <div class="plan-card">
         <h2>Core</h2>
-        <p>R$ 4,99 / semana</p>
-        <button onclick="subscribe('core')" class="btn-outline">Assinar Core</button>
+        <button onclick="selectPlan('core')" class="btn-outline">Assinar</button>
       </div>
 
       <div class="plan-card featured">
         <h2>Hyper</h2>
-        <p>R$ 19,90 / mês</p>
-        <button onclick="subscribe('hyper')" class="btn-primary">Assinar Hyper</button>
+        <button onclick="selectPlan('hyper')" class="btn-primary">Assinar</button>
       </div>
 
       <div class="plan-card">
         <h2>Omega</h2>
-        <p>R$ 149,90 / ano</p>
-        <button onclick="subscribe('omega')" class="btn-outline">Assinar Omega</button>
+        <button onclick="selectPlan('omega')" class="btn-outline">Assinar</button>
       </div>
-
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  Nexus © 2025
-</footer>
-
-<script src="authGuard.js"></script>
 <script>
-function subscribe(plan) {
-  // aqui sim exige login
-  if (!requireAuth("subscribe:" + plan)) return;
-
-  alert("Plano " + plan + " selecionado (checkout entra depois).");
+function selectPlan(plan) {
+  localStorage.setItem("nexus_plan", plan);
+  window.location.href = "login.html";
 }
 </script>
 
