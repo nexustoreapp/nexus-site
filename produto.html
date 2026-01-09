@@ -4,16 +4,14 @@
   <meta charset="UTF-8" />
   <title>Produto — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
 </head>
 
 <body>
 
 <header class="topbar">
   <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" />
+    <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
 
@@ -26,8 +24,8 @@
 
 <main class="page">
   <section class="section">
-    <h1 id="productTitle">Produto Exemplo</h1>
-    <p id="productDesc">Descrição do produto.</p>
+    <h1>Produto Exemplo Premium</h1>
+    <p>Produto com acesso controlado por plano.</p>
 
     <div class="card-info">
       <p><strong>Preço:</strong> R$ 1.999,00</p>
@@ -35,34 +33,51 @@
       <button id="buyBtn" class="btn-primary">
         Comprar agora
       </button>
+
+      <p id="blockMsg" class="small-text"></p>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  Nexus © 2025
-</footer>
+<footer class="footer">Nexus © 2025</footer>
 
 <script src="authGuard.js"></script>
 <script>
+/* ===============================
+   CONFIG DO PRODUTO
+================================ */
+const PRODUCT_ID = "produto-exemplo-001";
+const REQUIRED_PLAN = "hyper"; // free | core | hyper | omega
+
 /* ===============================
    HEADER DINÂMICO
 ================================ */
 (function(){
   const link = document.getElementById("loginLink");
-  const token = localStorage.getItem("nexus_token");
-  if (token) {
+  if (localStorage.getItem("nexus_token")) {
     link.innerText = "Minha conta";
     link.href = "dashboard.html";
   }
 })();
 
 /* ===============================
-   PRODUTO BLOQUEADO
+   COMPRA COM BLOQUEIO
 ================================ */
 document.getElementById("buyBtn").onclick = () => {
-  // guarda intenção e manda para assinatura
-  requireAuth("buy:produto-exemplo");
+  localStorage.setItem("nexus_intent", "buy:" + PRODUCT_ID);
+
+  if (!requireAuth("buy:" + PRODUCT_ID)) return;
+
+  if (!hasRequiredPlan(REQUIRED_PLAN)) {
+    document.getElementById("blockMsg").innerText =
+      `Este produto exige plano ${REQUIRED_PLAN.toUpperCase()} ou superior.`;
+    setTimeout(() => {
+      window.location.href = "assinatura.html";
+    }, 900);
+    return;
+  }
+
+  alert("Compra liberada (checkout entra depois).");
 };
 </script>
 
