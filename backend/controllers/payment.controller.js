@@ -1,6 +1,5 @@
 // backend/controllers/payment.controller.js
 import fetch from "node-fetch";
-import { findUserByEmail, upsertUser } from "../utils/userStore.js";
 
 const MP_TOKEN = process.env.MERCADO_PAGO_TOKEN;
 
@@ -14,9 +13,9 @@ export async function createPayment(req, res) {
     }
 
     const prices = {
-      core: 499,
-      hyper: 1990,
-      omega: 14990
+      core: 4.99,
+      hyper: 19.90,
+      omega: 149.90
     };
 
     if (!prices[plan]) {
@@ -24,12 +23,10 @@ export async function createPayment(req, res) {
     }
 
     const payment = {
-      transaction_amount: prices[plan] / 100,
+      transaction_amount: prices[plan],
       description: `Plano Nexus ${plan}`,
       payment_method_id: "pix",
-      payer: {
-        email: user.email
-      },
+      payer: { email: user.email },
       metadata: {
         plan,
         userEmail: user.email
