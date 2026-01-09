@@ -17,6 +17,8 @@ const q = (params.get("q") || "").trim().toLowerCase();
 ================================ */
 async function loadSearch() {
   try {
+    if (!grid || !meta) return;
+
     meta.innerText = "Buscando produtos...";
     grid.innerHTML = "";
 
@@ -47,11 +49,14 @@ async function loadSearch() {
         <div class="card-image">
           <img src="${p.image || "fallback.png"}" alt="${p.title}">
         </div>
+
         <div class="card-body">
           <div class="card-title">${p.title}</div>
+
           <div class="card-price">
             ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
+
           <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
             Ver produto
           </a>
@@ -60,8 +65,10 @@ async function loadSearch() {
 
       grid.appendChild(card);
     });
+
   } catch (err) {
-    meta.innerText = "Erro ao buscar produtos";
+    console.error(err);
+    if (meta) meta.innerText = "Erro ao buscar produtos";
   }
 }
 
