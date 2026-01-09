@@ -2,20 +2,55 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Minha área - Nexus</title>
+  <title>Minha conta — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png"/>
 </head>
 
 <body>
 
-<script>
-  const token = localStorage.getItem("nexus_token");
-  if (!token) {
-    window.location.href = "login.html";
-  }
-</script>
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo"/>
+    <span class="brand-name">Nexus</span>
+  </a>
 
-<h1>Minha área</h1>
-<p>Área exclusiva do cliente.</p>
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="assinatura.html" class="nav-link">Assinatura</a>
+    <a href="#" class="nav-link" id="logout">Sair</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="section">
+    <h1>Minha conta</h1>
+    <p>Você está logado.</p>
+
+    <div class="card-info">
+      <button onclick="goHome()" class="btn-outline">
+        Voltar para Home
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  Nexus © 2025
+</footer>
+
+<script>
+function goHome() {
+  window.location.href = "index.html";
+}
+
+document.getElementById("logout").onclick = () => {
+  localStorage.removeItem("nexus_token");
+  window.location.href = "index.html";
+};
+</script>
 
 </body>
 </html>
