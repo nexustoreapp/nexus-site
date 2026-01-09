@@ -2,45 +2,42 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus - Login</title>
+  <title>Nexus — Entrar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- reCAPTCHA -->
+  <!-- Google reCAPTCHA v2 -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<form id="auth-form" class="auth-card">
-  <h1 id="form-title">Entrar</h1>
+  <main class="auth-container">
+    <h1 id="form-title">Entrar</h1>
 
-  <input id="email" type="email" placeholder="Email" required />
-  <input id="password" type="password" placeholder="Senha" required />
+    <form id="auth-form">
+      <input id="email" type="email" placeholder="E-mail" required />
 
-  <input
-    id="cpf"
-    type="text"
-    placeholder="CPF (somente números)"
-    inputmode="numeric"
-    autocomplete="off"
-    style="display:none"
-  />
+      <input id="password" type="password" placeholder="Senha forte" required />
 
-  <!-- CAPTCHA -->
-  <div
-    class="g-recaptcha"
-    data-sitekey="SUA_SITE_KEY_AQUI">
-  </div>
+      <input id="cpf" type="text" placeholder="CPF (somente números)" />
 
-  <button id="submit-btn" type="submit">Entrar</button>
+      <!-- CAPTCHA -->
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lfu50QsAAAAAJNoJNLk4plvQNeWxWzoMTXMtEHN">
+      </div>
 
-  <p id="auth-message" class="auth-message"></p>
+      <button id="submit-btn" type="submit">Entrar</button>
+    </form>
 
-  <a href="#" id="toggle-mode">Criar conta</a>
-</form>
+    <p id="auth-message"></p>
 
-<script src="config.js"></script>
-<script src="login.js"></script>
+    <button id="toggle-mode">Criar conta</button>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="login.js"></script>
+
 </body>
 </html>
