@@ -1,68 +1,29 @@
-const API = window.NEXUS_API;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-/* ===============================
-   ELEMENTOS
-================================ */
-const grid = document.getElementById("results-grid");
-const meta = document.getElementById("search-meta");
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo" />
+    <span class="brand-name">Nexus</span>
+  </a>
+</header>
 
-/* ===============================
-   PARAMS
-================================ */
-const params = new URLSearchParams(window.location.search);
-const q = (params.get("q") || "").trim().toLowerCase();
+<main class="page">
+  <h1>Entrar</h1>
+  <!-- seu formulário permanece igual -->
+</main>
 
-/* ===============================
-   LOAD SEARCH (SHOPIFY)
-================================ */
-async function loadSearch() {
-  try {
-    meta.innerText = "Buscando produtos...";
-    grid.innerHTML = "";
+<footer class="footer">Nexus © 2025</footer>
 
-    const r = await fetch(`${API}/shopify/products?limit=50`);
-    const data = await r.json();
+<script src="config.js"></script>
+<script src="login.js"></script>
 
-    if (!data.ok) {
-      meta.innerText = "Erro ao buscar produtos";
-      return;
-    }
-
-    const produtos = (data.products || []).filter(p =>
-      p.title.toLowerCase().includes(q)
-    );
-
-    meta.innerText = `${produtos.length} produto(s) encontrados`;
-
-    if (produtos.length === 0) {
-      grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
-      return;
-    }
-
-    produtos.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "result-card";
-
-      card.innerHTML = `
-        <div class="card-image">
-          <img src="${p.image || "fallback.png"}" alt="${p.title}">
-        </div>
-        <div class="card-body">
-          <div class="card-title">${p.title}</div>
-          <div class="card-price">
-            ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
-          </div>
-          <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
-            Ver produto
-          </a>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
-  } catch (err) {
-    meta.innerText = "Erro ao buscar produtos";
-  }
-}
-
-loadSearch();
+</body>
+</html>
