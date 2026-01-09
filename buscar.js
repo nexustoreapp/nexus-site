@@ -1,13 +1,23 @@
 const API = window.NEXUS_API;
 
+/* ===============================
+   ELEMENTOS
+================================ */
 const grid = document.getElementById("results-grid");
 const meta = document.getElementById("search-meta");
 
+/* ===============================
+   PARAMS
+================================ */
 const params = new URLSearchParams(window.location.search);
 const q = (params.get("q") || "").trim().toLowerCase();
 
+/* ===============================
+   LOAD SEARCH (SHOPIFY)
+================================ */
 async function loadSearch() {
   try {
+    // Proteção: só roda se estiver na página certa
     if (!grid || !meta) return;
 
     meta.innerText = "Buscando produtos...";
@@ -40,11 +50,14 @@ async function loadSearch() {
         <div class="card-image">
           <img src="${p.image || "fallback.png"}" alt="${p.title}">
         </div>
+
         <div class="card-body">
           <div class="card-title">${p.title}</div>
+
           <div class="card-price">
             ${p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta"}
           </div>
+
           <a href="produto.html?handle=${encodeURIComponent(p.handle)}" class="btn-primary">
             Ver produto
           </a>
@@ -55,7 +68,7 @@ async function loadSearch() {
     });
 
   } catch (err) {
-    console.error(err);
+    console.error("[buscar.js]", err);
     meta.innerText = "Erro ao buscar produtos";
   }
 }
