@@ -23,26 +23,56 @@
     <div class="plans-grid">
       <div class="plan-card">
         <h2>Core</h2>
-        <button onclick="selectPlan('core')" class="btn-outline">Assinar</button>
+        <button onclick="startPayment('core')" class="btn-outline">Assinar</button>
       </div>
 
       <div class="plan-card featured">
         <h2>Hyper</h2>
-        <button onclick="selectPlan('hyper')" class="btn-primary">Assinar</button>
+        <button onclick="startPayment('hyper')" class="btn-primary">Assinar</button>
       </div>
 
       <div class="plan-card">
         <h2>Omega</h2>
-        <button onclick="selectPlan('omega')" class="btn-outline">Assinar</button>
+        <button onclick="startPayment('omega')" class="btn-outline">Assinar</button>
       </div>
     </div>
+
+    <p id="msg" class="small-text"></p>
   </section>
 </main>
 
+<script src="config.js"></script>
 <script>
-function selectPlan(plan) {
-  localStorage.setItem("nexus_plan", plan);
-  window.location.href = "login.html";
+const msg = document.getElementById("msg");
+
+async function startPayment(plan) {
+  const token = localStorage.getItem("nexus_token");
+  if (!token) {
+    localStorage.setItem("nexus_intent", "plan:" + plan);
+    window.location.href = "login.html";
+    return;
+  }
+
+  msg.innerText = "Gerando pagamento...";
+
+  const r = await fetch(`${NEXUS_API}/payment/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+      "Authorization":"Bearer " + token
+    },
+    body: JSON.stringify({ plan })
+  });
+
+  const d = await r.json();
+
+  if (!d.ok) {
+    msg.innerText = "Erro ao criar pagamento.";
+    return;
+  }
+
+  msg.innerText = "Pagamento criado. Escaneie o QR Code no app do banco.";
+  // aqui depois você pode renderizar o QR code
 }
 </script>
 
