@@ -2,60 +2,45 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Entrar — Nexus</title>
+  <title>Nexus - Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" />
-    <span class="brand-name">Nexus</span>
-  </a>
-</header>
+<form id="auth-form" class="auth-card">
+  <h1 id="form-title">Entrar</h1>
 
-<main class="page">
-  <div class="login-container">
+  <input id="email" type="email" placeholder="Email" required />
+  <input id="password" type="password" placeholder="Senha" required />
 
-    <h1 id="form-title">Entrar</h1>
+  <input
+    id="cpf"
+    type="text"
+    placeholder="CPF (somente números)"
+    inputmode="numeric"
+    autocomplete="off"
+    style="display:none"
+  />
 
-    <form id="auth-form">
-
-      <input type="email" id="email" placeholder="E-mail" required />
-      <input type="password" id="password" placeholder="Senha" required />
-
-      <input
-        type="text"
-        id="cpf"
-        placeholder="CPF"
-        inputmode="numeric"
-        required
-      />
-
-      <input
-        type="text"
-        id="otp"
-        placeholder="Código OTP"
-        style="display:none"
-      />
-
-      <button type="submit" id="submit-btn">Entrar</button>
-
-      <p id="auth-message"></p>
-    </form>
-
-    <p style="margin-top:16px">
-      <a href="#" id="toggle-mode">Criar conta</a>
-    </p>
-
+  <!-- CAPTCHA -->
+  <div
+    class="g-recaptcha"
+    data-sitekey="SUA_SITE_KEY_AQUI">
   </div>
-</main>
 
-<footer class="footer">Nexus © 2025</footer>
+  <button id="submit-btn" type="submit">Entrar</button>
+
+  <p id="auth-message" class="auth-message"></p>
+
+  <a href="#" id="toggle-mode">Criar conta</a>
+</form>
 
 <script src="config.js"></script>
 <script src="login.js"></script>
-
 </body>
 </html>
