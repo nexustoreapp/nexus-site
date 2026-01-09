@@ -25,33 +25,21 @@
 <main class="page">
   <section class="section">
     <h1>Produto Premium Exemplo</h1>
-    <p>Acesso controlado por plano.</p>
 
-    <div class="card-info">
-      <p><strong>Preço:</strong> R$ 1.999,00</p>
+    <button id="buyBtn" class="btn-primary">
+      Comprar agora
+    </button>
 
-      <button id="buyBtn" class="btn-primary">
-        Comprar agora
-      </button>
-
-      <p id="blockMsg" class="small-text"></p>
-    </div>
+    <p id="msg" class="small-text"></p>
   </section>
 </main>
 
-<footer class="footer">Nexus © 2025</footer>
-
 <script src="authGuard.js"></script>
+<script src="config.js"></script>
 <script>
-/* ===============================
-   CONFIG DO PRODUTO
-================================ */
 const PRODUCT_ID = "produto-001";
-const REQUIRED_PLAN = "core"; // core | hyper | omega
+const msg = document.getElementById("msg");
 
-/* ===============================
-   HEADER DINÂMICO
-================================ */
 (function(){
   const link = document.getElementById("loginLink");
   if (localStorage.getItem("nexus_token")) {
@@ -60,35 +48,31 @@ const REQUIRED_PLAN = "core"; // core | hyper | omega
   }
 })();
 
-/* ===============================
-   COMPRA
-================================ */
-document.getElementById("buyBtn").onclick = () => {
-  localStorage.setItem("nexus_intent", "buy:" + PRODUCT_ID);
-
+document.getElementById("buyBtn").onclick = async () => {
   if (!requireAuth("buy:" + PRODUCT_ID)) return;
 
-  // BLOQUEIO ALEATÓRIO (Free / Core / Hyper)
-  if (isBlockedRandomly(PRODUCT_ID)) {
-    document.getElementById("blockMsg").innerText =
-      "Este produto está temporariamente indisponível no seu plano hoje.";
-    setTimeout(() => {
-      window.location.href = "assinatura.html";
-    }, 900);
+  msg.innerText = "Verificando acesso...";
+
+  const r = await fetch(`${NEXUS_API}/checkout/prepare`, {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+      "Authorization":"Bearer " + localStorage.getItem("nexus_token")
+    },
+    body: JSON.stringify({ productId: PRODUCT_ID })
+  });
+
+  const d = await r.json();
+
+  if (!d.ok) {
+    msg.innerText = d.message || "Acesso negado.";
+    if (d.error === "PLAN_REQUIRED") {
+      setTimeout(() => window.location.href = "assinatura.html", 900);
+    }
     return;
   }
 
-  // PLANO MÍNIMO FIXO
-  if (!hasRequiredPlan(REQUIRED_PLAN)) {
-    document.getElementById("blockMsg").innerText =
-      `Este produto exige plano ${REQUIRED_PLAN.toUpperCase()} ou superior.`;
-    setTimeout(() => {
-      window.location.href = "assinatura.html";
-    }, 900);
-    return;
-  }
-
-  alert("Compra liberada (checkout entra depois).");
+  msg.innerText = "Checkout liberado (gateway entra agora).";
 };
 </script>
 
