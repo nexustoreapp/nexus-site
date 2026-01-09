@@ -4,189 +4,26 @@
   <meta charset="UTF-8" />
   <title>Minha área - Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
-
 <body>
-  <!-- NAV -->
-  <header class="topbar">
-    <a href="index.html" class="brand">
-      <img src="logo.png" class="brand-logo" />
-      <span class="brand-name">Nexus</span>
-    </a>
 
-    <button class="nav-toggle" id="navToggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo" />
+    <span class="brand-name">Nexus</span>
+  </a>
+</header>
 
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="dashboard.html" class="nav-link active">Minha área</a>
-      <a href="assinatura.html" class="nav-link">Assinatura</a>
-      <a href="login.html" class="nav-link">Entrar</a>
-    </nav>
-  </header>
+<main class="page">
+  <h1>Minha área</h1>
+</main>
 
-  <main class="page">
+<footer class="footer">Nexus © 2025</footer>
 
-    <!-- CABEÇALHO DO DASHBOARD -->
-    <section class="section section-dashboard-hero">
-      <div class="section-header">
-        <h1>Minha área Nexus</h1>
-        <p>
-          Bem-vindo! Aqui você acompanha o seu plano, seu carrinho e a atividade da sua conta.
-        </p>
-      </div>
-    </section>
+<script src="authGuard.js"></script>
+<script src="config.js"></script>
+<script src="nexus-widget.js?v=3"></script>
 
-    <!-- RESUMO DO PLANO + ATALHOS -->
-    <section class="section section-dashboard-summary">
-      <div class="section-header">
-        <h2>Visão geral da sua conta</h2>
-        <p>Veja o plano atual e acesse atalhos rápidos dentro do Nexus.</p>
-      </div>
-
-      <div class="plans-grid">
-        <!-- CARD 1: SEU PLANO ATUAL -->
-        <article class="plan-card dashboard-card">
-          <h2>Seu plano atual</h2>
-          <p class="plan-price">Gratuito <span>/ demo</span></p>
-
-          <ul class="plan-list">
-            <li>Acesso às buscas básicas</li>
-            <li>Testes da busca demo Premium</li>
-            <li>Sem necessidade de cartão agora</li>
-          </ul>
-
-          <a href="assinatura.html" class="btn-outline full">
-            Ver planos Premium
-          </a>
-        </article>
-
-        <!-- CARD 2: ATALHOS RÁPIDOS -->
-        <article class="plan-card dashboard-card">
-          <div class="shortcut-header">
-            <h2>Atalhos rápidos</h2>
-
-            <button class="shortcut-toggle" id="shortcutToggle" type="button">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-
-          <div class="shortcut-grid" id="shortcutGrid">
-            <a class="shortcut-card" href="index.html">
-              <span class="shortcut-icon">🏠</span>
-              <div class="shortcut-info">
-                <h4>Home</h4>
-                <p>Acessar a página inicial.</p>
-              </div>
-            </a>
-
-            <a class="shortcut-card" href="dashboard.html">
-              <span class="shortcut-icon">👤</span>
-              <div class="shortcut-info">
-                <h4>Minha área</h4>
-                <p>Recarregar seus atalhos e carrinho demo.</p>
-              </div>
-            </a>
-
-            <a class="shortcut-card" href="assinatura.html">
-              <span class="shortcut-icon">💳</span>
-              <div class="shortcut-info">
-                <h4>Assinatura</h4>
-                <p>Ver ou gerenciar seu plano.</p>
-              </div>
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ÁREA DE CARRINHO -->
-    <section class="section section-dashboard-cart">
-      <div class="section-header">
-        <h2>Seu carrinho Nexus</h2>
-        <p>
-          Uma visão inicial de como o carrinho vai funcionar para todos os planos.
-          O objetivo é organizar suas ofertas, sem criar diferença de tratamento.
-        </p>
-      </div>
-    </section>
-
-    <!-- HISTÓRICO (DEMO) -->
-    <section class="section section-dashboard-history">
-      <div class="section-header">
-        <h2>Histórico da conta (demo)</h2>
-        <p>Essa área futuramente vai mostrar suas últimas ações dentro do Nexus.</p>
-      </div>
-
-      <ul class="plan-list">
-        <li>Último acesso: sessão de demonstração</li>
-        <li>Última ação: visualização da Minha área</li>
-        <li>Próximos passos: conectar histórico real de buscas e compras</li>
-      </ul>
-    </section>
-
-    <!-- CONFIGURAÇÕES (DEMO) -->
-    <section class="section section-dashboard-settings">
-      <div class="section-header">
-        <h2>Configurações da conta (demo)</h2>
-        <p>No futuro, aqui você poderá ajustar dados pessoais, notificações e segurança.</p>
-      </div>
-
-      <ul class="plan-list">
-        <li>Alterar e-mail e senha</li>
-        <li>Gerenciar notificações de promoções</li>
-        <li>Ativar autenticação em duas etapas (2FA)</li>
-      </ul>
-    </section>
-
-    <!-- INFO DEMO -->
-    <section class="section section-dashboard-info">
-      <div class="section-header">
-        <h2>Modo demonstração</h2>
-        <p>
-          Esta área ainda está em modo <strong>demo</strong>. Aos poucos,
-          ela vai ganhar mais recursos para acompanhar sua jornada dentro do Nexus.
-        </p>
-      </div>
-
-      <ul>
-        <li>Histórico real de buscas</li>
-        <li>Ofertas salvas / favoritos</li>
-        <li>Status da assinatura e pagamentos</li>
-      </ul>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <p>Nexus © 2025 – Comparador Gamer & Tech com IA.</p>
-  </footer>
-
-  <script>
-    const navToggle = document.getElementById("navToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("nav-open");
-      });
-    }
-  </script>
-
-  <!-- PROTEÇÃO DE AUTENTICAÇÃO -->
-  <script src="authGuard.js"></script>
-
-  <script src="nexus-widget.js?v=3"></script>
 </body>
 </html>
