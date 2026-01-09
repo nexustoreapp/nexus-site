@@ -12,14 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const message = document.getElementById("auth-message");
   const toggle = document.getElementById("toggle-mode");
 
+  // CPF: só números
   cpf.addEventListener("input", () => {
     cpf.value = cpf.value.replace(/\D/g, "");
   });
 
-  toggle.onclick = (e) => {
-    e.preventDefault();
-    message.innerText = "";
-
+  toggle.onclick = () => {
     if (mode === "login") {
       mode = "register";
       title.innerText = "Criar conta";
@@ -33,45 +31,40 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.innerText = "Criar conta";
       cpf.style.display = "none";
     }
+    message.innerText = "";
   };
 
   form.onsubmit = async (e) => {
     e.preventDefault();
     message.innerText = "";
-
-    const captchaToken = grecaptcha.getResponse();
-    if (!captchaToken) {
-      message.innerText = "Confirme o CAPTCHA.";
-      return;
-    }
-
     button.disabled = true;
-    button.innerText = "Processando...";
 
     try {
+      const captcha = grecaptcha.getResponse();
+      if (!captcha) {
+        throw new Error("Confirme o CAPTCHA.");
+      }
+
       if (mode === "register") {
+        if (password.value.length < 8) {
+          throw new Error("Senha fraca. Use no mínimo 8 caracteres.");
+        }
+
         const r = await fetch(`${API}/auth/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: email.value.trim(),
+            email: email.value,
             password: password.value,
             cpf: cpf.value,
-            captcha: captchaToken
+            captcha
           })
         });
 
         const d = await r.json();
         if (!d.ok) throw new Error(d.error);
 
-        message.innerText = "Conta criada. Faça login.";
-        mode = "login";
-        title.innerText = "Entrar";
-        button.innerText = "Entrar";
-        toggle.innerText = "Criar conta";
-        cpf.style.display = "none";
-        grecaptcha.reset();
-        return;
+        message.innerText = "Conta criada. Verifique o OTP no backend (temporário).";
       }
 
       if (mode === "login") {
@@ -79,9 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: email.value.trim(),
-            password: password.value,
-            captcha: captchaToken
+            email: email.value,
+            password: password.value
           })
         });
 
@@ -97,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
       grecaptcha.reset();
     } finally {
       button.disabled = false;
-      button.innerText = mode === "login" ? "Entrar" : "Cadastrar";
     }
   };
 });
