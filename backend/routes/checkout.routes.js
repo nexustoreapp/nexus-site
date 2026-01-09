@@ -1,11 +1,10 @@
 // backend/routes/checkout.routes.js
 import { Router } from "express";
-import { requireAuth } from "../middlewares/auth.middleware.js";
-import { checkoutController } from "../controllers/checkout.controller.js";
+import { prepareCheckout } from "../controllers/checkout.controller.js";
+import { requireAuth } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
-router.post("/create", requireAuth, checkoutController.create);
-router.post("/webhook", checkoutController.webhook);
+router.post("/prepare", requireAuth, prepareCheckout);
 
 export default router;
