@@ -2,52 +2,32 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Produto - Nexus</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="nexus-widget.css?v=3" />
 </head>
 <body>
 
 <header class="topbar">
   <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" alt="Nexus" />
+    <img src="logo.png" class="brand-logo" />
     <span class="brand-name">Nexus</span>
   </a>
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="buscar.html" class="nav-link">Buscar</a>
-  </nav>
 </header>
 
 <main class="page">
-  <section class="section">
-    <div class="section-header">
-      <h1 id="p-title">Carregando…</h1>
-      <p id="p-vendor"></p>
-      <div id="p-badges"></div>
-    </div>
-
-    <div id="p-images" class="results-grid"></div>
-    <div id="decision-box" class="card-info"></div>
-  </section>
+  <h1 id="p-title">Carregando…</h1>
+  <div id="decision-box"></div>
 </main>
 
 <footer class="footer">Nexus © 2025</footer>
 
-<!-- AUTH GUARD PRIMEIRO -->
 <script src="authGuard.js"></script>
-
-<!-- CONFIG -->
 <script src="config.js"></script>
-
-<!-- PRODUTO JS -->
 <script src="nexus-widget.js?v=3"></script>
 
 <script>
-/* TODO o JS do produto que já estava no ZIP
-   (não tinha erro aqui, só estava fora do lugar) */
+/* JS original do produto aqui dentro */
 </script>
 
 </body>
