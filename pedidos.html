@@ -2,9 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Meus pedidos — Nexus</title>
+  <title>Pedido — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png"/>
 </head>
 
 <body>
@@ -14,53 +16,147 @@
     <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="dashboard.html" class="nav-link">Minha conta</a>
+    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
+  </nav>
 </header>
 
 <main class="page">
+
   <section class="section">
-    <h1>Meus pedidos</h1>
-    <div id="orders"></div>
+    <h1>Detalhes do pedido</h1>
+    <p class="muted-text">Acompanhe as informações completas do seu pedido.</p>
   </section>
+
+  <section class="section card">
+    <div class="info-row">
+      <strong>ID do pedido:</strong>
+      <span id="orderId">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Status:</strong>
+      <span id="orderStatus" class="status pending">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Produto:</strong>
+      <span id="orderProduct">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Plano:</strong>
+      <span id="orderPlan">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Valor:</strong>
+      <span id="orderValue">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Data:</strong>
+      <span id="orderDate">—</span>
+    </div>
+  </section>
+
+  <section class="section card">
+    <h2>Status do pedido</h2>
+    <ul class="simple-list">
+      <li><strong>Criado:</strong> Pedido registrado</li>
+      <li><strong>Pago:</strong> Pagamento confirmado</li>
+      <li><strong>Processando:</strong> Pedido em processamento</li>
+      <li><strong>Concluído:</strong> Pedido finalizado</li>
+    </ul>
+  </section>
+
 </main>
 
 <footer class="footer">
-  © 2026 Nexus
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Nexus" class="footer-logo">
+      <p class="footer-desc">
+        Nexus é um marketplace tecnológico focado em inteligência,
+        automação e curadoria avançada de produtos.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Institucional</h4>
+      <a href="quem-somos.html">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Legal</h4>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Nexus. Todos os direitos reservados.</p>
+  </div>
 </footer>
 
-<script src="config.js"></script>
 <script>
-const container = document.getElementById("orders");
+/* ===============================
+   AUTH
+================================ */
 const token = localStorage.getItem("nexus_token");
-
 if (!token) {
   window.location.href = "login.html";
 }
 
-fetch(`${NEXUS_API}/orders`, {
-  headers: {
-    "Authorization": "Bearer " + token
-  }
-})
-.then(r => r.json())
-.then(d => {
-  if (!d.ok || d.orders.length === 0) {
-    container.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+/* ===============================
+   LOGOUT
+================================ */
+document.getElementById("logoutBtn").onclick = () => {
+  localStorage.clear();
+  window.location.href = "index.html";
+};
+
+/* ===============================
+   LOAD PEDIDO
+================================ */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get("id");
+
+  if (!orderId) {
+    alert("Pedido inválido");
+    window.location.href = "dashboard.html";
     return;
   }
 
-  d.orders.forEach(o => {
-    const div = document.createElement("div");
-    div.className = "order-card";
+  document.getElementById("orderId").innerText = orderId;
 
-    div.innerHTML = `
-      <strong>Pedido:</strong> ${o.id}<br>
-      <strong>Status:</strong> <span class="status ${o.status}">${o.status}</span><br>
-      <strong>Produto:</strong> ${o.productId}<br>
-      <strong>Data:</strong> ${new Date(o.createdAt).toLocaleString()}
-    `;
-    container.appendChild(div);
+  fetch(`${window.NEXUS_API}/orders/${orderId}`, {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (!d.ok) throw new Error();
+
+    document.getElementById("orderStatus").innerText = d.order.status;
+    document.getElementById("orderProduct").innerText = d.order.productName;
+    document.getElementById("orderPlan").innerText = d.order.plan;
+    document.getElementById("orderValue").innerText =
+      "R$ " + (d.order.amount / 100).toFixed(2).replace(".", ",");
+    document.getElementById("orderDate").innerText =
+      new Date(d.order.createdAt).toLocaleString("pt-BR");
+  })
+  .catch(() => {
+    alert("Erro ao carregar pedido");
+    window.location.href = "dashboard.html";
   });
-});
+})();
 </script>
 
 </body>
