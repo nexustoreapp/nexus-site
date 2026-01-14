@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pagamento — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png"/>
+
+  <style>
+    .payment-box {
+      max-width: 520px;
+      margin: 60px auto;
+      padding: 32px;
+      background: #0f0f0f;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(0,0,0,.4);
+    }
+
+    .payment-box h1 {
+      margin-bottom: 8px;
+    }
+
+    .payment-box p {
+      opacity: .7;
+      margin-bottom: 20px;
+    }
+
+    .summary {
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .row strong {
+      font-weight: 600;
+    }
+
+    .qr-box {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .qr-box img {
+      width: 220px;
+      margin: 16px auto;
+      display: block;
+    }
+
+    .status {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 14px;
+      opacity: .8;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #16a34a;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo"/>
+    <span class="brand-name">Nexus</span>
+  </a>
+</header>
+
+<main class="page">
+  <div class="payment-box">
+
+    <h1>Pagamento via PIX</h1>
+    <p>Finalize sua assinatura para liberar o acesso completo.</p>
+
+    <div class="summary">
+      <div class="row">
+        <span>Plano</span>
+        <strong id="planName">—</strong>
+      </div>
+
+      <div class="row">
+        <span>Valor</span>
+        <strong id="planPrice">—</strong>
+      </div>
+    </div>
+
+    <div class="qr-box">
+      <p>Escaneie o QR Code abaixo:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=PIX-DEMO-NEXUS" alt="QR Code PIX"/>
+      <div class="status">
+        Aguardando confirmação do pagamento…
+      </div>
+    </div>
+
+    <button class="btn" onclick="goBack()">
+      Voltar
+    </button>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 Nexus. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+/* ===============================
+   AUTH
+================================ */
+const token = localStorage.getItem("nexus_token");
+if (!token) {
+  window.location.href = "login.html";
+}
+
+/* ===============================
+   PLANO SELECIONADO
+================================ */
+const plan = localStorage.getItem("nexus_plan");
+
+const prices = {
+  core: "R$ 4,99 / mês",
+  hyper: "R$ 19,90 / mês",
+  omega: "R$ 149,90 / mês"
+};
+
+document.getElementById("planName").innerText =
+  plan ? plan.toUpperCase() : "—";
+
+document.getElementById("planPrice").innerText =
+  prices[plan] || "—";
+
+/* ===============================
+   VOLTAR
+================================ */
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>
