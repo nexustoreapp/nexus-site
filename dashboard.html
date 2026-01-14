@@ -20,7 +20,7 @@
   <nav class="nav">
     <a href="index.html" class="nav-link">Início</a>
     <a href="assinatura.html" class="nav-link">Assinatura</a>
-    <a href="#" class="nav-link" id="logout">Sair</a>
+    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
   </nav>
 </header>
 
@@ -37,20 +37,6 @@
   </section>
 </main>
 
-<footer class="footer">
-  Nexus © 2025
-</footer>
-
-<script>
-function goHome() {
-  window.location.href = "index.html";
-}
-
-document.getElementById("logout").onclick = () => {
-  localStorage.removeItem("nexus_token");
-  window.location.href = "index.html";
-};
-</script>
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
@@ -78,5 +64,19 @@ document.getElementById("logout").onclick = () => {
     <p>© 2026 Nexus. Todos os direitos reservados.</p>
   </div>
 </footer>
+
+<script>
+function goHome() {
+  window.location.href = "index.html";
+}
+
+document.getElementById("logoutBtn").onclick = () => {
+  localStorage.removeItem("nexus_token");
+  localStorage.removeItem("nexus_plan");
+  localStorage.removeItem("nexus_intent");
+  window.location.href = "index.html";
+};
+</script>
+
 </body>
 </html>
