@@ -1,12 +1,9 @@
 import { Router } from "express";
-import { decisionController } from "../controllers/decision.controller.js";
-import { requireAuth } from "../middlewares/auth.middleware.js";
+import { antiScraping } from "../middlewares/antiScraping.middleware.js";
+import { decision } from "../controllers/decision.controller.js";
 
 const router = Router();
 
-// 🔒 TODAS AS ROTAS PROTEGIDAS POR JWT
-router.get("/recommend", requireAuth, decisionController.recommend);
-router.get("/get", requireAuth, decisionController.get);
-router.get("/list", requireAuth, decisionController.list);
+router.post("/", antiScraping, decision);
 
 export default router;
