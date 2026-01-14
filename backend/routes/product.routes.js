@@ -1,13 +1,20 @@
+// backend/routes/product.routes.js
 import { Router } from "express";
-import { antiScraping } from "../middlewares/antiScraping.middleware.js";
-import { listProducts, getProduct } from "../controllers/products.controller.js";
+import products from "../data/products.json" assert { type: "json" };
 
 const router = Router();
 
-// catálogo
-router.get("/", antiScraping, listProducts);
+router.get("/", (req, res) => {
+  res.json({ ok:true, products });
+});
 
-// produto individual
-router.get("/:id", antiScraping, getProduct);
+router.get("/slug/:slug", (req, res) => {
+  const product = products.find(p => p.slug === req.params.slug);
+  if (!product) {
+    return res.status(404).json({ ok:false });
+  }
+
+  res.json({ ok:true, product });
+});
 
 export default router;
