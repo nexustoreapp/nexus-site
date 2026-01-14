@@ -14,29 +14,17 @@
     <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
-
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="dashboard.html" class="nav-link">Minha conta</a>
-  </nav>
 </header>
 
 <main class="page">
   <section class="section">
     <h1>Meus pedidos</h1>
-    <p class="muted-text">Histórico completo de compras</p>
-
     <div id="orders"></div>
   </section>
 </main>
 
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" class="footer-logo">
-      <p>Nexus © 2026</p>
-    </div>
-  </div>
+  © 2026 Nexus
 </footer>
 
 <script src="config.js"></script>
@@ -48,38 +36,31 @@ if (!token) {
   window.location.href = "login.html";
 }
 
-async function loadOrders() {
-  const r = await fetch(`${NEXUS_API}/orders/my`, {
-    headers: {
-      "Authorization": "Bearer " + token
-    }
-  });
-
-  const d = await r.json();
-
+fetch(`${NEXUS_API}/orders`, {
+  headers: {
+    "Authorization": "Bearer " + token
+  }
+})
+.then(r => r.json())
+.then(d => {
   if (!d.ok || d.orders.length === 0) {
     container.innerHTML = "<p>Nenhum pedido encontrado.</p>";
     return;
   }
 
-  container.innerHTML = "";
-
   d.orders.forEach(o => {
     const div = document.createElement("div");
-    div.className = "card";
+    div.className = "order-card";
 
     div.innerHTML = `
       <strong>Pedido:</strong> ${o.id}<br>
-      <strong>Status:</strong> ${o.status}<br>
-      <strong>Plano:</strong> ${o.plan}<br>
-      <strong>Data:</strong> ${new Date(o.createdAt).toLocaleString("pt-BR")}
+      <strong>Status:</strong> <span class="status ${o.status}">${o.status}</span><br>
+      <strong>Produto:</strong> ${o.productId}<br>
+      <strong>Data:</strong> ${new Date(o.createdAt).toLocaleString()}
     `;
-
     container.appendChild(div);
   });
-}
-
-loadOrders();
+});
 </script>
 
 </body>
