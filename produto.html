@@ -5,7 +5,6 @@
   <title id="pageTitle">Produto — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- SEO dinâmico -->
   <meta name="description" id="metaDesc" content="Produto Nexus" />
 
   <link rel="stylesheet" href="style.css" />
@@ -29,26 +28,32 @@
 
 <main class="page">
 
-  <section class="section product-layout">
+<section class="section product-layout">
 
-    <div class="product-image">
-      <img id="productImage" src="fallback.png" alt="Produto Nexus"/>
+  <div class="product-image">
+    <img id="productImage" src="fallback.png" alt="Produto"/>
+  </div>
+
+  <div class="product-info">
+    <h1 id="productTitle">Carregando...</h1>
+    <p id="productDesc" class="muted-text"></p>
+
+    <!-- VARIAÇÕES -->
+    <div class="variation-box">
+      <label for="variationSelect">Opções disponíveis</label>
+      <select id="variationSelect"></select>
     </div>
 
-    <div class="product-info">
-      <h1 id="productTitle">Carregando...</h1>
-      <p id="productDesc" class="muted-text"></p>
+    <div class="product-price" id="productPrice"></div>
 
-      <div class="product-price" id="productPrice"></div>
+    <button id="buyBtn" class="btn-primary">
+      Comprar
+    </button>
 
-      <button id="buyBtn" class="btn-primary">
-        Comprar
-      </button>
+    <p id="msg" class="small-text"></p>
+  </div>
 
-      <p id="msg" class="small-text"></p>
-    </div>
-
-  </section>
+</section>
 
 </main>
 
@@ -106,8 +111,10 @@ if (!productId) {
 }
 
 /* ===============================
-   LOAD PRODUTO (API)
+   LOAD PRODUTO + VARIAÇÕES
 ================================ */
+let currentVariation = null;
+
 fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
 .then(r => r.json())
 .then(d => {
@@ -117,21 +124,33 @@ fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
 
   document.getElementById("productTitle").innerText = p.title;
   document.getElementById("productDesc").innerText = p.description || "";
-  document.getElementById("productPrice").innerText =
-    p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta";
+  document.getElementById("productImage").src = p.image || "fallback.png";
 
-  document.getElementById("productImage").src =
-    p.image || "fallback.png";
-
-  /* SEO */
   document.title = `${p.title} — Nexus`;
-  document.getElementById("metaDesc").content =
-    p.description || p.title;
+  document.getElementById("metaDesc").content = p.description || p.title;
 
+  const select = document.getElementById("variationSelect");
+  select.innerHTML = "";
+
+  p.variations.forEach((v, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.innerText = `${v.name} — ${v.seller}`;
+    select.appendChild(opt);
+  });
+
+  select.onchange = () => applyVariation(p.variations[select.value]);
+  applyVariation(p.variations[0]);
 })
 .catch(() => {
   msg.innerText = "Erro ao carregar produto.";
 });
+
+function applyVariation(v){
+  currentVariation = v;
+  document.getElementById("productPrice").innerText =
+    "R$ " + v.price.toLocaleString("pt-BR");
+}
 
 /* ===============================
    PLANO & BLOQUEIO
@@ -183,7 +202,8 @@ document.getElementById("buyBtn").onclick = () => {
     return;
   }
 
-  msg.innerText = "Checkout liberado (próxima etapa).";
+  msg.innerText =
+    `Checkout liberado — ${currentVariation.name} (${currentVariation.seller})`;
 };
 </script>
 
