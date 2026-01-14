@@ -2,8 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Buscar — Nexus</title>
+  <title>Buscar produtos — Nexus</title>
+  <meta name="description" content="Busque produtos tech com inteligência no Nexus. Compare preços e planos." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png"/>
 </head>
@@ -19,43 +21,35 @@
 
 <main class="page search-layout">
 
-<!-- FILTROS -->
 <aside class="filters">
   <h3>Filtros</h3>
 
-  <div class="filter-group">
-    <label>Preço máximo</label>
-    <input type="range" id="priceFilter" min="0" max="20000" step="100">
-    <span id="priceLabel">Até R$ 20.000</span>
-  </div>
+  <label>Preço máximo</label>
+  <input type="range" id="priceFilter" min="0" max="20000" step="100">
+  <span id="priceLabel"></span>
 
-  <div class="filter-group">
-    <label>Categoria</label>
-    <select id="categoryFilter">
-      <option value="">Todas</option>
-      <option value="gpu">Placa de vídeo</option>
-      <option value="notebook">Notebook</option>
-      <option value="cpu">Processador</option>
-    </select>
-  </div>
+  <label>Categoria</label>
+  <select id="categoryFilter">
+    <option value="">Todas</option>
+    <option value="gpu">Placa de vídeo</option>
+    <option value="notebook">Notebook</option>
+    <option value="cpu">Processador</option>
+  </select>
 
-  <div class="filter-group">
-    <label>Marca</label>
-    <select id="brandFilter">
-      <option value="">Todas</option>
-      <option value="nvidia">NVIDIA</option>
-      <option value="amd">AMD</option>
-      <option value="intel">Intel</option>
-    </select>
-  </div>
+  <label>Marca</label>
+  <select id="brandFilter">
+    <option value="">Todas</option>
+    <option value="nvidia">NVIDIA</option>
+    <option value="amd">AMD</option>
+    <option value="intel">Intel</option>
+  </select>
 </aside>
 
-<!-- RESULTADOS -->
 <section class="results">
   <div class="results-header">
     <p id="search-meta"></p>
 
-    <select id="sortSelect" class="sort-select">
+    <select id="sortSelect">
       <option value="relevance">Relevância</option>
       <option value="price-asc">Menor preço</option>
       <option value="price-desc">Maior preço</option>
@@ -63,8 +57,6 @@
   </div>
 
   <div id="results-grid" class="results-grid"></div>
-
-  <!-- PAGINAÇÃO -->
   <div id="pagination" class="pagination"></div>
 </section>
 
