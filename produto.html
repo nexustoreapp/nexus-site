@@ -2,211 +2,106 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-
-  <!-- SEO -->
   <title id="pageTitle">Produto — Nexus</title>
-  <meta name="description" id="metaDesc" content="Produto Nexus" />
+  <meta name="description" id="metaDesc" content="Produto disponível no Nexus"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- OPEN GRAPH -->
-  <meta property="og:type" content="product">
-  <meta property="og:site_name" content="Nexus">
-  <meta property="og:title" id="ogTitle" content="Produto Nexus">
-  <meta property="og:description" id="ogDesc" content="Produto Nexus">
-  <meta property="og:image" id="ogImage" content="logo.png">
-  <meta property="og:url" id="ogUrl" content="">
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
-
-  <!-- SCHEMA PRODUCT -->
-  <script type="application/ld+json" id="schemaProduct">{}</script>
+  <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body>
 
 <header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
+  <a href="/" class="brand">
+    <img src="/logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
 
   <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="assinatura.html" class="nav-link">Assinatura</a>
-    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
+    <a href="/" class="nav-link">Início</a>
+    <a href="/assinatura.html" class="nav-link">Assinatura</a>
+    <a href="/login.html" class="nav-link" id="loginLink">Entrar</a>
   </nav>
 </header>
 
 <main class="page">
-
-<!-- BREADCRUMB -->
-<nav class="breadcrumb">
-  <a href="index.html">Início</a>
-  <span>›</span>
-  <a href="buscar.html">Produtos</a>
-  <span>›</span>
-  <span id="breadcrumbProduct">Produto</span>
-</nav>
-
-<section class="section product-layout">
-
-  <div class="product-image">
-    <img id="productImage" src="fallback.png" alt="Produto Nexus"/>
-  </div>
-
-  <div class="product-info">
+  <section class="section">
     <h1 id="productTitle">Carregando...</h1>
-    <p id="productDesc" class="muted-text"></p>
+    <p id="productPrice"></p>
 
-    <div class="variation-box">
-      <label>Opções disponíveis</label>
-      <select id="variationSelect"></select>
-    </div>
-
-    <div class="product-price" id="productPrice"></div>
-
-    <button id="buyBtn" class="btn-primary">Comprar</button>
+    <button id="buyBtn" class="btn-primary">
+      Comprar agora
+    </button>
 
     <p id="msg" class="small-text"></p>
-  </div>
-
-</section>
-
+  </section>
 </main>
 
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
+      <img src="/logo.png" class="footer-logo">
+      <p>Nexus — marketplace tecnológico</p>
     </div>
 
     <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
+      <a href="/quem-somos.html">Quem Somos</a>
+      <a href="/contato.html">Contato</a>
+      <a href="/termos.html">Termos</a>
+      <a href="/privacidade.html">Privacidade</a>
     </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
   </div>
 </footer>
 
-<script src="config.js"></script>
+<script src="/config.js"></script>
 <script>
+const API = window.NEXUS_API;
+const msg = document.getElementById("msg");
+const slug = window.location.pathname.split("/").pop();
+const token = localStorage.getItem("nexus_token");
+
 /* ===============================
-   HEADER AUTH
+   NAV
 ================================ */
 (function(){
   const link = document.getElementById("loginLink");
-  if (localStorage.getItem("nexus_token")) {
+  if (token) {
     link.innerText = "Minha conta";
-    link.href = "dashboard.html";
+    link.href = "/dashboard.html";
   }
 })();
 
 /* ===============================
-   PARAMS
+   LOAD PRODUCT
 ================================ */
-const params = new URLSearchParams(window.location.search);
-const productId = params.get("id") || params.get("handle");
-const msg = document.getElementById("msg");
+async function loadProduct() {
+  const r = await fetch(`${API}/products/slug/${slug}`);
+  const d = await r.json();
 
-if (!productId) {
-  msg.innerText = "Produto inválido.";
-  throw new Error("Produto inválido");
-}
+  if (!d.ok) {
+    document.getElementById("productTitle").innerText = "Produto não encontrado";
+    return;
+  }
 
-/* ===============================
-   LOAD PRODUTO
-================================ */
-let currentVariation = null;
-
-fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
-.then(r => r.json())
-.then(d => {
-  if (!d.ok) throw new Error();
-
-  const p = d.product;
-
-  // CONTEÚDO
-  document.getElementById("productTitle").innerText = p.title;
-  document.getElementById("breadcrumbProduct").innerText = p.title;
-  document.getElementById("productDesc").innerText = p.description || "";
-  document.getElementById("productImage").src = p.image || "fallback.png";
-
-  // SEO
-  document.title = `${p.title} | Nexus`;
-  document.getElementById("metaDesc").content =
-    p.description || `Compre ${p.title} no Nexus`;
-
-  document.getElementById("ogTitle").content = p.title;
-  document.getElementById("ogDesc").content = p.description || p.title;
-  document.getElementById("ogImage").content = p.image || "logo.png";
-  document.getElementById("ogUrl").content = window.location.href;
-
-  // SCHEMA
-  document.getElementById("schemaProduct").innerText =
-    JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": p.title,
-      "description": p.description,
-      "image": p.image,
-      "brand": { "@type": "Brand", "name": "Nexus" },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BRL",
-        "price": p.variations[0].price,
-        "availability": "https://schema.org/InStock"
-      }
-    });
-
-  // VARIAÇÕES
-  const select = document.getElementById("variationSelect");
-  select.innerHTML = "";
-
-  p.variations.forEach((v, i) => {
-    const opt = document.createElement("option");
-    opt.value = i;
-    opt.innerText = `${v.name} — ${v.seller}`;
-    select.appendChild(opt);
-  });
-
-  select.onchange = () => applyVariation(p.variations[select.value]);
-  applyVariation(p.variations[0]);
-
-})
-.catch(() => {
-  msg.innerText = "Erro ao carregar produto.";
-});
-
-function applyVariation(v){
-  currentVariation = v;
+  document.getElementById("productTitle").innerText = d.product.title;
   document.getElementById("productPrice").innerText =
-    "R$ " + v.price.toLocaleString("pt-BR");
+    d.product.price ? "R$ " + d.product.price.toLocaleString("pt-BR") : "Sob consulta";
+
+  document.title = d.product.title + " — Nexus";
+  document.getElementById("metaDesc").content = d.product.title + " no Nexus";
 }
+
+loadProduct();
 
 /* ===============================
    BUY
 ================================ */
 document.getElementById("buyBtn").onclick = () => {
-  if (!localStorage.getItem("nexus_token")) {
-    localStorage.setItem("nexus_intent", "buy:" + productId);
-    window.location.href = "login.html";
+  if (!token) {
+    localStorage.setItem("nexus_intent", "buy");
+    window.location.href = "/login.html";
     return;
   }
+
   msg.innerText = "Checkout liberado.";
 };
 </script>
