@@ -1,55 +1,43 @@
+// backend/routes/product.routes.js
 import { Router } from "express";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
-import { getCache, setCache } from "../utils/catalogCache.js";
+import { getCache, setCache } from "../utils/cache.js";
 
 const router = Router();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CATALOG_DIR = path.join(__dirname, "../catalogo");
+const CATALOG_PATH = path.resolve("backend/data/catalogo");
 
-/**
- * Lê catálogo inteiro por pasta
- */
-function loadCatalog() {
-  const result = [];
-
-  const categories = fs.readdirSync(CATALOG_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name);
-
-  for (const category of categories) {
-    const files = fs.readdirSync(path.join(CATALOG_DIR, category))
-      .filter(f => f.endsWith(".json"));
-
-    for (const file of files) {
-      const data = JSON.parse(
-        fs.readFileSync(path.join(CATALOG_DIR, category, file), "utf-8")
-      );
-
-      result.push({
-        category,
-        ...data
-      });
-    }
-  }
-
-  return result;
-}
-
-/**
- * GET /products
- */
 router.get("/", (req, res) => {
-  const cached = getCache("catalog:all");
+  const cached = getCache("catalogo");
+
   if (cached) {
-    return res.json({ ok: true, cached: true, products: cached });
+    return res.json({
+      ok: true,
+      cached: true,
+      products: cached
+    });
   }
 
-  const products = loadCatalog();
-  setCache("catalog:all", products, 120_000); // 2 minutos
+  const products = [];
 
-  res.json({ ok: true, cached: false, products });
+  const files = fs.readdirSync(CATALOG_PATH);
+  for (const file of files) {
+    if (!file.endsWith(".json")) continue;
+
+    const data = JSON.parse(
+      fs.readFileSync(path.join(CATALOG_PATH, file), "utf-8")
+    );
+
+    products.push(...data);
+  }
+
+  setCache("catalogo", products, 120_000); // 2 minutos
+
+  return res.json({
+    ok: true,
+    cached: false,
+    products
+  });
 });
 
 export default router;
