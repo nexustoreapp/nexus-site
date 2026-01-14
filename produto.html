@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- SEO BÁSICO -->
+  <!-- SEO -->
   <title id="pageTitle">Produto — Nexus</title>
   <meta name="description" id="metaDesc" content="Produto Nexus" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,14 +16,11 @@
   <meta property="og:image" id="ogImage" content="logo.png">
   <meta property="og:url" id="ogUrl" content="">
 
-  <!-- FAVICON / CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png"/>
 
   <!-- SCHEMA PRODUCT -->
-  <script type="application/ld+json" id="schemaProduct">
-  {}
-  </script>
+  <script type="application/ld+json" id="schemaProduct">{}</script>
 </head>
 
 <body>
@@ -42,6 +39,15 @@
 </header>
 
 <main class="page">
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Início</a>
+  <span>›</span>
+  <a href="buscar.html">Produtos</a>
+  <span>›</span>
+  <span id="breadcrumbProduct">Produto</span>
+</nav>
 
 <section class="section product-layout">
 
@@ -136,6 +142,7 @@ fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
 
   // CONTEÚDO
   document.getElementById("productTitle").innerText = p.title;
+  document.getElementById("breadcrumbProduct").innerText = p.title;
   document.getElementById("productDesc").innerText = p.description || "";
   document.getElementById("productImage").src = p.image || "fallback.png";
 
@@ -157,10 +164,7 @@ fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
       "name": p.title,
       "description": p.description,
       "image": p.image,
-      "brand": {
-        "@type": "Brand",
-        "name": "Nexus"
-      },
+      "brand": { "@type": "Brand", "name": "Nexus" },
       "offers": {
         "@type": "Offer",
         "priceCurrency": "BRL",
@@ -195,7 +199,7 @@ function applyVariation(v){
 }
 
 /* ===============================
-   BUY (mantém regra atual)
+   BUY
 ================================ */
 document.getElementById("buyBtn").onclick = () => {
   if (!localStorage.getItem("nexus_token")) {
@@ -203,7 +207,6 @@ document.getElementById("buyBtn").onclick = () => {
     window.location.href = "login.html";
     return;
   }
-
   msg.innerText = "Checkout liberado.";
 };
 </script>
