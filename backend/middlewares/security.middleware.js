@@ -1,27 +1,12 @@
 // backend/middlewares/security.middleware.js
-import { logSecurity } from "../utils/securityLogger.js";
 
-export function securityMonitor(req, res, next) {
-  const start = Date.now();
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-
-    if (
-      res.statusCode === 401 ||
-      res.statusCode === 403 ||
-      res.statusCode === 429
-    ) {
-      logSecurity("ACCESS_BLOCKED", {
-        ip: req.ip,
-        method: req.method,
-        path: req.originalUrl,
-        status: res.statusCode,
-        userAgent: req.headers["user-agent"],
-        duration
-      });
-    }
-  });
-
+export function securityHeaders(req, res, next) {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "no-referrer");
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.google.com https://www.gstatic.com"
+  );
   next();
 }
