@@ -2,24 +2,32 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import apiRoutes from "./routes/index.js";
-import { securityMonitor } from "./middlewares/security.middleware.js";
+import routes from "./routes/index.js";
+import { compressResponse } from "./middlewares/compression.middleware.js";
 
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 10000;
 
+// ===============================
+// MIDDLEWARES GLOBAIS
+// ===============================
 app.use(cors());
 app.use(express.json());
 
-// 🔒 MONITOR DE SEGURANÇA GLOBAL
-app.use(securityMonitor);
+// 🔥 COMPRESSÃO GLOBAL
+app.use(compressResponse);
 
-// ROTAS
-app.use("/api", apiRoutes);
+// ===============================
+// ROTAS API
+// ===============================
+app.use("/api", routes);
 
-// FALLBACK API
-app.use("/api/*", (req, res) => {
+// ===============================
+// FALLBACK
+// ===============================
+app.use((req, res) => {
   res.status(404).json({
     ok: false,
     error: "API_ROUTE_NOT_FOUND",
@@ -27,12 +35,9 @@ app.use("/api/*", (req, res) => {
   });
 });
 
-// ROOT
-app.get("/", (req, res) => {
-  res.json({ ok: true, service: "NEXUS API" });
-});
-
-const PORT = process.env.PORT || 10000;
+// ===============================
+// START
+// ===============================
 app.listen(PORT, () => {
   console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
 });
