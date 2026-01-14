@@ -1,46 +1,37 @@
 import rateLimit from "express-rate-limit";
 
-/* ===============================
-   LOGIN / AUTH (brute force)
-================================ */
+/**
+ * Limite geral da API
+ */
+export const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 300, // 300 requests por IP
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+/**
+ * Login / Auth (anti brute force)
+ */
 export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 10,
-  standardHeaders: true,
-  legacyHeaders: false,
+  windowMs: 15 * 60 * 1000,
+  max: 10, // 10 tentativas
   message: {
     ok: false,
-    error: "RATE_LIMIT",
-    message: "Muitas tentativas. Aguarde alguns minutos."
+    error: "TOO_MANY_ATTEMPTS",
+    message: "Muitas tentativas. Tente novamente mais tarde."
   }
 });
 
-/* ===============================
-   BUSCA / SCRAPING
-================================ */
-export const searchLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 60,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    ok: false,
-    error: "RATE_LIMIT",
-    message: "Busca excessiva detectada."
-  }
-});
-
-/* ===============================
-   PAGAMENTO / FRAUDE
-================================ */
+/**
+ * Pagamentos (anti fraude)
+ */
 export const paymentLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   max: 5,
-  standardHeaders: true,
-  legacyHeaders: false,
   message: {
     ok: false,
-    error: "RATE_LIMIT",
+    error: "PAYMENT_RATE_LIMIT",
     message: "Muitas tentativas de pagamento."
   }
 });
