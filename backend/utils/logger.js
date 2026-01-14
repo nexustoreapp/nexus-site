@@ -20,7 +20,40 @@ function writeLog(level, message, meta = {}) {
     level,
     message,
     meta
+  };// backend/utils/logger.js
+import fs from "fs";
+import path from "path";
+import crypto from "crypto";
+
+const LOG_DIR = path.resolve("logs");
+const LOG_FILE = path.join(LOG_DIR, "app.log");
+
+function ensureDir() {
+  if (!fs.existsSync(LOG_DIR)) {
+    fs.mkdirSync(LOG_DIR, { recursive: true });
+  }
+}
+
+export function log(level, message, context = {}) {
+  ensureDir();
+
+  const entry = {
+    level,
+    message,
+    service: "nexus-backend",
+    timestamp: new Date().toISOString(),
+    requestId: context.requestId || crypto.randomUUID(),
+    context
   };
+
+  fs.appendFileSync(LOG_FILE, JSON.stringify(entry) + "\n");
+
+  if (level === "error" || level === "critical") {
+    console.error(entry);
+  } else {
+    console.log(entry);
+  }
+}
 
   const line = JSON.stringify(entry) + "\n";
 
