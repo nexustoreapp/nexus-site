@@ -2,6 +2,7 @@ const API = window.NEXUS_API;
 
 const grid = document.getElementById("results-grid");
 const meta = document.getElementById("search-meta");
+const pagination = document.getElementById("pagination");
 
 const priceFilter = document.getElementById("priceFilter");
 const priceLabel = document.getElementById("priceLabel");
@@ -11,6 +12,12 @@ const sortSelect = document.getElementById("sortSelect");
 
 let allProducts = [];
 let filteredProducts = [];
+
+/* ===============================
+   PAGINAÇÃO
+================================ */
+const PER_PAGE = 8;
+let currentPage = 1;
 
 /* ===============================
    LOAD
@@ -48,6 +55,7 @@ function applyFilters() {
     return true;
   });
 
+  currentPage = 1;
   applySort();
 }
 
@@ -57,33 +65,39 @@ function applyFilters() {
 function applySort() {
   const sort = sortSelect.value;
 
-  const list = [...filteredProducts];
-
   if (sort === "price-asc") {
-    list.sort((a, b) => a.price - b.price);
+    filteredProducts.sort((a, b) => a.price - b.price);
   }
 
   if (sort === "price-desc") {
-    list.sort((a, b) => b.price - a.price);
+    filteredProducts.sort((a, b) => b.price - a.price);
   }
 
-  // relevance = ordem natural (mock)
-  render(list);
+  render();
 }
 
 /* ===============================
    RENDER
 ================================ */
-function render(list) {
+function render() {
   grid.innerHTML = "";
-  meta.innerText = `${list.length} produto(s) encontrados`;
+  pagination.innerHTML = "";
 
-  if (list.length === 0) {
+  const total = filteredProducts.length;
+  const totalPages = Math.ceil(total / PER_PAGE);
+
+  meta.innerText = `${total} produto(s) encontrados`;
+
+  if (total === 0) {
     grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
     return;
   }
 
-  list.forEach(p => {
+  const start = (currentPage - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+  const pageItems = filteredProducts.slice(start, end);
+
+  pageItems.forEach(p => {
     const card = document.createElement("div");
     card.className = "result-card";
 
@@ -96,6 +110,28 @@ function render(list) {
 
     grid.appendChild(card);
   });
+
+  renderPagination(totalPages);
+}
+
+/* ===============================
+   PAGINATION UI
+================================ */
+function renderPagination(totalPages) {
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+    btn.className = "page-btn";
+    if (i === currentPage) btn.classList.add("active");
+
+    btn.onclick = () => {
+      currentPage = i;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    pagination.appendChild(btn);
+  }
 }
 
 /* ===============================
