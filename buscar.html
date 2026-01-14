@@ -52,7 +52,16 @@
 
 <!-- RESULTADOS -->
 <section class="results">
-  <p id="search-meta"></p>
+  <div class="results-header">
+    <p id="search-meta"></p>
+
+    <select id="sortSelect" class="sort-select">
+      <option value="relevance">Ordenar por relevância</option>
+      <option value="price-asc">Menor preço</option>
+      <option value="price-desc">Maior preço</option>
+    </select>
+  </div>
+
   <div id="results-grid" class="results-grid"></div>
 </section>
 
