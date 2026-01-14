@@ -1,20 +1,76 @@
 // backend/routes/product.routes.js
 import { Router } from "express";
-import products from "../data/products.json" assert { type: "json" };
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const router = Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+const CATALOG_PATH = path.join(__dirname, "../data/catalogo");
+
+/*
+  🔹 Lista TODOS os produtos de TODOS os nichos
+*/
 router.get("/", (req, res) => {
-  res.json({ ok:true, products });
+  try {
+    const files = fs.readdirSync(CATALOG_PATH);
+    let allProducts = [];
+
+    for (const file of files) {
+      if (!file.endsWith(".json")) continue;
+
+      const data = JSON.parse(
+        fs.readFileSync(path.join(CATALOG_PATH, file), "utf-8")
+      );
+
+      if (Array.isArray(data)) {
+        allProducts = allProducts.concat(data);
+      }
+    }
+
+    res.json({
+      ok: true,
+      total: allProducts.length,
+      products: allProducts
+    });
+
+  } catch (err) {
+    console.error("[PRODUCT LIST ERROR]", err);
+    res.status(500).json({ ok:false, error:"CATALOG_READ_ERROR" });
+  }
 });
 
-router.get("/slug/:slug", (req, res) => {
-  const product = products.find(p => p.slug === req.params.slug);
-  if (!product) {
-    return res.status(404).json({ ok:false });
-  }
+/*
+  🔹 Produto por ID (busca em TODOS os arquivos)
+*/
+router.get("/:id", (req, res) => {
+  try {
+    const files = fs.readdirSync(CATALOG_PATH);
 
-  res.json({ ok:true, product });
+    for (const file of files) {
+      if (!file.endsWith(".json")) continue;
+
+      const data = JSON.parse(
+        fs.readFileSync(path.join(CATALOG_PATH, file), "utf-8")
+      );
+
+      const product = data.find(p => p.id === req.params.id);
+      if (product) {
+        return res.json({ ok:true, product });
+      }
+    }
+
+    return res.status(404).json({
+      ok:false,
+      error:"PRODUCT_NOT_FOUND"
+    });
+
+  } catch (err) {
+    console.error("[PRODUCT GET ERROR]", err);
+    res.status(500).json({ ok:false, error:"CATALOG_READ_ERROR" });
+  }
 });
 
 export default router;
