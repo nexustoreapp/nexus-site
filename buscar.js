@@ -7,8 +7,10 @@ const priceFilter = document.getElementById("priceFilter");
 const priceLabel = document.getElementById("priceLabel");
 const categoryFilter = document.getElementById("categoryFilter");
 const brandFilter = document.getElementById("brandFilter");
+const sortSelect = document.getElementById("sortSelect");
 
 let allProducts = [];
+let filteredProducts = [];
 
 /* ===============================
    LOAD
@@ -39,14 +41,34 @@ function applyFilters() {
 
   priceLabel.innerText = `Até R$ ${maxPrice.toLocaleString("pt-BR")}`;
 
-  const filtered = allProducts.filter(p => {
+  filteredProducts = allProducts.filter(p => {
     if (p.price > maxPrice) return false;
     if (category && p.category !== category) return false;
     if (brand && p.brand !== brand) return false;
     return true;
   });
 
-  render(filtered);
+  applySort();
+}
+
+/* ===============================
+   ORDENAÇÃO
+================================ */
+function applySort() {
+  const sort = sortSelect.value;
+
+  const list = [...filteredProducts];
+
+  if (sort === "price-asc") {
+    list.sort((a, b) => a.price - b.price);
+  }
+
+  if (sort === "price-desc") {
+    list.sort((a, b) => b.price - a.price);
+  }
+
+  // relevance = ordem natural (mock)
+  render(list);
 }
 
 /* ===============================
@@ -82,6 +104,7 @@ function render(list) {
 priceFilter.oninput = applyFilters;
 categoryFilter.onchange = applyFilters;
 brandFilter.onchange = applyFilters;
+sortSelect.onchange = applySort;
 
 /* ===============================
    INIT
