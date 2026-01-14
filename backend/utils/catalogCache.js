@@ -2,18 +2,15 @@
 const cache = new Map();
 
 /**
- * Salva no cache
+ * Cache simples em memória com TTL
  */
-export function setCache(key, value, ttlMs = 60_000) {
+export function setCache(key, data, ttlMs = 5 * 60 * 1000) {
   cache.set(key, {
-    value,
+    data,
     expiresAt: Date.now() + ttlMs
   });
 }
 
-/**
- * Lê do cache
- */
 export function getCache(key) {
   const item = cache.get(key);
   if (!item) return null;
@@ -23,12 +20,13 @@ export function getCache(key) {
     return null;
   }
 
-  return item.value;
+  return item.data;
 }
 
-/**
- * Limpa tudo (debug / admin futuramente)
- */
-export function clearCache() {
+export function clearCache(key) {
+  cache.delete(key);
+}
+
+export function clearAllCache() {
   cache.clear();
 }
