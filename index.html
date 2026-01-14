@@ -2,11 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Nexus — Marketplace Tech</title>
+
+  <title>Nexus — Marketplace Tech Inteligente</title>
+  <meta name="description" content="Nexus é um marketplace tecnológico com curadoria inteligente, preços agressivos e planos flexíveis." />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Nexus — Marketplace Tech" />
+  <meta property="og:description" content="Compare, escolha e compre com inteligência no Nexus." />
+  <meta property="og:image" content="https://nexustore.store/logo.png" />
+  <meta property="og:url" content="https://nexustore.store/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -26,68 +39,26 @@
 
 <main class="page">
   <section class="section hero">
-    <h1>O marketplace tech mais barato do Brasil</h1>
+    <h1>O marketplace tech mais inteligente do Brasil</h1>
     <p>Compare, escolha e compre com inteligência.</p>
-  </section>
-
-  <section class="section">
-    <h2>Produtos em destaque</h2>
-
-    <div class="results-grid">
-      <div class="result-card">
-        <h3>Placa de vídeo RTX</h3>
-        <p>Descontos exclusivos para assinantes.</p>
-        <a href="produto.html" class="btn-outline">Ver produto</a>
-      </div>
-
-      <div class="result-card">
-        <h3>Notebook Gamer</h3>
-        <p>Preço agressivo via Nexus.</p>
-        <a href="produto.html" class="btn-outline">Ver produto</a>
-      </div>
-    </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
+      <img src="logo.png" class="footer-logo"/>
+      <p>Nexus © 2026 — Todos os direitos reservados.</p>
     </div>
-
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
   </div>
 </footer>
 
 <script>
 (function(){
   const link = document.getElementById("loginLink");
-  const token = localStorage.getItem("nexus_token");
-
-  if (token) {
+  if (localStorage.getItem("nexus_token")) {
     link.innerText = "Minha conta";
     link.href = "dashboard.html";
-  } else {
-    link.innerText = "Entrar";
-    link.href = "login.html";
   }
 })();
 </script>
