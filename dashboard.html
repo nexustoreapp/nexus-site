@@ -25,16 +25,64 @@
 </header>
 
 <main class="page">
+
   <section class="section">
     <h1>Minha conta</h1>
-    <p>Você está logado.</p>
+    <p class="muted-text">Gerencie seus dados e acompanhe seu plano.</p>
+  </section>
 
-    <div class="card-info">
-      <button onclick="goHome()" class="btn-outline">
-        Voltar para Home
-      </button>
+  <!-- DADOS DO USUÁRIO -->
+  <section class="section card">
+    <h2>Dados da conta</h2>
+
+    <div class="info-row">
+      <strong>E-mail:</strong>
+      <span id="userEmail">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>CPF:</strong>
+      <span id="userCpf">—</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Status:</strong>
+      <span class="status ok">Conta ativa</span>
     </div>
   </section>
+
+  <!-- PLANO -->
+  <section class="section card">
+    <h2>Plano atual</h2>
+
+    <div class="info-row">
+      <strong>Plano:</strong>
+      <span id="userPlan">Free</span>
+    </div>
+
+    <div class="info-row">
+      <strong>Acesso:</strong>
+      <span id="planAccess">Limitado</span>
+    </div>
+
+    <div style="margin-top:16px">
+      <a href="assinatura.html" class="btn-primary">
+        Gerenciar plano
+      </a>
+    </div>
+  </section>
+
+  <!-- AÇÕES FUTURAS -->
+  <section class="section card">
+    <h2>Próximos recursos</h2>
+    <ul class="simple-list">
+      <li>Histórico de pedidos</li>
+      <li>Pagamentos e faturas</li>
+      <li>Endereços de cobrança</li>
+      <li>Preferências da conta</li>
+    </ul>
+  </section>
+
 </main>
 
 <footer class="footer">
@@ -66,10 +114,39 @@
 </footer>
 
 <script>
-function goHome() {
-  window.location.href = "index.html";
-}
+/* ===============================
+   AUTH + DADOS DO TOKEN
+================================ */
+(function(){
+  const token = localStorage.getItem("nexus_token");
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
 
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+
+    document.getElementById("userEmail").innerText = payload.email || "-";
+    document.getElementById("userCpf").innerText =
+      payload.cpf ? payload.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "-";
+
+    const plan = payload.plan || "free";
+    document.getElementById("userPlan").innerText =
+      plan.charAt(0).toUpperCase() + plan.slice(1);
+
+    document.getElementById("planAccess").innerText =
+      plan === "free" ? "Acesso limitado" : "Acesso ampliado";
+
+  } catch (e) {
+    localStorage.removeItem("nexus_token");
+    window.location.href = "login.html";
+  }
+})();
+
+/* ===============================
+   LOGOUT
+================================ */
 document.getElementById("logoutBtn").onclick = () => {
   localStorage.removeItem("nexus_token");
   localStorage.removeItem("nexus_plan");
