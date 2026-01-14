@@ -1,13 +1,13 @@
-// backend/routes/product.routes.js
 import { Router } from "express";
-import { productController } from "../controllers/product.controller.js";
+import { antiScraping } from "../middlewares/antiScraping.middleware.js";
+import { listProducts, getProduct } from "../controllers/products.controller.js";
 
 const router = Router();
 
-// Lista todos os produtos
-router.get("/", productController.list);
+// catálogo
+router.get("/", antiScraping, listProducts);
 
-// Busca produto por SKU
-router.get("/:sku", productController.getBySku);
+// produto individual
+router.get("/:id", antiScraping, getProduct);
 
 export default router;
