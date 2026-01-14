@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import apiRoutes from "./routes/index.js";
 import { securityHeaders } from "./middlewares/securityHeaders.middleware.js";
+import { accessLogger } from "./middlewares/accessLogger.middleware.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 app.use(securityHeaders);
+app.use(accessLogger);
 
 // =============================
 // FRONTEND ESTÁTICO
