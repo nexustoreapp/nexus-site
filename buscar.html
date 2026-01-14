@@ -2,8 +2,20 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Buscar — Nexus</title>
+
+  <title>Buscar produtos — Nexus</title>
+  <meta name="description" content="Busque produtos tecnológicos no Nexus Marketplace." />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Buscar produtos — Nexus" />
+  <meta property="og:description" content="Resultados de busca no Nexus Marketplace." />
+  <meta property="og:image" content="https://nexustore.store/logo.png" />
+  <meta property="og:url" content="https://nexustore.store/buscar.html" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="favicon.png"/>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,58 +26,19 @@
     <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
-
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="assinatura.html" class="nav-link">Assinatura</a>
-    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
-  </nav>
 </header>
 
 <main class="page">
-  <section class="section">
-    <p id="search-meta" class="muted-text"></p>
-
-    <div id="results-grid" class="results-grid"></div>
-
-    <!-- PAGINAÇÃO -->
-    <div class="pagination">
-      <button id="prevBtn" class="btn-outline">Anterior</button>
-      <span id="pageInfo"></span>
-      <button id="nextBtn" class="btn-outline">Próxima</button>
-    </div>
-  </section>
+  <h1>Buscar produtos</h1>
+  <div id="results-grid"></div>
 </main>
 
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
+  <p>© 2026 Nexus</p>
 </footer>
 
 <script src="config.js"></script>
 <script src="buscar.js"></script>
+
 </body>
 </html>
