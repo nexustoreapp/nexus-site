@@ -39,3 +39,11 @@ function hasRequiredPlan(requiredPlan) {
   const order = ["free", "core", "hyper", "omega"];
   return order.indexOf(getUserPlan()) >= order.indexOf(requiredPlan);
 }
+
+function logout() {
+  localStorage.removeItem("nexus_token");
+  localStorage.removeItem("nexus_plan");
+  localStorage.removeItem("nexus_intent");
+
+  window.location.href = "login.html";
+}
