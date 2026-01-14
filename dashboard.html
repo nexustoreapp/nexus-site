@@ -4,11 +4,15 @@
   <meta charset="UTF-8" />
   <title>Minha conta — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png"/>
 </head>
 
 <body>
+
+<!-- 🔒 EXPIRAÇÃO DE SESSÃO -->
+<script src="authSession.js"></script>
 
 <header class="topbar">
   <a href="index.html" class="brand">
@@ -103,15 +107,14 @@
 (function(){
   const token = localStorage.getItem("nexus_token");
   if (!token) {
-    window.location.replace("login.html");
+    window.location.href = "login.html";
     return;
   }
 
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
-    if (!payload || !payload.email) throw new Error();
 
-    document.getElementById("userEmail").innerText = payload.email;
+    document.getElementById("userEmail").innerText = payload.email || "-";
     document.getElementById("userCpf").innerText =
       payload.cpf ? payload.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "-";
 
@@ -124,13 +127,13 @@
 
   } catch {
     localStorage.clear();
-    window.location.replace("login.html");
+    window.location.href = "login.html";
   }
 })();
 
 document.getElementById("logoutBtn").onclick = () => {
   localStorage.clear();
-  window.location.replace("index.html");
+  window.location.href = "index.html";
 };
 </script>
 
