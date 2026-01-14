@@ -2,108 +2,59 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title id="pageTitle">Produto — Nexus</title>
-  <meta name="description" id="metaDesc" content="Produto disponível no Nexus"/>
+
+  <title>Produto Premium — Nexus</title>
+  <meta name="description" content="Confira este produto premium disponível no Nexus Marketplace." />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="/style.css" />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Produto Premium — Nexus" />
+  <meta property="og:description" content="Produto premium com acesso por plano no Nexus." />
+  <meta property="og:image" content="https://nexustore.store/logo.png" />
+  <meta property="og:url" content="https://nexustore.store/produto.html" />
+  <meta property="og:type" content="product" />
+
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
 <header class="topbar">
-  <a href="/" class="brand">
-    <img src="/logo.png" class="brand-logo"/>
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
 
   <nav class="nav">
-    <a href="/" class="nav-link">Início</a>
-    <a href="/assinatura.html" class="nav-link">Assinatura</a>
-    <a href="/login.html" class="nav-link" id="loginLink">Entrar</a>
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="assinatura.html" class="nav-link">Assinatura</a>
+    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
   </nav>
 </header>
 
 <main class="page">
   <section class="section">
-    <h1 id="productTitle">Carregando...</h1>
-    <p id="productPrice"></p>
-
-    <button id="buyBtn" class="btn-primary">
-      Comprar agora
-    </button>
-
+    <h1>Produto Premium Exemplo</h1>
+    <button id="buyBtn" class="btn-primary">Comprar agora</button>
     <p id="msg" class="small-text"></p>
   </section>
 </main>
 
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="/logo.png" class="footer-logo">
-      <p>Nexus — marketplace tecnológico</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="/quem-somos.html">Quem Somos</a>
-      <a href="/contato.html">Contato</a>
-      <a href="/termos.html">Termos</a>
-      <a href="/privacidade.html">Privacidade</a>
-    </div>
-  </div>
+  <p>© 2026 Nexus</p>
 </footer>
 
-<script src="/config.js"></script>
+<script src="config.js"></script>
 <script>
-const API = window.NEXUS_API;
-const msg = document.getElementById("msg");
-const slug = window.location.pathname.split("/").pop();
-const token = localStorage.getItem("nexus_token");
-
-/* ===============================
-   NAV
-================================ */
 (function(){
   const link = document.getElementById("loginLink");
-  if (token) {
+  if (localStorage.getItem("nexus_token")) {
     link.innerText = "Minha conta";
-    link.href = "/dashboard.html";
+    link.href = "dashboard.html";
   }
 })();
-
-/* ===============================
-   LOAD PRODUCT
-================================ */
-async function loadProduct() {
-  const r = await fetch(`${API}/products/slug/${slug}`);
-  const d = await r.json();
-
-  if (!d.ok) {
-    document.getElementById("productTitle").innerText = "Produto não encontrado";
-    return;
-  }
-
-  document.getElementById("productTitle").innerText = d.product.title;
-  document.getElementById("productPrice").innerText =
-    d.product.price ? "R$ " + d.product.price.toLocaleString("pt-BR") : "Sob consulta";
-
-  document.title = d.product.title + " — Nexus";
-  document.getElementById("metaDesc").content = d.product.title + " no Nexus";
-}
-
-loadProduct();
-
-/* ===============================
-   BUY
-================================ */
-document.getElementById("buyBtn").onclick = () => {
-  if (!token) {
-    localStorage.setItem("nexus_intent", "buy");
-    window.location.href = "/login.html";
-    return;
-  }
-
-  msg.innerText = "Checkout liberado.";
-};
 </script>
 
 </body>
