@@ -3,89 +3,87 @@ const API = window.NEXUS_API;
 const grid = document.getElementById("results-grid");
 const meta = document.getElementById("search-meta");
 
-const params = new URLSearchParams(window.location.search);
-const q = (params.get("q") || "").trim().toLowerCase();
+const priceFilter = document.getElementById("priceFilter");
+const priceLabel = document.getElementById("priceLabel");
+const categoryFilter = document.getElementById("categoryFilter");
+const brandFilter = document.getElementById("brandFilter");
 
-const token = localStorage.getItem("nexus_token");
+let allProducts = [];
 
-function getPlan(){
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.plan || "free";
-  } catch {
-    return "free";
-  }
-}
+/* ===============================
+   LOAD
+================================ */
+async function loadProducts() {
+  meta.innerText = "Buscando produtos...";
+  grid.innerHTML = "";
 
-function isBlocked(plan, productId){
-  if (plan === "omega") return false;
+  const r = await fetch(`${API}/products`);
+  const d = await r.json();
 
-  const seed = productId + new Date().toDateString();
-  let h = 0;
-  for (let i=0;i<seed.length;i++) h += seed.charCodeAt(i);
-  const m = h % 100;
-
-  if (plan === "free") return m < 70;
-  if (plan === "core") return m < 45;
-  if (plan === "hyper") return m < 30;
-
-  return true;
-}
-
-async function loadSearch() {
-  try {
-    meta.innerText = "Buscando produtos...";
-    grid.innerHTML = "";
-
-    const r = await fetch(`${API}/shopify/products?limit=50`);
-    const data = await r.json();
-
-    if (!data.ok) {
-      meta.innerText = "Erro ao buscar produtos";
-      return;
-    }
-
-    const plan = getPlan();
-    const produtos = (data.products || []).filter(p =>
-      p.title.toLowerCase().includes(q)
-    );
-
-    meta.innerText = `${produtos.length} produto(s) encontrados`;
-
-    produtos.forEach(p => {
-      const blocked = isBlocked(plan, p.handle);
-
-      const card = document.createElement("div");
-      card.className = "result-card";
-
-      card.innerHTML = `
-        <div class="card-image">
-          <img src="${p.image || "fallback.png"}">
-        </div>
-
-        <div class="card-body">
-          <div class="card-title">${p.title}</div>
-
-          <div class="card-price">
-            ${blocked ? "🔒 Produto bloqueado" :
-            (p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta")}
-          </div>
-
-          <a href="${blocked ? "assinatura.html" :
-            `produto.html?handle=${encodeURIComponent(p.handle)}`}"
-            class="btn-primary">
-            ${blocked ? "Ver planos" : "Ver produto"}
-          </a>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
-
-  } catch (err) {
-    console.error("[buscar.js]", err);
+  if (!d.ok) {
     meta.innerText = "Erro ao buscar produtos";
+    return;
   }
+
+  allProducts = d.products;
+  applyFilters();
 }
 
-loadSearch();
+/* ===============================
+   FILTROS
+================================ */
+function applyFilters() {
+  const maxPrice = Number(priceFilter.value || 20000);
+  const category = categoryFilter.value;
+  const brand = brandFilter.value;
+
+  priceLabel.innerText = `Até R$ ${maxPrice.toLocaleString("pt-BR")}`;
+
+  const filtered = allProducts.filter(p => {
+    if (p.price > maxPrice) return false;
+    if (category && p.category !== category) return false;
+    if (brand && p.brand !== brand) return false;
+    return true;
+  });
+
+  render(filtered);
+}
+
+/* ===============================
+   RENDER
+================================ */
+function render(list) {
+  grid.innerHTML = "";
+  meta.innerText = `${list.length} produto(s) encontrados`;
+
+  if (list.length === 0) {
+    grid.innerHTML = "<p>Nenhum produto encontrado.</p>";
+    return;
+  }
+
+  list.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "result-card";
+
+    card.innerHTML = `
+      <h3>${p.title}</h3>
+      <p>${p.brand} • ${p.category}</p>
+      <strong>R$ ${p.price.toLocaleString("pt-BR")}</strong>
+      <a href="produto.html?id=${p.id}" class="btn-outline">Ver produto</a>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+/* ===============================
+   EVENTS
+================================ */
+priceFilter.oninput = applyFilters;
+categoryFilter.onchange = applyFilters;
+brandFilter.onchange = applyFilters;
+
+/* ===============================
+   INIT
+================================ */
+loadProducts();
