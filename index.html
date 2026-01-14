@@ -50,23 +50,6 @@
 </main>
 
 <footer class="footer">
-  Nexus © 2025
-</footer>
-
-<script>
-/* ===============================
-   HEADER DINÂMICO
-================================ */
-(function(){
-  const link = document.getElementById("loginLink");
-  const token = localStorage.getItem("nexus_token");
-  if (token) {
-    link.innerText = "Minha conta";
-    link.href = "dashboard.html";
-  }
-})();
-</script>
-<footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
       <img src="logo.png" alt="Nexus" class="footer-logo">
@@ -93,5 +76,21 @@
     <p>© 2026 Nexus. Todos os direitos reservados.</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  const link = document.getElementById("loginLink");
+  const token = localStorage.getItem("nexus_token");
+
+  if (token) {
+    link.innerText = "Minha conta";
+    link.href = "dashboard.html";
+  } else {
+    link.innerText = "Entrar";
+    link.href = "login.html";
+  }
+})();
+</script>
+
 </body>
 </html>
