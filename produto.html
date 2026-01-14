@@ -2,56 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Produto — Nexus</title>
+  <title id="pageTitle">Produto — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO dinâmico -->
+  <meta name="description" id="metaDesc" content="Produto Nexus" />
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png"/>
-
-  <style>
-    .lock-box {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 10px;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .lock-box.locked {
-      color: #f87171;
-    }
-
-    .lock-box.allowed {
-      color: #4ade80;
-    }
-
-    .lock-icon {
-      font-size: 18px;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-left: 8px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .badge.free { background:#374151; color:#e5e7eb; }
-    .badge.core { background:#2563eb; color:#fff; }
-    .badge.hyper { background:#7c3aed; color:#fff; }
-    .badge.omega { background:#16a34a; color:#fff; }
-
-    .btn-disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
-  </style>
 </head>
 
 <body>
@@ -64,31 +22,33 @@
 
   <nav class="nav">
     <a href="index.html" class="nav-link">Início</a>
-    <a href="planos.html" class="nav-link">Planos</a>
+    <a href="assinatura.html" class="nav-link">Assinatura</a>
     <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
   </nav>
 </header>
 
 <main class="page">
 
-<section class="section">
-  <h1>
-    Produto Premium Exemplo
-    <span class="badge core">Plano Core+</span>
-  </h1>
+  <section class="section product-layout">
 
-  <p class="muted-text">
-    Produto com desconto agressivo exclusivo para planos superiores.
-  </p>
+    <div class="product-image">
+      <img id="productImage" src="fallback.png" alt="Produto Nexus"/>
+    </div>
 
-  <div id="lockInfo" class="lock-box"></div>
+    <div class="product-info">
+      <h1 id="productTitle">Carregando...</h1>
+      <p id="productDesc" class="muted-text"></p>
 
-  <button id="buyBtn" class="btn-primary" style="margin-top:16px">
-    Comprar agora
-  </button>
+      <div class="product-price" id="productPrice"></div>
 
-  <p id="msg" class="small-text"></p>
-</section>
+      <button id="buyBtn" class="btn-primary">
+        Comprar
+      </button>
+
+      <p id="msg" class="small-text"></p>
+    </div>
+
+  </section>
 
 </main>
 
@@ -120,21 +80,65 @@
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
-const PRODUCT_ID = "produto-001";
-const REQUIRED_PLAN = "core";
-const token = localStorage.getItem("nexus_token");
-
+/* ===============================
+   AUTH HEADER
+================================ */
 (function(){
   const link = document.getElementById("loginLink");
-  if (token) {
+  if (localStorage.getItem("nexus_token")) {
     link.innerText = "Minha conta";
     link.href = "dashboard.html";
   }
 })();
 
-function getUserPlan() {
+/* ===============================
+   PARAMS
+================================ */
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id") || params.get("handle");
+const msg = document.getElementById("msg");
+
+if (!productId) {
+  msg.innerText = "Produto inválido.";
+  throw new Error("Produto inválido");
+}
+
+/* ===============================
+   LOAD PRODUTO (API)
+================================ */
+fetch(`${window.NEXUS_API}/products/${encodeURIComponent(productId)}`)
+.then(r => r.json())
+.then(d => {
+  if (!d.ok) throw new Error();
+
+  const p = d.product;
+
+  document.getElementById("productTitle").innerText = p.title;
+  document.getElementById("productDesc").innerText = p.description || "";
+  document.getElementById("productPrice").innerText =
+    p.price ? "R$ " + p.price.toLocaleString("pt-BR") : "Sob consulta";
+
+  document.getElementById("productImage").src =
+    p.image || "fallback.png";
+
+  /* SEO */
+  document.title = `${p.title} — Nexus`;
+  document.getElementById("metaDesc").content =
+    p.description || p.title;
+
+})
+.catch(() => {
+  msg.innerText = "Erro ao carregar produto.";
+});
+
+/* ===============================
+   PLANO & BLOQUEIO
+================================ */
+function getUserPlan(){
   try {
+    const token = localStorage.getItem("nexus_token");
     const payload = JSON.parse(atob(token.split(".")[1]));
     return payload.plan || "free";
   } catch {
@@ -142,59 +146,45 @@ function getUserPlan() {
   }
 }
 
-function planRank(p) {
-  return ["free","core","hyper","omega"].indexOf(p);
-}
-
-function isRandomBlocked(plan) {
+function isBlocked(plan){
   if (plan === "omega") return false;
-  const seed = PRODUCT_ID + new Date().toDateString();
+
+  const seed = productId + new Date().toDateString();
   let hash = 0;
   for (let i=0;i<seed.length;i++) hash += seed.charCodeAt(i);
   const mod = hash % 100;
+
   if (plan === "free") return mod < 70;
   if (plan === "core") return mod < 45;
   if (plan === "hyper") return mod < 30;
+
   return true;
 }
 
-const lockBox = document.getElementById("lockInfo");
-const buyBtn = document.getElementById("buyBtn");
-const msg = document.getElementById("msg");
+/* ===============================
+   BUY
+================================ */
+document.getElementById("buyBtn").onclick = () => {
+  const token = localStorage.getItem("nexus_token");
 
-if (!token) {
-  lockBox.className = "lock-box locked";
-  lockBox.innerHTML = `<span class="lock-icon">🔒</span>
-    Faça login para verificar seu acesso a este produto.`;
-  buyBtn.onclick = () => {
-    localStorage.setItem("nexus_intent", "buy:" + PRODUCT_ID);
+  if (!token) {
+    localStorage.setItem("nexus_intent", "buy:" + productId);
     window.location.href = "login.html";
-  };
-} else {
+    return;
+  }
+
   const plan = getUserPlan();
 
-  if (planRank(plan) < planRank(REQUIRED_PLAN)) {
-    lockBox.className = "lock-box locked";
-    lockBox.innerHTML = `<span class="lock-icon">🔒</span>
-      Produto disponível a partir do plano <strong>Core</strong>.`;
-    buyBtn.onclick = () => window.location.href = "planos.html";
+  if (isBlocked(plan)) {
+    msg.innerText = "Este produto exige um plano superior.";
+    setTimeout(() => {
+      window.location.href = "assinatura.html";
+    }, 1000);
+    return;
   }
-  else if (isRandomBlocked(plan)) {
-    lockBox.className = "lock-box locked";
-    lockBox.innerHTML = `<span class="lock-icon">⏳</span>
-      Produto temporariamente bloqueado para seu plano hoje.`;
-    buyBtn.classList.add("btn-disabled");
-    buyBtn.disabled = true;
-  }
-  else {
-    lockBox.className = "lock-box allowed";
-    lockBox.innerHTML = `<span class="lock-icon">✅</span>
-      Produto liberado para seu plano.`;
-    buyBtn.onclick = () => {
-      msg.innerText = "Checkout liberado (gateway entra agora).";
-    };
-  }
-}
+
+  msg.innerText = "Checkout liberado (próxima etapa).";
+};
 </script>
 
 </body>
