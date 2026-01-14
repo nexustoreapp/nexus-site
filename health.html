@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Status do Sistema — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo"/>
+    <span class="brand-name">Nexus</span>
+  </a>
+</header>
+
+<main class="page">
+  <section class="section card">
+    <h1>Status do Sistema</h1>
+    <p id="statusText">Verificando…</p>
+
+    <pre id="healthData" class="code-box"></pre>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Nexus</p>
+</footer>
+
+<script src="config.js"></script>
+<script>
+(async () => {
+  try {
+    const r = await fetch(`${NEXUS_API}/health`);
+    const d = await r.json();
+
+    document.getElementById("statusText").innerText =
+      d.ok ? "🟢 Sistema operacional" : "🔴 Instabilidade detectada";
+
+    document.getElementById("healthData").innerText =
+      JSON.stringify(d, null, 2);
+
+  } catch (e) {
+    document.getElementById("statusText").innerText =
+      "🔴 Falha ao conectar ao backend";
+  }
+})();
+</script>
+
+</body>
+</html>
