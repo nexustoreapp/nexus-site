@@ -1,58 +1,29 @@
 // backend/app.js
 import express from "express";
 import cors from "cors";
-import helmet from "helmet";
-import morgan from "morgan";
+import dotenv from "dotenv";
 
-import routes from "./routes/index.js";
+import apiRoutes from "./routes/index.js";
 import { rateLimiter } from "./middlewares/rateLimit.middleware.js";
 import { securityHeaders } from "./middlewares/security.middleware.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
+dotenv.config();
+
 const app = express();
 
 /* ===============================
-   CONFIG BÁSICA
+   MIDDLEWARES BASE
 ================================ */
-app.disable("x-powered-by");
-app.use(express.json({ limit: "1mb" }));
-app.use(express.urlencoded({ extended: true }));
-
-/* ===============================
-   CORS
-================================ */
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-  })
-);
-
-/* ===============================
-   SEGURANÇA HTTP
-================================ */
-app.use(helmet());
-app.use(securityHeaders);
-
-/* ===============================
-   RATE LIMIT GLOBAL
-================================ */
+app.use(cors());
+app.use(express.json());
 app.use(rateLimiter);
-
-/* ===============================
-   LOG DE REQUISIÇÕES
-================================ */
-app.use(
-  morgan("combined", {
-    skip: (req) => req.path === "/api/health"
-  })
-);
+app.use(securityHeaders);
 
 /* ===============================
    ROTAS
 ================================ */
-app.use("/api", routes);
+app.use("/api", apiRoutes);
 
 /* ===============================
    404 PADRÃO
@@ -66,7 +37,7 @@ app.use((req, res) => {
 });
 
 /* ===============================
-   ERROR HANDLER CENTRAL
+   ERROR HANDLER
 ================================ */
 app.use(errorHandler);
 
