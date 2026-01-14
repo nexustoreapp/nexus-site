@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pagamento confirmado — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png"/>
+
+  <style>
+    .success-box {
+      max-width: 520px;
+      margin: 80px auto;
+      padding: 36px;
+      background: #0f0f0f;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(0,0,0,.4);
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 52px;
+      color: #22c55e;
+      margin-bottom: 16px;
+    }
+
+    .success-box h1 {
+      margin-bottom: 10px;
+    }
+
+    .success-box p {
+      opacity: .8;
+      font-size: 15px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .info {
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #22c55e;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #333;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <img src="logo.png" class="brand-logo"/>
+    <span class="brand-name">Nexus</span>
+  </a>
+</header>
+
+<main class="page">
+  <div class="success-box">
+
+    <div class="success-icon">✔</div>
+
+    <h1>Pagamento confirmado!</h1>
+
+    <p>
+      Recebemos seu pagamento com sucesso.
+      Seu plano foi ativado e o acesso já está liberado.
+    </p>
+
+    <div class="info">
+      <div class="row">
+        <span>Status</span>
+        <strong>Pago</strong>
+      </div>
+
+      <div class="row">
+        <span>Método</span>
+        <strong>PIX</strong>
+      </div>
+
+      <div class="row">
+        <span>Plano ativado</span>
+        <strong id="planName">—</strong>
+      </div>
+    </div>
+
+    <button class="btn" onclick="goAccount()">
+      Ir para minha conta
+    </button>
+
+    <button class="btn btn-outline" onclick="goHome()">
+      Voltar para Home
+    </button>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 Nexus. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+/* ===============================
+   AUTH
+================================ */
+const token = localStorage.getItem("nexus_token");
+if (!token) {
+  window.location.href = "login.html";
+}
+
+/* ===============================
+   PLANO
+================================ */
+const plan = localStorage.getItem("nexus_plan");
+if (plan) {
+  document.getElementById("planName").innerText = plan.toUpperCase();
+} else {
+  document.getElementById("planName").innerText = "—";
+}
+
+/* ===============================
+   REDIRECTS
+================================ */
+function goAccount() {
+  window.location.href = "dashboard.html";
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
