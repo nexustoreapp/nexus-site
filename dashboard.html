@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Minha conta — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png"/>
 </head>
@@ -31,7 +30,6 @@
     <p class="muted-text">Gerencie seus dados e acompanhe seu plano.</p>
   </section>
 
-  <!-- DADOS DO USUÁRIO -->
   <section class="section card">
     <h2>Dados da conta</h2>
 
@@ -51,7 +49,6 @@
     </div>
   </section>
 
-  <!-- PLANO -->
   <section class="section card">
     <h2>Plano atual</h2>
 
@@ -70,17 +67,6 @@
         Gerenciar plano
       </a>
     </div>
-  </section>
-
-  <!-- AÇÕES FUTURAS -->
-  <section class="section card">
-    <h2>Próximos recursos</h2>
-    <ul class="simple-list">
-      <li>Histórico de pedidos</li>
-      <li>Pagamentos e faturas</li>
-      <li>Endereços de cobrança</li>
-      <li>Preferências da conta</li>
-    </ul>
   </section>
 
 </main>
@@ -114,20 +100,18 @@
 </footer>
 
 <script>
-/* ===============================
-   AUTH + DADOS DO TOKEN
-================================ */
 (function(){
   const token = localStorage.getItem("nexus_token");
   if (!token) {
-    window.location.href = "login.html";
+    window.location.replace("login.html");
     return;
   }
 
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
+    if (!payload || !payload.email) throw new Error();
 
-    document.getElementById("userEmail").innerText = payload.email || "-";
+    document.getElementById("userEmail").innerText = payload.email;
     document.getElementById("userCpf").innerText =
       payload.cpf ? payload.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "-";
 
@@ -138,20 +122,15 @@
     document.getElementById("planAccess").innerText =
       plan === "free" ? "Acesso limitado" : "Acesso ampliado";
 
-  } catch (e) {
-    localStorage.removeItem("nexus_token");
-    window.location.href = "login.html";
+  } catch {
+    localStorage.clear();
+    window.location.replace("login.html");
   }
 })();
 
-/* ===============================
-   LOGOUT
-================================ */
 document.getElementById("logoutBtn").onclick = () => {
-  localStorage.removeItem("nexus_token");
-  localStorage.removeItem("nexus_plan");
-  localStorage.removeItem("nexus_intent");
-  window.location.href = "index.html";
+  localStorage.clear();
+  window.location.replace("index.html");
 };
 </script>
 
