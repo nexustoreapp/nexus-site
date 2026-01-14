@@ -1,42 +1,60 @@
-/**
- * Anti-scraping simples:
- * - bloqueia User-Agents suspeitos
- * - exige header básico em rotas sensíveis
- * - corta bursts óbvios (sem estado)
- */
+// backend/middlewares/antiScraping.middleware.js
 
-const BLOCKED_UA = [
-  "python",
-  "scrapy",
-  "curl",
-  "wget",
-  "httpclient",
-  "axios",
-  "aiohttp",
-  "go-http-client",
-  "java",
-  "libwww",
-  "phantomjs",
-  "headless",
-  "playwright",
-  "puppeteer"
-];
+const memory = new Map();
+
+/*
+  Proteção simples e eficaz:
+  - Detecta muitas requisições em pouco tempo
+  - Bloqueia User-Agents suspeitos
+  - Evita scraping agressivo
+*/
 
 export function antiScraping(req, res, next) {
+  const ip =
+    req.headers["x-forwarded-for"]?.split(",")[0] ||
+    req.socket.remoteAddress ||
+    "unknown";
+
   const ua = (req.headers["user-agent"] || "").toLowerCase();
 
-  if (!ua || BLOCKED_UA.some(b => ua.includes(b))) {
+  // User-Agents suspeitos comuns
+  const blockedAgents = [
+    "python",
+    "curl",
+    "wget",
+    "scrapy",
+    "httpclient",
+    "axios",
+    "postmanruntime",
+    "go-http-client"
+  ];
+
+  if (blockedAgents.some(a => ua.includes(a))) {
     return res.status(403).json({
       ok: false,
-      error: "SCRAPING_BLOCKED"
+      error: "BOT_BLOCKED"
     });
   }
 
-  // Header mínimo esperado (frontend envia automaticamente)
-  if (!req.headers["x-nexus-client"]) {
-    return res.status(403).json({
+  const now = Date.now();
+  const windowMs = 10_000; // 10s
+  const limit = 60;       // 60 req / 10s por IP
+
+  const record = memory.get(ip) || { count: 0, start: now };
+
+  if (now - record.start > windowMs) {
+    record.count = 1;
+    record.start = now;
+  } else {
+    record.count++;
+  }
+
+  memory.set(ip, record);
+
+  if (record.count > limit) {
+    return res.status(429).json({
       ok: false,
-      error: "CLIENT_HEADER_REQUIRED"
+      error: "TOO_MANY_REQUESTS"
     });
   }
 
