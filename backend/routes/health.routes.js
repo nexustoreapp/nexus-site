@@ -1,11 +1,20 @@
 // backend/routes/health.routes.js
-
 import { Router } from "express";
-import { healthController } from "../controllers/health.controller.js";
 
 const router = Router();
 
-// GET /api/health
-router.get("/", healthController.status);
+router.get("/", (req, res) => {
+  res.json({
+    ok: true,
+    service: "nexus-backend",
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: {
+      rss: process.memoryUsage().rss,
+      heapUsed: process.memoryUsage().heapUsed
+    }
+  });
+});
 
 export default router;
