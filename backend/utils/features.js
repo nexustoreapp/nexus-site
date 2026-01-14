@@ -1,0 +1,5 @@
+export const FEATURES = {
+  ENABLE_NEW_CHECKOUT: false,
+  ENABLE_AI_RECOMMENDATION: false,
+  ENABLE_DYNAMIC_PRICING: false
+};
