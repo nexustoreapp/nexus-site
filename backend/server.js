@@ -2,31 +2,26 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import routes from "./routes/index.js";
-import { compressResponse } from "./middlewares/compression.middleware.js";
+import { logCriticalAlert } from "./utils/alertLogger.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// ===============================
-// MIDDLEWARES GLOBAIS
-// ===============================
 app.use(cors());
 app.use(express.json());
 
-// 🔥 COMPRESSÃO GLOBAL
-app.use(compressResponse);
-
-// ===============================
-// ROTAS API
-// ===============================
+/* ===============================
+   ROTAS
+================================ */
 app.use("/api", routes);
 
-// ===============================
-// FALLBACK
-// ===============================
+/* ===============================
+   ERRO 404
+================================ */
 app.use((req, res) => {
   res.status(404).json({
     ok: false,
@@ -35,9 +30,42 @@ app.use((req, res) => {
   });
 });
 
-// ===============================
-// START
-// ===============================
+/* ===============================
+   HANDLER DE ERRO GLOBAL
+================================ */
+app.use((err, req, res, next) => {
+  logCriticalAlert("Unhandled server error", {
+    url: req.originalUrl,
+    method: req.method,
+    message: err.message,
+    stack: err.stack
+  });
+
+  res.status(500).json({
+    ok: false,
+    error: "INTERNAL_SERVER_ERROR"
+  });
+});
+
+/* ===============================
+   PROCESS LEVEL ALERTS
+================================ */
+process.on("uncaughtException", (err) => {
+  logCriticalAlert("Uncaught Exception", {
+    message: err.message,
+    stack: err.stack
+  });
+});
+
+process.on("unhandledRejection", (reason) => {
+  logCriticalAlert("Unhandled Promise Rejection", {
+    reason
+  });
+});
+
+/* ===============================
+   START
+================================ */
 app.listen(PORT, () => {
   console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
 });
