@@ -1,11 +1,9 @@
-// backend/routes/orders.routes.js
 import { Router } from "express";
-import { getMyOrders } from "../controllers/orders.controller.js";
+import { listUserOrders } from "../controllers/orders.controller.js";
 import { requireAuth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-// histórico do usuário logado
-router.get("/my", requireAuth, getMyOrders);
+router.get("/", requireAuth, listUserOrders);
 
 export default router;
