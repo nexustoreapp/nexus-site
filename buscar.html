@@ -2,12 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Buscar produtos — Nexus</title>
-  <meta name="description" content="Busque produtos tech com inteligência no Nexus. Compare preços e planos." />
+  <title>Buscar — Nexus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
 </head>
 
 <body>
@@ -17,52 +14,52 @@
     <img src="logo.png" class="brand-logo"/>
     <span class="brand-name">Nexus</span>
   </a>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="assinatura.html" class="nav-link">Assinatura</a>
+    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
+  </nav>
 </header>
 
-<main class="page search-layout">
+<main class="page">
+  <section class="section">
+    <p id="search-meta" class="muted-text"></p>
 
-<aside class="filters">
-  <h3>Filtros</h3>
+    <div id="results-grid" class="results-grid"></div>
 
-  <label>Preço máximo</label>
-  <input type="range" id="priceFilter" min="0" max="20000" step="100">
-  <span id="priceLabel"></span>
-
-  <label>Categoria</label>
-  <select id="categoryFilter">
-    <option value="">Todas</option>
-    <option value="gpu">Placa de vídeo</option>
-    <option value="notebook">Notebook</option>
-    <option value="cpu">Processador</option>
-  </select>
-
-  <label>Marca</label>
-  <select id="brandFilter">
-    <option value="">Todas</option>
-    <option value="nvidia">NVIDIA</option>
-    <option value="amd">AMD</option>
-    <option value="intel">Intel</option>
-  </select>
-</aside>
-
-<section class="results">
-  <div class="results-header">
-    <p id="search-meta"></p>
-
-    <select id="sortSelect">
-      <option value="relevance">Relevância</option>
-      <option value="price-asc">Menor preço</option>
-      <option value="price-desc">Maior preço</option>
-    </select>
-  </div>
-
-  <div id="results-grid" class="results-grid"></div>
-  <div id="pagination" class="pagination"></div>
-</section>
-
+    <!-- PAGINAÇÃO -->
+    <div class="pagination">
+      <button id="prevBtn" class="btn-outline">Anterior</button>
+      <span id="pageInfo"></span>
+      <button id="nextBtn" class="btn-outline">Próxima</button>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Nexus" class="footer-logo">
+      <p class="footer-desc">
+        Nexus é um marketplace tecnológico focado em inteligência,
+        automação e curadoria avançada de produtos.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Institucional</h4>
+      <a href="quem-somos.html">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Legal</h4>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+    </div>
+  </div>
+
   <div class="footer-bottom">
     <p>© 2026 Nexus. Todos os direitos reservados.</p>
   </div>
