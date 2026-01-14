@@ -3,43 +3,29 @@ import rateLimit from "express-rate-limit";
 
 /*
   Rate limit GLOBAL
-  Protege o backend inteiro contra abuso básico
+  - Protege login, pagamento, busca, scraping básico
 */
-export const globalLimiter = rateLimit({
+export const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 300, // 300 requests por IP
+  max: 300, // 300 req por IP
   standardHeaders: true,
   legacyHeaders: false,
+  message: {
+    ok: false,
+    error: "RATE_LIMIT_EXCEEDED",
+    message: "Muitas requisições. Tente novamente mais tarde."
+  }
 });
 
 /*
-  Rate limit para AUTH (login / register)
-  Anti brute-force
+  Rate limit ESPECÍFICO (login)
 */
 export const authLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutos
-  max: 20, // 20 tentativas
+  windowMs: 15 * 60 * 1000,
+  max: 20,
   message: {
     ok: false,
-    error: "TOO_MANY_ATTEMPTS",
-    message: "Muitas tentativas. Aguarde alguns minutos."
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-/*
-  Rate limit para PAGAMENTO
-  Anti fraude / replay
-*/
-export const paymentLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000, // 5 minutos
-  max: 10,
-  message: {
-    ok: false,
-    error: "PAYMENT_RATE_LIMIT",
-    message: "Muitas tentativas de pagamento."
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
+    error: "AUTH_RATE_LIMIT",
+    message: "Muitas tentativas de login."
+  }
 });
