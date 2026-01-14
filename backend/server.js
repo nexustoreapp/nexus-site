@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import routes from "./routes/index.js";
 import { logCriticalAlert } from "./utils/alertLogger.js";
+import { metrics } from "./middlewares/metrics.middleware.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(express.json());
+app.use(metrics);
 
 /* ===============================
    ROTAS
@@ -20,7 +22,7 @@ app.use(express.json());
 app.use("/api", routes);
 
 /* ===============================
-   ERRO 404
+   404
 ================================ */
 app.use((req, res) => {
   res.status(404).json({
@@ -31,7 +33,7 @@ app.use((req, res) => {
 });
 
 /* ===============================
-   HANDLER DE ERRO GLOBAL
+   ERRO GLOBAL
 ================================ */
 app.use((err, req, res, next) => {
   logCriticalAlert("Unhandled server error", {
@@ -48,7 +50,7 @@ app.use((err, req, res, next) => {
 });
 
 /* ===============================
-   PROCESS LEVEL ALERTS
+   PROCESS ALERTS
 ================================ */
 process.on("uncaughtException", (err) => {
   logCriticalAlert("Uncaught Exception", {
@@ -58,9 +60,7 @@ process.on("uncaughtException", (err) => {
 });
 
 process.on("unhandledRejection", (reason) => {
-  logCriticalAlert("Unhandled Promise Rejection", {
-    reason
-  });
+  logCriticalAlert("Unhandled Promise Rejection", { reason });
 });
 
 /* ===============================
