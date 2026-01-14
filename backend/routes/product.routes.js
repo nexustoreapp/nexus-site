@@ -3,11 +3,12 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import { getCache, setCache } from "../utils/cache.js";
+import { httpCache } from "../middlewares/httpCache.middleware.js";
 
 const router = Router();
 const CATALOG_PATH = path.resolve("backend/data/catalogo");
 
-router.get("/", (req, res) => {
+router.get("/", httpCache(120), (req, res) => {
   const cached = getCache("catalogo");
 
   if (cached) {
@@ -19,8 +20,8 @@ router.get("/", (req, res) => {
   }
 
   const products = [];
-
   const files = fs.readdirSync(CATALOG_PATH);
+
   for (const file of files) {
     if (!file.endsWith(".json")) continue;
 
@@ -31,7 +32,7 @@ router.get("/", (req, res) => {
     products.push(...data);
   }
 
-  setCache("catalogo", products, 120_000); // 2 minutos
+  setCache("catalogo", products, 120_000);
 
   return res.json({
     ok: true,
