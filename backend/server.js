@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import apiRoutes from "./routes/index.js";
+import { apiLimiter } from "./middlewares/rateLimit.middleware.js";
 
 dotenv.config();
 
@@ -18,18 +19,21 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 
+// RATE LIMIT GLOBAL
+app.use("/api", apiLimiter);
+
 // =============================
-// SERVIR HTML ESTÁTICO (TESTE)
+// STATIC
 // =============================
 app.use(express.static(path.join(__dirname, "../public")));
 
 // =============================
-// ROTAS DA API
+// API
 // =============================
 app.use("/api", apiRoutes);
 
 // =============================
-// FALLBACK API
+// FALLBACK
 // =============================
 app.use("/api/*", (req, res) => {
   res.status(404).json({
@@ -47,7 +51,7 @@ app.get("/", (req, res) => {
 });
 
 // =============================
-// START SERVER
+// START
 // =============================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
