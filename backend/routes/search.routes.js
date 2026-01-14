@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { searchController } from "../controllers/search.controller.js";
+import { searchProducts } from "../controllers/search.controller.js";
+import { searchLimiter } from "../middlewares/rateLimit.middleware.js";
 
 const router = Router();
 
-// GET /api/search
-router.get("/", searchController.search);
+router.get("/", searchLimiter, searchProducts);
 
 export default router;
