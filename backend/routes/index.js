@@ -1,4 +1,3 @@
-// backend/routes/index.js
 import { Router } from "express";
 
 import healthRoutes from "./health.routes.js";
@@ -13,14 +12,15 @@ import ordersRoutes from "./orders.routes.js";
 
 const router = Router();
 
-router.use("/health", healthRoutes);
-router.use("/products", productRoutes);
-router.use("/search", searchRoutes);
-router.use("/decision", decisionRoutes);
-router.use("/geo", geoRoutes);
-router.use("/auth", authRoutes);
-router.use("/checkout", checkoutRoutes);
-router.use("/payment", paymentRoutes);
-router.use("/orders", ordersRoutes);
+// versão v1 da API
+router.use("/v1/health", healthRoutes);
+router.use("/v1/products", productRoutes);
+router.use("/v1/search", searchRoutes);
+router.use("/v1/decision", decisionRoutes);
+router.use("/v1/geo", geoRoutes);
+router.use("/v1/auth", authRoutes);
+router.use("/v1/checkout", checkoutRoutes);
+router.use("/v1/payment", paymentRoutes);
+router.use("/v1/orders", ordersRoutes);
 
 export default router;
