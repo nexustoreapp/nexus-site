@@ -1,3 +1,4 @@
+// backend/server.js
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -5,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import apiRoutes from "./routes/index.js";
-import { apiLimiter } from "./middlewares/rateLimit.middleware.js";
+import { globalLimiter } from "./middlewares/rateLimit.middleware.js";
 
 dotenv.config();
 
@@ -14,26 +15,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // =============================
-// MIDDLEWARES
+// MIDDLEWARES BASE
 // =============================
 app.use(cors());
 app.use(express.json());
 
+// =============================
 // RATE LIMIT GLOBAL
-app.use("/api", apiLimiter);
+// =============================
+app.use(globalLimiter);
 
 // =============================
-// STATIC
+// SERVIR FRONTEND
 // =============================
 app.use(express.static(path.join(__dirname, "../public")));
 
 // =============================
-// API
+// ROTAS DA API
 // =============================
 app.use("/api", apiRoutes);
 
 // =============================
-// FALLBACK
+// FALLBACK API
 // =============================
 app.use("/api/*", (req, res) => {
   res.status(404).json({
@@ -51,7 +54,7 @@ app.get("/", (req, res) => {
 });
 
 // =============================
-// START
+// START SERVER
 // =============================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
