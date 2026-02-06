@@ -1,20 +1,45 @@
-import { handleSupplierOrder } from "./supplier.service.js";
+// backend/services/order.service.js
+import { ORDER_STATUS } from "../utils/orderStatus.js";
 
-export async function createOrder({ user, product }) {
-  const orderId = `ORD-${Date.now()}`;
+const orders = []; // enquanto não temos DB
 
-  const supplierResult = await handleSupplierOrder({
-    product,
-    orderId,
-    userPlan: user.plan
+export function createOrder({ userEmail, productId, paymentId }) {
+  const order = {
+    id: "ord_" + Date.now(),
+    userEmail,
+    productId,
+    paymentId,
+    status: ORDER_STATUS.CREATED,
+    createdAt: new Date().toISOString(),
+    history: [
+      {
+        status: ORDER_STATUS.CREATED,
+        at: new Date().toISOString()
+      }
+    ]
+  };
+
+  orders.push(order);
+  return order;
+}
+
+export function updateOrderStatus(orderId, newStatus) {
+  const order = orders.find(o => o.id === orderId);
+  if (!order) return null;
+
+  order.status = newStatus;
+  order.history.push({
+    status: newStatus,
+    at: new Date().toISOString()
   });
 
-  return {
-    id: orderId,
-    userId: user.id,
-    productId: product.id,
-    status: "PROCESSING",
-    supplier: supplierResult,
-    createdAt: Date.now()
-  };
+  return order;
+}
+
+export function getOrdersByUser(email) {
+  return orders.filter(o => o.userEmail === email);
+}
+
+export function getOrderById(orderId) {
+  return orders.find(o => o.id === orderId);
 }
