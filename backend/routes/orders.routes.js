@@ -1,9 +1,14 @@
+// backend/routes/orders.routes.js
 import { Router } from "express";
-import { createOrder } from "./orders.controller.js";
 import { requireAuth } from "../middlewares/auth.middleware.js";
+import {
+  listMyOrders,
+  getOrder
+} from "../controllers/orders.controller.js";
 
 const router = Router();
 
-router.post("/create", requireAuth, createOrder);
+router.get("/", requireAuth, listMyOrders);
+router.get("/:id", requireAuth, getOrder);
 
 export default router;
