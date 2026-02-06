@@ -1,22 +1,20 @@
-{
-  "fornecedores": [
-    {
-      "id": "forn-001",
-      "nome": "Fornecedor Alpha",
-      "ativo": true,
-      "slaDias": 3,
-      "risco": 0.1,
-      "margem": 0.15,
-      "categorias": ["cpu", "gpu", "ram"]
-    },
-    {
-      "id": "forn-002",
-      "nome": "Fornecedor Beta",
-      "ativo": true,
-      "slaDias": 5,
-      "risco": 0.25,
-      "margem": 0.10,
-      "categorias": ["storage", "perifericos"]
-    }
-  ]
-}
+[
+  {
+    "id": "forn-01",
+    "nome": "Fornecedor Alpha",
+    "ativo": true,
+    "slaDias": 3,
+    "risco": 0.1,
+    "margem": 0.15,
+    "categorias": ["cpu", "gpu", "ram"]
+  },
+  {
+    "id": "forn-02",
+    "nome": "Fornecedor Beta",
+    "ativo": true,
+    "slaDias": 7,
+    "risco": 0.25,
+    "margem": 0.25,
+    "categorias": ["ssd", "ram"]
+  }
+]
