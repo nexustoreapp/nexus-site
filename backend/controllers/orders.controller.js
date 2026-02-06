@@ -1,23 +1,26 @@
-import fs from "fs";
-import path from "path";
+// backend/controllers/orders.controller.js
+import {
+  getOrdersByUser,
+  getOrderById
+} from "../services/order.service.js";
 
-const ORDERS_PATH = path.resolve("backend/data/orders.json");
-
-function readOrders() {
-  if (!fs.existsSync(ORDERS_PATH)) return [];
-  return JSON.parse(fs.readFileSync(ORDERS_PATH, "utf-8"));
+export function listMyOrders(req, res) {
+  const user = req.user;
+  const orders = getOrdersByUser(user.email);
+  return res.json({ ok: true, orders });
 }
 
-export function listUserOrders(req, res) {
-  try {
-    const user = req.user;
-    const orders = readOrders().filter(
-      o => o.userEmail === user.email
-    );
+export function getOrder(req, res) {
+  const { id } = req.params;
+  const order = getOrderById(id);
 
-    return res.json({ ok: true, orders });
-  } catch (err) {
-    console.error("[ORDERS LIST]", err);
-    return res.status(500).json({ ok:false, error:"SERVER_ERROR" });
+  if (!order) {
+    return res.status(404).json({ ok: false });
   }
+
+  if (order.userEmail !== req.user.email) {
+    return res.status(403).json({ ok: false });
+  }
+
+  return res.json({ ok: true, order });
 }
