@@ -1,44 +1,36 @@
-import { escolherFornecedor } from "../services/fornecedorDecision.service.js";
+import { selecionarFornecedor } from "../services/fornecedor.service.js";
 
-export async function createOrder(req, res) {
+export async function criarPedido(req, res) {
   try {
-    const user = req.user;
-    const { productId, categoria } = req.body;
+    const { produto } = req.body;
 
-    if (!productId || !categoria) {
-      return res.status(400).json({ ok: false, error: "INVALID_DATA" });
+    if (!produto) {
+      return res.status(400).json({ ok: false, error: "PRODUTO_INVALIDO" });
     }
 
-    const fornecedor = escolherFornecedor({ categoria });
+    const fornecedor = selecionarFornecedor(produto);
 
-    if (!fornecedor) {
-      return res.status(503).json({
-        ok: false,
-        error: "NO_SUPPLIER_AVAILABLE"
-      });
-    }
-
-    const order = {
-      id: `ord_${Date.now()}`,
-      userId: user.id,
-      productId,
-      categoria,
+    const pedido = {
+      id: crypto.randomUUID(),
+      produto,
       fornecedor: {
         id: fornecedor.id,
         nome: fornecedor.nome,
         slaDias: fornecedor.slaDias
       },
       status: "CRIADO",
-      createdAt: Date.now()
+      criadoEm: new Date().toISOString()
     };
 
-    // aqui você já salva no store atual que você usa
-    // ex: upsertOrder(order)
-
-    return res.json({ ok: true, order });
+    return res.json({
+      ok: true,
+      pedido
+    });
 
   } catch (err) {
-    console.error("[ORDER CREATE]", err);
-    return res.status(500).json({ ok: false, error: "SERVER_ERROR" });
+    return res.status(500).json({
+      ok: false,
+      error: err.message
+    });
   }
 }
