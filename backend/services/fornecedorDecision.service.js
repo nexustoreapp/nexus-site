@@ -1,25 +1,68 @@
-import fs from "fs";
-import path from "path";
+/**
+ * fornecedorDecision.service.js
+ *
+ * Responsável por decidir QUAL fornecedor atenderá um pedido,
+ * com base em regras automáticas (SLA, risco, margem, disponibilidade).
+ *
+ * ❗ Nada manual
+ * ❗ Nada duplicado
+ * ❗ Arquivo único e oficial
+ */
 
-const DATA_PATH = path.resolve("backend/data/fornecedores.json");
+import catalogo from "../data/catalogo/index.js";
 
-function loadFornecedores() {
-  const raw = fs.readFileSync(DATA_PATH, "utf-8");
-  return JSON.parse(raw).fornecedores;
+/**
+ * Avalia fornecedores possíveis para um produto
+ */
+function avaliarFornecedores(produtoId) {
+  const fornecedores = catalogo.fornecedores?.[produtoId] || [];
+
+  return fornecedores
+    .map(f => {
+      const score =
+        (f.sla_score * 0.4) +
+        (f.margem_score * 0.3) +
+        (f.risco_score * 0.3);
+
+      return {
+        ...f,
+        score
+      };
+    })
+    .sort((a, b) => b.score - a.score);
 }
 
-export function escolherFornecedor({ categoria }) {
-  const fornecedores = loadFornecedores()
-    .filter(f => f.ativo && f.categorias.includes(categoria));
+/**
+ * Decide o fornecedor final para o pedido
+ */
+export function decidirFornecedor({ produtoId, quantidade }) {
+  const avaliados = avaliarFornecedores(produtoId);
 
-  if (!fornecedores.length) return null;
+  if (!avaliados.length) {
+    return {
+      ok: false,
+      motivo: "SEM_FORNECEDOR_DISPONIVEL"
+    };
+  }
 
-  // Score simples (SLA + risco + margem)
-  fornecedores.sort((a, b) => {
-    const scoreA = a.slaDias + a.risco * 10 - a.margem * 5;
-    const scoreB = b.slaDias + b.risco * 10 - b.margem * 5;
-    return scoreA - scoreB;
-  });
+  const escolhido = avaliados[0];
 
-  return fornecedores[0];
+  if (escolhido.estoque < quantidade) {
+    return {
+      ok: false,
+      motivo: "ESTOQUE_INSUFICIENTE",
+      fornecedor: escolhido.id
+    };
+  }
+
+  return {
+    ok: true,
+    fornecedor: {
+      id: escolhido.id,
+      nome: escolhido.nome,
+      sla: escolhido.sla,
+      margem: escolhido.margem,
+      risco: escolhido.risco
+    }
+  };
 }
