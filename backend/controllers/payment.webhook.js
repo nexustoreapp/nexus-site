@@ -1,46 +1,36 @@
 // backend/controllers/payment.webhook.js
-import fetch from "node-fetch";
-import { findUserByEmail, upsertUser } from "../utils/userStore.js";
-
-const MP_TOKEN = process.env.MERCADO_PAGO_TOKEN;
+import { createOrder } from "../services/order.service.js";
 
 export async function paymentWebhook(req, res) {
   try {
-    const paymentId = req.body?.data?.id;
-    if (!paymentId) return res.sendStatus(200);
+    const data = req.body;
 
-    const r = await fetch(
-      `https://api.mercadopago.com/v1/payments/${paymentId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${MP_TOKEN}`
-        }
-      }
-    );
+    // Mercado Pago / futuro gateway
+    const status = data?.data?.status || data?.status;
+    const paymentId = data?.data?.id || data?.id;
+    const metadata = data?.data?.metadata || data?.metadata;
 
-    const payment = await r.json();
-
-    if (payment.status !== "approved") {
-      return res.sendStatus(200);
+    if (status !== "approved") {
+      return res.json({ ok: true });
     }
 
-    const email = payment.metadata?.userEmail;
-    const plan = payment.metadata?.plan;
+    if (!metadata?.userEmail || !metadata?.productId) {
+      return res.status(400).json({ ok: false });
+    }
 
-    if (!email || !plan) return res.sendStatus(200);
+    const order = createOrder({
+      userEmail: metadata.userEmail,
+      productId: metadata.productId,
+      paymentId
+    });
 
-    const user = findUserByEmail(email);
-    if (!user) return res.sendStatus(200);
-
-    // 🔥 AQUI É ONDE O PLANO SOBE
-    user.plan = plan;
-    user.updatedAt = Date.now();
-    upsertUser(user);
-
-    return res.sendStatus(200);
+    return res.json({
+      ok: true,
+      orderId: order.id
+    });
 
   } catch (err) {
-    console.error("[WEBHOOK ERROR]", err);
-    return res.sendStatus(200);
+    console.error("[PAYMENT WEBHOOK]", err);
+    return res.status(500).json({ ok: false });
   }
 }
