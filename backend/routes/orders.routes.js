@@ -1,14 +1,12 @@
-// backend/routes/orders.routes.js
 import { Router } from "express";
 import { requireAuth } from "../middlewares/auth.middleware.js";
-import {
-  listMyOrders,
-  getOrder
-} from "../controllers/orders.controller.js";
+import ordersStore from "../data/orders.store.js";
 
 const router = Router();
 
-router.get("/", requireAuth, listMyOrders);
-router.get("/:id", requireAuth, getOrder);
+router.get("/", requireAuth, (req, res) => {
+  const userOrders = ordersStore.filter(o => o.userId === req.user.id);
+  res.json({ ok: true, orders: userOrders });
+});
 
 export default router;
