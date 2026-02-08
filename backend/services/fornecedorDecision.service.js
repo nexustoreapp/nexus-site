@@ -1,67 +1,66 @@
-/**
- * fornecedorDecision.service.js
- *
- * Responsável por decidir QUAL fornecedor atenderá um pedido,
- * com base em regras automáticas (SLA, risco, margem, disponibilidade).
- *
- * ❗ Nada manual
- * ❗ Nada duplicado
- * ❗ Arquivo único e oficial
- */
-
-import catalogo from "../data/catalogo/index.js";
+// backend/services/fornecedorDecision.service.js
 
 /**
- * Avalia fornecedores possíveis para um produto
+ * DECISÃO DE FORNECEDOR – NEXUS
+ * 100% automática
+ * Nenhuma ação manual
  */
-function avaliarFornecedores(produtoId) {
-  const fornecedores = catalogo.fornecedores?.[produtoId] || [];
 
-  return fornecedores
-    .map(f => {
-      const score =
-        (f.sla_score * 0.4) +
-        (f.margem_score * 0.3) +
-        (f.risco_score * 0.3);
-
-      return {
-        ...f,
-        score
-      };
-    })
-    .sort((a, b) => b.score - a.score);
-}
+const fornecedores = [
+  {
+    id: "FORN_A",
+    nome: "Fornecedor A",
+    slaDias: 5,
+    risco: 0.12, // 12%
+    ativo: true
+  },
+  {
+    id: "FORN_B",
+    nome: "Fornecedor B",
+    slaDias: 8,
+    risco: 0.06, // 6%
+    ativo: true
+  },
+  {
+    id: "FORN_C",
+    nome: "Fornecedor C",
+    slaDias: 3,
+    risco: 0.22, // 22%
+    ativo: false
+  }
+];
 
 /**
- * Decide o fornecedor final para o pedido
+ * Seleciona fornecedor automaticamente
+ * Critérios:
+ * 1. Ativo
+ * 2. Menor risco
+ * 3. Melhor SLA
  */
-export function decidirFornecedor({ produtoId, quantidade }) {
-  const avaliados = avaliarFornecedores(produtoId);
+export function decidirFornecedor({ productSnapshot }) {
+  const candidatos = fornecedores.filter(f => f.ativo);
 
-  if (!avaliados.length) {
+  if (candidatos.length === 0) {
     return {
       ok: false,
-      motivo: "SEM_FORNECEDOR_DISPONIVEL"
+      reason: "NO_ACTIVE_SUPPLIER"
     };
   }
 
-  const escolhido = avaliados[0];
-
-  if (escolhido.estoque < quantidade) {
-    return {
-      ok: false,
-      motivo: "ESTOQUE_INSUFICIENTE",
-      fornecedor: escolhido.id
-    };
-  }
+  const escolhido = candidatos.sort((a, b) => {
+    // risco pesa mais que SLA
+    if (a.risco !== b.risco) {
+      return a.risco - b.risco;
+    }
+    return a.slaDias - b.slaDias;
+  })[0];
 
   return {
     ok: true,
     fornecedor: {
       id: escolhido.id,
       nome: escolhido.nome,
-      sla: escolhido.sla,
-      margem: escolhido.margem,
+      slaDias: escolhido.slaDias,
       risco: escolhido.risco
     }
   };
