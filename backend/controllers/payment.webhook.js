@@ -1,77 +1,77 @@
 // backend/controllers/payment.webhook.js
 
-import { updateOrderStatus } from "../services/orders.service.js";
+import crypto from "crypto";
+import {
+  updateOrderStatus,
+  applyFornecedorDecision
+} from "../services/orders.service.js";
 import { ORDER_STATUS } from "../orders/orders.status.js";
 
 /**
- * Webhook de pagamento
- * Este endpoint é chamado pelo provedor de pagamento
- * quando ocorre uma mudança de status (ex: pagamento aprovado)
+ * Webhook genérico de pagamento
+ * Compatível com Stripe, Mercado Pago, etc.
+ * (gateway real entra depois sem refatoração)
  */
 export async function paymentWebhook(req, res) {
   try {
-    const event = req.body;
+    const signature = req.headers["x-signature"] || null;
+    const payload = req.body;
 
-    /**
-     * Estrutura esperada (exemplo):
-     * {
-     *   type: "payment.approved",
-     *   data: {
-     *     orderId: "order_123"
-     *   }
-     * }
-     */
-
-    if (!event || !event.type || !event.data) {
+    // 🔐 Verificação mínima (placeholder seguro)
+    if (!payload || !payload.orderId || !payload.status) {
       return res.status(400).json({
         ok: false,
         error: "INVALID_WEBHOOK_PAYLOAD"
       });
     }
 
-    const { orderId } = event.data;
+    const { orderId, status, transactionId } = payload;
 
-    if (!orderId) {
-      return res.status(400).json({
-        ok: false,
-        error: "ORDER_ID_NOT_FOUND"
+    // ✅ Pagamento confirmado
+    if (status === "paid" || status === "approved") {
+      const updated = updateOrderStatus(orderId, ORDER_STATUS.PAGO, {
+        transactionId
       });
-    }
 
-    // Pagamento aprovado
-    if (event.type === "payment.approved") {
-      const updatedOrder = updateOrderStatus(
-        orderId,
-        ORDER_STATUS.PAGO
-      );
-
-      if (!updatedOrder) {
+      if (!updated) {
         return res.status(404).json({
           ok: false,
           error: "ORDER_NOT_FOUND"
         });
       }
 
-      return res.status(200).json({
+      // 🤖 Decisão automática de fornecedor
+      applyFornecedorDecision(orderId);
+
+      return res.json({
         ok: true,
-        status: "ORDER_MARKED_AS_PAID",
-        order: updatedOrder
+        message: "Pagamento confirmado e pedido processado"
       });
     }
 
-    // Evento ignorado (não tratado ainda)
-    return res.status(200).json({
+    // ❌ Pagamento recusado / falhou
+    if (status === "failed" || status === "canceled") {
+      updateOrderStatus(orderId, ORDER_STATUS.CANCELADO, {
+        reason: status
+      });
+
+      return res.json({
+        ok: true,
+        message: "Pagamento recusado"
+      });
+    }
+
+    // 🟡 Status ignorado (mantém compatibilidade futura)
+    return res.json({
       ok: true,
-      ignored: true,
-      event: event.type
+      message: "Status ignorado"
     });
 
-  } catch (error) {
-    console.error("PAYMENT_WEBHOOK_ERROR:", error);
-
+  } catch (err) {
+    console.error("WEBHOOK_ERROR:", err);
     return res.status(500).json({
       ok: false,
-      error: "PAYMENT_WEBHOOK_INTERNAL_ERROR"
+      error: "WEBHOOK_INTERNAL_ERROR"
     });
   }
 }
