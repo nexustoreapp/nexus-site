@@ -58,6 +58,10 @@ export async function createOrder(payload = {}) {
     status: ORDER_STATUS.CRIADO,
     paymentStatus: "UNPAID",
 
+    // info de pagamento anexada
+    payment: null,
+    externalPaymentId: null,
+
     createdAt: nowISO(),
     updatedAt: nowISO(),
 
@@ -125,6 +129,52 @@ export async function addOrderEvent(orderId, event = {}) {
 
   ORDERS.set(orderId, order);
   return clone(e);
+}
+
+/**
+ * Anexa dados de pagamento ao pedido
+ * Usado quando você cria um pagamento no gateway e precisa "ligar" ao pedido.
+ *
+ * paymentData esperado (exemplos):
+ * {
+ *   provider: "mercadopago",
+ *   preferenceId: "...",
+ *   paymentId: "...",
+ *   status: "pending" | "approved" | ...
+ *   method: "pix" | "card" | "boleto",
+ *   amount: 123.45,
+ *   raw: {...} // opcional
+ * }
+ */
+export async function attachPayment(orderId, paymentData = {}) {
+  const order = ORDERS.get(orderId);
+  if (!order) return null;
+
+  const provider = paymentData.provider || "unknown";
+  const paymentId = paymentData.paymentId || paymentData.id || null;
+
+  order.payment = {
+    provider,
+    ...paymentData
+  };
+
+  if (paymentId) order.externalPaymentId = paymentId;
+  order.updatedAt = nowISO();
+
+  await addOrderEvent(orderId, {
+    type: "PAYMENT_ATTACHED",
+    note: `Pagamento anexado (${provider})`,
+    meta: {
+      provider,
+      paymentId,
+      status: paymentData.status || null,
+      method: paymentData.method || null,
+      amount: paymentData.amount || null
+    }
+  });
+
+  ORDERS.set(orderId, order);
+  return clone(order);
 }
 
 /**
