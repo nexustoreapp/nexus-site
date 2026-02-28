@@ -8,7 +8,6 @@ import { ORDER_STATUS } from "../orders/orders.status.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Armazenamento simples e seguro (não depende de libs, não quebra deploy)
 // Persistência em arquivo local do servidor (Render).
 const DATA_DIR = path.resolve(__dirname, "../data");
 const STORE_FILE = path.join(DATA_DIR, "orders.store.json");
@@ -34,7 +33,6 @@ async function readStore() {
   try {
     return JSON.parse(raw);
   } catch {
-    // Se corromper por algum motivo, reinicia sem quebrar deploy
     return { orders: [] };
   }
 }
@@ -49,12 +47,11 @@ function nowISO() {
 }
 
 function genId(prefix = "ord") {
-  // ID simples e consistente (sem libs)
   return `${prefix}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
 }
 
 // ===== API do Service =====
-export { ORDER_STATUS }; // reexport pra qualquer arquivo que quiser importar daqui
+export { ORDER_STATUS }; // reexport
 
 export async function createOrder(payload = {}) {
   const store = await readStore();
@@ -63,10 +60,8 @@ export async function createOrder(payload = {}) {
     id: genId("order"),
     userId: payload.userId || null,
 
-    // itens do carrinho (como veio do checkout)
     items: Array.isArray(payload.items) ? payload.items : [],
 
-    // resumo financeiro
     totals: payload.totals || {
       subtotal: 0,
       shipping: 0,
@@ -74,19 +69,17 @@ export async function createOrder(payload = {}) {
       total: 0
     },
 
-    // dados de frete / destino
     shipping: payload.shipping || {
       address: null,
       method: null,
       etaDays: null
     },
 
-    // pagamento
     payment: payload.payment || {
       provider: null, // ex: "mercadopago"
       status: "PENDING",
-      externalId: null, // id do pagamento no gateway
-      method: null // pix / card / boleto
+      externalId: null,
+      method: null
     },
 
     status: ORDER_STATUS.CRIADO,
@@ -127,9 +120,37 @@ export async function attachPayment(orderId, paymentPatch = {}) {
 
   const current = store.orders[idx];
   current.payment = {
-    ...current.payment,
+    ...(current.payment || {}),
     ...paymentPatch
   };
+  current.updatedAt = nowISO();
+
+  store.orders[idx] = current;
+  await writeStore(store);
+
+  return current;
+}
+
+/**
+ * addOrderEvent:
+ * - adiciona um evento no histórico sem necessariamente mudar status
+ * - seu payment.controller.js usa isso pra registrar etapas do fluxo
+ */
+export async function addOrderEvent(orderId, event = {}) {
+  const store = await readStore();
+  const idx = store.orders.findIndex((o) => o.id === orderId);
+  if (idx === -1) return null;
+
+  const current = store.orders[idx];
+
+  current.history = Array.isArray(current.history) ? current.history : [];
+  current.history.push({
+    at: nowISO(),
+    status: event.status || current.status || null,
+    note: event.note || null,
+    meta: event.meta || null
+  });
+
   current.updatedAt = nowISO();
 
   store.orders[idx] = current;
@@ -147,6 +168,7 @@ export async function updateOrderStatus(orderId, newStatus, meta = {}) {
 
   current.status = newStatus;
   current.updatedAt = nowISO();
+
   current.history = Array.isArray(current.history) ? current.history : [];
   current.history.push({
     at: nowISO(),
@@ -155,7 +177,6 @@ export async function updateOrderStatus(orderId, newStatus, meta = {}) {
     meta: meta.meta || null
   });
 
-  // Se quiser sincronizar status de pagamento também
   if (meta.paymentStatus) {
     current.payment = current.payment || {};
     current.payment.status = meta.paymentStatus;
