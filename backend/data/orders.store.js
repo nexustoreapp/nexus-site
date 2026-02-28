@@ -1,49 +1,25 @@
 // backend/data/orders.store.js
+import { createOrder, getOrderById, listOrdersByUser, updateOrderStatus } from "../services/orders.service.js";
 
-/**
- * Store temporário de pedidos
- * (fase MVP – depois migra para banco de dados)
- */
-
-const ordersStore = [];
-
-/**
- * Cria um novo pedido
- */
-export function createOrder(order) {
-  ordersStore.push(order);
-  return order;
+export async function storeCreateOrder(payload) {
+  return createOrder(payload);
 }
 
-/**
- * Busca pedido por ID
- */
-export function findOrderById(orderId) {
-  return ordersStore.find(o => o.id === orderId);
+export async function storeGetOrderById(orderId) {
+  return getOrderById(orderId);
 }
 
-/**
- * Atualiza status do pedido
- */
-export function updateOrder(orderId, data) {
-  const order = findOrderById(orderId);
-  if (!order) return null;
-
-  Object.assign(order, data, {
-    updatedAt: new Date().toISOString()
-  });
-
-  return order;
+export async function storeListOrdersByUser(userId) {
+  return listOrdersByUser(userId);
 }
 
-/**
- * Lista pedidos por usuário
- */
-export function findOrdersByUser(userId) {
-  return ordersStore.filter(o => o.userId === userId);
+export async function storeUpdateOrderStatus(orderId, nextStatus, extra = {}) {
+  return updateOrderStatus(orderId, nextStatus, extra);
 }
 
-/**
- * Exporta o store bruto (uso interno)
- */
-export default ordersStore;
+export default {
+  storeCreateOrder,
+  storeGetOrderById,
+  storeListOrdersByUser,
+  storeUpdateOrderStatus
+};
