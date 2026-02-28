@@ -1,18 +1,16 @@
+// backend/routes/orders.routes.js
 import { Router } from "express";
-import { requireAuth } from "../middlewares/auth.middleware.js";
-import ordersStore from "../data/orders.store.js";
+import {
+  createOrderController,
+  getOrderController,
+  listMyOrdersController
+} from "../controllers/orders.controller.js";
 
 const router = Router();
 
-router.get("/", requireAuth, (req, res) => {
-  const userOrders = ordersStore.filter(
-    o => o.userId === req.user.id
-  );
-
-  res.json({
-    ok: true,
-    orders: userOrders
-  });
-});
+// /api/v1/orders
+router.get("/me", listMyOrdersController);
+router.post("/create", createOrderController);
+router.get("/:id", getOrderController);
 
 export default router;
