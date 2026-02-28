@@ -1,121 +1,93 @@
 // backend/services/orders.service.js
-import { pool } from "../db/pool.js";
-import { v4 as uuid } from "uuid";
+import crypto from "crypto";
+import { dbQuery } from "../db/pool.js";
 
-// status base (mantém compat com teu padrão)
-export const ORDER_STATUS = {
-  CRIADO: "CRIADO",
-  AGUARDANDO_PAGAMENTO: "AGUARDANDO_PAGAMENTO",
-  PAGO: "PAGO",
-  ENVIADO_PARA_FORNECEDOR: "ENVIADO_PARA_FORNECEDOR",
-  ACEITO_PELO_FORNECEDOR: "ACEITO_PELO_FORNECEDOR",
-  EM_SEPARACAO: "EM_SEPARACAO",
-  EM_TRANSITO: "EM_TRANSITO",
-  ENTREGUE: "ENTREGUE",
-  CANCELADO: "CANCELADO",
-  FALHA_FORNECEDOR: "FALHA_FORNECEDOR"
-};
-
-export async function createOrder({ userEmail, userCpf, items = [], amountCents = 0, currency = "BRL" }) {
-  const orderId = uuid();
-
-  await pool.query(
-    `INSERT INTO orders (id, user_email, user_cpf, status, amount_cents, currency)
-     VALUES ($1,$2,$3,$4,$5,$6)`,
-    [orderId, userEmail || null, userCpf || null, ORDER_STATUS.AGUARDANDO_PAGAMENTO, amountCents, currency]
-  );
-
-  // itens
-  for (const it of items) {
-    const itemId = uuid();
-    await pool.query(
-      `INSERT INTO order_items (id, order_id, product_id, title, quantity, unit_price_cents)
-       VALUES ($1,$2,$3,$4,$5,$6)`,
-      [
-        itemId,
-        orderId,
-        it.productId || null,
-        it.title || null,
-        Number(it.quantity || 1),
-        Number(it.unitPriceCents || 0)
-      ]
-    );
-  }
-
-  // evento inicial
-  await addOrderEvent(orderId, ORDER_STATUS.AGUARDANDO_PAGAMENTO, "Pedido criado e aguardando pagamento.");
-
-  return { orderId };
+function nowIso() {
+  return new Date().toISOString();
 }
 
-export async function attachProviderReference(orderId, { provider, providerReference }) {
-  await pool.query(
-    `UPDATE orders
-     SET provider=$2, provider_reference=$3, updated_at=NOW()
-     WHERE id=$1`,
-    [orderId, provider || null, providerReference || null]
+export async function createOrder({
+  userId,
+  userEmail,
+  productId,
+  amountCents,
+  currency = "BRL",
+  status = "CRIADO",
+  provider = "manual",
+  providerRef = null
+}) {
+  const id = crypto.randomUUID();
+
+  await dbQuery(
+    `
+    INSERT INTO orders
+      (id, user_id, user_email, product_id, amount_cents, currency, status, provider, provider_ref, created_at, updated_at)
+    VALUES
+      ($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW(),NOW())
+    `,
+    [id, userId, userEmail || null, productId, amountCents, currency, status, provider, providerRef]
   );
+
+  await addOrderEvent(id, "ORDER_CREATED", { at: nowIso() });
+
+  return { id };
 }
 
 export async function getOrderById(orderId) {
-  const o = await pool.query(`SELECT * FROM orders WHERE id=$1`, [orderId]);
-  if (!o.rows.length) return null;
-
-  const items = await pool.query(
-    `SELECT product_id, title, quantity, unit_price_cents
-     FROM order_items WHERE order_id=$1 ORDER BY created_at ASC`,
-    [orderId]
-  );
-
-  const events = await pool.query(
-    `SELECT status, note, meta, created_at
-     FROM order_events WHERE order_id=$1 ORDER BY created_at ASC`,
-    [orderId]
-  );
-
-  return { ...o.rows[0], items: items.rows, events: events.rows };
+  const { rows } = await dbQuery(`SELECT * FROM orders WHERE id = $1 LIMIT 1`, [orderId]);
+  return rows[0] || null;
 }
 
-export async function listOrdersByUserEmail(userEmail) {
-  const r = await pool.query(
-    `SELECT id, status, amount_cents, currency, provider, provider_reference, created_at, updated_at
-     FROM orders
-     WHERE user_email=$1
-     ORDER BY created_at DESC
-     LIMIT 100`,
-    [userEmail]
+export async function listOrdersByUser(userId) {
+  const { rows } = await dbQuery(
+    `SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC`,
+    [userId]
   );
-  return r.rows;
+  return rows;
 }
 
-export async function addOrderEvent(orderId, status, note = "", meta = null) {
-  await pool.query(
-    `INSERT INTO order_events (id, order_id, status, note, meta)
-     VALUES ($1,$2,$3,$4,$5)`,
-    [uuid(), orderId, status, note || null, meta ? JSON.stringify(meta) : null]
+export async function updateOrderStatus(orderId, nextStatus, extra = {}) {
+  const order = await getOrderById(orderId);
+  if (!order) {
+    return { ok: false, error: "ORDER_NOT_FOUND" };
+  }
+
+  await dbQuery(
+    `
+    UPDATE orders
+       SET status = $2,
+           tracking_code = COALESCE($3, tracking_code),
+           tracking_url  = COALESCE($4, tracking_url),
+           shipping_eta_days = COALESCE($5, shipping_eta_days),
+           updated_at = NOW()
+     WHERE id = $1
+    `,
+    [
+      orderId,
+      nextStatus,
+      extra.tracking_code || null,
+      extra.tracking_url || null,
+      typeof extra.shipping_eta_days === "number" ? extra.shipping_eta_days : null
+    ]
+  );
+
+  await addOrderEvent(orderId, "ORDER_STATUS_UPDATED", {
+    from: order.status,
+    to: nextStatus,
+    extra,
+    at: nowIso()
+  });
+
+  return { ok: true };
+}
+
+export async function addOrderEvent(orderId, type, payload = {}) {
+  await dbQuery(
+    `INSERT INTO order_events (order_id, type, payload) VALUES ($1,$2,$3)`,
+    [orderId, type, JSON.stringify(payload)]
   );
 }
 
-export async function updateOrderStatus(orderId, status, note = "", meta = null) {
-  await pool.query(
-    `UPDATE orders SET status=$2, updated_at=NOW() WHERE id=$1`,
-    [orderId, status]
-  );
-  await addOrderEvent(orderId, status, note, meta);
-}
-
-export async function findOrderByProviderReference(provider, providerReference) {
-  const r = await pool.query(
-    `SELECT * FROM orders WHERE provider=$1 AND provider_reference=$2 LIMIT 1`,
-    [provider, providerReference]
-  );
-  return r.rows[0] || null;
-}
-
-export async function recordPayment({ orderId, provider, providerPaymentId, status, raw }) {
-  await pool.query(
-    `INSERT INTO payments (id, order_id, provider, provider_payment_id, status, raw)
-     VALUES ($1,$2,$3,$4,$5,$6)`,
-    [uuid(), orderId, provider, providerPaymentId || null, status, raw ? JSON.stringify(raw) : null]
-  );
+export async function setTracking(orderId, { tracking_code, tracking_url }) {
+  return updateOrderStatus(orderId, "EM_TRANSITO", { tracking_code, tracking_url });
 }
