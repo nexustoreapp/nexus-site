@@ -1,76 +1,180 @@
 // backend/controllers/payment.webhook.js
-import fetch from "node-fetch";
+import crypto from "crypto";
+
+import { ORDER_STATUS } from "../orders/orders.status.js";
 import {
-  findOrderByProviderReference,
-  recordPayment,
   updateOrderStatus,
-  ORDER_STATUS
+  findOrderById,
+  findOrderByPaymentId
 } from "../services/orders.service.js";
 
+/* =========================================================
+   WEBHOOK PAGAMENTO (Mercado Pago / genérico)
+   - Não depende de front
+   - Atualiza status do pedido quando houver confirmação
+========================================================= */
+
 /**
- * Webhook Mercado Pago:
- * - recebe notificação
- * - busca pagamento no MP
- * - identifica orderId via external_reference
- * - grava payment + atualiza status do pedido
+ * Verifica assinatura do webhook (opcional).
+ * Se você NÃO tiver assinatura habilitada no provedor, pode deixar false.
  */
-export async function mercadopagoWebhook(req, res) {
+function verifySignature(req) {
+  const secret = process.env.PAYMENT_WEBHOOK_SECRET;
+  if (!secret) return true; // sem secret configurado, não bloqueia
+
+  // Alguns gateways mandam assinatura em headers diferentes
+  const sig =
+    req.headers["x-signature"] ||
+    req.headers["x-webhook-signature"] ||
+    req.headers["x-hub-signature"] ||
+    "";
+
+  // Se não veio assinatura, rejeita apenas se você quiser ser estrito:
+  if (!sig) return false;
+
+  // Corpo raw nem sempre está disponível; aqui usamos JSON stringificado
+  const body = JSON.stringify(req.body ?? {});
+  const hmac = crypto.createHmac("sha256", secret).update(body).digest("hex");
+
+  // compara de forma segura
   try {
-    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
-    if (!MP_ACCESS_TOKEN) return res.status(500).json({ ok: false, error: "PAYMENT_NOT_CONFIGURED" });
+    return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(hmac));
+  } catch {
+    return false;
+  }
+}
 
-    // MP envia params diferentes dependendo do tipo
-    const type = req.query.type || req.body?.type;
-    const dataId = req.query["data.id"] || req.body?.data?.id || req.body?.id;
+/**
+ * Extrai o id do pedido de vários formatos possíveis.
+ * Mercado Pago geralmente traz:
+ * - data.id / id / resource
+ * - ou metadata / external_reference na consulta do pagamento (depende do seu create)
+ */
+function extractPaymentId(body) {
+  if (!body) return null;
 
-    // Avisa MP "ok recebi" mesmo se for ruído, pra evitar retry infinito
-    if (!dataId) return res.json({ ok: true, ignored: true });
+  // formatos comuns
+  return (
+    body?.data?.id ||
+    body?.id ||
+    body?.payment_id ||
+    body?.resource_id ||
+    null
+  );
+}
 
-    // buscamos detalhes do pagamento
-    // doc: /v1/payments/:id
-    const pr = await fetch(`https://api.mercadopago.com/v1/payments/${dataId}`, {
-      headers: { Authorization: `Bearer ${MP_ACCESS_TOKEN}` }
-    });
+/**
+ * Extrai o id do pedido se vier explícito no webhook
+ */
+function extractOrderId(body) {
+  if (!body) return null;
 
-    const payment = await pr.json();
-    if (!pr.ok) return res.json({ ok: true, ignored: true });
+  return (
+    body?.order_id ||
+    body?.data?.order_id ||
+    body?.metadata?.order_id ||
+    body?.external_reference || // dependendo do gateway, pode ser string
+    null
+  );
+}
 
-    const orderId = payment?.external_reference;
-    if (!orderId) return res.json({ ok: true, ignored: true });
+/**
+ * Mapeia status do gateway para status interno
+ * Você pode ajustar depois quando conectar o MP real de verdade (consulta pagamento, etc.)
+ */
+function mapGatewayStatusToOrderStatus(body) {
+  const s =
+    (body?.status ||
+      body?.data?.status ||
+      body?.payment?.status ||
+      "").toString().toLowerCase();
 
-    // Confirma que existe pedido vinculado ao provider ref (preference id) OU só pelo orderId
-    // Aqui vamos pelo orderId direto (external_reference é o id do pedido)
-    const status = payment?.status || "unknown";
+  if (["approved", "paid", "succeeded", "confirmed"].includes(s)) {
+    return ORDER_STATUS.PAGO;
+  }
 
-    await recordPayment({
-      orderId,
-      provider: "mercadopago",
-      providerPaymentId: String(payment?.id || dataId),
-      status,
-      raw: payment
-    });
+  if (["pending", "in_process", "authorized"].includes(s)) {
+    return ORDER_STATUS.AGUARDANDO_PAGAMENTO;
+  }
 
-    if (status === "approved") {
-      await updateOrderStatus(orderId, ORDER_STATUS.PAGO, "Pagamento aprovado (Mercado Pago).", {
-        provider_payment_id: payment?.id,
-        payment_status: status
-      });
-    } else if (status === "rejected" || status === "cancelled") {
-      await updateOrderStatus(orderId, ORDER_STATUS.CANCELADO, "Pagamento recusado/cancelado (Mercado Pago).", {
-        provider_payment_id: payment?.id,
-        payment_status: status
-      });
-    } else {
-      // pending/in_process/etc
-      await updateOrderStatus(orderId, ORDER_STATUS.AGUARDANDO_PAGAMENTO, "Pagamento pendente/em processamento (Mercado Pago).", {
-        provider_payment_id: payment?.id,
-        payment_status: status
+  if (["cancelled", "canceled", "rejected", "failed", "refunded"].includes(s)) {
+    return ORDER_STATUS.CANCELADO;
+  }
+
+  // fallback: não muda
+  return null;
+}
+
+/* =========================================================
+   Controller principal
+========================================================= */
+export async function paymentWebhook(req, res) {
+  try {
+    // 1) assinatura (se estiver ativa)
+    const okSig = verifySignature(req);
+    if (!okSig) {
+      return res.status(401).json({
+        ok: false,
+        error: "INVALID_WEBHOOK_SIGNATURE"
       });
     }
 
-    return res.json({ ok: true });
-  } catch (e) {
-    // não derruba o webhook
-    return res.json({ ok: true, error: "WEBHOOK_HANDLED_WITH_ERROR" });
+    const body = req.body || {};
+
+    // 2) identificar pagamento/pedido
+    const paymentId = extractPaymentId(body);
+    const orderId = extractOrderId(body);
+
+    // 3) mapear status
+    const newStatus = mapGatewayStatusToOrderStatus(body);
+
+    // Se não tem status que a gente reconhece, só confirma recebimento
+    if (!newStatus) {
+      return res.json({
+        ok: true,
+        received: true,
+        ignored: true
+      });
+    }
+
+    // 4) localizar pedido
+    let order = null;
+
+    if (orderId) {
+      order = await findOrderById(orderId);
+    }
+
+    if (!order && paymentId) {
+      order = await findOrderByPaymentId(paymentId);
+    }
+
+    if (!order) {
+      // webhook chegou antes do pedido existir (ou ids não batem)
+      return res.status(202).json({
+        ok: true,
+        received: true,
+        pending_match: true
+      });
+    }
+
+    // 5) atualizar status do pedido
+    await updateOrderStatus(order.id, newStatus, {
+      source: "webhook",
+      paymentId: paymentId || order.paymentId || null,
+      raw: body
+    });
+
+    return res.json({
+      ok: true,
+      received: true,
+      orderId: order.id,
+      status: newStatus
+    });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      error: "WEBHOOK_INTERNAL_ERROR",
+      message: err?.message || "unknown"
+    });
   }
 }
