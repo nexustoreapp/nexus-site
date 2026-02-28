@@ -1,193 +1,159 @@
 // backend/services/orders.service.js
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
-
+import crypto from "crypto";
 import { ORDER_STATUS } from "../orders/orders.status.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Persistência em arquivo local do servidor (Render).
-const DATA_DIR = path.resolve(__dirname, "../data");
-const STORE_FILE = path.join(DATA_DIR, "orders.store.json");
-
-// ===== Helpers de store (arquivo JSON) =====
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-
-  try {
-    await fs.access(STORE_FILE);
-  } catch {
-    await fs.writeFile(
-      STORE_FILE,
-      JSON.stringify({ orders: [] }, null, 2),
-      "utf-8"
-    );
-  }
-}
-
-async function readStore() {
-  await ensureStore();
-  const raw = await fs.readFile(STORE_FILE, "utf-8");
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return { orders: [] };
-  }
-}
-
-async function writeStore(store) {
-  await ensureStore();
-  await fs.writeFile(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
-}
+/**
+ * Store em memória (MVP)
+ * Depois a gente troca por PostgreSQL sem quebrar a API do service.
+ */
+const ORDERS = new Map(); // orderId -> orderObject
 
 function nowISO() {
   return new Date().toISOString();
 }
 
-function genId(prefix = "ord") {
-  return `${prefix}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+function safeId(prefix = "ord") {
+  return `${prefix}_${crypto.randomBytes(10).toString("hex")}`;
 }
 
-// ===== API do Service =====
-export { ORDER_STATUS }; // reexport
-
-export async function createOrder(payload = {}) {
-  const store = await readStore();
-
-  const order = {
-    id: genId("order"),
-    userId: payload.userId || null,
-
-    items: Array.isArray(payload.items) ? payload.items : [],
-
-    totals: payload.totals || {
-      subtotal: 0,
-      shipping: 0,
-      discount: 0,
-      total: 0
-    },
-
-    shipping: payload.shipping || {
-      address: null,
-      method: null,
-      etaDays: null
-    },
-
-    payment: payload.payment || {
-      provider: null, // ex: "mercadopago"
-      status: "PENDING",
-      externalId: null,
-      method: null
-    },
-
-    status: ORDER_STATUS.CRIADO,
-    history: [
-      { at: nowISO(), status: ORDER_STATUS.CRIADO, note: "Order created" }
-    ],
-
-    createdAt: nowISO(),
-    updatedAt: nowISO()
-  };
-
-  store.orders.push(order);
-  await writeStore(store);
-
-  return order;
+function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
 }
 
-export async function findOrderById(orderId) {
-  if (!orderId) return null;
-  const store = await readStore();
-  return store.orders.find((o) => o.id === orderId) || null;
-}
-
-export async function listOrdersByUser(userId) {
-  const store = await readStore();
-  return store.orders.filter((o) => o.userId === userId);
-}
-
-export async function listAllOrders({ limit = 200 } = {}) {
-  const store = await readStore();
-  return store.orders.slice(-limit).reverse();
-}
-
-export async function attachPayment(orderId, paymentPatch = {}) {
-  const store = await readStore();
-  const idx = store.orders.findIndex((o) => o.id === orderId);
-  if (idx === -1) return null;
-
-  const current = store.orders[idx];
-  current.payment = {
-    ...(current.payment || {}),
-    ...paymentPatch
-  };
-  current.updatedAt = nowISO();
-
-  store.orders[idx] = current;
-  await writeStore(store);
-
-  return current;
+function normalizeEmail(email) {
+  return String(email || "").trim().toLowerCase();
 }
 
 /**
- * addOrderEvent:
- * - adiciona um evento no histórico sem necessariamente mudar status
- * - seu payment.controller.js usa isso pra registrar etapas do fluxo
+ * Cria pedido (mínimo)
+ * Espera payload no formato:
+ * {
+ *   userEmail,
+ *   items: [{ sku, title, price, qty }],
+ *   shipping: { price, etaDays, carrier },
+ *   totals: { subtotal, shipping, total },
+ *   supplier: { provider, ... } (opcional),
+ *   metadata: {} (opcional)
+ * }
+ */
+export async function createOrder(payload = {}) {
+  const orderId = payload.orderId || safeId("order");
+
+  const userEmail = normalizeEmail(payload.userEmail);
+  const items = Array.isArray(payload.items) ? payload.items : [];
+  const shipping = payload.shipping || {};
+  const totals = payload.totals || {};
+  const supplier = payload.supplier || null;
+  const metadata = payload.metadata || {};
+
+  const order = {
+    id: orderId,
+    userEmail,
+    items,
+    shipping,
+    totals,
+    supplier,
+    metadata,
+
+    status: ORDER_STATUS.CRIADO,
+    paymentStatus: "UNPAID",
+
+    createdAt: nowISO(),
+    updatedAt: nowISO(),
+
+    // trilha de eventos (auditoria)
+    events: [
+      {
+        at: nowISO(),
+        type: "ORDER_CREATED",
+        note: "Pedido criado",
+        meta: {}
+      }
+    ]
+  };
+
+  ORDERS.set(orderId, order);
+  return clone(order);
+}
+
+/**
+ * Busca por ID
+ */
+export async function findOrderById(orderId) {
+  const order = ORDERS.get(orderId);
+  return order ? clone(order) : null;
+}
+
+/**
+ * Compat: alguns lugares importam getOrderById
+ */
+export async function getOrderById(orderId) {
+  return findOrderById(orderId);
+}
+
+/**
+ * Lista por email do usuário
+ */
+export async function listOrdersByUserEmail(userEmail) {
+  const email = normalizeEmail(userEmail);
+  const out = [];
+  for (const order of ORDERS.values()) {
+    if (normalizeEmail(order.userEmail) === email) out.push(clone(order));
+  }
+  // mais recente primeiro
+  out.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+  return out;
+}
+
+/**
+ * Adiciona evento no pedido (audit trail)
  */
 export async function addOrderEvent(orderId, event = {}) {
-  const store = await readStore();
-  const idx = store.orders.findIndex((o) => o.id === orderId);
-  if (idx === -1) return null;
+  const order = ORDERS.get(orderId);
+  if (!order) return null;
 
-  const current = store.orders[idx];
-
-  current.history = Array.isArray(current.history) ? current.history : [];
-  current.history.push({
+  const e = {
     at: nowISO(),
-    status: event.status || current.status || null,
-    note: event.note || null,
-    meta: event.meta || null
-  });
+    type: event.type || "ORDER_EVENT",
+    note: event.note || "",
+    meta: event.meta || {}
+  };
 
-  current.updatedAt = nowISO();
+  order.events = Array.isArray(order.events) ? order.events : [];
+  order.events.push(e);
+  order.updatedAt = nowISO();
 
-  store.orders[idx] = current;
-  await writeStore(store);
-
-  return current;
+  ORDERS.set(orderId, order);
+  return clone(e);
 }
 
-export async function updateOrderStatus(orderId, newStatus, meta = {}) {
-  const store = await readStore();
-  const idx = store.orders.findIndex((o) => o.id === orderId);
-  if (idx === -1) return null;
+/**
+ * Atualiza status do pedido
+ */
+export async function updateOrderStatus(orderId, newStatus, extra = {}) {
+  const order = ORDERS.get(orderId);
+  if (!order) return null;
 
-  const current = store.orders[idx];
+  const prev = order.status;
+  order.status = newStatus;
+  order.updatedAt = nowISO();
 
-  current.status = newStatus;
-  current.updatedAt = nowISO();
+  // campos extras opcionais
+  if (extra.paymentStatus) order.paymentStatus = extra.paymentStatus;
+  if (extra.externalPaymentId) order.externalPaymentId = extra.externalPaymentId;
+  if (extra.tracking) order.tracking = extra.tracking;
 
-  current.history = Array.isArray(current.history) ? current.history : [];
-  current.history.push({
-    at: nowISO(),
-    status: newStatus,
-    note: meta.note || null,
-    meta: meta.meta || null
+  await addOrderEvent(orderId, {
+    type: "STATUS_CHANGED",
+    note: extra.note || `Status: ${prev} -> ${newStatus}`,
+    meta: { prev, next: newStatus, ...extra }
   });
 
-  if (meta.paymentStatus) {
-    current.payment = current.payment || {};
-    current.payment.status = meta.paymentStatus;
-  }
-  if (meta.externalPaymentId) {
-    current.payment = current.payment || {};
-    current.payment.externalId = meta.externalPaymentId;
-  }
-
-  store.orders[idx] = current;
-  await writeStore(store);
-
-  return current;
+  ORDERS.set(orderId, order);
+  return clone(order);
 }
+
+/**
+ * Compat extra: se algum lugar ainda usar um nome antigo
+ */
+export { ORDER_STATUS };
