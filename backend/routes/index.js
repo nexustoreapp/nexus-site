@@ -1,3 +1,4 @@
+// backend/routes/index.js
 import { Router } from "express";
 
 import healthRoutes from "./health.routes.js";
@@ -9,6 +10,7 @@ import authRoutes from "./auth.routes.js";
 import checkoutRoutes from "./checkout.routes.js";
 import paymentRoutes from "./payment.routes.js";
 import ordersRoutes from "./orders.routes.js";
+import trackingRoutes from "./tracking.routes.js";
 
 const router = Router();
 
@@ -22,5 +24,6 @@ router.use("/v1/auth", authRoutes);
 router.use("/v1/checkout", checkoutRoutes);
 router.use("/v1/payment", paymentRoutes);
 router.use("/v1/orders", ordersRoutes);
+router.use("/v1/tracking", trackingRoutes);
 
 export default router;
