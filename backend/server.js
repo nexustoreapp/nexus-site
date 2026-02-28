@@ -1,22 +1,28 @@
 // backend/server.js
 import dotenv from "dotenv";
-import app from "./app.js";
-import { initDb } from "./db/init.js";
-
 dotenv.config();
+
+import app from "./app.js";
+import { runMigrations } from "./db/migrate.js";
 
 const PORT = process.env.PORT || 10000;
 
-async function boot() {
-  // garante DB pronto
-  await initDb();
+async function bootstrap() {
+  // Migração controlada por env, pra não rodar “sem querer”
+  if (process.env.MIGRATE_ON_START === "1") {
+    console.log("🗄️ MIGRATE_ON_START=1 -> rodando migrations...");
+    await runMigrations();
+    console.log("✅ Migrations OK");
+  } else {
+    console.log("ℹ️ MIGRATE_ON_START != 1 -> migrations não rodaram");
+  }
 
   app.listen(PORT, () => {
     console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
   });
 }
 
-boot().catch((err) => {
-  console.error("❌ Falha ao iniciar o servidor:", err);
+bootstrap().catch((err) => {
+  console.error("❌ Falha no bootstrap:", err);
   process.exit(1);
 });
