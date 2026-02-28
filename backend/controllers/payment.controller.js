@@ -1,35 +1,26 @@
-import fetch from "node-fetch";
+import { createPayment } from "../services/payment.service.js";
 
-export async function createPayment(req, res) {
+export async function createPaymentController(req, res) {
   try {
-    const user = req.user;
-    const { orderId, amount } = req.body;
+    const { orderId, title, price, email } = req.body;
 
-    if (!orderId || !amount) {
-      return res.status(400).json({
-        ok: false,
-        error: "ORDER_OR_AMOUNT_REQUIRED"
-      });
+    if (!orderId || !price || !email) {
+      return res.status(400).json({ ok: false, error: "INVALID_DATA" });
     }
 
-    // SIMULAÇÃO PIX (gateway real entra depois)
-    const pixPayload = {
+    const payment = await createPayment({
       orderId,
-      amount,
-      status: "PENDING",
-      qrCode: `PIX_QR_CODE_${Date.now()}`
-    };
+      title: title || "Pedido Nexus",
+      price,
+      email
+    });
 
     return res.json({
       ok: true,
-      payment: pixPayload
+      init_point: payment.init_point
     });
-
   } catch (err) {
-    console.error("[PAYMENT CREATE]", err);
-    return res.status(500).json({
-      ok: false,
-      error: "PAYMENT_CREATE_FAILED"
-    });
+    console.error("PAYMENT_ERROR:", err);
+    return res.status(500).json({ ok: false, error: "PAYMENT_FAILED" });
   }
 }
