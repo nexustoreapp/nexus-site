@@ -1,99 +1,68 @@
-// backend/controllers/payment.controller.js
-import fetch from "node-fetch";
-import { attachProviderReference, createOrder } from "../services/orders.service.js";
+// backend/controllers/payment.webhook.js
+import { updateOrderStatus, addOrderEvent } from "../services/orders.service.js";
 
-function getUserFromToken(req) {
-  const auth = req.headers.authorization || "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-  if (!token) return null;
-
+function safeJson(value) {
   try {
-    const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString("utf8"));
-    return payload || null;
+    return typeof value === "string" ? JSON.parse(value) : value;
   } catch {
-    return null;
+    return value;
   }
 }
 
 /**
- * Mercado Pago Checkout Pro (Preference)
- * - cria pedido no DB
- * - cria preference no MP
- * - retorna init_point
+ * Webhook genérico (Mercado Pago / outro gateway)
+ * Você vai mapear depois o payload real do provedor.
  */
-export async function createPaymentController(req, res) {
-  const user = getUserFromToken(req);
-  if (!user?.email) return res.status(401).json({ ok: false, error: "INVALID_OR_EXPIRED_TOKEN" });
+export async function paymentWebhook(req, res) {
+  const body = safeJson(req.body);
 
-  const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
-  const BASE_URL = process.env.PUBLIC_BASE_URL; // ex: https://nexus-site-oufm.onrender.com
+  // Tentativas comuns de achar orderId dentro de payloads diferentes:
+  const orderId =
+    body?.data?.order_id ||
+    body?.order_id ||
+    body?.metadata?.order_id ||
+    body?.external_reference ||
+    body?.reference;
 
-  if (!MP_ACCESS_TOKEN || !BASE_URL) {
-    return res.status(500).json({ ok: false, error: "PAYMENT_NOT_CONFIGURED" });
+  const paymentStatus =
+    body?.data?.status ||
+    body?.status ||
+    body?.payment_status ||
+    body?.event?.status;
+
+  if (!orderId) {
+    return res.status(400).json({ ok: false, error: "WEBHOOK_MISSING_ORDER_ID" });
   }
 
-  const { items } = req.body || {};
-  const normalized = Array.isArray(items) ? items : [];
-
-  // soma simples (centavos)
-  const amountCents = normalized.reduce((acc, it) => {
-    const q = Number(it.quantity || 1);
-    const unit = Number(it.unitPriceCents || 0);
-    return acc + q * unit;
-  }, 0);
-
-  const { orderId } = await createOrder({
-    userEmail: user.email,
-    userCpf: user.cpf || null,
-    items: normalized,
-    amountCents,
-    currency: "BRL"
-  });
-
-  const mpItems = normalized.map((it) => ({
-    id: it.productId || "item",
-    title: it.title || "Produto Nexus",
-    quantity: Number(it.quantity || 1),
-    currency_id: "BRL",
-    // MP usa unidade em reais
-    unit_price: Number((Number(it.unitPriceCents || 0) / 100).toFixed(2))
-  }));
-
-  const preferencePayload = {
-    items: mpItems,
-    external_reference: orderId,
-    notification_url: `${BASE_URL}/api/v1/payment/webhook/mercadopago`,
-    back_urls: {
-      success: `${BASE_URL}/produto.html`,
-      failure: `${BASE_URL}/produto.html`,
-      pending: `${BASE_URL}/produto.html`
-    },
-    auto_return: "approved"
-  };
-
-  const r = await fetch("https://api.mercadopago.com/checkout/preferences", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(preferencePayload)
-  });
-
-  const data = await r.json();
-
-  if (!r.ok) {
-    return res.status(502).json({ ok: false, error: "MP_PREFERENCE_FAILED", details: data });
+  // Loga evento bruto no histórico do pedido (pra auditoria)
+  try {
+    await addOrderEvent(orderId, "PAYMENT_WEBHOOK_RECEIVED", { body });
+  } catch {
+    // se o pedido ainda não existir, não quebra o webhook
   }
 
-  // guarda referência do provider (id da preference)
-  await attachProviderReference(orderId, { provider: "mercadopago", providerReference: data.id });
+  // Mapeamento mínimo (você pode refinar depois por gateway)
+  let nextOrderStatus = null;
 
-  return res.json({
-    ok: true,
-    orderId,
-    provider: "mercadopago",
-    preferenceId: data.id,
-    init_point: data.init_point
-  });
+  if (paymentStatus === "approved" || paymentStatus === "paid" || paymentStatus === "authorized") {
+    nextOrderStatus = "PAGO";
+  } else if (paymentStatus === "refunded" || paymentStatus === "cancelled" || paymentStatus === "canceled") {
+    nextOrderStatus = "CANCELADO";
+  } else if (paymentStatus === "pending" || paymentStatus === "in_process") {
+    nextOrderStatus = "AGUARDANDO_PAGAMENTO";
+  }
+
+  if (nextOrderStatus) {
+    const r = await updateOrderStatus(orderId, nextOrderStatus, {
+      provider_ref: body?.id || body?.data?.id || null
+    });
+
+    if (!r.ok) {
+      return res.status(404).json(r);
+    }
+  }
+
+  return res.status(200).json({ ok: true });
 }
+
+export default paymentWebhook;
