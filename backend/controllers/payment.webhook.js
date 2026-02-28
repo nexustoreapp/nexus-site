@@ -2,137 +2,102 @@
 import crypto from "crypto";
 
 import {
+  ORDER_STATUS,
   findOrderById,
   updateOrderStatus,
-  attachPayment,
-  ORDER_STATUS
+  addOrderEvent
 } from "../services/orders.service.js";
 
 /**
- * Webhook genérico (Mercado Pago / outros)
- * A ideia aqui é:
- * - Receber o evento
- * - Identificar o orderId (metadata / external_reference / etc)
- * - Marcar status e anexar infos de pagamento
- *
- * OBS: Validação de assinatura varia por gateway.
- * Aqui deixei um "guard" opcional por header/secret se você quiser ativar.
+ * Helpers
  */
-
-// Se você quiser travar assinatura:
-// - setar WEBHOOK_SECRET no Render
-function isValidSignature(req) {
-  const secret = process.env.WEBHOOK_SECRET;
-  if (!secret) return true; // se não setou, não bloqueia
-
-  const signature = req.headers["x-webhook-signature"];
-  if (!signature) return false;
-
-  // Assinatura simples: HMAC do body stringificado
-  // (Cada gateway é diferente; isso serve como “trava” básica)
-  const raw = JSON.stringify(req.body || {});
-  const expected = crypto.createHmac("sha256", secret).update(raw).digest("hex");
-  return signature === expected;
+function json(res, status, payload) {
+  return res.status(status).json(payload);
 }
 
-function pickOrderIdFromWebhook(body) {
-  // Tenta achar orderId onde normalmente vem:
-  // 1) metadata.orderId
-  // 2) external_reference
-  // 3) data.orderId
-  if (!body) return null;
-
-  if (body.metadata?.orderId) return body.metadata.orderId;
-  if (body.external_reference) return body.external_reference;
-  if (body.data?.orderId) return body.data.orderId;
-
-  // fallback: alguns providers mandam "resource" ou "id"
-  // mas isso costuma ser id do pagamento, não do pedido.
-  return null;
+function signHmac(secret, raw) {
+  return crypto.createHmac("sha256", secret).update(raw).digest("hex");
 }
 
-function pickPaymentInfo(body) {
-  // Normaliza o que dá pra guardar
-  return {
-    provider: body?.provider || body?.type || "unknown",
-    status: body?.status || body?.data?.status || "UNKNOWN",
-    externalId: body?.id || body?.data?.id || body?.payment_id || null,
-    method: body?.payment_method_id || body?.data?.payment_method_id || null
-  };
-}
-
-function mapPaymentToOrderStatus(paymentStatus) {
-  // Ajuste fino depois, mas já resolve o “fluxo real”
-  const s = String(paymentStatus || "").toLowerCase();
-
-  if (s === "approved" || s === "paid" || s === "authorized") {
-    return { orderStatus: ORDER_STATUS.PAGO, payStatus: "PAID" };
-  }
-
-  if (s === "pending" || s === "in_process" || s === "processing") {
-    return { orderStatus: ORDER_STATUS.AGUARDANDO_PAGAMENTO, payStatus: "PENDING" };
-  }
-
-  if (s === "cancelled" || s === "canceled" || s === "rejected" || s === "failed") {
-    return { orderStatus: ORDER_STATUS.CANCELADO, payStatus: "FAILED" };
-  }
-
-  return { orderStatus: ORDER_STATUS.AGUARDANDO_PAGAMENTO, payStatus: "UNKNOWN" };
-}
-
-export async function paymentWebhook(req, res) {
+/**
+ * Mercado Pago Webhook
+ * Esperado: POST /api/v1/payment/webhook
+ *
+ * Observação:
+ * - O Mercado Pago pode enviar payloads diferentes dependendo do tipo de notificação
+ * - Aqui a gente registra evento e, se identificar "approved", marca como PAGO
+ */
+export async function mercadopagoWebhook(req, res) {
   try {
-    if (!isValidSignature(req)) {
-      return res.status(401).json({ ok: false, error: "INVALID_WEBHOOK_SIGNATURE" });
+    const payload = req.body || {};
+
+    // (opcional) valida assinatura se você configurar um secret seu
+    const secret = process.env.MP_WEBHOOK_SECRET;
+    if (secret) {
+      const sig = req.get("x-signature") || req.get("X-Signature") || "";
+      const raw = JSON.stringify(payload);
+      const expected = signHmac(secret, raw);
+
+      if (!sig || sig !== expected) {
+        return json(res, 401, { ok: false, error: "WEBHOOK_INVALID_SIGNATURE" });
+      }
     }
 
-    const body = req.body || {};
-    const orderId = pickOrderIdFromWebhook(body);
+    // tenta achar orderId onde o MP costuma carregar
+    const orderId =
+      payload?.external_reference ||
+      payload?.metadata?.orderId ||
+      payload?.metadata?.order_id ||
+      payload?.orderId ||
+      payload?.order_id ||
+      null;
 
-    // Se não veio orderId, não dá pra aplicar no pedido
+    // Se não veio orderId, não derruba o servidor: só acusa recebimento
     if (!orderId) {
-      return res.status(200).json({
-        ok: true,
-        ignored: true,
-        reason: "NO_ORDER_ID_IN_WEBHOOK"
-      });
+      return json(res, 200, { ok: true, received: true, note: "no-order-id" });
     }
 
     const order = await findOrderById(orderId);
     if (!order) {
-      return res.status(200).json({
-        ok: true,
-        ignored: true,
-        reason: "ORDER_NOT_FOUND",
-        orderId
+      return json(res, 404, { ok: false, error: "ORDER_NOT_FOUND", orderId });
+    }
+
+    // status pode vir em vários formatos
+    const mpStatus =
+      payload?.status ||
+      payload?.data?.status ||
+      payload?.payment_status ||
+      payload?.action ||
+      null;
+
+    // registra evento do webhook (audit trail)
+    await addOrderEvent(orderId, {
+      note: "Webhook Mercado Pago recebido",
+      meta: { mpStatus, payload }
+    });
+
+    // regra simples: se aprovado, marca PAGO
+    if (String(mpStatus || "").toLowerCase() === "approved") {
+      await updateOrderStatus(orderId, ORDER_STATUS.PAGO, {
+        note: "Pagamento aprovado via webhook",
+        paymentStatus: "PAID",
+        externalPaymentId: payload?.data?.id || payload?.id || null
       });
     }
 
-    const paymentInfo = pickPaymentInfo(body);
-    await attachPayment(orderId, paymentInfo);
-
-    const mapped = mapPaymentToOrderStatus(paymentInfo.status);
-    const updated = await updateOrderStatus(orderId, mapped.orderStatus, {
-      note: "Webhook payment status update",
-      paymentStatus: mapped.payStatus,
-      externalPaymentId: paymentInfo.externalId,
-      meta: {
-        provider: paymentInfo.provider,
-        method: paymentInfo.method,
-        rawStatus: paymentInfo.status
-      }
-    });
-
-    return res.status(200).json({
-      ok: true,
-      orderId,
-      orderStatus: updated?.status || null
-    });
+    return json(res, 200, { ok: true, received: true, orderId });
   } catch (err) {
-    return res.status(500).json({
+    return json(res, 500, {
       ok: false,
       error: "WEBHOOK_ERROR",
-      message: err?.message || "unknown"
+      message: err?.message || String(err)
     });
   }
 }
+
+/**
+ * Compat: caso algum lugar do projeto esteja importando outro nome,
+ * a gente reaproveita a mesma função sem duplicar lógica.
+ */
+export const paymentWebhookController = mercadopagoWebhook;
+export default mercadopagoWebhook;
