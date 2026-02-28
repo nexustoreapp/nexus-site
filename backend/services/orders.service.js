@@ -1,93 +1,172 @@
 // backend/services/orders.service.js
-import crypto from "crypto";
-import { dbQuery } from "../db/pool.js";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
-function nowIso() {
+import { ORDER_STATUS } from "../orders/orders.status.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Armazenamento simples e seguro (não depende de libs, não quebra deploy)
+// Persistência em arquivo local do servidor (Render).
+const DATA_DIR = path.resolve(__dirname, "../data");
+const STORE_FILE = path.join(DATA_DIR, "orders.store.json");
+
+// ===== Helpers de store (arquivo JSON) =====
+async function ensureStore() {
+  await fs.mkdir(DATA_DIR, { recursive: true });
+
+  try {
+    await fs.access(STORE_FILE);
+  } catch {
+    await fs.writeFile(
+      STORE_FILE,
+      JSON.stringify({ orders: [] }, null, 2),
+      "utf-8"
+    );
+  }
+}
+
+async function readStore() {
+  await ensureStore();
+  const raw = await fs.readFile(STORE_FILE, "utf-8");
+  try {
+    return JSON.parse(raw);
+  } catch {
+    // Se corromper por algum motivo, reinicia sem quebrar deploy
+    return { orders: [] };
+  }
+}
+
+async function writeStore(store) {
+  await ensureStore();
+  await fs.writeFile(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
+}
+
+function nowISO() {
   return new Date().toISOString();
 }
 
-export async function createOrder({
-  userId,
-  userEmail,
-  productId,
-  amountCents,
-  currency = "BRL",
-  status = "CRIADO",
-  provider = "manual",
-  providerRef = null
-}) {
-  const id = crypto.randomUUID();
-
-  await dbQuery(
-    `
-    INSERT INTO orders
-      (id, user_id, user_email, product_id, amount_cents, currency, status, provider, provider_ref, created_at, updated_at)
-    VALUES
-      ($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW(),NOW())
-    `,
-    [id, userId, userEmail || null, productId, amountCents, currency, status, provider, providerRef]
-  );
-
-  await addOrderEvent(id, "ORDER_CREATED", { at: nowIso() });
-
-  return { id };
+function genId(prefix = "ord") {
+  // ID simples e consistente (sem libs)
+  return `${prefix}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
 }
 
-export async function getOrderById(orderId) {
-  const { rows } = await dbQuery(`SELECT * FROM orders WHERE id = $1 LIMIT 1`, [orderId]);
-  return rows[0] || null;
+// ===== API do Service =====
+export { ORDER_STATUS }; // reexport pra qualquer arquivo que quiser importar daqui
+
+export async function createOrder(payload = {}) {
+  const store = await readStore();
+
+  const order = {
+    id: genId("order"),
+    userId: payload.userId || null,
+
+    // itens do carrinho (como veio do checkout)
+    items: Array.isArray(payload.items) ? payload.items : [],
+
+    // resumo financeiro
+    totals: payload.totals || {
+      subtotal: 0,
+      shipping: 0,
+      discount: 0,
+      total: 0
+    },
+
+    // dados de frete / destino
+    shipping: payload.shipping || {
+      address: null,
+      method: null,
+      etaDays: null
+    },
+
+    // pagamento
+    payment: payload.payment || {
+      provider: null, // ex: "mercadopago"
+      status: "PENDING",
+      externalId: null, // id do pagamento no gateway
+      method: null // pix / card / boleto
+    },
+
+    status: ORDER_STATUS.CRIADO,
+    history: [
+      { at: nowISO(), status: ORDER_STATUS.CRIADO, note: "Order created" }
+    ],
+
+    createdAt: nowISO(),
+    updatedAt: nowISO()
+  };
+
+  store.orders.push(order);
+  await writeStore(store);
+
+  return order;
+}
+
+export async function findOrderById(orderId) {
+  if (!orderId) return null;
+  const store = await readStore();
+  return store.orders.find((o) => o.id === orderId) || null;
 }
 
 export async function listOrdersByUser(userId) {
-  const { rows } = await dbQuery(
-    `SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC`,
-    [userId]
-  );
-  return rows;
+  const store = await readStore();
+  return store.orders.filter((o) => o.userId === userId);
 }
 
-export async function updateOrderStatus(orderId, nextStatus, extra = {}) {
-  const order = await getOrderById(orderId);
-  if (!order) {
-    return { ok: false, error: "ORDER_NOT_FOUND" };
-  }
+export async function listAllOrders({ limit = 200 } = {}) {
+  const store = await readStore();
+  return store.orders.slice(-limit).reverse();
+}
 
-  await dbQuery(
-    `
-    UPDATE orders
-       SET status = $2,
-           tracking_code = COALESCE($3, tracking_code),
-           tracking_url  = COALESCE($4, tracking_url),
-           shipping_eta_days = COALESCE($5, shipping_eta_days),
-           updated_at = NOW()
-     WHERE id = $1
-    `,
-    [
-      orderId,
-      nextStatus,
-      extra.tracking_code || null,
-      extra.tracking_url || null,
-      typeof extra.shipping_eta_days === "number" ? extra.shipping_eta_days : null
-    ]
-  );
+export async function attachPayment(orderId, paymentPatch = {}) {
+  const store = await readStore();
+  const idx = store.orders.findIndex((o) => o.id === orderId);
+  if (idx === -1) return null;
 
-  await addOrderEvent(orderId, "ORDER_STATUS_UPDATED", {
-    from: order.status,
-    to: nextStatus,
-    extra,
-    at: nowIso()
+  const current = store.orders[idx];
+  current.payment = {
+    ...current.payment,
+    ...paymentPatch
+  };
+  current.updatedAt = nowISO();
+
+  store.orders[idx] = current;
+  await writeStore(store);
+
+  return current;
+}
+
+export async function updateOrderStatus(orderId, newStatus, meta = {}) {
+  const store = await readStore();
+  const idx = store.orders.findIndex((o) => o.id === orderId);
+  if (idx === -1) return null;
+
+  const current = store.orders[idx];
+
+  current.status = newStatus;
+  current.updatedAt = nowISO();
+  current.history = Array.isArray(current.history) ? current.history : [];
+  current.history.push({
+    at: nowISO(),
+    status: newStatus,
+    note: meta.note || null,
+    meta: meta.meta || null
   });
 
-  return { ok: true };
-}
+  // Se quiser sincronizar status de pagamento também
+  if (meta.paymentStatus) {
+    current.payment = current.payment || {};
+    current.payment.status = meta.paymentStatus;
+  }
+  if (meta.externalPaymentId) {
+    current.payment = current.payment || {};
+    current.payment.externalId = meta.externalPaymentId;
+  }
 
-export async function addOrderEvent(orderId, type, payload = {}) {
-  await dbQuery(
-    `INSERT INTO order_events (order_id, type, payload) VALUES ($1,$2,$3)`,
-    [orderId, type, JSON.stringify(payload)]
-  );
-}
+  store.orders[idx] = current;
+  await writeStore(store);
 
-export async function setTracking(orderId, { tracking_code, tracking_url }) {
-  return updateOrderStatus(orderId, "EM_TRANSITO", { tracking_code, tracking_url });
+  return current;
 }
