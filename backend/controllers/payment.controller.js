@@ -1,108 +1,157 @@
 // backend/controllers/payment.controller.js
-import fetch from "node-fetch";
+import crypto from "crypto";
 
-import { ORDER_STATUS } from "../orders/orders.status.js";
 import {
+  createOrder,
   attachPayment,
+  updateOrderStatus,
   addOrderEvent,
-  findOrderById,
-  updateOrderStatus
+  ORDER_STATUS
 } from "../services/orders.service.js";
 
+function json(res, status, payload) {
+  return res.status(status).json(payload);
+}
+
+function getBackendBaseUrl(req) {
+  const proto =
+    (req.headers["x-forwarded-proto"] || "").split(",")[0]?.trim() ||
+    req.protocol ||
+    "https";
+
+  const host =
+    (req.headers["x-forwarded-host"] || "").split(",")[0]?.trim() ||
+    req.get("host");
+
+  return `${proto}://${host}`;
+}
+
+function getUserFromToken(req) {
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(
+      Buffer.from(token.split(".")[1], "base64").toString("utf8")
+    );
+    return payload || null;
+  } catch {
+    return null;
+  }
+}
+
+function safeNumber(n, fallback = 0) {
+  const v = Number(n);
+  return Number.isFinite(v) ? v : fallback;
+}
+
 /**
- * Mercado Pago - criar pagamento (Preference)
- * Espera body parecido com o seu checkout.js:
+ * POST /api/v1/payment/create
+ * Body (MVP):
  * {
- *   email: "cliente@email.com",
- *   items: [{ title, quantity, unit_price, currency_id? }],
- *   orderId?: "uuid/opcional"
+ *   "items": [{ "id":"plan_core", "title":"Plano Core", "quantity": 1, "unit_price": 19.90 }],
+ *   "amountCents": 1990
  * }
  */
 export async function createPaymentController(req, res) {
   try {
-    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || process.env.MP_ACCESS_TOKEN?.trim();
+    const MP_ACCESS_TOKEN =
+      process.env.MP_ACCESS_TOKEN || process.env.MERCADOPAGO_ACCESS_TOKEN;
+
     if (!MP_ACCESS_TOKEN) {
-      return res.status(500).json({
+      return json(res, 500, {
         ok: false,
-        error: "MP_ACCESS_TOKEN_NOT_CONFIGURED"
+        error: "MERCADOPAGO_TOKEN_MISSING",
+        hint: "Crie a env MP_ACCESS_TOKEN (ou MERCADOPAGO_ACCESS_TOKEN) no Render."
       });
     }
 
-    const { email, items, orderId } = req.body || {};
-
-    // validações “pé no chão”
-    if (!email || typeof email !== "string") {
-      return res.status(400).json({ ok: false, error: "EMAIL_REQUIRED" });
-    }
-    if (!Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ ok: false, error: "ITEMS_REQUIRED" });
+    const user = getUserFromToken(req);
+    if (!user?.email) {
+      return json(res, 401, { ok: false, error: "INVALID_OR_EXPIRED_TOKEN" });
     }
 
-    // normaliza itens pro padrão MP
-    const mpItems = items.map((it, idx) => {
-      const title = (it?.title ?? `Item ${idx + 1}`).toString();
-      const quantity = Number(it?.quantity ?? 1);
-      const unit_price = Number(it?.unit_price ?? 0);
+    const body = req.body || {};
+    const itemsIn = Array.isArray(body.items) ? body.items : [];
+    const amountCents = safeNumber(body.amountCents, 0);
+    const currency = (body.currency || "BRL").toUpperCase();
 
-      if (!Number.isFinite(quantity) || quantity <= 0) {
-        throw new Error(`INVALID_ITEM_QUANTITY_${idx}`);
-      }
-      if (!Number.isFinite(unit_price) || unit_price <= 0) {
-        throw new Error(`INVALID_ITEM_PRICE_${idx}`);
-      }
+    if (!itemsIn.length) {
+      return json(res, 400, {
+        ok: false,
+        error: "INVALID_ITEMS",
+        hint: "Envie items[] no body."
+      });
+    }
 
-      return {
-        title,
-        quantity,
-        unit_price,
-        currency_id: (it?.currency_id ?? "BRL").toString()
-      };
+    if (amountCents <= 0) {
+      return json(res, 400, {
+        ok: false,
+        error: "INVALID_AMOUNT",
+        hint: "Envie amountCents > 0."
+      });
+    }
+
+    // Normaliza para o Mercado Pago (unit_price em reais)
+    const mpItems = itemsIn.map((it) => ({
+      id: it.id || it.sku || null,
+      title: it.title || it.name || "Item",
+      quantity: Math.max(1, parseInt(it.quantity || 1, 10)),
+      unit_price: safeNumber(it.unit_price, 0)
+    }));
+
+    const backendBase = getBackendBaseUrl(req);
+    const frontendBase = (process.env.FRONTEND_URL || "https://nexustore.store").replace(/\/$/, "");
+
+    // 1) cria ordem local (Postgres / store)
+    const { orderId } = await createOrder({
+      userEmail: user.email,
+      userCpf: user.cpf || null,
+      items: itemsIn,
+      amountCents,
+      currency
     });
 
-    // URL pública do backend (Render). Use a env do seu projeto.
-    const PUBLIC_BACKEND_URL =
-      (process.env.PUBLIC_BACKEND_URL || "").replace(/\/+$/, "") ||
-      (process.env.RENDER_EXTERNAL_URL || "").replace(/\/+$/, "");
+    // 2) marca status aguardando pagamento
+    await updateOrderStatus(orderId, ORDER_STATUS.AGUARDANDO_PAGAMENTO, {
+      note: "Aguardando pagamento (Mercado Pago)",
+      paymentStatus: "PENDING"
+    });
 
-    if (!PUBLIC_BACKEND_URL) {
-      return res.status(500).json({
-        ok: false,
-        error: "PUBLIC_BACKEND_URL_NOT_CONFIGURED",
-        hint: "Configure PUBLIC_BACKEND_URL (ex: https://nexus-site-oufm.onrender.com)"
-      });
-    }
+    // 3) registra payment “pendente” na ordem
+    await attachPayment(orderId, {
+      provider: "mercadopago",
+      status: "PENDING",
+      method: "checkout_preference",
+      externalId: null
+    });
 
-    // A notificação do MP (webhook)
-    const notification_url = `${PUBLIC_BACKEND_URL}/api/v1/payment/webhook/mercadopago`;
+    await addOrderEvent(orderId, {
+      note: "Iniciando pagamento Mercado Pago (criando preference)",
+      meta: { amountCents, currency }
+    });
 
-    // Se você tiver orderId, a gente tenta achar e vincular
-    let order = null;
-    if (orderId) {
-      order = await findOrderById(orderId);
-      if (!order) {
-        return res.status(404).json({
-          ok: false,
-          error: "ORDER_NOT_FOUND",
-          orderId
-        });
-      }
-    }
+    // 4) cria preference no Mercado Pago
+    const webhookUrl = `${backendBase}/api/v1/payment/webhook/mercadopago`;
 
-    // cria preference no Mercado Pago
+    const successUrl = `${frontendBase}/buscar.html?pay=success&orderId=${encodeURIComponent(orderId)}`;
+    const failureUrl = `${frontendBase}/buscar.html?pay=failure&orderId=${encodeURIComponent(orderId)}`;
+    const pendingUrl = `${frontendBase}/buscar.html?pay=pending&orderId=${encodeURIComponent(orderId)}`;
+
     const preferencePayload = {
       items: mpItems,
-      payer: { email },
-      notification_url,
-      // você pode personalizar depois:
+      notification_url: webhookUrl,
       back_urls: {
-        success: process.env.MP_BACK_SUCCESS || "https://nexustore.store/minha-conta.html",
-        pending: process.env.MP_BACK_PENDING || "https://nexustore.store/minha-conta.html",
-        failure: process.env.MP_BACK_FAILURE || "https://nexustore.store/minha-conta.html"
+        success: successUrl,
+        failure: failureUrl,
+        pending: pendingUrl
       },
       auto_return: "approved",
+      external_reference: orderId,
       metadata: {
-        orderId: order?.id || orderId || null,
-        email
+        orderId,
+        userEmail: user.email
       }
     };
 
@@ -110,61 +159,54 @@ export async function createPaymentController(req, res) {
       method: "POST",
       headers: {
         Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-Idempotency-Key": crypto.randomUUID()
       },
       body: JSON.stringify(preferencePayload)
     });
 
-    const mpData = await mpResp.json().catch(() => ({}));
+    const mpJson = await mpResp.json().catch(() => null);
 
     if (!mpResp.ok) {
-      return res.status(400).json({
+      await addOrderEvent(orderId, {
+        note: "Falha ao criar preference no Mercado Pago",
+        meta: { mpStatus: mpResp.status, mpJson }
+      });
+
+      return json(res, 502, {
         ok: false,
-        error: "MP_PREFERENCE_CREATE_FAILED",
-        details: mpData
+        error: "MERCADOPAGO_PREFERENCE_FAILED",
+        status: mpResp.status,
+        details: mpJson
       });
     }
 
-    // Se tem order, anexa info de pagamento e marca status "payment_pending"
-    if (order) {
-      await attachPayment(order.id, {
-        provider: "mercadopago",
-        preference_id: mpData.id,
-        init_point: mpData.init_point,
-        sandbox_init_point: mpData.sandbox_init_point
-      });
-
-      await updateOrderStatus(order.id, ORDER_STATUS.PAYMENT_PENDING);
-
-      await addOrderEvent(order.id, {
-        type: "PAYMENT_PREFERENCE_CREATED",
-        payload: {
-          provider: "mercadopago",
-          preference_id: mpData.id
-        }
-      });
-    }
-
-    return res.json({
-      ok: true,
+    // 5) atualiza externalId
+    await attachPayment(orderId, {
       provider: "mercadopago",
-      preferenceId: mpData.id,
-      payUrl: mpData.init_point || mpData.sandbox_init_point,
-      notification_url
+      status: "PENDING",
+      method: "checkout_preference",
+      externalId: mpJson?.id || null
+    });
+
+    await addOrderEvent(orderId, {
+      note: "Preference criada no Mercado Pago",
+      meta: { preferenceId: mpJson?.id || null }
+    });
+
+    return json(res, 200, {
+      ok: true,
+      orderId,
+      provider: "mercadopago",
+      preferenceId: mpJson?.id || null,
+      init_point: mpJson?.init_point || null,
+      sandbox_init_point: mpJson?.sandbox_init_point || null
     });
   } catch (err) {
-    return res.status(500).json({
+    return json(res, 500, {
       ok: false,
       error: "PAYMENT_CREATE_ERROR",
-      message: err?.message || "unknown_error"
+      message: err?.message || String(err)
     });
   }
-}
-
-/**
- * Controller “genérico” de webhook (se algum lugar do projeto ainda chamar isso).
- * Seu webhook real está em backend/controllers/payment.webhook.js (mercadopagoWebhook)
- */
-export async function paymentWebhookController(req, res) {
-  return res.json({ ok: true });
 }
