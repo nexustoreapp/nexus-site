@@ -1,338 +1,352 @@
-/* =========================
-   NEXUS GLOBAL STYLE
-   (arquivo original + patch)
-========================= */
+/* =========================================================
+   NEXUS STORE - STYLE (base)
+   - objetivo agora: deixar usável pra testar fluxo real (login, pedidos, pagamento)
+   - sem “modo teste”
+========================================================= */
 
-/* === (SEU CSS ATUAL) ===================================== */
-/* IMPORTANTE:
-   Eu mantive seu CSS original inteiro e só acrescentei um PATCH no final
-   para corrigir “quebras” de layout e padronizar telas de login/conta.
-   Se você quiser que eu “limpe” e reorganize tudo depois, dá pra fazer,
-   mas agora é foco: deixar utilizável pra testar fluxo real.
-*/
-
-/* --- Conteúdo original do seu style.css (como você enviou) --- */
 :root{
-  --bg:#0a0b10;
-  --panel:#0f111a;
-  --panel2:#121526;
-  --line:#23263a;
-  --soft:#1a1e35;
-  --text:#e8e9ef;
-  --muted:#a6aac1;
-  --brand:#5a6cff;
-  --brand2:#8b5cf6;
-  --ok:#22c55e;
-  --warn:#f59e0b;
-  --bad:#ef4444;
-
-  --shadow: 0 10px 35px rgba(0,0,0,.35);
-  --radius: 16px;
+  --bg: #0b1020;
+  --card: rgba(255,255,255,0.06);
+  --card2: rgba(0,0,0,0.25);
+  --border: rgba(255,255,255,0.12);
+  --border2: rgba(255,255,255,0.14);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.72);
+  --muted2: rgba(255,255,255,0.78);
+  --brand: #4f46e5;
+  --brandGlow: rgba(79,70,229,0.18);
+  --ok: rgba(34,197,94,0.45);
+  --err: rgba(239,68,68,0.45);
+  --warn: rgba(245,158,11,0.5);
 }
 
-*{ box-sizing:border-box; }
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
 
-html,body{
+body{
   margin:0;
-  padding:0;
-  background: radial-gradient(1200px 700px at 30% 0%, rgba(90,108,255,.18), transparent 60%),
-              radial-gradient(900px 600px at 80% 10%, rgba(139,92,246,.14), transparent 60%),
-              var(--bg);
-  color:var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-  min-height:100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(79,70,229,0.25), transparent 55%),
+              radial-gradient(900px 500px at 80% 10%, rgba(59,130,246,0.18), transparent 55%),
+              linear-gradient(180deg, #070a14, var(--bg));
+  color: var(--text);
 }
 
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:underline; }
+a{ color: inherit; text-decoration: none; }
+a:hover{ text-decoration: underline; }
 
 .container{
-  width:min(1100px, calc(100% - 32px));
-  margin:0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 12px 40px;
 }
 
-/* Topbar / header */
-.header,
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
+/* =======================
+   NAV / HEADER
+======================= */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
   backdrop-filter: blur(10px);
-  background: rgba(10,10,16,.70);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(9, 12, 24, 0.72);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.header .container,
-.topbar .container{
+.navbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 0;
-  gap:12px;
+  gap: 10px;
+  padding: 12px 12px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
-}
-.brand .logo{
-  width:34px;
-  height:34px;
-  border-radius:12px;
-  background: rgba(90,108,255,.20);
-  border:1px solid rgba(90,108,255,.25);
-}
-.brand .title{
-  font-weight:800;
-  letter-spacing:.2px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
 }
 
-.nav{
+.brand .dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 0 6px rgba(79,70,229,0.15);
+}
+
+.nav-actions{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.nav a,
-.nav-link{
-  padding:8px 10px;
-  border-radius:12px;
-  border:1px solid transparent;
-  color: rgba(255,255,255,.85);
-}
-.nav a:hover,
-.nav-link:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.08);
+  align-items:center;
+  gap: 8px;
 }
 
-/* Panels / cards */
-.card{
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding:16px;
+.nav-actions a,
+.nav-actions button{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
 }
 
-.panel{
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);
-  padding:16px;
-}
-
-/* Buttons */
-.btn, button, .button, .cta{
-  cursor:pointer;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  padding:12px 14px;
-  background: rgba(255,255,255,.08);
-  color:var(--text);
-  font-weight:700;
-  transition: transform .06s ease, filter .15s ease, background-color .15s ease, border-color .15s ease;
-}
-.btn:hover, button:hover, .button:hover, .cta:hover{
-  background: rgba(255,255,255,.12);
-}
-.btn:active, button:active, .button:active, .cta:active{
-  transform: translateY(1px);
-}
-.btn.primary, .primary-btn{
-  background: rgba(90,108,255,.95);
-  border-color: rgba(90,108,255,.55);
-}
-.btn.primary:hover, .primary-btn:hover{
+.nav-actions a:hover,
+.nav-actions button:hover{
   filter: brightness(1.06);
 }
 
-.btn.danger{
-  background: rgba(239,68,68,.14);
-  border-color: rgba(239,68,68,.35);
+.nav-actions .primary{
+  background: var(--brand);
+  border-color: transparent;
 }
 
-/* Inputs */
-input, select, textarea{
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  padding:12px 12px;
-  outline:none;
-}
-input:focus, select:focus, textarea:focus{
-  border-color: rgba(90,108,255,.75);
-  box-shadow: 0 0 0 3px rgba(90,108,255,.20);
-}
-input::placeholder, textarea::placeholder{
-  color: rgba(255,255,255,.55);
+/* =======================
+   CARDS / GRID
+======================= */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.30);
 }
 
-/* Page helpers */
-.page{
-  padding: 20px 0 40px;
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
 }
-.section{
-  margin-top:16px;
+
+.col-12{ grid-column: span 12; }
+.col-8{ grid-column: span 8; }
+.col-6{ grid-column: span 6; }
+.col-4{ grid-column: span 4; }
+.col-3{ grid-column: span 3; }
+
+@media (max-width: 980px){
+  .col-8, .col-6, .col-4, .col-3{ grid-column: span 12; }
 }
+
 .section-title{
-  font-size:16px;
-  font-weight:800;
-  margin:0 0 10px;
-  opacity:.95;
-}
-
-.muted,
-.muted-text{
-  color: rgba(255,255,255,.65);
-}
-
-/* Footer */
-.footer{
-  margin-top: 40px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  background: rgba(10,10,16,.55);
-}
-.footer .container{
-  padding: 22px 0;
   display:flex;
-  align-items:flex-start;
+  align-items:baseline;
   justify-content:space-between;
-  gap:18px;
-  flex-wrap:wrap;
-}
-.footer a{ opacity:.85; }
-.footer a:hover{ opacity:1; }
-
-/* Tabelas (pedidos etc) */
-.table{
-  width:100%;
-  border-collapse: collapse;
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
-}
-.table th, .table td{
-  padding:10px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  text-align:left;
-  font-size:14px;
-}
-.table th{
-  font-size:12px;
-  letter-spacing:.4px;
-  text-transform:uppercase;
-  opacity:.8;
-}
-.table tr:hover td{
-  background: rgba(255,255,255,.04);
+  gap: 10px;
+  margin: 18px 0 10px;
 }
 
-/* Alerts */
-.notice, .alert, .auth-message{
+.section-title h2{
+  margin:0;
+  font-size: 18px;
+}
+
+.section-title p{
+  margin:0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
   border-radius: 12px;
-  padding: 10px 12px;
-  margin-top: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
-  font-size: 14px;
-}
-.alert.success, .auth-message.success{
-  border-color: rgba(34,197,94,.35);
-  background: rgba(34,197,94,.10);
-}
-.alert.error, .auth-message.error{
-  border-color: rgba(239,68,68,.35);
-  background: rgba(239,68,68,.10);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  user-select: none;
+  text-decoration: none;
 }
 
-/* =========================================================
-   PATCH 2026-03: UX/CSS QUICK REWORK (sem mexer no CAPTCHA)
-   Objetivo: deixar o front usável para testar pedidos/pagamento
-========================================================= */
+.btn:hover{ filter: brightness(1.06); }
 
-/* reset/consistência */
-*,
-*::before,
-*::after { box-sizing: border-box; }
+.btn.primary{
+  background: var(--brand);
+  color: #fff;
+}
 
-html, body { height: 100%; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
+.btn.secondary{
+  background: rgba(255,255,255,0.08);
+  border-color: var(--border2);
+  color: #fff;
+}
 
-/* =========================================================
-   LOGIN / REGISTER (login.html)
-========================================================= */
-.auth-box {
-  width: min(520px, calc(100% - 32px));
-  margin: 28px auto;
-  background: rgba(12, 12, 18, 0.78);
-  border: 1px solid rgba(255,255,255,0.10);
+.btn.danger{
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fff;
+}
+
+.btn:disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =======================
+   FORMS
+======================= */
+.form-row{
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.form-row label{
+  font-size: 13px;
+  color: rgba(255,255,255,0.82);
+}
+
+.input,
+select.input,
+textarea.input{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border2);
+  background: var(--card2);
+  color: #fff;
+  outline: none;
+}
+
+.input:focus{
+  border-color: rgba(79,70,229,0.75);
+  box-shadow: 0 0 0 4px var(--brandGlow);
+}
+
+/* =======================
+   NOTICES
+======================= */
+.notice{
+  border-radius: 12px;
+  padding: 12px 12px;
+  margin: 12px 0;
+  border: 1px solid var(--border2);
+  background: rgba(0,0,0,0.18);
+}
+
+.notice.ok{
+  border-color: var(--ok);
+  background: rgba(34,197,94,0.12);
+}
+
+.notice.err{
+  border-color: var(--err);
+  background: rgba(239,68,68,0.12);
+}
+
+.notice.warn{
+  border-color: var(--warn);
+  background: rgba(245,158,11,0.12);
+}
+
+/* =======================
+   AUTH (LOGIN / CADASTRO)
+======================= */
+.auth-shell{
+  min-height: calc(100vh - 80px);
+  display: grid;
+  place-items: center;
+  padding: 24px 14px;
+}
+
+.auth-card{
+  width: min(520px, 100%);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 22px;
-  box-shadow: 0 14px 45px rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
 }
-.auth-box h2 {
-  font-size: 20px;
+
+.auth-card h1,
+.auth-card h2{
+  margin: 0 0 10px;
+}
+
+.auth-card p{
   margin: 0 0 14px;
-  text-align: center;
+  color: var(--muted2);
 }
-.auth-box label { display: block; font-size: 13px; opacity: .9; margin: 10px 0 6px; }
-.auth-box input, .auth-box select, .auth-box textarea { width: 100%; }
-.auth-box button {
-  width: 100%;
-  background: rgba(90,108,255,0.95);
-  border-color: rgba(90,108,255,0.55);
-}
-.auth-box button:hover { filter: brightness(1.05); }
-.auth-box .toggle {
-  display: block;
-  margin-top: 12px;
-  font-size: 14px;
-  text-align: center;
-  color: rgba(255,255,255,.85);
-}
-.auth-box .toggle a { color: #a5b4fc; text-decoration: none; font-weight: 800; }
-.auth-box .toggle a:hover { text-decoration: underline; }
 
-/* CAPTCHA: só layout, não “desativa” nada */
-#captcha-box {
-  margin-top: 10px;
-  border-radius: 14px;
-  border: 1px dashed rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.04);
-  padding: 12px;
+/* ReCAPTCHA wrapper (sem mexer na lógica do captcha) */
+.captcha-wrap{
+  display: flex;
+  justify-content: center;
+  margin: 14px 0 6px;
 }
-#captcha-box .captcha-row {
+
+@media (max-width: 420px){
+  .captcha-wrap{
+    transform: scale(0.92);
+    transform-origin: center;
+  }
+}
+
+/* =======================
+   ACCOUNT (MINHA CONTA)
+======================= */
+.account-shell{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 12px 40px;
+}
+
+.account-grid{
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
 }
-#captcha-box input { width: 100%; }
-#captcha-box button {
-  width: auto;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.10);
+
+@media (max-width: 900px){
+  .account-grid{ grid-template-columns: 1fr; }
 }
-#captcha-box button:hover { background: rgba(255,255,255,0.14); }
 
-/* =========================================================
-   MINHA CONTA / PÁGINAS INTERNAS
-========================================================= */
-.info-row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.info-row:last-child { border-bottom: 0; }
+/* =======================
+   TABLES
+======================= */
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
 
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-@media (max-width: 720px) {
-  .topbar .container, .header .container { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .nav { width: 100%; }
-  .info-row { grid-template-columns: 1fr; }
-  .auth-box { padding: 18px; }
-  #captcha-box .captcha-row { grid-template-columns: 1fr; }
+.table th,
+.table td{
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
+  font-size: 13px;
+}
+
+.table th{
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  font-weight: 900;
+}
+
+.table tr:hover td{
+  background: rgba(255,255,255,0.04);
+}
+
+/* =======================
+   FOOTER
+======================= */
+footer{
+  padding: 18px 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  text-align:center;
 }
