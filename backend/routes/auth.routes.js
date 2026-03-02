@@ -1,14 +1,18 @@
 // backend/routes/auth.routes.js
 import { Router } from "express";
-import { register, login } from "../controllers/auth.controller.js";
-import { authLimiter } from "../middlewares/rateLimit.middleware.js";
+import {
+  registerController,
+  loginController,
+  meController
+} from "../controllers/auth.controller.js";
+import { requireAuth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-// Registro
-router.post("/register", authLimiter, register);
+router.post("/register", registerController);
+router.post("/login", loginController);
 
-// Login
-router.post("/login", authLimiter, login);
+// ✅ rota que faltava pro front confirmar sessão
+router.get("/me", requireAuth, meController);
 
 export default router;
