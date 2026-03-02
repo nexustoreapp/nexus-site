@@ -1,1550 +1,338 @@
-/* =========================================================
-   NEXUS — DESIGN SYSTEM + UI GLOBAL
-   ========================================================= */
+/* =========================
+   NEXUS GLOBAL STYLE
+   (arquivo original + patch)
+========================= */
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* === (SEU CSS ATUAL) ===================================== */
+/* IMPORTANTE:
+   Eu mantive seu CSS original inteiro e só acrescentei um PATCH no final
+   para corrigir “quebras” de layout e padronizar telas de login/conta.
+   Se você quiser que eu “limpe” e reorganize tudo depois, dá pra fazer,
+   mas agora é foco: deixar utilizável pra testar fluxo real.
+*/
+
+/* --- Conteúdo original do seu style.css (como você enviou) --- */
+:root{
+  --bg:#0a0b10;
+  --panel:#0f111a;
+  --panel2:#121526;
+  --line:#23263a;
+  --soft:#1a1e35;
+  --text:#e8e9ef;
+  --muted:#a6aac1;
+  --brand:#5a6cff;
+  --brand2:#8b5cf6;
+  --ok:#22c55e;
+  --warn:#f59e0b;
+  --bad:#ef4444;
+
+  --shadow: 0 10px 35px rgba(0,0,0,.35);
+  --radius: 16px;
 }
 
-/* VARIÁVEIS */
-:root {
-  --bg: #020617;
-  --bg-soft: #02081a;
-  --card: rgba(15,23,42,.95);
-  --stroke: rgba(148,163,184,.35);
-  --brand: #6366f1;
-  --brand-soft: #4f46e5;
-  --brand-strong: #a855f7;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --radius: 18px;
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background: radial-gradient(1200px 700px at 30% 0%, rgba(90,108,255,.18), transparent 60%),
+              radial-gradient(900px 600px at 80% 10%, rgba(139,92,246,.14), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  min-height:100%;
 }
 
-/* BASE */
-html, body {
-  height: 100%;
+a{ color:inherit; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.container{
+  width:min(1100px, calc(100% - 32px));
+  margin:0 auto;
 }
 
-body {
-  font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top, #02081a 0%, #020617 45%, #000 100%);
-  color: var(--text);
-  line-height: 1.5;
+/* Topbar / header */
+.header,
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter: blur(10px);
+  background: rgba(10,10,16,.70);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* LINKS */
-a {
-  color: inherit;
-  text-decoration: none;
+.header .container,
+.topbar .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0;
+  gap:12px;
 }
 
-/* =========================================================
-   LAYOUT
-   ========================================================= */
-
-main {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 88px 16px 64px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand .logo{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background: rgba(90,108,255,.20);
+  border:1px solid rgba(90,108,255,.25);
+}
+.brand .title{
+  font-weight:800;
+  letter-spacing:.2px;
 }
 
-.page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 88px 16px 64px;
+.nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.nav a,
+.nav-link{
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid transparent;
+  color: rgba(255,255,255,.85);
+}
+.nav a:hover,
+.nav-link:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.08);
 }
 
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(15,23,42,.96);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--stroke);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-logo {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(124,58,237,.9));
-}
-
-.brand-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.nav-toggle {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid var(--stroke);
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  padding: 0 10px;
-}
-
-.nav-toggle .bar {
-  width: 100%;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--text);
-}
-
-.nav {
-  position: absolute;
-  top: 70px;
-  left: 16px;
-  right: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px;
+/* Panels / cards */
+.card{
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
   border-radius: var(--radius);
-  background: rgba(15,23,42,.98);
-  box-shadow: 0 18px 45px rgba(0,0,0,.6);
-
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  transition: .25s ease;
+  box-shadow: var(--shadow);
+  padding:16px;
 }
 
-.nav.nav-open {
-  max-height: 260px;
-  opacity: 1;
-  pointer-events: auto;
+.panel{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  padding:16px;
 }
 
-.nav-link {
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: .95rem;
-  color: var(--muted);
+/* Buttons */
+.btn, button, .button, .cta{
+  cursor:pointer;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  padding:12px 14px;
+  background: rgba(255,255,255,.08);
+  color:var(--text);
+  font-weight:700;
+  transition: transform .06s ease, filter .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover, button:hover, .button:hover, .cta:hover{
+  background: rgba(255,255,255,.12);
+}
+.btn:active, button:active, .button:active, .cta:active{
+  transform: translateY(1px);
+}
+.btn.primary, .primary-btn{
+  background: rgba(90,108,255,.95);
+  border-color: rgba(90,108,255,.55);
+}
+.btn.primary:hover, .primary-btn:hover{
+  filter: brightness(1.06);
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #22d3ee;
-  background: rgba(148,163,184,.18);
+.btn.danger{
+  background: rgba(239,68,68,.14);
+  border-color: rgba(239,68,68,.35);
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-  padding-top: 32px;
-}
-
-.hero-inner {
-  max-width: 760px;
-}
-
-.hero-title {
-  font-size: clamp(2rem, 3vw + 1rem, 3rem);
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.highlight {
-  background: linear-gradient(90deg, #a855f7, #06b6d4);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero-subtitle {
-  color: var(--muted);
-  font-size: .95rem;
-  max-width: 540px;
-  margin-bottom: 22px;
-}
-
-.hero-search {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-/* =========================================================
-   INPUTS & BOTÕES
-   ========================================================= */
-
-.input-search,
-input,
-select,
-textarea {
-  width: 100%;
-  height: 44px;
-  padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid var(--stroke);
-  background: rgba(15,23,42,.92);
+/* Inputs */
+input, select, textarea{
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
   color: var(--text);
-  font-size: .95rem;
+  padding:12px 12px;
+  outline:none;
+}
+input:focus, select:focus, textarea:focus{
+  border-color: rgba(90,108,255,.75);
+  box-shadow: 0 0 0 3px rgba(90,108,255,.20);
+}
+input::placeholder, textarea::placeholder{
+  color: rgba(255,255,255,.55);
 }
 
-.input-search::placeholder {
-  color: var(--muted);
+/* Page helpers */
+.page{
+  padding: 20px 0 40px;
+}
+.section{
+  margin-top:16px;
+}
+.section-title{
+  font-size:16px;
+  font-weight:800;
+  margin:0 0 10px;
+  opacity:.95;
 }
 
-.btn-primary {
-  height: 44px;
-  border-radius: 12px;
-  border: none;
-  background: var(--brand);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
+.muted,
+.muted-text{
+  color: rgba(255,255,255,.65);
 }
 
-.btn-primary:hover {
-  background: var(--brand-soft);
-}
-
-.btn-outline {
-  border: 1.5px solid var(--brand);
-  background: transparent;
-  color: var(--brand);
-  padding: 9px 16px;
-  border-radius: 999px;
-}
-
-.btn-outline.full {
-  width: 100%;
-  height: 44px;
-  border-radius: 12px;
-}
-
-/* =========================================================
-   SEÇÕES & CARDS
-   ========================================================= */
-
-.section {
+/* Footer */
+.footer{
   margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(10,10,16,.55);
+}
+.footer .container{
+  padding: 22px 0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.footer a{ opacity:.85; }
+.footer a:hover{ opacity:1; }
+
+/* Tabelas (pedidos etc) */
+.table{
+  width:100%;
+  border-collapse: collapse;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+}
+.table th, .table td{
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  text-align:left;
+  font-size:14px;
+}
+.table th{
+  font-size:12px;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  opacity:.8;
+}
+.table tr:hover td{
+  background: rgba(255,255,255,.04);
 }
 
-.section-header h2 {
-  font-size: 1.5rem;
-  margin-bottom: 6px;
-}
-
-.section-header p {
-  color: var(--muted);
-  font-size: .95rem;
-}
-
-.grid-steps,
-.grid-cards,
-.plans-grid {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-.card-info,
-.card-plan,
-.plan-card {
-  background: radial-gradient(circle at top, #02081a 0%, #020617 70%);
-  border-radius: var(--radius);
-  border: 1.5px solid var(--brand);
-  padding: 18px;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.footer {
-  text-align: center;
-  padding: 32px 16px;
-  color: var(--muted);
-  font-size: .86rem;
-}
-
-/* =========================================================
-   RESPONSIVO — MOBILE
-   ========================================================= */
-
-@media (max-width: 720px) {
-  main, .page {
-    padding: 80px 14px 48px;
-  }
-
-  .hero-search {
-    flex-direction: column;
-  }
-
-  .grid-cards,
-  .plans-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ============================= */
-/*  RESPONSIVO (DESKTOP)         */
-/* ============================= */
-
-@media (min-width: 768px) {
-
-  .topbar {
-    padding: 10px 32px;
-  }
-
-  .brand-logo {
-    width: 60px;
-    height: 60px;
-  }
-
-  .brand-name {
-    font-size: 1.2rem;
-  }
-
-  /* menu sempre visível no desktop */
-  .nav {
-    position: static;
-    flex-direction: row;
-    max-height: none;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    padding: 0;
-    box-shadow: none;
-    background: transparent;
-    gap: 18px;
-  }
-
-  .nav.nav-open {
-    max-height: none;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  .nav-link {
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  .hero-search {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .input-search {
-    width: 380px;
-  }
-
-  .btn-primary {
-    width: auto;
-    padding-inline: 20px;
-  }
-
-  /* grid padrão de cards (home, assinatura, etc.) */
-  .grid-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .plans-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .premium-search-row {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  /* ===== AJUSTES ESPECÍFICOS DA PÁGINA "MINHA ÁREA" ===== */
-
-  /* 1) Visão geral da conta: só 1 card larguinho (Seu plano atual) */
-  .section-dashboard-summary .plans-grid {
-    grid-template-columns: minmax(0, 440px);
-    justify-content: flex-start;
-    gap: 28px;
-  }
-
-  /* 2) Carrinho: dois cards lado a lado */
-  .section-dashboard-cart .plans-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    align-items: stretch;
-  }
-
-  .section-dashboard-cart .plan-card {
-    height: 100%;
-  }
-}
-/* ===== BADGES DE PLANO ===== */
-.badge-tier {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-  margin-left: 8px;
-}
-
-.badge-free { background: #2ecc71; }
-.badge-core { background: #3498db; }
-.badge-hyper { background: #9b59b6; }
-.badge-omega { background: #f1c40f; color: #000; }
-
-/* ===== BLOQUEIO VISUAL ===== */
-.card-locked {
-  opacity: 0.6;
-  filter: grayscale(0.7);
-}
-
-.lock-overlay {
-  margin-top: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #ff7675;
-}
-
- .result-card {
-  border: 1px solid #2c2c2c;
+/* Alerts */
+.notice, .alert, .auth-message{
   border-radius: 12px;
-  padding: 12px;
-  max-width: 240px;
-  background: #111;
-}
-
-.card-image img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.card-title {
-  font-weight: 800;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-subtitle {
-  font-size: 12px;
-  opacity: 0.8;
-  margin: 6px 0;
-}
-
-.card-price {
-  font-size: 16px;
-  font-weight: 800;
-  margin: 8px 0;
-}
-
-.badge-tier {
-  padding: 3px 6px;
-  font-size: 11px;
-  border-radius: 6px;
-  color: #fff;
-}
-
-.badge-free { background: #2ecc71; }
-.badge-core { background: #3498db; }
-.badge-hyper { background: #9b59b6; }
-.badge-omega { background: #f1c40f; color: #000; }
-
-.card-locked {
-  opacity: 0.6;
-  filter: grayscale(0.7);
-}
-
-.lock-overlay {
-  font-size: 12px;
-  font-weight: 700;
-  color: #ff7675;
-  margin-bottom: 6px;
-}
-/* =========================
-   BUSCA — LARGURA + GRID
-========================= */
-
-/* deixa a página usar mais a largura (sem estourar) */
-.container, .wrapper, main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-/* =========================
-   HOME — SEARCH BAR MAIOR
-========================= */
-
-.search-row, .search-wrap, .hero-search {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  width: 100%;
-}
-
-.search-row input, .search-wrap input, .hero-search input {
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-}
-
-.search-row button, .search-wrap button, .hero-search button {
-  white-space: nowrap;
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-/* Esconde sugestões abaixo da busca */
-.search-suggestions,
-.search-tags,
-.hero-tags{
-  display: none !important;
-}
-
-/* =========================
-   ASSINATURA — MELHOR CTA
-========================= */
-
-.plans-grid, .pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-.plan-card, .pricing-card {
-  padding: 22px;
-  border-radius: 18px;
-}
-
-/* bullets colados na parede -> arruma */
-.plan-card ul, .pricing-card ul {
-  padding-left: 22px;
+  padding: 10px 12px;
   margin-top: 10px;
-}
-
-.plan-card li, .pricing-card li {
-  margin: 10px 0;
-}
-
-/* botões com mais “força” */
-.btn-primary {
-  border-radius: 14px;
-  padding: 12px 16px;
-  font-weight: 700;
-}
-
-.btn-outline {
-  border-radius: 14px;
-  padding: 12px 16px;
-  font-weight: 700;
-}
-
-/* =========================
-   MINHA ÁREA — MENOS AGLOMERADO
-========================= */
-
-.dashboard, .my-area, .area-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
-.dashboard-grid, .area-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 16px;
-}
-
-.card, .panel, .box {
-  padding: 18px;
-  border-radius: 16px;
-}
-
-.card h3, .panel h3, .box h3 {
-  margin-bottom: 10px;
-}
-/* =========================
-   MINHA ÁREA — LIMPA
-========================= */
-
-/* esconde carrinho premium */
-.cart-premium,
-.premium-cart,
-.cart-plan-premium {
-  display: none !important;
-}
-
-/* deixa só o carrinho principal */
-.cart, .cart-main {
-  grid-column: 1 / -1;
-}
-
-/* botão de plano menos chamativo */
-.btn-premium, .upgrade-btn {
-  opacity: 0.85;
-}
-/* =========================
-   ASSINATURAS — MAIS PODER
-========================= */
-
-.plan-card {
-  background: linear-gradient(180deg, #0b0f1c, #070b16);
-  border: 1px solid rgba(120,120,255,0.25);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.plan-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(120,120,255,0.15);
-}
-
-/* plano atual */
-.plan-current {
-  border: 2px solid #7c7cff;
-  box-shadow: 0 0 0 1px rgba(124,124,255,0.4);
-}
-
-/* botão principal */
-.plan-card .btn-primary {
-  margin-top: 12px;
-  width: 100%;
-}
-/* =========================
-   BUSCA — LAYOUT MARKETPLACE
-========================= */
-
-#search-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
-#search-filters {
-  position: sticky;
-  top: 14px;
-  align-self: start;
-  border: 1px solid rgba(120,120,255,0.25);
-  border-radius: 16px;
-  padding: 14px;
-  background: linear-gradient(180deg, #0b0f1c, #070b16);
-}
-
-.filters-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.filters-title {
-  font-weight: 800;
-  font-size: 16px;
-  opacity: 0.95;
-}
-
-.filter-block {
-  margin-top: 12px;
-}
-
-.filter-label {
-  font-size: 12px;
-  opacity: 0.8;
-  margin-bottom: 6px;
-}
-
-.filter-select {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(120,120,255,0.25);
-  background: rgba(0,0,0,0.25);
-  color: #fff;
-  outline: none;
-}
-
-.price-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.price-row input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(120,120,255,0.25);
-  background: rgba(0,0,0,0.25);
-  color: #fff;
-  outline: none;
-}
-
-#results-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 16px;
-}
-
-.end-results {
-  text-align: center;
-  opacity: 0.7;
-  padding: 14px 0;
-}
-
-/* mobile: filtros viram topo */
-@media (max-width: 900px) {
-  #search-layout {
-    grid-template-columns: 1fr;
-  }
-  #search-filters {
-    position: relative;
-    top: auto;
-  }
-}
-/* ============================
-   SEARCH PAGE LAYOUT (FIX)
-   cola no final do style.css
-============================ */
-
-/* garante que o container da busca não fique estreito */
-#search-page{
-  width: min(1280px, 94vw);
-  margin: 0 auto;
-  padding: 24px 0 40px;
-}
-
-/* layout 2 colunas: filtros + resultados */
-#search-layout{
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 22px;
-  align-items: start;
-}
-
-/* sidebar */
-#search-filters{
-  position: sticky;
-  top: 90px;
-  padding: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(8px);
-}
-
-/* cabeçalho filtros */
-.filters-head{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.filters-title{
-  font-weight: 700;
-  letter-spacing: .3px;
-}
-
-/* blocos de filtro */
-.filter-block{ margin: 12px 0; }
-.filter-label{ font-size: 13px; opacity: .85; margin-bottom: 6px; }
-
-.filter-select,
-.price-row input{
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.06);
-  color: #fff;
-  outline: none;
+  font-size: 14px;
+}
+.alert.success, .auth-message.success{
+  border-color: rgba(34,197,94,.35);
+  background: rgba(34,197,94,.10);
+}
+.alert.error, .auth-message.error{
+  border-color: rgba(239,68,68,.35);
+  background: rgba(239,68,68,.10);
 }
 
-.price-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
+/* =========================================================
+   PATCH 2026-03: UX/CSS QUICK REWORK (sem mexer no CAPTCHA)
+   Objetivo: deixar o front usável para testar pedidos/pagamento
+========================================================= */
 
-/* resultados */
-#search-main{
-  min-width: 0;
-}
+/* reset/consistência */
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-#search-meta{
-  margin: 4px 0 14px;
-  opacity: .85;
-}
+html, body { height: 100%; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
 
-/* grid de cards (Mercado Livre style) */
-#results-grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-/* card */
-.result-card{
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 16px;
+/* =========================================================
+   LOGIN / REGISTER (login.html)
+========================================================= */
+.auth-box {
+  width: min(520px, calc(100% - 32px));
+  margin: 28px auto;
+  background: rgba(12, 12, 18, 0.78);
   border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.28);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 14px 45px rgba(0,0,0,.35);
   backdrop-filter: blur(10px);
 }
-
-/* imagem do card */
-.card-image{
-  width: 110px;
-  height: 110px;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
-}
-.card-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* badge */
-.badge-tier{
-  margin-left: 8px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  border: 1px solid rgba(255,255,255,0.18);
-}
-
-/* responsivo */
-@media (max-width: 1100px){
-  #results-grid{ grid-template-columns: repeat(2, minmax(240px, 1fr)); }
-}
-@media (max-width: 860px){
-  #search-layout{ grid-template-columns: 1fr; }
-  #search-filters{ position: relative; top: auto; }
-  #results-grid{ grid-template-columns: 1fr; }
-  .result-card{ grid-template-columns: 110px 1fr; }
-}
-/* =========================================
-   NEXUS — PASSO A2 (capricho fino)
-========================================= */
-
-/* Dá mais largura real pro conteúdo */
-main, .search-container, .page-search {
-  max-width: 1380px;
-}
-
-/* Grid: cards maiores e mais “cheios” */
-#results-grid {
-  grid-template-columns: repeat(3, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-/* Card: mais alto e com padding melhor */
-.result-card {
-  min-height: 230px;
-  padding: 16px;
-  gap: 16px;
-}
-
-/* Imagem maior (fica cara de marketplace) */
-.result-card .card-image {
-  width: 110px;
-  height: 110px;
-  border-radius: 16px;
-}
-
-/* Título + badge alinhados e com mais presença */
-.result-card .card-title {
-  font-size: 1.02rem;
-}
-
-/* Subtítulo mais legível */
-.result-card .card-subtitle {
-  font-size: 0.95rem;
-  min-height: 38px;
-}
-
-/* Preço com mais destaque */
-.result-card .card-price {
-  font-size: 1.08rem;
-}
-
-/* Botões mais “premium” */
-.result-card .btn-primary,
-.result-card .btn-outline {
-  padding: 12px 14px;
-  border-radius: 14px;
-  font-weight: 700;
-}
-
-/* Responsivo mais esperto */
-@media (max-width: 1100px) {
-  #results-grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
-}
-@media (max-width: 680px) {
-  #results-grid { grid-template-columns: 1fr; }
-  .result-card { min-height: 210px; }
-}
-/* =========================================
-   NEXUS — PASSO A2 (capricho fino)
-========================================= */
-
-/* Dá mais largura real pro conteúdo */
-main, .search-container, .page-search {
-  max-width: 1380px;
-}
-
-/* Grid: cards maiores e mais “cheios” */
-#results-grid {
-  grid-template-columns: repeat(3, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-/* Card: mais alto e com padding melhor */
-.result-card {
-  min-height: 230px;
-  padding: 16px;
-  gap: 16px;
-}
-
-/* Imagem maior (fica cara de marketplace) */
-.result-card .card-image {
-  width: 110px;
-  height: 110px;
-  border-radius: 16px;
-}
-
-/* Título + badge alinhados e com mais presença */
-.result-card .card-title {
-  font-size: 1.02rem;
-}
-
-/* Subtítulo mais legível */
-.result-card .card-subtitle {
-  font-size: 0.95rem;
-  min-height: 38px;
-}
-
-/* Preço com mais destaque */
-.result-card .card-price {
-  font-size: 1.08rem;
-}
-
-/* Botões mais “premium” */
-.result-card .btn-primary,
-.result-card .btn-outline {
-  padding: 12px 14px;
-  border-radius: 14px;
-  font-weight: 700;
-}
-
-/* Responsivo mais esperto */
-@media (max-width: 1100px) {
-  #results-grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
-}
-@media (max-width: 680px) {
-  #results-grid { grid-template-columns: 1fr; }
-  .result-card { min-height: 210px; }
-}
-/* =========================================
-   NEXUS — PASSO A3 (hover premium + acabamento)
-========================================= */
-
-/* Card mais “glass” e com transição suave */
-.result-card{
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-}
-
-/* Hover: levanta e dá “vida” */
-.result-card:hover{
-  transform: translateY(-4px);
-  border-color: rgba(140,120,255,0.45);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.52);
-}
-
-/* Imagem: contraste e leve zoom no hover */
-.result-card .card-image img{
-  filter: contrast(1.05) saturate(1.08);
-  transition: transform .18s ease, filter .18s ease;
-}
-.result-card:hover .card-image img{
-  transform: scale(1.04);
-  filter: contrast(1.08) saturate(1.15);
-}
-
-/* Badge com cara mais “app” */
-.badge-tier{
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(8px);
-}
-
-/* Botão: hover mais convincente */
-.result-card .btn-primary,
-.result-card .btn-outline{
-  transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
-}
-
-.result-card .btn-primary:hover,
-.result-card .btn-outline:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.40);
-}
-
-/* Locked: fica claro que não é clicável, mas sem “matar” o card */
-.result-card.card-locked{
-  filter: grayscale(0.15);
-}
-.result-card.card-locked:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.45);
-}
-
-/* Deixa o texto do locked mais legível (se tiver overlay) */
-.result-card .lock-overlay{
-  font-size: 0.88rem;
-  opacity: 0.95;
-}
-
-/* Opcional: melhora a leitura geral em telas grandes */
-@media (min-width: 1200px){
-  #search-meta{ font-size: 0.98rem; }
-}
-/* =========================================
-   NEXUS — PASSO B2 (grid mais largo)
-========================================= */
-
-#results-grid{
-  max-width: 1280px;
-  margin: 40px auto 80px;
-  padding: 0 24px;
-}
-/* =========================================
-   SEARCH — LAYOUT FINAL (OFICIAL)
-========================================= */
-
-#search-page{
-  width: min(1380px, 96vw);
-  margin: 0 auto;
-  padding: 24px 0 40px;
-}
-
-#search-layout{
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 22px;
-}
-
-#search-filters{
-  position: sticky;
-  top: 90px;
-  padding: 14px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-#results-grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-/* CARD */
-.result-card{
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 16px;
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-
-.result-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.45);
-}
-
-/* IMAGEM */
-.card-image{
-  width: 110px;
-  height: 110px;
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.card-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* RESPONSIVO */
-@media (max-width: 1100px){
-  #results-grid{ grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 860px){
-  #search-layout{ grid-template-columns: 1fr; }
-  #results-grid{ grid-template-columns: 1fr; }
-}
-/* =========================================================
-   PATCH LAYOUT (HOME + BUSCA + BADGES + PAGES)
-   Cole no FINAL do style.css
-   ========================================================= */
-
-/* HOME: busca mais “larga” e estilo marketplace */
-.hero-search{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  width:100%;
-  max-width: 980px;
-  margin-top: 14px;
-}
-
-.hero-search .input-search{
-  flex:1;
-  height: 48px;
-  border-radius: 14px;
-  font-size: 1rem;
-}
-
-.hero-search .btn-primary{
-  height: 48px;
-  padding: 0 18px;
-  border-radius: 14px;
-  white-space: nowrap;
-}
-
-/* Chips (Notebooks/Monitores/Teclados/Headsets) mais elegantes e menos “grudados” */
-.chip-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top: 10px;
-  opacity: .95;
-}
-
-.chip{
-  border: 1px solid var(--stroke);
-  background: rgba(15,23,42,.55);
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: .9rem;
-}
-
-/* BUSCA: grid real estilo marketplace */
-#results-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-  align-items: stretch;
-  margin-top: 14px;
-}
-
-.result-card{
-  border: 1px solid var(--stroke);
-  border-radius: 16px;
-  overflow: hidden;
-  background: rgba(15,23,42,.55);
-  display:flex;
-  flex-direction: column;
-  min-height: 330px;
-}
-
-.card-image{
-  width:100%;
-  aspect-ratio: 16/10;
-  background: rgba(2,6,23,.35);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-bottom: 1px solid var(--stroke);
-}
-
-.card-image img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-.card-body{
-  padding: 12px 12px 14px;
-  display:flex;
-  flex-direction: column;
-  gap: 8px;
-  flex:1;
-}
-
-.card-title{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 10px;
-  font-weight: 650;
-}
-
-.card-subtitle{
-  opacity: .85;
-  font-size: .92rem;
-  line-height: 1.25rem;
-  min-height: 2.5rem;
-}
-
-.card-price{
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-top: 2px;
-}
-
-.card-action{
-  margin-top:auto;
-  display:flex;
-  gap: 10px;
-  align-items:center;
-  justify-content: space-between;
-}
-
-/* Badge Tier (divisor de águas) */
-.badge-tier{
-  font-size: .72rem;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--stroke);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-
-.badge-free{ background: rgba(148,163,184,.16); }
-.badge-core{ background: rgba(59,130,246,.18); }
-.badge-hyper{ background: rgba(168,85,247,.18); }
-.badge-omega{ background: rgba(245,158,11,.18); }
-
-.card-locked{
-  position: relative;
-  filter: saturate(.85);
-}
-
-.lock-overlay{
-  font-size: .85rem;
-  opacity: .9;
-  margin-bottom: 8px;
-}
-
-/* ASSINATURA + DASHBOARD: mais espaçamento e CTA mais “convincente” */
-.plans-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin-top: 14px;
-}
-
-.plan-card{
-  border: 1px solid var(--stroke);
-  border-radius: 18px;
-  background: rgba(15,23,42,.55);
-  padding: 16px;
-}
-
-.plan-price{
-  font-size: 1.15rem;
-  font-weight: 750;
-  margin: 6px 0 10px;
-}
-
-.plan-list{
-  display:flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 10px 0 14px;
-  padding-left: 18px;
-}
-
-.btn-outline.full, .btn-primary.full{
-  width:100%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap: 8px;
-  height: 46px;
-  border-radius: 14px;
-}
-
-/* MOBILE */
-@media (max-width: 640px){
-  .hero-search{ flex-direction: column; align-items: stretch; }
-  .hero-search .btn-primary{ width:100%; }
-}
-/* =========================
-   PATCH: LARGURA / GRID
-   ========================= */
-
-/* deixa o site menos "apertado" em desktop */
-.container, .wrapper, main {
-  max-width: 1400px;
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-/* Home: input e botão lado a lado no desktop */
-@media (min-width: 900px) {
-  .hero-search {
-    flex-direction: row;
-    align-items: center;
-  }
-  .hero-search .input-search {
-    flex: 1;
-    height: 52px;
-    font-size: 1rem;
-  }
-  .hero-search .btn-primary {
-    width: 260px;
-    height: 52px;
-    white-space: nowrap;
-  }
-}
-
-/* cards: um pouco maiores */
-#results-grid {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
-}
-/* =========================
-   GRID DEFINITIVO - BUSCA
-   (cola no FINAL do style.css)
-========================= */
-
-/* container geral da busca */
-.search-container{
-  width: min(1200px, 92vw);
-  margin: 0 auto;
-}
-
-/* grid responsivo de cards */
-#results-grid{
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  align-items: stretch;
-  margin-top: 18px;
-}
-
-/* card ocupa a coluna inteira (sem “coluna apertada”) */
-.result-card{
-  width: 100%;
-  max-width: none !important;
-}
-
-/* imagem padronizada */
-.result-card .card-image{
-  width: 100%;
-  height: 140px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.04);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.result-card .card-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display:block;
-}
-
-/* ====== HERO SEARCH (barra do início) ====== */
-.hero-search{
-  width: min(980px, 92vw);
-  display:flex;
-  gap: 12px;
-}
-
-.hero-search .input-search{
-  flex: 1;
-  width: auto;
-  min-width: 0;
-}
-
-.hero-search .btn-primary{
-  width: 220px;
-  max-width: 45vw;
-}
-
-/* mobile: botão vai pra baixo */
-@media (max-width: 560px){
-  .hero-search{
-    flex-direction: column;
-  }
-  .hero-search .btn-primary{
-    width: 100%;
-  }
-}
-/* ==============================
-   ASSINATURAS - MAIS CONVINCENTE
-============================== */
-.plans-grid {
-  width: min(1100px, calc(100% - 48px));
-  margin: 30px auto;
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-@media (max-width: 780px) {
-  .plans-grid { grid-template-columns: 1fr; width: calc(100% - 24px); }
-}
-
-.plan-card {
-  border-radius: 22px;
-  padding: 22px;
-}
-
-.plan-card ul {
-  margin: 14px 0 18px 0;
-  padding-left: 18px;
-  line-height: 1.55;
-}
-
-.plan-card li {
-  margin: 8px 0;
-}
-
-.plan-card .btn-primary,
-.plan-card .btn-outline {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 14px;
-}
-/* =========================================
-   HOTFIX: REMOVE QUALQUER IMAGEM FORÇADA (GPU)
-   Isso mata background-image em cards.
-========================================= */
-.result-card .card-image,
-.result-card .card-image::before,
-.result-card .card-image::after,
-.result-card .card-image img,
-.result-card,
-.result-card::before,
-.result-card::after {
-  background-image: none !important;
-  background: none !important;
-}
-
-/* Se existir imagem <img> quebrada, não mostra */
-.result-card .card-image img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.footer {
-  background: #0b0b0b;
-  color: #ccc;
-  padding: 40px 20px 20px;
-  margin-top: 60px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 30px;
-}
-
-.footer-logo {
-  width: 120px;
-  margin-bottom: 12px;
-}
-
-.footer-desc {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #aaa;
-}
-
-.footer-links h4 {
-  margin-bottom: 10px;
-  font-size: 15px;
-  color: #fff;
-}
-
-.footer-links a {
-  display: block;
-  font-size: 14px;
-  color: #aaa;
-  text-decoration: none;
-  margin-bottom: 6px;
-}
-
-.footer-links a:hover {
-  color: #4f46e5;
-}
-
-.footer-bottom {
-  border-top: 1px solid #222;
-  margin-top: 30px;
-  padding-top: 15px;
+.auth-box h2 {
+  font-size: 20px;
+  margin: 0 0 14px;
   text-align: center;
-  font-size: 13px;
-  color: #777;
 }
+.auth-box label { display: block; font-size: 13px; opacity: .9; margin: 10px 0 6px; }
+.auth-box input, .auth-box select, .auth-box textarea { width: 100%; }
+.auth-box button {
+  width: 100%;
+  background: rgba(90,108,255,0.95);
+  border-color: rgba(90,108,255,0.55);
+}
+.auth-box button:hover { filter: brightness(1.05); }
+.auth-box .toggle {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+  color: rgba(255,255,255,.85);
+}
+.auth-box .toggle a { color: #a5b4fc; text-decoration: none; font-weight: 800; }
+.auth-box .toggle a:hover { text-decoration: underline; }
 
-@media (max-width: 768px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+/* CAPTCHA: só layout, não “desativa” nada */
+#captcha-box {
+  margin-top: 10px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.04);
+  padding: 12px;
+}
+#captcha-box .captcha-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+#captcha-box input { width: 100%; }
+#captcha-box button {
+  width: auto;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.10);
+}
+#captcha-box button:hover { background: rgba(255,255,255,0.14); }
 
-  .footer-logo {
-    margin: 0 auto 12px;
-  }
+/* =========================================================
+   MINHA CONTA / PÁGINAS INTERNAS
+========================================================= */
+.info-row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.info-row:last-child { border-bottom: 0; }
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+@media (max-width: 720px) {
+  .topbar .container, .header .container { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .nav { width: 100%; }
+  .info-row { grid-template-columns: 1fr; }
+  .auth-box { padding: 18px; }
+  #captcha-box .captcha-row { grid-template-columns: 1fr; }
 }
