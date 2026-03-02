@@ -1,34 +1,61 @@
 // backend/utils/recaptcha.js
-import fetch from "node-fetch";
-
 /**
- * Verifica reCAPTCHA v2/v3 (token vindo do front).
- * Espera env: RECAPTCHA_SECRET
+ * Google reCAPTCHA v2/v3 verification helper
+ *
+ * Env:
+ * - RECAPTCHA_SECRET_KEY (ou RECAPTCHA_SECRET)
+ *
+ * Usage:
+ *   const ok = await verifyRecaptcha(token, ip);
  */
-export async function verifyRecaptchaToken(token) {
-  const secret = process.env.RECAPTCHA_SECRET;
 
-  // Se não tiver secret configurado, melhor falhar fechado (proteção)
-  if (!secret) return false;
-  if (!token || typeof token !== "string") return false;
+const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
+function getSecret() {
+  return (
+    process.env.RECAPTCHA_SECRET_KEY ||
+    process.env.RECAPTCHA_SECRET ||
+    ""
+  );
+}
+
+export async function verifyRecaptcha(token, remoteIp) {
   try {
-    const body = new URLSearchParams();
-    body.append("secret", secret);
-    body.append("response", token);
+    const secret = getSecret();
 
-    const r = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    // Se não tiver secret configurado, falha fechado (proteção)
+    if (!secret) {
+      console.warn("⚠️ RECAPTCHA_SECRET_KEY não configurado");
+      return false;
+    }
+
+    // Token vazio = inválido
+    if (!token || typeof token !== "string") return false;
+
+    const params = new URLSearchParams();
+    params.set("secret", secret);
+    params.set("response", token);
+    if (remoteIp) params.set("remoteip", String(remoteIp));
+
+    const resp = await fetch(RECAPTCHA_VERIFY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: body.toString()
+      body: params.toString(),
     });
 
-    const data = await r.json();
+    if (!resp.ok) return false;
 
-    // v2: data.success true/false
-    // v3: data.success true/false (score vem também, mas aqui é “mínimo”)
-    return data?.success === true;
-  } catch (e) {
+    const data = await resp.json();
+
+    // v2/v3: "success" boolean
+    if (data && data.success === true) return true;
+
+    return false;
+  } catch (err) {
+    console.error("verifyRecaptcha error:", err);
     return false;
   }
 }
+
+// Compat: se algum lugar importar default
+export default verifyRecaptcha;
