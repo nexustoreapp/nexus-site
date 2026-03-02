@@ -1,133 +1,108 @@
 // backend/controllers/payment.controller.js
-import crypto from "crypto";
+import fetch from "node-fetch";
 
+import { ORDER_STATUS } from "../orders/orders.status.js";
 import {
-  ORDER_STATUS,
-  createOrder,
   attachPayment,
-  updateOrderStatus,
   addOrderEvent,
-  findOrderById
+  findOrderById,
+  updateOrderStatus
 } from "../services/orders.service.js";
 
 /**
- * Helpers
- */
-function json(res, status, payload) {
-  return res.status(status).json(payload);
-}
-
-function getBaseUrl(req) {
-  // tenta pegar o domínio real do Render
-  const proto =
-    (req.headers["x-forwarded-proto"] || "").split(",")[0]?.trim() ||
-    req.protocol ||
-    "https";
-  const host =
-    (req.headers["x-forwarded-host"] || "").split(",")[0]?.trim() ||
-    req.get("host");
-  return `${proto}://${host}`;
-}
-
-function safeNumber(n, fallback = 0) {
-  const v = Number(n);
-  return Number.isFinite(v) ? v : fallback;
-}
-
-function signHmac(secret, raw) {
-  return crypto.createHmac("sha256", secret).update(raw).digest("hex");
-}
-
-/**
- * Controller: cria pagamento (Mercado Pago)
- * Rota esperada: POST /api/v1/payment/create
- *
- * Body mínimo sugerido:
+ * Mercado Pago - criar pagamento (Preference)
+ * Espera body parecido com o seu checkout.js:
  * {
- *   "userId": "xxx",
- *   "items": [{ "id":"sku", "title":"Produto", "unit_price": 10.5, "quantity": 1 }],
- *   "shipping": { "address": {...}, "method":"PAC", "etaDays": 7 }
+ *   email: "cliente@email.com",
+ *   items: [{ title, quantity, unit_price, currency_id? }],
+ *   orderId?: "uuid/opcional"
  * }
  */
 export async function createPaymentController(req, res) {
   try {
-    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || process.env.MERCADOPAGO_ACCESS_TOKEN;
-
+    const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || process.env.MP_ACCESS_TOKEN?.trim();
     if (!MP_ACCESS_TOKEN) {
-      return json(res, 500, {
+      return res.status(500).json({
         ok: false,
-        error: "MERCADOPAGO_TOKEN_MISSING",
-        hint: "Crie a env MP_ACCESS_TOKEN (ou MERCADOPAGO_ACCESS_TOKEN) no Render."
+        error: "MP_ACCESS_TOKEN_NOT_CONFIGURED"
       });
     }
 
-    const body = req.body || {};
-    const baseUrl = getBaseUrl(req);
+    const { email, items, orderId } = req.body || {};
 
-    const itemsIn = Array.isArray(body.items) ? body.items : [];
-    if (!itemsIn.length) {
-      return json(res, 400, {
+    // validações “pé no chão”
+    if (!email || typeof email !== "string") {
+      return res.status(400).json({ ok: false, error: "EMAIL_REQUIRED" });
+    }
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ ok: false, error: "ITEMS_REQUIRED" });
+    }
+
+    // normaliza itens pro padrão MP
+    const mpItems = items.map((it, idx) => {
+      const title = (it?.title ?? `Item ${idx + 1}`).toString();
+      const quantity = Number(it?.quantity ?? 1);
+      const unit_price = Number(it?.unit_price ?? 0);
+
+      if (!Number.isFinite(quantity) || quantity <= 0) {
+        throw new Error(`INVALID_ITEM_QUANTITY_${idx}`);
+      }
+      if (!Number.isFinite(unit_price) || unit_price <= 0) {
+        throw new Error(`INVALID_ITEM_PRICE_${idx}`);
+      }
+
+      return {
+        title,
+        quantity,
+        unit_price,
+        currency_id: (it?.currency_id ?? "BRL").toString()
+      };
+    });
+
+    // URL pública do backend (Render). Use a env do seu projeto.
+    const PUBLIC_BACKEND_URL =
+      (process.env.PUBLIC_BACKEND_URL || "").replace(/\/+$/, "") ||
+      (process.env.RENDER_EXTERNAL_URL || "").replace(/\/+$/, "");
+
+    if (!PUBLIC_BACKEND_URL) {
+      return res.status(500).json({
         ok: false,
-        error: "INVALID_ITEMS",
-        hint: "Envie items[] no body."
+        error: "PUBLIC_BACKEND_URL_NOT_CONFIGURED",
+        hint: "Configure PUBLIC_BACKEND_URL (ex: https://nexus-site-oufm.onrender.com)"
       });
     }
 
-    // normaliza items no formato que o Mercado Pago espera
-    const items = itemsIn.map((it) => ({
-      id: it.id || it.sku || null,
-      title: it.title || it.name || "Item",
-      quantity: Math.max(1, parseInt(it.quantity || 1, 10)),
-      unit_price: safeNumber(it.unit_price ?? it.price ?? 0, 0)
-    }));
+    // A notificação do MP (webhook)
+    const notification_url = `${PUBLIC_BACKEND_URL}/api/v1/payment/webhook/mercadopago`;
 
-    const subtotal = items.reduce(
-      (acc, it) => acc + safeNumber(it.unit_price, 0) * safeNumber(it.quantity, 1),
-      0
-    );
+    // Se você tiver orderId, a gente tenta achar e vincular
+    let order = null;
+    if (orderId) {
+      order = await findOrderById(orderId);
+      if (!order) {
+        return res.status(404).json({
+          ok: false,
+          error: "ORDER_NOT_FOUND",
+          orderId
+        });
+      }
+    }
 
-    const shippingCost = safeNumber(body?.totals?.shipping ?? body?.shipping?.cost ?? 0, 0);
-    const discount = safeNumber(body?.totals?.discount ?? 0, 0);
-    const total = Math.max(0, subtotal + shippingCost - discount);
-
-    // 1) cria ordem local (persistida no store)
-    const order = await createOrder({
-      userId: body.userId || null,
-      items: body.items || [],
-      totals: {
-        subtotal,
-        shipping: shippingCost,
-        discount,
-        total
-      },
-      shipping: body.shipping || {}
-    });
-
-    // 2) marca status aguardando pagamento
-    await updateOrderStatus(order.id, ORDER_STATUS.AGUARDANDO_PAGAMENTO, {
-      note: "Aguardando pagamento (preference Mercado Pago)",
-      paymentStatus: "PENDING"
-    });
-
-    // 3) cria preference no Mercado Pago
-    const webhookUrl = `${baseUrl}/api/v1/payment/webhook`; // você vai apontar o webhook do MP pra cá
-    const successUrl = `${baseUrl}/buscar.html?pay=success&orderId=${encodeURIComponent(order.id)}`;
-    const failureUrl = `${baseUrl}/buscar.html?pay=failure&orderId=${encodeURIComponent(order.id)}`;
-    const pendingUrl = `${baseUrl}/buscar.html?pay=pending&orderId=${encodeURIComponent(order.id)}`;
-
+    // cria preference no Mercado Pago
     const preferencePayload = {
-      items,
-      notification_url: webhookUrl,
+      items: mpItems,
+      payer: { email },
+      notification_url,
+      // você pode personalizar depois:
       back_urls: {
-        success: successUrl,
-        failure: failureUrl,
-        pending: pendingUrl
+        success: process.env.MP_BACK_SUCCESS || "https://nexustore.store/minha-conta.html",
+        pending: process.env.MP_BACK_PENDING || "https://nexustore.store/minha-conta.html",
+        failure: process.env.MP_BACK_FAILURE || "https://nexustore.store/minha-conta.html"
       },
       auto_return: "approved",
-      external_reference: order.id,
       metadata: {
-        orderId: order.id,
-        userId: order.userId
+        orderId: order?.id || orderId || null,
+        email
       }
     };
 
@@ -140,127 +115,56 @@ export async function createPaymentController(req, res) {
       body: JSON.stringify(preferencePayload)
     });
 
-    const mpJson = await mpResp.json().catch(() => null);
+    const mpData = await mpResp.json().catch(() => ({}));
 
     if (!mpResp.ok) {
-      await addOrderEvent(order.id, {
-        note: "Falha ao criar preference no Mercado Pago",
-        meta: { mpStatus: mpResp.status, mpJson }
-      });
-
-      return json(res, 502, {
+      return res.status(400).json({
         ok: false,
-        error: "MERCADOPAGO_PREFERENCE_FAILED",
-        status: mpResp.status,
-        details: mpJson
+        error: "MP_PREFERENCE_CREATE_FAILED",
+        details: mpData
       });
     }
 
-    // 4) salva dados do pagamento na ordem
-    await attachPayment(order.id, {
-      provider: "mercadopago",
-      status: "PENDING",
-      externalId: mpJson?.id || null,
-      method: "checkout_preference"
-    });
+    // Se tem order, anexa info de pagamento e marca status "payment_pending"
+    if (order) {
+      await attachPayment(order.id, {
+        provider: "mercadopago",
+        preference_id: mpData.id,
+        init_point: mpData.init_point,
+        sandbox_init_point: mpData.sandbox_init_point
+      });
 
-    await addOrderEvent(order.id, {
-      note: "Preference criada no Mercado Pago",
-      meta: { preferenceId: mpJson?.id || null }
-    });
+      await updateOrderStatus(order.id, ORDER_STATUS.PAYMENT_PENDING);
 
-    return json(res, 200, {
+      await addOrderEvent(order.id, {
+        type: "PAYMENT_PREFERENCE_CREATED",
+        payload: {
+          provider: "mercadopago",
+          preference_id: mpData.id
+        }
+      });
+    }
+
+    return res.json({
       ok: true,
-      orderId: order.id,
       provider: "mercadopago",
-      preferenceId: mpJson?.id || null,
-      init_point: mpJson?.init_point || null,
-      sandbox_init_point: mpJson?.sandbox_init_point || null
+      preferenceId: mpData.id,
+      payUrl: mpData.init_point || mpData.sandbox_init_point,
+      notification_url
     });
   } catch (err) {
-    return json(res, 500, {
+    return res.status(500).json({
       ok: false,
       error: "PAYMENT_CREATE_ERROR",
-      message: err?.message || String(err)
+      message: err?.message || "unknown_error"
     });
   }
 }
 
 /**
- * Controller: webhook do Mercado Pago
- * Rota esperada: POST /api/v1/payment/webhook
- *
- * Observação:
- * - Mercado Pago manda diferentes tipos de payload
- * - Aqui a gente faz o básico: tenta capturar orderId (external_reference/metadata)
- * - Se quiser validar assinatura: usar MP_WEBHOOK_SECRET (HMAC)
+ * Controller “genérico” de webhook (se algum lugar do projeto ainda chamar isso).
+ * Seu webhook real está em backend/controllers/payment.webhook.js (mercadopagoWebhook)
  */
 export async function paymentWebhookController(req, res) {
-  try {
-    // (opcional) valida assinatura se você configurar um secret seu
-    const secret = process.env.MP_WEBHOOK_SECRET;
-    if (secret) {
-      const sig = req.get("x-signature") || req.get("X-Signature") || "";
-      const raw = JSON.stringify(req.body || {});
-      const expected = signHmac(secret, raw);
-
-      // se não bater, não derruba servidor; só nega webhook
-      if (!sig || sig !== expected) {
-        return json(res, 401, { ok: false, error: "WEBHOOK_INVALID_SIGNATURE" });
-      }
-    }
-
-    const payload = req.body || {};
-
-    // tenta achar o orderId onde o MP costuma carregar
-    const orderId =
-      payload?.data?.id && payload?.external_reference
-        ? payload.external_reference
-        : payload?.external_reference ||
-          payload?.metadata?.orderId ||
-          payload?.metadata?.order_id ||
-          payload?.orderId ||
-          payload?.order_id ||
-          null;
-
-    if (!orderId) {
-      // webhook “genérico” do MP as vezes vem sem referência (depende do tipo)
-      return json(res, 200, { ok: true, received: true, note: "no-order-id" });
-    }
-
-    const order = await findOrderById(orderId);
-    if (!order) {
-      return json(res, 404, { ok: false, error: "ORDER_NOT_FOUND", orderId });
-    }
-
-    // status do pagamento pode vir em vários formatos; aqui mantemos simples
-    const mpStatus =
-      payload?.status ||
-      payload?.data?.status ||
-      payload?.payment_status ||
-      payload?.action ||
-      null;
-
-    await addOrderEvent(orderId, {
-      note: "Webhook Mercado Pago recebido",
-      meta: { mpStatus, payload }
-    });
-
-    // regra simples: se aparecer "approved", marca como PAGO
-    if (String(mpStatus || "").toLowerCase() === "approved") {
-      await updateOrderStatus(orderId, ORDER_STATUS.PAGO, {
-        note: "Pagamento aprovado via webhook",
-        paymentStatus: "PAID",
-        externalPaymentId: payload?.data?.id || payload?.id || null
-      });
-    }
-
-    return json(res, 200, { ok: true, received: true, orderId });
-  } catch (err) {
-    return json(res, 500, {
-      ok: false,
-      error: "WEBHOOK_ERROR",
-      message: err?.message || String(err)
-    });
-  }
+  return res.json({ ok: true });
 }
