@@ -1,52 +1,28 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
+import { Router } from "express";
 
-import authRoutes from "./routes/auth.routes.js";
-import ordersRoutes from "./routes/orders.routes.js";
-import checkoutRoutes from "./routes/checkout.routes.js";
-import paymentRoutes from "./routes/payment.routes.js";
-import trackingRoutes from "./routes/tracking.routes.js";
+import healthRoutes from "./health.routes.js";
+import productRoutes from "./product.routes.js";
+import searchRoutes from "./search.routes.js";
+import decisionRoutes from "./decision.routes.js";
+import geoRoutes from "./geo.routes.js";
+import authRoutes from "./auth.routes.js";
+import checkoutRoutes from "./checkout.routes.js";
+import paymentRoutes from "./payment.routes.js";
+import ordersRoutes from "./orders.routes.js";
+import trackingRoutes from "./tracking.routes.js";
 
-dotenv.config();
+const router = Router();
 
-const app = express();
+// versão v1 da API
+router.use("/v1/health", healthRoutes);
+router.use("/v1/products", productRoutes);
+router.use("/v1/search", searchRoutes);
+router.use("/v1/decision", decisionRoutes);
+router.use("/v1/geo", geoRoutes);
+router.use("/v1/auth", authRoutes);
+router.use("/v1/checkout", checkoutRoutes);
+router.use("/v1/payment", paymentRoutes);
+router.use("/v1/orders", ordersRoutes);
+router.use("/v1/tracking", trackingRoutes);
 
-app.use(cors());
-app.use(express.json());
-
-/*
-================================
-ROTAS PRINCIPAIS DA API
-================================
-*/
-
-app.use("/api/auth", authRoutes);
-app.use("/api/orders", ordersRoutes);
-app.use("/api/checkout", checkoutRoutes);
-app.use("/api/payment", paymentRoutes);
-app.use("/api/tracking", trackingRoutes);
-
-/*
-================================
-ROTA DE TESTE
-================================
-*/
-
-app.get("/", (req, res) => {
-  res.json({
-    status: "NEXUS API ONLINE"
-  });
-});
-
-/*
-================================
-PORTA
-================================
-*/
-
-const PORT = process.env.PORT || 10000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
-});
+export default router;
