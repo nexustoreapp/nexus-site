@@ -1,260 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nexus Store | Login</title>
+  <meta charset="UTF-8" />
+  <title>Entrar ou Criar conta — Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" href="fivecon.png" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Se você usa fonte no resto do site, mantém -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <style>
-    /* Só layout do miolo (não destrói teu style.css) */
-    .auth-wrap{
-      min-height: calc(100vh - 80px);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 28px 14px;
-    }
-    .auth-card{
-      width: min(520px, 100%);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
-    }
-    .auth-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    .auth-title h1{
-      font-size: 20px;
-      margin: 0;
-    }
-    .auth-tabs{
-      display:flex;
-      gap: 10px;
-      margin: 14px 0 16px;
-    }
-    .auth-tabs button{
-      flex: 1;
-      border-radius: 12px;
-      padding: 10px 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      cursor: pointer;
-    }
-    .auth-tabs button.active{
-      border-color: rgba(255,60,60,0.65);
-      background: rgba(255,60,60,0.12);
-    }
-    .auth-form{
-      display:none;
-      gap: 10px;
-    }
-    .auth-form.active{
-      display:block;
-    }
-    .auth-field{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .auth-field label{
-      font-size: 13px;
-      opacity: 0.85;
-    }
-    .auth-field input{
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.30);
-      color: #fff;
-      outline: none;
-    }
-    .auth-field input:focus{
-      border-color: rgba(255,60,60,0.65);
-      box-shadow: 0 0 0 3px rgba(255,60,60,0.12);
-    }
-    .auth-actions{
-      display:flex;
-      gap: 10px;
-      margin-top: 8px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap: wrap;
-    }
-    .auth-actions .btn{
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 0;
-      cursor: pointer;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ff2d2d, #ff7a00);
-      color: #101010;
-    }
-    .auth-note{
-      font-size: 12px;
-      opacity: 0.75;
-      margin-top: 10px;
-      line-height: 1.35;
-    }
-    .msg{
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.25);
-      font-size: 13px;
-      display:none;
-      white-space: pre-wrap;
-    }
-    .msg.show{ display:block; }
-    .msg.ok{
-      border-color: rgba(0,255,120,0.25);
-      background: rgba(0,255,120,0.08);
-    }
-    .msg.err{
-      border-color: rgba(255,60,60,0.35);
-      background: rgba(255,60,60,0.10);
-    }
-    .rc-wrap{
-      margin: 8px 0 2px;
-      display:flex;
-      justify-content:center;
-    }
-  </style>
-
-  <!-- Config global (NEXUS_API etc) -->
   <script src="config.js"></script>
 
+  <!-- reCAPTCHA: render explícito (NÃO desativa nada) -->
   <script>
-    // === CONFIG: recaptcha site key (o teu) ===
-    // Se quiser trocar, troca aqui sem mexer no JS.
-    window.NEXUS_RECAPTCHA_SITE_KEY = "6Lfu50QsAAAAAKiztz9gEGcQS1IJFuw1P5d18Qh0";
+    window.NEXUS_RECAPTCHA_SITE_KEY = "6Lfu50QsAAAAAJNoJNLk4plvQNeWxWzoMTXMtEHN";
+    window.__nexusRecaptchaWidgetId = null;
 
-    // callback do script do reCAPTCHA
     window.onRecaptchaLoad = function () {
       try {
-        if (window.grecaptcha && window.NEXUS_RECAPTCHA_SITE_KEY) {
-          // register captcha
-          const elReg = document.getElementById("g-recaptcha-register");
-          if (elReg && !elReg.dataset.rendered) {
-            window.__captchaRegId = grecaptcha.render(elReg, { sitekey: window.NEXUS_RECAPTCHA_SITE_KEY });
-            elReg.dataset.rendered = "1";
-          }
-          // login captcha
-          const elLog = document.getElementById("g-recaptcha-login");
-          if (elLog && !elLog.dataset.rendered) {
-            window.__captchaLogId = grecaptcha.render(elLog, { sitekey: window.NEXUS_RECAPTCHA_SITE_KEY });
-            elLog.dataset.rendered = "1";
-          }
+        if (!window.grecaptcha) return;
+        const box = document.getElementById("captchaBox");
+        if (!box) return;
+
+        if (window.__nexusRecaptchaWidgetId === null) {
+          window.__nexusRecaptchaWidgetId = grecaptcha.render(box, {
+            sitekey: window.NEXUS_RECAPTCHA_SITE_KEY
+          });
         }
-      } catch (e) {
-        console.warn("Recaptcha load error:", e);
-      }
+      } catch (e) {}
     };
   </script>
-
   <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 </head>
 
 <body>
-  <!-- Topbar padrão do site -->
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Nexus Store">
-      <img src="assets/logo-topbar.png" alt="Nexus Store" class="brand__logo" />
-      <span class="brand__name">Nexus Store</span>
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Nexus" class="brand-logo" />
+      <span class="brand-name">Nexus Store</span>
     </a>
 
-    <nav class="topnav">
-      <a href="index.html">Início</a>
-      <a href="buscar.html">Buscar</a>
-      <a href="assinatura.html">Assinatura</a>
-      <a href="minha-conta.html">Minha conta</a>
+    <nav class="topbar-nav">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="buscar.html" class="nav-link">Buscar</a>
+      <a href="minha-conta.html" class="nav-link">Minha conta</a>
     </nav>
   </header>
 
-  <main class="auth-wrap">
-    <section class="auth-card">
-      <div class="auth-title">
-        <h1>Entrar ou criar conta</h1>
-      </div>
+  <main class="container auth-wrap">
+    <section class="card auth-card">
+      <h1 id="formTitle" class="h1">Entrar</h1>
+      <p id="formSubtitle" class="muted">Acesse sua conta para continuar.</p>
 
-      <div class="auth-tabs">
-        <button id="showLogin" class="active" type="button">Login</button>
-        <button id="showRegister" type="button">Cadastro</button>
-      </div>
+      <div id="formError" class="alert alert-error" style="display:none;"></div>
+      <div id="captchaOwnerError" class="alert alert-warn" style="display:none;"></div>
 
-      <!-- LOGIN -->
-      <form id="loginForm" class="auth-form active" autocomplete="on">
-        <div class="auth-field">
-          <label for="loginEmail">E-mail</label>
-          <input id="loginEmail" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+      <form id="authForm" class="auth-form" autocomplete="on">
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="seuemail@email.com" required />
         </div>
 
-        <div class="auth-field">
-          <label for="loginPassword">Senha</label>
-          <input id="loginPassword" name="password" type="password" placeholder="••••••••" required />
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
         </div>
 
-        <div class="rc-wrap">
-          <div id="g-recaptcha-login"></div>
+        <div id="registerFields" style="display:none;">
+          <div class="field">
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" placeholder="Seu nome" />
+          </div>
+
+          <div class="field">
+            <label for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Telefone</label>
+            <input id="phone" name="phone" type="text" placeholder="(00) 00000-0000" />
+          </div>
+
+          <div class="field">
+            <label>Confirmação de segurança</label>
+            <div id="captchaBox"></div>
+            <small class="muted">
+              Se aparecer “domínio inválido”, é configuração no Google reCAPTCHA (não é backend).
+            </small>
+          </div>
         </div>
+
+        <button id="submitBtn" type="submit" class="btn btn-primary">Entrar</button>
 
         <div class="auth-actions">
-          <button class="btn" type="submit">Entrar</button>
+          <button id="toggleModeBtn" type="button" class="btn btn-link">
+            Não tenho conta. Quero cadastrar
+          </button>
         </div>
-
-        <div class="auth-note">
-          Se der erro, é porque o backend recusou (captcha, banco, usuário inexistente, etc). A mensagem vai aparecer aqui embaixo.
-        </div>
-
-        <div id="loginMsg" class="msg"></div>
-      </form>
-
-      <!-- CADASTRO -->
-      <form id="registerForm" class="auth-form" autocomplete="on">
-        <div class="auth-field">
-          <label for="regName">Nome (opcional)</label>
-          <input id="regName" name="name" type="text" placeholder="Seu nome" />
-        </div>
-
-        <div class="auth-field">
-          <label for="regEmail">E-mail</label>
-          <input id="regEmail" name="email" type="email" placeholder="seuemail@exemplo.com" required />
-        </div>
-
-        <div class="auth-field">
-          <label for="regPassword">Senha</label>
-          <input id="regPassword" name="password" type="password" placeholder="Crie uma senha" required />
-        </div>
-
-        <div class="rc-wrap">
-          <div id="g-recaptcha-register"></div>
-        </div>
-
-        <div class="auth-actions">
-          <button class="btn" type="submit">Criar conta</button>
-        </div>
-
-        <div class="auth-note">
-          O cadastro depende do banco estar com as tabelas (migrations). Se o banco não tiver tabela <b>users</b>, vai falhar.
-        </div>
-
-        <div id="registerMsg" class="msg"></div>
       </form>
     </section>
   </main>
