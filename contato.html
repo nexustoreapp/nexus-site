@@ -1,40 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contato | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Contato</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Contato</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Visual pronto. Depois você pluga WhatsApp/email real.
-          </p>
+          <h2 style="font-weight:1000;">Contato</h2>
+          <p class="helper">Fale com a Nexus Store.</p>
 
-          <div class="soft" style="margin-top:12px;padding:14px">
-            <div style="font-weight:1000">Email</div>
-            <div style="color:var(--muted);font-weight:800;margin-top:6px">contato@nexustore.store</div>
+          <div class="hr"></div>
 
-            <div style="height:12px"></div>
+          <form id="contactForm" class="soft" style="padding:14px;">
+            <div class="form-grid">
+              <div>
+                <div class="helper">Nome</div>
+                <input class="input" name="name" autocomplete="name" required>
+              </div>
+              <div>
+                <div class="helper">E-mail</div>
+                <input class="input" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
 
-            <div style="font-weight:1000">WhatsApp</div>
-            <div style="color:var(--muted);font-weight:800;margin-top:6px">(xx) xxxxx-xxxx</div>
-          </div>
+            <div style="margin-top:12px;">
+              <div class="helper">Mensagem</div>
+              <textarea class="input" name="message" required></textarea>
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-primary" type="submit">Enviar</button>
+              <a class="btn btn-outline" href="index.html">Voltar</a>
+            </div>
+
+            <div id="contactResult" class="helper" style="margin-top:10px;"></div>
+          </form>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="contato.js"></script>
 </body>
 </html>
