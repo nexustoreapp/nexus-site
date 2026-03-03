@@ -1,109 +1,289 @@
-import fetch from "node-fetch";
+// backend/controllers/payment.controller.js
 
-const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN;
+import fetch from "node-fetch";
+import crypto from "crypto";
+import {
+  createOrder,
+  attachPayment,
+  updateOrderStatus,
+  addOrderEvent,
+  ORDER_STATUS
+} from "../services/orders.service.js";
+
+function json(res, status, payload) {
+  return res.status(status).json(payload);
+}
+
+function getBackendBaseUrl(req) {
+  const proto =
+    (req.headers["x-forwarded-proto"] || "").split(",")[0]?.trim() ||
+    req.protocol ||
+    "https";
+
+  const host =
+    (req.headers["x-forwarded-host"] || "").split(",")[0]?.trim() ||
+    req.get("host");
+
+  return `${proto}://${host}`;
+}
+
+function getUserFromToken(req) {
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(
+      Buffer.from(token.split(".")[1], "base64").toString("utf8")
+    );
+    return payload || null;
+  } catch {
+    return null;
+  }
+}
+
+function safeNumber(n, fallback = 0) {
+  const v = Number(n);
+  return Number.isFinite(v) ? v : fallback;
+}
+
+/*
+=====================================
+CONTROLLER PRINCIPAL
+POST /api/v1/payment/create
+=====================================
+*/
 
 export async function createPayment(req, res) {
   try {
 
-    const { items, amountCents, currency } = req.body;
+    const MP_ACCESS_TOKEN =
+      process.env.MP_ACCESS_TOKEN ||
+      process.env.MERCADOPAGO_ACCESS_TOKEN;
 
-    if (!items || !Array.isArray(items)) {
-      return res.json({
+    if (!MP_ACCESS_TOKEN) {
+      return json(res, 500, {
+        ok: false,
+        error: "MP_TOKEN_MISSING"
+      });
+    }
+
+    const user = getUserFromToken(req);
+
+    if (!user?.email) {
+      return json(res, 401, {
+        ok: false,
+        error: "INVALID_TOKEN"
+      });
+    }
+
+    const body = req.body || {};
+    const items = Array.isArray(body.items) ? body.items : [];
+    const amountCents = safeNumber(body.amountCents, 0);
+    const currency = (body.currency || "BRL").toUpperCase();
+
+    if (!items.length) {
+      return json(res, 400, {
         ok: false,
         error: "ITEMS_REQUIRED"
       });
     }
 
+    if (amountCents <= 0) {
+      return json(res, 400, {
+        ok: false,
+        error: "INVALID_AMOUNT"
+      });
+    }
+
     const amount = amountCents / 100;
 
-    const body = {
-      items: items.map(i => ({
-        title: i.title,
-        quantity: i.quantity || 1,
-        unit_price: Number(i.unit_price),
-        currency_id: currency || "BRL"
-      })),
-
-      payer: {
-        email: req.user?.email || "comprador@test.com"
-      },
-
-      payment_methods: {
-        excluded_payment_types: [],
-        installments: 12
-      },
-
-      back_urls: {
-        success: process.env.FRONTEND_URL + "/payment-success.html",
-        failure: process.env.FRONTEND_URL + "/payment-failure.html",
-        pending: process.env.FRONTEND_URL + "/payment-pending.html"
-      },
-
-      auto_return: "approved",
-
-      notification_url:
-        process.env.BACKEND_URL +
-        "/api/v1/payment/webhook/mercadopago"
-    };
-
-
-
-/* =====================================================
-INICIO_PLANO_TESTE
-Permite pagamento de valor mínimo (0.01) para teste
-===================================================== */
+    /*
+    ==========================
+    INICIO_PLANO_TESTE
+    ==========================
+    */
 
     if (amount < 0.01) {
-      return res.json({
+      return json(res, 400, {
         ok: false,
         error: "VALOR_INVALIDO_TESTE"
       });
     }
 
-/* =====================================================
-FIM_PLANO_TESTE
-===================================================== */
+    /*
+    ==========================
+    FIM_PLANO_TESTE
+    ==========================
+    */
 
+    const backendBase = getBackendBaseUrl(req);
+    const frontendBase =
+      (process.env.FRONTEND_URL || "https://nexustore.store").replace(/\/$/, "");
 
+    /*
+    ==========================
+    CRIA ORDEM
+    ==========================
+    */
 
-    const mp = await fetch(
+    const { orderId } = await createOrder({
+      userEmail: user.email,
+      items,
+      amountCents,
+      currency
+    });
+
+    await updateOrderStatus(orderId, ORDER_STATUS.AGUARDANDO_PAGAMENTO, {
+      paymentStatus: "PENDING"
+    });
+
+    await attachPayment(orderId, {
+      provider: "mercadopago",
+      status: "PENDING",
+      method: "checkout_preference",
+      externalId: null
+    });
+
+    await addOrderEvent(orderId, {
+      note: "Criando pagamento Mercado Pago",
+      meta: { amountCents }
+    });
+
+    /*
+    ==========================
+    PREPARA ITENS
+    ==========================
+    */
+
+    const mpItems = items.map((i) => ({
+      id: i.id,
+      title: i.title,
+      quantity: i.quantity || 1,
+      unit_price: safeNumber(i.unit_price)
+    }));
+
+    /*
+    ==========================
+    URLS
+    ==========================
+    */
+
+    const webhookUrl =
+      `${backendBase}/api/v1/payment/webhook/mercadopago`;
+
+    const successUrl =
+      `${frontendBase}/buscar.html?pay=success&orderId=${orderId}`;
+
+    const failureUrl =
+      `${frontendBase}/buscar.html?pay=failure&orderId=${orderId}`;
+
+    const pendingUrl =
+      `${frontendBase}/buscar.html?pay=pending&orderId=${orderId}`;
+
+    /*
+    ==========================
+    PAYLOAD MP
+    ==========================
+    */
+
+    const preferencePayload = {
+
+      items: mpItems,
+
+      notification_url: webhookUrl,
+
+      back_urls: {
+        success: successUrl,
+        failure: failureUrl,
+        pending: pendingUrl
+      },
+
+      auto_return: "approved",
+
+      external_reference: orderId,
+
+      metadata: {
+        orderId,
+        userEmail: user.email
+      }
+    };
+
+    /*
+    ==========================
+    CHAMA MERCADO PAGO
+    ==========================
+    */
+
+    const mpResp = await fetch(
       "https://api.mercadopago.com/checkout/preferences",
       {
         method: "POST",
         headers: {
           Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "X-Idempotency-Key": crypto.randomUUID()
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(preferencePayload)
       }
     );
 
-    const data = await mp.json();
+    const mpJson = await mpResp.json().catch(() => null);
 
-    if (!data || !data.id) {
-      console.error("Erro MP:", data);
+    if (!mpResp.ok) {
 
-      return res.json({
+      console.error("MP ERROR", mpJson);
+
+      return json(res, 502, {
         ok: false,
-        error: "MP_CREATE_ERROR",
-        detail: data
+        error: "MP_CREATE_FAILED",
+        details: mpJson
       });
     }
 
-    return res.json({
+    /*
+    ==========================
+    SALVA ID DO MP
+    ==========================
+    */
+
+    await attachPayment(orderId, {
+      provider: "mercadopago",
+      status: "PENDING",
+      method: "checkout_preference",
+      externalId: mpJson?.id || null
+    });
+
+    await addOrderEvent(orderId, {
+      note: "Preference criada",
+      meta: { preferenceId: mpJson?.id }
+    });
+
+    /*
+    ==========================
+    RETORNO
+    ==========================
+    */
+
+    return json(res, 200, {
       ok: true,
-      init_point: data.init_point,
-      sandbox_init_point: data.sandbox_init_point,
-      preference_id: data.id
+      orderId,
+      provider: "mercadopago",
+      preferenceId: mpJson?.id,
+      init_point: mpJson?.init_point,
+      sandbox_init_point: mpJson?.sandbox_init_point
     });
 
   } catch (err) {
 
-    console.error("Erro createPayment:", err);
+    console.error("PAYMENT ERROR:", err);
 
-    return res.json({
+    return json(res, 500, {
       ok: false,
-      error: "SERVER_ERROR"
+      error: "PAYMENT_CREATE_ERROR",
+      message: err?.message
     });
+
   }
 }
