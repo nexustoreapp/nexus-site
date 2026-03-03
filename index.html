@@ -1,105 +1,106 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
-  <main class="hero">
+  <section class="hero">
     <div class="container hero-grid">
-      <section class="card hero-main">
-        <h1 class="hero-title">Seu marketplace com <span>cara de marketplace</span>.</h1>
-        <p class="hero-sub">
-          Planos, produtos e tudo organizado pra conversão. Agora com topbar inteligente + logout real.
-        </p>
-
+      <div class="card hero-main">
+        <div class="hero-title">Seu marketplace com cara de <span>Nexus</span>.</div>
+        <div class="hero-sub">
+          Produtos, serviços e assinaturas em um lugar só. Rápido, limpo e pronto pra escalar.
+        </div>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="buscar.html">Começar a buscar</a>
+          <a class="btn btn-primary" href="buscar.html">Explorar</a>
           <a class="btn btn-outline" href="planos.html">Ver planos</a>
-          <a class="btn btn-ghost" href="chat.html">Falar com a Yara</a>
+          <a class="btn btn-ghost" href="minha-conta.html">Minha conta</a>
         </div>
-      </section>
+      </div>
 
-      <aside class="card hero-side">
+      <div class="card hero-side">
         <div class="kpi">
           <div>
-            <small>Entrega</small><br/>
-            <strong>Rápida</strong>
-          </div>
-          <small>⚡</small>
-        </div>
-        <div class="kpi">
-          <div>
-            <small>Pagamentos</small><br/>
+            <small>Checkout</small><br>
             <strong>Mercado Pago</strong>
           </div>
-          <small>💳</small>
+          <small>OK</small>
         </div>
         <div class="kpi">
           <div>
-            <small>Assistente</small><br/>
-            <strong>Yara</strong>
+            <small>Segurança</small><br>
+            <strong>Token + reCAPTCHA</strong>
           </div>
-          <small>💬</small>
+          <small>ON</small>
         </div>
-      </aside>
+        <div class="kpi">
+          <div>
+            <small>IA Nexus</small><br>
+            <strong>Chat</strong>
+          </div>
+          <small>beta</small>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="container section">
+  <section class="section">
+    <div class="container">
       <div class="section-head">
         <div>
-          <div class="section-title">Destaques</div>
-          <div class="section-desc">Vitrine exemplo (visual). O resto a gente liga com o catálogo.</div>
+          <div class="section-title">Atalhos rápidos</div>
+          <div class="section-desc">Pra navegar sem sofrimento.</div>
         </div>
       </div>
 
       <div class="grid">
-        <div class="col-4 card product">
-          <div class="thumb"></div>
-          <div class="body">
-            <div class="title">Produto exemplo 1</div>
-            <div class="price"><span>R$ 19,90</span></div>
-            <div class="row">
-              <a class="btn btn-primary" href="buscar.html">Ver</a>
-              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
-            </div>
-          </div>
-        </div>
+        <a class="col-4 cat" href="buscar.html">
+          <div class="name">Buscar</div>
+          <div class="meta">Produtos e serviços</div>
+        </a>
 
-        <div class="col-4 card product">
-          <div class="thumb"></div>
-          <div class="body">
-            <div class="title">Produto exemplo 2</div>
-            <div class="price"><span>R$ 39,90</span></div>
-            <div class="row">
-              <a class="btn btn-primary" href="buscar.html">Ver</a>
-              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
-            </div>
-          </div>
-        </div>
+        <a class="col-4 cat" href="planos.html">
+          <div class="name">Planos</div>
+          <div class="meta">Assinaturas e benefícios</div>
+        </a>
 
-        <div class="col-4 card product">
-          <div class="thumb"></div>
-          <div class="body">
-            <div class="title">Produto exemplo 3</div>
-            <div class="price"><span>R$ 69,90</span></div>
-            <div class="row">
-              <a class="btn btn-primary" href="buscar.html">Ver</a>
-              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
-            </div>
-          </div>
-        </div>
+        <a class="col-4 cat" href="pedidos.html">
+          <div class="name">Pedidos</div>
+          <div class="meta">Histórico e status</div>
+        </a>
       </div>
     </div>
-  </main>
+  </section>
 
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>Nexus Store</h4>
+        <div class="helper">Marketplace em construção. Sem firula, com velocidade.</div>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <a href="privacidade.html">Privacidade</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      <div>
+        <h4>Conta</h4>
+        <a href="login.html">Login</a>
+        <a href="minha-conta.html">Minha conta</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">© Nexus Store</div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 </body>
 </html>
