@@ -1,13 +1,33 @@
-async function loadTopbar(){
+// layout.js
+// Controla topbar automática e estado do usuário
 
-const response = await fetch("/topbar.html");
+async function loadTopbar() {
+  const topbarContainer = document.getElementById("topbar-container");
+  if (!topbarContainer) return;
 
-const html = await response.text();
+  const res = await fetch("/topbar.html");
+  const html = await res.text();
 
-document.getElementById("topbar-container").innerHTML = html;
+  topbarContainer.innerHTML = html;
 
-updateTopbar();
+  updateUserUI();
+}
 
+function updateUserUI() {
+  const token = localStorage.getItem("token");
+
+  const loginBtn = document.getElementById("nav-login");
+  const logoutBtn = document.getElementById("nav-logout");
+
+  if (!loginBtn || !logoutBtn) return;
+
+  if (token) {
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", loadTopbar);
