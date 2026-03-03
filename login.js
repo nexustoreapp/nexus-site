@@ -1,193 +1,205 @@
-(function () {
-  const API =
-    (window.NEXUS_API || "").replace(/\/$/, "") ||
-    (window.BACKEND_URL || "").replace(/\/$/, "") ||
-    "";
+// login.js
+function $(id) {
+  return document.getElementById(id);
+}
 
-  const els = {
-    showLogin: document.getElementById("showLogin"),
-    showRegister: document.getElementById("showRegister"),
+function setVisible(el, visible) {
+  if (!el) return;
+  el.style.display = visible ? "" : "none";
+}
 
-    loginForm: document.getElementById("loginForm"),
-    registerForm: document.getElementById("registerForm"),
+function setFormError(msg) {
+  const box = $("formError");
+  if (!box) return;
+  box.textContent = msg || "";
+  setVisible(box, !!msg);
+}
 
-    loginEmail: document.getElementById("loginEmail"),
-    loginPassword: document.getElementById("loginPassword"),
-    loginMsg: document.getElementById("loginMsg"),
+function setCaptchaOwnerError(html) {
+  const box = $("captchaOwnerError");
+  if (!box) return;
+  box.innerHTML = html || "";
+  setVisible(box, !!html);
+}
 
-    regName: document.getElementById("regName"),
-    regEmail: document.getElementById("regEmail"),
-    regPassword: document.getElementById("regPassword"),
-    registerMsg: document.getElementById("registerMsg")
+function getToken() {
+  return localStorage.getItem("nexus_token");
+}
+
+function setToken(token) {
+  localStorage.setItem("nexus_token", token);
+}
+
+function normalizeCpf(v) {
+  return String(v || "").replace(/\D+/g, "").slice(0, 11);
+}
+
+function normalizePhone(v) {
+  return String(v || "").replace(/\D+/g, "").slice(0, 11);
+}
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+function showRecaptchaDomainHint() {
+  const host = window.location.hostname || "";
+  setCaptchaOwnerError(
+    [
+      "<b>reCAPTCHA bloqueado.</b><br/>",
+      "Isso é <b>configuração do Google reCAPTCHA</b> (domínio não autorizado para esta Site Key).<br/>",
+      "No reCAPTCHA Admin, adicione:<br/>",
+      `<code>${host}</code> e <code>www.${host}</code>.<br/>`,
+      "Se estiver testando no Render, adicione também o domínio do Render."
+    ].join("")
+  );
+}
+
+async function ensureRecaptchaReady() {
+  const reg = $("registerFields");
+  if (!reg || reg.style.display === "none") return true;
+
+  for (let i = 0; i < 15; i++) {
+    if (window.grecaptcha) return true;
+    await sleep(200);
+  }
+
+  showRecaptchaDomainHint();
+  return false;
+}
+
+let mode = "login";
+
+function setMode(nextMode) {
+  mode = nextMode;
+
+  setFormError("");
+  setCaptchaOwnerError("");
+
+  const title = $("formTitle");
+  const sub = $("formSubtitle");
+  const reg = $("registerFields");
+  const btn = $("submitBtn");
+  const toggle = $("toggleModeBtn");
+
+  if (mode === "login") {
+    if (title) title.textContent = "Entrar";
+    if (sub) sub.textContent = "Acesse sua conta para continuar.";
+    setVisible(reg, false);
+    if (btn) btn.textContent = "Entrar";
+    if (toggle) toggle.textContent = "Não tenho conta. Quero cadastrar";
+    return;
+  }
+
+  if (title) title.textContent = "Cadastrar";
+  if (sub) sub.textContent = "Crie sua conta para continuar.";
+  setVisible(reg, true);
+  if (btn) btn.textContent = "Criar conta";
+  if (toggle) toggle.textContent = "Já tenho conta. Quero entrar";
+
+  try {
+    if (window.grecaptcha && window.onRecaptchaLoad) window.onRecaptchaLoad();
+  } catch {}
+}
+
+async function apiPost(path, body) {
+  const url = `${window.NEXUS_API}${path}`;
+  const r = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body || {})
+  });
+  const data = await r.json().catch(() => null);
+  return { ok: r.ok, status: r.status, data };
+}
+
+async function onSubmit(ev) {
+  ev.preventDefault();
+  setFormError("");
+  setCaptchaOwnerError("");
+
+  const email = ($("email")?.value || "").trim();
+  const password = $("password")?.value || "";
+
+  if (!email || !password) {
+    setFormError("Preencha e-mail e senha.");
+    return;
+  }
+
+  if (mode === "login") {
+    const { ok, data } = await apiPost("/auth/login", { email, password });
+    if (!ok || !data?.ok) {
+      setFormError(data?.error || "Erro ao entrar.");
+      return;
+    }
+    setToken(data.token);
+    window.location.href = "minha-conta.html";
+    return;
+  }
+
+  const ready = await ensureRecaptchaReady();
+  if (!ready) return;
+
+  let captcha = "";
+  try {
+    captcha = window.grecaptcha
+      ? grecaptcha.getResponse(window.__nexusRecaptchaWidgetId)
+      : "";
+  } catch {
+    captcha = "";
+  }
+
+  if (!captcha) {
+    showRecaptchaDomainHint();
+    setFormError("Confirme o reCAPTCHA para continuar.");
+    return;
+  }
+
+  const name = ($("name")?.value || "").trim();
+  const cpf = normalizeCpf($("cpf")?.value || "");
+  const phone = normalizePhone($("phone")?.value || "");
+
+  const payload = {
+    name,
+    email,
+    password,
+    cpf,
+    phone,
+    recaptchaToken: captcha
   };
 
-  function setMsg(el, type, text) {
-    if (!el) return;
-    el.className = "msg show " + (type === "ok" ? "ok" : "err");
-    el.textContent = text || "";
-  }
-
-  function clearMsg(el) {
-    if (!el) return;
-    el.className = "msg";
-    el.textContent = "";
-  }
-
-  function toggle(mode) {
-    clearMsg(els.loginMsg);
-    clearMsg(els.registerMsg);
-
-    if (mode === "register") {
-      els.showRegister?.classList.add("active");
-      els.showLogin?.classList.remove("active");
-
-      els.registerForm?.classList.add("active");
-      els.loginForm?.classList.remove("active");
-    } else {
-      els.showLogin?.classList.add("active");
-      els.showRegister?.classList.remove("active");
-
-      els.loginForm?.classList.add("active");
-      els.registerForm?.classList.remove("active");
-    }
-  }
-
-  els.showLogin?.addEventListener("click", () => toggle("login"));
-  els.showRegister?.addEventListener("click", () => toggle("register"));
-
-  function getCaptchaResponse(which) {
+  const { ok, data } = await apiPost("/auth/register", payload);
+  if (!ok || !data?.ok) {
+    setFormError(data?.error || "Erro ao cadastrar.");
     try {
-      if (!window.grecaptcha) return "";
-      // se você renderizou explicit, o getResponse() sem id costuma funcionar também
-      // mas aqui tentamos pegar o correto se existir:
-      if (which === "login" && typeof window.__captchaLogId !== "undefined") {
-        return window.grecaptcha.getResponse(window.__captchaLogId) || "";
-      }
-      if (which === "register" && typeof window.__captchaRegId !== "undefined") {
-        return window.grecaptcha.getResponse(window.__captchaRegId) || "";
-      }
-      return window.grecaptcha.getResponse() || "";
-    } catch {
-      return "";
-    }
-  }
-
-  function resetCaptcha(which) {
-    try {
-      if (!window.grecaptcha) return;
-      if (which === "login" && typeof window.__captchaLogId !== "undefined") {
-        window.grecaptcha.reset(window.__captchaLogId);
-        return;
-      }
-      if (which === "register" && typeof window.__captchaRegId !== "undefined") {
-        window.grecaptcha.reset(window.__captchaRegId);
-        return;
-      }
-      window.grecaptcha.reset();
+      if (window.grecaptcha) grecaptcha.reset(window.__nexusRecaptchaWidgetId);
     } catch {}
+    return;
   }
 
-  // =========================
-  // LOGIN
-  // =========================
-  els.loginForm?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    clearMsg(els.loginMsg);
+  if (data.token) {
+    setToken(data.token);
+    window.location.href = "minha-conta.html";
+    return;
+  }
 
-    if (!API) {
-      setMsg(els.loginMsg, "err", "Config faltando: NEXUS_API (config.js).");
-      return;
-    }
+  setMode("login");
+  setFormError("Conta criada. Agora faça login.");
+}
 
-    const email = (els.loginEmail?.value || "").trim().toLowerCase();
-    const password = els.loginPassword?.value || "";
+function boot() {
+  if (getToken()) {
+    window.location.href = "minha-conta.html";
+    return;
+  }
 
-    const recaptchaToken = getCaptchaResponse("login");
-    if (!recaptchaToken) {
-      setMsg(els.loginMsg, "err", "Captcha obrigatório (marque a caixa).");
-      return;
-    }
+  $("authForm")?.addEventListener("submit", onSubmit);
 
-    try {
-      const r = await fetch(`${API}/api/v1/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, recaptchaToken })
-      });
-
-      const d = await r.json().catch(() => null);
-
-      if (!r.ok || !d?.ok) {
-        resetCaptcha("login");
-        setMsg(els.loginMsg, "err", d?.error || "Erro ao fazer login.");
-        return;
-      }
-
-      // guarda token
-      if (d?.token) {
-        localStorage.setItem("nexus_token", d.token);
-      }
-
-      setMsg(els.loginMsg, "ok", "Login OK! Redirecionando...");
-      setTimeout(() => {
-        window.location.href = "minha-conta.html";
-      }, 600);
-    } catch (err) {
-      resetCaptcha("login");
-      setMsg(els.loginMsg, "err", "Falha de rede ao fazer login.");
-    }
+  $("toggleModeBtn")?.addEventListener("click", () => {
+    setMode(mode === "login" ? "register" : "login");
   });
 
-  // =========================
-  // REGISTER
-  // =========================
-  els.registerForm?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    clearMsg(els.registerMsg);
+  setMode("login");
+}
 
-    if (!API) {
-      setMsg(els.registerMsg, "err", "Config faltando: NEXUS_API (config.js).");
-      return;
-    }
-
-    const name = (els.regName?.value || "").trim();
-    const email = (els.regEmail?.value || "").trim().toLowerCase();
-    const password = els.regPassword?.value || "";
-
-    const recaptchaToken = getCaptchaResponse("register");
-    if (!recaptchaToken) {
-      setMsg(els.registerMsg, "err", "Captcha obrigatório (marque a caixa).");
-      return;
-    }
-
-    try {
-      const r = await fetch(`${API}/api/v1/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, recaptchaToken })
-      });
-
-      const d = await r.json().catch(() => null);
-
-      if (!r.ok || !d?.ok) {
-        resetCaptcha("register");
-        setMsg(els.registerMsg, "err", d?.error || "Erro ao cadastrar.");
-        return;
-      }
-
-      setMsg(els.registerMsg, "ok", "Cadastro OK! Agora faz login.");
-      resetCaptcha("register");
-
-      // troca pra tela de login e preenche email
-      toggle("login");
-      if (els.loginEmail) els.loginEmail.value = email;
-      if (els.loginPassword) els.loginPassword.value = "";
-    } catch (err) {
-      resetCaptcha("register");
-      setMsg(els.registerMsg, "err", "Falha de rede ao cadastrar.");
-    }
-  });
-
-  // inicia no login
-  toggle("login");
-})();
+boot();
