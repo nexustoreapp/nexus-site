@@ -6,21 +6,26 @@ function getToken() {
 
 function planCatalog() {
   return {
+
+    /* ======================================
+       INICIO_PLANO_TESTE
+       plano temporário para testar pagamento
+       ====================================== */
+
+    core_test: {
+      id: "plan_core_test",
+      title: "Plano Core Teste",
+      amountCents: 1
+    },
+
+    /* ======================================
+       FIM_PLANO_TESTE
+       ====================================== */
+
     free:  { id: "plan_free",  title: "Plano Free",  amountCents: 0 },
     core:  { id: "plan_core",  title: "Plano Core",  amountCents: 1990 },
     hyper: { id: "plan_hyper", title: "Plano Hyper", amountCents: 3990 },
-    omega: { id: "plan_omega", title: "Plano Omega", amountCents: 6990 },
-
-/* ===============================
-INICIO_PLANO_TESTE
-Plano oculto para testar pagamento real
-=============================== */
-
-    core_teste: { id: "plan_core_teste", title: "Plano Core Teste", amountCents: 1 }
-
-/* ===============================
-FIM_PLANO_TESTE
-=============================== */
+    omega: { id: "plan_omega", title: "Plano Omega", amountCents: 6990 }
 
   };
 }
@@ -34,6 +39,7 @@ function getSelectedPlan() {
 
 async function createPayment() {
   const token = getToken();
+
   if (!token) {
     window.location.href = "login.html";
     return;
@@ -49,7 +55,12 @@ async function createPayment() {
 
   const body = {
     items: [
-      { id: plan.id, title: plan.title, quantity: 1, unit_price: plan.amountCents / 100 }
+      {
+        id: plan.id,
+        title: plan.title,
+        quantity: 1,
+        unit_price: plan.amountCents / 100
+      }
     ],
     amountCents: plan.amountCents,
     currency: "BRL"
@@ -75,6 +86,7 @@ async function createPayment() {
   }
 
   const link = d.init_point || d.sandbox_init_point;
+
   if (!link) {
     alert("Pagamento criado, mas sem link do Mercado Pago.");
     return;
@@ -93,6 +105,7 @@ function bootUI() {
   if (priceEl) priceEl.textContent = `R$ ${(plan.amountCents / 100).toFixed(2)}`;
 
   const btn = document.getElementById("payBtn");
+
   if (btn) btn.addEventListener("click", createPayment);
 }
 
