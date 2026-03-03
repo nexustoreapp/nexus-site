@@ -1,89 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contato — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Entre em contato com a Nexus. Suporte, parcerias e assuntos comerciais.">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png">
+
+<meta charset="UTF-8">
+<title>Contato</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
+
 </head>
 
 <body>
 
 <header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo" alt="Nexus"/>
-    <span class="brand-name">Nexus</span>
-  </a>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="buscar.html" class="nav-link">Buscar</a>
-    <a href="quem-somos.html" class="nav-link">Quem Somos</a>
-    <a href="login.html" class="nav-link">Entrar</a>
-  </nav>
+<div class="container">
+<div class="topbar-inner">
+
+<a class="brand" href="index.html">
+<img src="logo.png" class="brand-logo">
+<span class="brand-name">Nexus Store</span>
+</a>
+
+<div class="actions">
+<a class="chip" href="dashboard.html">Minha conta</a>
+<a class="chip" id="authBtn" href="login.html">Entrar</a>
+</div>
+
+</div>
+</div>
+
 </header>
 
-<main class="page">
-  <section class="section">
-    <h1>Contato</h1>
 
-    <p class="lead">
-      Precisa falar com a Nexus? Use o formulário abaixo ou entre em contato
-      diretamente pelo e-mail oficial.
-    </p>
+<main class="container">
 
-    <form class="contact-form">
-      <input type="text" placeholder="Seu nome" required />
-      <input type="email" placeholder="Seu e-mail" required />
-      <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+<section class="section">
 
-      <button type="submit" class="btn-primary">Enviar mensagem</button>
-    </form>
+<div class="section-title">
+Contato
+</div>
 
-    <div class="contact-info">
-      <p><strong>E-mail oficial:</strong></p>
-      <p>📧 <a href="mailto:contato@nexustore.store">contato@nexustore.store</a></p>
-    </div>
-  </section>
+<p class="section-desc">
+Entre em contato com a Nexus.
+</p>
+
+</section>
+
 </main>
 
+
 <footer class="footer">
-  <div class="footer-links">
-    <a href="termos.html">Termos de Uso</a>
-    <a href="privacidade.html">Privacidade</a>
-    <a href="quem-somos.html">Quem Somos</a>
-    <a href="contato.html">Contato</a>
-  </div>
-  <p>Nexus © 2026</p>
+<div class="container">
+<div class="footer-bottom">
+© 2026 Nexus Store
+</div>
+</div>
 </footer>
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
 
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
+<script src="logout.js"></script>
 
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
 </body>
 </html>
