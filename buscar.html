@@ -1,75 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buscar | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Buscar</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Buscar</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Use a busca do topo ou digite aqui.
-          </p>
+          <h2 style="font-weight:1000;">Buscar</h2>
+          <p class="helper">Resultados e catálogo.</p>
+          <div class="hr"></div>
 
-          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-            <input id="q" class="input" placeholder="Ex: fone bluetooth, camiseta, curso..." />
-            <button id="go" class="btn btn-primary" type="button">Buscar</button>
+          <div id="results" class="soft" style="padding:14px;">
+            Carregando...
           </div>
-
-          <pre id="result" class="soft" style="margin-top:14px;padding:14px;min-height:140px;overflow:auto"></pre>
         </div>
       </div>
     </div>
   </main>
 
-  <script>
-    (function(){
-      const input = document.getElementById("q");
-      const btn = document.getElementById("go");
-      const out = document.getElementById("result");
-
-      const url = new URL(location.href);
-      const q = url.searchParams.get("q") || "";
-      if (input) input.value = q;
-
-      async function run(){
-        const query = (input?.value || "").trim();
-        if (!query) return;
-        url.searchParams.set("q", query);
-        history.replaceState(null,"",url.toString());
-
-        if (!window.NEXUS_API) {
-          out.textContent = "NEXUS_API não configurada.";
-          return;
-        }
-
-        out.textContent = "Buscando...";
-        try{
-          const r = await fetch(`${window.NEXUS_API}/search?q=${encodeURIComponent(query)}`);
-          const d = await r.json().catch(()=>null);
-          out.textContent = JSON.stringify(d, null, 2);
-        }catch(e){
-          out.textContent = "Erro de rede na busca.";
-        }
-      }
-
-      btn?.addEventListener("click", run);
-      input?.addEventListener("keydown", (e)=>{ if(e.key==="Enter") run(); });
-
-      if (q) run();
-    })();
-  </script>
-
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="buscar.js"></script>
 </body>
 </html>
