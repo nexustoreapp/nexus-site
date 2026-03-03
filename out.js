@@ -1,14 +1,10 @@
 /**
  * out.js
- * Logout REAL (um clique):
- * - apaga token e dados locais
- * - volta pra home
+ * Logout REAL: limpa token e volta pro login.
+ * (O layout.js chama window.NEXUS_logout() quando você clica em "Sair")
  */
-window.nexusLogout = function nexusLogout() {
-  try {
-    localStorage.removeItem("nexus_token");
-    localStorage.removeItem("token");
-    localStorage.removeItem("nexus_user");
-  } catch {}
-  window.location.href = "index.html";
+window.NEXUS_logout = function(){
+  try { localStorage.removeItem("nexus_token"); } catch {}
+  try { localStorage.removeItem("nexus_user"); } catch {}
+  window.location.href = "login.html";
 };
