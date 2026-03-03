@@ -1,67 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Checkout</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000">Checkout</h2>
+          <p style="color:var(--muted);font-weight:800;margin-top:6px">
+            Essa página cria o pagamento no backend e te manda pro Mercado Pago.
+          </p>
 
-<div class="container">
-<div class="topbar-inner">
+          <div class="soft" style="margin-top:12px;padding:14px">
+            <div><strong id="productName">Plano</strong></div>
+            <div style="margin-top:6px">Preço: <strong id="planPrice">R$ --</strong></div>
+          </div>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <button id="payBtn" class="btn btn-primary" type="button">Pagar agora</button>
+            <a class="btn btn-outline" href="planos.html">Ver outros planos</a>
+          </div>
 
-<div class="actions">
-<a class="chip" href="dashboard.html">Minha conta</a>
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
-</div>
+          <pre id="result" class="soft" style="margin-top:14px;padding:14px;min-height:140px;overflow:auto"></pre>
+        </div>
+      </div>
+    </div>
+  </main>
 
-</div>
-</div>
-
-</header>
-
-
-<main class="container">
-
-<section class="section">
-
-<div class="section-title">
-Checkout
-</div>
-
-<button class="btn btn-primary" id="payBtn">
-Pagar
-</button>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-<script src="checkout.js"></script>
-<script src="logout.js"></script>
-
+  <script src="checkout.js" defer></script>
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
