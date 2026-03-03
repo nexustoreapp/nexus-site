@@ -1,103 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Entrar ou Criar conta — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nexus Store | Login</title>
 
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
 
-  <!-- reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Se você usa fonte no resto do site, mantém -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <style>
-    .auth-box {
-      max-width: 420px;
-      margin: 60px auto;
-      padding: 32px;
-      background: #0f0f0f;
-      border-radius: 14px;
-      box-shadow: 0 0 40px rgba(0,0,0,.4);
+    /* Só layout do miolo (não destrói teu style.css) */
+    .auth-wrap{
+      min-height: calc(100vh - 80px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 14px;
     }
-    .auth-box h1 { margin-bottom: 6px; }
-    .auth-box p { opacity:.7; margin-bottom:20px; }
-    .auth-box input {
-      width:100%; padding:12px; margin-bottom:12px;
-      border-radius:8px; border:1px solid #222;
-      background:#111; color:#fff;
+    .auth-card{
+      width: min(520px, 100%);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
     }
-    .auth-box button {
-      width:100%; padding:14px;
-      border-radius:8px; border:none;
-      background:#4f46e5; color:#fff;
-      font-weight:600; cursor:pointer;
+    .auth-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
     }
-    .auth-box button:disabled { opacity:.6; }
-    .auth-message { margin-top:12px; font-size:14px; min-height:18px; }
-    .toggle { margin-top:18px; text-align:center; cursor:pointer; color:#9ca3af; }
-    .password-hint { font-size:12px; color:#9ca3af; margin-bottom:12px; }
-    .hidden { display:none; }
+    .auth-title h1{
+      font-size: 20px;
+      margin: 0;
+    }
+    .auth-tabs{
+      display:flex;
+      gap: 10px;
+      margin: 14px 0 16px;
+    }
+    .auth-tabs button{
+      flex: 1;
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
+    .auth-tabs button.active{
+      border-color: rgba(255,60,60,0.65);
+      background: rgba(255,60,60,0.12);
+    }
+    .auth-form{
+      display:none;
+      gap: 10px;
+    }
+    .auth-form.active{
+      display:block;
+    }
+    .auth-field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .auth-field label{
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .auth-field input{
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.30);
+      color: #fff;
+      outline: none;
+    }
+    .auth-field input:focus{
+      border-color: rgba(255,60,60,0.65);
+      box-shadow: 0 0 0 3px rgba(255,60,60,0.12);
+    }
+    .auth-actions{
+      display:flex;
+      gap: 10px;
+      margin-top: 8px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap: wrap;
+    }
+    .auth-actions .btn{
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff2d2d, #ff7a00);
+      color: #101010;
+    }
+    .auth-note{
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 10px;
+      line-height: 1.35;
+    }
+    .msg{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      font-size: 13px;
+      display:none;
+      white-space: pre-wrap;
+    }
+    .msg.show{ display:block; }
+    .msg.ok{
+      border-color: rgba(0,255,120,0.25);
+      background: rgba(0,255,120,0.08);
+    }
+    .msg.err{
+      border-color: rgba(255,60,60,0.35);
+      background: rgba(255,60,60,0.10);
+    }
+    .rc-wrap{
+      margin: 8px 0 2px;
+      display:flex;
+      justify-content:center;
+    }
   </style>
+
+  <!-- Config global (NEXUS_API etc) -->
+  <script src="config.js"></script>
+
+  <script>
+    // === CONFIG: recaptcha site key (o teu) ===
+    // Se quiser trocar, troca aqui sem mexer no JS.
+    window.NEXUS_RECAPTCHA_SITE_KEY = "6Lfu50QsAAAAAKiztz9gEGcQS1IJFuw1P5d18Qh0";
+
+    // callback do script do reCAPTCHA
+    window.onRecaptchaLoad = function () {
+      try {
+        if (window.grecaptcha && window.NEXUS_RECAPTCHA_SITE_KEY) {
+          // register captcha
+          const elReg = document.getElementById("g-recaptcha-register");
+          if (elReg && !elReg.dataset.rendered) {
+            window.__captchaRegId = grecaptcha.render(elReg, { sitekey: window.NEXUS_RECAPTCHA_SITE_KEY });
+            elReg.dataset.rendered = "1";
+          }
+          // login captcha
+          const elLog = document.getElementById("g-recaptcha-login");
+          if (elLog && !elLog.dataset.rendered) {
+            window.__captchaLogId = grecaptcha.render(elLog, { sitekey: window.NEXUS_RECAPTCHA_SITE_KEY });
+            elLog.dataset.rendered = "1";
+          }
+        }
+      } catch (e) {
+        console.warn("Recaptcha load error:", e);
+      }
+    };
+  </script>
+
+  <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 </head>
 
 <body>
+  <!-- Topbar padrão do site -->
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Nexus Store">
+      <img src="assets/logo-topbar.png" alt="Nexus Store" class="brand__logo" />
+      <span class="brand__name">Nexus Store</span>
+    </a>
 
-<div class="auth-box">
-  <h1 id="title">Entrar</h1>
-  <p id="subtitle">Acesse sua conta Nexus</p>
+    <nav class="topnav">
+      <a href="index.html">Início</a>
+      <a href="buscar.html">Buscar</a>
+      <a href="assinatura.html">Assinatura</a>
+      <a href="minha-conta.html">Minha conta</a>
+    </nav>
+  </header>
 
-  <form id="auth-form">
-    <input id="email" type="email" placeholder="E-mail" required />
-    <input id="password" type="password" placeholder="Senha" required />
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <div class="auth-title">
+        <h1>Entrar ou criar conta</h1>
+      </div>
 
-    <div id="password-hint" class="password-hint hidden">
-      A senha deve conter no mínimo 8 caracteres, incluindo letra maiúscula,
-      minúscula, número e símbolo.
-    </div>
+      <div class="auth-tabs">
+        <button id="showLogin" class="active" type="button">Login</button>
+        <button id="showRegister" type="button">Cadastro</button>
+      </div>
 
-    <input id="cpf" class="hidden" placeholder="CPF (somente números)" />
+      <!-- LOGIN -->
+      <form id="loginForm" class="auth-form active" autocomplete="on">
+        <div class="auth-field">
+          <label for="loginEmail">E-mail</label>
+          <input id="loginEmail" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+        </div>
 
-    <div id="captcha-box" class="g-recaptcha hidden"
-      data-sitekey="6Lfu50QsAAAAAJNoJNLk4plvQNeWxWzoMTXMtEHN"></div>
+        <div class="auth-field">
+          <label for="loginPassword">Senha</label>
+          <input id="loginPassword" name="password" type="password" placeholder="••••••••" required />
+        </div>
 
-    <input id="otp" class="hidden" placeholder="Código enviado ao e-mail" />
+        <div class="rc-wrap">
+          <div id="g-recaptcha-login"></div>
+        </div>
 
-    <button id="submit-btn">Entrar</button>
-  </form>
+        <div class="auth-actions">
+          <button class="btn" type="submit">Entrar</button>
+        </div>
 
-  <div id="message" class="auth-message"></div>
-  <div id="toggle" class="toggle">Criar conta</div>
-</div>
+        <div class="auth-note">
+          Se der erro, é porque o backend recusou (captcha, banco, usuário inexistente, etc). A mensagem vai aparecer aqui embaixo.
+        </div>
 
-<script src="config.js"></script>
-<script src="login.js"></script>
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
+        <div id="loginMsg" class="msg"></div>
+      </form>
 
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
+      <!-- CADASTRO -->
+      <form id="registerForm" class="auth-form" autocomplete="on">
+        <div class="auth-field">
+          <label for="regName">Nome (opcional)</label>
+          <input id="regName" name="name" type="text" placeholder="Seu nome" />
+        </div>
 
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
+        <div class="auth-field">
+          <label for="regEmail">E-mail</label>
+          <input id="regEmail" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+        </div>
 
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
+        <div class="auth-field">
+          <label for="regPassword">Senha</label>
+          <input id="regPassword" name="password" type="password" placeholder="Crie uma senha" required />
+        </div>
+
+        <div class="rc-wrap">
+          <div id="g-recaptcha-register"></div>
+        </div>
+
+        <div class="auth-actions">
+          <button class="btn" type="submit">Criar conta</button>
+        </div>
+
+        <div class="auth-note">
+          O cadastro depende do banco estar com as tabelas (migrations). Se o banco não tiver tabela <b>users</b>, vai falhar.
+        </div>
+
+        <div id="registerMsg" class="msg"></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="login.js"></script>
 </body>
 </html>
