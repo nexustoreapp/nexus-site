@@ -429,3 +429,58 @@ img{max-width:100%;display:block}
   margin: 18px auto 0;
 }
 .page-card .pad{padding: 18px}
+/* TOPBAR */
+
+.topbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:12px 20px;
+
+background:#0b1220;
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+
+}
+
+.nav a{
+
+margin-right:14px;
+
+color:#fff;
+
+text-decoration:none;
+
+font-weight:500;
+
+}
+
+.nav a:hover{
+
+color:#ff3c3c;
+
+}
+
+.logout-btn{
+
+background:#ff3c3c;
+
+border:none;
+
+padding:8px 14px;
+
+border-radius:8px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.logo-img{
+
+height:34px;
+
+}
