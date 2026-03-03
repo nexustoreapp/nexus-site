@@ -11,6 +11,7 @@ import checkoutRoutes from "./checkout.routes.js";
 import paymentRoutes from "./payment.routes.js";
 import ordersRoutes from "./orders.routes.js";
 import trackingRoutes from "./tracking.routes.js";
+import chatRoutes from "./chat.routes.js";
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.use("/v1/checkout", checkoutRoutes);
 router.use("/v1/payment", paymentRoutes);
 router.use("/v1/orders", ordersRoutes);
 router.use("/v1/tracking", trackingRoutes);
+router.use("/v1/chat", chatRoutes);
 
 export default router;
