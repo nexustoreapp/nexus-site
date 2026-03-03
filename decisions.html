@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decisions | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Decisions</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Decisions</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Página padronizada no layout novo.
-          </p>
+          <h2 style="font-weight:1000;">Decisions</h2>
+          <p class="helper">Página interna.</p>
+          <div class="hr"></div>
 
-          <div class="soft" style="margin-top:12px;padding:14px">
-            <pre id="dec" style="white-space:pre-wrap">[]</pre>
-          </div>
+          <div id="decisions" class="soft" style="padding:14px;">Carregando...</div>
         </div>
       </div>
     </div>
   </main>
 
-  <script>
-    document.getElementById("dec").textContent = JSON.stringify([], null, 2);
-  </script>
-
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="decisions.js"></script>
 </body>
 </html>
