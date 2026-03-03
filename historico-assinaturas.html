@@ -1,150 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Histórico de Assinaturas — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<title>Histórico de Assinaturas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
 
-  <style>
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 24px;
-    }
-
-    .table th, .table td {
-      padding: 14px;
-      border-bottom: 1px solid #222;
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .table th {
-      opacity: .7;
-    }
-
-    .status {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      display: inline-block;
-    }
-
-    .active {
-      background: #16a34a;
-      color: #fff;
-    }
-
-    .expired {
-      background: #374151;
-      color: #fff;
-    }
-
-    .pending {
-      background: #ca8a04;
-      color: #fff;
-    }
-
-    .empty {
-      margin-top: 32px;
-      opacity: .6;
-      text-align: center;
-    }
-  </style>
 </head>
 
 <body>
 
 <header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
 
-  <nav class="nav">
-    <a href="dashboard.html" class="nav-link">Minha conta</a>
-    <a href="planos.html" class="nav-link">Planos</a>
-  </nav>
+<div class="container">
+<div class="topbar-inner">
+
+<a class="brand" href="index.html">
+<img src="logo.png" class="brand-logo">
+<span class="brand-name">Nexus Store</span>
+</a>
+
+<div class="actions">
+
+<a class="chip" href="dashboard.html">Minha conta</a>
+
+<a class="chip" id="authBtn" href="login.html">Entrar</a>
+
+</div>
+
+</div>
+</div>
+
 </header>
 
-<main class="page">
-  <section class="section">
-    <h1>Histórico de assinaturas</h1>
-    <p class="muted-text">
-      Veja todos os planos que você já utilizou no Nexus.
-    </p>
 
-    <table class="table" id="table">
-      <thead>
-        <tr>
-          <th>Plano</th>
-          <th>Início</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
+<main class="container">
 
-    <div class="empty" id="empty">
-      Nenhuma assinatura encontrada.
-    </div>
-  </section>
+<section class="section">
+
+<div class="section-title">
+Histórico de assinaturas
+</div>
+
+<p class="section-desc">
+Veja todos os planos utilizados.
+</p>
+
+
+<table class="table">
+
+<thead>
+<tr>
+<th>Plano</th>
+<th>Início</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="rows"></tbody>
+
+</table>
+
+</section>
+
 </main>
 
+
 <footer class="footer">
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
+<div class="container">
+<div class="footer-bottom">
+© 2026 Nexus Store
+</div>
+</div>
 </footer>
 
-<script>
-/* ===============================
-   AUTH
-================================ */
-const token = localStorage.getItem("nexus_token");
-if (!token) {
-  window.location.href = "login.html";
-}
 
-/* ===============================
-   MOCK DE HISTÓRICO (BASE REAL)
-   Depois isso vem do backend
-================================ */
-const history = JSON.parse(
-  localStorage.getItem("nexus_subscription_history") || "[]"
-);
-
-const rows = document.getElementById("rows");
-const empty = document.getElementById("empty");
-
-if (history.length === 0) {
-  empty.style.display = "block";
-  document.getElementById("table").style.display = "none";
-} else {
-  empty.style.display = "none";
-
-  history.forEach(item => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${item.plan.toUpperCase()}</td>
-      <td>${new Date(item.start).toLocaleDateString("pt-BR")}</td>
-      <td>
-        <span class="status ${item.status}">
-          ${item.status === "active" ? "Ativo" :
-            item.status === "expired" ? "Expirado" : "Pendente"}
-        </span>
-      </td>
-    `;
-
-    rows.appendChild(tr);
-  });
-}
-</script>
+<script src="logout.js"></script>
 
 </body>
 </html>
