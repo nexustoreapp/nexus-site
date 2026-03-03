@@ -1,62 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Decisions</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decisions | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000">Decisions</h2>
+          <p style="color:var(--muted);font-weight:800;margin-top:6px">
+            Página padronizada no layout novo.
+          </p>
 
-<div class="container">
-<div class="topbar-inner">
+          <div class="soft" style="margin-top:12px;padding:14px">
+            <pre id="dec" style="white-space:pre-wrap">[]</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+  <script>
+    document.getElementById("dec").textContent = JSON.stringify([], null, 2);
+  </script>
 
-<div class="actions">
-<a class="chip" href="dashboard.html">Minha conta</a>
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
-</div>
-
-</div>
-</div>
-
-</header>
-
-
-<main class="container">
-
-<section class="section">
-
-<div class="section-title">
-Decisions
-</div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-<script src="logout.js"></script>
-
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
