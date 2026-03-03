@@ -1,106 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Assinatura — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
+
+<meta charset="UTF-8">
+<title>Assinatura</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
+
 </head>
 
 <body>
 
 <header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+
+<div class="container">
+<div class="topbar-inner">
+
+<a class="brand" href="index.html">
+<img src="logo.png" class="brand-logo">
+<span class="brand-name">Nexus Store</span>
+</a>
+
+<div class="actions">
+
+<a class="chip" href="dashboard.html">Minha conta</a>
+<a class="chip" id="authBtn" href="login.html">Entrar</a>
+
+</div>
+
+</div>
+</div>
+
 </header>
 
-<main class="page">
-  <section class="section">
-    <h1>Escolha seu plano</h1>
 
-    <div class="plans-grid">
-      <div class="plan-card">
-        <h2>Core</h2>
-        <button onclick="startPayment('core')" class="btn-outline">Assinar</button>
-      </div>
+<main class="container">
 
-      <div class="plan-card featured">
-        <h2>Hyper</h2>
-        <button onclick="startPayment('hyper')" class="btn-primary">Assinar</button>
-      </div>
+<section class="section">
 
-      <div class="plan-card">
-        <h2>Omega</h2>
-        <button onclick="startPayment('omega')" class="btn-outline">Assinar</button>
-      </div>
-    </div>
+<div class="section-title">
+Minha assinatura
+</div>
 
-    <p id="msg" class="small-text"></p>
-  </section>
+<p class="section-desc">
+Seu plano atual.
+</p>
+
+</section>
+
 </main>
 
-<script src="config.js"></script>
-<script>
-const msg = document.getElementById("msg");
 
-async function startPayment(plan) {
-  const token = localStorage.getItem("nexus_token");
-  if (!token) {
-    localStorage.setItem("nexus_intent", "plan:" + plan);
-    window.location.href = "login.html";
-    return;
-  }
-
-  msg.innerText = "Gerando pagamento...";
-
-  const r = await fetch(`${NEXUS_API}/payment/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type":"application/json",
-      "Authorization":"Bearer " + token
-    },
-    body: JSON.stringify({ plan })
-  });
-
-  const d = await r.json();
-
-  if (!d.ok) {
-    msg.innerText = "Erro ao criar pagamento.";
-    return;
-  }
-
-  msg.innerText = "Pagamento criado. Escaneie o QR Code no app do banco.";
-  // aqui depois você pode renderizar o QR code
-}
-</script>
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
+<div class="container">
+<div class="footer-bottom">
+© 2026 Nexus Store
+</div>
+</div>
 </footer>
+
+
+<script src="logout.js"></script>
+
 </body>
 </html>
