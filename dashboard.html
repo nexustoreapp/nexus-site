@@ -1,64 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Minha Conta</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000">Dashboard</h2>
+          <p style="color:var(--muted);font-weight:800;margin-top:6px">
+            Visual padronizado. Depois liga com os dados reais.
+          </p>
 
-<div class="container">
-<div class="topbar-inner">
+          <div class="grid" style="margin-top:12px">
+            <div class="col-4 soft" style="padding:14px">
+              <div style="font-weight:1000">Pedidos</div>
+              <div style="color:var(--muted);font-weight:800;margin-top:6px">0</div>
+            </div>
+            <div class="col-4 soft" style="padding:14px">
+              <div style="font-weight:1000">Assinantes</div>
+              <div style="color:var(--muted);font-weight:800;margin-top:6px">0</div>
+            </div>
+            <div class="col-4 soft" style="padding:14px">
+              <div style="font-weight:1000">Receita</div>
+              <div style="color:var(--muted);font-weight:800;margin-top:6px">R$ 0,00</div>
+            </div>
+          </div>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<div class="actions">
-
-<a class="chip" href="historico-assinaturas.html">Histórico</a>
-<a class="chip" id="authBtn" href="#">Sair</a>
-
-</div>
-
-</div>
-</div>
-
-</header>
-
-
-<main class="container">
-
-<section class="section">
-
-<div class="section-title">
-Minha Conta
-</div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-<script src="logout.js"></script>
-
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
