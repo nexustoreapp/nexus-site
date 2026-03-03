@@ -1,46 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Health | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Health</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Health</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Ping simples do backend.
-          </p>
+          <h2 style="font-weight:1000;">Health</h2>
+          <p class="helper">Status do sistema.</p>
+          <div class="hr"></div>
 
-          <pre id="out" class="soft" style="margin-top:14px;padding:14px;min-height:140px;overflow:auto"></pre>
+          <div id="health" class="soft" style="padding:14px;">Carregando...</div>
         </div>
       </div>
     </div>
   </main>
 
-  <script>
-    (async function(){
-      const out = document.getElementById("out");
-      if (!window.NEXUS_API) { out.textContent = "NEXUS_API não configurada."; return; }
-      try{
-        const r = await fetch(`${window.NEXUS_API}/health`);
-        const d = await r.json().catch(()=>null);
-        out.textContent = JSON.stringify(d, null, 2);
-      }catch(e){
-        out.textContent = "Erro ao chamar health.";
-      }
-    })();
-  </script>
-
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="health.js"></script>
 </body>
 </html>
