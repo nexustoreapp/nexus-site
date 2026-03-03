@@ -1,118 +1,62 @@
-// chat.js
+/**
+ * chat.js (Yara Nexus)
+ * Usa NEXUS_API (ex: https://nexus-site-oufm.onrender.com/api/v1)
+ * Endpoint esperado: GET {NEXUS_API}/chat?message=...
+ */
+(function () {
+  const API = (window.NEXUS_API || "").replace(/\/$/, "");
+  const $ = (id) => document.getElementById(id);
 
-const chatBox = document.getElementById("chat-box");
-const chatForm = document.getElementById("chat-form");
-const chatPlan = document.getElementById("chat-plan");
-const chatInput = document.getElementById("chat-input");
-
-// API base (config.js pode setar window.NEXUS_API_BASE)
-const API =
-  window.NEXUS_API_BASE ||
-  "https://nexus-site-oufm.onrender.com";
-
-// conversa persistente (não reseta)
-const CONV_KEY = "nexus_chat_conversation_id";
-let conversationId = localStorage.getItem(CONV_KEY);
-if (!conversationId) {
-  conversationId = `web_${Date.now()}_${Math.random().toString(16).slice(2)}`;
-  localStorage.setItem(CONV_KEY, conversationId);
-}
-
-// plano do usuário (por enquanto: automático = localStorage, fallback free)
-const PLAN_KEY = "nexus_user_plan";
-function getUserPlan() {
-  const stored = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
-  return stored || (chatPlan?.value || "free");
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
-
-function addMessage(text, from = "user", meta = {}) {
-  const msg = document.createElement("div");
-  msg.className = `chat-message chat-message-${from}`;
-
-  let metaLine = "";
-  if (from === "bot" && meta.personaLabel) {
-    metaLine = `<div class="chat-meta">${escapeHtml(meta.personaLabel)}</div>`;
+  function addMsg(who, text) {
+    const wrap = $("chatMessages");
+    if (!wrap) return;
+    const div = document.createElement("div");
+    div.className = "msg " + (who === "user" ? "msg-user" : "msg-bot");
+    div.textContent = text;
+    wrap.appendChild(div);
+    wrap.scrollTop = wrap.scrollHeight;
   }
 
-  msg.innerHTML = `
-    ${metaLine}
-    <div class="chat-bubble">${escapeHtml(text)}</div>
-  `;
+  async function send() {
+    const input = $("chatInput");
+    const btn = $("chatSendBtn");
+    const msg = (input?.value || "").trim();
+    if (!msg) return;
+    input.value = "";
+    addMsg("user", msg);
 
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function addTyping() {
-  const typing = document.createElement("div");
-  typing.className = "chat-message chat-message-bot typing";
-  typing.innerHTML = `<div class="chat-bubble">Digitando…</div>`;
-  chatBox.appendChild(typing);
-  chatBox.scrollTop = chatBox.scrollHeight;
-  return typing;
-}
-
-async function sendMessage(text) {
-  const plan = getUserPlan();
-
-  addMessage(text, "user");
-  const typing = addTyping();
-
-  try {
-    const resp = await fetch(`${API}/api/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: text,
-        plan,
-        conversationId,
-      }),
-    });
-
-    const data = await resp.json();
-    typing.remove();
-
-    if (!data.ok) {
-      addMessage(
-        "Tive um problema pra responder agora. Tenta de novo em instantes.",
-        "bot",
-        { personaLabel: "Nexus IA" }
-      );
+    if (!API) {
+      addMsg("bot", "API não configurada (NEXUS_API).");
       return;
     }
 
-    addMessage(data.reply, "bot", {
-      personaLabel: data.personaLabel || "Nexus IA",
-    });
-  } catch (e) {
-    console.error("Erro no chat:", e);
-    typing.remove();
-    addMessage(
-      "Não consegui conectar no servidor agora. Verifica se ele está rodando.",
-      "bot",
-      { personaLabel: "Nexus IA" }
-    );
+    if (btn) btn.disabled = true;
+
+    try {
+      const url = `${API}/chat?message=${encodeURIComponent(msg)}`;
+      const r = await fetch(url, { method: "GET" });
+      const d = await r.json().catch(() => null);
+
+      if (!r.ok || !d?.ok) {
+        addMsg("bot", d?.error || "Erro ao falar com a Yara.");
+      } else {
+        addMsg("bot", d.reply || "(sem resposta)");
+      }
+    } catch (e) {
+      addMsg("bot", "Erro de rede ao falar com a Yara.");
+    } finally {
+      if (btn) btn.disabled = false;
+    }
   }
-}
 
-chatForm?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const text = (chatInput.value || "").trim();
-  if (!text) return;
-  chatInput.value = "";
-  sendMessage(text);
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = $("chatSendBtn");
+    const input = $("chatInput");
+    if (btn) btn.addEventListener("click", send);
+    if (input) input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") send();
+    });
 
-// Mensagem inicial (uma vez por carregamento)
-addMessage(
-  "Oi! Eu sou a Nexus IA. Me diz o que você quer comprar e o seu orçamento que eu te recomendo opções reais do catálogo 🙂",
-  "bot",
-  { personaLabel: "Nexus IA" }
-);
+    addMsg("bot", "Oi! Eu sou a Yara. Me diz o que você quer encontrar na Nexus 😄");
+  });
+})();
