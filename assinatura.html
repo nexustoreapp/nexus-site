@@ -1,69 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Assinatura</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assinatura | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000">Assinatura</h2>
+          <p style="color:var(--muted);font-weight:800;margin-top:6px">
+            Aqui vai o status do plano do usuário (a gente liga com o backend depois).
+          </p>
 
-<div class="container">
-<div class="topbar-inner">
+          <div class="soft" style="margin-top:12px;padding:14px">
+            <div><strong>Status:</strong> <span id="subStatus">Carregando...</span></div>
+            <div style="margin-top:6px"><strong>Plano:</strong> <span id="subPlan">---</span></div>
+          </div>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="planos.html">Ver planos</a>
+            <a class="btn btn-outline" href="checkout.html?plan=core">Assinar Core</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<div class="actions">
+  <script>
+    (function(){
+      const statusEl = document.getElementById("subStatus");
+      const planEl = document.getElementById("subPlan");
+      statusEl.textContent = "OK (visual)";
+      planEl.textContent = "Core (exemplo)";
+    })();
+  </script>
 
-<a class="chip" href="dashboard.html">Minha conta</a>
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
-
-</div>
-
-</div>
-</div>
-
-</header>
-
-
-<main class="container">
-
-<section class="section">
-
-<div class="section-title">
-Minha assinatura
-</div>
-
-<p class="section-desc">
-Seu plano atual.
-</p>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-
-<script src="logout.js"></script>
-
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
