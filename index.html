@@ -1,92 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Nexus Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
-<div class="container">
-<div class="topbar-inner">
+  <main class="hero">
+    <div class="container hero-grid">
+      <section class="card hero-main">
+        <h1 class="hero-title">Seu marketplace com <span>cara de marketplace</span>.</h1>
+        <p class="hero-sub">
+          Planos, produtos e tudo organizado pra conversão. Agora com topbar inteligente + logout real.
+        </p>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="buscar.html">Começar a buscar</a>
+          <a class="btn btn-outline" href="planos.html">Ver planos</a>
+          <a class="btn btn-ghost" href="chat.html">Falar com a Yara</a>
+        </div>
+      </section>
 
-<form class="searchbar" action="buscar.html">
-<input name="q" placeholder="Buscar produtos...">
-<button class="btn btn-primary">Buscar</button>
-</form>
+      <aside class="card hero-side">
+        <div class="kpi">
+          <div>
+            <small>Entrega</small><br/>
+            <strong>Rápida</strong>
+          </div>
+          <small>⚡</small>
+        </div>
+        <div class="kpi">
+          <div>
+            <small>Pagamentos</small><br/>
+            <strong>Mercado Pago</strong>
+          </div>
+          <small>💳</small>
+        </div>
+        <div class="kpi">
+          <div>
+            <small>Assistente</small><br/>
+            <strong>Yara</strong>
+          </div>
+          <small>💬</small>
+        </div>
+      </aside>
+    </div>
 
-<div class="actions">
+    <div class="container section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Destaques</div>
+          <div class="section-desc">Vitrine exemplo (visual). O resto a gente liga com o catálogo.</div>
+        </div>
+      </div>
 
-<a class="chip" href="planos.html">Planos</a>
-<a class="chip" href="dashboard.html">Minha conta</a>
+      <div class="grid">
+        <div class="col-4 card product">
+          <div class="thumb"></div>
+          <div class="body">
+            <div class="title">Produto exemplo 1</div>
+            <div class="price"><span>R$ 19,90</span></div>
+            <div class="row">
+              <a class="btn btn-primary" href="buscar.html">Ver</a>
+              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
+            </div>
+          </div>
+        </div>
 
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
+        <div class="col-4 card product">
+          <div class="thumb"></div>
+          <div class="body">
+            <div class="title">Produto exemplo 2</div>
+            <div class="price"><span>R$ 39,90</span></div>
+            <div class="row">
+              <a class="btn btn-primary" href="buscar.html">Ver</a>
+              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
+            </div>
+          </div>
+        </div>
 
-</div>
-</div>
-</div>
-</header>
+        <div class="col-4 card product">
+          <div class="thumb"></div>
+          <div class="body">
+            <div class="title">Produto exemplo 3</div>
+            <div class="price"><span>R$ 69,90</span></div>
+            <div class="row">
+              <a class="btn btn-primary" href="buscar.html">Ver</a>
+              <a class="btn btn-outline" href="checkout.html?plan=core">Assinar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-
-<main class="container">
-
-<section class="hero">
-
-<div class="hero-grid">
-
-<div class="card hero-main">
-
-<div class="hero-title">
-Marketplace Nexus com visual <span>pro</span>
-</div>
-
-<p class="hero-sub">
-Produtos digitais, planos e assinatura.
-</p>
-
-<div class="hero-cta">
-
-<a class="btn btn-primary" href="buscar.html">
-Ver produtos
-</a>
-
-<a class="btn btn-outline" href="planos.html">
-Ver planos
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-
-<script src="logout.js"></script>
-
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
