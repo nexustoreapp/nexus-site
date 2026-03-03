@@ -1,25 +1,42 @@
-<div class="topbar">
+<!-- topbar.html (injetado via layout.js dentro do <header class="topbar">) -->
+<div class="container">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand">
+      <img src="logo.png" class="brand-logo" alt="Nexus Store"/>
+      <span class="brand-name">Nexus Store</span>
+    </a>
 
-<a href="/index.html" class="logo">
-<img src="/logo.png" class="logo-img">
-</a>
+    <div class="searchbar" role="search">
+      <input id="topbarSearchInput" type="search" placeholder="Buscar produtos, marcas, categorias..." autocomplete="off"/>
+      <button class="btn btn-primary searchbtn" id="topbarSearchBtn">Buscar</button>
+    </div>
 
-<nav class="nav">
+    <div class="actions" id="topbarActions">
+      <a class="chip" href="planos.html" data-auth="any"><span>Planos</span></a>
+      <a class="chip" href="minha-conta.html" data-auth="in"><span>Minha conta</span></a>
+      <a class="chip" href="login.html" data-auth="out"><span>Entrar</span></a>
+      <button class="chip" type="button" id="logoutBtn" data-auth="in">Sair</button>
 
-<a href="/index.html">Início</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
+    </div>
+  </div>
+</div>
 
-<a href="/buscar.html">Buscar</a>
-
-<a href="/planos.html">Assinatura</a>
-
-<a href="/minha-conta.html">Minha conta</a>
-
-<a id="nav-login" href="/login.html">Entrar</a>
-
-<button id="nav-logout" onclick="logoutUser()" class="logout-btn">
-Sair
-</button>
-
-</nav>
-
+<div class="subnav">
+  <div class="container">
+    <div class="subnav-inner" id="subnav">
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink" href="buscar.html">Buscar</a>
+      <a class="navlink" href="checkout.html?plan=core">Assinar</a>
+      <a class="navlink" href="assinatura.html">Assinatura</a>
+      <a class="navlink" href="pedidos.html">Pedidos</a>
+      <a class="navlink" href="contato.html">Contato</a>
+      <a class="navlink" href="privacidade.html">Privacidade</a>
+      <a class="navlink" href="chat.html">Yara</a>
+    </div>
+  </div>
 </div>
