@@ -1,49 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assinatura | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Assinatura</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Assinatura</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Aqui vai o status do plano do usuário (a gente liga com o backend depois).
-          </p>
+          <h2 style="font-weight:1000;">Assinatura</h2>
+          <p class="helper">Status do plano e ações.</p>
 
-          <div class="soft" style="margin-top:12px;padding:14px">
-            <div><strong>Status:</strong> <span id="subStatus">Carregando...</span></div>
-            <div style="margin-top:6px"><strong>Plano:</strong> <span id="subPlan">---</span></div>
+          <div class="hr"></div>
+
+          <div class="soft" style="padding:14px;">
+            <div id="subscriptionBox">Carregando...</div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn btn-primary" href="planos.html">Ver planos</a>
+              <a class="btn btn-outline" href="historico-assinaturas.html">Histórico</a>
+            </div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn btn-primary" href="planos.html">Ver planos</a>
-            <a class="btn btn-outline" href="checkout.html?plan=core">Assinar Core</a>
-          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <script>
-    (function(){
-      const statusEl = document.getElementById("subStatus");
-      const planEl = document.getElementById("subPlan");
-      statusEl.textContent = "OK (visual)";
-      planEl.textContent = "Core (exemplo)";
-    })();
-  </script>
-
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="assinatura.js"></script>
 </body>
 </html>
