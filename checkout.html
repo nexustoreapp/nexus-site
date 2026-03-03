@@ -4,82 +4,112 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nexus | Checkout</title>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="index.html">Nexus</a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="planos.html">Planos</a>
-        <a href="minha-conta.html">Minha conta</a>
-      </nav>
-    </div>
-  </header>
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand">
+      <img src="logo.png" class="brand-logo" alt="Nexus"/>
+      <span class="brand-name">Nexus Store</span>
+    </a>
 
-  <main class="container" style="padding: 18px 0;">
-    <section class="card" style="max-width: 720px; margin: 0 auto;">
-      <div class="card-body">
-        <h1 style="margin: 0 0 8px;">Checkout do Plano</h1>
-        <p style="margin: 0 0 18px; opacity: .85;">
-          Escolha o método de pagamento e finalize.
-        </p>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
 
-        <div class="box" style="margin-bottom: 14px;">
-          <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-            <div>
-              <div style="font-size: 12px; opacity: .7;">Plano</div>
-              <div id="productName" style="font-weight: 700;">Carregando...</div>
-            </div>
+    <nav class="nav" id="navMenu">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="planos.html" class="nav-link">Planos</a>
+      <a href="minha-conta.html" class="nav-link">Minha conta</a>
+    </nav>
+  </div>
+</header>
 
-            <div style="text-align:right;">
-              <div style="font-size: 12px; opacity: .7;">Valor</div>
-              <div id="planPrice" style="font-weight: 800;">--</div>
-            </div>
-          </div>
-        </div>
+<main>
+  <section class="card" style="max-width: 760px; margin: 0 auto;">
+    <div class="card-body">
+      <h1 style="margin: 0 0 8px;">Checkout do Plano</h1>
+      <p class="muted-text" style="margin: 0 0 16px;">
+        Escolha o método e finalize no Mercado Pago.
+      </p>
 
-        <label style="display:block; font-weight:700; margin: 10px 0 6px;">
-          Método de pagamento
-        </label>
-        <select id="payMethod" class="input" style="width:100%;">
-          <option value="pix">Pix</option>
-          <option value="boleto">Boleto</option>
-          <option value="card">Cartão (crédito/débito)</option>
-        </select>
-
-        <div id="cardFields" class="box" style="margin-top: 14px; display:none;">
-          <div style="font-weight:700; margin-bottom: 10px;">Dados do cartão</div>
-
-          <div style="display:grid; grid-template-columns: 1fr; gap: 10px;">
-            <input id="cardNumber" class="input" placeholder="Número do cartão" autocomplete="cc-number" inputmode="numeric" />
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-              <input id="cardExp" class="input" placeholder="Validade (MM/AA)" autocomplete="cc-exp" />
-              <input id="cardCvv" class="input" placeholder="CVV" autocomplete="cc-csc" inputmode="numeric" />
-            </div>
-            <input id="cardName" class="input" placeholder="Nome no cartão" autocomplete="cc-name" />
+      <div class="box" style="margin-bottom: 14px;">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size: 12px; opacity: .75;">Plano</div>
+            <div id="productName" style="font-weight: 900;">Carregando...</div>
           </div>
 
-          <p style="margin: 10px 0 0; font-size: 12px; opacity: .7;">
-            Obs: isso é MVP. Em produção, o ideal é tokenizar com o SDK do Mercado Pago (não trafegar cartão no seu backend).
-          </p>
+          <div style="text-align:right;">
+            <div style="font-size: 12px; opacity: .75;">Valor</div>
+            <div id="planPrice" style="font-weight: 900;">--</div>
+          </div>
         </div>
-
-        <div style="display:flex; gap: 10px; margin-top: 16px; flex-wrap:wrap;">
-          <button id="payBtn" class="btn" style="flex:1; min-width: 220px;">Pagar agora</button>
-          <a class="btn btn-ghost" href="planos.html" style="text-align:center; flex:0; min-width: 160px;">Voltar</a>
-        </div>
-
-        <pre id="result" class="box" style="margin-top: 16px; white-space: pre-wrap;">Aguardando…</pre>
       </div>
-    </section>
-  </main>
 
-  <script type="module" src="config.js"></script>
-  <script type="module" src="checkout.js"></script>
+      <label style="display:block; font-weight:900; margin: 10px 0 6px;">
+        Método de pagamento
+      </label>
+      <select id="payMethod" class="input">
+        <option value="pix">Pix</option>
+        <option value="boleto">Boleto</option>
+        <option value="card">Cartão (crédito/débito)</option>
+      </select>
+
+      <div id="cardFields" class="box" style="margin-top: 14px; display:none;">
+        <div style="font-weight:900; margin-bottom: 10px;">Dados do cartão</div>
+
+        <div style="display:grid; grid-template-columns: 1fr; gap: 10px;">
+          <input id="cardNumber" class="input" placeholder="Número do cartão" autocomplete="cc-number" inputmode="numeric" />
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <input id="cardExp" class="input" placeholder="Validade (MM/AA)" autocomplete="cc-exp" />
+            <input id="cardCvv" class="input" placeholder="CVV" autocomplete="cc-csc" inputmode="numeric" />
+          </div>
+          <input id="cardName" class="input" placeholder="Nome no cartão" autocomplete="cc-name" />
+        </div>
+
+        <p class="muted-text" style="margin-top: 10px; font-size: 12px;">
+          MVP: em produção, o ideal é tokenizar pelo SDK do Mercado Pago (não trafegar cartão no backend).
+        </p>
+      </div>
+
+      <div style="display:flex; gap: 10px; margin-top: 16px; flex-wrap:wrap;">
+        <button id="payBtn" class="btn-primary" style="flex:1; min-width: 220px;">Pagar agora</button>
+        <a class="btn-outline" href="planos.html" style="flex:0; min-width: 160px;">Voltar</a>
+      </div>
+
+      <pre id="result" class="box" style="margin-top: 16px; white-space: pre-wrap;">Aguardando…</pre>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 Nexus. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  const topbar = document.getElementById("topbar");
+  const navToggle = document.getElementById("navToggle");
+  navToggle?.addEventListener("click", () => topbar.classList.toggle("open"));
+
+  // mostra/esconde campos de cartão (UI)
+  const payMethod = document.getElementById("payMethod");
+  const cardFields = document.getElementById("cardFields");
+  payMethod?.addEventListener("change", () => {
+    if (!cardFields) return;
+    cardFields.style.display = (payMethod.value === "card") ? "block" : "none";
+  });
+</script>
+
+<script type="module" src="config.js"></script>
+<script type="module" src="checkout.js"></script>
 </body>
 </html>
