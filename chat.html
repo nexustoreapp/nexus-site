@@ -1,62 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Chat</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yara | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
+  <style>
+    .chat-wrap{padding:16px}
+    .chat-card{max-width:900px;margin:18px auto}
+    .chat-head{display:flex;align-items:center;gap:10px;justify-content:space-between}
+    .chat-head h1{font-size:1.1rem;font-weight:1000}
+    #chatMessages{height:min(60vh,520px);overflow:auto;padding:14px;border-radius:16px;
+      border:1px solid rgba(148,163,184,.16);background:rgba(255,255,255,.03)}
+    .msg{padding:10px 12px;border-radius:14px;max-width:85%;white-space:pre-wrap;word-break:break-word;
+      border:1px solid rgba(148,163,184,.16);margin:8px 0}
+    .msg-user{margin-left:auto;background:rgba(255,43,43,.10);border-color:rgba(255,43,43,.28)}
+    .msg-bot{margin-right:auto;background:rgba(255,255,255,.03)}
+    .chat-form{display:flex;gap:10px;margin-top:12px}
+  </style>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <div class="chat-wrap">
+    <div class="card chat-card">
+      <div class="pad">
+        <div class="chat-head">
+          <h1>Yara Nexus</h1>
+          <small style="color:var(--muted);font-weight:900">Assistente da loja</small>
+        </div>
 
-<div class="container">
-<div class="topbar-inner">
+        <div id="chatMessages" aria-live="polite"></div>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+        <div class="chat-form">
+          <input id="chatInput" class="input" placeholder="Digite sua mensagem..." />
+          <button id="chatSendBtn" class="btn btn-primary" type="button">Enviar</button>
+        </div>
 
-<div class="actions">
-<a class="chip" href="dashboard.html">Minha conta</a>
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
-</div>
+        <p style="margin-top:10px;color:var(--muted);font-size:13px;font-weight:800">
+          Dica: você também pode abrir esse chat pela bolha 💬 no canto do site.
+        </p>
+      </div>
+    </div>
+  </div>
 
-</div>
-</div>
-
-</header>
-
-
-<main class="container">
-
-<section class="section">
-
-<div class="section-title">
-Chat
-</div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-<script src="logout.js"></script>
-
+  <script src="chat.js" defer></script>
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
