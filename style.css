@@ -199,7 +199,6 @@ img{max-width:100%;display:block}
 .nav-toggle .bar{width:100%;height:3px;border-radius:999px;background:var(--text);opacity:.9}
 .nav-toggle .bar+.bar{margin-top:6px}
 
-/* Secondary nav (categorias / páginas) */
 .subnav{
   border-top: 1px solid rgba(148,163,184,.10);
   background: rgba(2,6,23,.32);
@@ -228,7 +227,6 @@ img{max-width:100%;display:block}
   color: rgba(255,225,225,.98);
 }
 
-/* Mobile */
 @media (max-width: 920px){
   .topbar-inner{grid-template-columns: auto 1fr auto}
   .brand-name{display:none}
@@ -245,20 +243,16 @@ img{max-width:100%;display:block}
 }
 
 /* =========================================================
-   HERO (cara de marketplace)
+   HERO
    ========================================================= */
-.hero{
-  padding: 26px 0 0;
-}
+.hero{padding:26px 0 0}
 .hero-grid{
   display:grid;
   grid-template-columns: 1.2fr .8fr;
   gap: 16px;
   align-items: stretch;
 }
-.hero-main{
-  padding: 18px;
-}
+.hero-main{padding:18px}
 .hero-title{
   font-size: 2rem;
   line-height: 1.15;
@@ -271,17 +265,8 @@ img{max-width:100%;display:block}
   background-clip:text;
   color:transparent;
 }
-.hero-sub{
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 1rem;
-}
-.hero-cta{
-  margin-top: 14px;
-  display:flex;
-  gap: 10px;
-  flex-wrap:wrap;
-}
+.hero-sub{margin-top:10px;color:var(--muted);font-size:1rem}
+.hero-cta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
 
 .hero-side{
   padding: 18px;
@@ -306,11 +291,9 @@ img{max-width:100%;display:block}
 }
 
 /* =========================================================
-   SEÇÕES (vitrine, categorias, cards)
+   SEÇÕES / GRID
    ========================================================= */
-.section{
-  margin-top: 18px;
-}
+.section{margin-top:18px}
 .section-head{
   display:flex;
   align-items:end;
@@ -318,15 +301,8 @@ img{max-width:100%;display:block}
   gap: 10px;
   margin-bottom: 10px;
 }
-.section-title{
-  font-size: 1.1rem;
-  font-weight: 1000;
-}
-.section-desc{
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 800;
-}
+.section-title{font-size:1.1rem;font-weight:1000}
+.section-desc{color:var(--muted);font-size:13px;font-weight:800}
 
 .grid{
   display:grid;
@@ -361,9 +337,7 @@ img{max-width:100%;display:block}
 .cat .name{font-weight: 1000}
 .cat .meta{color: var(--muted); font-size: 13px; font-weight: 800; margin-top: 4px}
 
-.product{
-  overflow:hidden;
-}
+.product{overflow:hidden}
 .product .thumb{
   height: 140px;
   background:
@@ -376,9 +350,7 @@ img{max-width:100%;display:block}
 .product .title{font-weight:1000}
 .product .price{margin-top:6px;font-weight:1000}
 .product .price span{color: rgba(255,225,225,.96)}
-.product .row{
-  display:flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
-}
+.product .row{display:flex; gap: 10px; margin-top: 12px; flex-wrap: wrap}
 
 /* =========================================================
    FOOTER
@@ -419,13 +391,8 @@ img{max-width:100%;display:block}
 }
 
 /* =========================================================
-   PÁGINAS “secas” (login/checkout/minha-conta etc)
+   PÁGINAS
    ========================================================= */
-.page{
-  padding: 18px 0 28px;
-}
-.page-card{
-  max-width: 860px;
-  margin: 18px auto 0;
-}
+.page{padding: 18px 0 28px}
+.page-card{max-width: 860px;margin: 18px auto 0}
 .page-card .pad{padding: 18px}
