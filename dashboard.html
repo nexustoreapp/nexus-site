@@ -1,46 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Dashboard</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Dashboard</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Visual padronizado. Depois liga com os dados reais.
-          </p>
+          <h2 style="font-weight:1000;">Dashboard</h2>
+          <p class="helper">Visão geral (admin/usuário).</p>
+          <div class="hr"></div>
 
-          <div class="grid" style="margin-top:12px">
-            <div class="col-4 soft" style="padding:14px">
-              <div style="font-weight:1000">Pedidos</div>
-              <div style="color:var(--muted);font-weight:800;margin-top:6px">0</div>
-            </div>
-            <div class="col-4 soft" style="padding:14px">
-              <div style="font-weight:1000">Assinantes</div>
-              <div style="color:var(--muted);font-weight:800;margin-top:6px">0</div>
-            </div>
-            <div class="col-4 soft" style="padding:14px">
-              <div style="font-weight:1000">Receita</div>
-              <div style="color:var(--muted);font-weight:800;margin-top:6px">R$ 0,00</div>
-            </div>
-          </div>
-
+          <div id="dash" class="soft" style="padding:14px;">Carregando...</div>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
