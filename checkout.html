@@ -1,43 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout | Nexus Store</title>
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="config.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Checkout</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar"></header>
+  <div id="topbar-root"></div>
 
   <main class="page">
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000">Checkout</h2>
-          <p style="color:var(--muted);font-weight:800;margin-top:6px">
-            Essa página cria o pagamento no backend e te manda pro Mercado Pago.
-          </p>
+          <h2 style="font-weight:1000;">Checkout</h2>
+          <p class="helper">Finalize sua compra/assinatura.</p>
 
-          <div class="soft" style="margin-top:12px;padding:14px">
-            <div><strong id="productName">Plano</strong></div>
-            <div style="margin-top:6px">Preço: <strong id="planPrice">R$ --</strong></div>
+          <div class="hr"></div>
+
+          <div class="soft" style="padding:14px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+              <div>
+                <div class="helper">Produto/Plano</div>
+                <div id="productName" style="font-weight:1000;font-size:18px;">Carregando...</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="helper">Valor</div>
+                <div id="planPrice" style="font-weight:1000;font-size:18px;">R$ 0,00</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button id="payBtn" class="btn btn-primary" type="button">Pagar</button>
+              <a class="btn btn-outline" href="planos.html">Trocar plano</a>
+              <a class="btn btn-ghost" href="buscar.html">Voltar</a>
+            </div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <button id="payBtn" class="btn btn-primary" type="button">Pagar agora</button>
-            <a class="btn btn-outline" href="planos.html">Ver outros planos</a>
+          <div style="margin-top:14px;">
+            <pre id="result" class="soft" style="padding:14px;white-space:pre-wrap;overflow:auto;max-height:260px;">{}</pre>
           </div>
-
-          <pre id="result" class="soft" style="margin-top:14px;padding:14px;min-height:140px;overflow:auto"></pre>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="checkout.js" defer></script>
-  <script src="layout.js" defer></script>
-  <script src="out.js" defer></script>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="checkout.js"></script>
 </body>
 </html>
