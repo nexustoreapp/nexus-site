@@ -9,7 +9,19 @@ function planCatalog() {
     free:  { id: "plan_free",  title: "Plano Free",  amountCents: 0 },
     core:  { id: "plan_core",  title: "Plano Core",  amountCents: 1990 },
     hyper: { id: "plan_hyper", title: "Plano Hyper", amountCents: 3990 },
-    omega: { id: "plan_omega", title: "Plano Omega", amountCents: 6990 }
+    omega: { id: "plan_omega", title: "Plano Omega", amountCents: 6990 },
+
+/* ===============================
+INICIO_PLANO_TESTE
+Plano oculto para testar pagamento real
+=============================== */
+
+    core_teste: { id: "plan_core_teste", title: "Plano Core Teste", amountCents: 1 }
+
+/* ===============================
+FIM_PLANO_TESTE
+=============================== */
+
   };
 }
 
@@ -29,7 +41,6 @@ async function createPayment() {
 
   const plan = getSelectedPlan();
 
-  // Se free = 0, não tenta Mercado Pago (não faz sentido pagar 0)
   if (plan.amountCents <= 0) {
     alert("Esse plano é grátis. Nada para pagar.");
     window.location.href = "minha-conta.html";
@@ -63,7 +74,6 @@ async function createPayment() {
     return;
   }
 
-  // Redireciona pro checkout do Mercado Pago
   const link = d.init_point || d.sandbox_init_point;
   if (!link) {
     alert("Pagamento criado, mas sem link do Mercado Pago.");
