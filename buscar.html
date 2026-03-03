@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<title>Buscar</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscar | Nexus Store</title>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
 </head>
-
 <body>
+  <header class="topbar"></header>
 
-<header class="topbar">
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000">Buscar</h2>
+          <p style="color:var(--muted);font-weight:800;margin-top:6px">
+            Use a busca do topo ou digite aqui.
+          </p>
 
-<div class="container">
-<div class="topbar-inner">
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <input id="q" class="input" placeholder="Ex: fone bluetooth, camiseta, curso..." />
+            <button id="go" class="btn btn-primary" type="button">Buscar</button>
+          </div>
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Nexus Store</span>
-</a>
+          <pre id="result" class="soft" style="margin-top:14px;padding:14px;min-height:140px;overflow:auto"></pre>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<form class="searchbar">
-<input placeholder="Buscar...">
-<button class="btn btn-primary">Buscar</button>
-</form>
+  <script>
+    (function(){
+      const input = document.getElementById("q");
+      const btn = document.getElementById("go");
+      const out = document.getElementById("result");
 
-<div class="actions">
-<a class="chip" href="planos.html">Planos</a>
-<a class="chip" href="dashboard.html">Minha conta</a>
-<a class="chip" id="authBtn" href="login.html">Entrar</a>
-</div>
+      const url = new URL(location.href);
+      const q = url.searchParams.get("q") || "";
+      if (input) input.value = q;
 
-</div>
-</div>
+      async function run(){
+        const query = (input?.value || "").trim();
+        if (!query) return;
+        url.searchParams.set("q", query);
+        history.replaceState(null,"",url.toString());
 
-</header>
+        if (!window.NEXUS_API) {
+          out.textContent = "NEXUS_API não configurada.";
+          return;
+        }
 
+        out.textContent = "Buscando...";
+        try{
+          const r = await fetch(`${window.NEXUS_API}/search?q=${encodeURIComponent(query)}`);
+          const d = await r.json().catch(()=>null);
+          out.textContent = JSON.stringify(d, null, 2);
+        }catch(e){
+          out.textContent = "Erro de rede na busca.";
+        }
+      }
 
-<main class="container">
+      btn?.addEventListener("click", run);
+      input?.addEventListener("keydown", (e)=>{ if(e.key==="Enter") run(); });
 
-<section class="section">
+      if (q) run();
+    })();
+  </script>
 
-<div class="section-title">
-Resultados
-</div>
-
-<div class="grid" id="results"></div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-<div class="container">
-<div class="footer-bottom">
-© 2026 Nexus Store
-</div>
-</div>
-</footer>
-
-
-<script src="logout.js"></script>
-
+  <script src="layout.js" defer></script>
+  <script src="out.js" defer></script>
 </body>
 </html>
