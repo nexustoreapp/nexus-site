@@ -13,27 +13,31 @@ const app = express();
 /* ===============================
    MIDDLEWARES BÁSICOS
 ================================ */
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Admin-Key"]
+  })
+);
 
-app.use(express.json({ limit: "1mb" }));
+// Mercado Pago manda JSON normalmente, então express.json resolve.
+app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 /* ===============================
-   OBSERVABILIDADE (LOG SILENCIOSO)
+   OBSERVABILIDADE
 ================================ */
 app.use(observability);
 
 /* ===============================
-   API (BACKEND PURO)
+   API (compat /api e /api/v1)
 ================================ */
 app.use("/api", apiRoutes);
+app.use("/api/v1", apiRoutes);
 
 /* ===============================
-   BLOQUEIO TOTAL DE ROTAS NÃO-API
+   404 API
 ================================ */
 app.use((req, res) => {
   return res.status(404).json({
