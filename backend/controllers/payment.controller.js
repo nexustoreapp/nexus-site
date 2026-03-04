@@ -19,7 +19,6 @@ function inferPlanKeyFromItem(item) {
   const id = String(item?.id || "").toLowerCase();
   const title = String(item?.title || "").toLowerCase();
 
-  // Plano teste (seu 1 centavo)
   if (id.includes("core_test") || id.includes("coretest") || title.includes("teste")) return "core_test";
 
   if (id.includes("omega") || title.includes("omega")) return "omega";
@@ -33,12 +32,15 @@ function normalizeEmail(email) {
   return String(email || "").trim().toLowerCase();
 }
 
+function normalizeCpf(cpf) {
+  return String(cpf || "").replace(/\D/g, "");
+}
+
 function makeOrderId() {
   return `order_${crypto.randomBytes(10).toString("hex")}`;
 }
 
 function getBackendPublicUrl(req) {
-  // prioridade: env -> fallback request
   const env =
     process.env.BACKEND_PUBLIC_URL ||
     process.env.PUBLIC_URL ||
@@ -47,7 +49,6 @@ function getBackendPublicUrl(req) {
 
   if (env) return env.replace(/\/+$/, "");
 
-  // fallback usando request (funciona na maioria dos casos)
   const proto = (req.headers["x-forwarded-proto"] || "https").toString();
   const host = (req.headers["x-forwarded-host"] || req.headers.host || "").toString();
   return `${proto}://${host}`.replace(/\/+$/, "");
@@ -69,7 +70,6 @@ export async function createPayment(req, res) {
 
     let decoded = null;
     try {
-      // se você usa JWT no backend, normalmente tem JWT_SECRET
       const secret = process.env.JWT_SECRET || process.env.AUTH_JWT_SECRET || "";
       decoded = secret ? jwt.verify(token, secret) : jwt.decode(token);
     } catch {
@@ -77,10 +77,14 @@ export async function createPayment(req, res) {
     }
 
     const userEmail = normalizeEmail(decoded?.email);
+    const userCpf = normalizeCpf(decoded?.cpf);
+
     if (!userEmail) {
       return safeJson(res, 400, { ok: false, error: "TOKEN_WITHOUT_EMAIL" });
     }
 
+    // CPF é opcional aqui, mas é o que vai fazer seu webhook ficar perfeito.
+    // Se não vier no token, o webhook ainda funciona por orderId/email fallback.
     const body = req.body || {};
     const items = Array.isArray(body.items) ? body.items : [];
 
@@ -91,13 +95,11 @@ export async function createPayment(req, res) {
     const first = items[0] || {};
     const planKey = inferPlanKeyFromItem(first);
 
-    // valor
     const amountCents = Number(body.amountCents || 0);
     if (!Number.isFinite(amountCents) || amountCents <= 0) {
       return safeJson(res, 400, { ok: false, error: "INVALID_AMOUNT" });
     }
 
-    // cria pedido (MVP: em memória)
     const order = await createOrder({
       orderId: makeOrderId(),
       userEmail,
@@ -107,15 +109,14 @@ export async function createPayment(req, res) {
         price: Number(it.unit_price || 0),
         qty: Number(it.quantity || 1)
       })),
-      totals: {
-        total: amountCents / 100
-      },
+      totals: { total: amountCents / 100 },
       metadata: {
-        planKey
+        planKey,
+        userCpf: userCpf || null
       }
     });
 
-    const orderId = order?.id; // <-- aqui é o certo (id)
+    const orderId = order?.id;
     if (!orderId) {
       return safeJson(res, 500, { ok: false, error: "ORDER_ID_MISSING" });
     }
@@ -124,6 +125,8 @@ export async function createPayment(req, res) {
 
     const backendUrl = getBackendPublicUrl(req);
     const notificationUrl = `${backendUrl}/api/v1/payment/webhook/mercadopago`;
+
+    const FRONT = (process.env.FRONTEND_URL || "").replace(/\/+$/, "");
 
     const preference = {
       items: [
@@ -135,30 +138,29 @@ export async function createPayment(req, res) {
         }
       ],
 
-      // IMPORTANTÍSSIMO: isso liga webhook -> pedido
+      // ponte #1 (forte)
       external_reference: orderId,
 
-      // IMPORTANTÍSSIMO: isso liga webhook -> usuário/plano (sem depender de orders no Postgres)
+      // ponte #2 (o que você quer)
       metadata: {
         orderId,
         userEmail,
+        userCpf: userCpf || null,
         planKey
       },
 
       notification_url: notificationUrl,
 
-      // se você já tiver páginas de retorno:
       back_urls: {
-        success: `${process.env.FRONTEND_URL || ""}/pagamento-confirmado.html`,
-        pending: `${process.env.FRONTEND_URL || ""}/pagamento-pendente.html`,
-        failure: `${process.env.FRONTEND_URL || ""}/pagamento-recusado.html`
+        success: FRONT ? `${FRONT}/pagamento-confirmado.html` : undefined,
+        pending: FRONT ? `${FRONT}/pagamento-pendente.html` : undefined,
+        failure: FRONT ? `${FRONT}/pagamento-recusado.html` : undefined
       },
       auto_return: "approved"
     };
 
     const mpResp = await mercadopago.preferences.create(preference);
 
-    // anexa no pedido (MVP)
     try {
       await attachPayment(orderId, {
         provider: "mercadopago",
