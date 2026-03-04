@@ -1,211 +1,92 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Planos — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
-
-  <style>
-    .plans-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:20px;
-      margin-top:24px;
-    }
-
-    .plan-card{
-      background:#0f0f0f;
-      border:1px solid #222;
-      border-radius:14px;
-      padding:22px;
-      text-align:center;
-    }
-
-    .plan-card h2{margin-bottom:6px}
-    .plan-card p{font-size:14px;opacity:.7;margin-bottom:16px}
-
-    .plan-card ul{
-      list-style:none;
-      padding:0;
-      margin:16px 0;
-      font-size:14px;
-    }
-    .plan-card ul li{margin:6px 0}
-
-    .current{border:2px solid #16a34a}
-
-    .badge{
-      display:inline-block;
-      margin-top:8px;
-      padding:4px 10px;
-      border-radius:6px;
-      font-size:12px;
-      font-weight:600;
-      background:#16a34a;
-      color:#fff;
-    }
-
-    /* botão "Selecionar" usando seu style.css (fallback aqui) */
-    .btn-primary{
-      display:inline-block;
-      padding:12px 14px;
-      border-radius:10px;
-      border:none;
-      background:#ff3c3c;
-      color:#fff;
-      font-weight:700;
-      cursor:pointer;
-    }
-    .btn-primary:active{transform:translateY(1px)}
-    .btn-disabled{opacity:.5;cursor:not-allowed}
-  </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Planos</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Planos</h2>
+          <p class="helper">Escolha seu plano e vá pro checkout.</p>
+          <div class="hr"></div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="minha-conta.html" class="nav-link">Minha conta</a>
-    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
-  </nav>
-</header>
+          <div class="grid" id="plansGrid"></div>
 
-<main class="page">
-  <section class="section">
-    <h1>Escolha seu plano</h1>
-    <p class="muted-text">
-      Compare os benefícios e faça upgrade quando quiser.
-    </p>
+          <div class="helper" style="margin-top:12px;opacity:.9;">
+            Dica: o checkout usa <code>checkout.html?plan=core</code> (ou <code>hyper</code>, <code>omega</code>, etc).
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-    <div class="plans-grid" id="plans"></div>
-  </section>
-</main>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 
-<footer class="footer">
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<script src="config.js"></script>
-<script src="out.js"></script>
-
-<script>
-/* ===============================
-   AUTH
-================================ */
-const token = localStorage.getItem("nexus_token");
-if (!token) {
-  window.location.href = "login.html";
-}
-
-/* ===============================
-   LOGOUT REAL
-================================ */
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-  logoutBtn.onclick = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.href = "index.html";
-  };
-}
-
-function getUserPlanFromToken() {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return (payload.plan || "free").toLowerCase();
-  } catch {
-    return "free";
-  }
-}
-
-const currentPlan = getUserPlanFromToken();
-
-/* ===============================
-   CATÁLOGO DE PLANOS
-   (inclui Core Teste dentro do grid)
-================================ */
-const PLANS = [
-  {
-    id: "free",
-    name: "Free",
-    desc: "Acesso básico",
-    features: ["Visualização limitada","Bloqueios frequentes","Sem prioridade"]
-  },
-
-  /* ===== INICIO PLANO TESTE ===== */
-  {
-    id: "core_test",
-    name: "Core Teste",
-    desc: "Plano apenas para testes do sistema",
-    features: ["Usa Mercado Pago real","Valor mínimo (R$ 0,01)","Remover depois do teste"],
-    isTest: true
-  },
-  /* ===== FIM PLANO TESTE ===== */
-
-  {
-    id: "core",
-    name: "Core",
-    desc: "Comece a economizar",
-    features: ["Acesso ampliado","Menos bloqueios","Produtos exclusivos"]
-  },
-  {
-    id: "hyper",
-    name: "Hyper",
-    desc: "Alta vantagem",
-    features: ["Quase todos os produtos","Bloqueios raros","Prioridade"]
-  },
-  {
-    id: "omega",
-    name: "Omega",
-    desc: "Acesso total",
-    features: ["Todos os produtos","Zero bloqueios","Máxima prioridade"]
-  }
-];
-
-const container = document.getElementById("plans");
-
-PLANS.forEach(p => {
-  const card = document.createElement("div");
-  const isCurrent = (p.id === currentPlan);
-
-  card.className = "plan-card" + (isCurrent ? " current" : "");
-
-  card.innerHTML = `
-    <h2>${p.name}</h2>
-    <p>${p.desc}</p>
-
-    <ul>
-      ${p.features.map(f => `<li>✔ ${f}</li>`).join("")}
-    </ul>
-
-    ${isCurrent
-      ? `<span class="badge">Plano atual</span>`
-      : `<button class="btn-primary" type="button">Selecionar</button>`
+  <script>
+    function getUserPlanFromToken() {
+      const token = localStorage.getItem("nexus_token");
+      if (!token) return "free";
+      try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        return (payload.plan || "free").toLowerCase();
+      } catch {
+        return "free";
+      }
     }
-  `;
 
-  if (!isCurrent) {
-    card.querySelector("button").onclick = () => {
-      // Aqui é o ponto que conversa com o checkout.js:
-      // checkout.js lê ?plan=core_test (ou core/hyper/omega)
-      window.location.href = `checkout.html?plan=${encodeURIComponent(p.id)}`;
-    };
-  }
+    const currentPlan = getUserPlanFromToken();
+    const grid = document.getElementById("plansGrid");
 
-  container.appendChild(card);
-});
-</script>
+    const PLANS = [
+      { key: "free",  name: "Free",  price: "R$ 0,00",   desc: "Acesso básico", col: "col-4" },
+      { key: "core",  name: "Core",  price: "R$ 19,90",  desc: "Comece a economizar", col: "col-4" },
+      { key: "hyper", name: "Hyper", price: "R$ 39,90",  desc: "Alta vantagem", col: "col-4" },
+      { key: "omega", name: "Omega", price: "R$ 69,90",  desc: "Acesso total", col: "col-4" },
 
+      /* ======================================
+         INICIO_PLANO_TESTE
+         plano temporário para testar pagamento
+         ====================================== */
+      { key: "core_test", name: "Core Teste", price: "R$ 0,01", desc: "Só para testes do Mercado Pago", col: "col-12" }
+      /* ======================================
+         FIM_PLANO_TESTE
+         ====================================== */
+    ];
+
+    function cardHtml(p) {
+      const isCurrent = p.key === currentPlan;
+      const badge = isCurrent ? `<span class="chip" style="border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10);">Plano atual</span>` : "";
+      const btn = (p.key === "free")
+        ? `<a class="btn btn-outline" href="minha-conta.html">Continuar no Free</a>`
+        : `<a class="btn btn-primary" href="checkout.html?plan=${encodeURIComponent(p.key)}">Ir pro checkout</a>`;
+
+      return `
+        <div class="card product ${p.col}">
+          <div class="body" style="padding:16px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <div style="font-weight:1000;font-size:18px;">${p.name}</div>
+              ${badge}
+            </div>
+            <div class="helper" style="margin-top:6px;">${p.desc}</div>
+            <div style="margin-top:10px;font-weight:1000;font-size:18px;">${p.price}</div>
+            <div class="row" style="margin-top:12px;">${btn}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    grid.innerHTML = PLANS.map(cardHtml).join("");
+  </script>
 </body>
 </html>
