@@ -24,7 +24,7 @@
             <div class="form-grid">
               <div>
                 <div class="helper">Nome</div>
-                <input class="input" name="name" autocomplete="name" required>
+                <input class="input" name="name" type="text" autocomplete="name" required>
               </div>
               <div>
                 <div class="helper">E-mail</div>
@@ -34,7 +34,13 @@
 
             <div style="margin-top:12px;">
               <div class="helper">Mensagem</div>
-              <textarea class="input" name="message" required></textarea>
+              <textarea
+                class="input"
+                name="message"
+                required
+                rows="6"
+                style="height:auto; padding-top:12px; padding-bottom:12px; resize:vertical;"
+              ></textarea>
             </div>
 
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
