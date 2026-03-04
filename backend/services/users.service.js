@@ -1,20 +1,30 @@
 import { pool } from "../db/pool.js";
 
-export async function updateUserPlan(orderId, plan) {
+export async function updateUserPlan(paymentId, plan) {
 
   try {
 
+    /* ===============================
+       BUSCAR PEDIDO PELO PAYMENT ID
+    =============================== */
+
     const orderResult = await pool.query(
-      `SELECT user_id FROM orders WHERE id = $1`,
-      [orderId]
+      `SELECT user_id
+       FROM orders
+       WHERE external_payment_id = $1`,
+      [paymentId]
     );
 
     if (!orderResult.rows.length) {
-      console.log("Pedido não encontrado:", orderId);
+      console.log("Pedido não encontrado para pagamento:", paymentId);
       return;
     }
 
     const userId = orderResult.rows[0].user_id;
+
+    /* ===============================
+       ATUALIZAR PLANO
+    =============================== */
 
     await pool.query(
       `UPDATE users
@@ -23,11 +33,11 @@ export async function updateUserPlan(orderId, plan) {
       [plan, userId]
     );
 
-    console.log("Plano atualizado para usuário:", userId, "->", plan);
+    console.log("Plano atualizado:", userId, "->", plan);
 
   } catch (err) {
 
-    console.error("Erro ao atualizar plano do usuário:", err);
+    console.error("Erro ao atualizar plano:", err);
 
   }
 
