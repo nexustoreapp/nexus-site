@@ -1,42 +1,85 @@
 <!-- topbar.html (injetado via layout.js dentro do <header class="topbar">) -->
+
 <div class="container">
   <div class="topbar-inner">
+
     <a href="index.html" class="brand">
       <img src="logo.png" class="brand-logo" alt="Nexus Store"/>
       <span class="brand-name">Nexus Store</span>
     </a>
 
     <div class="searchbar" role="search">
-      <input id="topbarSearchInput" type="search" placeholder="Buscar produtos, marcas, categorias..." autocomplete="off"/>
-      <button class="btn btn-primary searchbtn" id="topbarSearchBtn">Buscar</button>
+      <input
+        id="topbarSearchInput"
+        type="search"
+        placeholder="Buscar produtos, marcas, categorias..."
+        autocomplete="off"
+      />
+
+      <button
+        class="btn btn-primary searchbtn"
+        id="topbarSearchBtn"
+        type="button">
+        Buscar
+      </button>
     </div>
 
     <div class="actions" id="topbarActions">
-      <a class="chip" href="planos.html" data-auth="any"><span>Planos</span></a>
-      <a class="chip" href="minha-conta.html" data-auth="in"><span>Minha conta</span></a>
-      <a class="chip" href="login.html" data-auth="out"><span>Entrar</span></a>
-      <button class="chip" type="button" id="logoutBtn" data-auth="in">Sair</button>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <a class="chip" href="planos.html" data-auth="any">
+        <span>Planos</span>
+      </a>
+
+      <a class="chip" href="minha-conta.html" data-auth="in">
+        <span>Minha conta</span>
+      </a>
+
+      <a class="chip" href="login.html" data-auth="out">
+        <span>Entrar</span>
+      </a>
+
+      <button
+        class="chip"
+        id="logoutBtn"
+        type="button"
+        data-auth="in">
+        Sair
+      </button>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Menu">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
       </button>
+
     </div>
+
   </div>
 </div>
 
 <div class="subnav">
   <div class="container">
     <div class="subnav-inner" id="subnav">
+
       <a class="navlink" href="index.html">Home</a>
+
       <a class="navlink" href="buscar.html">Buscar</a>
-      <a class="navlink" href="checkout.html?plan=core">Assinar</a>
+
+      <a class="navlink" href="planos.html">Planos</a>
+
       <a class="navlink" href="assinatura.html">Assinatura</a>
+
       <a class="navlink" href="pedidos.html">Pedidos</a>
+
       <a class="navlink" href="contato.html">Contato</a>
+
       <a class="navlink" href="privacidade.html">Privacidade</a>
-      <a class="navlink" href="chat.html">Yara</a>
+
+      <a class="navlink" href="chat.html">IA Nexus</a>
+
     </div>
   </div>
 </div>
