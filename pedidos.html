@@ -1,163 +1,166 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Pedido — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Pedido</title>
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Detalhes do pedido</h2>
+          <p class="helper">Acompanhe as informações completas do seu pedido.</p>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="dashboard.html" class="nav-link">Minha conta</a>
-    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
-  </nav>
-</header>
+          <div class="hr"></div>
 
-<main class="page">
+          <div class="soft" style="padding:14px;">
+            <div class="form-grid">
+              <div>
+                <div class="helper">ID do pedido</div>
+                <div id="orderId" style="font-weight:1000;">—</div>
+              </div>
+              <div>
+                <div class="helper">Status</div>
+                <div id="orderStatus" style="font-weight:1000;">—</div>
+              </div>
+            </div>
 
-  <section class="section">
-    <h1>Detalhes do pedido</h1>
-    <p class="muted-text">Acompanhe as informações completas do seu pedido.</p>
-  </section>
+            <div class="hr" style="margin:12px 0;"></div>
 
-  <section class="section card">
-    <div class="info-row">
-      <strong>ID do pedido:</strong>
-      <span id="orderId">—</span>
+            <div class="form-grid">
+              <div>
+                <div class="helper">Produto</div>
+                <div id="orderProduct" style="font-weight:1000;">—</div>
+              </div>
+              <div>
+                <div class="helper">Plano</div>
+                <div id="orderPlan" style="font-weight:1000;">—</div>
+              </div>
+            </div>
+
+            <div class="form-grid" style="margin-top:10px;">
+              <div>
+                <div class="helper">Valor</div>
+                <div id="orderValue" style="font-weight:1000;">—</div>
+              </div>
+              <div>
+                <div class="helper">Data</div>
+                <div id="orderDate" style="font-weight:1000;">—</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn btn-outline" href="pedidos.html">Voltar</a>
+              <a class="btn btn-ghost" id="cancelLink" href="pedido-cancelar.html">Cancelar</a>
+              <a class="btn btn-primary" href="minha-conta.html">Minha conta</a>
+            </div>
+          </div>
+
+          <div class="soft" style="padding:14px;margin-top:12px;">
+            <div style="font-weight:1000;margin-bottom:6px;">Status do pedido</div>
+            <ul class="helper" style="margin-left:16px;opacity:.95;">
+              <li><b>Criado:</b> Pedido registrado</li>
+              <li><b>Pago:</b> Pagamento confirmado</li>
+              <li><b>Processando:</b> Pedido em processamento</li>
+              <li><b>Concluído:</b> Pedido finalizado</li>
+            </ul>
+          </div>
+
+          <pre id="debug" class="soft" style="padding:14px;margin-top:12px;white-space:pre-wrap;overflow:auto;max-height:240px;display:none;"></pre>
+
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div class="info-row">
-      <strong>Status:</strong>
-      <span id="orderStatus" class="status pending">—</span>
-    </div>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 
-    <div class="info-row">
-      <strong>Produto:</strong>
-      <span id="orderProduct">—</span>
-    </div>
-
-    <div class="info-row">
-      <strong>Plano:</strong>
-      <span id="orderPlan">—</span>
-    </div>
-
-    <div class="info-row">
-      <strong>Valor:</strong>
-      <span id="orderValue">—</span>
-    </div>
-
-    <div class="info-row">
-      <strong>Data:</strong>
-      <span id="orderDate">—</span>
-    </div>
-  </section>
-
-  <section class="section card">
-    <h2>Status do pedido</h2>
-    <ul class="simple-list">
-      <li><strong>Criado:</strong> Pedido registrado</li>
-      <li><strong>Pago:</strong> Pagamento confirmado</li>
-      <li><strong>Processando:</strong> Pedido em processamento</li>
-      <li><strong>Concluído:</strong> Pedido finalizado</li>
-    </ul>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<script>
-/* ===============================
-   AUTH
-================================ */
-const token = localStorage.getItem("nexus_token");
-if (!token) {
-  window.location.href = "login.html";
-}
-
-/* ===============================
-   LOGOUT
-================================ */
-document.getElementById("logoutBtn").onclick = () => {
-  localStorage.clear();
-  window.location.href = "index.html";
-};
-
-/* ===============================
-   LOAD PEDIDO
-================================ */
-(function(){
-  const params = new URLSearchParams(window.location.search);
-  const orderId = params.get("id");
-
-  if (!orderId) {
-    alert("Pedido inválido");
-    window.location.href = "dashboard.html";
-    return;
-  }
-
-  document.getElementById("orderId").innerText = orderId;
-
-  fetch(`${window.NEXUS_API}/orders/${orderId}`, {
-    headers: {
-      "Authorization": "Bearer " + token
+  <script>
+    // ===============================
+    // AUTH
+    // ===============================
+    const token = localStorage.getItem("nexus_token");
+    if (!token) {
+      window.location.replace("login.html");
     }
-  })
-  .then(r => r.json())
-  .then(d => {
-    if (!d.ok) throw new Error();
 
-    document.getElementById("orderStatus").innerText = d.order.status;
-    document.getElementById("orderProduct").innerText = d.order.productName;
-    document.getElementById("orderPlan").innerText = d.order.plan;
-    document.getElementById("orderValue").innerText =
-      "R$ " + (d.order.amount / 100).toFixed(2).replace(".", ",");
-    document.getElementById("orderDate").innerText =
-      new Date(d.order.createdAt).toLocaleString("pt-BR");
-  })
-  .catch(() => {
-    alert("Erro ao carregar pedido");
-    window.location.href = "dashboard.html";
-  });
-})();
-</script>
+    // ===============================
+    // HELPERS
+    // ===============================
+    function qs(name){
+      return new URLSearchParams(window.location.search).get(name);
+    }
+    function safeJson(r){
+      return r.json().catch(()=>null);
+    }
+    function moneyFromCents(cents){
+      const n = Number(cents || 0) / 100;
+      return "R$ " + n.toFixed(2).replace(".", ",");
+    }
+    function setText(id, v){
+      const el = document.getElementById(id);
+      if (el) el.textContent = (v ?? "—");
+    }
+    function setStatusText(v){
+      setText("orderStatus", v || "—");
+    }
 
+    // ===============================
+    // LOAD PEDIDO
+    // ===============================
+    (async function(){
+      const orderId = qs("id");
+      if (!orderId) {
+        alert("Pedido inválido (sem id na URL).");
+        window.location.replace("pedidos.html");
+        return;
+      }
+
+      setText("orderId", orderId);
+
+      // link de cancelar com id
+      const cancelLink = document.getElementById("cancelLink");
+      if (cancelLink) cancelLink.href = `pedido-cancelar.html?id=${encodeURIComponent(orderId)}`;
+
+      try{
+        const r = await fetch(`${window.NEXUS_API}/orders/${encodeURIComponent(orderId)}`, {
+          headers: { "Authorization": "Bearer " + token }
+        });
+
+        const d = await safeJson(r);
+        if (!r.ok || !d?.ok) throw new Error(d?.error || "LOAD_FAILED");
+
+        const o = d.order || {};
+
+        // Tenta cobrir vários formatos possíveis
+        setStatusText(o.status || o.paymentStatus || "—");
+        setText("orderProduct", o.productName || o.productTitle || (o.items && o.items[0] && (o.items[0].title || o.items[0].name)) || "—");
+        setText("orderPlan", o.plan || o.planKey || o.planId || "—");
+
+        const cents = (o.amountCents ?? o.amount_cents ?? o.amount ?? o.totalCents ?? o.total_cents);
+        setText("orderValue", cents != null ? moneyFromCents(cents) : "—");
+
+        const created = (o.createdAt || o.created_at || o.date_created);
+        setText("orderDate", created ? new Date(created).toLocaleString("pt-BR") : "—");
+
+        // Debug (deixa escondido, mas pronto)
+        const dbg = document.getElementById("debug");
+        if (dbg) dbg.textContent = JSON.stringify(d, null, 2);
+      }catch(e){
+        alert("Erro ao carregar pedido.");
+        window.location.replace("pedidos.html");
+      }
+    })();
+  </script>
 </body>
 </html>
