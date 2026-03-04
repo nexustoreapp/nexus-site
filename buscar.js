@@ -1,95 +1,72 @@
-// ======================================================
 // buscar.js
-// Responsável por carregar produtos na página de busca
-// com scroll infinito
-// ======================================================
-
 const API = window.NEXUS_API;
 
-const results = document.getElementById("results");
+const grid = document.getElementById("results-grid");
+const meta = document.getElementById("search-meta");
 
 let page = 1;
 let loading = false;
 let finished = false;
 
-async function loadProducts(){
-
-if(loading || finished) return;
-
-loading = true;
-
-const loader = document.createElement("div");
-loader.innerText = "Carregando produtos...";
-loader.style.marginTop = "10px";
-results.appendChild(loader);
-
-try{
-
-const r = await fetch(`${API}/products?page=${page}`);
-const data = await r.json();
-
-loader.remove();
-
-if(!data.ok || !data.products || !data.products.length){
-
-finished = true;
-
-const end = document.createElement("div");
-end.innerText = "Nenhum outro produto.";
-end.style.marginTop = "10px";
-results.appendChild(end);
-
-return;
+function escapeHtml(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-data.products.forEach(p=>{
+async function loadProducts() {
+  if (loading || finished) return;
+  loading = true;
+  if (meta) meta.innerText = "Carregando produtos...";
 
-const card = document.createElement("div");
+  try {
+    const r = await fetch(`${API}/products?page=${page}`);
+    const data = await r.json().catch(() => null);
 
-card.className = "soft";
-card.style.padding = "14px";
-card.style.marginBottom = "10px";
+    const products = data?.products || [];
+    if (!data?.ok || products.length === 0) {
+      finished = true;
+      if (meta) meta.innerText = page === 1 ? "Nenhum produto encontrado." : "Nenhum outro produto.";
+      loading = false;
+      return;
+    }
 
-card.innerHTML = `
-<h3 style="font-weight:1000;">${p.title}</h3>
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card product col-4";
 
-<p style="margin-top:6px;color:#9ca3af;">
-${p.description || ""}
-</p>
+      card.innerHTML = `
+        <div class="thumb"></div>
+        <div class="body">
+          <div class="title">${escapeHtml(p.title || "Produto")}</div>
+          <div class="helper" style="margin-top:6px;">${escapeHtml(p.description || "")}</div>
 
-<div style="margin-top:10px;">
-<a href="produto.html?id=${p.id}" class="btn btn-outline">
-Ver produto
-</a>
-</div>
-`;
+          <div class="row">
+            <a class="btn btn-outline" href="produto.html?id=${encodeURIComponent(p.id)}">Ver produto</a>
+          </div>
+        </div>
+      `;
 
-results.appendChild(card);
+      grid.appendChild(card);
+    });
 
-});
-
-page++;
-
-}catch(err){
-
-console.error("Erro buscar produtos",err);
-
+    page++;
+    if (meta) meta.innerText = "";
+  } catch (e) {
+    if (meta) meta.innerText = "Erro ao carregar produtos. Tente novamente.";
+  } finally {
+    loading = false;
+  }
 }
 
-loading = false;
-
-}
-
-// Scroll infinito
-window.addEventListener("scroll",()=>{
-
-if(
-window.innerHeight + window.scrollY
->= document.body.offsetHeight - 200
-){
-loadProducts();
-}
-
+// Lazy load ao rolar
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 220) {
+    loadProducts();
+  }
 });
 
 // Primeira carga
