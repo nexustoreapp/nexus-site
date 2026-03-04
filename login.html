@@ -7,6 +7,7 @@
 
   <link rel="icon" type="image/png" href="fivecon.png" />
   <link rel="stylesheet" href="style.css" />
+
   <script src="config.js"></script>
 
   <!-- reCAPTCHA: render explícito (NÃO desativa nada) -->
@@ -32,74 +33,75 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <a href="index.html" class="brand">
-      <img src="logo.png" alt="Nexus" class="brand-logo" />
-      <span class="brand-name">Nexus Store</span>
-    </a>
+  <!-- TOPBAR ÚNICA (injetada por layout.js) -->
+  <div id="topbar-root"></div>
 
-    <nav class="topbar-nav">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="buscar.html" class="nav-link">Buscar</a>
-      <a href="minha-conta.html" class="nav-link">Minha conta</a>
-    </nav>
-  </header>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h1 id="formTitle" style="font-weight:1000;">Entrar</h1>
+          <p id="formSubtitle" class="helper">Acesse sua conta para continuar.</p>
 
-  <main class="container auth-wrap">
-    <section class="card auth-card">
-      <h1 id="formTitle" class="h1">Entrar</h1>
-      <p id="formSubtitle" class="muted">Acesse sua conta para continuar.</p>
+          <div id="formError" class="soft" style="display:none;padding:12px;border:1px solid rgba(255,43,43,.35);background:rgba(255,43,43,.08);margin-top:12px;"></div>
+          <div id="captchaOwnerError" class="soft" style="display:none;padding:12px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.03);margin-top:12px;"></div>
 
-      <div id="formError" class="alert alert-error" style="display:none;"></div>
-      <div id="captchaOwnerError" class="alert alert-warn" style="display:none;"></div>
+          <div class="hr" style="margin:14px 0;"></div>
 
-      <form id="authForm" class="auth-form" autocomplete="on">
-        <div class="field">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" placeholder="seuemail@email.com" required />
+          <form id="authForm" class="soft" style="padding:14px;" autocomplete="on">
+            <div class="form-grid">
+              <div>
+                <div class="helper">E-mail</div>
+                <input class="input" id="email" name="email" type="email" placeholder="seuemail@email.com" required />
+              </div>
+
+              <div>
+                <div class="helper">Senha</div>
+                <input class="input" id="password" name="password" type="password" placeholder="••••••••" required />
+              </div>
+            </div>
+
+            <div id="registerFields" style="display:none;margin-top:12px;">
+              <div class="form-grid">
+                <div>
+                  <div class="helper">Nome</div>
+                  <input class="input" id="name" name="name" type="text" placeholder="Seu nome" />
+                </div>
+
+                <div>
+                  <div class="helper">CPF</div>
+                  <input class="input" id="cpf" name="cpf" type="text" placeholder="000.000.000-00" />
+                </div>
+
+                <div>
+                  <div class="helper">Telefone</div>
+                  <input class="input" id="phone" name="phone" type="text" placeholder="(00) 00000-0000" />
+                </div>
+              </div>
+
+              <div style="margin-top:12px;">
+                <div class="helper">Confirmação de segurança</div>
+                <div id="captchaBox" style="margin-top:8px;"></div>
+                <div class="helper" style="margin-top:8px;">
+                  Se aparecer “domínio inválido”, é configuração no Google reCAPTCHA (não é backend).
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+              <button id="submitBtn" type="submit" class="btn btn-primary">Entrar</button>
+              <button id="toggleModeBtn" type="button" class="btn btn-outline">Não tenho conta. Quero cadastrar</button>
+              <a class="btn btn-ghost" href="index.html">Voltar</a>
+            </div>
+          </form>
+
         </div>
-
-        <div class="field">
-          <label for="password">Senha</label>
-          <input id="password" name="password" type="password" placeholder="••••••••" required />
-        </div>
-
-        <div id="registerFields" style="display:none;">
-          <div class="field">
-            <label for="name">Nome</label>
-            <input id="name" name="name" type="text" placeholder="Seu nome" />
-          </div>
-
-          <div class="field">
-            <label for="cpf">CPF</label>
-            <input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" />
-          </div>
-
-          <div class="field">
-            <label for="phone">Telefone</label>
-            <input id="phone" name="phone" type="text" placeholder="(00) 00000-0000" />
-          </div>
-
-          <div class="field">
-            <label>Confirmação de segurança</label>
-            <div id="captchaBox"></div>
-            <small class="muted">
-              Se aparecer “domínio inválido”, é configuração no Google reCAPTCHA (não é backend).
-            </small>
-          </div>
-        </div>
-
-        <button id="submitBtn" type="submit" class="btn btn-primary">Entrar</button>
-
-        <div class="auth-actions">
-          <button id="toggleModeBtn" type="button" class="btn btn-link">
-            Não tenho conta. Quero cadastrar
-          </button>
-        </div>
-      </form>
-    </section>
+      </div>
+    </div>
   </main>
 
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
   <script src="login.js"></script>
 </body>
 </html>
