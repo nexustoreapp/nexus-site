@@ -46,7 +46,7 @@
     const active = currentFile();
 
     const nav = PAGES.map((p) => {
-      const isActive = p.href === active;
+      const isActive = (p.href === active);
       return `<a class="navlink${isActive ? " active" : ""}" href="${p.href}">${escapeHtml(p.label)}</a>`;
     }).join("");
 
@@ -123,19 +123,12 @@
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
         if (typeof window.NEXUS_logout === "function") return window.NEXUS_logout();
-
         try {
           localStorage.removeItem("nexus_token");
-
-          // limpa chaves de plano usadas no projeto
           localStorage.removeItem("nexus_plan");
           localStorage.removeItem("nexus_plan_intent");
-          localStorage.removeItem("nexus_user_plan");
-          localStorage.removeItem("nexus_plan_intent");
-
         } catch {}
-
-        location.href = "login.html";
+        location.href = "index.html";
       });
     }
   }
