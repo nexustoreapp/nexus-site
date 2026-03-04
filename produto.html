@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8"/>
 
-  <title>Produto Premium — Nexus</title>
-  <meta name="description" content="Confira este produto premium disponível no Nexus Marketplace." />
-
+  <title>Nexus Store | Produto Premium</title>
+  <meta name="description" content="Confira este produto premium disponível na Nexus Store." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- OpenGraph -->
-  <meta property="og:title" content="Produto Premium — Nexus" />
-  <meta property="og:description" content="Produto premium com acesso por plano no Nexus." />
+  <meta property="og:title" content="Produto Premium — Nexus Store" />
+  <meta property="og:description" content="Produto premium com acesso por plano na Nexus Store." />
   <meta property="og:image" content="https://nexustore.store/logo.png" />
   <meta property="og:url" content="https://nexustore.store/produto.html" />
   <meta property="og:type" content="product" />
@@ -20,42 +19,95 @@
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Produto Premium Exemplo</h2>
+          <p class="helper">Produto de demonstração com fluxo de compra.</p>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="assinatura.html" class="nav-link">Assinatura</a>
-    <a href="login.html" class="nav-link" id="loginLink">Entrar</a>
-  </nav>
-</header>
+          <div class="hr"></div>
 
-<main class="page">
-  <section class="section">
-    <h1>Produto Premium Exemplo</h1>
-    <button id="buyBtn" class="btn-primary">Comprar agora</button>
-    <p id="msg" class="small-text"></p>
-  </section>
-</main>
+          <div class="soft" style="padding:14px;">
+            <div class="grid" style="gap:12px;">
+              <div class="col-12">
+                <div class="helper">Descrição</div>
+                <div style="margin-top:6px;">
+                  Este é um produto premium de exemplo. Ao comprar, você vai para o checkout.
+                </div>
+              </div>
+            </div>
 
-<footer class="footer">
-  <p>© 2026 Nexus</p>
-</footer>
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button id="buyBtn" class="btn btn-primary" type="button">Comprar agora</button>
+              <a class="btn btn-outline" href="buscar.html">Voltar</a>
+              <a class="btn btn-ghost" id="accountBtn" href="login.html">Entrar</a>
+            </div>
 
-<script src="config.js"></script>
-<script>
-(function(){
-  const link = document.getElementById("loginLink");
-  if (localStorage.getItem("nexus_token")) {
-    link.innerText = "Minha conta";
-    link.href = "dashboard.html";
-  }
-})();
-</script>
+            <div id="msg" class="helper" style="margin-top:10px;"></div>
+          </div>
 
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>Nexus Store</h4>
+        <div class="helper">Marketplace em construção. Sem firula, com velocidade.</div>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <a href="privacidade.html">Privacidade</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      <div>
+        <h4>Conta</h4>
+        <a href="login.html">Login</a>
+        <a href="minha-conta.html">Minha conta</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">© Nexus Store</div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+
+  <script>
+    // Ajusta botão "Entrar/Minha conta"
+    (function(){
+      const accountBtn = document.getElementById("accountBtn");
+      const token = localStorage.getItem("nexus_token");
+      if (token) {
+        accountBtn.textContent = "Minha conta";
+        accountBtn.href = "minha-conta.html";
+      }
+    })();
+
+    // Compra: salva intenção e manda pro checkout
+    document.getElementById("buyBtn").addEventListener("click", () => {
+      const token = localStorage.getItem("nexus_token");
+      const msg = document.getElementById("msg");
+
+      if (!token) {
+        msg.textContent = "Você precisa entrar antes de comprar.";
+        window.location.href = "login.html";
+        return;
+      }
+
+      // marca intenção de produto (você pode mudar depois para ID real)
+      localStorage.setItem("nexus_product_intent", "produto_premium_exemplo");
+
+      // manda pro checkout com um "plan" de teste ou normal (ajusta quando tiver produto real)
+      // se você quiser testar o Core Teste:
+      // window.location.href = "checkout.html?plan=core_test";
+      window.location.href = "checkout.html?plan=core_test";
+    });
+  </script>
 </body>
 </html>
