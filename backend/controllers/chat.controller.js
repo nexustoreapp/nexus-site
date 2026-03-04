@@ -1,53 +1,22 @@
-export async function chatController(req, res) {
+// backend/controllers/chat.controller.js
+
+export async function chat(req, res) {
   try {
-    const body = req.body || {};
+    const message = String(req.body?.message || "").trim();
 
-    const userMessage =
-      body.message ||
-      body.text ||
-      body.prompt ||
-      "";
-
-    if (!String(userMessage).trim()) {
-      return res.json({
-        reply: "Me manda sua dúvida ou o produto que eu te ajudo 🙂"
-      });
+    if (!message) {
+      return res.status(400).json({ ok: false, error: "Mensagem vazia." });
     }
 
-    const systemPrompt = `
-Você é a Nexus IA, especialista em tecnologia, compras e comparação de produtos.
-Responda sempre de forma clara, objetiva e útil.
-Nunca diga apenas "recebi".
-Sempre tente ajudar o usuário de verdade.
-`;
-
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userMessage }
-        ],
-        temperature: 0.6
-      })
-    });
-
-    const data = await response.json();
-
+    // Por enquanto é um "stub" (resposta simples) só pra API não quebrar.
+    // Depois a gente liga na IA de verdade.
     const reply =
-      data?.choices?.[0]?.message?.content ||
-      "Não consegui responder agora. Tenta novamente.";
+      "IA Nexus (beta): recebi sua mensagem ✅\n\n" +
+      "Mensagem: " +
+      message;
 
-    return res.json({ reply });
+    return res.status(200).json({ ok: true, reply });
   } catch (err) {
-    console.error("[CHAT] erro:", err);
-    return res.status(500).json({
-      reply: "O chat está instável no momento. Tenta novamente em instantes."
-    });
+    return res.status(500).json({ ok: false, error: "Erro no chat." });
   }
 }
