@@ -71,10 +71,11 @@ export async function mercadopagoWebhook(req, res) {
       "";
 
     const planKey = normalizePlan(
-      mpPayment?.metadata?.planKey ||
-      mpPayment?.metadata?.plan ||
-      ""
-    );
+  mpPayment?.metadata?.planKey ||
+  mpPayment?.metadata?.plan_key ||
+  mpPayment?.metadata?.plan ||
+  ""
+);
 
     // Log evento no pedido (se existir em memória)
     if (orderId) {
