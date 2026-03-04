@@ -1,29 +1,18 @@
 import { updateOrderStatus } from "../services/orders.service.js";
 import { updateUserPlan } from "../services/users.service.js";
 
-function extractPlanFromItem(itemId) {
-
-  if (!itemId) return "free";
-
-  if (itemId.includes("core_test")) return "core_test";
-  if (itemId.includes("core")) return "core";
-  if (itemId.includes("hyper")) return "hyper";
-  if (itemId.includes("omega")) return "omega";
-
-  return "free";
-}
-
 export async function mercadopagoWebhook(req, res) {
 
   try {
 
-    console.log("Webhook recebido:", req.body);
+    console.log("Webhook recebido:", JSON.stringify(req.body, null, 2));
 
     const paymentStatus = "approved";
 
-    const orderId = req.body?.data?.id;
-
-    const itemId = req.body?.data?.item_id;
+    const orderId =
+      req.body?.data?.id ||
+      req.body?.data?.payment_id ||
+      req.body?.id;
 
     if (!orderId) {
       console.log("Webhook sem orderId");
@@ -32,17 +21,39 @@ export async function mercadopagoWebhook(req, res) {
 
     if (paymentStatus === "approved") {
 
+      console.log("Pagamento aprovado:", orderId);
+
       await updateOrderStatus(orderId, "paid");
 
       /* ===============================
-         DESCOBRIR QUAL PLANO FOI COMPRADO
+         IDENTIFICAR PLANO COMPRADO
       =============================== */
 
-      const plan = extractPlanFromItem(itemId);
+      let plan = "core";
 
-      await updateUserPlan(orderId, plan);
+      try {
+
+        const item =
+          req.body?.data?.metadata?.plan ||
+          req.body?.metadata?.plan ||
+          null;
+
+        if (item) {
+          plan = item;
+        }
+
+        /* fallback para core_test */
+        if (req.body?.data?.metadata?.plan === "core_test") {
+          plan = "core_test";
+        }
+
+      } catch (err) {
+        console.log("Não conseguiu detectar plano, usando core");
+      }
 
       console.log("Plano ativado:", plan);
+
+      await updateUserPlan(orderId, plan);
 
     }
 
@@ -52,7 +63,10 @@ export async function mercadopagoWebhook(req, res) {
 
     console.error("Erro webhook:", err);
 
-    res.status(500).json({ error: "webhook_error" });
+    res.status(500).json({
+      ok: false,
+      error: "webhook_error"
+    });
 
   }
 
