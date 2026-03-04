@@ -1,10 +1,11 @@
 // backend/routes/chat.routes.js
 import { Router } from "express";
-import { chatWithYara } from "../controllers/chat.controller.js";
+import { chat } from "../controllers/chat.controller.js";
 
 const router = Router();
 
-// GET /api/v1/chat?message=...
-router.get("/", chatWithYara);
+// endpoint do chat (IA Nexus)
+// OBS: esse router normalmente fica montado em /api/v1/chat no server.js
+router.post("/", chat);
 
 export default router;
