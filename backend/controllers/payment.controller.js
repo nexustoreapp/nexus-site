@@ -1,144 +1,184 @@
 // backend/controllers/payment.controller.js
-import dotenv from "dotenv";
-dotenv.config();
+import crypto from "crypto";
+import jwt from "jsonwebtoken";
+import mercadopago from "mercadopago";
+import { createOrder, attachPayment } from "../services/orders.service.js";
 
-function safeJsonParse(s) {
-  try {
-    return JSON.parse(s);
-  } catch {
-    return null;
-  }
+function pickBearerToken(req) {
+  const h = req.headers?.authorization || "";
+  const parts = h.split(" ");
+  if (parts.length === 2 && parts[0].toLowerCase() === "bearer") return parts[1];
+  return null;
 }
 
-function getBaseUrl(req) {
-  // Melhor: setar PUBLIC_URL no Render com seu domínio do backend
-  // Ex: https://nexus-site-oufm.onrender.com
-  const envUrl = process.env.PUBLIC_URL || process.env.RENDER_EXTERNAL_URL;
-  if (envUrl) return String(envUrl).replace(/\/+$/, "");
+function safeJson(res, status, payload) {
+  return res.status(status).json(payload);
+}
 
-  // fallback pelo request
+function inferPlanKeyFromItem(item) {
+  const id = String(item?.id || "").toLowerCase();
+  const title = String(item?.title || "").toLowerCase();
+
+  // Plano teste (seu 1 centavo)
+  if (id.includes("core_test") || id.includes("coretest") || title.includes("teste")) return "core_test";
+
+  if (id.includes("omega") || title.includes("omega")) return "omega";
+  if (id.includes("hyper") || title.includes("hyper")) return "hyper";
+  if (id.includes("core") || title.includes("core")) return "core";
+
+  return "free";
+}
+
+function normalizeEmail(email) {
+  return String(email || "").trim().toLowerCase();
+}
+
+function makeOrderId() {
+  return `order_${crypto.randomBytes(10).toString("hex")}`;
+}
+
+function getBackendPublicUrl(req) {
+  // prioridade: env -> fallback request
+  const env =
+    process.env.BACKEND_PUBLIC_URL ||
+    process.env.PUBLIC_URL ||
+    process.env.RENDER_EXTERNAL_URL ||
+    "";
+
+  if (env) return env.replace(/\/+$/, "");
+
+  // fallback usando request (funciona na maioria dos casos)
   const proto = (req.headers["x-forwarded-proto"] || "https").toString();
-  const host = req.headers["x-forwarded-host"] || req.headers.host;
+  const host = (req.headers["x-forwarded-host"] || req.headers.host || "").toString();
   return `${proto}://${host}`.replace(/\/+$/, "");
-}
-
-function getFrontUrl() {
-  // Se quiser, pode setar FRONTEND_URL (ex: https://nexustore.store)
-  const u = process.env.FRONTEND_URL || "";
-  return u ? String(u).replace(/\/+$/, "") : "";
-}
-
-function extractPlanKey(reqBody) {
-  // Seu checkout manda items[0].id tipo "plan_core_test"
-  // Vamos converter isso em "core_test", "core", "hyper", "omega"
-  const itemId = reqBody?.items?.[0]?.id || reqBody?.items?.[0]?.sku || "";
-  const raw = String(itemId).toLowerCase().trim();
-
-  // aceita "plan_core_test", "plan_core", etc
-  if (raw.includes("core_test")) return "core_test";
-  if (raw.includes("core")) return "core";
-  if (raw.includes("hyper")) return "hyper";
-  if (raw.includes("omega")) return "omega";
-  return "core";
-}
-
-function extractUserEmail(req) {
-  // Se você tem auth middleware que injeta req.user, beleza.
-  // Se não tiver, o frontend pode mandar userEmail (opcional).
-  const fromUser = req.user?.email || req.auth?.email;
-  const fromBody = req.body?.userEmail;
-
-  const email = (fromUser || fromBody || "").toString().trim().toLowerCase();
-  return email;
 }
 
 export async function createPayment(req, res) {
   try {
-    const accessToken = process.env.MP_ACCESS_TOKEN;
-    if (!accessToken) {
-      return res.status(500).json({ ok: false, error: "MP_ACCESS_TOKEN_MISSING" });
+    const MP_ACCESS_TOKEN =
+      process.env.MP_ACCESS_TOKEN || process.env.MERCADOPAGO_ACCESS_TOKEN;
+
+    if (!MP_ACCESS_TOKEN) {
+      return safeJson(res, 500, { ok: false, error: "MP_ACCESS_TOKEN_NOT_SET" });
     }
 
-    const userEmail = extractUserEmail(req);
+    const token = pickBearerToken(req);
+    if (!token) {
+      return safeJson(res, 401, { ok: false, error: "UNAUTHORIZED" });
+    }
+
+    let decoded = null;
+    try {
+      // se você usa JWT no backend, normalmente tem JWT_SECRET
+      const secret = process.env.JWT_SECRET || process.env.AUTH_JWT_SECRET || "";
+      decoded = secret ? jwt.verify(token, secret) : jwt.decode(token);
+    } catch {
+      decoded = jwt.decode(token);
+    }
+
+    const userEmail = normalizeEmail(decoded?.email);
     if (!userEmail) {
-      return res.status(401).json({ ok: false, error: "UNAUTHORIZED_NO_EMAIL" });
+      return safeJson(res, 400, { ok: false, error: "TOKEN_WITHOUT_EMAIL" });
     }
 
-    const planKey = extractPlanKey(req.body);
+    const body = req.body || {};
+    const items = Array.isArray(body.items) ? body.items : [];
 
-    const items = Array.isArray(req.body?.items) ? req.body.items : [];
-    const item0 = items[0] || {};
-    const title = item0.title || `Plano ${planKey}`;
-    const unitPrice = Number(item0.unit_price || 0);
-
-    if (!Number.isFinite(unitPrice) || unitPrice <= 0) {
-      return res.status(400).json({ ok: false, error: "INVALID_PRICE" });
+    if (!items.length) {
+      return safeJson(res, 400, { ok: false, error: "NO_ITEMS" });
     }
 
-    const baseUrl = getBaseUrl(req);
+    const first = items[0] || {};
+    const planKey = inferPlanKeyFromItem(first);
 
-    const frontUrl = getFrontUrl();
-    const successUrl = frontUrl ? `${frontUrl}/pagamento-confirmado.html` : "https://example.com/pagamento-confirmado.html";
-    const pendingUrl = frontUrl ? `${frontUrl}/pagamento-pendente.html` : "https://example.com/pagamento-pendente.html";
-    const failureUrl = frontUrl ? `${frontUrl}/pagamento-recusado.html` : "https://example.com/pagamento-recusado.html";
+    // valor
+    const amountCents = Number(body.amountCents || 0);
+    if (!Number.isFinite(amountCents) || amountCents <= 0) {
+      return safeJson(res, 400, { ok: false, error: "INVALID_AMOUNT" });
+    }
 
-    const externalReference = JSON.stringify({
-      email: userEmail,
-      plan: planKey
+    // cria pedido (MVP: em memória)
+    const order = await createOrder({
+      orderId: makeOrderId(),
+      userEmail,
+      items: items.map((it) => ({
+        sku: String(it.id || ""),
+        title: String(it.title || ""),
+        price: Number(it.unit_price || 0),
+        qty: Number(it.quantity || 1)
+      })),
+      totals: {
+        total: amountCents / 100
+      },
+      metadata: {
+        planKey
+      }
     });
+
+    const orderId = order?.id; // <-- aqui é o certo (id)
+    if (!orderId) {
+      return safeJson(res, 500, { ok: false, error: "ORDER_ID_MISSING" });
+    }
+
+    mercadopago.configure({ access_token: MP_ACCESS_TOKEN });
+
+    const backendUrl = getBackendPublicUrl(req);
+    const notificationUrl = `${backendUrl}/api/v1/payment/webhook/mercadopago`;
 
     const preference = {
       items: [
         {
-          title,
-          quantity: 1,
-          unit_price: unitPrice,
-          currency_id: "BRL"
+          id: String(first.id || "item"),
+          title: String(first.title || "Plano"),
+          quantity: Number(first.quantity || 1),
+          unit_price: Number(first.unit_price || (amountCents / 100))
         }
       ],
-      external_reference: externalReference,
+
+      // IMPORTANTÍSSIMO: isso liga webhook -> pedido
+      external_reference: orderId,
+
+      // IMPORTANTÍSSIMO: isso liga webhook -> usuário/plano (sem depender de orders no Postgres)
       metadata: {
-        email: userEmail,
-        plan: planKey
+        orderId,
+        userEmail,
+        planKey
       },
-      notification_url: `${baseUrl}/api/payment/webhook/mercadopago`,
+
+      notification_url: notificationUrl,
+
+      // se você já tiver páginas de retorno:
       back_urls: {
-        success: successUrl,
-        pending: pendingUrl,
-        failure: failureUrl
+        success: `${process.env.FRONTEND_URL || ""}/pagamento-confirmado.html`,
+        pending: `${process.env.FRONTEND_URL || ""}/pagamento-pendente.html`,
+        failure: `${process.env.FRONTEND_URL || ""}/pagamento-recusado.html`
       },
       auto_return: "approved"
     };
 
-    const mpRes = await fetch("https://api.mercadopago.com/checkout/preferences", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(preference)
-    });
+    const mpResp = await mercadopago.preferences.create(preference);
 
-    const mpData = await mpRes.json().catch(() => null);
-
-    if (!mpRes.ok || !mpData?.id) {
-      return res.status(400).json({
-        ok: false,
-        error: "MP_CREATE_PREFERENCE_FAILED",
-        details: mpData || null
+    // anexa no pedido (MVP)
+    try {
+      await attachPayment(orderId, {
+        provider: "mercadopago",
+        preferenceId: mpResp?.body?.id || null,
+        status: "pending",
+        method: "pix",
+        amount: amountCents / 100,
+        raw: mpResp?.body || null
       });
-    }
+    } catch {}
 
-    return res.json({
+    return safeJson(res, 200, {
       ok: true,
-      preferenceId: mpData.id,
-      init_point: mpData.init_point,
-      sandbox_init_point: mpData.sandbox_init_point,
-      plan: planKey,
-      email: userEmail
+      orderId,
+      planKey,
+      init_point: mpResp?.body?.init_point || null,
+      sandbox_init_point: mpResp?.body?.sandbox_init_point || null
     });
   } catch (err) {
     console.error("createPayment error:", err);
-    return res.status(500).json({ ok: false, error: "PAYMENT_CREATE_ERROR" });
+    return safeJson(res, 500, { ok: false, error: "PAYMENT_CREATE_FAILED" });
   }
 }
