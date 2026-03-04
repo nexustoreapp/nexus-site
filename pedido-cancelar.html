@@ -1,169 +1,142 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Cancelar pedido — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Cancelar pedido</title>
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Cancelar pedido</h2>
+          <p class="helper">O cancelamento é analisado manualmente pela equipe Nexus.</p>
 
-  <nav class="nav">
-    <a href="dashboard.html" class="nav-link">Minha conta</a>
-    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
-  </nav>
-</header>
+          <div class="hr"></div>
 
-<main class="page">
+          <div class="soft" style="padding:14px;">
+            <div class="form-grid">
+              <div>
+                <div class="helper">ID do pedido</div>
+                <div id="orderId" style="font-weight:1000;">—</div>
+              </div>
+              <div>
+                <div class="helper">Status atual</div>
+                <div id="orderStatus" style="font-weight:1000;">—</div>
+              </div>
+            </div>
+          </div>
 
-  <section class="section">
-    <h1>Cancelar pedido</h1>
-    <p class="muted-text">
-      O cancelamento é analisado manualmente pela equipe Nexus.
-    </p>
-  </section>
+          <div class="soft" style="padding:14px;margin-top:12px;">
+            <div class="helper" style="margin-bottom:8px;">Motivo do cancelamento</div>
+            <textarea id="reason" class="input" placeholder="Explique o motivo do cancelamento ou reembolso" style="min-height:120px;padding-top:10px;"></textarea>
 
-  <section class="section card">
-    <div class="info-row">
-      <strong>ID do pedido:</strong>
-      <span id="orderId">—</span>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button id="cancelBtn" class="btn btn-primary" type="button">Solicitar cancelamento</button>
+              <a class="btn btn-outline" href="pedidos.html">Voltar</a>
+              <a class="btn btn-ghost" href="minha-conta.html">Minha conta</a>
+            </div>
+
+            <div id="msg" class="helper" style="margin-top:10px;"></div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div class="info-row">
-      <strong>Status atual:</strong>
-      <span id="orderStatus">—</span>
-    </div>
-  </section>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 
-  <section class="section card">
-    <h2>Motivo do cancelamento</h2>
+  <script>
+    // ===============================
+    // AUTH
+    // ===============================
+    const token = localStorage.getItem("nexus_token");
+    if (!token) {
+      window.location.replace("login.html");
+    }
 
-    <textarea id="reason"
-      placeholder="Explique o motivo do cancelamento ou reembolso"
-      style="width:100%;min-height:120px"></textarea>
+    // ===============================
+    // HELPERS
+    // ===============================
+    function qs(name){
+      return new URLSearchParams(window.location.search).get(name);
+    }
+    function setMsg(t){
+      const el = document.getElementById("msg");
+      if (el) el.textContent = t || "";
+    }
+    function safeJson(r){
+      return r.json().catch(()=>null);
+    }
 
-    <div style="margin-top:16px">
-      <button id="cancelBtn" class="btn-outline">
-        Solicitar cancelamento
-      </button>
-    </div>
+    // ===============================
+    // LOAD PEDIDO
+    // ===============================
+    const orderId = qs("id");
+    if (!orderId) {
+      alert("Pedido inválido (sem id na URL).");
+      window.location.replace("pedidos.html");
+    }
 
-    <p id="msg" class="small-text"></p>
-  </section>
+    document.getElementById("orderId").textContent = orderId;
 
-</main>
+    fetch(`${window.NEXUS_API}/orders/${encodeURIComponent(orderId)}`, {
+      headers: { "Authorization": "Bearer " + token }
+    })
+    .then(async (r) => {
+      const d = await safeJson(r);
+      if (!r.ok || !d?.ok) throw new Error(d?.error || "LOAD_FAILED");
+      document.getElementById("orderStatus").textContent = d.order?.status || "—";
+    })
+    .catch(() => {
+      document.getElementById("orderStatus").textContent = "—";
+      setMsg("Não consegui carregar os dados do pedido agora.");
+    });
 
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
+    // ===============================
+    // CANCELAR
+    // ===============================
+    document.getElementById("cancelBtn").addEventListener("click", async () => {
+      setMsg("");
 
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
+      const reason = (document.getElementById("reason").value || "").trim();
+      if (!reason) {
+        setMsg("Informe o motivo do cancelamento.");
+        return;
+      }
 
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
+      try{
+        const r = await fetch(`${window.NEXUS_API}/orders/${encodeURIComponent(orderId)}/cancel`, {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ reason })
+        });
 
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
+        const d = await safeJson(r);
 
-<script>
-/* ===============================
-   AUTH
-================================ */
-const token = localStorage.getItem("nexus_token");
-if (!token) {
-  window.location.href = "login.html";
-}
+        if (!r.ok || !d?.ok) {
+          setMsg(d?.error || "Erro ao solicitar cancelamento.");
+          return;
+        }
 
-/* ===============================
-   LOGOUT
-================================ */
-document.getElementById("logoutBtn").onclick = () => {
-  localStorage.clear();
-  window.location.href = "index.html";
-};
-
-/* ===============================
-   LOAD PEDIDO
-================================ */
-const params = new URLSearchParams(window.location.search);
-const orderId = params.get("id");
-
-if (!orderId) {
-  alert("Pedido inválido");
-  window.location.href = "dashboard.html";
-}
-
-document.getElementById("orderId").innerText = orderId;
-
-fetch(`${window.NEXUS_API}/orders/${orderId}`, {
-  headers: { "Authorization": "Bearer " + token }
-})
-.then(r => r.json())
-.then(d => {
-  if (!d.ok) throw new Error();
-  document.getElementById("orderStatus").innerText = d.order.status;
-})
-.catch(() => {
-  alert("Erro ao carregar pedido");
-  window.location.href = "dashboard.html";
-});
-
-/* ===============================
-   CANCELAR
-================================ */
-document.getElementById("cancelBtn").onclick = () => {
-  const reason = document.getElementById("reason").value.trim();
-  const msg = document.getElementById("msg");
-
-  if (!reason) {
-    msg.innerText = "Informe o motivo do cancelamento.";
-    return;
-  }
-
-  fetch(`${window.NEXUS_API}/orders/${orderId}/cancel`, {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + token,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ reason })
-  })
-  .then(r => r.json())
-  .then(d => {
-    if (!d.ok) throw new Error();
-    msg.innerText =
-      "Solicitação enviada. Nossa equipe irá analisar.";
-  })
-  .catch(() => {
-    msg.innerText = "Erro ao solicitar cancelamento.";
-  });
-};
-</script>
-
+        setMsg("Solicitação enviada. Nossa equipe irá analisar.");
+      }catch{
+        setMsg("Erro ao solicitar cancelamento.");
+      }
+    });
+  </script>
 </body>
 </html>
