@@ -1,57 +1,71 @@
-import { updateOrderStatus } from "../services/orders.service.js";
-import { updateUserPlan } from "../services/users.service.js";
 import mercadopago from "mercadopago";
+import { createOrder } from "../services/orders.service.js";
 
 mercadopago.configure({
   access_token: process.env.MP_ACCESS_TOKEN
 });
 
-export async function mercadopagoWebhook(req, res) {
+export async function createPayment(req, res) {
 
   try {
 
-    console.log("Webhook recebido:", req.body);
+    const user = req.user;
+    const { items, amountCents, currency } = req.body;
 
-    const paymentId = req.body?.data?.id;
-
-    if (!paymentId) {
-      console.log("Webhook sem paymentId");
-      return res.status(200).json({ ok: true });
+    if (!items || !items.length) {
+      return res.status(400).json({ ok:false, error:"items_missing" });
     }
 
-    // consulta pagamento real no Mercado Pago
-    const payment = await mercadopago.payment.findById(paymentId);
+    const planId = items[0].id;
 
-    const status = payment.body.status;
-    const orderId = payment.body.external_reference;
+    /* ===============================
+       CRIA PEDIDO NO BANCO
+    =============================== */
 
-    if (!orderId) {
-      console.log("Pagamento sem external_reference");
-      return res.status(200).json({ ok: true });
-    }
+    const order = await createOrder({
+      userId: user.id,
+      plan: planId,
+      amountCents
+    });
 
-    console.log("Status pagamento:", status);
-    console.log("OrderId:", orderId);
+    const orderId = order.id;
 
-    if (status === "approved") {
+    /* ===============================
+       CRIA PAGAMENTO MERCADO PAGO
+    =============================== */
 
-      await updateOrderStatus(orderId, "paid");
+    const preference = {
+      items: items,
+      external_reference: String(orderId),
 
-      const plan = "core_test";
+      back_urls: {
+        success: "https://nexus-site-oufm.onrender.com/success.html",
+        failure: "https://nexus-site-oufm.onrender.com/failure.html",
+        pending: "https://nexus-site-oufm.onrender.com/pending.html"
+      },
 
-      await updateUserPlan(orderId, plan);
+      auto_return: "approved",
 
-      console.log("Plano ativado:", plan);
+      notification_url:
+        "https://nexus-site-oufm.onrender.com/payment/webhook"
+    };
 
-    }
+    const response = await mercadopago.preferences.create(preference);
 
-    res.status(200).json({ ok: true });
+    res.json({
+      ok:true,
+      init_point: response.body.init_point,
+      sandbox_init_point: response.body.sandbox_init_point
+    });
 
   } catch (err) {
 
-    console.error("Erro webhook:", err);
+    console.error("createPayment error:", err);
 
-    res.status(500).json({ error: "webhook_error" });
+    res.status(500).json({
+      ok:false,
+      error:"payment_create_error"
+    });
 
   }
 
