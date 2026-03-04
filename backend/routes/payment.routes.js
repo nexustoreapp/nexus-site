@@ -1,38 +1,44 @@
 // backend/routes/payment.routes.js
+
 import { Router } from "express";
 import { createPayment } from "../controllers/payment.controller.js";
-import { mercadopagoWebhook, reprocessPaymentAdmin } from "../controllers/payment.webhook.js";
+import { mercadopagoWebhook } from "../controllers/payment.webhook.js";
 
 const router = Router();
 
 /* =====================================================
 CRIAR PAGAMENTO (CHECKOUT)
+POST /api/v1/payment/create
 ===================================================== */
 router.post("/create", createPayment);
 
 /* =====================================================
-WEBHOOK MERCADO PAGO (POST)
-- Aceita /webhook e /webhook/mercadopago por compatibilidade
+WEBHOOK MERCADO PAGO
+POST /api/v1/payment/webhook/mercadopago
 ===================================================== */
-router.post("/webhook", mercadopagoWebhook);
 router.post("/webhook/mercadopago", mercadopagoWebhook);
 
 /* =====================================================
-PING (GET) PRA TESTAR ROTA
+ALIAS (pra evitar confusão em testes)
+POST /api/v1/payment/webhook
 ===================================================== */
-router.get("/webhook", (req, res) => {
-  res.status(200).json({ ok: true, route: "payment webhook (GET ping)" });
-});
-router.get("/webhook/mercadopago", (req, res) => {
-  res.status(200).json({ ok: true, route: "payment webhook mercadopago (GET ping)" });
-});
+router.post("/webhook", mercadopagoWebhook);
 
 /* =====================================================
-REPROCESSAR PAGAMENTO (ADMIN)
-- Pra “rodar de novo” um pagamento antigo SEM pagar de novo.
-- Protegido por header: X-Admin-Key
-- URL: POST /payment/admin/reprocess/:paymentId
+PING PARA TESTAR A ROTA (GET)
 ===================================================== */
-router.post("/admin/reprocess/:paymentId", reprocessPaymentAdmin);
+router.get("/webhook/mercadopago", (req, res) => {
+  res.status(200).json({
+    ok: true,
+    route: "payment webhook mercadopago (GET ping)"
+  });
+});
+
+router.get("/webhook", (req, res) => {
+  res.status(200).json({
+    ok: true,
+    route: "payment webhook (GET ping)"
+  });
+});
 
 export default router;
