@@ -1,54 +1,34 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-
-<title>Nexus Store | Buscar</title>
-
-<link rel="icon" href="favicon.png">
-
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="nexus-widget.css">
-
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Buscar</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div id="topbar-root"></div>
 
-<div id="topbar-root"></div>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Buscar</h2>
+          <p class="helper">Resultados e catálogo.</p>
+          <div class="hr"></div>
 
-<main class="page">
+          <div id="search-meta" class="helper" style="margin-bottom:10px;"></div>
 
-<div class="container">
+          <div id="results-grid" class="grid"></div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<div class="card page-card">
-
-<div class="pad">
-
-<h2 style="font-weight:1000;">Buscar</h2>
-<p class="helper">Resultados e catálogo.</p>
-
-<div class="hr"></div>
-
-<div id="results" class="soft" style="padding:14px;">
-Carregando...
-</div>
-
-</div>
-</div>
-</div>
-
-</main>
-
-<script src="config.js"></script>
-
-<script src="layout.js"></script>
-
-<script src="nexus-widget.js"></script>
-
-<script src="out.js"></script>
-
-<script src="buscar.js"></script>
-
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
+  <script src="buscar.js"></script>
 </body>
 </html>
