@@ -5,7 +5,7 @@
  * - Faz busca (vai para buscar.html?q=...)
  * - Marca link ativo
  */
-(function(){
+(function () {
   const PAGES = [
     { href: "index.html", label: "Início" },
     { href: "buscar.html", label: "Buscar" },
@@ -18,27 +18,35 @@
     { href: "chat.html", label: "IA Nexus" }
   ];
 
-  function getToken(){
-    try { return localStorage.getItem("nexus_token"); } catch { return null; }
+  function getToken() {
+    try {
+      return localStorage.getItem("nexus_token");
+    } catch {
+      return null;
+    }
   }
 
-  function currentFile(){
+  function currentFile() {
     const p = (location.pathname || "").split("/").pop();
     return p || "index.html";
   }
 
-  function escapeHtml(s){
+  function escapeHtml(s) {
     return String(s).replace(/[&<>\"']/g, (c) => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
     }[c] || c));
   }
 
-  function buildTopbar(){
+  function buildTopbar() {
     const logged = !!getToken();
     const active = currentFile();
 
-    const nav = PAGES.map(p => {
-      const isActive = (p.href === active);
+    const nav = PAGES.map((p) => {
+      const isActive = p.href === active;
       return `<a class="navlink${isActive ? " active" : ""}" href="${p.href}">${escapeHtml(p.label)}</a>`;
     }).join("");
 
@@ -81,11 +89,11 @@
     `;
   }
 
-  function wireTopbar(root){
+  function wireTopbar(root) {
     const topbarEl = root.querySelector("#topbar");
     const toggle = root.querySelector("#navToggle");
 
-    if (toggle && topbarEl){
+    if (toggle && topbarEl) {
       toggle.addEventListener("click", () => {
         topbarEl.classList.toggle("open");
       });
@@ -98,7 +106,7 @@
     const currentQ = url.searchParams.get("q") || "";
     if (input) input.value = currentQ;
 
-    function goSearch(){
+    function goSearch() {
       const q = (input?.value || "").trim();
       const target = new URL("buscar.html", location.href);
       if (q) target.searchParams.set("q", q);
@@ -112,16 +120,27 @@
 
     // Logout
     const logoutBtn = root.querySelector("#logoutBtn");
-    if (logoutBtn){
+    if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
         if (typeof window.NEXUS_logout === "function") return window.NEXUS_logout();
-        try { localStorage.removeItem("nexus_token"); } catch {}
+
+        try {
+          localStorage.removeItem("nexus_token");
+
+          // limpa chaves de plano usadas no projeto
+          localStorage.removeItem("nexus_plan");
+          localStorage.removeItem("nexus_plan_intent");
+          localStorage.removeItem("nexus_user_plan");
+          localStorage.removeItem("nexus_plan_intent");
+
+        } catch {}
+
         location.href = "login.html";
       });
     }
   }
 
-  function mount(){
+  function mount() {
     const host = document.getElementById("topbar-root");
     if (!host) return;
 
