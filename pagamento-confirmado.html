@@ -1,161 +1,143 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Pagamento confirmado — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Pagamento confirmado</title>
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    .success-box {
-      max-width: 520px;
-      margin: 80px auto;
-      padding: 36px;
-      background: #0f0f0f;
-      border-radius: 16px;
-      box-shadow: 0 0 40px rgba(0,0,0,.4);
-      text-align: center;
+    .success-box{
+      max-width: 560px;
+      margin: 22px auto 0;
+      padding: 18px;
+      text-align:center;
     }
-
-    .success-icon {
-      font-size: 52px;
-      color: #22c55e;
-      margin-bottom: 16px;
+    .success-inner{
+      padding: 18px;
     }
-
-    .success-box h1 {
-      margin-bottom: 10px;
+    .success-icon{
+      width:64px;height:64px;border-radius:20px;
+      display:grid;place-items:center;
+      margin: 0 auto 12px;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.30);
+      color:#22c55e;
+      font-size: 34px;
+      font-weight: 1000;
     }
-
-    .success-box p {
-      opacity: .8;
-      font-size: 15px;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .info {
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .btn {
-      width: 100%;
+    .info{
+      margin-top: 14px;
       padding: 14px;
-      border-radius: 10px;
-      border: none;
-      background: #22c55e;
-      color: #000;
-      font-weight: 700;
-      cursor: pointer;
-      margin-bottom: 12px;
+      text-align:left;
     }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #333;
-      color: #fff;
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(148,163,184,.12);
+      font-size: 14px;
+    }
+    .row:last-child{border-bottom:none}
+    .row span{color: rgba(229,231,235,.80); font-weight:900}
+    .row strong{font-weight:1000}
+    .actions{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:center;
     }
   </style>
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
-</header>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <div class="soft success-box">
+            <div class="success-inner">
+              <div class="success-icon">✔</div>
 
-<main class="page">
-  <div class="success-box">
+              <h2 style="font-weight:1000;">Pagamento confirmado!</h2>
+              <p class="helper" style="margin-top:8px;">
+                Recebemos seu pagamento com sucesso. Se o plano for atualizado pelo webhook, seu acesso já fica liberado.
+              </p>
 
-    <div class="success-icon">✔</div>
+              <div class="soft info">
+                <div class="row">
+                  <span>Status</span>
+                  <strong>Pago</strong>
+                </div>
 
-    <h1>Pagamento confirmado!</h1>
+                <div class="row">
+                  <span>Método</span>
+                  <strong id="payMethod">—</strong>
+                </div>
 
-    <p>
-      Recebemos seu pagamento com sucesso.
-      Seu plano foi ativado e o acesso já está liberado.
-    </p>
+                <div class="row">
+                  <span>Plano</span>
+                  <strong id="planName">—</strong>
+                </div>
+              </div>
 
-    <div class="info">
-      <div class="row">
-        <span>Status</span>
-        <strong>Pago</strong>
-      </div>
+              <div class="actions">
+                <a class="btn btn-primary" href="minha-conta.html">Ir para minha conta</a>
+                <a class="btn btn-outline" href="index.html">Voltar para Home</a>
+              </div>
 
-      <div class="row">
-        <span>Método</span>
-        <strong>PIX</strong>
-      </div>
+              <div class="helper" style="margin-top:12px;">
+                Se aparecer plano “—”, é só porque ainda não tem info salva no navegador. O acesso real vem do token/servidor.
+              </div>
+            </div>
+          </div>
 
-      <div class="row">
-        <span>Plano ativado</span>
-        <strong id="planName">—</strong>
+        </div>
       </div>
     </div>
+  </main>
 
-    <button class="btn" onclick="goAccount()">
-      Ir para minha conta
-    </button>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 
-    <button class="btn btn-outline" onclick="goHome()">
-      Voltar para Home
-    </button>
+  <script>
+    // AUTH (simples)
+    (function(){
+      const token = localStorage.getItem("nexus_token");
+      if (!token) {
+        window.location.replace("login.html");
+        return;
+      }
 
-  </div>
-</main>
+      // Método (se você salvar isso no checkout depois, aqui aparece)
+      const method = localStorage.getItem("nexus_pay_method") || "PIX";
+      const methodEl = document.getElementById("payMethod");
+      if (methodEl) methodEl.textContent = String(method).toUpperCase();
 
-<footer class="footer">
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
+      // Plano (tenta: localStorage -> token payload)
+      const planEl = document.getElementById("planName");
 
-<script>
-/* ===============================
-   AUTH
-================================ */
-const token = localStorage.getItem("nexus_token");
-if (!token) {
-  window.location.href = "login.html";
-}
+      const lsPlan = localStorage.getItem("nexus_plan");
+      if (lsPlan) {
+        if (planEl) planEl.textContent = String(lsPlan).toUpperCase();
+        return;
+      }
 
-/* ===============================
-   PLANO
-================================ */
-const plan = localStorage.getItem("nexus_plan");
-if (plan) {
-  document.getElementById("planName").innerText = plan.toUpperCase();
-} else {
-  document.getElementById("planName").innerText = "—";
-}
-
-/* ===============================
-   REDIRECTS
-================================ */
-function goAccount() {
-  window.location.href = "dashboard.html";
-}
-
-function goHome() {
-  window.location.href = "index.html";
-}
-</script>
-
+      try{
+        const payload = JSON.parse(atob(token.split(".")[1] || ""));
+        const p = (payload?.plan || "—");
+        if (planEl) planEl.textContent = String(p).toUpperCase();
+      } catch {
+        if (planEl) planEl.textContent = "—";
+      }
+    })();
+  </script>
 </body>
 </html>
