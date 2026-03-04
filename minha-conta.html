@@ -1,188 +1,148 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Minha conta — Nexus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Store | Minha conta</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div id="topbar-root"></div>
 
-<header class="topbar">
-  <a href="index.html" class="brand">
-    <img src="logo.png" class="brand-logo"/>
-    <span class="brand-name">Nexus</span>
-  </a>
+  <main class="page">
+    <div class="container">
+      <div class="card page-card">
+        <div class="pad">
+          <h2 style="font-weight:1000;">Minha conta</h2>
+          <p class="helper">Gerencie seus dados, plano e histórico.</p>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Início</a>
-    <a href="assinatura.html" class="nav-link">Assinatura</a>
-    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
-  </nav>
-</header>
+          <div class="hr"></div>
 
-<main class="page">
+          <!-- DADOS DO USUÁRIO -->
+          <div class="soft" style="padding:14px;">
+            <div class="grid" style="gap:12px;">
+              <div class="col-6 soft" style="padding:14px;">
+                <div class="helper">E-mail</div>
+                <div id="userEmail" style="font-weight:1000;">—</div>
+              </div>
 
-  <!-- HEADER CONTA -->
-  <section class="section">
-    <h1>Minha conta</h1>
-    <p class="muted-text">
-      Gerencie seus dados, plano e histórico.
-    </p>
-  </section>
+              <div class="col-6 soft" style="padding:14px;">
+                <div class="helper">CPF</div>
+                <div id="userCpf" style="font-weight:1000;">—</div>
+              </div>
 
-  <!-- DADOS DO USUÁRIO -->
-  <section class="section card">
-    <h2>Dados pessoais</h2>
+              <div class="col-6 soft" style="padding:14px;">
+                <div class="helper">Plano</div>
+                <div id="userPlan" style="font-weight:1000;">—</div>
+              </div>
 
-    <div class="info-row">
-      <strong>E-mail</strong>
-      <span id="userEmail">—</span>
+              <div class="col-6 soft" style="padding:14px;">
+                <div class="helper">Acesso</div>
+                <div id="planAccess" style="font-weight:1000;">—</div>
+              </div>
+
+              <div class="col-12 soft" style="padding:14px;">
+                <div class="helper">Benefícios</div>
+                <div id="planBenefits" style="font-weight:900;">—</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn btn-primary" href="assinatura.html">Gerenciar assinatura</a>
+              <a class="btn btn-outline" href="pedidos.html">Ver pedidos</a>
+              <button class="btn btn-ghost" type="button" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+
+          <!-- BASES (futuro) -->
+          <div class="grid" style="margin-top:14px;">
+            <div class="col-6 card soft" style="padding:14px;">
+              <div style="font-weight:1000;">Pedidos</div>
+              <div class="helper" style="margin-top:6px;">Você ainda não possui pedidos.</div>
+            </div>
+            <div class="col-6 card soft" style="padding:14px;">
+              <div style="font-weight:1000;">Pagamentos</div>
+              <div class="helper" style="margin-top:6px;">Nenhum pagamento registrado.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div class="info-row">
-      <strong>CPF</strong>
-      <span id="userCpf">—</span>
-    </div>
+  <script src="config.js"></script>
+  <script src="layout.js"></script>
+  <script src="out.js"></script>
 
-    <div class="info-row">
-      <strong>Status da conta</strong>
-      <span class="status ok">Ativa</span>
-    </div>
-  </section>
+  <script>
+    // ===============================
+    // AUTH (sem mexer em reCAPTCHA)
+    // ===============================
+    (function () {
+      const token = localStorage.getItem("nexus_token");
+      if (!token) {
+        window.location.replace("login.html");
+        return;
+      }
 
-  <!-- PLANO -->
-  <section class="section card">
-    <h2>Plano atual</h2>
+      function safeJsonParseJWT(t) {
+        try {
+          const p = t.split(".")[1];
+          if (!p) return null;
+          return JSON.parse(atob(p));
+        } catch {
+          return null;
+        }
+      }
 
-    <div class="info-row">
-      <strong>Plano</strong>
-      <span id="userPlan">Free</span>
-    </div>
+      const payload = safeJsonParseJWT(token);
+      if (!payload || !payload.email) {
+        localStorage.removeItem("nexus_token");
+        window.location.replace("login.html");
+        return;
+      }
 
-    <div class="info-row">
-      <strong>Acesso</strong>
-      <span id="planAccess">Limitado</span>
-    </div>
+      const emailEl = document.getElementById("userEmail");
+      const cpfEl = document.getElementById("userCpf");
+      const planEl = document.getElementById("userPlan");
+      const accessEl = document.getElementById("planAccess");
+      const benefitsEl = document.getElementById("planBenefits");
 
-    <div class="info-row">
-      <strong>Benefícios</strong>
-      <span id="planBenefits">—</span>
-    </div>
+      if (emailEl) emailEl.textContent = payload.email;
 
-    <div style="margin-top:16px">
-      <a href="assinatura.html" class="btn-primary">
-        Gerenciar assinatura
-      </a>
-    </div>
-  </section>
+      const cpf = String(payload.cpf || "").replace(/\D+/g, "");
+      if (cpfEl) {
+        cpfEl.textContent = cpf.length === 11
+          ? cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
+          : "—";
+      }
 
-  <!-- PEDIDOS (BASE) -->
-  <section class="section card">
-    <h2>Pedidos</h2>
+      const plan = String(payload.plan || "free").toLowerCase();
+      if (planEl) planEl.textContent = plan.toUpperCase();
 
-    <p class="muted-text">
-      Você ainda não possui pedidos.
-    </p>
+      const benefits = {
+        free:  "Visualização limitada e bloqueios aleatórios",
+        core:  "Acesso ampliado e menos bloqueios",
+        hyper: "Quase todos os produtos liberados",
+        omega: "Acesso total sem bloqueios",
+        core_test: "Plano de teste (pagamento mínimo) para validar o fluxo"
+      };
 
-    <!-- Futuro: lista dinâmica -->
-  </section>
+      if (accessEl) accessEl.textContent = plan === "free" ? "Limitado" : "Avançado";
+      if (benefitsEl) benefitsEl.textContent = benefits[plan] || "—";
+    })();
 
-  <!-- PAGAMENTOS (BASE) -->
-  <section class="section card">
-    <h2>Pagamentos</h2>
-
-    <p class="muted-text">
-      Nenhum pagamento registrado.
-    </p>
-
-    <!-- Futuro: histórico -->
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Nexus" class="footer-logo">
-      <p class="footer-desc">
-        Nexus é um marketplace tecnológico focado em inteligência,
-        automação e curadoria avançada de produtos.
-      </p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Institucional</h4>
-      <a href="quem-somos.html">Quem Somos</a>
-      <a href="contato.html">Contato</a>
-    </div>
-
-    <div class="footer-links">
-      <h4>Legal</h4>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Política de Privacidade</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Nexus. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<script>
-/* ===============================
-   AUTH & TOKEN
-================================ */
-(function(){
-  const token = localStorage.getItem("nexus_token");
-  if (!token) {
-    window.location.replace("login.html");
-    return;
-  }
-
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    if (!payload.email) throw new Error();
-
-    document.getElementById("userEmail").innerText = payload.email;
-    document.getElementById("userCpf").innerText =
-      payload.cpf
-        ? payload.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
-        : "-";
-
-    const plan = payload.plan || "free";
-    document.getElementById("userPlan").innerText =
-      plan.charAt(0).toUpperCase() + plan.slice(1);
-
-    const benefits = {
-      free: "Visualização limitada e bloqueios aleatórios",
-      core: "Acesso ampliado e menos bloqueios",
-      hyper: "Quase todos os produtos liberados",
-      omega: "Acesso total sem bloqueios"
-    };
-
-    document.getElementById("planAccess").innerText =
-      plan === "free" ? "Limitado" : "Avançado";
-
-    document.getElementById("planBenefits").innerText =
-      benefits[plan] || "-";
-
-  } catch {
-    localStorage.clear();
-    window.location.replace("login.html");
-  }
-})();
-
-/* ===============================
-   LOGOUT REAL
-================================ */
-document.getElementById("logoutBtn").onclick = () => {
-  localStorage.clear();
-  window.location.replace("index.html");
-};
-</script>
-
+    // ===============================
+    // LOGOUT REAL
+    // ===============================
+    document.getElementById("logoutBtn")?.addEventListener("click", () => {
+      localStorage.removeItem("nexus_token");
+      // se você quiser zerar TUDO, troca pra localStorage.clear();
+      window.location.replace("index.html");
+    });
+  </script>
 </body>
 </html>
