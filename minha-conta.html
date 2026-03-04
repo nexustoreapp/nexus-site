@@ -1,148 +1,196 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nexus Store | Minha conta</title>
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nexus Store | Minha conta</title>
+
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-  <div id="topbar-root"></div>
 
-  <main class="page">
-    <div class="container">
-      <div class="card page-card">
-        <div class="pad">
-          <h2 style="font-weight:1000;">Minha conta</h2>
-          <p class="helper">Gerencie seus dados, plano e histórico.</p>
+<div id="topbar-root"></div>
 
-          <div class="hr"></div>
+<main class="page">
 
-          <!-- DADOS DO USUÁRIO -->
-          <div class="soft" style="padding:14px;">
-            <div class="grid" style="gap:12px;">
-              <div class="col-6 soft" style="padding:14px;">
-                <div class="helper">E-mail</div>
-                <div id="userEmail" style="font-weight:1000;">—</div>
-              </div>
+<div class="container">
 
-              <div class="col-6 soft" style="padding:14px;">
-                <div class="helper">CPF</div>
-                <div id="userCpf" style="font-weight:1000;">—</div>
-              </div>
+<div class="card page-card">
 
-              <div class="col-6 soft" style="padding:14px;">
-                <div class="helper">Plano</div>
-                <div id="userPlan" style="font-weight:1000;">—</div>
-              </div>
+<div class="pad">
 
-              <div class="col-6 soft" style="padding:14px;">
-                <div class="helper">Acesso</div>
-                <div id="planAccess" style="font-weight:1000;">—</div>
-              </div>
+<h2 style="font-weight:1000;">Minha conta</h2>
+<p class="helper">Gerencie seus dados, plano e histórico.</p>
 
-              <div class="col-12 soft" style="padding:14px;">
-                <div class="helper">Benefícios</div>
-                <div id="planBenefits" style="font-weight:900;">—</div>
-              </div>
-            </div>
+<div class="hr"></div>
 
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn btn-primary" href="assinatura.html">Gerenciar assinatura</a>
-              <a class="btn btn-outline" href="pedidos.html">Ver pedidos</a>
-              <button class="btn btn-ghost" type="button" id="logoutBtn">Sair</button>
-            </div>
-          </div>
+<div class="soft" style="padding:14px;">
 
-          <!-- BASES (futuro) -->
-          <div class="grid" style="margin-top:14px;">
-            <div class="col-6 card soft" style="padding:14px;">
-              <div style="font-weight:1000;">Pedidos</div>
-              <div class="helper" style="margin-top:6px;">Você ainda não possui pedidos.</div>
-            </div>
-            <div class="col-6 card soft" style="padding:14px;">
-              <div style="font-weight:1000;">Pagamentos</div>
-              <div class="helper" style="margin-top:6px;">Nenhum pagamento registrado.</div>
-            </div>
-          </div>
+<div class="grid" style="gap:12px;">
 
-        </div>
-      </div>
-    </div>
-  </main>
+<div class="col-6 soft" style="padding:14px;">
+<div class="helper">E-mail</div>
+<div id="userEmail" style="font-weight:1000;">—</div>
+</div>
 
-  <script src="config.js"></script>
-  <script src="layout.js"></script>
-  <script src="out.js"></script>
+<div class="col-6 soft" style="padding:14px;">
+<div class="helper">CPF</div>
+<div id="userCpf" style="font-weight:1000;">—</div>
+</div>
 
-  <script>
-    // ===============================
-    // AUTH (sem mexer em reCAPTCHA)
-    // ===============================
-    (function () {
-      const token = localStorage.getItem("nexus_token");
-      if (!token) {
-        window.location.replace("login.html");
-        return;
-      }
+<div class="col-6 soft" style="padding:14px;">
+<div class="helper">Plano</div>
+<div id="userPlan" style="font-weight:1000;">—</div>
+</div>
 
-      function safeJsonParseJWT(t) {
-        try {
-          const p = t.split(".")[1];
-          if (!p) return null;
-          return JSON.parse(atob(p));
-        } catch {
-          return null;
-        }
-      }
+<div class="col-6 soft" style="padding:14px;">
+<div class="helper">Acesso</div>
+<div id="planAccess" style="font-weight:1000;">—</div>
+</div>
 
-      const payload = safeJsonParseJWT(token);
-      if (!payload || !payload.email) {
-        localStorage.removeItem("nexus_token");
-        window.location.replace("login.html");
-        return;
-      }
+<div class="col-12 soft" style="padding:14px;">
+<div class="helper">Benefícios</div>
+<div id="planBenefits" style="font-weight:900;">—</div>
+</div>
 
-      const emailEl = document.getElementById("userEmail");
-      const cpfEl = document.getElementById("userCpf");
-      const planEl = document.getElementById("userPlan");
-      const accessEl = document.getElementById("planAccess");
-      const benefitsEl = document.getElementById("planBenefits");
+</div>
 
-      if (emailEl) emailEl.textContent = payload.email;
+<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
 
-      const cpf = String(payload.cpf || "").replace(/\D+/g, "");
-      if (cpfEl) {
-        cpfEl.textContent = cpf.length === 11
-          ? cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
-          : "—";
-      }
+<a class="btn btn-primary" href="assinatura.html">Gerenciar assinatura</a>
 
-      const plan = String(payload.plan || "free").toLowerCase();
-      if (planEl) planEl.textContent = plan.toUpperCase();
+<a class="btn btn-outline" href="pedidos.html">Ver pedidos</a>
 
-      const benefits = {
-        free:  "Visualização limitada e bloqueios aleatórios",
-        core:  "Acesso ampliado e menos bloqueios",
-        hyper: "Quase todos os produtos liberados",
-        omega: "Acesso total sem bloqueios",
-        core_test: "Plano de teste (pagamento mínimo) para validar o fluxo"
-      };
+<button class="btn btn-ghost" type="button" id="logoutBtn">Sair</button>
 
-      if (accessEl) accessEl.textContent = plan === "free" ? "Limitado" : "Avançado";
-      if (benefitsEl) benefitsEl.textContent = benefits[plan] || "—";
-    })();
+<button class="btn btn-danger" type="button" id="deleteAccountBtn">
+Deletar conta
+</button>
 
-    // ===============================
-    // LOGOUT REAL
-    // ===============================
-    document.getElementById("logoutBtn")?.addEventListener("click", () => {
-      localStorage.removeItem("nexus_token");
-      // se você quiser zerar TUDO, troca pra localStorage.clear();
-      window.location.replace("index.html");
-    });
-  </script>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="config.js"></script>
+<script src="layout.js"></script>
+<script src="out.js"></script>
+
+<script>
+
+(function(){
+
+const token = localStorage.getItem("nexus_token");
+
+if(!token){
+window.location.replace("login.html");
+return;
+}
+
+function parseJWT(t){
+try{
+return JSON.parse(atob(t.split(".")[1]));
+}catch{
+return null;
+}
+}
+
+const payload = parseJWT(token);
+
+if(!payload){
+localStorage.removeItem("nexus_token");
+window.location.replace("login.html");
+return;
+}
+
+document.getElementById("userEmail").textContent = payload.email || "—";
+
+const plan = payload.plan || "free";
+
+document.getElementById("userPlan").textContent = plan.toUpperCase();
+
+document.getElementById("planAccess").textContent =
+plan === "free" ? "Limitado" : "Avançado";
+
+const benefits = {
+free:"Visualização limitada",
+core:"Acesso ampliado",
+hyper:"Quase todos os produtos",
+omega:"Acesso total",
+core_test:"Plano de teste"
+};
+
+document.getElementById("planBenefits").textContent =
+benefits[plan] || "—";
+
+})();
+
+
+// LOGOUT
+
+document.getElementById("logoutBtn").onclick = function(){
+
+localStorage.removeItem("nexus_token");
+
+window.location.href="index.html";
+
+};
+
+
+// DELETE ACCOUNT
+
+document.getElementById("deleteAccountBtn").onclick = async function(){
+
+if(!confirm("Tem certeza que deseja apagar sua conta? Esta ação é irreversível.")){
+return;
+}
+
+const token = localStorage.getItem("nexus_token");
+
+try{
+
+const r = await fetch(
+window.NEXUS_API + "/auth/delete",
+{
+method:"DELETE",
+headers:{
+Authorization:"Bearer "+token
+}
+}
+);
+
+const d = await r.json();
+
+if(!d.ok){
+alert("Erro ao deletar conta");
+return;
+}
+
+alert("Conta deletada com sucesso.");
+
+localStorage.removeItem("nexus_token");
+
+window.location.href="index.html";
+
+}catch(e){
+
+alert("Erro ao conectar ao servidor");
+
+}
+
+};
+
+</script>
+
 </body>
 </html>
