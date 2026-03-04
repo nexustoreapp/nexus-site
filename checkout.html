@@ -25,7 +25,9 @@
               <div>
                 <div class="helper">Produto/Plano</div>
                 <div id="productName" style="font-weight:1000;font-size:18px;">Carregando...</div>
+                <div id="planHint" class="helper" style="margin-top:6px;"></div>
               </div>
+
               <div style="text-align:right;">
                 <div class="helper">Valor</div>
                 <div id="planPrice" style="font-weight:1000;font-size:18px;">R$ 0,00</div>
@@ -51,5 +53,15 @@
   <script src="layout.js"></script>
   <script src="out.js"></script>
   <script src="checkout.js"></script>
+
+  <script>
+    // Ajuda visual: mostra qual plano veio pela URL (?plan=coretest, core, hyper, omega, etc.)
+    try{
+      const url = new URL(window.location.href);
+      const plan = (url.searchParams.get("plan") || "core").toLowerCase();
+      const hint = document.getElementById("planHint");
+      if (hint) hint.textContent = `Plano selecionado: ${plan}`;
+    }catch(e){}
+  </script>
 </body>
 </html>
