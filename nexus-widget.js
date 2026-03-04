@@ -1,169 +1,234 @@
 // nexus-widget.js
-(() => {
-  if (document.getElementById("nexus-ia-widget")) return;
+// =========================================================
+// NEXUS IA (widget flutuante)
+// - Botão flutuante (draggable)
+// - Painel com header (draggable)
+// - Salva posição em localStorage (por device)
+// =========================================================
 
-  const API =
-    window.NEXUS_API_BASE ||
-    "https://nexus-site-oufm.onrender.com";
+(function () {
+  const POS_KEY = "nexus_ia_widget_pos_v1";
 
-  const MIN_TYPING_MS = 450;
-
-  const PLAN_KEY = "nexus_user_plan";
-  function getUserPlan() {
-    const stored = (localStorage.getItem(PLAN_KEY) || "").toLowerCase().trim();
-    return stored || "free";
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
   }
 
-  const CONV_KEY = "nexus_widget_conversation_id";
-  let conversationId = localStorage.getItem(CONV_KEY);
-  if (!conversationId) {
-    conversationId = `widget_${Date.now()}_${Math.random().toString(16).slice(2)}`;
-    localStorage.setItem(CONV_KEY, conversationId);
+  function readPos() {
+    try {
+      const raw = localStorage.getItem(POS_KEY);
+      if (!raw) return null;
+      const p = JSON.parse(raw);
+      if (!p || typeof p.x !== "number" || typeof p.y !== "number") return null;
+      return p;
+    } catch {
+      return null;
+    }
   }
 
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
+  function savePos(x, y) {
+    try {
+      localStorage.setItem(POS_KEY, JSON.stringify({ x, y }));
+    } catch {}
   }
 
-  // ===== UI =====
-  const widget = document.createElement("div");
-  widget.id = "nexus-ia-widget";
+  function createWidget() {
+    // evita duplicar
+    if (document.getElementById("nexus-ia-widget")) return;
 
-  widget.innerHTML = `
-    <button id="nexus-ia-btn" class="nexus-ia-btn" aria-label="Abrir Nexus IA">
-      💬
-    </button>
-
-    <div id="nexus-ia-panel" class="nexus-ia-panel" aria-hidden="true">
-      <div class="nexus-ia-header">
-        <div class="nexus-ia-title">
-          <span class="nexus-ia-dot"></span>
-          <strong>Nexus IA</strong>
-          <span class="nexus-ia-sub">Atendimento</span>
-        </div>
-        <button id="nexus-ia-close" class="nexus-ia-close" aria-label="Fechar">✕</button>
-      </div>
-
-      <div id="nexus-ia-messages" class="nexus-ia-messages"></div>
-
-      <form id="nexus-ia-form" class="nexus-ia-form">
-        <div class="nexus-ia-row">
-          <input id="nexus-ia-input" class="nexus-ia-input" type="text" placeholder="Me diz o que você quer comprar…" autocomplete="off" />
-          <button class="nexus-ia-send" type="submit">Enviar</button>
-        </div>
-      </form>
-    </div>
-  `;
-
-  document.body.appendChild(widget);
-
-  const btn = document.getElementById("nexus-ia-btn");
-  const panel = document.getElementById("nexus-ia-panel");
-  const closeBtn = document.getElementById("nexus-ia-close");
-  const messages = document.getElementById("nexus-ia-messages");
-  const form = document.getElementById("nexus-ia-form");
-  const input = document.getElementById("nexus-ia-input");
-
-  function openPanel() {
-    panel.classList.add("open");
-    panel.setAttribute("aria-hidden", "false");
-    setTimeout(() => input.focus(), 50);
-  }
-
-  function closePanel() {
-    panel.classList.remove("open");
-    panel.setAttribute("aria-hidden", "true");
-  }
-
-  btn.onclick = () => (panel.classList.contains("open") ? closePanel() : openPanel());
-  closeBtn.onclick = () => closePanel();
-
-  function addMsg(text, from = "bot", meta = {}) {
     const wrap = document.createElement("div");
-    wrap.className = `nexus-ia-msg nexus-ia-${from}`;
-
-    const metaLine =
-      from === "bot" && meta.personaLabel
-        ? `<div class="nexus-ia-meta">${escapeHtml(meta.personaLabel)}</div>`
-        : "";
+    wrap.id = "nexus-ia-widget";
 
     wrap.innerHTML = `
-      ${metaLine}
-      <div class="nexus-ia-bubble">${escapeHtml(text)}</div>
+      <button id="nexus-ia-fab" title="IA da Nexus">
+        <span class="dot" aria-hidden="true"></span>
+      </button>
+
+      <div id="nexus-ia-panel" role="dialog" aria-label="IA da Nexus">
+        <div id="nexus-ia-header">
+          <div id="nexus-ia-title">
+            <span>IA da Nexus</span>
+            <span id="nexus-ia-badge">Beta</span>
+          </div>
+          <button id="nexus-ia-close" title="Fechar">✕</button>
+        </div>
+
+        <div id="nexus-ia-body"></div>
+
+        <div id="nexus-ia-footer">
+          <input id="nexus-ia-input" type="text" placeholder="Escreva aqui..." />
+          <button id="nexus-ia-send">Enviar</button>
+        </div>
+      </div>
     `;
-    messages.appendChild(wrap);
-    messages.scrollTop = messages.scrollHeight;
-    return wrap;
-  }
 
-  function addTyping() {
-    const el = document.createElement("div");
-    el.className = "nexus-ia-msg nexus-ia-bot nexus-ia-typing";
-    el.innerHTML = `<div class="nexus-ia-bubble">Digitando…</div>`;
-    messages.appendChild(el);
-    messages.scrollTop = messages.scrollHeight;
-    return el;
-  }
+    document.body.appendChild(wrap);
 
-  // Mensagem inicial
-  addMsg(
-    "Oi! Eu sou a Nexus IA 🙂 Me diz o que você quer comprar e o orçamento que eu te recomendo opções reais do catálogo.",
-    "bot",
-    { personaLabel: "Nexus IA" }
-  );
+    const fab = wrap.querySelector("#nexus-ia-fab");
+    const panel = wrap.querySelector("#nexus-ia-panel");
+    const closeBtn = wrap.querySelector("#nexus-ia-close");
+    const header = wrap.querySelector("#nexus-ia-header");
+    const body = wrap.querySelector("#nexus-ia-body");
+    const input = wrap.querySelector("#nexus-ia-input");
+    const sendBtn = wrap.querySelector("#nexus-ia-send");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // posição inicial
+    (function applyInitialPos() {
+      const p = readPos();
+      if (!p) return; // usa right/bottom default do CSS
+      wrap.style.right = "auto";
+      wrap.style.bottom = "auto";
+      wrap.style.left = p.x + "px";
+      wrap.style.top = p.y + "px";
+    })();
 
-    const text = (input.value || "").trim();
-    if (!text) return;
+    function open() {
+      panel.classList.add("open");
+      // quando abre, esconde o botão (fica só o painel)
+      fab.style.display = "none";
+      input.focus();
+    }
 
-    const plan = getUserPlan();
-    input.value = "";
-    addMsg(text, "user");
+    function close() {
+      panel.classList.remove("open");
+      fab.style.display = "flex";
+    }
 
-    const startedAt = Date.now();
-    const typing = addTyping();
+    fab.addEventListener("click", () => {
+      if (panel.classList.contains("open")) close();
+      else open();
+    });
 
-    try {
-      const resp = await fetch(`${API}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, plan, conversationId }),
+    closeBtn.addEventListener("click", close);
+
+    // =====================================================
+    // Drag & drop (fab quando fechado, header quando aberto)
+    // =====================================================
+    function enableDrag(targetEl) {
+      let dragging = false;
+      let startX = 0, startY = 0;
+      let baseLeft = 0, baseTop = 0;
+
+      targetEl.addEventListener("pointerdown", (e) => {
+        // não arrasta se clicou no botão fechar
+        if (e.target && e.target.id === "nexus-ia-close") return;
+
+        dragging = true;
+        targetEl.setPointerCapture(e.pointerId);
+
+        const rect = wrap.getBoundingClientRect();
+        // garante usar left/top (não right/bottom) ao arrastar
+        wrap.style.right = "auto";
+        wrap.style.bottom = "auto";
+        wrap.style.left = rect.left + "px";
+        wrap.style.top = rect.top + "px";
+
+        startX = e.clientX;
+        startY = e.clientY;
+        baseLeft = rect.left;
+        baseTop = rect.top;
+
+        // evita scroll enquanto arrasta no mobile
+        e.preventDefault();
       });
 
-      const data = await resp.json();
+      targetEl.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
 
-      const elapsed = Date.now() - startedAt;
-      const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-      await new Promise((r) => setTimeout(r, remaining));
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
 
-      typing.remove();
+        const rect = wrap.getBoundingClientRect();
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
 
-      if (!data.ok) {
-        addMsg("Tive um problema agora. Tenta de novo em instantes.", "bot", {
-          personaLabel: "Nexus IA",
-        });
+        const w = rect.width;
+        const h = rect.height;
+
+        const nextLeft = clamp(baseLeft + dx, 6, vw - w - 6);
+        const nextTop = clamp(baseTop + dy, 6, vh - h - 6);
+
+        wrap.style.left = nextLeft + "px";
+        wrap.style.top = nextTop + "px";
+
+        e.preventDefault();
+      });
+
+      targetEl.addEventListener("pointerup", () => {
+        if (!dragging) return;
+        dragging = false;
+
+        const rect = wrap.getBoundingClientRect();
+        savePos(Math.round(rect.left), Math.round(rect.top));
+      });
+
+      targetEl.addEventListener("pointercancel", () => {
+        dragging = false;
+      });
+    }
+
+    enableDrag(fab);
+    enableDrag(header);
+
+    // =====================================================
+    // Chat (envia pro backend)
+    // =====================================================
+    function addMessage(text, who = "bot") {
+      const row = document.createElement("div");
+      row.className = "nx-msg " + (who === "user" ? "user" : "bot");
+
+      const bubble = document.createElement("div");
+      bubble.className = "nx-bubble";
+      bubble.textContent = text;
+
+      row.appendChild(bubble);
+      body.appendChild(row);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    async function send() {
+      const msg = (input.value || "").trim();
+      if (!msg) return;
+
+      input.value = "";
+      addMessage(msg, "user");
+
+      const api = window.NEXUS_API || "";
+      if (!api) {
+        addMessage("NEXUS_API não definido (config.js).", "bot");
         return;
       }
 
-      addMsg(data.reply, "bot", {
-        personaLabel: data.personaLabel || "Nexus IA",
-      });
-    } catch (err) {
-      console.error("Widget chat error:", err);
+      try {
+        const r = await fetch(`${api}/chat/ask`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
 
-      const elapsed = Date.now() - startedAt;
-      const remaining = Math.max(0, MIN_TYPING_MS - elapsed);
-      await new Promise((r) => setTimeout(r, remaining));
+        const d = await r.json().catch(() => null);
+        if (!r.ok || !d?.ok) {
+          addMessage(d?.error || "Erro ao falar com a IA.", "bot");
+          return;
+        }
 
-      typing.remove();
-      addMsg("Não consegui conectar agora. Tenta novamente em instantes.", "bot", {
-        personaLabel: "Nexus IA",
-      });
+        addMessage(d.answer || "OK.", "bot");
+      } catch (err) {
+        addMessage("Falha de rede ao falar com a IA.", "bot");
+      }
     }
-  });
+
+    sendBtn.addEventListener("click", send);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") send();
+    });
+
+    // mensagem inicial
+    addMessage("Oi! Eu sou a IA da Nexus. Como posso ajudar? 😊", "bot");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", createWidget);
+  } else {
+    createWidget();
+  }
 })();
