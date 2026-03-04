@@ -9,61 +9,58 @@
   <link rel="icon" href="favicon.png"/>
 
   <style>
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
+    .plans-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:20px;
+      margin-top:24px;
     }
 
-    .plan-card {
-      background: #0f0f0f;
-      border: 1px solid #222;
-      border-radius: 14px;
-      padding: 22px;
-      text-align: center;
+    .plan-card{
+      background:#0f0f0f;
+      border:1px solid #222;
+      border-radius:14px;
+      padding:22px;
+      text-align:center;
     }
 
-    .plan-card h2 {
-      margin-bottom: 6px;
+    .plan-card h2{margin-bottom:6px}
+    .plan-card p{font-size:14px;opacity:.7;margin-bottom:16px}
+
+    .plan-card ul{
+      list-style:none;
+      padding:0;
+      margin:16px 0;
+      font-size:14px;
+    }
+    .plan-card ul li{margin:6px 0}
+
+    .current{border:2px solid #16a34a}
+
+    .badge{
+      display:inline-block;
+      margin-top:8px;
+      padding:4px 10px;
+      border-radius:6px;
+      font-size:12px;
+      font-weight:600;
+      background:#16a34a;
+      color:#fff;
     }
 
-    .plan-card p {
-      font-size: 14px;
-      opacity: .7;
-      margin-bottom: 16px;
+    /* botão "Selecionar" usando seu style.css (fallback aqui) */
+    .btn-primary{
+      display:inline-block;
+      padding:12px 14px;
+      border-radius:10px;
+      border:none;
+      background:#ff3c3c;
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
     }
-
-    .plan-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-      font-size: 14px;
-    }
-
-    .plan-card ul li {
-      margin: 6px 0;
-    }
-
-    .current {
-      border: 2px solid #16a34a;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      background: #16a34a;
-      color: #fff;
-    }
-
-    .btn-disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-disabled{opacity:.5;cursor:not-allowed}
   </style>
 </head>
 
@@ -77,7 +74,8 @@
 
   <nav class="nav">
     <a href="index.html" class="nav-link">Início</a>
-    <a href="dashboard.html" class="nav-link">Minha conta</a>
+    <a href="minha-conta.html" class="nav-link">Minha conta</a>
+    <a href="#" class="nav-link" id="logoutBtn">Sair</a>
   </nav>
 </header>
 
@@ -98,63 +96,80 @@
   </div>
 </footer>
 
+<script src="config.js"></script>
+<script src="out.js"></script>
+
 <script>
+/* ===============================
+   AUTH
+================================ */
 const token = localStorage.getItem("nexus_token");
 if (!token) {
   window.location.href = "login.html";
 }
 
-function getUserPlan() {
+/* ===============================
+   LOGOUT REAL
+================================ */
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.onclick = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = "index.html";
+  };
+}
+
+function getUserPlanFromToken() {
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.plan || "free";
+    return (payload.plan || "free").toLowerCase();
   } catch {
     return "free";
   }
 }
 
-const currentPlan = getUserPlan();
+const currentPlan = getUserPlanFromToken();
 
+/* ===============================
+   CATÁLOGO DE PLANOS
+   (inclui Core Teste dentro do grid)
+================================ */
 const PLANS = [
   {
     id: "free",
     name: "Free",
     desc: "Acesso básico",
-    features: [
-      "Visualização limitada",
-      "Bloqueios frequentes",
-      "Sem prioridade"
-    ]
+    features: ["Visualização limitada","Bloqueios frequentes","Sem prioridade"]
   },
+
+  /* ===== INICIO PLANO TESTE ===== */
+  {
+    id: "core_test",
+    name: "Core Teste",
+    desc: "Plano apenas para testes do sistema",
+    features: ["Usa Mercado Pago real","Valor mínimo (R$ 0,01)","Remover depois do teste"],
+    isTest: true
+  },
+  /* ===== FIM PLANO TESTE ===== */
+
   {
     id: "core",
     name: "Core",
     desc: "Comece a economizar",
-    features: [
-      "Acesso ampliado",
-      "Menos bloqueios",
-      "Produtos exclusivos"
-    ]
+    features: ["Acesso ampliado","Menos bloqueios","Produtos exclusivos"]
   },
   {
     id: "hyper",
     name: "Hyper",
     desc: "Alta vantagem",
-    features: [
-      "Quase todos os produtos",
-      "Bloqueios raros",
-      "Prioridade"
-    ]
+    features: ["Quase todos os produtos","Bloqueios raros","Prioridade"]
   },
   {
     id: "omega",
     name: "Omega",
     desc: "Acesso total",
-    features: [
-      "Todos os produtos",
-      "Zero bloqueios",
-      "Máxima prioridade"
-    ]
+    features: ["Todos os produtos","Zero bloqueios","Máxima prioridade"]
   }
 ];
 
@@ -162,7 +177,9 @@ const container = document.getElementById("plans");
 
 PLANS.forEach(p => {
   const card = document.createElement("div");
-  card.className = "plan-card" + (p.id === currentPlan ? " current" : "");
+  const isCurrent = (p.id === currentPlan);
+
+  card.className = "plan-card" + (isCurrent ? " current" : "");
 
   card.innerHTML = `
     <h2>${p.name}</h2>
@@ -172,37 +189,23 @@ PLANS.forEach(p => {
       ${p.features.map(f => `<li>✔ ${f}</li>`).join("")}
     </ul>
 
-    ${p.id === currentPlan
+    ${isCurrent
       ? `<span class="badge">Plano atual</span>`
-      : `<button class="btn-primary">Selecionar</button>`
+      : `<button class="btn-primary" type="button">Selecionar</button>`
     }
   `;
 
-  if (p.id !== currentPlan) {
+  if (!isCurrent) {
     card.querySelector("button").onclick = () => {
-      localStorage.setItem("nexus_plan_intent", p.id);
-      window.location.href = "checkout.html";
+      // Aqui é o ponto que conversa com o checkout.js:
+      // checkout.js lê ?plan=core_test (ou core/hyper/omega)
+      window.location.href = `checkout.html?plan=${encodeURIComponent(p.id)}`;
     };
   }
 
   container.appendChild(card);
 });
 </script>
-<!-- ===== INICIO PLANO TESTE ===== -->
 
-<div class="plano">
-  <h3>Core Teste</h3>
-  <p>Plano apenas para testes do sistema</p>
-
-  <div class="preco">
-    R$ 0,01
-  </div>
-
-  <button onclick="comprarPlano('core_teste', 0.01)">
-    Comprar
-  </button>
-</div>
-
-<!-- ===== FIM PLANO TESTE ===== -->
 </body>
 </html>
