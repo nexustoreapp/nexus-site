@@ -1,20 +1,79 @@
 // backend/db/migrate.js
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { dbQuery, dbPing } from "./db.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { pool } from "./pool.js";
 
 export async function runMigrations() {
-  await dbPing();
 
-  const schemaPath = path.join(__dirname, "schema.sql");
-  const sql = fs.readFileSync(schemaPath, "utf-8");
+  console.log("🔧 Rodando migrations...");
 
-  // executa tudo em uma tacada só (idempotente)
-  await dbQuery(sql);
+  const client = await pool.connect();
 
-  return true;
+  try {
+
+    await client.query("BEGIN");
+
+    /* ============================
+       USERS
+    ============================ */
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        email TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        cpf TEXT,
+        plan TEXT DEFAULT 'free',
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+      );
+    `);
+
+    /* ============================
+       ORDERS
+    ============================ */
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id TEXT PRIMARY KEY,
+        user_email TEXT,
+        plan TEXT,
+        status TEXT,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+    `);
+
+    /* ============================
+       PAYMENTS
+    ============================ */
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS payments (
+        id SERIAL PRIMARY KEY,
+        provider TEXT,
+        external_id TEXT,
+        status TEXT,
+        amount NUMERIC,
+        currency TEXT,
+        user_email TEXT,
+        plan TEXT,
+        raw JSONB,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+    `);
+
+    await client.query("COMMIT");
+
+    console.log("✅ Migrations concluídas");
+
+  } catch (err) {
+
+    await client.query("ROLLBACK");
+
+    console.error("❌ Migration error:", err);
+
+    throw err;
+
+  } finally {
+
+    client.release();
+
+  }
+
 }
