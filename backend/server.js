@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 10000;
 
 async function bootstrap() {
   // Migração controlada por env, pra não rodar “sem querer”
-  if (process.env.MIGRATE_ON_START === "1") {
+  import "./db/migrate.js"; {
     console.log("🗄️ MIGRATE_ON_START=1 -> rodando migrations...");
     await runMigrations();
     console.log("✅ Migrations OK");
