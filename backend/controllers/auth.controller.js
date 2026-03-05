@@ -1,245 +1,202 @@
-// backend/controllers/auth.controller.js
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { pool } from "../db/pool.js";
 import { verifyRecaptcha } from "../utils/recaptcha.js";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_change_me";
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "7d";
+const JWT_EXPIRES_IN = "7d";
 
 function signToken(payload) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 }
 
-function normalizeEmail(email) {
-  return String(email || "").trim().toLowerCase();
-}
-
-function normalizeCpf(cpf) {
+function cleanCpf(cpf) {
   return String(cpf || "").replace(/\D/g, "");
 }
 
-function getBearerToken(req) {
-  const h = req.headers.authorization || req.headers.Authorization;
-  if (!h) return null;
-
-  const [type, token] = String(h).split(" ");
-  if (type !== "Bearer" || !token) return null;
-
-  return token;
+function cleanPhone(phone) {
+  return String(phone || "").replace(/\D/g, "");
 }
 
-/* ============================
-REGISTER
-============================ */
 export async function register(req, res) {
-
   try {
 
-    const { name, email, password, cpf, recaptchaToken } = req.body || {};
+    const {
+      name,
+      email,
+      password,
+      cpf,
+      phone,
+      recaptchaToken
+    } = req.body || {};
 
     if (!email || !password) {
       return res.status(400).json({
-        ok: false,
-        error: "email e password são obrigatórios"
+        ok:false,
+        error:"email e password são obrigatórios"
       });
     }
 
     const captchaOk = await verifyRecaptcha(recaptchaToken, req.ip);
     if (!captchaOk) {
       return res.status(400).json({
-        ok: false,
-        error: "captcha inválido"
+        ok:false,
+        error:"captcha inválido"
       });
     }
 
-    const emailNorm = normalizeEmail(email);
-    const cpfNorm = normalizeCpf(cpf);
+    const emailNorm = String(email).trim().toLowerCase();
+    const cpfClean = cleanCpf(cpf);
+    const phoneClean = cleanPhone(phone);
 
     const exists = await pool.query(
-      `SELECT id FROM users WHERE email = $1 LIMIT 1`,
+      "SELECT id FROM users WHERE email = $1 LIMIT 1",
       [emailNorm]
     );
 
     if (exists.rows.length > 0) {
       return res.status(409).json({
-        ok: false,
-        error: "usuário já existe"
+        ok:false,
+        error:"usuário já existe"
       });
     }
 
-    const hash = await bcrypt.hash(String(password), 10);
+    const hash = await bcrypt.hash(password, 10);
 
     const insert = await pool.query(
-      `INSERT INTO users
-       (name,email,password_hash,cpf,plan)
-       VALUES ($1,$2,$3,$4,'free')
-       RETURNING id,name,email,cpf,plan`,
+      `
+      INSERT INTO users
+      (name,email,password_hash,cpf,phone,plan)
+      VALUES ($1,$2,$3,$4,$5,'free')
+      RETURNING id,name,email,cpf,plan
+      `,
       [
-        name ? String(name).trim() : null,
+        name || null,
         emailNorm,
         hash,
-        cpfNorm
+        cpfClean || null,
+        phoneClean || null
       ]
     );
 
     const user = insert.rows[0];
 
     const token = signToken({
-      sub: user.id,
-      email: user.email,
-      cpf: user.cpf,
-      plan: user.plan
+      sub:user.id,
+      email:user.email,
+      cpf:user.cpf,
+      plan:user.plan
     });
 
-    return res.status(201).json({
-      ok: true,
+    return res.json({
+      ok:true,
       token,
       user
     });
 
-  } catch (err) {
+  } catch(err) {
 
-    console.error("register error:", err);
+    console.error("REGISTER ERROR:",err);
 
     return res.status(500).json({
-      ok: false,
-      error: "erro interno no registro"
+      ok:false,
+      error:"erro interno no registro"
     });
 
   }
-
 }
 
-/* ============================
-LOGIN
-============================ */
-export async function login(req, res) {
+export async function login(req,res){
 
-  try {
+  try{
 
-    const { email, password } = req.body || {};
+    const {email,password} = req.body || {};
 
-    if (!email || !password) {
-      return res.status(400).json({
-        ok: false,
-        error: "email e password são obrigatórios"
-      });
-    }
-
-    const emailNorm = normalizeEmail(email);
+    const emailNorm = String(email).trim().toLowerCase();
 
     const q = await pool.query(
-      `SELECT id,name,email,password_hash,cpf,plan
-       FROM users
-       WHERE email = $1
-       LIMIT 1`,
+      "SELECT * FROM users WHERE email=$1 LIMIT 1",
       [emailNorm]
     );
 
-    if (!q.rows.length) {
-      return res.status(401).json({
-        ok: false,
-        error: "credenciais inválidas"
-      });
+    if(q.rows.length===0){
+      return res.status(401).json({ok:false,error:"credenciais inválidas"});
     }
 
     const user = q.rows[0];
 
-    const okPass = await bcrypt.compare(
-      String(password),
-      user.password_hash
-    );
+    const okPass = await bcrypt.compare(password,user.password_hash);
 
-    if (!okPass) {
-      return res.status(401).json({
-        ok: false,
-        error: "credenciais inválidas"
-      });
+    if(!okPass){
+      return res.status(401).json({ok:false,error:"credenciais inválidas"});
     }
 
     const token = signToken({
-      sub: user.id,
-      email: user.email,
-      cpf: user.cpf,
-      plan: user.plan
+      sub:user.id,
+      email:user.email,
+      cpf:user.cpf,
+      plan:user.plan
     });
 
     return res.json({
-      ok: true,
+      ok:true,
       token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        cpf: user.cpf,
-        plan: user.plan
+      user:{
+        id:user.id,
+        name:user.name,
+        email:user.email,
+        cpf:user.cpf,
+        plan:user.plan
       }
     });
 
-  } catch (err) {
+  }catch(err){
 
-    console.error("login error:", err);
+    console.error(err);
 
     return res.status(500).json({
-      ok: false,
-      error: "erro interno no login"
+      ok:false,
+      error:"erro interno no login"
     });
 
   }
-
 }
 
-/* ============================
-ME
-============================ */
-export async function me(req, res) {
+export async function me(req,res){
 
-  try {
+  try{
 
-    const token = getBearerToken(req);
+    const auth = req.headers.authorization;
 
-    if (!token) {
-      return res.status(401).json({
-        ok: false,
-        error: "token ausente"
-      });
+    if(!auth){
+      return res.status(401).json({ok:false});
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const token = auth.split(" ")[1];
 
-    const userId = decoded?.sub;
+    const decoded = jwt.verify(token,JWT_SECRET);
 
     const q = await pool.query(
-      `SELECT id,name,email,cpf,plan
-       FROM users
-       WHERE id = $1`,
-      [userId]
+      "SELECT id,name,email,cpf,plan FROM users WHERE id=$1",
+      [decoded.sub]
     );
 
-    if (!q.rows.length) {
-      return res.status(404).json({
-        ok: false,
-        error: "usuário não encontrado"
-      });
+    if(q.rows.length===0){
+      return res.status(404).json({ok:false});
     }
 
     return res.json({
-      ok: true,
-      user: q.rows[0]
+      ok:true,
+      user:q.rows[0]
     });
 
-  } catch (err) {
-
-    console.error("me error:", err);
+  }catch(err){
 
     return res.status(401).json({
-      ok: false,
-      error: "token inválido"
+      ok:false
     });
 
   }
-
 }
 
 export const registerController = register;
