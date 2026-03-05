@@ -36,6 +36,7 @@ function normalizePhone(phone) {
  * POST /v1/auth/register
  */
 export async function register(req, res) {
+
   try {
 
     const {
@@ -47,10 +48,10 @@ export async function register(req, res) {
       recaptchaToken
     } = req.body || {};
 
-    if (!email || !password) {
+    if (!email || !password || !cpf) {
       return res.status(400).json({
         ok: false,
-        error: "email e password são obrigatórios"
+        error: "email, password e cpf são obrigatórios"
       });
     }
 
@@ -67,9 +68,18 @@ export async function register(req, res) {
     const cpfNorm = normalizeCpf(cpf);
     const phoneNorm = normalizePhone(phone);
 
+    if (cpfNorm.length !== 11) {
+      return res.status(400).json({
+        ok: false,
+        error: "cpf inválido"
+      });
+    }
+
     const exists = await pool.query(
-      `SELECT id FROM users WHERE email = $1 LIMIT 1`,
-      [emailNorm]
+      `SELECT id FROM users
+       WHERE email = $1 OR cpf = $2
+       LIMIT 1`,
+      [emailNorm, cpfNorm]
     );
 
     if (exists.rows.length > 0) {
@@ -82,18 +92,17 @@ export async function register(req, res) {
     const hash = await bcrypt.hash(String(password), 10);
 
     const insert = await pool.query(
-      `
-      INSERT INTO users
-      (name,email,password_hash,cpf,phone,plan)
-      VALUES ($1,$2,$3,$4,$5,'free')
-      RETURNING id,name,email,cpf,plan,created_at
-      `,
+      `INSERT INTO users
+        (name, email, cpf, phone, password_hash, plan)
+       VALUES
+        ($1, $2, $3, $4, $5, 'free')
+       RETURNING id, name, email, cpf, plan`,
       [
         name ? String(name).trim() : null,
         emailNorm,
-        hash,
-        cpfNorm || null,
-        phoneNorm || null
+        cpfNorm,
+        phoneNorm,
+        hash
       ]
     );
 
@@ -109,7 +118,13 @@ export async function register(req, res) {
     return res.status(201).json({
       ok: true,
       token,
-      user
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        cpf: user.cpf,
+        plan: user.plan
+      }
     });
 
   } catch (err) {
@@ -122,11 +137,13 @@ export async function register(req, res) {
     });
 
   }
+
 }
 
 /**
  * POST /v1/auth/login
  */
+
 export async function login(req, res) {
 
   try {
@@ -143,12 +160,10 @@ export async function login(req, res) {
     const emailNorm = normalizeEmail(email);
 
     const q = await pool.query(
-      `
-      SELECT id,name,email,password_hash,cpf,plan
-      FROM users
-      WHERE email = $1
-      LIMIT 1
-      `,
+      `SELECT id, name, email, cpf, plan, password_hash
+       FROM users
+       WHERE email = $1
+       LIMIT 1`,
       [emailNorm]
     );
 
@@ -208,6 +223,7 @@ export async function login(req, res) {
 /**
  * GET /v1/auth/me
  */
+
 export async function me(req, res) {
 
   try {
@@ -233,11 +249,9 @@ export async function me(req, res) {
     }
 
     const q = await pool.query(
-      `
-      SELECT id,name,email,cpf,plan,created_at
-      FROM users
-      WHERE id = $1
-      `,
+      `SELECT id, name, email, cpf, plan, created_at
+       FROM users
+       WHERE id = $1`,
       [userId]
     );
 
