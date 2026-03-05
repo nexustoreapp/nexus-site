@@ -1,3 +1,4 @@
+// backend/controllers/auth.controller.js
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { pool } from "../db/pool.js";
@@ -10,6 +11,14 @@ function signToken(payload) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 }
 
+function normalizeEmail(email) {
+  return String(email || "").trim().toLowerCase();
+}
+
+function normalizeCpf(cpf) {
+  return String(cpf || "").replace(/\D/g, "");
+}
+
 function getBearerToken(req) {
   const h = req.headers.authorization || req.headers.Authorization;
   if (!h) return null;
@@ -20,43 +29,23 @@ function getBearerToken(req) {
   return token;
 }
 
-function normalizeEmail(email) {
-  return String(email || "").trim().toLowerCase();
-}
-
-function normalizeCpf(cpf) {
-  return String(cpf || "").replace(/\D+/g, "");
-}
-
-function normalizePhone(phone) {
-  return String(phone || "").replace(/\D+/g, "");
-}
-
-/**
- * POST /v1/auth/register
- */
+/* ============================
+REGISTER
+============================ */
 export async function register(req, res) {
 
   try {
 
-    const {
-      name,
-      email,
-      password,
-      cpf,
-      phone,
-      recaptchaToken
-    } = req.body || {};
+    const { name, email, password, cpf, recaptchaToken } = req.body || {};
 
-    if (!email || !password || !cpf) {
+    if (!email || !password) {
       return res.status(400).json({
         ok: false,
-        error: "email, password e cpf são obrigatórios"
+        error: "email e password são obrigatórios"
       });
     }
 
     const captchaOk = await verifyRecaptcha(recaptchaToken, req.ip);
-
     if (!captchaOk) {
       return res.status(400).json({
         ok: false,
@@ -66,20 +55,10 @@ export async function register(req, res) {
 
     const emailNorm = normalizeEmail(email);
     const cpfNorm = normalizeCpf(cpf);
-    const phoneNorm = normalizePhone(phone);
-
-    if (cpfNorm.length !== 11) {
-      return res.status(400).json({
-        ok: false,
-        error: "cpf inválido"
-      });
-    }
 
     const exists = await pool.query(
-      `SELECT id FROM users
-       WHERE email = $1 OR cpf = $2
-       LIMIT 1`,
-      [emailNorm, cpfNorm]
+      `SELECT id FROM users WHERE email = $1 LIMIT 1`,
+      [emailNorm]
     );
 
     if (exists.rows.length > 0) {
@@ -93,16 +72,14 @@ export async function register(req, res) {
 
     const insert = await pool.query(
       `INSERT INTO users
-        (name, email, cpf, phone, password_hash, plan)
-       VALUES
-        ($1, $2, $3, $4, $5, 'free')
-       RETURNING id, name, email, cpf, plan`,
+       (name,email,password_hash,cpf,plan)
+       VALUES ($1,$2,$3,$4,'free')
+       RETURNING id,name,email,cpf,plan`,
       [
         name ? String(name).trim() : null,
         emailNorm,
-        cpfNorm,
-        phoneNorm,
-        hash
+        hash,
+        cpfNorm
       ]
     );
 
@@ -118,13 +95,7 @@ export async function register(req, res) {
     return res.status(201).json({
       ok: true,
       token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        cpf: user.cpf,
-        plan: user.plan
-      }
+      user
     });
 
   } catch (err) {
@@ -140,10 +111,9 @@ export async function register(req, res) {
 
 }
 
-/**
- * POST /v1/auth/login
- */
-
+/* ============================
+LOGIN
+============================ */
 export async function login(req, res) {
 
   try {
@@ -160,14 +130,14 @@ export async function login(req, res) {
     const emailNorm = normalizeEmail(email);
 
     const q = await pool.query(
-      `SELECT id, name, email, cpf, plan, password_hash
+      `SELECT id,name,email,password_hash,cpf,plan
        FROM users
        WHERE email = $1
        LIMIT 1`,
       [emailNorm]
     );
 
-    if (q.rows.length === 0) {
+    if (!q.rows.length) {
       return res.status(401).json({
         ok: false,
         error: "credenciais inválidas"
@@ -220,10 +190,9 @@ export async function login(req, res) {
 
 }
 
-/**
- * GET /v1/auth/me
- */
-
+/* ============================
+ME
+============================ */
 export async function me(req, res) {
 
   try {
@@ -241,21 +210,14 @@ export async function me(req, res) {
 
     const userId = decoded?.sub;
 
-    if (!userId) {
-      return res.status(401).json({
-        ok: false,
-        error: "token inválido"
-      });
-    }
-
     const q = await pool.query(
-      `SELECT id, name, email, cpf, plan, created_at
+      `SELECT id,name,email,cpf,plan
        FROM users
        WHERE id = $1`,
       [userId]
     );
 
-    if (q.rows.length === 0) {
+    if (!q.rows.length) {
       return res.status(404).json({
         ok: false,
         error: "usuário não encontrado"
@@ -273,7 +235,7 @@ export async function me(req, res) {
 
     return res.status(401).json({
       ok: false,
-      error: "token inválido/expirado"
+      error: "token inválido"
     });
 
   }
