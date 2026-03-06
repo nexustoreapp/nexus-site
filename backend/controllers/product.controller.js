@@ -6,9 +6,10 @@ import { isBlockedRandomly } from "../utils/randomBlock.js";
 
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
-/* ===============================
-   carregar catálogo inteiro
+/* ================================
+CARREGAR TODOS OS PRODUTOS
 ================================ */
+
 function loadAllProducts() {
   const files = fs.readdirSync(CATALOG_DIR).filter(f => f.endsWith(".json"));
 
@@ -25,72 +26,68 @@ function loadAllProducts() {
   return products;
 }
 
-/* ===============================
-   helper busca
+/* ================================
+LISTAR PRODUTOS
 ================================ */
-function matchesQuery(product, q) {
 
-  if (!q) return true;
-
-  const text = `
-    ${product.title || ""}
-    ${product.description || ""}
-    ${product.category || ""}
-    ${product.sku || ""}
-  `.toLowerCase();
-
-  return text.includes(q.toLowerCase());
-}
-
-/* ===============================
-   GET /api/products
-================================ */
-export async function listProducts(req, res) {
-
+export function listProducts(req, res) {
   try {
 
-    const q = String(req.query.q || "").trim().toLowerCase();
-    const plan = String(req.query.plan || "free").toLowerCase();
+    const q = (req.query.q || "").toLowerCase();
+    const plan = (req.query.plan || "free").toLowerCase();
 
-    const products = loadAllProducts();
+    let products = loadAllProducts();
 
-    const filtered = products
-      .filter(p => matchesQuery(p, q))
-      .map(p => {
+    /* ================================
+    FILTRO DE BUSCA
+    ================================= */
 
-        const blocked = isBlockedRandomly(p.sku, plan);
+    if (q) {
+      products = products.filter(p =>
+        (p.title || "").toLowerCase().includes(q) ||
+        (p.description || "").toLowerCase().includes(q) ||
+        (p.category || "").toLowerCase().includes(q)
+      );
+    }
 
-        return {
-          ...p,
-          blocked
-        };
+    /* ================================
+    RANDOM BLOCK
+    ================================= */
 
-      });
+    products = products.map(p => {
+
+      const blocked = isBlockedRandomly(p.sku, plan);
+
+      return {
+        ...p,
+        blocked
+      };
+
+    });
 
     return res.json({
       ok: true,
-      total: filtered.length,
-      products: filtered
+      total: products.length,
+      products
     });
 
   } catch (err) {
 
-    console.error(err);
+    console.error("[PRODUCT LIST ERROR]", err);
 
     return res.status(500).json({
       ok: false,
-      error: "PRODUCT_LIST_ERROR"
+      error: "PRODUCT_LIST_FAILED"
     });
 
   }
-
 }
 
-/* ===============================
-   GET /api/products/:sku
+/* ================================
+BUSCAR POR SKU
 ================================ */
-export async function getProductBySku(req, res) {
 
+export function getProductBySku(req, res) {
   try {
 
     const { sku } = req.params;
@@ -101,25 +98,24 @@ export async function getProductBySku(req, res) {
 
     if (!product) {
       return res.status(404).json({
-        ok: false,
-        error: "PRODUCT_NOT_FOUND"
+        ok:false,
+        error:"PRODUCT_NOT_FOUND"
       });
     }
 
     return res.json({
-      ok: true,
+      ok:true,
       product
     });
 
   } catch (err) {
 
-    console.error(err);
+    console.error("[PRODUCT GET ERROR]", err);
 
     return res.status(500).json({
-      ok: false,
-      error: "PRODUCT_GET_ERROR"
+      ok:false,
+      error:"PRODUCT_FETCH_FAILED"
     });
 
   }
-
 }
