@@ -37,6 +37,22 @@ export function listProducts(req, res) {
     const q = String(req.query.q || "").toLowerCase();
     const plan = String(req.query.plan || "free").toLowerCase();
 
+    /* ===============================
+       PEGAR EMAIL DO TOKEN (SE EXISTIR)
+    =============================== */
+
+    let userEmail = "guest";
+
+    const auth = req.headers.authorization || "";
+
+    if (auth.startsWith("Bearer ")) {
+      try {
+        const token = auth.replace("Bearer ", "");
+        const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString("utf8"));
+        userEmail = payload.email || "guest";
+      } catch {}
+    }
+
     let products = loadAllProducts();
 
     /* ===============================
@@ -63,12 +79,16 @@ export function listProducts(req, res) {
     }
 
     /* ===============================
-       RANDOM BLOCK POR PLANO
+       RANDOM BLOCK POR PLANO + USUÁRIO
     ================================ */
 
     products = products.map(p => {
 
-      const blocked = isBlockedRandomly(p.sku || p.id || "", plan);
+      const blocked = isBlockedRandomly(
+        p.sku || p.id || "",
+        plan,
+        userEmail
+      );
 
       return {
         ...p,
