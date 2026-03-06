@@ -1,73 +1,185 @@
 // buscar.js
+
 const API = window.NEXUS_API;
 
-const grid = document.getElementById("results-grid");
-const meta = document.getElementById("search-meta");
-
-let page = 1;
-let loading = false;
-let finished = false;
-
-function escapeHtml(s) {
-  return String(s ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function getToken() {
+  return localStorage.getItem("nexus_token") || "";
 }
 
-async function loadProducts() {
-  if (loading || finished) return;
-  loading = true;
-  if (meta) meta.innerText = "Carregando produtos...";
+function parseToken() {
+  const token = getToken();
+  if (!token) return null;
 
   try {
-    const r = await fetch(`${API}/products?page=${page}`);
-    const data = await r.json().catch(() => null);
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch {
+    return null;
+  }
+}
 
-    const products = data?.products || [];
-    if (!data?.ok || products.length === 0) {
-      finished = true;
-      if (meta) meta.innerText = page === 1 ? "Nenhum produto encontrado." : "Nenhum outro produto.";
-      loading = false;
+function getPlan() {
+  const user = parseToken();
+  return (user?.plan || "free").toLowerCase();
+}
+
+function getQuery() {
+  const url = new URL(window.location.href);
+  return (url.searchParams.get("q") || "").trim();
+}
+
+function formatBRL(n) {
+  return Number(n || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function ensureContainers() {
+  let meta = document.getElementById("search-meta");
+  let grid = document.getElementById("results-grid");
+  let fallback = document.getElementById("results");
+
+  if (!meta && fallback) {
+    meta = document.createElement("div");
+    meta.id = "search-meta";
+    meta.className = "helper";
+    fallback.parentNode.insertBefore(meta, fallback);
+  }
+
+  if (!grid && fallback) {
+    fallback.id = "results-grid";
+    fallback.classList.add("grid");
+    grid = fallback;
+  }
+
+  return { meta, grid };
+}
+
+function renderEmpty(meta, grid, q) {
+  if (meta) meta.textContent = `Nenhum produto encontrado para "${q}".`;
+  if (grid) grid.innerHTML = "";
+}
+
+function renderProducts(meta, grid, products, q) {
+  if (!grid) return;
+
+  if (meta) {
+    meta.textContent = `${products.length} produto(s) encontrado(s) para "${q}".`;
+  }
+
+  grid.innerHTML = products.map((p) => {
+    const lockBadge = p.blocked
+      ? `<span class="badge" style="background:#3a0f16;color:#ffb3bf;">🔒 Bloqueado</span>`
+      : `<span class="badge" style="background:#0f2a1b;color:#9ef0b8;">✅ Liberado</span>`;
+
+    const action = p.blocked
+      ? `<a class="btn btn-outline" href="assinatura.html">Ver planos</a>`
+      : `<a class="btn btn-primary" href="produto.html?sku=${encodeURIComponent(p.sku)}">Ver produto</a>`;
+
+    return `
+      <article class="card soft" style="padding:14px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <img
+            src="${p.image || "logo.png"}"
+            alt="${(p.title || "").replace(/"/g, "&quot;")}"
+            style="width:88px;height:88px;object-fit:cover;border-radius:12px;background:#111;"
+          />
+
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              ${lockBadge}
+              <span class="badge">${p.category || "geral"}</span>
+              <span class="badge">${(p.accessTier || "free").toUpperCase()}</span>
+            </div>
+
+            <h3 style="margin:0 0 6px 0;font-size:18px;">${p.title || "Produto"}</h3>
+            <div class="helper" style="margin-bottom:8px;">
+              ${p.subtitle || p.description || ""}
+            </div>
+
+            <div style="font-weight:1000;font-size:18px;margin-bottom:10px;">
+              ${formatBRL(p.pricePublic ?? p.price)}
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              ${action}
+
+              <!-- =========================
+                   INICIO_TESTE_CHECKOUT_1_CENTAVO
+                   esse botão salva o SKU e manda pro checkout do core_test
+                   ========================= -->
+              <button
+                class="btn btn-ghost"
+                type="button"
+                onclick="window.__buyTestProduct('${encodeURIComponent(p.sku)}')"
+              >
+                Testar compra 0,01
+              </button>
+              <!-- =========================
+                   FIM_TESTE_CHECKOUT_1_CENTAVO
+                   ========================= -->
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+/* =========================
+   INICIO_TESTE_CHECKOUT_1_CENTAVO
+   guarda o produto escolhido e redireciona para o checkout de teste
+   ========================= */
+window.__buyTestProduct = function(encodedSku) {
+  const sku = decodeURIComponent(encodedSku || "");
+  localStorage.setItem("nexus_product_intent", sku);
+  window.location.href = `checkout.html?plan=core_test&sku=${encodeURIComponent(sku)}`;
+};
+/* =========================
+   FIM_TESTE_CHECKOUT_1_CENTAVO
+   ========================= */
+
+async function bootSearch() {
+  const q = getQuery();
+  const plan = getPlan();
+  const { meta, grid } = ensureContainers();
+
+  if (!q) {
+    if (meta) meta.textContent = "Digite algo para pesquisar.";
+    if (grid) grid.innerHTML = "";
+    return;
+  }
+
+  try {
+    const headers = {};
+    const token = getToken();
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
+    const resp = await fetch(
+      `${API}/products?q=${encodeURIComponent(q)}&plan=${encodeURIComponent(plan)}`,
+      { headers }
+    );
+
+    const data = await resp.json();
+
+    if (!data.ok || !Array.isArray(data.products)) {
+      renderEmpty(meta, grid, q);
       return;
     }
 
-    products.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "card product col-4";
+    if (!data.products.length) {
+      renderEmpty(meta, grid, q);
+      return;
+    }
 
-      card.innerHTML = `
-        <div class="thumb"></div>
-        <div class="body">
-          <div class="title">${escapeHtml(p.title || "Produto")}</div>
-          <div class="helper" style="margin-top:6px;">${escapeHtml(p.description || "")}</div>
-
-          <div class="row">
-            <a class="btn btn-outline" href="produto.html?id=${encodeURIComponent(p.id)}">Ver produto</a>
-          </div>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
-
-    page++;
-    if (meta) meta.innerText = "";
-  } catch (e) {
-    if (meta) meta.innerText = "Erro ao carregar produtos. Tente novamente.";
-  } finally {
-    loading = false;
+    renderProducts(meta, grid, data.products, q);
+  } catch (err) {
+    console.error(err);
+    if (meta) meta.textContent = "Erro ao buscar produtos.";
   }
 }
 
-// Lazy load ao rolar
-window.addEventListener("scroll", () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 220) {
-    loadProducts();
-  }
-});
-
-// Primeira carga
-loadProducts();
+bootSearch();
