@@ -6,23 +6,7 @@ function getToken() {
 
 function planCatalog() {
   return {
-    /* ======================================
-       INICIO_PLANO_TESTE
-       plano temporário para testar pagamento
-
-       COMO ACESSAR:
-       checkout.html?plan=core_test
-       checkout.html?plan=coretest
-       ====================================== */
-    core_test: {
-      id: "plan_core_test",
-      title: "Plano Core Teste",
-      amountCents: 1
-    },
-    /* ======================================
-       FIM_PLANO_TESTE
-       ====================================== */
-
+    
     free:  { id: "plan_free",  title: "Plano Free",  amountCents: 0 },
     core:  { id: "plan_core",  title: "Plano Core",  amountCents: 1990 },
     hyper: { id: "plan_hyper", title: "Plano Hyper", amountCents: 3990 },
