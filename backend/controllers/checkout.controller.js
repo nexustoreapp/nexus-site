@@ -1,11 +1,13 @@
 // backend/controllers/checkout.controller.js
+
 import { isBlockedRandomly } from "../utils/randomBlock.js";
+import { createOrder } from "../services/orders.service.js";
 
 const PLAN_ORDER = ["free", "core", "hyper", "omega"];
 
 /*
-  Regras de produto (por enquanto fixo)
-  Depois isso vem de banco
+  Regras de produto (fallback)
+  Quando o produto não tiver accessTier no catálogo
 */
 const PRODUCT_RULES = {
   "produto-001": { requiredPlan: "core" },
@@ -13,26 +15,31 @@ const PRODUCT_RULES = {
   "produto-003": { requiredPlan: "omega" }
 };
 
-export function prepareCheckout(req, res) {
-  try {
-    const user = req.user;
-    const { productId } = req.body || {};
+function planRank(p) {
+  return PLAN_ORDER.indexOf(p);
+}
 
-    if (!productId) {
+export async function prepareCheckout(req, res) {
+  try {
+
+    const user = req.user;
+    const { productId, sku, price } = req.body || {};
+
+    const productSku = productId || sku;
+
+    if (!productSku) {
       return res.status(400).json({ ok:false, error:"PRODUCT_REQUIRED" });
     }
 
-    const rule = PRODUCT_RULES[productId];
-    if (!rule) {
-      return res.status(404).json({ ok:false, error:"PRODUCT_NOT_FOUND" });
-    }
+    const rule = PRODUCT_RULES[productSku] || { requiredPlan:"free" };
 
     const userPlan = user.plan || "free";
 
     /* ===============================
        BLOQUEIO ALEATÓRIO
     =============================== */
-    if (isBlockedRandomly(productId, userPlan)) {
+
+    if (isBlockedRandomly(productSku, userPlan)) {
       return res.status(403).json({
         ok:false,
         error:"RANDOM_BLOCK",
@@ -41,11 +48,12 @@ export function prepareCheckout(req, res) {
     }
 
     /* ===============================
-       PLANO MÍNIMO
+       VALIDAÇÃO DE PLANO
     =============================== */
+
     if (
-      PLAN_ORDER.indexOf(userPlan) <
-      PLAN_ORDER.indexOf(rule.requiredPlan)
+      planRank(userPlan) <
+      planRank(rule.requiredPlan)
     ) {
       return res.status(403).json({
         ok:false,
@@ -55,16 +63,52 @@ export function prepareCheckout(req, res) {
     }
 
     /* ===============================
-       CHECKOUT LIBERADO
+       CRIAR PEDIDO
     =============================== */
+
+    const order = await createOrder({
+      userEmail: user.email,
+
+      items: [
+        {
+          sku: productSku,
+          title: productSku,
+          price: Number(price || 0.01),
+          qty: 1
+        }
+      ],
+
+      shipping: {
+        price: 0,
+        carrier: "supplier_pending",
+        etaDays: null
+      },
+
+      totals: {
+        subtotal: Number(price || 0.01),
+        shipping: 0,
+        total: Number(price || 0.01)
+      },
+
+      metadata: {
+        productSku
+      }
+    });
+
     return res.json({
       ok:true,
-      checkoutToken: `checkout_${Date.now()}`,
-      productId
+      orderId: order.id,
+      productId: productSku
     });
 
   } catch (err) {
+
     console.error("[CHECKOUT PREPARE]", err);
-    return res.status(500).json({ ok:false, error:"SERVER_ERROR" });
+
+    return res.status(500).json({
+      ok:false,
+      error:"SERVER_ERROR"
+    });
+
   }
 }
