@@ -4,36 +4,62 @@ function getToken() {
   return localStorage.getItem("nexus_token");
 }
 
+/* ===============================
+   CATÁLOGO DE PLANOS
+================================ */
+
 function planCatalog() {
   return {
-    
+
     free:  { id: "plan_free",  title: "Plano Free",  amountCents: 0 },
     core:  { id: "plan_core",  title: "Plano Core",  amountCents: 1990 },
     hyper: { id: "plan_hyper", title: "Plano Hyper", amountCents: 3990 },
     omega: { id: "plan_omega", title: "Plano Omega", amountCents: 6990 }
+
   };
 }
 
+/* ===============================
+   NORMALIZAR PLANO
+================================ */
+
 function normalizePlanKey(raw) {
+
   const k = (raw || "").toLowerCase().trim();
 
-  // aliases pro teste (pra você não ficar preso no nome exato)
-  if (k === "coretest" || k === "core_teste" || k === "core-teste") return "core_test";
+  if (k === "coretest" || k === "core_teste" || k === "core-teste") {
+    return "core";
+  }
 
   return k;
 }
 
+/* ===============================
+   PLANO SELECIONADO
+================================ */
+
 function getSelectedPlan() {
+
   const url = new URL(window.location.href);
+
   const raw = url.searchParams.get("plan") || "core";
+
   const planKey = normalizePlanKey(raw);
 
   const cat = planCatalog();
+
   return cat[planKey] || cat.core;
+
 }
 
+/* ===============================
+   CRIAR PAGAMENTO
+================================ */
+
 async function createPayment() {
-  const API = window.NEXUS_API; // usa o config.js
+
+  const API = window.NEXUS_API;
+
   const token = getToken();
 
   if (!token) {
@@ -43,61 +69,108 @@ async function createPayment() {
 
   const plan = getSelectedPlan();
 
-  // Se free = 0, não tenta Mercado Pago
   if (plan.amountCents <= 0) {
-    alert("Esse plano é grátis. Nada para pagar.");
+    alert("Esse plano é gratuito.");
     window.location.href = "minha-conta.html";
     return;
   }
 
   const body = {
     items: [
-      { id: plan.id, title: plan.title, quantity: 1, unit_price: plan.amountCents / 100 }
+      {
+        id: plan.id,
+        title: plan.title,
+        quantity: 1,
+        unit_price: plan.amountCents / 100
+      }
     ],
     amountCents: plan.amountCents,
     currency: "BRL"
   };
 
-  const r = await fetch(`${API}/payment/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify(body)
-  });
+  try {
 
-  const d = await r.json().catch(() => null);
+    const r = await fetch(`${API}/payment/create`, {
 
-  const out = document.getElementById("result");
-  if (out) out.textContent = JSON.stringify(d, null, 2);
+      method: "POST",
 
-  if (!d?.ok) {
-    alert(d?.error || "Erro ao criar pagamento.");
-    return;
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+
+      body: JSON.stringify(body)
+
+    });
+
+    const d = await r.json().catch(() => null);
+
+    const out = document.getElementById("result");
+
+    if (out) {
+      out.textContent = JSON.stringify(d, null, 2);
+    }
+
+    if (!d?.ok) {
+
+      alert(d?.error || "Erro ao criar pagamento.");
+
+      return;
+
+    }
+
+    const link = d.init_point || d.sandbox_init_point;
+
+    if (!link) {
+
+      alert("Pagamento criado, mas sem link.");
+
+      return;
+
+    }
+
+    window.location.href = link;
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert("Erro ao conectar com o servidor.");
+
   }
 
-  // Redireciona pro checkout do Mercado Pago
-  const link = d.init_point || d.sandbox_init_point;
-  if (!link) {
-    alert("Pagamento criado, mas sem link do Mercado Pago.");
-    return;
-  }
-
-  window.location.href = link;
 }
 
+/* ===============================
+   UI
+================================ */
+
 function bootUI() {
+
   const plan = getSelectedPlan();
 
   const nameEl = document.getElementById("productName");
+
   const priceEl = document.getElementById("planPrice");
 
-  if (nameEl) nameEl.textContent = plan.title;
-  if (priceEl) priceEl.textContent = `R$ ${(plan.amountCents / 100).toFixed(2)}`;
+  if (nameEl) {
+    nameEl.textContent = plan.title;
+  }
+
+  if (priceEl) {
+
+    const value = (plan.amountCents / 100).toFixed(2).replace(".", ",");
+
+    priceEl.textContent = `R$ ${value}`;
+
+  }
 
   const btn = document.getElementById("payBtn");
-  if (btn) btn.addEventListener("click", createPayment);
+
+  if (btn) {
+    btn.addEventListener("click", createPayment);
+  }
+
 }
 
 bootUI();
