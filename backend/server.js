@@ -21,9 +21,23 @@ app.use(express.json());
    ROTAS API
 ========================= */
 
+/*
+  ROTAS DE PRODUTO
+  compatibilidade com /api e /api/v1
+*/
+
 app.use("/api", productRoutes);
+app.use("/api/v1", productRoutes);
+
+/*
+  PAGAMENTO
+*/
 
 app.use("/api/v1/payment", paymentRoutes);
+
+/*
+  CHECKOUT
+*/
 
 app.use("/api/v1/checkout", checkoutRoutes);
 
