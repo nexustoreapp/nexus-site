@@ -6,143 +6,120 @@ import { isBlockedRandomly } from "../utils/randomBlock.js";
 
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
-// carrega todos os produtos
+/* ===============================
+   carregar catálogo inteiro
+================================ */
 function loadAllProducts() {
-
   const files = fs.readdirSync(CATALOG_DIR).filter(f => f.endsWith(".json"));
 
   let products = [];
 
   for (const file of files) {
-
     const content = JSON.parse(
       fs.readFileSync(path.join(CATALOG_DIR, file), "utf-8")
     );
 
     products = products.concat(content);
-
   }
 
   return products;
-
 }
 
-function planRank(plan) {
+/* ===============================
+   helper busca
+================================ */
+function matchesQuery(product, q) {
 
-  const map = {
-    free: 1,
-    core: 2,
-    hyper: 3,
-    omega: 4
-  };
+  if (!q) return true;
 
-  return map[plan] || 1;
+  const text = `
+    ${product.title || ""}
+    ${product.description || ""}
+    ${product.category || ""}
+    ${product.sku || ""}
+  `.toLowerCase();
 
+  return text.includes(q.toLowerCase());
 }
 
-export const productController = {
+/* ===============================
+   GET /api/products
+================================ */
+export async function listProducts(req, res) {
 
-  // LISTAR PRODUTOS
-  list: (req, res) => {
+  try {
 
-    try {
+    const q = String(req.query.q || "").trim().toLowerCase();
+    const plan = String(req.query.plan || "free").toLowerCase();
 
-      const plan = String(req.query.plan || "free").toLowerCase();
+    const products = loadAllProducts();
 
-      const products = loadAllProducts();
+    const filtered = products
+      .filter(p => matchesQuery(p, q))
+      .map(p => {
 
-      const result = products.map(p => {
-
-        const tier = String(p.accessTier || "free").toLowerCase();
-
-        const required = planRank(tier);
-        const userRank = planRank(plan);
-
-        let locked = userRank < required;
-
-        if (!locked) {
-
-          const randomBlocked = isBlockedRandomly(p.sku, plan);
-
-          if (randomBlocked) locked = true;
-
-        }
+        const blocked = isBlockedRandomly(p.sku, plan);
 
         return {
           ...p,
-          locked
+          blocked
         };
 
       });
 
-      return res.json({
-        ok: true,
-        total: result.length,
-        products: result
-      });
+    return res.json({
+      ok: true,
+      total: filtered.length,
+      products: filtered
+    });
 
-    } catch (err) {
+  } catch (err) {
 
-      return res.status(500).json({
-        ok: false,
-        error: err.message
-      });
+    console.error(err);
 
-    }
-
-  },
-
-  // PRODUTO INDIVIDUAL
-  getBySku: (req, res) => {
-
-    try {
-
-      const { sku } = req.params;
-      const plan = String(req.query.plan || "free").toLowerCase();
-
-      const products = loadAllProducts();
-
-      const product = products.find(p => p.sku === sku);
-
-      if (!product) {
-
-        return res.status(404).json({
-          ok: false,
-          error: "PRODUCT_NOT_FOUND"
-        });
-
-      }
-
-      const tier = String(product.accessTier || "free").toLowerCase();
-
-      const required = planRank(tier);
-      const userRank = planRank(plan);
-
-      let locked = userRank < required;
-
-      if (!locked) {
-
-        const randomBlocked = isBlockedRandomly(product.sku, plan);
-
-        if (randomBlocked) locked = true;
-
-      }
-
-      return res.json({
-        ok: true,
-        product,
-        locked
-      });
-
-    } catch (err) {
-
-      return res.status(500).json({
-        ok: false,
-        error: err.message
-      });
-
-    }
+    return res.status(500).json({
+      ok: false,
+      error: "PRODUCT_LIST_ERROR"
+    });
 
   }
 
-};
+}
+
+/* ===============================
+   GET /api/products/:sku
+================================ */
+export async function getProductBySku(req, res) {
+
+  try {
+
+    const { sku } = req.params;
+
+    const products = loadAllProducts();
+
+    const product = products.find(p => p.sku === sku);
+
+    if (!product) {
+      return res.status(404).json({
+        ok: false,
+        error: "PRODUCT_NOT_FOUND"
+      });
+    }
+
+    return res.json({
+      ok: true,
+      product
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+    return res.status(500).json({
+      ok: false,
+      error: "PRODUCT_GET_ERROR"
+    });
+
+  }
+
+}
