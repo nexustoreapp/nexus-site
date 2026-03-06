@@ -56,6 +56,7 @@ function getBackendPublicUrl(req) {
 
 export async function createPayment(req, res) {
   try {
+
     const MP_ACCESS_TOKEN =
       process.env.MP_ACCESS_TOKEN || process.env.MERCADOPAGO_ACCESS_TOKEN;
 
@@ -83,8 +84,6 @@ export async function createPayment(req, res) {
       return safeJson(res, 400, { ok: false, error: "TOKEN_WITHOUT_EMAIL" });
     }
 
-    // CPF é opcional aqui, mas é o que vai fazer seu webhook ficar perfeito.
-    // Se não vier no token, o webhook ainda funciona por orderId/email fallback.
     const body = req.body || {};
     const items = Array.isArray(body.items) ? body.items : [];
 
@@ -95,9 +94,20 @@ export async function createPayment(req, res) {
     const first = items[0] || {};
     const planKey = inferPlanKeyFromItem(first);
 
-    const amountCents = Number(body.amountCents || 0);
+    let amountCents = Number(body.amountCents || 0);
+
     if (!Number.isFinite(amountCents) || amountCents <= 0) {
       return safeJson(res, 400, { ok: false, error: "INVALID_AMOUNT" });
+    }
+
+    /* =====================================
+       MODO TESTE DE PAGAMENTO
+    ===================================== */
+
+    const TEST_MODE = process.env.PAYMENT_TEST_MODE === "true";
+
+    if (TEST_MODE) {
+      amountCents = 1;
     }
 
     const order = await createOrder({
@@ -106,7 +116,7 @@ export async function createPayment(req, res) {
       items: items.map((it) => ({
         sku: String(it.id || ""),
         title: String(it.title || ""),
-        price: Number(it.unit_price || 0),
+        price: TEST_MODE ? 0.01 : Number(it.unit_price || 0),
         qty: Number(it.quantity || 1)
       })),
       totals: { total: amountCents / 100 },
@@ -134,14 +144,12 @@ export async function createPayment(req, res) {
           id: String(first.id || "item"),
           title: String(first.title || "Plano"),
           quantity: Number(first.quantity || 1),
-          unit_price: Number(first.unit_price || (amountCents / 100))
+          unit_price: TEST_MODE ? 0.01 : Number(first.unit_price || (amountCents / 100))
         }
       ],
 
-      // ponte #1 (forte)
       external_reference: orderId,
 
-      // ponte #2 (o que você quer)
       metadata: {
         orderId,
         userEmail,
@@ -179,8 +187,12 @@ export async function createPayment(req, res) {
       init_point: mpResp?.body?.init_point || null,
       sandbox_init_point: mpResp?.body?.sandbox_init_point || null
     });
+
   } catch (err) {
+
     console.error("createPayment error:", err);
+
     return safeJson(res, 500, { ok: false, error: "PAYMENT_CREATE_FAILED" });
+
   }
 }
