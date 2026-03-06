@@ -2,14 +2,12 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8"/>
-
-  <title>Nexus Store | Produto Premium</title>
-  <meta name="description" content="Confira este produto premium disponível na Nexus Store." />
+  <title>Nexus Store | Produto</title>
+  <meta name="description" content="Confira este produto disponível na Nexus Store." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- OpenGraph -->
-  <meta property="og:title" content="Produto Premium — Nexus Store" />
-  <meta property="og:description" content="Produto premium com acesso por plano na Nexus Store." />
+  <meta property="og:title" content="Produto — Nexus Store" />
+  <meta property="og:description" content="Produto da Nexus Store com acesso por plano." />
   <meta property="og:image" content="https://nexustore.store/logo.png" />
   <meta property="og:url" content="https://nexustore.store/produto.html" />
   <meta property="og:type" content="product" />
@@ -25,28 +23,64 @@
     <div class="container">
       <div class="card page-card">
         <div class="pad">
-          <h2 style="font-weight:1000;">Produto Premium Exemplo</h2>
-          <p class="helper">Produto de demonstração com fluxo de compra.</p>
+          <h2 id="product-title" style="font-weight:1000;">Carregando produto...</h2>
+          <p id="product-subtitle" class="helper"></p>
 
           <div class="hr"></div>
 
-          <div class="soft" style="padding:14px;">
-            <div class="grid" style="gap:12px;">
-              <div class="col-12">
-                <div class="helper">Descrição</div>
-                <div style="margin-top:6px;">
-                  Este é um produto premium de exemplo. Ao comprar, você vai para o checkout.
-                </div>
+          <div class="grid" style="gap:18px;">
+            <div class="col-6">
+              <div class="soft" style="padding:14px;">
+                <img
+                  id="product-image-main"
+                  src="logo.png"
+                  alt="Produto"
+                  style="width:100%;max-height:420px;object-fit:contain;border-radius:16px;background:#0b0b0b;"
+                />
+
+                <div id="product-thumbs" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"></div>
               </div>
             </div>
 
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-              <button id="buyBtn" class="btn btn-primary" type="button">Comprar agora</button>
-              <a class="btn btn-outline" href="buscar.html">Voltar</a>
-              <a class="btn btn-ghost" id="accountBtn" href="login.html">Entrar</a>
-            </div>
+            <div class="col-6">
+              <div class="soft" style="padding:14px;">
+                <div id="product-flags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"></div>
 
-            <div id="msg" class="helper" style="margin-top:10px;"></div>
+                <div id="product-price-public" style="font-size:24px;font-weight:1000;margin-bottom:10px;">
+                  —
+                </div>
+
+                <div id="product-category" class="helper" style="margin-bottom:8px;"></div>
+                <div id="product-stock" class="helper" style="margin-bottom:8px;"></div>
+
+                <div style="margin:16px 0 8px 0;font-weight:1000;">Descrição</div>
+                <div id="product-description" class="helper" style="white-space:pre-wrap;"></div>
+
+                <div style="margin:16px 0 8px 0;font-weight:1000;">Tags</div>
+                <div id="product-tags" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+
+                <div id="product-shipping-info" style="margin-top:16px;" class="helper">
+                  Frete e entrega: a confirmar com fornecedor.
+                </div>
+
+                <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+                  <button id="btn-buy" class="btn btn-primary" type="button">Comprar agora</button>
+                  <button id="btn-see-plans" class="btn btn-outline" type="button">Ver planos</button>
+                  <a class="btn btn-ghost" href="buscar.html">Voltar</a>
+                </div>
+
+                <!-- =========================
+                     INICIO_TESTE_CHECKOUT_1_CENTAVO
+                     este texto deixa explícito que o checkout do botão está em modo teste
+                     ========================= -->
+                <div class="helper" style="margin-top:12px;">
+                  Modo atual de teste: o botão de compra envia para o checkout do <strong>core_test</strong> em R$ 0,01.
+                </div>
+                <!-- =========================
+                     FIM_TESTE_CHECKOUT_1_CENTAVO
+                     ========================= -->
+              </div>
+            </div>
           </div>
 
         </div>
@@ -54,60 +88,9 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <h4>Nexus Store</h4>
-        <div class="helper">Marketplace em construção. Sem firula, com velocidade.</div>
-      </div>
-      <div>
-        <h4>Links</h4>
-        <a href="privacidade.html">Privacidade</a>
-        <a href="contato.html">Contato</a>
-      </div>
-      <div>
-        <h4>Conta</h4>
-        <a href="login.html">Login</a>
-        <a href="minha-conta.html">Minha conta</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">© Nexus Store</div>
-  </footer>
-
   <script src="config.js"></script>
   <script src="layout.js"></script>
   <script src="out.js"></script>
-
-  <script>
-    // Ajusta botão "Entrar/Minha conta"
-    (function(){
-      const accountBtn = document.getElementById("accountBtn");
-      const token = localStorage.getItem("nexus_token");
-      if (token) {
-        accountBtn.textContent = "Minha conta";
-        accountBtn.href = "minha-conta.html";
-      }
-    })();
-
-    // Compra: salva intenção e manda pro checkout
-    document.getElementById("buyBtn").addEventListener("click", () => {
-      const token = localStorage.getItem("nexus_token");
-      const msg = document.getElementById("msg");
-
-      if (!token) {
-        msg.textContent = "Você precisa entrar antes de comprar.";
-        window.location.href = "login.html";
-        return;
-      }
-
-      // marca intenção de produto (você pode mudar depois para ID real)
-      localStorage.setItem("nexus_product_intent", "produto_premium_exemplo");
-
-      // manda pro checkout com um "plan" de teste ou normal (ajusta quando tiver produto real)
-      // se você quiser testar o Core Teste:
-      // window.location.href = "checkout.html?plan=core_test";
-      window.location.href = "checkout.html?plan=core_test";
-    });
-  </script>
+  <script src="produto.js"></script>
 </body>
 </html>
