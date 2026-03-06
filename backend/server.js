@@ -21,7 +21,7 @@ app.use(express.json());
    ROTAS API
 ========================= */
 
-app.use("/api/products", productRoutes);
+app.use("/api", productRoutes);
 
 app.use("/api/v1/payment", paymentRoutes);
 
