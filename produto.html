@@ -1,96 +1,89 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
-  <meta charset="utf-8"/>
-  <title>Nexus Store | Produto</title>
-  <meta name="description" content="Confira este produto disponível na Nexus Store." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <meta property="og:title" content="Produto — Nexus Store" />
-  <meta property="og:description" content="Produto da Nexus Store com acesso por plano." />
-  <meta property="og:image" content="https://nexustore.store/logo.png" />
-  <meta property="og:url" content="https://nexustore.store/produto.html" />
-  <meta property="og:type" content="product" />
+<meta charset="UTF-8">
 
-  <link rel="icon" href="favicon.png"/>
-  <link rel="stylesheet" href="style.css" />
+<title>Nexus Store Produto</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
 </head>
 
 <body>
-  <div id="topbar-root"></div>
 
-  <main class="page">
-    <div class="container">
-      <div class="card page-card">
-        <div class="pad">
-          <h2 id="product-title" style="font-weight:1000;">Carregando produto...</h2>
-          <p id="product-subtitle" class="helper"></p>
+<header>
 
-          <div class="hr"></div>
+<h1>Nexus Store</h1>
 
-          <div class="grid" style="gap:18px;">
-            <div class="col-6">
-              <div class="soft" style="padding:14px;">
-                <img
-                  id="product-image-main"
-                  src="logo.png"
-                  alt="Produto"
-                  style="width:100%;max-height:420px;object-fit:contain;border-radius:16px;background:#0b0b0b;"
-                />
+<input
+type="text"
+placeholder="Buscar produto..."
+id="search"
+/>
 
-                <div id="product-thumbs" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"></div>
-              </div>
-            </div>
+</header>
 
-            <div class="col-6">
-              <div class="soft" style="padding:14px;">
-                <div id="product-flags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"></div>
 
-                <div id="product-price-public" style="font-size:24px;font-weight:1000;margin-bottom:10px;">
-                  —
-                </div>
+<main>
 
-                <div id="product-category" class="helper" style="margin-bottom:8px;"></div>
-                <div id="product-stock" class="helper" style="margin-bottom:8px;"></div>
+<section class="produto">
 
-                <div style="margin:16px 0 8px 0;font-weight:1000;">Descrição</div>
-                <div id="product-description" class="helper" style="white-space:pre-wrap;"></div>
+<h2 id="produto-nome">
+Carregando...
+</h2>
 
-                <div style="margin:16px 0 8px 0;font-weight:1000;">Tags</div>
-                <div id="product-tags" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+<div class="produto-img">
 
-                <div id="product-shipping-info" style="margin-top:16px;" class="helper">
-                  Frete e entrega: a confirmar com fornecedor.
-                </div>
+<img
+id="produto-imagem"
+src=""
+alt="produto"
+/>
 
-                <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
-                  <button id="btn-buy" class="btn btn-primary" type="button">Comprar agora</button>
-                  <button id="btn-see-plans" class="btn btn-outline" type="button">Ver planos</button>
-                  <a class="btn btn-ghost" href="buscar.html">Voltar</a>
-                </div>
+</div>
 
-                <!-- =========================
-                     INICIO_TESTE_CHECKOUT_1_CENTAVO
-                     este texto deixa explícito que o checkout do botão está em modo teste
-                     ========================= -->
-                <div class="helper" style="margin-top:12px;">
-                  Modo atual de teste: o botão de compra envia para o checkout do <strong>core_test</strong> em R$ 0,01.
-                </div>
-                <!-- =========================
-                     FIM_TESTE_CHECKOUT_1_CENTAVO
-                     ========================= -->
-              </div>
-            </div>
-          </div>
+<div class="produto-preco">
 
-        </div>
-      </div>
-    </div>
-  </main>
+<span id="produto-preco">
+R$ 0.00
+</span>
 
-  <script src="config.js"></script>
-  <script src="layout.js"></script>
-  <script src="out.js"></script>
-  <script src="produto.js"></script>
+</div>
+
+<div class="produto-descricao">
+
+<p id="produto-descricao">
+Descrição do produto
+</p>
+
+</div>
+
+<div class="produto-comprar">
+
+<button id="btn-comprar">
+Comprar
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+Nexus Store
+</p>
+
+</footer>
+
+
+<script src="/produto.js"></script>
+
 </body>
+
 </html>
