@@ -1,67 +1,128 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nexus Store | Checkout</title>
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+
+<meta charset="utf-8"/>
+
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<title>Nexus Store | Checkout</title>
+
+<link rel="icon" href="favicon.png">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-  <div id="topbar-root"></div>
 
-  <main class="page">
-    <div class="container">
-      <div class="card page-card">
-        <div class="pad">
-          <h2 style="font-weight:1000;">Checkout</h2>
-          <p class="helper">Finalize sua compra/assinatura.</p>
+<div id="topbar-root"></div>
 
-          <div class="hr"></div>
+<main class="page">
 
-          <div class="soft" style="padding:14px;">
-            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-              <div>
-                <div class="helper">Produto/Plano</div>
-                <div id="productName" style="font-weight:1000;font-size:18px;">Carregando...</div>
-                <div id="planHint" class="helper" style="margin-top:6px;"></div>
-              </div>
+<div class="container">
 
-              <div style="text-align:right;">
-                <div class="helper">Valor</div>
-                <div id="planPrice" style="font-weight:1000;font-size:18px;">R$ 0,00</div>
-              </div>
-            </div>
+<div class="card page-card">
 
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-              <button id="payBtn" class="btn btn-primary" type="button">Pagar</button>
-              <a class="btn btn-outline" href="planos.html">Trocar plano</a>
-              <a class="btn btn-ghost" href="buscar.html">Voltar</a>
-            </div>
-          </div>
+<div class="pad">
 
-          <div style="margin-top:14px;">
-            <pre id="result" class="soft" style="padding:14px;white-space:pre-wrap;overflow:auto;max-height:260px;">{}</pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+<h2 style="font-weight:1000;">Checkout</h2>
 
-  <script src="config.js"></script>
-  <script src="layout.js"></script>
-  <script src="out.js"></script>
-  <script src="checkout.js"></script>
+<p class="helper">Finalize sua compra ou assinatura.</p>
 
-  <script>
-    // Ajuda visual: mostra qual plano veio pela URL (?plan=coretest, core, hyper, omega, etc.)
-    try{
-      const url = new URL(window.location.href);
-      const plan = (url.searchParams.get("plan") || "core").toLowerCase();
-      const hint = document.getElementById("planHint");
-      if (hint) hint.textContent = `Plano selecionado: ${plan}`;
-    }catch(e){}
-  </script>
+<div class="hr"></div>
+
+<div class="soft" style="padding:14px;">
+
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+
+<div>
+
+<div class="helper">Plano selecionado</div>
+
+<div id="productName" style="font-weight:1000;font-size:18px;">Carregando...</div>
+
+<div id="planHint" class="helper" style="margin-top:6px;"></div>
+
+</div>
+
+<div style="text-align:right;">
+
+<div class="helper">Valor</div>
+
+<div id="planPrice" style="font-weight:1000;font-size:18px;">R$ 0,00</div>
+
+</div>
+
+</div>
+
+<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+
+<button id="payBtn" class="btn btn-primary" type="button">
+
+Pagar
+
+</button>
+
+<a class="btn btn-outline" href="planos.html">
+
+Trocar plano
+
+</a>
+
+<a class="btn btn-ghost" href="buscar.html">
+
+Voltar
+
+</a>
+
+</div>
+
+</div>
+
+<div style="margin-top:14px;">
+
+<pre id="result" class="soft" style="padding:14px;white-space:pre-wrap;overflow:auto;max-height:260px;">{}</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="config.js"></script>
+
+<script src="layout.js"></script>
+
+<script src="out.js"></script>
+
+<script src="checkout.js"></script>
+
+<script>
+
+try {
+
+const url = new URL(window.location.href);
+
+const plan = (url.searchParams.get("plan") || "core").toLowerCase();
+
+const hint = document.getElementById("planHint");
+
+if (hint) {
+
+hint.textContent = `Plano selecionado: ${plan}`;
+
+}
+
+} catch(e) {}
+
+</script>
+
 </body>
+
 </html>
