@@ -1,166 +1,140 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nexus Store | Pedido</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nexus Store | Pedidos</title>
 
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="topbar-root"></div>
 
-  <main class="page">
-    <div class="container">
-      <div class="card page-card">
-        <div class="pad">
-          <h2 style="font-weight:1000;">Detalhes do pedido</h2>
-          <p class="helper">Acompanhe as informações completas do seu pedido.</p>
+<div id="topbar-root"></div>
 
-          <div class="hr"></div>
+<main class="page">
+<div class="container">
+<div class="card page-card">
+<div class="pad">
 
-          <div class="soft" style="padding:14px;">
-            <div class="form-grid">
-              <div>
-                <div class="helper">ID do pedido</div>
-                <div id="orderId" style="font-weight:1000;">—</div>
-              </div>
-              <div>
-                <div class="helper">Status</div>
-                <div id="orderStatus" style="font-weight:1000;">—</div>
-              </div>
-            </div>
+<h2 style="font-weight:1000;">Meus pedidos</h2>
+<p class="helper">Histórico completo de pedidos.</p>
 
-            <div class="hr" style="margin:12px 0;"></div>
+<div class="hr"></div>
 
-            <div class="form-grid">
-              <div>
-                <div class="helper">Produto</div>
-                <div id="orderProduct" style="font-weight:1000;">—</div>
-              </div>
-              <div>
-                <div class="helper">Plano</div>
-                <div id="orderPlan" style="font-weight:1000;">—</div>
-              </div>
-            </div>
+<div id="ordersBox" class="soft" style="padding:14px;">
+Carregando pedidos...
+</div>
 
-            <div class="form-grid" style="margin-top:10px;">
-              <div>
-                <div class="helper">Valor</div>
-                <div id="orderValue" style="font-weight:1000;">—</div>
-              </div>
-              <div>
-                <div class="helper">Data</div>
-                <div id="orderDate" style="font-weight:1000;">—</div>
-              </div>
-            </div>
+</div>
+</div>
+</div>
+</main>
 
-            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn btn-outline" href="pedidos.html">Voltar</a>
-              <a class="btn btn-ghost" id="cancelLink" href="pedido-cancelar.html">Cancelar</a>
-              <a class="btn btn-primary" href="minha-conta.html">Minha conta</a>
-            </div>
-          </div>
+<script src="config.js"></script>
+<script src="layout.js"></script>
+<script src="out.js"></script>
 
-          <div class="soft" style="padding:14px;margin-top:12px;">
-            <div style="font-weight:1000;margin-bottom:6px;">Status do pedido</div>
-            <ul class="helper" style="margin-left:16px;opacity:.95;">
-              <li><b>Criado:</b> Pedido registrado</li>
-              <li><b>Pago:</b> Pagamento confirmado</li>
-              <li><b>Processando:</b> Pedido em processamento</li>
-              <li><b>Concluído:</b> Pedido finalizado</li>
-            </ul>
-          </div>
+<script>
 
-          <pre id="debug" class="soft" style="padding:14px;margin-top:12px;white-space:pre-wrap;overflow:auto;max-height:240px;display:none;"></pre>
+const token = localStorage.getItem("nexus_token");
 
-        </div>
-      </div>
-    </div>
-  </main>
+if(!token){
+window.location.replace("login.html");
+}
 
-  <script src="config.js"></script>
-  <script src="layout.js"></script>
-  <script src="out.js"></script>
+const box = document.getElementById("ordersBox");
 
-  <script>
-    // ===============================
-    // AUTH
-    // ===============================
-    const token = localStorage.getItem("nexus_token");
-    if (!token) {
-      window.location.replace("login.html");
-    }
+function money(cents){
+return "R$ " + (Number(cents||0)/100).toFixed(2).replace(".",",");
+}
 
-    // ===============================
-    // HELPERS
-    // ===============================
-    function qs(name){
-      return new URLSearchParams(window.location.search).get(name);
-    }
-    function safeJson(r){
-      return r.json().catch(()=>null);
-    }
-    function moneyFromCents(cents){
-      const n = Number(cents || 0) / 100;
-      return "R$ " + n.toFixed(2).replace(".", ",");
-    }
-    function setText(id, v){
-      const el = document.getElementById(id);
-      if (el) el.textContent = (v ?? "—");
-    }
-    function setStatusText(v){
-      setText("orderStatus", v || "—");
-    }
+function renderEmpty(){
+box.innerHTML = `
+<div class="helper">
+Nenhum pedido encontrado ainda.
+</div>
+`;
+}
 
-    // ===============================
-    // LOAD PEDIDO
-    // ===============================
-    (async function(){
-      const orderId = qs("id");
-      if (!orderId) {
-        alert("Pedido inválido (sem id na URL).");
-        window.location.replace("pedidos.html");
-        return;
-      }
+function renderOrders(list){
 
-      setText("orderId", orderId);
+if(!list || !list.length){
+renderEmpty();
+return;
+}
 
-      // link de cancelar com id
-      const cancelLink = document.getElementById("cancelLink");
-      if (cancelLink) cancelLink.href = `pedido-cancelar.html?id=${encodeURIComponent(orderId)}`;
+let html = `
+<table class="table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Status</th>
+<th>Valor</th>
+<th>Data</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+`;
 
-      try{
-        const r = await fetch(`${window.NEXUS_API}/orders/${encodeURIComponent(orderId)}`, {
-          headers: { "Authorization": "Bearer " + token }
-        });
+for(const o of list){
 
-        const d = await safeJson(r);
-        if (!r.ok || !d?.ok) throw new Error(d?.error || "LOAD_FAILED");
+html += `
+<tr>
+<td>${o.id}</td>
+<td>${o.status}</td>
+<td>${money(o.amountCents)}</td>
+<td>${new Date(o.createdAt).toLocaleString("pt-BR")}</td>
+<td>
+<a class="btn btn-outline" href="pedido.html?id=${o.id}">
+Ver
+</a>
+</td>
+</tr>
+`;
 
-        const o = d.order || {};
+}
 
-        // Tenta cobrir vários formatos possíveis
-        setStatusText(o.status || o.paymentStatus || "—");
-        setText("orderProduct", o.productName || o.productTitle || (o.items && o.items[0] && (o.items[0].title || o.items[0].name)) || "—");
-        setText("orderPlan", o.plan || o.planKey || o.planId || "—");
+html += "</tbody></table>";
 
-        const cents = (o.amountCents ?? o.amount_cents ?? o.amount ?? o.totalCents ?? o.total_cents);
-        setText("orderValue", cents != null ? moneyFromCents(cents) : "—");
+box.innerHTML = html;
+}
 
-        const created = (o.createdAt || o.created_at || o.date_created);
-        setText("orderDate", created ? new Date(created).toLocaleString("pt-BR") : "—");
+async function load(){
 
-        // Debug (deixa escondido, mas pronto)
-        const dbg = document.getElementById("debug");
-        if (dbg) dbg.textContent = JSON.stringify(d, null, 2);
-      }catch(e){
-        alert("Erro ao carregar pedido.");
-        window.location.replace("pedidos.html");
-      }
-    })();
-  </script>
+try{
+
+const r = await fetch(`${window.NEXUS_API}/orders`,{
+headers:{
+Authorization:"Bearer "+token
+}
+});
+
+const d = await r.json();
+
+if(!r.ok || !d?.ok){
+throw new Error("LOAD_FAILED");
+}
+
+renderOrders(d.orders);
+
+}catch(e){
+
+box.innerHTML = `
+<div class="helper">
+Erro ao carregar pedidos.
+</div>
+`;
+
+}
+
+}
+
+load();
+
+</script>
+
 </body>
 </html>
