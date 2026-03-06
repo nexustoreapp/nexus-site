@@ -6,60 +6,79 @@ import { isBlockedRandomly } from "../utils/randomBlock.js";
 
 const CATALOG_DIR = path.resolve("backend/data/catalog");
 
+// carrega todos os produtos
 function loadAllProducts() {
+
   const files = fs.readdirSync(CATALOG_DIR).filter(f => f.endsWith(".json"));
+
   let products = [];
 
   for (const file of files) {
+
     const content = JSON.parse(
       fs.readFileSync(path.join(CATALOG_DIR, file), "utf-8")
     );
+
     products = products.concat(content);
+
   }
 
   return products;
+
 }
 
-function getUserPlan(req) {
-  const auth = req.headers.authorization || "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+function planRank(plan) {
 
-  if (!token) return "free";
+  const map = {
+    free: 1,
+    core: 2,
+    hyper: 3,
+    omega: 4
+  };
 
-  try {
-    const payload = JSON.parse(
-      Buffer.from(token.split(".")[1], "base64").toString("utf8")
-    );
+  return map[plan] || 1;
 
-    return payload?.plan || "free";
-  } catch {
-    return "free";
-  }
 }
 
 export const productController = {
 
+  // LISTAR PRODUTOS
   list: (req, res) => {
+
     try {
 
-      const plan = getUserPlan(req);
+      const plan = String(req.query.plan || "free").toLowerCase();
 
-      const products = loadAllProducts().map(product => {
+      const products = loadAllProducts();
 
-        const blocked = isBlockedRandomly(product.sku, plan);
+      const result = products.map(p => {
+
+        const tier = String(p.accessTier || "free").toLowerCase();
+
+        const required = planRank(tier);
+        const userRank = planRank(plan);
+
+        let locked = userRank < required;
+
+        if (!locked) {
+
+          const randomBlocked = isBlockedRandomly(p.sku, plan);
+
+          if (randomBlocked) locked = true;
+
+        }
 
         return {
-          ...product,
-          blocked
+          ...p,
+          locked
         };
 
       });
 
       return res.json({
         ok: true,
-        plan,
-        total: products.length,
-        products
+        total: result.length,
+        products: result
       });
 
     } catch (err) {
@@ -70,32 +89,49 @@ export const productController = {
       });
 
     }
+
   },
 
+  // PRODUTO INDIVIDUAL
   getBySku: (req, res) => {
+
     try {
 
       const { sku } = req.params;
-      const plan = getUserPlan(req);
+      const plan = String(req.query.plan || "free").toLowerCase();
 
       const products = loadAllProducts();
+
       const product = products.find(p => p.sku === sku);
 
       if (!product) {
+
         return res.status(404).json({
           ok: false,
           error: "PRODUCT_NOT_FOUND"
         });
+
       }
 
-      const blocked = isBlockedRandomly(product.sku, plan);
+      const tier = String(product.accessTier || "free").toLowerCase();
+
+      const required = planRank(tier);
+      const userRank = planRank(plan);
+
+      let locked = userRank < required;
+
+      if (!locked) {
+
+        const randomBlocked = isBlockedRandomly(product.sku, plan);
+
+        if (randomBlocked) locked = true;
+
+      }
 
       return res.json({
         ok: true,
-        product: {
-          ...product,
-          blocked
-        }
+        product,
+        locked
       });
 
     } catch (err) {
@@ -106,5 +142,7 @@ export const productController = {
       });
 
     }
+
   }
+
 };
