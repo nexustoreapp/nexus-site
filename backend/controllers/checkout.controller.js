@@ -7,7 +7,6 @@ const PLAN_ORDER = ["free", "core", "hyper", "omega"];
 
 /*
   Regras de produto (fallback)
-  Quando o produto não tiver accessTier no catálogo
 */
 const PRODUCT_RULES = {
   "produto-001": { requiredPlan: "core" },
@@ -39,7 +38,7 @@ export async function prepareCheckout(req, res) {
        BLOQUEIO ALEATÓRIO
     =============================== */
 
-    if (isBlockedRandomly(productSku, userPlan)) {
+    if (isBlockedRandomly(productSku, userPlan, user.email)) {
       return res.status(403).json({
         ok:false,
         error:"RANDOM_BLOCK",
