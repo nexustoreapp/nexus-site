@@ -1,119 +1,230 @@
 [
-  {
-    "id": "saudacao_inicial",
-    "intent": "greeting",
-    "personaId": "vendedor_amigo",
-    "keywords": ["oi", "ola", "olá", "bom dia", "boa tarde", "boa noite", "e aí", "fala ai"],
-    "userExamples": [
-      "oi",
-      "boa noite",
-      "e aí",
-      "tudo bem?"
-    ],
-    "replyTemplates": [
-      "E aí, tudo tranquilo? 👋 Eu sou a IA da Nexus e tô aqui pra te ajudar com produto, plano, pedido… o que você precisar.",
-      "Opa, bem-vindo(a) à Nexus! ✨ Me conta, você quer ajuda com produto, pedido ou planos Nexus+?",
-      "Oi, tudo bem? 😊 Pode mandar sua dúvida que eu vou te ajudar passo a passo."
-    ]
-  },
-  {
-    "id": "pedido_atrasado",
-    "intent": "order_delayed",
-    "personaId": "nexus_guard",
-    "keywords": ["atrasado", "não chegou", "nao chegou", "cadê meu pedido", "cade meu pedido", "rasteio", "rastreamento", "transportadora"],
-    "userExamples": [
-      "meu pedido está atrasado",
-      "faz dias que não chega",
-      "cadê meu pedido",
-      "rastreamento parado"
-    ],
-    "replyTemplates": [
-      "Nossa, eu entendo como isso é chato mesmo. Vamos fazer assim: me manda por favor o número do seu pedido que eu olho agora no sistema e vejo o que rolou na rota.",
-      "Putz, que situação chata… mas calma, você não vai ficar na mão. Me passa o número do seu pedido que eu já puxo aqui o rastreio.",
-      "Eu sinto muito pelo atraso. Me envia o número do pedido pra eu verificar com a transportadora."
-    ]
-  },
-  {
-    "id": "produto_defeituoso",
-    "intent": "defective_product",
-    "personaId": "nexus_guard",
-    "keywords": ["quebrado", "veio com defeito", "nao funciona", "parou de funcionar", "com defeito"],
-    "userExamples": [
-      "o produto veio quebrado",
-      "chegou com defeito",
-      "isso não tá funcionando",
-      "parou do nada"
-    ],
-    "replyTemplates": [
-      "Nossa, que saco isso ter acontecido. Faz assim: me manda uma foto ou vídeo do problema e o número do pedido que eu já vejo se fazemos troca ou reenvio.",
-      "Eu entendo a frustração. Me envia o número do pedido e se puder uma foto ou vídeo mostrando o defeito.",
-      "Isso não era pra acontecer. Me passa o número do pedido e um registro do defeito que eu já abro a solução."
-    ]
-  },
-  {
-    "id": "medo_golpe",
-    "intent": "fear_scam",
-    "personaId": "nexus_guard",
-    "keywords": ["golpe", "é confiavel", "é confiável", "tô com medo", "tenho medo", "parece golpe", "seguro comprar"],
-    "userExamples": [
-      "isso não é golpe?",
-      "é confiável?",
-      "tenho medo de tomar calote",
-      "site é de verdade?"
-    ],
-    "replyTemplates": [
-      "Sua preocupação é válida. A Nexus trabalha com catálogo próprio, políticas de devolução claras e suporte ativo.",
-      "É normal ter receio hoje em dia. Aqui você tem suporte, histórico de pedidos e políticas claras.",
-      "A ideia da Nexus é ser transparente. Se quiser posso te explicar como funcionam pagamentos, frete e garantias."
-    ]
-  },
-  {
-    "id": "duvida_plano_geral",
-    "intent": "plan_info",
-    "personaId": "assistente_premium",
-    "keywords": ["plano", "assinatura", "premium", "nexus+", "nexus plus", "core", "hyper", "omega"],
-    "userExamples": [
-      "como funciona a assinatura?",
-      "quais são os planos?",
-      "qual a vantagem do premium?",
-      "me explica o nexus+"
-    ],
-    "replyTemplates": [
-      "Hoje a Nexus trabalha com planos Core, Hyper e Omega. Cada um libera descontos maiores e vantagens.",
-      "Os planos Nexus+ liberam preços menores em vários produtos e frete reduzido.",
-      "Dependendo do plano você desbloqueia produtos exclusivos e descontos maiores."
-    ]
-  },
-  {
-    "id": "cancelar_plano",
-    "intent": "plan_cancel",
-    "personaId": "assistente_premium",
-    "keywords": ["cancelar assinatura", "cancelar plano", "parar de pagar", "cancelamento"],
-    "userExamples": [
-      "como cancelo?",
-      "quero cancelar a assinatura",
-      "quero parar de pagar"
-    ],
-    "replyTemplates": [
-      "Você pode cancelar pela área da sua conta na parte de planos.",
-      "O cancelamento é simples e feito pela área do usuário.",
-      "Se quiser posso te guiar passo a passo no cancelamento."
-    ]
-  },
-  {
-    "id": "duvida_jogo_setup",
-    "intent": "game_setup_help",
-    "personaId": "gamer_braba",
-    "keywords": ["pc gamer", "placa de vídeo", "setup gamer", "pc para jogar", "pc gamer barato"],
-    "userExamples": [
-      "quero montar um pc gamer",
-      "qual placa de vídeo comprar",
-      "setup para jogar"
-    ],
-    "replyTemplates": [
-      "Boa! Se for pra jogar eu posso te ajudar a montar um setup equilibrado. Qual seu orçamento mais ou menos?",
-      "Depende muito do tipo de jogo e do orçamento. Você quer algo mais básico ou algo mais forte?",
-      "Se você me disser quanto quer gastar eu consigo sugerir peças ou um setup completo."
-    ]
-  }
+{
+"id":"saudacao",
+"intent":"greeting",
+"personaId":"vendedor_amigo",
+"keywords":["oi","ola","olá","e ai","fala","salve","opa","bom dia","boa tarde","boa noite"],
+"userExamples":[
+"oi",
+"e ai",
+"fala",
+"opa",
+"bom dia",
+"boa noite",
+"tudo bem",
+"salve"
+],
+"replyTemplates":[
+"Oi! Eu sou a Nayla da Nexus 👋 Como posso te ajudar hoje?",
+"E aí! Seja bem-vindo à Nexus Store. Quer ajuda para encontrar algum produto?",
+"Olá! Posso te ajudar a escolher algum produto ou explicar nossos planos."
+]
+},
+
+{
+"id":"buscar_produto",
+"intent":"product_search",
+"personaId":"vendedor_amigo",
+"keywords":["produto","comprar","procurar","tem","vende","catalogo","catálogo"],
+"userExamples":[
+"vocês vendem monitor",
+"tem notebook",
+"quero comprar um pc",
+"me mostra produtos",
+"o que vocês tem"
+],
+"replyTemplates":[
+"Claro! Que tipo de produto você está procurando?",
+"Posso te ajudar a encontrar algo no catálogo. Qual produto você quer?",
+"Me conta o que você está procurando que eu tento encontrar algo no catálogo."
+]
+},
+
+{
+"id":"duvida_pc",
+"intent":"pc_help",
+"personaId":"gamer_braba",
+"keywords":["pc","computador","pc gamer","setup","montar pc"],
+"userExamples":[
+"quero montar um pc",
+"qual pc comprar",
+"pc para jogar",
+"pc gamer barato"
+],
+"replyTemplates":[
+"Boa! Você quer montar um PC ou comprar um já pronto?",
+"Se for montar um PC posso te ajudar a escolher peças equilibradas.",
+"Legal! Me fala o orçamento e eu tento sugerir um PC ideal."
+]
+},
+
+{
+"id":"duvida_gpu",
+"intent":"gpu_help",
+"personaId":"gamer_braba",
+"keywords":["gpu","placa de video","placa de vídeo","rtx","rx"],
+"userExamples":[
+"qual placa de video comprar",
+"rtx vale a pena",
+"qual gpu escolher"
+],
+"replyTemplates":[
+"Placa de vídeo muda muito a performance. Você pretende usar para jogos ou trabalho?",
+"Boa pergunta. Qual seu orçamento para a GPU?",
+"Se quiser posso te sugerir algumas placas de vídeo boas."
+]
+},
+
+{
+"id":"duvida_monitor",
+"intent":"monitor_help",
+"personaId":"gamer_braba",
+"keywords":["monitor","monitor gamer","144hz","240hz"],
+"userExamples":[
+"qual monitor comprar",
+"monitor bom para jogar",
+"monitor 144hz vale a pena"
+],
+"replyTemplates":[
+"Para jogos competitivos monitores de 144hz ou mais são ótimos.",
+"Você prefere resolução maior ou mais FPS?",
+"Se quiser posso sugerir alguns monitores dependendo do seu orçamento."
+]
+},
+
+{
+"id":"duvida_notebook",
+"intent":"notebook_help",
+"personaId":"vendedor_amigo",
+"keywords":["notebook","laptop"],
+"userExamples":[
+"qual notebook comprar",
+"notebook para estudar",
+"notebook para trabalhar"
+],
+"replyTemplates":[
+"Notebook para estudo costuma priorizar bateria e portabilidade.",
+"Se for para trabalho pesado pode ser interessante um notebook com GPU dedicada.",
+"Me fala o orçamento que eu tento sugerir alguns modelos."
+]
+},
+
+{
+"id":"frete",
+"intent":"shipping",
+"personaId":"vendedor_amigo",
+"keywords":["frete","entrega","envio"],
+"userExamples":[
+"qual o frete",
+"quanto custa o frete",
+"vocês entregam"
+],
+"replyTemplates":[
+"O valor do frete depende da sua localização.",
+"Posso verificar opções de entrega dependendo do produto.",
+"O frete varia por região e produto."
+]
+},
+
+{
+"id":"prazo_entrega",
+"intent":"delivery_time",
+"personaId":"vendedor_amigo",
+"keywords":["prazo","entrega","quanto demora"],
+"userExamples":[
+"quanto tempo demora",
+"qual prazo de entrega",
+"quando chega"
+],
+"replyTemplates":[
+"O prazo depende da transportadora e da sua região.",
+"Posso verificar o prazo estimado dependendo do produto.",
+"O prazo aparece normalmente no checkout."
+]
+},
+
+{
+"id":"pagamento",
+"intent":"payment_methods",
+"personaId":"assistente_premium",
+"keywords":["pagamento","pagar","pix","cartao","cartão"],
+"userExamples":[
+"aceita pix",
+"posso pagar no cartão",
+"formas de pagamento"
+],
+"replyTemplates":[
+"A Nexus aceita vários métodos de pagamento como cartão e PIX.",
+"O método de pagamento aparece na etapa de checkout.",
+"Se quiser posso explicar como funciona o processo de pagamento."
+]
+},
+
+{
+"id":"seguranca",
+"intent":"security",
+"personaId":"nexus_guard",
+"keywords":["seguro","confiavel","golpe","site confiavel"],
+"userExamples":[
+"é seguro comprar",
+"isso é golpe",
+"site confiável"
+],
+"replyTemplates":[
+"A Nexus trabalha com pagamentos seguros e suporte ao cliente.",
+"É normal ter essa dúvida. Nosso sistema usa proteção e suporte.",
+"Se quiser posso explicar como funciona a segurança da plataforma."
+]
+},
+
+{
+"id":"planos",
+"intent":"plans",
+"personaId":"assistente_premium",
+"keywords":["plano","nexus+","assinatura","core","hyper","omega"],
+"userExamples":[
+"como funciona nexus+",
+"quais planos existem",
+"vale a pena assinar"
+],
+"replyTemplates":[
+"A Nexus possui planos como Core, Hyper e Omega.",
+"Cada plano libera vantagens e descontos maiores.",
+"Se quiser posso explicar qual plano faz mais sentido para você."
+]
+},
+
+{
+"id":"agradecimento",
+"intent":"thanks",
+"personaId":"vendedor_amigo",
+"keywords":["obrigado","valeu","tmj","agradecido"],
+"userExamples":[
+"valeu",
+"obrigado",
+"brigado"
+],
+"replyTemplates":[
+"Imagina! Se precisar de algo é só chamar.",
+"Tamo junto! Qualquer dúvida estou aqui.",
+"Fico feliz em ajudar."
+]
+},
+
+{
+"id":"despedida",
+"intent":"bye",
+"personaId":"vendedor_amigo",
+"keywords":["tchau","ate mais","até mais","falou"],
+"userExamples":[
+"tchau",
+"até mais",
+"falou"
+],
+"replyTemplates":[
+"Até mais! Qualquer coisa é só voltar aqui.",
+"Foi um prazer ajudar. Até a próxima!",
+"Tchau! Sempre que precisar estou aqui."
+]
+}
 ]
