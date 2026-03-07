@@ -1,23 +1,52 @@
-import intents from "../data/intents.json";
+import fs from "fs";
+import path from "path";
+
+let INTENT_CACHE = null;
+
+function loadIntents(){
+
+  if(INTENT_CACHE){
+    return INTENT_CACHE;
+  }
+
+  try{
+
+    const filePath = path.resolve("backend/data/intents.json");
+
+    const raw = fs.readFileSync(filePath,"utf-8");
+
+    const json = JSON.parse(raw);
+
+    INTENT_CACHE = Array.isArray(json) ? json : [];
+
+    return INTENT_CACHE;
+
+  }catch{
+
+    return [];
+
+  }
+
+}
 
 export function detectIntent(message){
 
-const text = String(message||"").toLowerCase();
+  const text = String(message||"").toLowerCase();
 
-for(const intent of intents){
+  const intents = loadIntents();
 
-for(const kw of intent.keywords){
+  for(const intent of intents){
 
-if(text.includes(kw)){
+    for(const kw of intent.keywords){
 
-return intent;
+      if(text.includes(kw)){
+        return intent;
+      }
 
-}
+    }
 
-}
+  }
 
-}
-
-return null;
+  return null;
 
 }
