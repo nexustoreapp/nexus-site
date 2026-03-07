@@ -25,7 +25,6 @@ try {
   if(fs.existsSync(cachePath)){
 
     const raw = fs.readFileSync(cachePath,"utf-8");
-
     const json = JSON.parse(raw);
 
     if(Array.isArray(json)){
@@ -35,17 +34,14 @@ try {
   }
 
 }catch(err){
-
   console.error("Erro carregando ia_cache_base:",err);
-
 }
 
 /* ===============================
-MEMÓRIA CONVERSA
+MEMÓRIA
 =============================== */
 
 const MEMORY = new Map();
-
 const MAX_HISTORY = 8;
 
 function getHistory(id){
@@ -82,58 +78,58 @@ function normalize(text=""){
 }
 
 /* ===============================
-CACHE MATCH (FORTE)
+CACHE MATCH POR KEYWORD
 =============================== */
 
-function matchCacheIntent(text){
+function matchByKeyword(text){
 
   const t = normalize(text);
 
   for(const item of IA_CACHE){
 
-    let score = 0;
+    if(!item.keywords) continue;
 
-    /* KEYWORDS */
+    for(const kw of item.keywords){
 
-    if(item.keywords){
+      if(t.includes(normalize(kw))){
 
-      for(const kw of item.keywords){
+        if(item.replyTemplates?.length){
 
-        const k = normalize(kw);
+          return item.replyTemplates[
+            Math.floor(Math.random()*item.replyTemplates.length)
+          ];
 
-        if(t.includes(k)){
-          score += 3;
         }
 
       }
 
     }
 
-    /* USER EXAMPLES */
+  }
 
-    if(item.userExamples){
+  return null;
 
-      for(const ex of item.userExamples){
+}
 
-        const e = normalize(ex);
+/* ===============================
+CACHE MATCH POR INTENT
+=============================== */
 
-        if(t.includes(e)){
-          score += 5;
-        }
+function matchByIntent(intent){
+
+  if(!intent) return null;
+
+  for(const item of IA_CACHE){
+
+    if(item.intent === intent.intent){
+
+      if(item.replyTemplates?.length){
+
+        return item.replyTemplates[
+          Math.floor(Math.random()*item.replyTemplates.length)
+        ];
 
       }
-
-    }
-
-    if(score > 0){
-
-      const replies = item.replyTemplates;
-
-      if(!replies || !replies.length) continue;
-
-      return replies[
-        Math.floor(Math.random()*replies.length)
-      ];
 
     }
 
@@ -157,13 +153,13 @@ function buildPrompt(persona,intent){
 
 PERSONA:
 
-Nome: ${persona.label}
+${persona.label}
 
-Função: ${persona.role}
+Função:
+${persona.role}
 
-Tom: ${persona.tone}
-
-Descrição: ${persona.description}
+Tom:
+${persona.tone}
 
 `;
 
@@ -175,8 +171,7 @@ Descrição: ${persona.description}
 
     intentBlock = `
 
-INTENÇÃO DETECTADA:
-
+INTENT DETECTADO:
 ${intent.intent}
 
 `;
@@ -187,73 +182,88 @@ ${intent.intent}
 Você é Nayla, assistente da Nexus Store.
 
 Objetivo:
-
-Ajudar clientes a escolher produtos e montar setups.
+Ajudar clientes a escolher produtos.
 
 Regras:
 
-- Converse de forma natural
-- Não repita respostas
-- Faça perguntas quando necessário
-- Ajude o cliente a decidir
+- Converse como humano
+- Seja consultiva
+- Pergunte orçamento
+- Ajude a decidir
 
 ${personaBlock}
 
 ${intentBlock}
-
-Responda como uma assistente real de loja.
 
 `.trim();
 
 }
 
 /* ===============================
-ROUTER PRINCIPAL
+ROUTER
 =============================== */
 
 export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
 
-  const normalizedMessage = normalizeSlang(message);
+  const text = normalizeSlang(message);
 
   /* ===============================
-  1 CACHE MATCH (RÁPIDO)
+  1 INTENT DETECTION
   =============================== */
 
-  const cachedReply = matchCacheIntent(normalizedMessage);
+  const intent = detectIntent(text);
 
-  if(cachedReply){
+  /* ===============================
+  2 PERSONA
+  =============================== */
 
-    saveTurn(conversationId,"user",normalizedMessage);
-    saveTurn(conversationId,"assistant",cachedReply);
+  const persona = selectPersona(text);
+
+  /* ===============================
+  3 CACHE MATCH KEYWORD
+  =============================== */
+
+  const keywordMatch = matchByKeyword(text);
+
+  if(keywordMatch){
+
+    saveTurn(conversationId,"user",text);
+    saveTurn(conversationId,"assistant",keywordMatch);
 
     return {
-      reply:cachedReply,
+      reply:keywordMatch,
       suggestions:[]
     };
 
   }
 
   /* ===============================
-  2 INTENT MATCHER
+  4 CACHE MATCH INTENT
   =============================== */
 
-  const intent = detectIntent(normalizedMessage);
+  const intentMatch = matchByIntent(intent);
+
+  if(intentMatch){
+
+    saveTurn(conversationId,"user",text);
+    saveTurn(conversationId,"assistant",intentMatch);
+
+    return {
+      reply:intentMatch,
+      suggestions:[]
+    };
+
+  }
 
   /* ===============================
-  3 PERSONA SELECTOR
-  =============================== */
-
-  const persona = selectPersona(normalizedMessage);
-
-  /* ===============================
-  4 OPENAI FALLBACK
+  5 OPENAI FALLBACK
   =============================== */
 
   const history = getHistory(conversationId);
 
-  const input=[
+  const input = [
 
     {
       role:"system",
@@ -264,7 +274,7 @@ export async function routeMessage(message,context={}){
 
     {
       role:"user",
-      content:normalizedMessage
+      content:text
     }
 
   ];
@@ -280,7 +290,6 @@ export async function routeMessage(message,context={}){
       input,
 
       temperature:0.7,
-
       max_output_tokens:220
 
     });
@@ -298,7 +307,7 @@ export async function routeMessage(message,context={}){
 
   }
 
-  saveTurn(conversationId,"user",normalizedMessage);
+  saveTurn(conversationId,"user",text);
   saveTurn(conversationId,"assistant",reply);
 
   return {
