@@ -49,9 +49,7 @@ const MEMORY = new Map();
 const MAX_HISTORY = 8;
 
 function getHistory(id){
-
   return MEMORY.get(id) || [];
-
 }
 
 function saveTurn(id,role,content){
@@ -84,7 +82,7 @@ function normalize(text=""){
 }
 
 /* ===============================
-MATCH CACHE INTENTS
+CACHE MATCH (FORTE)
 =============================== */
 
 function matchCacheIntent(text){
@@ -93,21 +91,49 @@ function matchCacheIntent(text){
 
   for(const item of IA_CACHE){
 
-    if(!item.keywords) continue;
+    let score = 0;
 
-    for(const kw of item.keywords){
+    /* KEYWORDS */
 
-      if(t.includes(normalize(kw))){
+    if(item.keywords){
 
-        const replies = item.replyTemplates;
+      for(const kw of item.keywords){
 
-        if(!replies || !replies.length) continue;
+        const k = normalize(kw);
 
-        return replies[
-          Math.floor(Math.random()*replies.length)
-        ];
+        if(t.includes(k)){
+          score += 3;
+        }
 
       }
+
+    }
+
+    /* USER EXAMPLES */
+
+    if(item.userExamples){
+
+      for(const ex of item.userExamples){
+
+        const e = normalize(ex);
+
+        if(t.includes(e)){
+          score += 5;
+        }
+
+      }
+
+    }
+
+    if(score > 0){
+
+      const replies = item.replyTemplates;
+
+      if(!replies || !replies.length) continue;
+
+      return replies[
+        Math.floor(Math.random()*replies.length)
+      ];
 
     }
 
@@ -118,7 +144,7 @@ function matchCacheIntent(text){
 }
 
 /* ===============================
-BUILD PROMPT
+PROMPT
 =============================== */
 
 function buildPrompt(persona,intent){
@@ -129,21 +155,15 @@ function buildPrompt(persona,intent){
 
     personaBlock = `
 
-PERSONA ATIVA:
+PERSONA:
 
 Nome: ${persona.label}
 
 Função: ${persona.role}
 
+Tom: ${persona.tone}
+
 Descrição: ${persona.description}
-
-Tom de voz: ${persona.tone}
-
-Estilo de comunicação:
-${(persona.communicationStyle||[]).join("\n")}
-
-Comportamento esperado:
-${(persona.behavior||[]).join("\n")}
 
 `;
 
@@ -155,11 +175,9 @@ ${(persona.behavior||[]).join("\n")}
 
     intentBlock = `
 
-INTENÇÃO DO USUÁRIO:
+INTENÇÃO DETECTADA:
 
 ${intent.intent}
-
-Contexto detectado a partir das mensagens do usuário.
 
 `;
 
@@ -170,16 +188,14 @@ Você é Nayla, assistente da Nexus Store.
 
 Objetivo:
 
-Ajudar clientes a descobrir produtos, montar setups e resolver dúvidas.
+Ajudar clientes a escolher produtos e montar setups.
 
-Regras importantes:
+Regras:
 
-- Converse naturalmente
-- Entenda frases mal escritas
+- Converse de forma natural
 - Não repita respostas
-- Seja útil e consultiva
-- Faça perguntas quando faltar contexto
-- Ajude o usuário a decidir
+- Faça perguntas quando necessário
+- Ajude o cliente a decidir
 
 ${personaBlock}
 
@@ -202,19 +218,7 @@ export async function routeMessage(message,context={}){
   const normalizedMessage = normalizeSlang(message);
 
   /* ===============================
-  1 INTENT MATCHER
-  =============================== */
-
-  const intent = detectIntent(normalizedMessage);
-
-  /* ===============================
-  2 PERSONA SELECTOR
-  =============================== */
-
-  const persona = selectPersona(normalizedMessage);
-
-  /* ===============================
-  3 CACHE MATCH
+  1 CACHE MATCH (RÁPIDO)
   =============================== */
 
   const cachedReply = matchCacheIntent(normalizedMessage);
@@ -222,7 +226,6 @@ export async function routeMessage(message,context={}){
   if(cachedReply){
 
     saveTurn(conversationId,"user",normalizedMessage);
-
     saveTurn(conversationId,"assistant",cachedReply);
 
     return {
@@ -231,6 +234,18 @@ export async function routeMessage(message,context={}){
     };
 
   }
+
+  /* ===============================
+  2 INTENT MATCHER
+  =============================== */
+
+  const intent = detectIntent(normalizedMessage);
+
+  /* ===============================
+  3 PERSONA SELECTOR
+  =============================== */
+
+  const persona = selectPersona(normalizedMessage);
 
   /* ===============================
   4 OPENAI FALLBACK
@@ -264,7 +279,7 @@ export async function routeMessage(message,context={}){
 
       input,
 
-      temperature:0.8,
+      temperature:0.7,
 
       max_output_tokens:220
 
@@ -284,7 +299,6 @@ export async function routeMessage(message,context={}){
   }
 
   saveTurn(conversationId,"user",normalizedMessage);
-
   saveTurn(conversationId,"assistant",reply);
 
   return {
