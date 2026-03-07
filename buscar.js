@@ -1,37 +1,42 @@
 const API = window.NEXUS_API;
 
-function getToken() {
+let page = 1;
+let loading = false;
+let finished = false;
+let currentQuery = "";
+
+function getToken(){
   return localStorage.getItem("nexus_token") || "";
 }
 
-function parseToken() {
+function parseToken(){
 
-  const token = getToken();
-  if (!token) return null;
+  const token=getToken();
+  if(!token) return null;
 
-  try {
+  try{
     return JSON.parse(atob(token.split(".")[1]));
-  } catch {
+  }catch{
     return null;
   }
 
 }
 
-function getPlan() {
+function getPlan(){
 
-  const user = parseToken();
+  const user=parseToken();
   return (user?.plan || "free").toLowerCase();
 
 }
 
-function getQuery() {
+function getQuery(){
 
-  const url = new URL(window.location.href);
+  const url=new URL(window.location.href);
   return (url.searchParams.get("q") || "").trim();
 
 }
 
-function formatBRL(n) {
+function formatBRL(n){
 
   return Number(n || 0).toLocaleString("pt-BR",{
     style:"currency",
@@ -42,13 +47,13 @@ function formatBRL(n) {
 
 function ensureContainers(){
 
-  let meta = document.getElementById("search-meta");
-  let grid = document.getElementById("results-grid");
-  let fallback = document.getElementById("results");
+  let meta=document.getElementById("search-meta");
+  let grid=document.getElementById("results-grid");
+  let fallback=document.getElementById("results");
 
   if(!meta && fallback){
 
-    meta = document.createElement("div");
+    meta=document.createElement("div");
     meta.id="search-meta";
     meta.className="helper";
 
@@ -60,7 +65,6 @@ function ensureContainers(){
 
     fallback.id="results-grid";
     fallback.classList.add("grid");
-
     grid=fallback;
 
   }
@@ -72,92 +76,86 @@ function ensureContainers(){
 function renderEmpty(meta,grid,q){
 
   if(meta) meta.textContent=`Nenhum produto encontrado para "${q}".`;
-
   if(grid) grid.innerHTML="";
 
 }
 
-function renderProducts(meta,grid,products,q){
+function appendProducts(grid,products){
 
   if(!grid) return;
 
-  if(meta){
+  const html=products.map(p=>{
 
-    meta.textContent=`${products.length} produto(s) encontrado(s) para "${q}".`;
-
-  }
-
-  grid.innerHTML = products.map(p=>{
-
-    const lockBadge = p.blocked
+    const lockBadge=p.blocked
       ? `<span class="badge" style="background:#3a0f16;color:#ffb3bf;">🔒 Bloqueado</span>`
       : `<span class="badge" style="background:#0f2a1b;color:#9ef0b8;">✅ Liberado</span>`;
 
-    const action = p.blocked
+    const action=p.blocked
       ? `<a class="btn btn-outline" href="assinatura.html">Ver planos</a>`
       : `<a class="btn btn-primary" href="produto.html?sku=${encodeURIComponent(p.sku)}">Ver produto</a>`;
 
     return `
 
-      <article class="card soft" style="padding:14px;">
+    <article class="card soft" style="padding:14px;">
 
-        <div style="display:flex;gap:12px;align-items:flex-start;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
 
-          <img
-            src="${p.image || "logo.png"}"
-            alt="${(p.title||"").replace(/"/g,"&quot;")}"
-            style="width:88px;height:88px;object-fit:cover;border-radius:12px;background:#111;"
-          />
+        <img
+          src="${p.image || "logo.png"}"
+          alt="${(p.title||"").replace(/"/g,"&quot;")}"
+          style="width:88px;height:88px;object-fit:cover;border-radius:12px;background:#111;"
+        />
 
-          <div style="flex:1;min-width:0;">
+        <div style="flex:1;min-width:0;">
 
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-              ${lockBadge}
-              <span class="badge">${p.category||"geral"}</span>
-            </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            ${lockBadge}
+            <span class="badge">${p.category||"geral"}</span>
+          </div>
 
-            <h3 style="margin:0 0 6px 0;font-size:18px;">
-              ${p.title||"Produto"}
-            </h3>
+          <h3 style="margin:0 0 6px 0;font-size:18px;">
+            ${p.title||"Produto"}
+          </h3>
 
-            <div class="helper" style="margin-bottom:8px;">
-              ${p.subtitle || p.description || ""}
-            </div>
+          <div class="helper" style="margin-bottom:8px;">
+            ${p.subtitle || p.description || ""}
+          </div>
 
-            <div style="font-weight:1000;font-size:18px;margin-bottom:10px;">
-              ${formatBRL(p.pricePublic ?? p.price)}
-            </div>
+          <div style="font-weight:1000;font-size:18px;margin-bottom:10px;">
+            ${formatBRL(p.pricePublic ?? p.price)}
+          </div>
 
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
 
-              ${action}
+            ${action}
 
-              <!-- TESTE COMPRA -->
-              <button
-                class="btn btn-ghost"
-                type="button"
-                onclick="window.__buyTestProduct('${encodeURIComponent(p.sku)}')"
-              >
-                Testar compra 0,01
-              </button>
-
-            </div>
+            <button
+              class="btn btn-ghost"
+              type="button"
+              onclick="window.__buyTestProduct('${encodeURIComponent(p.sku)}')"
+            >
+              Testar compra 0,01
+            </button>
 
           </div>
 
         </div>
 
-      </article>
+      </div>
+
+    </article>
 
     `;
 
   }).join("");
 
+  grid.insertAdjacentHTML("beforeend",html);
+
 }
 
 window.__buyTestProduct=function(encodedSku){
 
-  const sku=decodeURIComponent(encodedSku||"");
+  const sku=decodeURIComponent(encodedSku || "");
 
   localStorage.setItem("nexus_product_intent",sku);
 
@@ -165,66 +163,106 @@ window.__buyTestProduct=function(encodedSku){
 
 };
 
-async function bootSearch(){
+async function loadProducts(meta,grid){
 
-  const q=getQuery();
-  const plan=getPlan();
+  if(loading || finished) return;
 
-  const {meta,grid}=ensureContainers();
-
-  if(!q){
-
-    if(meta) meta.textContent="Digite algo para pesquisar.";
-
-    if(grid) grid.innerHTML="";
-
-    return;
-
-  }
+  loading=true;
 
   try{
 
-    const headers={};
+    const plan=getPlan();
 
+    const headers={};
     const token=getToken();
 
     if(token){
-
       headers.Authorization=`Bearer ${token}`;
-
     }
 
-    const resp = await fetch(
-      `${API}/products?q=${encodeURIComponent(q)}&plan=${encodeURIComponent(plan)}`,
+    const resp=await fetch(
+      `${API}/products?q=${encodeURIComponent(currentQuery)}&plan=${encodeURIComponent(plan)}&page=${page}&limit=20`,
       {headers}
     );
 
-    const data = await resp.json();
+    const data=await resp.json();
 
-    if(!data.ok || !Array.isArray(data.products)){
-
-      renderEmpty(meta,grid,q);
+    if(!data.ok){
+      finished=true;
       return;
-
     }
 
     if(!data.products.length){
 
-      renderEmpty(meta,grid,q);
+      finished=true;
+
+      if(page===1){
+        renderEmpty(meta,grid,currentQuery);
+      }
+
       return;
 
     }
 
-    renderProducts(meta,grid,data.products,q);
+    appendProducts(grid,data.products);
+
+    if(meta){
+      meta.textContent=`${data.total} produto(s) encontrado(s).`;
+    }
+
+    page++;
 
   }
   catch(err){
 
     console.error(err);
 
-    if(meta) meta.textContent="Erro ao buscar produtos.";
+    if(meta){
+      meta.textContent="Erro ao buscar produtos.";
+    }
 
   }
+
+  loading=false;
+
+}
+
+function initInfiniteScroll(meta,grid){
+
+  window.addEventListener("scroll",()=>{
+
+    const scrollPosition=window.innerHeight + window.scrollY;
+    const threshold=document.body.offsetHeight - 400;
+
+    if(scrollPosition >= threshold){
+      loadProducts(meta,grid);
+    }
+
+  });
+
+}
+
+async function bootSearch(){
+
+  const q=getQuery();
+  currentQuery=q;
+
+  const {meta,grid}=ensureContainers();
+
+  if(!q){
+
+    if(meta) meta.textContent="Digite algo para pesquisar.";
+    return;
+
+  }
+
+  page=1;
+  finished=false;
+  grid.innerHTML="";
+
+  await loadProducts(meta,grid);
+
+  initInfiniteScroll(meta,grid);
 
 }
 
