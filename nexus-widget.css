@@ -7,175 +7,80 @@
   right:16px;
   bottom:16px;
   z-index:9999;
-  font-family:system-ui;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
-/* BOTÃO */
-
 #nexus-ia-fab{
-
-  width:56px;
-  height:56px;
-
+  width:58px;
+  height:58px;
   border-radius:999px;
-
   border:1px solid rgba(255,255,255,.12);
-
-  background:linear-gradient(90deg,#ff2b2b,#ff5c2a);
-
+  background:linear-gradient(135deg,#ff2b2b,#ff5c2a);
   display:flex;
   align-items:center;
   justify-content:center;
-
   cursor:pointer;
-
-  box-shadow:0 18px 40px rgba(0,0,0,.4);
-
+  box-shadow:0 18px 40px rgba(0,0,0,.28);
+  padding:0;
 }
 
-/* PAINEL */
-
 #nexus-ia-panel{
-
-  position:absolute;
-
-  bottom:72px;
-  right:0;
-
-  width:min(380px, calc(100vw - 20px));
-  height:min(520px, calc(100vh - 120px));
-
-  border-radius:18px;
-
-  background:rgba(17,24,39,.95);
-
+  position:fixed;
+  right:16px;
+  bottom:88px;
+  width:min(380px,calc(100vw - 20px));
+  height:min(520px,calc(100vh - 120px));
+  border-radius:24px;
+  background:rgba(17,24,39,.96);
   border:1px solid rgba(148,163,184,.18);
-
   display:none;
-
   flex-direction:column;
-
   overflow:hidden;
-
+  box-shadow:0 22px 55px rgba(0,0,0,.35);
+  backdrop-filter:blur(14px);
 }
 
 #nexus-ia-panel.open{
   display:flex;
 }
 
-/* HEADER */
-
 #nexus-ia-header{
-
-  height:54px;
-
+  height:56px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:0 12px;
-
+  padding:0 14px;
   border-bottom:1px solid rgba(148,163,184,.14);
-
 }
 
 #nexus-ia-title{
   font-weight:900;
-  color:white;
+  font-size:18px;
+  color:#fff;
 }
 
 #nexus-ia-close{
   border:none;
   background:none;
-  color:white;
+  color:#fff;
   cursor:pointer;
+  font-size:18px;
 }
-
-/* BODY */
 
 #nexus-ia-body{
-
   flex:1;
-
   overflow:auto;
-
-  padding:12px;
-
+  padding:14px;
 }
 
-/* FOOTER */
-
 #nexus-ia-footer{
-
   display:flex;
-
   gap:10px;
-
-  padding:10px;
-
+  padding:10px 12px 12px;
   border-top:1px solid rgba(148,163,184,.14);
-
 }
 
 #nexus-ia-input{
-
   flex:1;
-
-  border-radius:12px;
-
-  border:1px solid rgba(148,163,184,.20);
-
-  padding:8px 10px;
-
-  background:rgba(2,6,23,.35);
-
-  color:white;
-
-}
-
-#nexus-ia-send{
-
-  background:linear-gradient(90deg,#ff2b2b,#ff5c2a);
-
-  border:none;
-
-  border-radius:12px;
-
-  padding:8px 14px;
-
-  color:white;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-}
-
-/* MENSAGENS */
-
-.nx-msg{
-  display:flex;
-  margin-bottom:10px;
-}
-
-.nx-msg.user{
-  justify-content:flex-end;
-}
-
-.nx-bubble{
-
-  padding:10px 12px;
-
-  border-radius:14px;
-
-  max-width:80%;
-
-  background:rgba(255,255,255,.05);
-
-  color:white;
-
-}
-
-.nx-msg.user .nx-bubble{
-  background:rgba(255,43,43,.15);
-}
+  border-radius:16px;
+  border:1px solid rgba(148,163,184,.20
