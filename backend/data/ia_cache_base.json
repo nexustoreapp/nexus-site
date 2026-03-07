@@ -419,24 +419,6 @@
 },
 
 {
-"id":"comparar_produtos_2",
-"intent":"product_compare",
-"personaId":"vendedor_amigo",
-"keywords":["comparar","diferença","qual melhor","versus","vs","vale mais"],
-"userExamples":[
-"qual melhor rtx ou rx",
-"qual diferença entre esses dois",
-"vale mais a pena qual",
-"comparar dois produtos"
-],
-"replyTemplates":[
-"Boa pergunta. Comparar produtos ajuda bastante antes de comprar. Você pode me dizer quais modelos está comparando?",
-"Depende muito do uso. Se você me falar os dois modelos eu posso explicar as diferenças.",
-"Consigo te ajudar com isso. Qual exatamente são os dois produtos que você quer comparar?"
-]
-},
-
-{
 "id":"recomendacao_setup",
 "intent":"setup_recommendation",
 "personaId":"gamer_braba",
