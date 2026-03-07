@@ -37,8 +37,18 @@ export function listProducts(req, res) {
     const q = String(req.query.q || "").toLowerCase();
     const plan = String(req.query.plan || "free").toLowerCase();
 
+    const category = String(req.query.category || "").toLowerCase();
+
+    const minPrice = Number(req.query.minPrice || 0);
+    const maxPrice = Number(req.query.maxPrice || 0);
+
+    const sort = String(req.query.sort || "");
+
+    const page = Math.max(Number(req.query.page || 1),1);
+    const limit = Math.min(Math.max(Number(req.query.limit || 20),1),100);
+
     /* ===============================
-       PEGAR EMAIL DO TOKEN (SE EXISTIR)
+       PEGAR EMAIL DO TOKEN
     =============================== */
 
     let userEmail = "guest";
@@ -47,17 +57,22 @@ export function listProducts(req, res) {
 
     if (auth.startsWith("Bearer ")) {
       try {
+
         const token = auth.replace("Bearer ", "");
-        const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString("utf8"));
+        const payload = JSON.parse(
+          Buffer.from(token.split(".")[1], "base64").toString("utf8")
+        );
+
         userEmail = payload.email || "guest";
+
       } catch {}
     }
 
     let products = loadAllProducts();
 
     /* ===============================
-       BUSCA INTELIGENTE
-    ================================ */
+       BUSCA TEXTO
+    =============================== */
 
     if (q) {
 
@@ -79,8 +94,81 @@ export function listProducts(req, res) {
     }
 
     /* ===============================
-       RANDOM BLOCK POR PLANO + USUÁRIO
-    ================================ */
+       FILTRO CATEGORIA
+    =============================== */
+
+    if (category) {
+
+      products = products.filter(p =>
+        String(p.category || "").toLowerCase() === category
+      );
+
+    }
+
+    /* ===============================
+       FILTRO PREÇO
+    =============================== */
+
+    if (minPrice) {
+
+      products = products.filter(p =>
+        Number(p.pricePublic ?? p.price ?? 0) >= minPrice
+      );
+
+    }
+
+    if (maxPrice) {
+
+      products = products.filter(p =>
+        Number(p.pricePublic ?? p.price ?? 0) <= maxPrice
+      );
+
+    }
+
+    /* ===============================
+       ORDENAÇÃO
+    =============================== */
+
+    if (sort === "price_asc") {
+
+      products.sort((a,b)=>
+        Number(a.pricePublic ?? a.price ?? 0) -
+        Number(b.pricePublic ?? b.price ?? 0)
+      );
+
+    }
+
+    if (sort === "price_desc") {
+
+      products.sort((a,b)=>
+        Number(b.pricePublic ?? b.price ?? 0) -
+        Number(a.pricePublic ?? a.price ?? 0)
+      );
+
+    }
+
+    if (sort === "name") {
+
+      products.sort((a,b)=>
+        String(a.title||"").localeCompare(String(b.title||""))
+      );
+
+    }
+
+    const total = products.length;
+
+    /* ===============================
+       PAGINAÇÃO
+    =============================== */
+
+    const start = (page-1)*limit;
+    const end = start + limit;
+
+    products = products.slice(start,end);
+
+    /* ===============================
+       RANDOM BLOCK
+    =============================== */
 
     products = products.map(p => {
 
@@ -98,9 +186,13 @@ export function listProducts(req, res) {
     });
 
     return res.json({
+
       ok: true,
-      total: products.length,
+      total,
+      page,
+      limit,
       products
+
     });
 
   } catch (err) {
@@ -108,8 +200,8 @@ export function listProducts(req, res) {
     console.error(err);
 
     return res.status(500).json({
-      ok: false,
-      error: "PRODUCT_LOAD_ERROR"
+      ok:false,
+      error:"PRODUCT_LOAD_ERROR"
     });
 
   }
@@ -120,37 +212,38 @@ export function listProducts(req, res) {
    PRODUTO POR SKU
 ================================ */
 
-export function getProductBySku(req, res) {
+export function getProductBySku(req,res){
 
-  try {
+  try{
 
-    const { sku } = req.params;
+    const {sku}=req.params;
 
-    const products = loadAllProducts();
+    const products=loadAllProducts();
 
-    const product = products.find(p => p.sku === sku);
+    const product=products.find(p=>p.sku===sku);
 
-    if (!product) {
+    if(!product){
 
       return res.status(404).json({
-        ok: false,
-        error: "PRODUCT_NOT_FOUND"
+        ok:false,
+        error:"PRODUCT_NOT_FOUND"
       });
 
     }
 
     return res.json({
-      ok: true,
+      ok:true,
       product
     });
 
-  } catch (err) {
+  }
+  catch(err){
 
     console.error(err);
 
     return res.status(500).json({
-      ok: false,
-      error: "PRODUCT_ERROR"
+      ok:false,
+      error:"PRODUCT_ERROR"
     });
 
   }
