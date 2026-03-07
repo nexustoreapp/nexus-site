@@ -1,5 +1,11 @@
+// backend/ia/intentMatcher.js
+
 import fs from "fs";
 import path from "path";
+
+/* ===============================
+CACHE
+=============================== */
 
 let INTENT_CACHE = null;
 
@@ -41,7 +47,7 @@ NORMALIZE
 
 function normalize(text=""){
 
-  return text
+  return String(text)
   .toLowerCase()
   .normalize("NFD")
   .replace(/[\u0300-\u036f]/g,"")
@@ -57,75 +63,105 @@ TOKENIZE
 
 function tokenize(text){
 
-  const normalized = normalize(text);
-
-  return normalized.split(" ").filter(Boolean);
+  return normalize(text).split(" ").filter(Boolean);
 
 }
 
 /* ===============================
-SCORE MATCH
+KEYWORD SCORE
+=============================== */
+
+function scoreKeywords(tokens,keywords=[]){
+
+  let score = 0;
+
+  for(const kw of keywords){
+
+    const k = normalize(kw);
+
+    for(const t of tokens){
+
+      if(t === k){
+        score += 4;
+      }
+
+      if(k.includes(t) || t.includes(k)){
+        score += 2;
+      }
+
+    }
+
+  }
+
+  return score;
+
+}
+
+/* ===============================
+EXAMPLE SCORE
+=============================== */
+
+function scoreExamples(message,examples=[]){
+
+  const m = normalize(message);
+
+  let score = 0;
+
+  for(const ex of examples){
+
+    const e = normalize(ex);
+
+    if(m.includes(e)){
+      score += 6;
+    }
+
+  }
+
+  return score;
+
+}
+
+/* ===============================
+SIGNAL SCORE
+=============================== */
+
+function scoreSignals(tokens,signals=[]){
+
+  let score = 0;
+
+  for(const s of signals){
+
+    const sig = normalize(s);
+
+    for(const t of tokens){
+
+      if(sig.includes(t) || t.includes(sig)){
+        score += 3;
+      }
+
+    }
+
+  }
+
+  return score;
+
+}
+
+/* ===============================
+INTENT SCORE
 =============================== */
 
 function scoreIntent(message,intent){
 
-  const text = normalize(message);
-
-  const tokens = tokenize(text);
+  const tokens = tokenize(message);
 
   let score = 0;
 
-  /* keywords */
+  score += scoreKeywords(tokens,intent.keywords || []);
 
-  if(intent.keywords){
+  score += scoreExamples(message,intent.userExamples || []);
 
-    for(const kw of intent.keywords){
-
-      const k = normalize(kw);
-
-      if(text.includes(k)){
-        score += 4;
-      }
-
-    }
-
-  }
-
-  /* exemplos */
-
-  if(intent.userExamples){
-
-    for(const ex of intent.userExamples){
-
-      const e = normalize(ex);
-
-      if(text.includes(e)){
-        score += 6;
-      }
-
-    }
-
-  }
-
-  /* token match */
-
-  if(intent.keywords){
-
-    for(const token of tokens){
-
-      for(const kw of intent.keywords){
-
-        const k = normalize(kw);
-
-        if(token === k){
-          score += 2;
-        }
-
-      }
-
-    }
-
-  }
+  score += scoreSignals(tokens,intent.activationSignals || []);
 
   return score;
 
@@ -159,7 +195,7 @@ export function detectIntent(message){
 
   }
 
-  if(bestScore < 3){
+  if(bestScore <= 0){
     return null;
   }
 
