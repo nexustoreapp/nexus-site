@@ -1,3 +1,5 @@
+// backend/services/iaRouter.js
+
 import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
@@ -63,7 +65,10 @@ const SLANG_MAP = {
   notebook:["laptop"],
   comprar:["pegar","adquirir"],
   oi:["eae","fala","salve","opa","yo"],
-  obrigado:["valeu","tmj"]
+  obrigado:["valeu","tmj"],
+  saber:["qro","qro saber","qra","qria","queria","quero saber"],
+  nao:["n","num","naum"],
+  quero:["qro","qru","qero"]
 
 };
 
@@ -88,7 +93,7 @@ function normalizeSlang(text){
 }
 
 /* ===============================
-INTENT RÁPIDO
+INTENTS RÁPIDOS
 =============================== */
 
 const FAST_INTENTS = [
@@ -96,7 +101,7 @@ const FAST_INTENTS = [
 {
 keywords:["oi","ola","bom dia","boa tarde","boa noite"],
 reply:[
-"Oi! Eu sou a Nayla 👋 Como posso ajudar?",
+"Oi! Eu sou a Nayla 👋 Como posso te ajudar hoje?",
 "E aí! 👋 Sou a Nayla da Nexus. O que você procura hoje?"
 ]
 },
@@ -117,7 +122,7 @@ MEMÓRIA
 
 const MEMORY = new Map();
 
-const MAX_TURNS = 6;
+const MAX_TURNS = 8;
 
 function getHistory(id){
 
@@ -135,52 +140,6 @@ function saveTurn(id,role,content){
     id,
     h.slice(-MAX_TURNS*2)
   );
-
-}
-
-/* ===============================
-BUSCA CATÁLOGO
-=============================== */
-
-function scoreMatch(query,item){
-
-  const q = normalize(query);
-
-  const hay =
-    normalize(item.title||"") +
-    " " +
-    normalize(item.subtitle||"") +
-    " " +
-    normalize((item.tags||[]).join(" "));
-
-  const words = q.split(" ").filter(Boolean);
-
-  let hits = 0;
-
-  for(const w of words){
-
-    if(w.length<2) continue;
-
-    if(hay.includes(w)) hits++;
-
-  }
-
-  if(hay.includes(q)) hits+=3;
-
-  return hits;
-
-}
-
-function pickCatalogMatches(message,limit=3){
-
-  const catalog = loadCatalog();
-
-  return catalog
-  .map(p=>({p,s:scoreMatch(message,p)}))
-  .filter(x=>x.s>0)
-  .sort((a,b)=>b.s-a.s)
-  .slice(0,limit)
-  .map(x=>x.p);
 
 }
 
@@ -214,28 +173,23 @@ function buildSystemPrompt(){
 return `
 Você é Nayla, assistente da Nexus Store.
 
-Objetivo:
-
-Ajudar clientes a escolher produtos.
+Seu trabalho é conversar naturalmente com o usuário e ajudar ele a descobrir o que quer comprar.
 
 Regras:
 
-- Fale de forma natural.
 - Entenda frases mal escritas.
-- Nunca repita a mesma frase várias vezes.
-- Se o usuário estiver perdido, sugira ideias.
+- Nunca repita exatamente a mesma frase.
+- Se o usuário estiver indeciso, ajude ele a descobrir o que quer.
+- Seja natural, como uma pessoa conversando.
 
-Exemplo de ajuda:
+Exemplo:
 
-"Se você quer um PC, posso sugerir:
+Usuário: "quero algo pra programar"
 
-• PC gamer
-• PC para estudo
-• PC custo-benefício
+Resposta:
+"Boa! Para programar geralmente um PC com bastante RAM e SSD ajuda bastante. Você prefere notebook ou computador de mesa?"
 
-Ou podemos escolher peça por peça."
-
-Sempre seja amigável.
+Sempre mantenha conversa fluida.
 `.trim();
 
 }
@@ -297,7 +251,7 @@ export async function routeMessage(message,context={}){
 
     return {
       reply:
-"Legal! Você quer montar um PC ou comprar um já pronto?\n\nPosso te ajudar com:\n\n• PC gamer\n• PC para trabalho\n• PC custo-benefício",
+"Beleza! Você quer um PC mais para **programação**, **jogos** ou **uso geral**?\n\nSe quiser, posso também sugerir algumas configurações boas.",
       suggestions:[]
     };
 
@@ -307,25 +261,13 @@ export async function routeMessage(message,context={}){
 
     return {
       reply:
-"Boa! Placa de vídeo é para jogar, trabalhar ou os dois?",
+"Boa! Você está procurando uma placa de vídeo para **jogar**, **trabalhar** ou os dois?",
       suggestions:[]
     };
 
   }
 
   const history = getHistory(conversationId);
-
-  const matches = pickCatalogMatches(text,3);
-
-  let catalogBlock="";
-
-  if(matches.length){
-
-    catalogBlock = matches
-    .map(p=>`${p.title}`)
-    .join("\n");
-
-  }
 
   const input=[
 
@@ -337,22 +279,32 @@ export async function routeMessage(message,context={}){
 
   ];
 
-  const resp = await client.responses.create({
+  let reply="";
 
-    model:"gpt-4o-mini",
+  try{
 
-    input,
+    const resp = await client.responses.create({
 
-    temperature:0.7,
+      model:"gpt-4o-mini",
 
-    max_output_tokens:200
+      input,
 
-  });
+      temperature:0.8,
 
-  const reply =
-  resp.output_text?.trim()
-  ||
-  "Pode explicar um pouco melhor o que você quer encontrar?";
+      max_output_tokens:220
+
+    });
+
+    reply =
+      resp.output_text?.trim()
+      ||
+      "Pode explicar um pouco melhor o que você procura?";
+
+  }catch{
+
+    reply = "Pode explicar um pouco melhor o que você procura?";
+
+  }
 
   saveTurn(conversationId,"user",text);
 
