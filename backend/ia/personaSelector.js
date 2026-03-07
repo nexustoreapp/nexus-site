@@ -1,9 +1,30 @@
 import personas from "../data/personas.json";
+import intents from "../data/intents.json";
 
-export function getPersona(personaId){
+export function selectPersona(message){
 
-if(!personaId) return null;
+const text = String(message||"").toLowerCase();
 
-return personas.find(p=>p.id===personaId) || null;
+for(const intent of intents){
+
+for(const kw of intent.keywords){
+
+if(text.includes(kw)){
+
+const persona = personas.find(
+p=>p.id===intent.personaId
+);
+
+if(persona){
+return persona;
+}
+
+}
+
+}
+
+}
+
+return null;
 
 }
