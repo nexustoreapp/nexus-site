@@ -1,172 +1,200 @@
 /* =========================================================
-   NEXUS IA WIDGET (flutuante + tema Nexus)
-   - Botão flutuante (draggable)
-   - Painel com header (draggable)
+   NEXUS IA WIDGET
    ========================================================= */
 
-:root{
-  --nx-red:#ff2b2b;
-  --nx-red2:#ff5c2a;
-  --nx-bg:#0b1220;
-  --nx-panel:rgba(17,24,39,.92);
-  --nx-stroke:rgba(148,163,184,.18);
-  --nx-text:#e5e7eb;
-  --nx-muted:#9ca3af;
+#nexus-ia-widget{
+
+  position:fixed;
+  right:16px;
+  bottom:16px;
+
+  z-index:9999;
+
+  font-family:system-ui;
+
 }
 
-#nexus-ia-widget{
-  position: fixed;
-  z-index: 9999;
-  /* posição controlada via JS (left/top). */
-  left: auto;
-  top: auto;
-  right: 16px;
-  bottom: 16px;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-}
+/* BOTÃO */
 
 #nexus-ia-fab{
-  width: 56px;
-  height: 56px;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--nx-red), var(--nx-red2));
-  color: #fff;
+
+  width:56px;
+  height:56px;
+
+  border-radius:18px;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  background:linear-gradient(90deg,#ff2b2b,#ff5c2a);
+
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor: grab;
-  box-shadow: 0 18px 40px rgba(0,0,0,.40);
-  user-select:none;
-  touch-action:none;
+
+  cursor:pointer;
+
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+
 }
-#nexus-ia-fab:active{cursor:grabbing}
-#nexus-ia-fab .dot{
-  width: 10px;
-  height: 10px;
-  background: rgba(255,255,255,.95);
-  border-radius: 999px;
-  box-shadow: 0 0 0 6px rgba(255,255,255,.18);
-}
+
+/* PAINEL */
 
 #nexus-ia-panel{
-  width: min(420px, calc(100vw - 24px));
-  height: 520px;
-  border: 1px solid var(--nx-stroke);
-  border-radius: 18px;
-  overflow:hidden;
-  background: var(--nx-panel);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 22px 55px rgba(0,0,0,.45);
+
+  position:absolute;
+
+  bottom:70px;
+
+  right:0;
+
+  width:380px;
+  height:520px;
+
+  border-radius:18px;
+
+  background:rgba(17,24,39,.95);
+
+  border:1px solid rgba(148,163,184,.18);
+
   display:none;
+
+  flex-direction:column;
+
+  overflow:hidden;
+
 }
 
-#nexus-ia-panel.open{display:block}
+#nexus-ia-panel.open{
+
+  display:flex;
+
+}
+
+/* HEADER */
 
 #nexus-ia-header{
-  height: 54px;
+
+  height:54px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding: 0 12px;
-  border-bottom: 1px solid rgba(148,163,184,.14);
-  background: rgba(15,23,42,.92);
-  user-select:none;
-  cursor: grab;
-  touch-action:none;
+
+  padding:0 12px;
+
+  border-bottom:1px solid rgba(148,163,184,.14);
+
 }
-#nexus-ia-header:active{cursor:grabbing}
 
 #nexus-ia-title{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  color: var(--nx-text);
-  font-weight: 900;
-}
-#nexus-ia-badge{
-  font-size: 11px;
-  font-weight: 900;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  color: rgba(229,231,235,.92);
+
+  font-weight:900;
+  color:white;
+
 }
 
 #nexus-ia-close{
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  border: 1px solid rgba(148,163,184,.24);
-  background: rgba(255,255,255,.03);
-  color: var(--nx-text);
+
+  border:none;
+  background:none;
+  color:white;
+
   cursor:pointer;
+
 }
+
+/* BODY */
 
 #nexus-ia-body{
-  height: calc(520px - 54px - 58px);
-  padding: 12px;
+
+  flex:1;
+
   overflow:auto;
+
+  padding:12px;
+
 }
 
-.nx-msg{
-  margin-bottom: 10px;
-  display:flex;
-}
-.nx-msg.user{justify-content:flex-end}
-.nx-bubble{
-  max-width: 85%;
-  padding: 10px 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(148,163,184,.14);
-  background: rgba(255,255,255,.03);
-  color: rgba(229,231,235,.95);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.nx-msg.user .nx-bubble{
-  background: rgba(255,43,43,.12);
-  border-color: rgba(255,43,43,.25);
-}
+/* FOOTER */
 
 #nexus-ia-footer{
-  height: 58px;
+
   display:flex;
-  gap: 10px;
-  align-items:center;
-  padding: 10px 12px;
-  border-top: 1px solid rgba(148,163,184,.14);
-  background: rgba(2,6,23,.32);
+
+  gap:10px;
+
+  padding:10px;
+
+  border-top:1px solid rgba(148,163,184,.14);
+
 }
 
 #nexus-ia-input{
-  flex: 1;
-  height: 40px;
-  border-radius: 14px;
-  border: 1px solid rgba(148,163,184,.20);
-  background: rgba(2,6,23,.35);
-  color: var(--nx-text);
-  padding: 0 12px;
-  outline:none;
-}
-#nexus-ia-input:focus{
-  border-color: rgba(255,43,43,.55);
-  box-shadow: 0 0 0 4px rgba(255,43,43,.12);
+
+  flex:1;
+
+  border-radius:12px;
+
+  border:1px solid rgba(148,163,184,.20);
+
+  padding:8px 10px;
+
+  background:rgba(2,6,23,.35);
+
+  color:white;
+
 }
 
 #nexus-ia-send{
-  height: 40px;
-  padding: 0 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: linear-gradient(90deg, var(--nx-red), var(--nx-red2));
-  color: #fff;
-  font-weight: 900;
+
+  background:linear-gradient(90deg,#ff2b2b,#ff5c2a);
+
+  border:none;
+
+  border-radius:12px;
+
+  padding:8px 14px;
+
+  color:white;
+
+  font-weight:900;
+
   cursor:pointer;
+
 }
 
-@media (max-width: 520px){
-  #nexus-ia-panel{height: 460px}
-  #nexus-ia-body{height: calc(460px - 54px - 58px)}
+/* MENSAGENS */
+
+.nx-msg{
+
+  display:flex;
+
+  margin-bottom:10px;
+
+}
+
+.nx-msg.user{
+
+  justify-content:flex-end;
+
+}
+
+.nx-bubble{
+
+  padding:10px 12px;
+
+  border-radius:14px;
+
+  max-width:80%;
+
+  background:rgba(255,255,255,.05);
+
+  color:white;
+
+}
+
+.nx-msg.user .nx-bubble{
+
+  background:rgba(255,43,43,.15);
+
 }
