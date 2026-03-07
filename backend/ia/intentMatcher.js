@@ -4,7 +4,7 @@ import path from "path";
 let INTENT_CACHE = null;
 
 /* ===============================
-LOAD INTENTS
+LOAD INTENTS (CACHE GLOBAL)
 =============================== */
 
 function loadIntents(){
@@ -15,7 +15,7 @@ function loadIntents(){
 
   try{
 
-    const filePath = path.resolve("backend/data/intents.json");
+    const filePath = path.resolve("backend/data/ia_cache_base.json");
 
     const raw = fs.readFileSync(filePath,"utf-8");
 
@@ -27,7 +27,7 @@ function loadIntents(){
 
   }catch(err){
 
-    console.error("Erro carregando intents:",err);
+    console.error("Intent load error:",err);
 
     return [];
 
@@ -57,7 +57,9 @@ TOKENIZE
 
 function tokenize(text){
 
-  return normalize(text).split(" ").filter(Boolean);
+  return normalize(text)
+    .split(" ")
+    .filter(Boolean);
 
 }
 
@@ -67,11 +69,15 @@ SCORE INTENT
 
 function scoreIntent(message,intent){
 
-  const text = normalize(message);
-
   let score = 0;
 
-  /* keywords */
+  const text = normalize(message);
+
+  const tokens = tokenize(message);
+
+  /* ===============================
+  KEYWORDS
+  =============================== */
 
   if(intent.keywords){
 
@@ -80,14 +86,26 @@ function scoreIntent(message,intent){
       const k = normalize(kw);
 
       if(text.includes(k)){
-        score += 3;
+        score += 6;
+      }
+
+      const kwTokens = tokenize(k);
+
+      for(const t of tokens){
+
+        if(kwTokens.includes(t)){
+          score += 2;
+        }
+
       }
 
     }
 
   }
 
-  /* user examples */
+  /* ===============================
+  USER EXAMPLES
+  =============================== */
 
   if(intent.userExamples){
 
@@ -96,27 +114,39 @@ function scoreIntent(message,intent){
       const e = normalize(ex);
 
       if(text.includes(e)){
-        score += 5;
+        score += 10;
       }
 
     }
 
   }
 
-  /* activation signals */
+  /* ===============================
+  ACTIVATION SIGNALS
+  =============================== */
 
   if(intent.activationSignals){
 
-    for(const s of intent.activationSignals){
+    for(const sig of intent.activationSignals){
 
-      const sig = normalize(s);
+      const s = normalize(sig);
 
-      if(text.includes(sig)){
-        score += 4;
+      if(text.includes(s)){
+        score += 8;
       }
 
     }
 
+  }
+
+  /* ===============================
+  NUMBERS (orçamento etc)
+  =============================== */
+
+  const numberMatch = message.match(/[0-9]+/g);
+
+  if(numberMatch && intent.intent.includes("budget")){
+    score += 6;
   }
 
   return score;
@@ -124,7 +154,7 @@ function scoreIntent(message,intent){
 }
 
 /* ===============================
-INTENT DETECTOR
+BEST INTENT MATCH
 =============================== */
 
 export function detectIntent(message){
@@ -151,9 +181,7 @@ export function detectIntent(message){
 
   }
 
-  /* threshold mínimo */
-
-  if(bestScore < 3){
+  if(bestScore < 4){
     return null;
   }
 
