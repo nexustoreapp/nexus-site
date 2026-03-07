@@ -1,7 +1,6 @@
 // nexus-widget.js
 // =========================================================
-// NEXUS IA (widget flutuante)
-// botão redondo + balão com 3 pontinhos
+// NEXUS IA WIDGET
 // =========================================================
 
 (function () {
@@ -18,20 +17,7 @@
     wrap.innerHTML = `
 
       <button id="nexus-ia-fab" title="Falar com Nayla">
-
-        <!-- BALÃO COM 3 PONTINHOS -->
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-
-          <circle cx="9" cy="11" r="1.2" fill="white"/>
-          <circle cx="12" cy="11" r="1.2" fill="white"/>
-          <circle cx="15" cy="11" r="1.2" fill="white"/>
-        </svg>
-
+        💬
       </button>
 
       <div id="nexus-ia-panel">
@@ -79,7 +65,6 @@
       bubble.textContent = text;
 
       row.appendChild(bubble);
-
       body.appendChild(row);
 
       body.scrollTop = body.scrollHeight;
@@ -89,16 +74,16 @@
     async function send(){
 
       const msg = (input.value || "").trim();
-
       if(!msg) return;
 
-      input.value="";
+      input.value = "";
 
       addMessage(msg,"user");
 
-      addMessage("Digitando...","bot");
-
-      const typing = body.lastChild;
+      const typing = document.createElement("div");
+      typing.className="nx-msg bot";
+      typing.innerHTML=`<div class="nx-bubble">Digitando...</div>`;
+      body.appendChild(typing);
 
       try{
 
@@ -129,7 +114,6 @@
       catch(err){
 
         typing.remove();
-
         addMessage("Erro de rede.","bot");
 
       }
@@ -161,13 +145,9 @@
   }
 
   if(document.readyState==="loading"){
-
     document.addEventListener("DOMContentLoaded",createWidget);
-
   }else{
-
     createWidget();
-
   }
 
 })();
