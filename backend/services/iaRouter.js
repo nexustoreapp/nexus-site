@@ -1,29 +1,28 @@
-// backend/services/iaRouter.js
-
 import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 
-import { detectIntent } from "../services/intentMatcher.js";
-import { selectPersona } from "../services/personaSelector.js";
+import { detectIntent } from "../ia/intentMatcher.js";
+import { selectPersona } from "../ia/personaSelector.js";
+import { normalizeSlang } from "../ia/slangNormalizer.js";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
 /* ===============================
-CARREGAMENTO GLOBAL (1 VEZ)
+CACHE GLOBAL
 =============================== */
 
 let IA_CACHE = [];
 
 try{
 
-  const iaCachePath = path.resolve("backend/data/ia_cache_base.json");
+  const cachePath = path.resolve("backend/data/ia_cache_base.json");
 
-  if(fs.existsSync(iaCachePath)){
+  if(fs.existsSync(cachePath)){
 
-    const raw = fs.readFileSync(iaCachePath,"utf-8");
+    const raw = fs.readFileSync(cachePath,"utf-8");
     const json = JSON.parse(raw);
 
     if(Array.isArray(json)){
@@ -34,35 +33,22 @@ try{
 
 }catch(err){
 
-  console.error("Erro carregando cache IA:",err);
+  console.error("Erro carregando IA cache:",err);
 
 }
 
 /* ===============================
-NORMALIZAÇÃO
-=============================== */
-
-function normalize(text=""){
-
-  return text
-  .toLowerCase()
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g,"")
-  .replace(/[^a-z0-9\s]/g," ")
-  .replace(/\s+/g," ")
-  .trim();
-
-}
-
-/* ===============================
-MEMÓRIA
+MEMÓRIA CONVERSA
 =============================== */
 
 const MEMORY = new Map();
-const MAX_TURNS = 8;
+
+const MAX_TURNS = 10;
 
 function getHistory(id){
+
   return MEMORY.get(id) || [];
+
 }
 
 function saveTurn(id,role,content){
@@ -79,22 +65,18 @@ function saveTurn(id,role,content){
 }
 
 /* ===============================
-MATCH INTENT CACHE
+MATCH CACHE
 =============================== */
 
 function matchCacheIntent(text){
 
-  const t = normalize(text);
+  const lower = text.toLowerCase();
 
   for(const item of IA_CACHE){
 
-    if(!item.keywords) continue;
-
     for(const kw of item.keywords){
 
-      const k = normalize(kw);
-
-      if(t.includes(k)){
+      if(lower.includes(kw.toLowerCase())){
 
         const replies = item.replyTemplates;
 
@@ -115,98 +97,97 @@ function matchCacheIntent(text){
 }
 
 /* ===============================
-PROMPT BUILDER
+PROMPT SYSTEM
 =============================== */
 
 function buildSystemPrompt(persona){
 
-  let personaBlock = "";
-
-  if(persona){
-
-    personaBlock = `
+  const personaContext = persona
+  ? `
 Persona ativa: ${persona.label}
 
-Função:
-${persona.description}
+Função: ${persona.role}
+
+Descrição: ${persona.description}
 
 Tom:
 ${persona.tone}
 
 Estilo de comunicação:
-${persona.communicationStyle?.join(", ") || ""}
-`;
+${(persona.communicationStyle || []).join(", ")}
 
-  }
+Comportamento esperado:
+${(persona.behavior || []).join(", ")}
+
+`
+  : "";
 
 return `
 Você é Nayla, assistente da Nexus Store.
 
-${personaBlock}
-
-Objetivo:
-Ajudar clientes a descobrir produtos e tomar decisões.
+${personaContext}
 
 Regras:
 
+- Converse como uma pessoa real
 - Entenda frases mal escritas
 - Seja natural
-- Não repita respostas
-- Faça perguntas quando necessário
-- Ajude o cliente a decidir
+- Ajude o cliente a descobrir o que quer
+- Nunca responda de forma robótica
+- Nunca repita a mesma frase
 
-Exemplo:
-
-Usuário: quero algo para programar
-
-Resposta:
-"Boa! Para programar geralmente notebooks com bastante RAM e SSD ajudam bastante. Você prefere notebook ou PC?"
-
-Converse naturalmente.
+Seu objetivo é ajudar o usuário a comprar ou descobrir produtos.
 `.trim();
 
 }
 
 /* ===============================
-ROUTER PRINCIPAL
+ROUTER
 =============================== */
 
 export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
 
-  const text = normalize(message);
-
   /* ===============================
-  CACHE INTENT
+  NORMALIZAÇÃO
   =============================== */
 
-  const cacheReply = matchCacheIntent(text);
-
-  if(cacheReply){
-
-    return {
-      reply: cacheReply,
-      suggestions: []
-    };
-
-  }
+  const text = normalizeSlang(message);
 
   /* ===============================
-  INTENT DETECTOR
+  INTENT MATCHER
   =============================== */
 
   const intent = detectIntent(text);
 
-  if(intent && intent.replyTemplates){
+  if(intent){
 
-    const reply =
-      intent.replyTemplates[
-        Math.floor(Math.random()*intent.replyTemplates.length)
-      ];
+    const replies = intent.replyTemplates;
 
-    return {
-      reply,
+    if(replies && replies.length){
+
+      return{
+        reply: replies[
+          Math.floor(Math.random()*replies.length)
+        ],
+        suggestions:[]
+      };
+
+    }
+
+  }
+
+  /* ===============================
+  CACHE BASE MATCH
+  =============================== */
+
+  const cached = matchCacheIntent(text);
+
+  if(cached){
+
+    return{
+      reply:cached,
       suggestions:[]
     };
 
@@ -219,18 +200,24 @@ export async function routeMessage(message,context={}){
   const persona = selectPersona(text);
 
   /* ===============================
-  HISTÓRICO
+  OPENAI IA
   =============================== */
 
   const history = getHistory(conversationId);
 
-  const input = [
+  const input=[
 
-    { role:"system", content: buildSystemPrompt(persona) },
+    {
+      role:"system",
+      content: buildSystemPrompt(persona)
+    },
 
     ...history,
 
-    { role:"user", content: text }
+    {
+      role:"user",
+      content:text
+    }
 
   ];
 
@@ -244,9 +231,9 @@ export async function routeMessage(message,context={}){
 
       input,
 
-      temperature:0.7,
+      temperature:0.85,
 
-      max_output_tokens:240
+      max_output_tokens:260
 
     });
 
@@ -257,16 +244,20 @@ export async function routeMessage(message,context={}){
 
   }catch(err){
 
-    console.error("Erro IA:",err);
+    console.error("Erro OpenAI:",err);
 
-    reply = "Pode explicar melhor o que você procura?";
+    reply="Pode explicar melhor o que você procura?";
 
   }
+
+  /* ===============================
+  MEMÓRIA
+  =============================== */
 
   saveTurn(conversationId,"user",text);
   saveTurn(conversationId,"assistant",reply);
 
-  return {
+  return{
     reply,
     suggestions:[]
   };
