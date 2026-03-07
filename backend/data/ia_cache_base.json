@@ -419,7 +419,7 @@
 },
 
 {
-"id":"comparar_produtos",
+"id":"comparar_produtos_2",
 "intent":"product_compare",
 "personaId":"vendedor_amigo",
 "keywords":["comparar","diferença","qual melhor","versus","vs","vale mais"],
