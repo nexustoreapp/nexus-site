@@ -2,307 +2,365 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+/* ===============================
+CACHE CATÁLOGO
+=============================== */
 
 let CATALOG_CACHE = null;
 
 function loadCatalog() {
+
   if (CATALOG_CACHE) return CATALOG_CACHE;
 
   try {
+
     const filePath = path.resolve("backend/data/catalogo.json");
-    const raw = fs.readFileSync(filePath, "utf-8");
+
+    const raw = fs.readFileSync(filePath,"utf-8");
+
     const json = JSON.parse(raw);
+
     CATALOG_CACHE = Array.isArray(json) ? json : [];
+
     return CATALOG_CACHE;
+
   } catch {
+
     return [];
+
   }
+
 }
 
+/* ===============================
+NORMALIZAÇÃO
+=============================== */
+
+function normalize(text=""){
+
+  return text
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-z0-9\s]/g," ")
+  .replace(/\s+/g," ")
+  .trim();
+
+}
+
+/* ===============================
+GÍRIAS
+=============================== */
+
 const SLANG_MAP = {
-  oi: ["eae", "salve", "opa", "yo", "sup", "fala", "fala ai", "fala aí"],
-  obrigado: ["valeu", "tmj", "brigado"],
-  problema: ["bug", "deu ruim", "zoado", "travou"],
-  comprar: ["pegar", "adquirir"]
+
+  pc:["computador","setup"],
+  placa:["gpu","placa de video","placa de vídeo"],
+  notebook:["laptop"],
+  comprar:["pegar","adquirir"],
+  oi:["eae","fala","salve","opa","yo"],
+  obrigado:["valeu","tmj"]
+
 };
 
-function normalizeSlang(text) {
-  let t = String(text || "").toLowerCase();
+function normalizeSlang(text){
 
-  for (const key in SLANG_MAP) {
-    for (const slang of SLANG_MAP[key]) {
-      const escaped = slang.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const rg = new RegExp(`(^|\\s)${escaped}(?=\\s|$)`, "g");
-      t = t.replace(rg, (m, prefix) => `${prefix}${key}`);
+  let t = normalize(text);
+
+  for(const key in SLANG_MAP){
+
+    for(const slang of SLANG_MAP[key]){
+
+      const rg = new RegExp(`\\b${slang}\\b`,"g");
+
+      t = t.replace(rg,key);
+
     }
+
   }
 
   return t;
+
 }
+
+/* ===============================
+INTENT RÁPIDO
+=============================== */
 
 const FAST_INTENTS = [
-  {
-    keywords: ["oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"],
-    reply: [
-      "E aí! 👋 Eu sou a Nayla da Nexus. Como posso ajudar você hoje?",
-      "Oi! Seja bem-vindo(a) à Nexus Store. Quer ajuda com produto ou planos?"
-    ]
-  },
-  {
-    keywords: ["obrigado", "obrigada"],
-    reply: [
-      "Imagina! 😊 Qualquer coisa é só chamar.",
-      "Tamo junto! Se precisar de algo mais é só falar."
-    ]
-  },
-  {
-    keywords: ["planos", "assinatura", "nexus+"],
-    reply: [
-      "A Nexus tem planos Core, Hyper e Omega. Cada um libera mais vantagens e descontos. Quer que eu te explique qual vale mais a pena pra você?"
-    ]
-  }
+
+{
+keywords:["oi","ola","bom dia","boa tarde","boa noite"],
+reply:[
+"Oi! Eu sou a Nayla 👋 Como posso ajudar?",
+"E aí! 👋 Sou a Nayla da Nexus. O que você procura hoje?"
+]
+},
+
+{
+keywords:["obrigado","valeu"],
+reply:[
+"Imagina! Qualquer coisa só chamar.",
+"Tamo junto! Se precisar de algo mais é só falar."
+]
+}
+
 ];
 
+/* ===============================
+MEMÓRIA
+=============================== */
+
 const MEMORY = new Map();
-const MAX_TURNS = 4;
-const MAX_USER_CHARS = 800;
 
-function normalize(s = "") {
-  return s
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+const MAX_TURNS = 6;
+
+function getHistory(id){
+
+  return MEMORY.get(id) || [];
+
 }
 
-function planRank(plan = "free") {
-  const p = String(plan).toLowerCase();
-  if (p === "omega") return 4;
-  if (p === "hyper") return 3;
-  if (p === "core") return 2;
-  return 1;
+function saveTurn(id,role,content){
+
+  const h = getHistory(id);
+
+  h.push({role,content});
+
+  MEMORY.set(
+    id,
+    h.slice(-MAX_TURNS*2)
+  );
+
 }
 
-function isAllowedByPlan(product, plan = "free") {
-  const userRank = planRank(plan);
-  const tier = String(product.accessTier || "free").toLowerCase();
-  const required = planRank(tier);
-  return userRank >= required;
-}
+/* ===============================
+BUSCA CATÁLOGO
+=============================== */
 
-function formatMoneyBRL(n) {
-  try {
-    return Number(n).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    });
-  } catch {
-    return `R$ ${n}`;
-  }
-}
+function scoreMatch(query,item){
 
-function scoreMatch(query, item) {
   const q = normalize(query);
-  if (!q) return 0;
 
   const hay =
-    normalize(item.title || "") +
+    normalize(item.title||"") +
     " " +
-    normalize(item.subtitle || "") +
+    normalize(item.subtitle||"") +
     " " +
-    normalize((item.tags || []).join(" "));
+    normalize((item.tags||[]).join(" "));
 
   const words = q.split(" ").filter(Boolean);
+
   let hits = 0;
 
-  for (const w of words) {
-    if (w.length < 2) continue;
-    if (hay.includes(w)) hits++;
+  for(const w of words){
+
+    if(w.length<2) continue;
+
+    if(hay.includes(w)) hits++;
+
   }
 
-  if (hay.includes(q)) hits += 3;
+  if(hay.includes(q)) hits+=3;
 
   return hits;
+
 }
 
-function pickCatalogMatches(message, limit = 4) {
+function pickCatalogMatches(message,limit=3){
+
   const catalog = loadCatalog();
 
   return catalog
-    .map((p) => ({ p, s: scoreMatch(message, p) }))
-    .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, limit)
-    .map((x) => x.p);
+  .map(p=>({p,s:scoreMatch(message,p)}))
+  .filter(x=>x.s>0)
+  .sort((a,b)=>b.s-a.s)
+  .slice(0,limit)
+  .map(x=>x.p);
+
 }
 
-function buildSystemPrompt({ plan }) {
-  return `
-Você é Nayla, assistente da Nexus Store.
+/* ===============================
+INTENT SIMPLES
+=============================== */
 
-Função:
-Ajudar clientes a encontrar produtos e responder dúvidas sobre tecnologia.
+function detectSimpleIntent(text){
 
-Regras:
-- Responda de forma clara, direta e humana.
-- Evite respostas longas.
-- Se o usuário pediu recomendação, ofereça até 3 opções.
-- Não invente estoque, frete ou prazo.
-- Se faltar informação, diga que precisa verificar.
-
-Plano do usuário: ${plan}
-
-Se algum produto for restrito ao plano, sugira upgrade de forma educada.
-`.trim();
-}
-
-function getHistory(conversationId) {
-  const h = MEMORY.get(conversationId);
-  return Array.isArray(h) ? h : [];
-}
-
-function saveTurn(conversationId, role, content) {
-  const h = getHistory(conversationId);
-  h.push({ role, content });
-
-  const maxMsgs = MAX_TURNS * 2;
-  MEMORY.set(conversationId, h.slice(-maxMsgs));
-}
-
-function hasWholeKeyword(text, keyword) {
-  const normalizedText = ` ${normalize(text)} `;
-  const normalizedKeyword = normalize(keyword);
-  const escaped = normalizedKeyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const rg = new RegExp(`\\s${escaped}\\s`, "i");
-  return rg.test(normalizedText);
-}
-
-function checkFastIntent(message) {
-  for (const intent of FAST_INTENTS) {
-    for (const kw of intent.keywords) {
-      if (hasWholeKeyword(message, kw)) {
-        return intent.reply[Math.floor(Math.random() * intent.reply.length)];
-      }
-    }
-  }
-  return null;
-}
-
-function getClarificationReply(text) {
   const t = normalize(text);
 
-  if (["placa", "gpu", "placa de video", "placa de vídeo"].some((k) => hasWholeKeyword(t, k))) {
-    return "Beleza. Você quer placa de vídeo para jogar, trabalhar ou uso básico? E qual faixa de preço você quer mais ou menos?";
-  }
+  if(t.includes("pc") || t.includes("computador"))
+    return "pc";
 
-  if (["processador", "cpu"].some((k) => hasWholeKeyword(t, k))) {
-    return "Certo. Você quer processador para jogo, trabalho ou uso mais básico? Se quiser, já te ajudo por faixa de preço também.";
-  }
+  if(t.includes("placa"))
+    return "gpu";
 
-  if (["notebook", "monitor", "headset", "mouse", "teclado"].some((k) => hasWholeKeyword(t, k))) {
-    return "Consigo te ajudar sim. Me fala só qual produto você quer e o que é mais importante pra você: preço, desempenho, durabilidade ou custo-benefício.";
+  if(t.includes("notebook"))
+    return "notebook";
+
+  return null;
+
+}
+
+/* ===============================
+PROMPT
+=============================== */
+
+function buildSystemPrompt(){
+
+return `
+Você é Nayla, assistente da Nexus Store.
+
+Objetivo:
+
+Ajudar clientes a escolher produtos.
+
+Regras:
+
+- Fale de forma natural.
+- Entenda frases mal escritas.
+- Nunca repita a mesma frase várias vezes.
+- Se o usuário estiver perdido, sugira ideias.
+
+Exemplo de ajuda:
+
+"Se você quer um PC, posso sugerir:
+
+• PC gamer
+• PC para estudo
+• PC custo-benefício
+
+Ou podemos escolher peça por peça."
+
+Sempre seja amigável.
+`.trim();
+
+}
+
+/* ===============================
+FAST INTENT
+=============================== */
+
+function checkFastIntent(text){
+
+  const t = normalize(text);
+
+  for(const intent of FAST_INTENTS){
+
+    for(const kw of intent.keywords){
+
+      if(t.includes(kw)){
+
+        const r = intent.reply[
+          Math.floor(Math.random()*intent.reply.length)
+        ];
+
+        return r;
+
+      }
+
+    }
+
   }
 
   return null;
+
 }
 
-export async function routeMessage(message, context = {}) {
-  const plan = (context.plan || "free").toLowerCase();
+/* ===============================
+ROUTER
+=============================== */
+
+export async function routeMessage(message,context={}){
+
   const conversationId = context.conversationId || "guest";
 
-  const userText = normalizeSlang(String(message || "").slice(0, MAX_USER_CHARS));
+  const text = normalizeSlang(message);
 
-  const fast = checkFastIntent(userText);
-  if (fast) {
+  const fast = checkFastIntent(text);
+
+  if(fast){
+
     return {
-      reply: fast,
-      personaLabel: "Nayla",
-      suggestions: []
+      reply:fast,
+      suggestions:[]
     };
+
   }
 
-  const clarification = getClarificationReply(userText);
-  if (clarification) {
+  const simpleIntent = detectSimpleIntent(text);
+
+  if(simpleIntent==="pc"){
+
     return {
-      reply: clarification,
-      personaLabel: "Nayla",
-      suggestions: []
+      reply:
+"Legal! Você quer montar um PC ou comprar um já pronto?\n\nPosso te ajudar com:\n\n• PC gamer\n• PC para trabalho\n• PC custo-benefício",
+      suggestions:[]
     };
+
+  }
+
+  if(simpleIntent==="gpu"){
+
+    return {
+      reply:
+"Boa! Placa de vídeo é para jogar, trabalhar ou os dois?",
+      suggestions:[]
+    };
+
   }
 
   const history = getHistory(conversationId);
-  const matches = pickCatalogMatches(userText, 4);
 
-  let catalogBlock = "";
+  const matches = pickCatalogMatches(text,3);
 
-  if (matches.length) {
-    const lines = matches.map((p) => {
-      const tier = String(p.accessTier || "free").toLowerCase();
+  let catalogBlock="";
 
-      const tagTier =
-        tier === "omega"
-          ? "OMEGA"
-          : tier === "hyper"
-          ? "HYPER"
-          : tier === "core"
-          ? "CORE"
-          : "Livre";
+  if(matches.length){
 
-      const price = formatMoneyBRL(p.pricePublic ?? p.price ?? 0);
+    catalogBlock = matches
+    .map(p=>`${p.title}`)
+    .join("\n");
 
-      return `- [${p.id}] ${p.title} — ${price} — ${tagTier}`;
-    });
-
-    catalogBlock = `
-CATÁLOGO RELEVANTE:
-
-${lines.join("\n")}
-`;
   }
 
-  try {
-    const input = [
-      { role: "system", content: buildSystemPrompt({ plan }) },
-      ...(catalogBlock ? [{ role: "system", content: catalogBlock }] : []),
-      ...history,
-      { role: "user", content: userText }
-    ];
+  const input=[
 
-    const resp = await client.responses.create({
-      model: "gpt-4o-mini",
-      input,
-      temperature: 0.5,
-      max_output_tokens: plan === "free" ? 160 : 240
-    });
+    {role:"system",content:buildSystemPrompt()},
 
-    const reply =
-      resp.output_text?.trim() ||
-      "Tive um problema para responder agora.";
+    ...history,
 
-    saveTurn(conversationId, "user", userText);
-    saveTurn(conversationId, "assistant", reply);
+    {role:"user",content:text}
 
-    const suggestions = matches.slice(0, 4).map((p) => ({
-      id: p.id,
-      title: p.title,
-      pricePublic: p.pricePublic ?? p.price ?? null,
-      accessTier: p.accessTier || "free",
-      allowed: isAllowedByPlan(p, plan)
-    }));
+  ];
 
-    return {
-      reply,
-      personaLabel: "Nayla",
-      suggestions
-    };
-  } catch {
-    return {
-      reply: "Eu consigo te ajudar melhor se você me disser o produto que quer e sua faixa de preço. Por exemplo: placa de vídeo até 2 mil, notebook para estudo, monitor para FPS.",
-      personaLabel: "Nayla",
-      suggestions: []
-    };
-  }
+  const resp = await client.responses.create({
+
+    model:"gpt-4o-mini",
+
+    input,
+
+    temperature:0.7,
+
+    max_output_tokens:200
+
+  });
+
+  const reply =
+  resp.output_text?.trim()
+  ||
+  "Pode explicar um pouco melhor o que você quer encontrar?";
+
+  saveTurn(conversationId,"user",text);
+
+  saveTurn(conversationId,"assistant",reply);
+
+  return {
+    reply,
+    suggestions:[]
+  };
+
 }
