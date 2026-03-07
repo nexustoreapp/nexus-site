@@ -226,5 +226,338 @@
 "Foi um prazer ajudar. Até a próxima!",
 "Tchau! Sempre que precisar estou aqui."
 ]
-}
+},
+{
+"id":"orcamento_pc",
+"intent":"budget_pc",
+"personaId":"gamer_braba",
+"keywords":["orçamento","tenho","custar","quanto posso gastar","tenho dinheiro","tenho orçamento"],
+"userExamples":[
+"tenho 2000",
+"tenho 5 mil pra gastar",
+"tenho 10 mil",
+"tenho 1500 de orçamento",
+"tenho 3 mil reais"
+],
+"replyTemplates":[
+"Boa! Com esse orçamento dá pra montar algo interessante. Você prefere um PC pronto ou montar peça por peça?",
+"Legal! Com esse valor já dá pra pensar em algumas configurações boas. Você quer usar mais para jogos ou trabalho?",
+"Show! Dependendo do que você quer fazer dá para montar algo bem equilibrado com esse orçamento."
 ]
+},
+
+{
+"id":"comparar_produtos",
+"intent":"compare_products",
+"personaId":"vendedor_amigo",
+"keywords":["qual melhor","comparar","diferença","vale mais","qual escolher"],
+"userExamples":[
+"qual é melhor",
+"qual compensa mais",
+"qual vale mais a pena",
+"qual você recomenda"
+],
+"replyTemplates":[
+"Boa pergunta. Posso te ajudar a comparar opções dependendo do seu orçamento.",
+"Depende muito do que você pretende fazer com o produto. Pode me contar mais?",
+"Posso te ajudar a comparar custo-benefício entre algumas opções."
+]
+},
+
+{
+"id":"duvida_setup",
+"intent":"setup_help",
+"personaId":"gamer_braba",
+"keywords":["setup","setup gamer","mesa gamer","setup completo"],
+"userExamples":[
+"quero montar setup gamer",
+"setup gamer barato",
+"setup para jogar"
+],
+"replyTemplates":[
+"Montar setup é muito legal. Você já tem algum componente ou vai começar do zero?",
+"Se quiser posso te ajudar a montar um setup equilibrado com monitor, PC e periféricos.",
+"Boa! Me fala seu orçamento que eu tento sugerir um setup completo."
+]
+},
+
+{
+"id":"duvida_perifericos",
+"intent":"peripherals_help",
+"personaId":"gamer_braba",
+"keywords":["mouse","teclado","periferico","periférico","headset"],
+"userExamples":[
+"qual mouse comprar",
+"teclado gamer bom",
+"headset para jogar"
+],
+"replyTemplates":[
+"Periféricos fazem bastante diferença na experiência. Você prefere algo mais custo-benefício ou mais premium?",
+"Boa! Dependendo do jogo alguns periféricos ajudam bastante no desempenho.",
+"Se quiser posso sugerir alguns periféricos equilibrados."
+]
+},
+
+{
+"id":"produto_caro",
+"intent":"price_high",
+"personaId":"vendedor_amigo",
+"keywords":["caro","muito caro","preço alto"],
+"userExamples":[
+"isso está caro",
+"muito caro",
+"preço alto"
+],
+"replyTemplates":[
+"Entendo. Podemos tentar encontrar algo mais custo-benefício.",
+"Se quiser posso tentar sugerir uma opção mais barata.",
+"Dependendo do que você precisa dá para encontrar algo mais acessível."
+]
+},
+
+{
+"id":"produto_barato",
+"intent":"cheap_products",
+"personaId":"vendedor_amigo",
+"keywords":["barato","economico","econômico","custo beneficio"],
+"userExamples":[
+"produto barato",
+"quero algo barato",
+"algo custo benefício"
+],
+"replyTemplates":[
+"Claro! Posso tentar encontrar algo com bom custo-benefício.",
+"Boa! Produtos custo-benefício costumam ser os mais procurados.",
+"Se quiser posso te mostrar algumas opções mais econômicas."
+]
+},
+
+{
+"id":"duvida_configuracao_pc",
+"intent":"pc_configuration",
+"personaId":"gamer_braba",
+"keywords":["configuração","configuracao","config","especificação","especificacao"],
+"userExamples":[
+"qual configuração de pc",
+"configuração para jogar",
+"config pc gamer"
+],
+"replyTemplates":[
+"Boa! A configuração depende muito do tipo de jogo que você quer rodar.",
+"Se quiser posso sugerir uma configuração equilibrada.",
+"Qual tipo de jogo ou uso você pretende?"
+]
+},
+
+{
+"id":"duvida_ram",
+"intent":"ram_help",
+"personaId":"gamer_braba",
+"keywords":["ram","memoria","memória"],
+"userExamples":[
+"quanta ram precisa",
+"ram para jogar",
+"ram para programar"
+],
+"replyTemplates":[
+"Memória RAM ajuda bastante na performance geral do sistema.",
+"Para jogos geralmente 16GB já ajuda bastante.",
+"Dependendo do uso pode valer a pena mais RAM."
+]
+},
+
+{
+"id":"duvida_ssd",
+"intent":"ssd_help",
+"personaId":"gamer_braba",
+"keywords":["ssd","armazenamento","nvme"],
+"userExamples":[
+"ssd vale a pena",
+"qual ssd comprar",
+"ssd ou hd"
+],
+"replyTemplates":[
+"SSD costuma melhorar bastante a velocidade do sistema.",
+"Se quiser desempenho rápido SSD é uma boa escolha.",
+"Hoje em dia SSD NVMe costuma ser bem rápido."
+]
+},
+
+{
+"id":"usuario_confuso",
+"intent":"user_confused",
+"personaId":"vendedor_amigo",
+"keywords":["não sei","nao sei","estou perdido","não entendi"],
+"userExamples":[
+"não sei o que comprar",
+"estou perdido",
+"não entendi"
+],
+"replyTemplates":[
+"Sem problema! Vamos descobrir juntos o que faz mais sentido para você.",
+"Tranquilo. Me conta o que você quer fazer com o computador.",
+"Posso te ajudar a decidir passo a passo."
+]
+},
+
+{
+"id":"orcamento_produto",
+"intent":"budget_product",
+"personaId":"vendedor_amigo",
+"keywords":["tenho","orcamento","orçamento","posso gastar","meu orçamento","ate","até"],
+"userExamples":[
+"tenho 2000 para gastar",
+"meu orçamento é 1500",
+"posso gastar até 3000",
+"tenho 4500 para montar um pc"
+],
+"replyTemplates":[
+"Boa! Com esse orçamento dá para pensar em algumas opções interessantes. Você quer algo mais para jogos, trabalho ou uso geral?",
+"Legal, sabendo o orçamento fica bem mais fácil ajudar. Você prefere montar peça por peça ou ver um setup pronto?",
+"Com esse valor dá para montar algo equilibrado. Você quer focar mais em performance ou custo-benefício?"
+]
+},
+
+{
+"id":"comparar_produtos",
+"intent":"product_compare",
+"personaId":"vendedor_amigo",
+"keywords":["comparar","diferença","qual melhor","versus","vs","vale mais"],
+"userExamples":[
+"qual melhor rtx ou rx",
+"qual diferença entre esses dois",
+"vale mais a pena qual",
+"comparar dois produtos"
+],
+"replyTemplates":[
+"Boa pergunta. Comparar produtos ajuda bastante antes de comprar. Você pode me dizer quais modelos está comparando?",
+"Depende muito do uso. Se você me falar os dois modelos eu posso explicar as diferenças.",
+"Consigo te ajudar com isso. Qual exatamente são os dois produtos que você quer comparar?"
+]
+},
+
+{
+"id":"recomendacao_setup",
+"intent":"setup_recommendation",
+"personaId":"gamer_braba",
+"keywords":["setup","montar setup","recomenda setup","setup gamer"],
+"userExamples":[
+"me recomenda um setup",
+"quero montar um setup gamer",
+"setup bom para jogar",
+"setup custo beneficio"
+],
+"replyTemplates":[
+"Boa! Para recomendar um setup bom preciso entender duas coisas: qual seu orçamento e que tipo de jogo você pretende jogar.",
+"Legal montar um setup equilibrado. Você prefere focar mais em FPS ou qualidade gráfica?",
+"Show. Se você me disser o orçamento eu consigo sugerir um setup bem equilibrado."
+]
+},
+
+{
+"id":"duvida_fps",
+"intent":"fps_performance",
+"personaId":"gamer_braba",
+"keywords":["fps","performance","desempenho","rodar jogo"],
+"userExamples":[
+"quantos fps roda",
+"esse pc roda valorant",
+"qual desempenho desse pc",
+"esse setup roda cs2"
+],
+"replyTemplates":[
+"O FPS depende bastante da placa de vídeo e do processador. Qual configuração você está pensando em usar?",
+"Se você me disser o jogo e a configuração do PC eu consigo estimar o desempenho.",
+"Boa pergunta. Alguns jogos dependem mais de GPU e outros mais de CPU. Qual jogo você quer rodar?"
+]
+},
+
+{
+"id":"duvida_upgrade",
+"intent":"upgrade_pc",
+"personaId":"gamer_braba",
+"keywords":["upgrade","melhorar pc","trocar placa","melhorar desempenho"],
+"userExamples":[
+"quero melhorar meu pc",
+"vale a pena trocar gpu",
+"qual upgrade fazer",
+"como melhorar desempenho"
+],
+"replyTemplates":[
+"Upgrade é uma ótima forma de melhorar o desempenho sem trocar tudo. Qual configuração você tem hoje?",
+"Se você me disser seu processador, placa de vídeo e RAM eu consigo sugerir upgrades bons.",
+"Dependendo do hardware atual dá para melhorar bastante com poucas mudanças."
+]
+},
+
+{
+"id":"duvida_estudo",
+"intent":"pc_estudo",
+"personaId":"vendedor_amigo",
+"keywords":["estudo","faculdade","programação","programar","estudar"],
+"userExamples":[
+"notebook para estudar",
+"pc para programar",
+"computador para faculdade",
+"setup para estudo"
+],
+"replyTemplates":[
+"Para estudo normalmente priorizamos estabilidade e boa quantidade de RAM. Você prefere notebook ou computador de mesa?",
+"Programação geralmente roda bem em máquinas com SSD e boa RAM. Qual seu orçamento?",
+"Para faculdade normalmente portabilidade pode ser importante. Você quer algo leve ou mais potente?"
+]
+},
+
+{
+"id":"duvida_trabalho",
+"intent":"pc_work",
+"personaId":"vendedor_amigo",
+"keywords":["trabalho","trabalhar","render","edição","design"],
+"userExamples":[
+"pc para trabalhar",
+"notebook para edição",
+"computador para design",
+"setup para render"
+],
+"replyTemplates":[
+"Para trabalho pesado normalmente priorizamos CPU forte e bastante RAM. Qual tipo de trabalho você faz?",
+"Dependendo da área pode precisar de GPU dedicada. Você trabalha com vídeo, design ou programação?",
+"Se você me disser o tipo de software que usa posso sugerir uma configuração ideal."
+]
+},
+
+{
+"id":"problema_compra",
+"intent":"purchase_problem",
+"personaId":"nexus_guard",
+"keywords":["problema compra","erro compra","não consegui comprar","erro pagamento"],
+"userExamples":[
+"não consegui comprar",
+"deu erro no pagamento",
+"não passou meu cartão",
+"problema na compra"
+],
+"replyTemplates":[
+"Entendi. Vamos resolver isso juntos. Você pode me dizer exatamente em que etapa da compra apareceu o erro?",
+"Sem problema, isso pode acontecer às vezes. Me explica o que apareceu na tela para eu te ajudar.",
+"Vamos verificar isso. Você tentou pagar com cartão ou PIX?"
+]
+},
+
+{
+"id":"duvida_catalogo",
+"intent":"catalog_help",
+"personaId":"vendedor_amigo",
+"keywords":["catalogo","catálogo","produtos","lista produtos"],
+"userExamples":[
+"mostra catalogo",
+"quais produtos vocês tem",
+"lista de produtos",
+"me mostra o catálogo"
+],
+"replyTemplates":[
+"Posso te ajudar a navegar pelo catálogo. Que tipo de produto você está procurando?",
+"A Nexus tem várias categorias de produtos. Você quer ver hardware, periféricos ou notebooks?",
+"Me fala o tipo de produto que você quer que eu tento encontrar algo interessante."
+]
+}
