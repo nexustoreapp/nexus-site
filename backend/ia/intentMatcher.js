@@ -1,9 +1,8 @@
 import intents from "../data/intents.json";
-import { normalizeSlang } from "./slangNormalizer.js";
 
-export function matchIntent(message){
+export function detectIntent(message){
 
-const text = normalizeSlang(message);
+const text = String(message||"").toLowerCase();
 
 for(const intent of intents){
 
