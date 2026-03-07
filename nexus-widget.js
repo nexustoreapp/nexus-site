@@ -1,215 +1,173 @@
 // nexus-widget.js
-// ==========================================
-// WIDGET GLOBAL DA NAYLA
-// aparece em TODAS as páginas
-// ==========================================
+// =========================================================
+// NEXUS IA (widget flutuante)
+// - Botão flutuante
+// - Painel abre para cima
+// - Funciona em todas páginas
+// =========================================================
 
-(function(){
+(function () {
 
-const POS_KEY="nexus_widget_pos";
+  const API = window.NEXUS_API;
 
-/* ===============================
-CRIAR WIDGET
-=============================== */
+  const POS_KEY = "nexus_ia_widget_pos_v2";
 
-function createWidget(){
+  function createWidget() {
 
-if(document.getElementById("nexus-widget")) return;
+    if (document.getElementById("nexus-ia-widget")) return;
 
-const wrap=document.createElement("div");
-wrap.id="nexus-widget";
+    const wrap = document.createElement("div");
+    wrap.id = "nexus-ia-widget";
 
-wrap.innerHTML=`
+    wrap.innerHTML = `
 
-<button id="nexus-fab">
+      <button id="nexus-ia-fab" title="Falar com Nayla">
 
-<svg viewBox="0 0 24 24" width="22" height="22">
-<path fill="white"
-d="M4 4h16v11H7l-3 3z"/>
-</svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M4 4H20V15H7L4 18V4Z"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+        </svg>
 
-</button>
+      </button>
 
-<div id="nexus-panel">
+      <div id="nexus-ia-panel">
 
-<div id="nexus-header">
+        <div id="nexus-ia-header">
 
-<div class="title">
-Nayla
-<span class="badge">Assistente Nexus</span>
-</div>
+          <div id="nexus-ia-title">
+            Nayla
+            <span id="nexus-ia-badge">IA</span>
+          </div>
 
-<button id="nexus-close">✕</button>
+          <button id="nexus-ia-close">✕</button>
 
-</div>
+        </div>
 
-<div id="nexus-body"></div>
+        <div id="nexus-ia-body"></div>
 
-<div id="nexus-footer">
+        <div id="nexus-ia-footer">
 
-<input id="nexus-input"
-placeholder="Fale com a Nayla..."/>
+          <input id="nexus-ia-input" placeholder="Fale com a Nayla..." />
 
-<button id="nexus-send">
-Enviar
-</button>
+          <button id="nexus-ia-send">Enviar</button>
 
-</div>
+        </div>
 
-</div>
-`;
+      </div>
 
-document.body.appendChild(wrap);
+    `;
 
-const fab=wrap.querySelector("#nexus-fab");
-const panel=wrap.querySelector("#nexus-panel");
-const closeBtn=wrap.querySelector("#nexus-close");
-const body=wrap.querySelector("#nexus-body");
-const input=wrap.querySelector("#nexus-input");
-const sendBtn=wrap.querySelector("#nexus-send");
+    document.body.appendChild(wrap);
 
+    const fab = wrap.querySelector("#nexus-ia-fab");
+    const panel = wrap.querySelector("#nexus-ia-panel");
+    const closeBtn = wrap.querySelector("#nexus-ia-close");
+    const body = wrap.querySelector("#nexus-ia-body");
+    const input = wrap.querySelector("#nexus-ia-input");
+    const sendBtn = wrap.querySelector("#nexus-ia-send");
 
+    function addMessage(text, who="bot") {
 
-/* ===============================
-ABRIR / FECHAR
-=============================== */
+      const row = document.createElement("div");
+      row.className = "nx-msg " + (who === "user" ? "user":"bot");
 
-function open(){
+      const bubble = document.createElement("div");
+      bubble.className = "nx-bubble";
+      bubble.textContent = text;
 
-panel.classList.add("open");
-fab.style.display="none";
+      row.appendChild(bubble);
 
-input.focus();
+      body.appendChild(row);
 
-}
+      body.scrollTop = body.scrollHeight;
 
-function close(){
+    }
 
-panel.classList.remove("open");
-fab.style.display="flex";
+    async function send(){
 
-}
+      const msg = (input.value || "").trim();
 
-fab.onclick=open;
-closeBtn.onclick=close;
+      if(!msg) return;
 
+      input.value="";
 
+      addMessage(msg,"user");
 
-/* ===============================
-MENSAGENS
-=============================== */
+      addMessage("Digitando...","bot");
 
-function addMsg(text,who){
+      const typing = body.lastChild;
 
-const row=document.createElement("div");
-row.className="nx-row "+who;
+      try{
 
-const bubble=document.createElement("div");
-bubble.className="nx-bubble";
-bubble.textContent=text;
+        const r = await fetch(`${API}/chat`,{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            message:msg
+          })
+        });
 
-row.appendChild(bubble);
-body.appendChild(row);
+        const d = await r.json().catch(()=>null);
 
-body.scrollTop=body.scrollHeight;
+        typing.remove();
 
-}
+        if(!r.ok || !d?.ok){
 
+          addMessage("Erro ao falar com a Nayla.","bot");
+          return;
 
+        }
 
-/* ===============================
-ENVIO PARA IA
-=============================== */
+        addMessage(d.reply || "Sem resposta.","bot");
 
-async function send(){
+      }
+      catch(err){
 
-const msg=input.value.trim();
+        typing.remove();
 
-if(!msg) return;
+        addMessage("Erro de rede.","bot");
 
-input.value="";
+      }
 
-addMsg(msg,"user");
+    }
 
-addMsg("Digitando...","bot");
+    fab.onclick = ()=>{
 
-const typing=body.lastChild;
+      panel.classList.toggle("open");
 
-try{
+    };
 
-const api=window.NEXUS_API;
+    closeBtn.onclick = ()=>{
 
-const r=await fetch(`${api}/chat`,{
+      panel.classList.remove("open");
 
-method:"POST",
+    };
 
-headers:{
-"Content-Type":"application/json"
-},
+    sendBtn.onclick = send;
 
-body:JSON.stringify({
-message:msg
-})
+    input.addEventListener("keydown",(e)=>{
 
-});
+      if(e.key==="Enter") send();
 
-const data=await r.json();
+    });
 
-typing.remove();
+    addMessage("Oi! Eu sou a Nayla 👋\nComo posso te ajudar hoje?","bot");
 
-if(!data.ok){
+  }
 
-addMsg("Erro ao falar com a Nayla.","bot");
-return;
+  if(document.readyState==="loading"){
 
-}
+    document.addEventListener("DOMContentLoaded",createWidget);
 
-addMsg(data.reply,"bot");
+  }else{
 
-}catch(e){
+    createWidget();
 
-typing.remove();
-
-addMsg("Falha de conexão com a IA.","bot");
-
-}
-
-}
-
-sendBtn.onclick=send;
-
-input.addEventListener("keydown",e=>{
-
-if(e.key==="Enter") send();
-
-});
-
-
-/* ===============================
-MENSAGEM INICIAL
-=============================== */
-
-addMsg(
-"Olá! Eu sou a Nayla da Nexus.\nComo posso ajudar você hoje?",
-"bot"
-);
-
-}
-
-
-
-/* ===============================
-INICIAR
-=============================== */
-
-if(document.readyState==="loading"){
-
-document.addEventListener("DOMContentLoaded",createWidget);
-
-}else{
-
-createWidget();
-
-}
+  }
 
 })();
