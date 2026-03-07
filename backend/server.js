@@ -25,50 +25,32 @@ app.use(express.json());
 app.use("/api", productRoutes);
 app.use("/api/v1", productRoutes);
 
-/* =========================
-   CHAT IA
-========================= */
-
-app.use("/api/v1/chat", chatRoutes);
-
-/* =========================
-   PAGAMENTO
-========================= */
-
 app.use("/api/v1/payment", paymentRoutes);
 
-/* =========================
-   CHECKOUT
-========================= */
-
 app.use("/api/v1/checkout", checkoutRoutes);
+
+app.use("/api/v1/chat", chatRoutes);
 
 /* =========================
    HEALTH CHECK
 ========================= */
 
-app.get("/api/health", async (_req,res)=>{
-
-  try{
-
-    if(pool){
+app.get("/api/health", async (_req, res) => {
+  try {
+    if (pool) {
       await pool.query("SELECT 1");
     }
 
     return res.json({
-      ok:true,
-      status:"online"
+      ok: true,
+      status: "online"
     });
-
-  }catch(err){
-
+  } catch (err) {
     return res.status(500).json({
-      ok:false,
-      error:"DB_ERROR"
+      ok: false,
+      error: "DB_ERROR"
     });
-
   }
-
 });
 
 /* =========================
@@ -77,6 +59,6 @@ app.get("/api/health", async (_req,res)=>{
 
 const PORT = process.env.PORT || 10000;
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`🚀 Nexus backend rodando na porta ${PORT}`);
 });
