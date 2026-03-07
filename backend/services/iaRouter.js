@@ -36,6 +36,73 @@ function loadCatalog() {
 }
 
 /* ===============================
+NORMALIZADOR DE GÍRIAS
+=============================== */
+
+const SLANG_MAP = {
+
+  oi:["eae","salve","opa","yo","sup","fala","fala ai","fala aí"],
+
+  obrigado:["valeu","tmj","brigado"],
+
+  problema:["bug","deu ruim","zoado","travou"],
+
+  comprar:["pegar","adquirir"]
+
+};
+
+function normalizeSlang(text){
+
+  let t = String(text||"").toLowerCase();
+
+  for(const key in SLANG_MAP){
+
+    for(const slang of SLANG_MAP[key]){
+
+      const rg = new RegExp(`\\b${slang}\\b`,"g");
+
+      t = t.replace(rg,key);
+
+    }
+
+  }
+
+  return t;
+
+}
+
+/* ===============================
+INTENTS RÁPIDOS
+=============================== */
+
+const FAST_INTENTS = [
+
+{
+keywords:["oi","ola","olá","bom dia","boa tarde","boa noite"],
+reply:[
+"E aí! 👋 Eu sou a Nayla da Nexus. Como posso ajudar você hoje?",
+"Oi! Seja bem-vindo(a) à Nexus Store. Quer ajuda com produto ou planos?"
+]
+},
+
+{
+keywords:["obrigado","obrigada"],
+reply:[
+"Imagina! 😊 Qualquer coisa é só chamar.",
+"Tamo junto! Se precisar de algo mais é só falar."
+]
+},
+
+{
+keywords:["planos","assinatura","nexus+"],
+reply:[
+"A Nexus tem planos Core, Hyper e Omega. Cada um libera mais vantagens e descontos. Quer que eu te explique qual vale mais a pena pra você?"
+]
+}
+
+];
+
+/* ===============================
 MEMÓRIA DE CONVERSA
 =============================== */
 
@@ -204,6 +271,39 @@ function saveTurn(conversationId,role,content){
 }
 
 /* ===============================
+INTENT MATCHER
+=============================== */
+
+function checkFastIntent(message){
+
+  const text = normalize(message);
+
+  for(const intent of FAST_INTENTS){
+
+    for(const kw of intent.keywords){
+
+      if(text.includes(kw)){
+
+        const r =
+          intent.reply[
+            Math.floor(
+              Math.random()*intent.reply.length
+            )
+          ];
+
+        return r;
+
+      }
+
+    }
+
+  }
+
+  return null;
+
+}
+
+/* ===============================
 ROUTER PRINCIPAL
 =============================== */
 
@@ -215,7 +315,25 @@ export async function routeMessage(message,context={}){
     context.conversationId || "guest";
 
   const userText =
-    String(message || "").slice(0,MAX_USER_CHARS);
+    normalizeSlang(
+      String(message || "").slice(0,MAX_USER_CHARS)
+    );
+
+  /* ===============================
+  FAST INTENTS (resposta instantânea)
+  =============================== */
+
+  const fast = checkFastIntent(userText);
+
+  if(fast){
+
+    return {
+      reply:fast,
+      personaLabel:"Nayla",
+      suggestions:[]
+    };
+
+  }
 
   const history = getHistory(conversationId);
 
