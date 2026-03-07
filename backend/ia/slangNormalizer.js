@@ -1,14 +1,12 @@
 const SLANG_MAP = {
 
-oi:["eae","salve","opa","yo","sup","fala","fala ai","fala aí"],
-
-tudo_bem:["blz","beleza","suave","de boa","tranquilo"],
+oi:["eae","salve","opa","yo","sup","fala","fala ai"],
 
 amigo:["mano","bro","parça","parceiro"],
 
-problema:["bug","deu ruim","zoado","quebrou","travou"],
+obrigado:["valeu","tmj","brigado"],
 
-comprar:["pegar","adquirir","comprar isso"]
+problema:["bug","deu ruim","zoado","travou"]
 
 };
 
@@ -20,7 +18,9 @@ for(const key in SLANG_MAP){
 
 for(const slang of SLANG_MAP[key]){
 
-t = t.replace(new RegExp(`\\b${slang}\\b`,"g"),key);
+const rg = new RegExp(`\\b${slang}\\b`,"g");
+
+t = t.replace(rg,key);
 
 }
 
