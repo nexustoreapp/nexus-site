@@ -3,6 +3,10 @@ import path from "path";
 
 let PERSONA_CACHE = null;
 
+/* ===============================
+LOAD PERSONAS
+=============================== */
+
 function loadPersonas(){
 
   if(PERSONA_CACHE){
@@ -29,24 +33,94 @@ function loadPersonas(){
 
 }
 
-export function selectPersona(message){
+/* ===============================
+NORMALIZE
+=============================== */
 
-  const text = String(message||"").toLowerCase();
+function normalize(text=""){
+
+  return text
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-z0-9\s]/g," ")
+  .replace(/\s+/g," ")
+  .trim();
+
+}
+
+/* ===============================
+SCORE PERSONA
+=============================== */
+
+function scorePersona(text,persona){
+
+  let score = 0;
+
+  const normalized = normalize(text);
+
+  if(persona.activationSignals){
+
+    for(const signal of persona.activationSignals){
+
+      const s = normalize(signal);
+
+      if(normalized.includes(s)){
+        score += 5;
+      }
+
+    }
+
+  }
+
+  if(persona.role){
+
+    const r = normalize(persona.role);
+
+    if(normalized.includes(r)){
+      score += 2;
+    }
+
+  }
+
+  return score;
+
+}
+
+/* ===============================
+SELECT PERSONA
+=============================== */
+
+export function selectPersona(message){
 
   const personas = loadPersonas();
 
-  if(text.includes("pedido") || text.includes("atraso") || text.includes("defeito")){
-    return personas.find(p=>p.id==="nexus_guard") || null;
+  if(!personas.length){
+    return null;
   }
 
-  if(text.includes("fps") || text.includes("valorant") || text.includes("cs") || text.includes("setup")){
-    return personas.find(p=>p.id==="gamer_braba") || null;
+  let bestPersona = null;
+  let bestScore = 0;
+
+  for(const persona of personas){
+
+    const score = scorePersona(message,persona);
+
+    if(score > bestScore){
+
+      bestScore = score;
+      bestPersona = persona;
+
+    }
+
   }
 
-  if(text.includes("plano") || text.includes("assinatura") || text.includes("upgrade")){
-    return personas.find(p=>p.id==="assistente_premium") || null;
+  if(!bestPersona){
+
+    return personas.find(p=>p.id==="vendedor_amigo") || personas[0];
+
   }
 
-  return personas.find(p=>p.id==="vendedor_amigo") || null;
+  return bestPersona;
 
 }
