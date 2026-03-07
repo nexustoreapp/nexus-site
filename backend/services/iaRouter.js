@@ -9,33 +9,31 @@ const client = new OpenAI({
 });
 
 /* ===============================
-CACHE CATÁLOGO
+CARREGAMENTO GLOBAL (1 VEZ)
 =============================== */
 
-let CATALOG_CACHE = null;
+let CATALOG_CACHE = [];
+let IA_CACHE = [];
 
-function loadCatalog() {
+try {
 
-  if (CATALOG_CACHE) return CATALOG_CACHE;
+  const catalogPath = path.resolve("backend/data/catalogo.json");
+  const iaCachePath = path.resolve("backend/data/ia_cache_base.json");
 
-  try {
-
-    const filePath = path.resolve("backend/data/catalogo.json");
-
-    const raw = fs.readFileSync(filePath,"utf-8");
-
+  if (fs.existsSync(catalogPath)) {
+    const raw = fs.readFileSync(catalogPath,"utf-8");
     const json = JSON.parse(raw);
-
-    CATALOG_CACHE = Array.isArray(json) ? json : [];
-
-    return CATALOG_CACHE;
-
-  } catch {
-
-    return [];
-
+    if(Array.isArray(json)) CATALOG_CACHE = json;
   }
 
+  if (fs.existsSync(iaCachePath)) {
+    const raw = fs.readFileSync(iaCachePath,"utf-8");
+    const json = JSON.parse(raw);
+    if(Array.isArray(json)) IA_CACHE = json;
+  }
+
+} catch(err){
+  console.error("Erro carregando cache IA:",err);
 }
 
 /* ===============================
@@ -43,7 +41,6 @@ NORMALIZAÇÃO
 =============================== */
 
 function normalize(text=""){
-
   return text
   .toLowerCase()
   .normalize("NFD")
@@ -51,11 +48,10 @@ function normalize(text=""){
   .replace(/[^a-z0-9\s]/g," ")
   .replace(/\s+/g," ")
   .trim();
-
 }
 
 /* ===============================
-GÍRIAS
+SLANG
 =============================== */
 
 const SLANG_MAP = {
@@ -93,30 +89,6 @@ function normalizeSlang(text){
 }
 
 /* ===============================
-INTENTS RÁPIDOS
-=============================== */
-
-const FAST_INTENTS = [
-
-{
-keywords:["oi","ola","bom dia","boa tarde","boa noite"],
-reply:[
-"Oi! Eu sou a Nayla 👋 Como posso te ajudar hoje?",
-"E aí! 👋 Sou a Nayla da Nexus. O que você procura hoje?"
-]
-},
-
-{
-keywords:["obrigado","valeu"],
-reply:[
-"Imagina! Qualquer coisa só chamar.",
-"Tamo junto! Se precisar de algo mais é só falar."
-]
-}
-
-];
-
-/* ===============================
 MEMÓRIA
 =============================== */
 
@@ -125,9 +97,7 @@ const MEMORY = new Map();
 const MAX_TURNS = 8;
 
 function getHistory(id){
-
   return MEMORY.get(id) || [];
-
 }
 
 function saveTurn(id,role,content){
@@ -144,21 +114,32 @@ function saveTurn(id,role,content){
 }
 
 /* ===============================
-INTENT SIMPLES
+INTENT CACHE MATCH
 =============================== */
 
-function detectSimpleIntent(text){
+function matchIntent(text){
 
   const t = normalize(text);
 
-  if(t.includes("pc") || t.includes("computador"))
-    return "pc";
+  for(const item of IA_CACHE){
 
-  if(t.includes("placa"))
-    return "gpu";
+    for(const kw of item.keywords){
 
-  if(t.includes("notebook"))
-    return "notebook";
+      if(t.includes(normalize(kw))){
+
+        const replies = item.replyTemplates;
+
+        if(!replies || !replies.length) continue;
+
+        return replies[
+          Math.floor(Math.random()*replies.length)
+        ];
+
+      }
+
+    }
+
+  }
 
   return null;
 
@@ -173,54 +154,25 @@ function buildSystemPrompt(){
 return `
 Você é Nayla, assistente da Nexus Store.
 
-Seu trabalho é conversar naturalmente com o usuário e ajudar ele a descobrir o que quer comprar.
+Objetivo:
+Conversar naturalmente e ajudar clientes a descobrir produtos.
 
 Regras:
 
-- Entenda frases mal escritas.
-- Nunca repita exatamente a mesma frase.
-- Se o usuário estiver indeciso, ajude ele a descobrir o que quer.
-- Seja natural, como uma pessoa conversando.
+- Entenda frases mal escritas
+- Não repita frases iguais
+- Ajude o cliente a decidir
+- Seja natural
 
 Exemplo:
 
-Usuário: "quero algo pra programar"
+Usuário: quero algo para programar
 
 Resposta:
-"Boa! Para programar geralmente um PC com bastante RAM e SSD ajuda bastante. Você prefere notebook ou computador de mesa?"
+"Boa! Para programar geralmente notebooks com bastante RAM e SSD ajudam bastante. Você prefere notebook ou PC?"
 
-Sempre mantenha conversa fluida.
+Converse como uma pessoa.
 `.trim();
-
-}
-
-/* ===============================
-FAST INTENT
-=============================== */
-
-function checkFastIntent(text){
-
-  const t = normalize(text);
-
-  for(const intent of FAST_INTENTS){
-
-    for(const kw of intent.keywords){
-
-      if(t.includes(kw)){
-
-        const r = intent.reply[
-          Math.floor(Math.random()*intent.reply.length)
-        ];
-
-        return r;
-
-      }
-
-    }
-
-  }
-
-  return null;
 
 }
 
@@ -234,38 +186,24 @@ export async function routeMessage(message,context={}){
 
   const text = normalizeSlang(message);
 
-  const fast = checkFastIntent(text);
+  /* ===============================
+  INTENT CACHE
+  =============================== */
 
-  if(fast){
+  const cached = matchIntent(text);
+
+  if(cached){
 
     return {
-      reply:fast,
+      reply:cached,
       suggestions:[]
     };
 
   }
 
-  const simpleIntent = detectSimpleIntent(text);
-
-  if(simpleIntent==="pc"){
-
-    return {
-      reply:
-"Beleza! Você quer um PC mais para **programação**, **jogos** ou **uso geral**?\n\nSe quiser, posso também sugerir algumas configurações boas.",
-      suggestions:[]
-    };
-
-  }
-
-  if(simpleIntent==="gpu"){
-
-    return {
-      reply:
-"Boa! Você está procurando uma placa de vídeo para **jogar**, **trabalhar** ou os dois?",
-      suggestions:[]
-    };
-
-  }
+  /* ===============================
+  IA OPENAI
+  =============================== */
 
   const history = getHistory(conversationId);
 
@@ -298,11 +236,11 @@ export async function routeMessage(message,context={}){
     reply =
       resp.output_text?.trim()
       ||
-      "Pode explicar um pouco melhor o que você procura?";
+      "Pode explicar melhor o que você procura?";
 
   }catch{
 
-    reply = "Pode explicar um pouco melhor o que você procura?";
+    reply = "Pode explicar melhor o que você procura?";
 
   }
 
