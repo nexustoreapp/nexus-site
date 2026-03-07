@@ -1,95 +1,243 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nexus Store | IA Nexus</title>
-  <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nexus Store | Nayla</title>
 
-  <style>
-    /* widget flutuante */
-    .chat-fab{
-      position:fixed;right:18px;bottom:18px;z-index:9999;
-      width:56px;height:56px;border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(90deg, var(--red), var(--red2));
-      color:#fff;font-weight:1000;cursor:pointer;
-      box-shadow: 0 20px 50px rgba(0,0,0,.45);
-    }
-    .chat-panel{
-      position:fixed;right:18px;bottom:84px;z-index:9999;
-      width:min(420px, calc(100vw - 36px));
-      height:min(560px, calc(100vh - 140px));
-      border-radius: 18px;
-      overflow:hidden;
-      border:1px solid rgba(148,163,184,.18);
-      background: rgba(17,24,39,.96);
-      box-shadow: 0 22px 55px rgba(0,0,0,.55);
-      display:none;
-    }
-    .chat-panel.open{display:block}
-    .chat-head{
-      padding:12px 14px;
-      border-bottom:1px solid rgba(148,163,184,.14);
-      display:flex;align-items:center;justify-content:space-between;
-      background: rgba(15,23,42,.75);
-    }
-    .chat-body{padding:12px;height:calc(100% - 120px);overflow:auto}
-    .chat-foot{padding:12px;border-top:1px solid rgba(148,163,184,.14);display:flex;gap:10px}
-  </style>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* botão flutuante */
+
+.chat-fab{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:9999;
+
+width:56px;
+height:56px;
+
+border-radius:18px;
+border:1px solid rgba(255,255,255,.10);
+
+background:linear-gradient(90deg,var(--red),var(--red2));
+color:#fff;
+
+font-weight:1000;
+cursor:pointer;
+
+box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+
+/* painel */
+
+.chat-panel{
+
+position:fixed;
+right:20px;
+bottom:90px;
+z-index:9999;
+
+width:min(420px,calc(100vw - 40px));
+height:min(560px,calc(100vh - 160px));
+
+border-radius:18px;
+overflow:hidden;
+
+border:1px solid rgba(148,163,184,.18);
+
+background:rgba(17,24,39,.96);
+
+box-shadow:0 22px 55px rgba(0,0,0,.55);
+
+display:none;
+
+flex-direction:column;
+
+}
+
+.chat-panel.open{
+display:flex;
+}
+
+/* header */
+
+.chat-head{
+
+padding:12px 14px;
+
+border-bottom:1px solid rgba(148,163,184,.14);
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+background:rgba(15,23,42,.75);
+
+}
+
+/* conversa */
+
+.chat-body{
+
+padding:12px;
+
+flex:1;
+
+overflow:auto;
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+}
+
+/* mensagens */
+
+.chat-msg-user{
+
+align-self:flex-end;
+
+background:rgba(239,68,68,.20);
+
+padding:10px 12px;
+
+border-radius:12px;
+
+max-width:80%;
+
+}
+
+.chat-msg-ai{
+
+align-self:flex-start;
+
+background:rgba(148,163,184,.12);
+
+padding:10px 12px;
+
+border-radius:12px;
+
+max-width:80%;
+
+}
+
+/* input */
+
+.chat-foot{
+
+padding:12px;
+
+border-top:1px solid rgba(148,163,184,.14);
+
+display:flex;
+gap:10px;
+
+}
+
+</style>
 </head>
 
 <body>
-  <div id="topbar-root"></div>
 
-  <main class="page">
-    <div class="container">
-      <div class="card page-card">
-        <div class="pad">
-          <h2 style="font-weight:1000;">IA Nexus</h2>
-          <p class="helper">Clique na bolinha no canto para abrir o chat.</p>
-          <div class="hr"></div>
-          <div class="soft" style="padding:14px;">
-            Se o chat não responder, eu preciso ver o <b>chat.js</b> e o endpoint que ele chama.
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+<div id="topbar-root"></div>
 
-  <button class="chat-fab" id="chatFab" type="button">IA</button>
+<main class="page">
 
-  <div class="chat-panel" id="chatPanel">
-    <div class="chat-head">
-      <div style="font-weight:1000;">IA Nexus</div>
-      <button class="btn btn-ghost" id="chatClose" type="button" style="height:36px;">Fechar</button>
-    </div>
+<div class="container">
 
-    <div class="chat-body" id="chatBody">
-      <div class="helper">Pronto. Me chama aqui.</div>
-    </div>
+<div class="card page-card">
 
-    <div class="chat-foot">
-      <input class="input" id="chatInput" placeholder="Digite sua mensagem...">
-      <button class="btn btn-primary" id="chatSend" type="button">Enviar</button>
-    </div>
-  </div>
+<div class="pad">
 
-  <script src="config.js"></script>
-  <script src="layout.js"></script>
-  <script src="out.js"></script>
+<h2 style="font-weight:1000;">Assistente Nayla</h2>
 
-  <script>
-    const fab = document.getElementById("chatFab");
-    const panel = document.getElementById("chatPanel");
-    const closeBtn = document.getElementById("chatClose");
+<p class="helper">
+Clique na bolinha no canto para conversar com a Nayla.
+</p>
 
-    fab.addEventListener("click", ()=> panel.classList.toggle("open"));
-    closeBtn.addEventListener("click", ()=> panel.classList.remove("open"));
-  </script>
+<div class="hr"></div>
 
-  <!-- Se existir chat.js no seu repo, deixa ligado aqui -->
-  <script src="chat.js"></script>
+<div class="soft" style="padding:14px;">
+A Nayla pode ajudar você a encontrar produtos e responder dúvidas.
+</div>
+
+</div>
+</div>
+</div>
+</main>
+
+<button class="chat-fab" id="chatFab" type="button">
+💬
+</button>
+
+<div class="chat-panel" id="chatPanel">
+
+<div class="chat-head">
+
+<div style="font-weight:1000;">
+Nayla • Assistente Nexus
+</div>
+
+<button class="btn btn-ghost" id="chatClose" type="button" style="height:36px;">
+Fechar
+</button>
+
+</div>
+
+<div class="chat-body" id="chatBody">
+
+<div class="chat-msg-ai">
+Olá! Eu sou a Nayla. Como posso ajudar você hoje?
+</div>
+
+</div>
+
+<div class="chat-foot">
+
+<input
+class="input"
+id="chatInput"
+placeholder="Digite sua mensagem..."
+>
+
+<button
+class="btn btn-primary"
+id="chatSend"
+type="button"
+>
+Enviar
+</button>
+
+</div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="layout.js"></script>
+<script src="out.js"></script>
+
+<script>
+
+const fab=document.getElementById("chatFab");
+const panel=document.getElementById("chatPanel");
+const closeBtn=document.getElementById("chatClose");
+
+fab.addEventListener("click",()=>{
+panel.classList.toggle("open");
+});
+
+closeBtn.addEventListener("click",()=>{
+panel.classList.remove("open");
+});
+
+</script>
+
+<script src="chat.js"></script>
+
 </body>
 </html>
