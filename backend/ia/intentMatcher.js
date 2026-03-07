@@ -4,7 +4,7 @@ import path from "path";
 let INTENT_CACHE = null;
 
 /* ===============================
-CARREGAR INTENTS UMA VEZ
+LOAD INTENTS
 =============================== */
 
 function loadIntents(){
@@ -27,15 +27,14 @@ function loadIntents(){
 
   }catch{
 
-    INTENT_CACHE = [];
-    return INTENT_CACHE;
+    return [];
 
   }
 
 }
 
 /* ===============================
-NORMALIZAÇÃO
+NORMALIZE
 =============================== */
 
 function normalize(text=""){
@@ -51,29 +50,51 @@ function normalize(text=""){
 }
 
 /* ===============================
-SCORE DE MATCH
+SCORE MATCH
 =============================== */
 
-function scoreMatch(text,keywords){
+function scoreIntent(text,intent){
 
   let score = 0;
 
-  for(const kw of keywords){
+  const normalized = normalize(text);
 
-    const k = normalize(kw);
+  if(intent.keywords){
 
-    if(text.includes(k)){
-      score += 3;
+    for(const kw of intent.keywords){
+
+      const k = normalize(kw);
+
+      if(normalized.includes(k)){
+        score += 3;
+      }
+
     }
 
-    const words = k.split(" ");
+  }
 
-    for(const w of words){
+  if(intent.userExamples){
 
-      if(w.length < 3) continue;
+    for(const ex of intent.userExamples){
 
-      if(text.includes(w)){
-        score += 1;
+      const e = normalize(ex);
+
+      if(normalized.includes(e)){
+        score += 5;
+      }
+
+    }
+
+  }
+
+  if(intent.activationSignals){
+
+    for(const s of intent.activationSignals){
+
+      const sig = normalize(s);
+
+      if(normalized.includes(sig)){
+        score += 4;
       }
 
     }
@@ -85,21 +106,23 @@ function scoreMatch(text,keywords){
 }
 
 /* ===============================
-DETECTAR INTENT
+INTENT DETECTOR
 =============================== */
 
 export function detectIntent(message){
 
-  const text = normalize(String(message||""));
-
   const intents = loadIntents();
+
+  if(!intents.length){
+    return null;
+  }
 
   let bestIntent = null;
   let bestScore = 0;
 
   for(const intent of intents){
 
-    const score = scoreMatch(text,intent.keywords || []);
+    const score = scoreIntent(message,intent);
 
     if(score > bestScore){
 
@@ -110,10 +133,10 @@ export function detectIntent(message){
 
   }
 
-  if(bestScore >= 2){
-    return bestIntent;
+  if(bestScore === 0){
+    return null;
   }
 
-  return null;
+  return bestIntent;
 
 }
