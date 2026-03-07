@@ -4,7 +4,7 @@ import path from "path";
 let PERSONA_CACHE = null;
 
 /* ===============================
-LOAD PERSONAS
+LOAD PERSONAS (CACHE)
 =============================== */
 
 function loadPersonas(){
@@ -25,9 +25,7 @@ function loadPersonas(){
 
     return PERSONA_CACHE;
 
-  }catch(err){
-
-    console.error("Erro carregando personas:",err);
+  }catch{
 
     return [];
 
@@ -57,9 +55,9 @@ SCORE PERSONA
 
 function scorePersona(text,persona){
 
-  const normalized = normalize(text);
-
   let score = 0;
+
+  const normalized = normalize(text);
 
   /* activation signals */
 
@@ -70,14 +68,14 @@ function scorePersona(text,persona){
       const s = normalize(signal);
 
       if(normalized.includes(s)){
-        score += 6;
+        score += 5;
       }
 
     }
 
   }
 
-  /* role relevance */
+  /* role */
 
   if(persona.role){
 
@@ -89,18 +87,14 @@ function scorePersona(text,persona){
 
   }
 
-  /* behavior hints */
+  /* description */
 
-  if(persona.behavior){
+  if(persona.description){
 
-    for(const b of persona.behavior){
+    const d = normalize(persona.description);
 
-      const behavior = normalize(b);
-
-      if(normalized.includes(behavior)){
-        score += 1;
-      }
-
+    if(normalized.includes(d)){
+      score += 1;
     }
 
   }
@@ -143,7 +137,13 @@ export function selectPersona(message){
 
   if(!bestPersona){
 
-    return personas.find(p=>p.id==="vendedor_amigo") || personas[0];
+    const vendedor = personas.find(p=>p.id==="vendedor_amigo");
+
+    if(vendedor){
+      return vendedor;
+    }
+
+    return personas[0];
 
   }
 
