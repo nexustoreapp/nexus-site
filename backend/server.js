@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import productRoutes from "./routes/product.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import checkoutRoutes from "./routes/checkout.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 
 import { pool } from "./db/pool.js";
 
@@ -21,23 +22,24 @@ app.use(express.json());
    ROTAS API
 ========================= */
 
-/*
-  ROTAS DE PRODUTO
-  compatibilidade com /api e /api/v1
-*/
-
 app.use("/api", productRoutes);
 app.use("/api/v1", productRoutes);
 
-/*
-  PAGAMENTO
-*/
+/* =========================
+   CHAT IA
+========================= */
+
+app.use("/api/v1/chat", chatRoutes);
+
+/* =========================
+   PAGAMENTO
+========================= */
 
 app.use("/api/v1/payment", paymentRoutes);
 
-/*
-  CHECKOUT
-*/
+/* =========================
+   CHECKOUT
+========================= */
 
 app.use("/api/v1/checkout", checkoutRoutes);
 
