@@ -1,4 +1,25 @@
-[
+{
+"id":"saudacao_var",
+"intent":"greeting_variations",
+"personaId":"vendedor_amigo",
+"keywords":["oii","oiii","oie","oiee","olaa","eae","e ai","eae mano","fala ai","fala ae","hey","yo"],
+"userExamples":[
+"oii",
+"oiii",
+"oie",
+"oiee",
+"olaa",
+"hey",
+"yo",
+"eae",
+"fala ae"
+],
+"replyTemplates":[
+"E aí! 👋 Como posso te ajudar hoje?",
+"Oi! Quer ajuda para encontrar algum produto?",
+"Olá! Me conta o que você está procurando."
+]
+},
 {
 "id":"saudacao",
 "intent":"greeting",
