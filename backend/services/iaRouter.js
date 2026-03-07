@@ -4,77 +4,73 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 
-import { normalizeSlang } from "../ia/slangNormalizer.js";
-import { detectIntent } from "../ia/intentMatcher.js";
-import { selectPersona } from "../ia/personaSelector.js";
-
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-/* =====================================================
-GLOBAL CACHE (CARREGA UMA VEZ)
-===================================================== */
+/* ======================================================
+CATÁLOGO GLOBAL
+Carrega todas as categorias em /backend/data/catalog
+====================================================== */
 
-let IA_CACHE = [];
-let CATALOG_CACHE = [];
+let PRODUCT_INDEX = [];
 
-function loadJsonSafe(filePath){
+function loadCatalog(){
 
   try{
 
-    if(!fs.existsSync(filePath)) return [];
+    const catalogDir = path.resolve("backend/data/catalog");
 
-    const raw = fs.readFileSync(filePath,"utf-8");
+    const files = fs.readdirSync(catalogDir);
 
-    const json = JSON.parse(raw);
+    const products = [];
 
-    if(Array.isArray(json)) return json;
+    for(const file of files){
 
-    return [];
+      if(!file.endsWith(".json")) continue;
 
-  }catch{
-    return [];
-  }
+      const full = path.join(catalogDir,file);
 
-}
+      const raw = fs.readFileSync(full,"utf-8");
 
-try{
+      const json = JSON.parse(raw);
 
-  IA_CACHE = loadJsonSafe(
-    path.resolve("backend/data/ia_cache_base.json")
-  );
+      if(Array.isArray(json)){
 
-  const catalogFolder =
-    path.resolve("backend/data/catalog");
+        for(const p of json){
 
-  if(fs.existsSync(catalogFolder)){
+          products.push({
+            id: p.id || "",
+            title: p.title || "",
+            subtitle: p.subtitle || "",
+            category: file.replace(".json",""),
+            price: p.price || p.pricePublic || null,
+            tags: p.tags || []
+          });
 
-    const files = fs.readdirSync(catalogFolder);
+        }
 
-    for(const f of files){
-
-      if(!f.endsWith(".json")) continue;
-
-      const data = loadJsonSafe(
-        path.join(catalogFolder,f)
-      );
-
-      CATALOG_CACHE.push(...data);
+      }
 
     }
 
+    PRODUCT_INDEX = products;
+
+    console.log("CATALOGO IA:",PRODUCT_INDEX.length,"produtos");
+
+  }catch(err){
+
+    console.error("Erro carregando catalogo:",err);
+
   }
-
-}catch(err){
-
-  console.error("Erro carregando caches IA:",err);
 
 }
 
-/* =====================================================
-UTILS
-===================================================== */
+loadCatalog();
+
+/* ======================================================
+NORMALIZAÇÃO
+====================================================== */
 
 function normalize(text=""){
 
@@ -88,19 +84,41 @@ function normalize(text=""){
 
 }
 
-function randomItem(arr){
+/* ======================================================
+BUSCA PRODUTO
+====================================================== */
 
-  if(!arr || !arr.length) return null;
+function searchProducts(query,limit=3){
 
-  return arr[
-    Math.floor(Math.random()*arr.length)
-  ];
+  const q = normalize(query);
+
+  if(!q) return [];
+
+  const results = [];
+
+  for(const p of PRODUCT_INDEX){
+
+    const hay =
+      normalize(p.title) + " " +
+      normalize(p.subtitle) + " " +
+      normalize(p.category) + " " +
+      normalize((p.tags||[]).join(" "));
+
+    if(hay.includes(q)){
+
+      results.push(p);
+
+    }
+
+  }
+
+  return results.slice(0,limit);
 
 }
 
-/* =====================================================
-MEMÓRIA DE CONVERSA
-===================================================== */
+/* ======================================================
+MEMÓRIA CONVERSA
+====================================================== */
 
 const MEMORY = new Map();
 
@@ -125,247 +143,135 @@ function saveTurn(id,role,content){
 
 }
 
-/* =====================================================
-MATCH INTENT CACHE
-===================================================== */
+/* ======================================================
+PROMPT
+====================================================== */
 
-function matchCacheIntent(text){
+function buildSystemPrompt(){
 
-  const t = normalize(text);
-
-  for(const item of IA_CACHE){
-
-    if(!item.keywords) continue;
-
-    for(const kw of item.keywords){
-
-      if(t.includes(normalize(kw))){
-
-        const reply =
-          randomItem(item.replyTemplates);
-
-        if(reply){
-
-          return {
-            reply,
-            personaId:item.personaId || null
-          };
-
-        }
-
-      }
-
-    }
-
-  }
-
-  return null;
-
-}
-
-/* =====================================================
-BUSCA NO CATÁLOGO
-===================================================== */
-
-function searchCatalog(text){
-
-  const t = normalize(text);
-
-  const results = [];
-
-  for(const p of CATALOG_CACHE){
-
-    const hay =
-      normalize(p.title || "") +
-      " " +
-      normalize(p.subtitle || "") +
-      " " +
-      normalize((p.tags || []).join(" "));
-
-    if(hay.includes(t)){
-
-      results.push(p);
-
-      if(results.length >= 3) break;
-
-    }
-
-  }
-
-  return results;
-
-}
-
-/* =====================================================
-PROMPT DA NAYLA
-===================================================== */
-
-function buildPrompt(persona){
-
-  const tone =
-    persona?.tone ||
-    "amigável e consultivo";
-
-  return `
+return `
 Você é Nayla, assistente da Nexus Store.
 
-Personalidade:
-${persona?.label || "Assistente Nexus"}
+Seu trabalho:
 
-Tom de voz:
-${tone}
-
-Objetivo:
-Ajudar o usuário a descobrir produtos ou resolver dúvidas.
+1 ajudar o cliente
+2 entender o que ele quer comprar
+3 sugerir produtos quando possível
 
 Regras:
 
-- Seja natural.
-- Não repita frases.
-- Faça perguntas quando necessário.
-- Sugira produtos quando fizer sentido.
+- fale como pessoa real
+- nunca repita frases
+- sempre tente descobrir orçamento
+- se possível sugira produtos
 
-Nunca responda como um robô.
-`.trim();
+Exemplo:
+
+Cliente:
+quero montar um pc
+
+Resposta:
+Boa! Qual orçamento você tem mais ou menos?
+Assim consigo sugerir peças que façam sentido.
+`;
 
 }
 
-/* =====================================================
-ROUTER PRINCIPAL
-===================================================== */
+/* ======================================================
+ROUTER
+====================================================== */
 
 export async function routeMessage(message,context={}){
 
-  const conversationId =
-    context.conversationId || "guest";
+  const conversationId = context.conversationId || "guest";
 
-  /* ===============================
-  NORMALIZA TEXTO
-  =============================== */
+  const text = normalize(message);
 
-  const text =
-    normalizeSlang(String(message || ""));
+  /* =====================================
+  BUSCA PRODUTOS
+  ==================================== */
 
-  /* ===============================
-  DETECT INTENT
-  =============================== */
+  const products = searchProducts(text,3);
 
-  const intent = detectIntent(text);
+  let catalogContext = "";
 
-  /* ===============================
-  PERSONA
-  =============================== */
+  if(products.length){
 
-  const persona = selectPersona(text);
+    const lines = products.map(p=>{
 
-  /* ===============================
-  CACHE INTENT
-  =============================== */
+      return `${p.title} (${p.category})`;
 
-  const cached = matchCacheIntent(text);
+    });
 
-  if(cached){
+    catalogContext =
+`
+PRODUTOS RELEVANTES:
 
-    return {
-      reply: cached.reply,
-      persona: cached.personaId,
-      suggestions:[]
-    };
+${lines.join("\n")}
+`;
 
   }
 
-  /* ===============================
-  BUSCA CATÁLOGO
-  =============================== */
+  /* =====================================
+  IA
+  ==================================== */
 
-  const catalogMatches =
-    searchCatalog(text);
+  const history = getHistory(conversationId);
 
-  /* ===============================
-  MEMÓRIA
-  =============================== */
+  const input=[
 
-  const history =
-    getHistory(conversationId);
+    {role:"system",content:buildSystemPrompt()},
 
-  /* ===============================
-  MONTA INPUT IA
-  =============================== */
-
-  const input = [
-
-    {
-      role:"system",
-      content:buildPrompt(persona)
-    },
+    ...(catalogContext ? [{role:"system",content:catalogContext}] : []),
 
     ...history,
 
-    {
-      role:"user",
-      content:text
-    }
+    {role:"user",content:text}
 
   ];
 
-  /* ===============================
-  OPENAI FALLBACK
-  =============================== */
-
-  let reply = "";
+  let reply="";
 
   try{
 
-    const resp =
-      await client.responses.create({
+    const resp = await client.responses.create({
 
       model:"gpt-4o-mini",
 
       input,
 
-      temperature:0.8,
+      temperature:0.7,
 
-      max_output_tokens:220
+      max_output_tokens:240
 
     });
 
     reply =
-      resp.output_text?.trim() ||
+      resp.output_text?.trim()
+      ||
       "Pode explicar melhor o que você procura?";
 
-  }
-  catch(err){
+  }catch{
 
-    reply =
-      "Pode explicar melhor o que você procura?";
+    reply="Pode explicar melhor o que você procura?";
 
   }
-
-  /* ===============================
-  SALVA MEMÓRIA
-  =============================== */
 
   saveTurn(conversationId,"user",text);
 
   saveTurn(conversationId,"assistant",reply);
 
-  /* ===============================
-  SUGESTÕES DE PRODUTO
-  =============================== */
-
-  const suggestions =
-    catalogMatches.map(p=>({
-
-      id:p.id,
-      title:p.title,
-      price:p.price || null
-
-    }));
-
   return {
 
     reply,
-    suggestions
+
+    suggestions: products.map(p=>({
+
+      id:p.id,
+      title:p.title,
+      price:p.price
+
+    }))
 
   };
 
