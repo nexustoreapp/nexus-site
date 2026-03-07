@@ -1,306 +1,215 @@
 // nexus-widget.js
-// =========================================================
-// NAYLA (assistente Nexus)
-// Widget flutuante global
-// =========================================================
+// ==========================================
+// WIDGET GLOBAL DA NAYLA
+// aparece em TODAS as páginas
+// ==========================================
 
-(function () {
+(function(){
 
-  const POS_KEY = "nexus_ia_widget_pos_v1";
+const POS_KEY="nexus_widget_pos";
 
-  function clamp(n,min,max){
-    return Math.max(min,Math.min(max,n));
-  }
+/* ===============================
+CRIAR WIDGET
+=============================== */
 
-  function readPos(){
+function createWidget(){
 
-    try{
+if(document.getElementById("nexus-widget")) return;
 
-      const raw = localStorage.getItem(POS_KEY);
+const wrap=document.createElement("div");
+wrap.id="nexus-widget";
 
-      if(!raw) return null;
+wrap.innerHTML=`
 
-      const p = JSON.parse(raw);
+<button id="nexus-fab">
 
-      if(!p || typeof p.x !== "number" || typeof p.y !== "number"){
-        return null;
-      }
+<svg viewBox="0 0 24 24" width="22" height="22">
+<path fill="white"
+d="M4 4h16v11H7l-3 3z"/>
+</svg>
 
-      return p;
-
-    }catch{
-      return null;
-    }
-
-  }
-
-  function savePos(x,y){
-
-    try{
-      localStorage.setItem(POS_KEY,JSON.stringify({x,y}));
-    }catch{}
-
-  }
-
-  function createWidget(){
-
-    if(document.getElementById("nexus-ia-widget")) return;
-
-    const wrap = document.createElement("div");
-
-    wrap.id = "nexus-ia-widget";
-
-    wrap.innerHTML = `
-
-<button id="nexus-ia-fab" title="Nayla">
-<span class="dot"></span>
 </button>
 
-<div id="nexus-ia-panel">
+<div id="nexus-panel">
 
-<div id="nexus-ia-header">
+<div id="nexus-header">
 
-<div id="nexus-ia-title">
-<span>Nayla</span>
-<span id="nexus-ia-badge">Assistente Nexus</span>
+<div class="title">
+Nayla
+<span class="badge">Assistente Nexus</span>
 </div>
 
-<button id="nexus-ia-close">✕</button>
-
-</div>
-
-<div id="nexus-ia-body"></div>
-
-<div id="nexus-ia-footer">
-
-<input id="nexus-ia-input" type="text" placeholder="Fale com a Nayla..." />
-
-<button id="nexus-ia-send">Enviar</button>
+<button id="nexus-close">✕</button>
 
 </div>
 
+<div id="nexus-body"></div>
+
+<div id="nexus-footer">
+
+<input id="nexus-input"
+placeholder="Fale com a Nayla..."/>
+
+<button id="nexus-send">
+Enviar
+</button>
+
 </div>
 
+</div>
 `;
 
-    document.body.appendChild(wrap);
+document.body.appendChild(wrap);
 
-    const fab = wrap.querySelector("#nexus-ia-fab");
-    const panel = wrap.querySelector("#nexus-ia-panel");
-    const closeBtn = wrap.querySelector("#nexus-ia-close");
-    const header = wrap.querySelector("#nexus-ia-header");
-    const body = wrap.querySelector("#nexus-ia-body");
-    const input = wrap.querySelector("#nexus-ia-input");
-    const sendBtn = wrap.querySelector("#nexus-ia-send");
+const fab=wrap.querySelector("#nexus-fab");
+const panel=wrap.querySelector("#nexus-panel");
+const closeBtn=wrap.querySelector("#nexus-close");
+const body=wrap.querySelector("#nexus-body");
+const input=wrap.querySelector("#nexus-input");
+const sendBtn=wrap.querySelector("#nexus-send");
 
-    (function applyInitialPos(){
 
-      const p = readPos();
 
-      if(!p) return;
+/* ===============================
+ABRIR / FECHAR
+=============================== */
 
-      wrap.style.right="auto";
-      wrap.style.bottom="auto";
+function open(){
 
-      wrap.style.left=p.x+"px";
-      wrap.style.top=p.y+"px";
+panel.classList.add("open");
+fab.style.display="none";
 
-    })();
+input.focus();
 
-    function open(){
+}
 
-      panel.classList.add("open");
-      fab.style.display="none";
-      input.focus();
+function close(){
 
-    }
+panel.classList.remove("open");
+fab.style.display="flex";
 
-    function close(){
+}
 
-      panel.classList.remove("open");
-      fab.style.display="flex";
+fab.onclick=open;
+closeBtn.onclick=close;
 
-    }
 
-    fab.addEventListener("click",()=>{
 
-      if(panel.classList.contains("open")) close();
-      else open();
+/* ===============================
+MENSAGENS
+=============================== */
 
-    });
+function addMsg(text,who){
 
-    closeBtn.addEventListener("click",close);
+const row=document.createElement("div");
+row.className="nx-row "+who;
 
-    function enableDrag(targetEl){
+const bubble=document.createElement("div");
+bubble.className="nx-bubble";
+bubble.textContent=text;
 
-      let dragging=false;
+row.appendChild(bubble);
+body.appendChild(row);
 
-      let startX=0,startY=0;
-      let baseLeft=0,baseTop=0;
+body.scrollTop=body.scrollHeight;
 
-      targetEl.addEventListener("pointerdown",(e)=>{
+}
 
-        if(e.target && e.target.id==="nexus-ia-close") return;
 
-        dragging=true;
 
-        targetEl.setPointerCapture(e.pointerId);
+/* ===============================
+ENVIO PARA IA
+=============================== */
 
-        const rect = wrap.getBoundingClientRect();
+async function send(){
 
-        wrap.style.right="auto";
-        wrap.style.bottom="auto";
+const msg=input.value.trim();
 
-        wrap.style.left=rect.left+"px";
-        wrap.style.top=rect.top+"px";
+if(!msg) return;
 
-        startX=e.clientX;
-        startY=e.clientY;
+input.value="";
 
-        baseLeft=rect.left;
-        baseTop=rect.top;
+addMsg(msg,"user");
 
-        e.preventDefault();
+addMsg("Digitando...","bot");
 
-      });
+const typing=body.lastChild;
 
-      targetEl.addEventListener("pointermove",(e)=>{
+try{
 
-        if(!dragging) return;
+const api=window.NEXUS_API;
 
-        const dx = e.clientX-startX;
-        const dy = e.clientY-startY;
+const r=await fetch(`${api}/chat`,{
 
-        const rect = wrap.getBoundingClientRect();
+method:"POST",
 
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
+headers:{
+"Content-Type":"application/json"
+},
 
-        const w = rect.width;
-        const h = rect.height;
+body:JSON.stringify({
+message:msg
+})
 
-        const nextLeft = clamp(baseLeft+dx,6,vw-w-6);
-        const nextTop = clamp(baseTop+dy,6,vh-h-6);
+});
 
-        wrap.style.left=nextLeft+"px";
-        wrap.style.top=nextTop+"px";
+const data=await r.json();
 
-      });
+typing.remove();
 
-      targetEl.addEventListener("pointerup",()=>{
+if(!data.ok){
 
-        if(!dragging) return;
+addMsg("Erro ao falar com a Nayla.","bot");
+return;
 
-        dragging=false;
+}
 
-        const rect = wrap.getBoundingClientRect();
+addMsg(data.reply,"bot");
 
-        savePos(Math.round(rect.left),Math.round(rect.top));
+}catch(e){
 
-      });
+typing.remove();
 
-    }
+addMsg("Falha de conexão com a IA.","bot");
 
-    enableDrag(fab);
-    enableDrag(header);
+}
 
-    function addMessage(text,who="bot"){
+}
 
-      const row = document.createElement("div");
+sendBtn.onclick=send;
 
-      row.className="nx-msg "+(who==="user"?"user":"bot");
+input.addEventListener("keydown",e=>{
 
-      const bubble=document.createElement("div");
+if(e.key==="Enter") send();
 
-      bubble.className="nx-bubble";
-      bubble.textContent=text;
+});
 
-      row.appendChild(bubble);
 
-      body.appendChild(row);
+/* ===============================
+MENSAGEM INICIAL
+=============================== */
 
-      body.scrollTop=body.scrollHeight;
+addMsg(
+"Olá! Eu sou a Nayla da Nexus.\nComo posso ajudar você hoje?",
+"bot"
+);
 
-    }
+}
 
-    async function send(){
 
-      const msg=(input.value||"").trim();
 
-      if(!msg) return;
+/* ===============================
+INICIAR
+=============================== */
 
-      input.value="";
+if(document.readyState==="loading"){
 
-      addMessage(msg,"user");
+document.addEventListener("DOMContentLoaded",createWidget);
 
-      const typing=document.createElement("div");
+}else{
 
-      typing.className="nx-msg bot";
-      typing.innerHTML='<div class="nx-bubble">Nayla está digitando...</div>';
+createWidget();
 
-      body.appendChild(typing);
-
-      body.scrollTop=body.scrollHeight;
-
-      const api = window.NEXUS_API || "";
-
-      try{
-
-        const r = await fetch(`${api}/chat`,{
-
-          method:"POST",
-
-          headers:{
-            "Content-Type":"application/json"
-          },
-
-          body:JSON.stringify({
-            message:msg
-          })
-
-        });
-
-        const d = await r.json().catch(()=>null);
-
-        typing.remove();
-
-        if(!r.ok || !d?.ok){
-
-          addMessage(d?.error || "Erro ao falar com a Nayla.","bot");
-          return;
-
-        }
-
-        addMessage(d.reply || "Sem resposta.","bot");
-
-      }
-      catch(err){
-
-        typing.remove();
-
-        addMessage("Falha de rede ao falar com a Nayla.","bot");
-
-      }
-
-    }
-
-    sendBtn.addEventListener("click",send);
-
-    input.addEventListener("keydown",(e)=>{
-
-      if(e.key==="Enter") send();
-
-    });
-
-    addMessage("Olá! Eu sou a Nayla da Nexus. Como posso ajudar você hoje?","bot");
-
-  }
-
-  if(document.readyState==="loading"){
-    document.addEventListener("DOMContentLoaded",createWidget);
-  }
-  else{
-    createWidget();
-  }
+}
 
 })();
