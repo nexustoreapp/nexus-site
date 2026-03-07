@@ -3,15 +3,11 @@
    ========================================================= */
 
 #nexus-ia-widget{
-
   position:fixed;
   right:16px;
   bottom:16px;
-
   z-index:9999;
-
   font-family:system-ui;
-
 }
 
 /* BOTÃO */
@@ -21,7 +17,7 @@
   width:56px;
   height:56px;
 
-  border-radius:18px;
+  border-radius:999px;
 
   border:1px solid rgba(255,255,255,.12);
 
@@ -43,12 +39,11 @@
 
   position:absolute;
 
-  bottom:70px;
-
+  bottom:72px;
   right:0;
 
-  width:380px;
-  height:520px;
+  width:min(380px, calc(100vw - 20px));
+  height:min(520px, calc(100vh - 120px));
 
   border-radius:18px;
 
@@ -65,9 +60,7 @@
 }
 
 #nexus-ia-panel.open{
-
   display:flex;
-
 }
 
 /* HEADER */
@@ -87,20 +80,15 @@
 }
 
 #nexus-ia-title{
-
   font-weight:900;
   color:white;
-
 }
 
 #nexus-ia-close{
-
   border:none;
   background:none;
   color:white;
-
   cursor:pointer;
-
 }
 
 /* BODY */
@@ -166,17 +154,12 @@
 /* MENSAGENS */
 
 .nx-msg{
-
   display:flex;
-
   margin-bottom:10px;
-
 }
 
 .nx-msg.user{
-
   justify-content:flex-end;
-
 }
 
 .nx-bubble{
@@ -194,7 +177,5 @@
 }
 
 .nx-msg.user .nx-bubble{
-
   background:rgba(255,43,43,.15);
-
 }
