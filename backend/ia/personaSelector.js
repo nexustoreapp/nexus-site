@@ -25,7 +25,9 @@ function loadPersonas(){
 
     return PERSONA_CACHE;
 
-  }catch{
+  }catch(err){
+
+    console.error("Erro carregando personas:",err);
 
     return [];
 
@@ -55,9 +57,11 @@ SCORE PERSONA
 
 function scorePersona(text,persona){
 
+  const normalized = normalize(text);
+
   let score = 0;
 
-  const normalized = normalize(text);
+  /* activation signals */
 
   if(persona.activationSignals){
 
@@ -66,12 +70,14 @@ function scorePersona(text,persona){
       const s = normalize(signal);
 
       if(normalized.includes(s)){
-        score += 5;
+        score += 6;
       }
 
     }
 
   }
+
+  /* role relevance */
 
   if(persona.role){
 
@@ -83,12 +89,28 @@ function scorePersona(text,persona){
 
   }
 
+  /* behavior hints */
+
+  if(persona.behavior){
+
+    for(const b of persona.behavior){
+
+      const behavior = normalize(b);
+
+      if(normalized.includes(behavior)){
+        score += 1;
+      }
+
+    }
+
+  }
+
   return score;
 
 }
 
 /* ===============================
-SELECT PERSONA
+PERSONA DETECTOR
 =============================== */
 
 export function selectPersona(message){
@@ -99,12 +121,14 @@ export function selectPersona(message){
     return null;
   }
 
+  const text = normalize(message);
+
   let bestPersona = null;
   let bestScore = 0;
 
   for(const persona of personas){
 
-    const score = scorePersona(message,persona);
+    const score = scorePersona(text,persona);
 
     if(score > bestScore){
 
@@ -114,6 +138,8 @@ export function selectPersona(message){
     }
 
   }
+
+  /* fallback */
 
   if(!bestPersona){
 
