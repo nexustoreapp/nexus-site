@@ -4,6 +4,9 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 
+import { detectIntent } from "../services/intentMatcher.js";
+import { selectPersona } from "../services/personaSelector.js";
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -12,28 +15,27 @@ const client = new OpenAI({
 CARREGAMENTO GLOBAL (1 VEZ)
 =============================== */
 
-let CATALOG_CACHE = [];
 let IA_CACHE = [];
 
-try {
+try{
 
-  const catalogPath = path.resolve("backend/data/catalogo.json");
   const iaCachePath = path.resolve("backend/data/ia_cache_base.json");
 
-  if (fs.existsSync(catalogPath)) {
-    const raw = fs.readFileSync(catalogPath,"utf-8");
-    const json = JSON.parse(raw);
-    if(Array.isArray(json)) CATALOG_CACHE = json;
-  }
+  if(fs.existsSync(iaCachePath)){
 
-  if (fs.existsSync(iaCachePath)) {
     const raw = fs.readFileSync(iaCachePath,"utf-8");
     const json = JSON.parse(raw);
-    if(Array.isArray(json)) IA_CACHE = json;
+
+    if(Array.isArray(json)){
+      IA_CACHE = json;
+    }
+
   }
 
-} catch(err){
+}catch(err){
+
   console.error("Erro carregando cache IA:",err);
+
 }
 
 /* ===============================
@@ -41,6 +43,7 @@ NORMALIZAÇÃO
 =============================== */
 
 function normalize(text=""){
+
   return text
   .toLowerCase()
   .normalize("NFD")
@@ -48,43 +51,6 @@ function normalize(text=""){
   .replace(/[^a-z0-9\s]/g," ")
   .replace(/\s+/g," ")
   .trim();
-}
-
-/* ===============================
-SLANG
-=============================== */
-
-const SLANG_MAP = {
-
-  pc:["computador","setup"],
-  placa:["gpu","placa de video","placa de vídeo"],
-  notebook:["laptop"],
-  comprar:["pegar","adquirir"],
-  oi:["eae","fala","salve","opa","yo"],
-  obrigado:["valeu","tmj"],
-  saber:["qro","qro saber","qra","qria","queria","quero saber"],
-  nao:["n","num","naum"],
-  quero:["qro","qru","qero"]
-
-};
-
-function normalizeSlang(text){
-
-  let t = normalize(text);
-
-  for(const key in SLANG_MAP){
-
-    for(const slang of SLANG_MAP[key]){
-
-      const rg = new RegExp(`\\b${slang}\\b`,"g");
-
-      t = t.replace(rg,key);
-
-    }
-
-  }
-
-  return t;
 
 }
 
@@ -93,7 +59,6 @@ MEMÓRIA
 =============================== */
 
 const MEMORY = new Map();
-
 const MAX_TURNS = 8;
 
 function getHistory(id){
@@ -114,18 +79,22 @@ function saveTurn(id,role,content){
 }
 
 /* ===============================
-INTENT CACHE MATCH
+MATCH INTENT CACHE
 =============================== */
 
-function matchIntent(text){
+function matchCacheIntent(text){
 
   const t = normalize(text);
 
   for(const item of IA_CACHE){
 
+    if(!item.keywords) continue;
+
     for(const kw of item.keywords){
 
-      if(t.includes(normalize(kw))){
+      const k = normalize(kw);
+
+      if(t.includes(k)){
 
         const replies = item.replyTemplates;
 
@@ -146,23 +115,45 @@ function matchIntent(text){
 }
 
 /* ===============================
-PROMPT
+PROMPT BUILDER
 =============================== */
 
-function buildSystemPrompt(){
+function buildSystemPrompt(persona){
+
+  let personaBlock = "";
+
+  if(persona){
+
+    personaBlock = `
+Persona ativa: ${persona.label}
+
+Função:
+${persona.description}
+
+Tom:
+${persona.tone}
+
+Estilo de comunicação:
+${persona.communicationStyle?.join(", ") || ""}
+`;
+
+  }
 
 return `
 Você é Nayla, assistente da Nexus Store.
 
+${personaBlock}
+
 Objetivo:
-Conversar naturalmente e ajudar clientes a descobrir produtos.
+Ajudar clientes a descobrir produtos e tomar decisões.
 
 Regras:
 
 - Entenda frases mal escritas
-- Não repita frases iguais
-- Ajude o cliente a decidir
 - Seja natural
+- Não repita respostas
+- Faça perguntas quando necessário
+- Ajude o cliente a decidir
 
 Exemplo:
 
@@ -171,49 +162,75 @@ Usuário: quero algo para programar
 Resposta:
 "Boa! Para programar geralmente notebooks com bastante RAM e SSD ajudam bastante. Você prefere notebook ou PC?"
 
-Converse como uma pessoa.
+Converse naturalmente.
 `.trim();
 
 }
 
 /* ===============================
-ROUTER
+ROUTER PRINCIPAL
 =============================== */
 
 export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
 
-  const text = normalizeSlang(message);
+  const text = normalize(message);
 
   /* ===============================
-  INTENT CACHE
+  CACHE INTENT
   =============================== */
 
-  const cached = matchIntent(text);
+  const cacheReply = matchCacheIntent(text);
 
-  if(cached){
+  if(cacheReply){
 
     return {
-      reply:cached,
+      reply: cacheReply,
+      suggestions: []
+    };
+
+  }
+
+  /* ===============================
+  INTENT DETECTOR
+  =============================== */
+
+  const intent = detectIntent(text);
+
+  if(intent && intent.replyTemplates){
+
+    const reply =
+      intent.replyTemplates[
+        Math.floor(Math.random()*intent.replyTemplates.length)
+      ];
+
+    return {
+      reply,
       suggestions:[]
     };
 
   }
 
   /* ===============================
-  IA OPENAI
+  PERSONA SELECTOR
+  =============================== */
+
+  const persona = selectPersona(text);
+
+  /* ===============================
+  HISTÓRICO
   =============================== */
 
   const history = getHistory(conversationId);
 
-  const input=[
+  const input = [
 
-    {role:"system",content:buildSystemPrompt()},
+    { role:"system", content: buildSystemPrompt(persona) },
 
     ...history,
 
-    {role:"user",content:text}
+    { role:"user", content: text }
 
   ];
 
@@ -227,9 +244,9 @@ export async function routeMessage(message,context={}){
 
       input,
 
-      temperature:0.8,
+      temperature:0.7,
 
-      max_output_tokens:220
+      max_output_tokens:240
 
     });
 
@@ -238,14 +255,15 @@ export async function routeMessage(message,context={}){
       ||
       "Pode explicar melhor o que você procura?";
 
-  }catch{
+  }catch(err){
+
+    console.error("Erro IA:",err);
 
     reply = "Pode explicar melhor o que você procura?";
 
   }
 
   saveTurn(conversationId,"user",text);
-
   saveTurn(conversationId,"assistant",reply);
 
   return {
