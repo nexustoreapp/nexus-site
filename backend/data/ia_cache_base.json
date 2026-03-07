@@ -28,9 +28,9 @@
       "rastreamento parado"
     ],
     "replyTemplates": [
-      "Nossa, eu entendo como isso é chato mesmo. Vamos fazer assim: me manda por favor o número do seu pedido que eu olho agora no sistema e vejo o que rolou na rota. Se tiver fora do combinado, a gente resolve de um jeito justo pra você.",
-      "Putz, que situação chata… mas calma, você não vai ficar na mão. Me passa o número do seu pedido que eu já puxo aqui o rastreio e te dou um prazo real.",
-      "Eu sinto muito pelo atraso, de verdade. Me envia o número do pedido pra eu verificar com a transportadora e já te trazer um retorno certinho."
+      "Nossa, eu entendo como isso é chato mesmo. Vamos fazer assim: me manda por favor o número do seu pedido que eu olho agora no sistema e vejo o que rolou na rota.",
+      "Putz, que situação chata… mas calma, você não vai ficar na mão. Me passa o número do seu pedido que eu já puxo aqui o rastreio.",
+      "Eu sinto muito pelo atraso. Me envia o número do pedido pra eu verificar com a transportadora."
     ]
   },
   {
@@ -45,9 +45,9 @@
       "parou do nada"
     ],
     "replyTemplates": [
-      "Nossa, que saco isso ter acontecido, de verdade. 😞 Faz assim: me manda uma foto/vídeo do problema e o número do pedido que eu já vejo se a gente faz troca, reenvio ou outra solução rápida pra você.",
-      "Eu entendo total a frustração. Me envia o número do pedido e, se puder, uma foto ou vídeo mostrando o defeito. Aí eu já vejo certinho a melhor opção pra te ajudar (troca, reenvio ou outra solução).",
-      "Poxa, isso não era pra acontecer mesmo. Me passa o número do pedido e um registro do defeito (foto/vídeo) que eu já abro o fluxo de solução pra você."
+      "Nossa, que saco isso ter acontecido. Faz assim: me manda uma foto ou vídeo do problema e o número do pedido que eu já vejo se fazemos troca ou reenvio.",
+      "Eu entendo a frustração. Me envia o número do pedido e se puder uma foto ou vídeo mostrando o defeito.",
+      "Isso não era pra acontecer. Me passa o número do pedido e um registro do defeito que eu já abro a solução."
     ]
   },
   {
@@ -62,9 +62,9 @@
       "site é de verdade?"
     ],
     "replyTemplates": [
-      "Sua preocupação é super válida, ainda mais com tanto golpe rolando por aí. A Nexus trabalha com catálogo próprio, políticas de devolução claras e suporte ativo. Se quiser, posso te explicar como funciona frete, prazos e garantias, bem transparente.",
-      "Totalmente compreensível ficar com receio hoje em dia. Aqui na Nexus você tem atendimento dedicado, condições específicas de garantia e um histórico de pedidos que pode acompanhar. Me fala qual parte te deixa mais inseguro(a) que eu explico sem enrolação.",
-      "Sim, eu sei que essa preocupação é real. A ideia da Nexus é justamente ser o oposto de site duvidoso: catálogo próprio, preços agressivos mas coerentes, e suporte que resolve. Se quiser, posso detalhar como funcionam pagamentos, estornos e devoluções."
+      "Sua preocupação é válida. A Nexus trabalha com catálogo próprio, políticas de devolução claras e suporte ativo.",
+      "É normal ter receio hoje em dia. Aqui você tem suporte, histórico de pedidos e políticas claras.",
+      "A ideia da Nexus é ser transparente. Se quiser posso te explicar como funcionam pagamentos, frete e garantias."
     ]
   },
   {
@@ -79,95 +79,41 @@
       "me explica o nexus+"
     ],
     "replyTemplates": [
-      "Claro, te explico sim. Hoje a Nexus trabalha com níveis de plano (Core, Hyper e Omega) pensados pra dar desconto real nos produtos, frete mais leve e algumas exclusividades. Se você me falar mais ou menos quanto pretende gastar por mês, eu consigo te dizer qual nível faz mais sentido.",
-      "A ideia dos planos Nexus+ é simples: você paga um valor acessível e em troca desbloqueia preços menores em produtos selecionados, frete diferenciado e alguns itens exclusivos. Me conta: você quer mais desconto em periférico, setup completo ou notebooks?",
-      "Funciona assim: o Nexus+ não é só “assinatura por status”, é pra realmente valer a pena no bolso. Dependendo do seu plano, você paga menos em vários produtos do catálogo, tem frete reduzido ou gratuito e ainda ganha acesso a ofertas que não aparecem pra usuários free."
-    ]
-  },
-  {
-    "id": "upgrade_plano",
-    "intent": "plan_upgrade",
-    "personaId": "assistente_premium",
-    "keywords": ["vale a pena", "compensa", "upgrade", "mudar de plano", "trocar de plano"],
-    "userExamples": [
-      "vale a pena assinar?",
-      "compensa virar nexus+?",
-      "se eu fizer upgrade, eu ganho o que?",
-      "qual plano compensa mais?"
-    ],
-    "replyTemplates": [
-      "A conta é bem prática: se você costuma comprar produtos acima de um certo valor, o desconto Nexus+ e o frete reduzido normalmente já pagam o plano em pouco tempo. Se você me disser o tipo de produto que pretende pegar (monitor, periférico, notebook), eu consigo te mostrar na prática quanto você deixaria de gastar.",
-      "Em geral, compensa pra quem não compra só uma vez. Se você tá montando ou atualizando setup, o upgrade pra Nexus+ faz diferença em cada compra, não só na primeira. Me fala o que você tem em mente que eu te mostro um exemplo com números.",
-      "O melhor plano é aquele que combina com o tanto que você pretende investir. Se for algo mais básico, o Core costuma servir bem. Se você quer mais desconto em mais categorias e frete bem mais leve, Hyper e Omega começam a fazer muito sentido."
+      "Hoje a Nexus trabalha com planos Core, Hyper e Omega. Cada um libera descontos maiores e vantagens.",
+      "Os planos Nexus+ liberam preços menores em vários produtos e frete reduzido.",
+      "Dependendo do plano você desbloqueia produtos exclusivos e descontos maiores."
     ]
   },
   {
     "id": "cancelar_plano",
     "intent": "plan_cancel",
     "personaId": "assistente_premium",
-    "keywords": ["cancelar assinatura", "cancelar plano", "parar de pagar", "cancelamento", "encerrar plano"],
+    "keywords": ["cancelar assinatura", "cancelar plano", "parar de pagar", "cancelamento"],
     "userExamples": [
       "como cancelo?",
       "quero cancelar a assinatura",
-      "quero parar de pagar",
-      "quero sair do plano"
+      "quero parar de pagar"
     ],
     "replyTemplates": [
-      "Eu te ajudo com isso sem dor de cabeça. 😊 O cancelamento pode ser feito direto pela área da sua conta, na parte de planos/assinatura. Se você quiser, posso te passar o passo a passo com base em onde você está acessando (PC ou celular).",
-      "Sem problema, você não fica preso(a) aqui. O cancelamento é simples e transparente, feito pela área do usuário. Se você me disser como acessa a Nexus (site no celular ou PC), eu te mando o caminho certinho.",
-      "Tranquilo, se em algum momento o plano não fizer mais sentido pra você, pode cancelar. Só me fala se você já está logado(a) na sua conta que eu te guio até o lugar certo pra encerrar."
+      "Você pode cancelar pela área da sua conta na parte de planos.",
+      "O cancelamento é simples e feito pela área do usuário.",
+      "Se quiser posso te guiar passo a passo no cancelamento."
     ]
   },
   {
     "id": "duvida_jogo_setup",
     "intent": "game_setup_help",
     "personaId": "gamer_braba",
-    "keywords": ["fps", "cs2", "valorant", "fortnite", "rodar", "roda", "setup", "configuração", "jogo",
-      "lag", "travando", "monitor bom pra jogo", "monitor pro fps"],
+    "keywords": ["pc gamer", "placa de vídeo", "setup gamer", "pc para jogar", "pc gamer barato"],
     "userExamples": [
-      "esse monitor é bom pra cs?",
-      "roda valorant bem?",
-      "isso aqui segura 240fps?",
-      "meu jogo tá travando"
+      "quero montar um pc gamer",
+      "qual placa de vídeo comprar",
+      "setup para jogar"
     ],
     "replyTemplates": [
-      "Aí sim, vamos falar de fps. 😎 Pra eu te responder bonito, me fala qual é sua placa de vídeo, processador e monitor atual. Aí eu consigo te dizer se esse produto casa bem com seu setup ou se vale mais outro modelo.",
-      "Boa pergunta, isso muda totalmente a experiência. Me conta qual jogo você mais joga e, se souber, qual sua placa de vídeo. Aí eu já te digo se esse produto segura tranquilo ou se vale subir um degrau.",
-      "Se teu game tá travando ou você quer pegar mais fps, o ideal é ver o combo todo: placa, processador, RAM e monitor. Me manda o que você já tem que eu vejo se esse produto te entrega um ganho real ou se o gargalo tá em outro lugar."
-    ]
-  },
-  {
-    "id": "escolher_produto",
-    "intent": "product_recommendation",
-    "personaId": "vendedor_amigo",
-    "keywords": ["qual comprar", "na dúvida", "não sei qual", "nao sei qual", "me indica", "me ajuda a escolher", "melhor custo benefício", "custo beneficio"],
-    "userExamples": [
-      "não sei qual monitor pegar",
-      "qual headset você recomenda?",
-      "tô na dúvida entre esses produtos",
-      "qual tem melhor custo benefício?"
-    ],
-    "replyTemplates": [
-      "Show, vamos fazer isso ficar simples. Me fala: qual é seu orçamento máximo e qual é a prioridade? (ex: imagem linda, muito fps, conforto no headset, teclado silencioso etc.) Aí eu te aponto 1 ou 2 opções certeiras do catálogo.",
-      "Pra eu te indicar certinho, preciso saber duas coisas: quanto você quer gastar e o que é mais importante pra você (performance, durabilidade, silêncio, estética…). Me manda isso que eu separo as melhores opções.",
-      "Perfeito, dúvida boa. Em vez de sair recomendando qualquer coisa, eu prefiro entender o que combina com você. Me fala se é pra jogar casual, competitivo, streamer ou trabalho também, e eu ajusto a indicação."
-    ]
-  },
-  {
-    "id": "agradecimento",
-    "intent": "thanks",
-    "personaId": "vendedor_amigo",
-    "keywords": ["obrigado", "obrigada", "valeu", "tmj", "deu certo", "resolveu"],
-    "userExamples": [
-      "valeu",
-      "brigado",
-      "obrigada, resolveu",
-      "muito obrigado"
-    ],
-    "replyTemplates": [
-      "Aí sim, fico feliz que deu bom! 😊 Qualquer coisa que você precisar, só chamar.",
-      "Que bom que ajudou! 💜 Se pintar mais dúvida de produto, plano ou setup, tô por aqui.",
-      "Tamo junto demais! Se bater qualquer outra dúvida, só mandar que eu colo aqui de novo."
+      "Boa! Se for pra jogar eu posso te ajudar a montar um setup equilibrado. Qual seu orçamento mais ou menos?",
+      "Depende muito do tipo de jogo e do orçamento. Você quer algo mais básico ou algo mais forte?",
+      "Se você me disser quanto quer gastar eu consigo sugerir peças ou um setup completo."
     ]
   }
 ]
