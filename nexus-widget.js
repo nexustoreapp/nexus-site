@@ -1,25 +1,21 @@
-// nexus-widget.js
-// =========================================================
-// NEXUS IA GLOBAL
-// =========================================================
+(function(){
 
-(function () {
+const API = window.NEXUS_API;
 
-  const API = window.NEXUS_API;
+function createWidget(){
 
-  function createWidget(){
+if(document.getElementById("nexus-ia-widget")) return;
 
-    if(document.getElementById("nexus-ia-widget")) return;
+const wrap = document.createElement("div");
 
-    const wrap = document.createElement("div");
-    wrap.id="nexus-ia-widget";
+wrap.id="nexus-ia-widget";
 
-    wrap.innerHTML=`
+wrap.innerHTML=`
 
 <button id="nexus-ia-fab">
 
 <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"
+<path d="M4 4H20V15H7L4 18V4Z"
 stroke="white"
 stroke-width="2"
 stroke-linecap="round"
@@ -33,7 +29,9 @@ stroke-linejoin="round"/>
 <div id="nexus-ia-header">
 
 <div id="nexus-ia-title">
-Nayla IA
+
+Nayla
+
 </div>
 
 <button id="nexus-ia-close">✕</button>
@@ -51,121 +49,110 @@ Nayla IA
 </div>
 
 </div>
+
 `;
 
-    document.body.appendChild(wrap);
+document.body.appendChild(wrap);
 
-    const fab = wrap.querySelector("#nexus-ia-fab");
-    const panel = wrap.querySelector("#nexus-ia-panel");
-    const closeBtn = wrap.querySelector("#nexus-ia-close");
-    const body = wrap.querySelector("#nexus-ia-body");
-    const input = wrap.querySelector("#nexus-ia-input");
-    const sendBtn = wrap.querySelector("#nexus-ia-send");
+const fab = wrap.querySelector("#nexus-ia-fab");
+const panel = wrap.querySelector("#nexus-ia-panel");
+const body = wrap.querySelector("#nexus-ia-body");
+const input = wrap.querySelector("#nexus-ia-input");
+const sendBtn = wrap.querySelector("#nexus-ia-send");
+const closeBtn = wrap.querySelector("#nexus-ia-close");
 
-    function addMessage(text,who="bot"){
+function addMsg(text,who="bot"){
 
-      const row=document.createElement("div");
-      row.className="nx-msg "+(who==="user"?"user":"bot");
+const row=document.createElement("div");
+row.className="nx-msg "+(who==="user"?"user":"bot");
 
-      const bubble=document.createElement("div");
-      bubble.className="nx-bubble";
-      bubble.textContent=text;
+const bubble=document.createElement("div");
+bubble.className="nx-bubble";
+bubble.textContent=text;
 
-      row.appendChild(bubble);
+row.appendChild(bubble);
 
-      body.appendChild(row);
+body.appendChild(row);
 
-      body.scrollTop=body.scrollHeight;
+body.scrollTop=body.scrollHeight;
 
-    }
+}
 
-    async function send(){
+async function send(){
 
-      const msg=(input.value||"").trim();
+const msg=(input.value||"").trim();
 
-      if(!msg) return;
+if(!msg) return;
 
-      input.value="";
+input.value="";
 
-      addMessage(msg,"user");
+addMsg(msg,"user");
 
-      addMessage("Digitando...","bot");
+addMsg("Digitando...","bot");
 
-      const typing=body.lastChild;
+const typing=body.lastChild;
 
-      try{
+try{
 
-        const r = await fetch(`${API}/chat`,{
+const r=await fetch(`${API}/chat`,{
 
-          method:"POST",
+method:"POST",
 
-          headers:{
-            "Content-Type":"application/json"
-          },
+headers:{
+"Content-Type":"application/json"
+},
 
-          body:JSON.stringify({
-            message:msg
-          })
+body:JSON.stringify({message:msg})
 
-        });
+});
 
-        const d = await r.json().catch(()=>null);
+const d=await r.json();
 
-        typing.remove();
+typing.remove();
 
-        if(!r.ok || !d?.ok){
+if(!d?.ok){
 
-          addMessage("Erro ao falar com a Nayla.","bot");
-          return;
+addMsg("Erro ao falar com Nayla.","bot");
+return;
 
-        }
+}
 
-        addMessage(d.reply || "Sem resposta.","bot");
+addMsg(d.reply,"bot");
 
-      }
+}catch{
 
-      catch(err){
+typing.remove();
 
-        typing.remove();
+addMsg("Erro de conexão.","bot");
 
-        addMessage("Erro de rede.","bot");
+}
 
-      }
+}
 
-    }
+fab.onclick=()=>panel.classList.toggle("open");
 
-    fab.onclick=()=>{
+closeBtn.onclick=()=>panel.classList.remove("open");
 
-      panel.classList.toggle("open");
+sendBtn.onclick=send;
 
-    };
+input.addEventListener("keydown",(e)=>{
 
-    closeBtn.onclick=()=>{
+if(e.key==="Enter") send();
 
-      panel.classList.remove("open");
+});
 
-    };
+addMsg("Oi! Eu sou a Nayla 👋");
 
-    sendBtn.onclick=send;
+}
 
-    input.addEventListener("keydown",(e)=>{
+if(document.readyState==="loading"){
 
-      if(e.key==="Enter") send();
+document.addEventListener("DOMContentLoaded",createWidget);
 
-    });
+}else{
 
-    addMessage("Oi! Eu sou a Nayla 👋\nComo posso ajudar?","bot");
+createWidget();
 
-  }
-
-  if(document.readyState==="loading"){
-
-    document.addEventListener("DOMContentLoaded",createWidget);
-
-  }else{
-
-    createWidget();
-
-  }
+}
 
 })();
