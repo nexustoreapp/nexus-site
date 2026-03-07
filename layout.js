@@ -4,6 +4,7 @@
  * - Mostra/oculta botões conforme login
  * - Faz busca (vai para buscar.html?q=...)
  * - Marca link ativo
+ * - Carrega widget global da Nayla
  */
 (function () {
   const PAGES = [
@@ -99,11 +100,12 @@
       });
     }
 
-    // Busca
     const input = root.querySelector("#topSearchInput");
     const btn = root.querySelector("#topSearchBtn");
+
     const url = new URL(location.href);
     const currentQ = url.searchParams.get("q") || "";
+
     if (input) input.value = currentQ;
 
     function goSearch() {
@@ -114,31 +116,71 @@
     }
 
     if (btn) btn.addEventListener("click", goSearch);
-    if (input) input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") goSearch();
-    });
 
-    // Logout
+    if (input) {
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") goSearch();
+      });
+    }
+
     const logoutBtn = root.querySelector("#logoutBtn");
+
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        if (typeof window.NEXUS_logout === "function") return window.NEXUS_logout();
+        if (typeof window.NEXUS_logout === "function") {
+          return window.NEXUS_logout();
+        }
+
         try {
           localStorage.removeItem("nexus_token");
           localStorage.removeItem("nexus_plan");
           localStorage.removeItem("nexus_plan_intent");
         } catch {}
+
         location.href = "index.html";
       });
     }
   }
 
+  /* ===============================
+     CARREGAR WIDGET DA NAYLA
+  =============================== */
+
+  function loadNaylaWidget(){
+
+    if(document.getElementById("nayla-widget-loader")){
+      return;
+    }
+
+    const css = document.createElement("link");
+
+    css.rel = "stylesheet";
+    css.href = "nexus-widget.css";
+    css.id = "nayla-widget-loader";
+
+    document.head.appendChild(css);
+
+    const script = document.createElement("script");
+
+    script.src = "nexus-widget.js";
+
+    document.body.appendChild(script);
+
+  }
+
   function mount() {
+
     const host = document.getElementById("topbar-root");
+
     if (!host) return;
 
     host.innerHTML = buildTopbar();
+
     wireTopbar(host);
+
+    /* carrega Nayla em todas as páginas */
+    loadNaylaWidget();
+
   }
 
   if (document.readyState === "loading") {
@@ -146,4 +188,5 @@
   } else {
     mount();
   }
+
 })();
