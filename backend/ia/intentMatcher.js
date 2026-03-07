@@ -25,7 +25,9 @@ function loadIntents(){
 
     return INTENT_CACHE;
 
-  }catch{
+  }catch(err){
+
+    console.error("Erro carregando intents:",err);
 
     return [];
 
@@ -40,24 +42,36 @@ NORMALIZE
 function normalize(text=""){
 
   return text
-  .toLowerCase()
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g,"")
-  .replace(/[^a-z0-9\s]/g," ")
-  .replace(/\s+/g," ")
-  .trim();
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9\s]/g," ")
+    .replace(/\s+/g," ")
+    .trim();
 
 }
 
 /* ===============================
-SCORE MATCH
+TOKENIZE
 =============================== */
 
-function scoreIntent(text,intent){
+function tokenize(text){
+
+  return normalize(text).split(" ").filter(Boolean);
+
+}
+
+/* ===============================
+SCORE INTENT
+=============================== */
+
+function scoreIntent(message,intent){
+
+  const text = normalize(message);
 
   let score = 0;
 
-  const normalized = normalize(text);
+  /* keywords */
 
   if(intent.keywords){
 
@@ -65,7 +79,7 @@ function scoreIntent(text,intent){
 
       const k = normalize(kw);
 
-      if(normalized.includes(k)){
+      if(text.includes(k)){
         score += 3;
       }
 
@@ -73,13 +87,15 @@ function scoreIntent(text,intent){
 
   }
 
+  /* user examples */
+
   if(intent.userExamples){
 
     for(const ex of intent.userExamples){
 
       const e = normalize(ex);
 
-      if(normalized.includes(e)){
+      if(text.includes(e)){
         score += 5;
       }
 
@@ -87,13 +103,15 @@ function scoreIntent(text,intent){
 
   }
 
+  /* activation signals */
+
   if(intent.activationSignals){
 
     for(const s of intent.activationSignals){
 
       const sig = normalize(s);
 
-      if(normalized.includes(sig)){
+      if(text.includes(sig)){
         score += 4;
       }
 
@@ -133,7 +151,9 @@ export function detectIntent(message){
 
   }
 
-  if(bestScore === 0){
+  /* threshold mínimo */
+
+  if(bestScore < 3){
     return null;
   }
 
