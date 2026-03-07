@@ -83,4 +83,41 @@
 #nexus-ia-input{
   flex:1;
   border-radius:16px;
-  border:1px solid rgba(148,163,184,.20
+  border:1px solid rgba(148,163,184,.20);
+  padding:10px 12px;
+  background:rgba(2,6,23,.45);
+  color:#fff;
+  outline:none;
+}
+
+#nexus-ia-send{
+  background:linear-gradient(135deg,#ff2b2b,#ff5c2a);
+  border:none;
+  border-radius:16px;
+  padding:10px 16px;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.nx-msg{
+  display:flex;
+  margin-bottom:12px;
+}
+
+.nx-msg.user{
+  justify-content:flex-end;
+}
+
+.nx-bubble{
+  padding:12px 14px;
+  border-radius:18px;
+  max-width:82%;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  line-height:1.45;
+}
+
+.nx-msg.user .nx-bubble{
+  background:rgba(255,43,43,.18);
+}
