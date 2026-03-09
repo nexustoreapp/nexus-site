@@ -113,7 +113,18 @@ LOCAL FALLBACK
 function localFallback(ctx){
 
   if(ctx.stage === "discovery" && !ctx.use){
-    return "Você pretende usar mais para jogos, estudo ou trabalho?";
+
+    if(!ctx.askUseCount){
+      ctx.askUseCount = 1;
+      return "Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
+    }
+
+    if(ctx.askUseCount === 1){
+      ctx.askUseCount++;
+      return "Para eu te recomendar algo certo, preciso saber: você quer usar mais para jogar, estudar ou trabalhar?";
+    }
+
+    return "Pode me dizer se o PC é mais para jogos, estudo ou trabalho?";
   }
 
   if(ctx.stage === "discovery" && !ctx.budget){
@@ -166,7 +177,7 @@ function rankProducts(products){
 }
 
 /* ===============================
-LIMIT PRODUCTS (UX MARKETPLACE)
+LIMIT PRODUCTS
 =============================== */
 
 function limitProducts(products){
@@ -254,10 +265,6 @@ Quando sugerir um produto:
 
 Depois de recomendar algo, sempre faça uma pergunta curta
 para ajudar o cliente a decidir.
-
-Exemplos:
-"Qual dessas opções parece mais interessante para você?"
-"Prefere a melhor custo-benefício ou a mais potente?"
 
 ${personaBlock}
 
