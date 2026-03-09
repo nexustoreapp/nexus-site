@@ -74,7 +74,7 @@ function extractContext(text, id) {
 
   const ctx = getContext(id);
 
-  const budgetMatch = text.match(/\b\d{3,5}\b/);
+  const budgetMatch = text.match(/\b\d{3,6}\b/);
 
   if (budgetMatch && !ctx.budget) {
     ctx.budget = budgetMatch[0];
@@ -108,8 +108,12 @@ LOCAL FALLBACK
 
 function localFallback(ctx){
 
-  if(ctx.stage === "discovery"){
-    return "Para eu te ajudar melhor, você pretende usar mais para jogos, estudo ou trabalho?";
+  if(ctx.stage === "discovery" && !ctx.use){
+    return "Você pretende usar mais para jogos, estudo ou trabalho?";
+  }
+
+  if(ctx.stage === "discovery" && !ctx.budget){
+    return "Você já tem algum orçamento em mente?";
   }
 
   if(ctx.stage === "recommendation" && ctx.budget){
@@ -187,6 +191,8 @@ decision → ajudar decisão
 
 Nunca volte para saudação depois da primeira mensagem.
 
+Sempre descubra uso e orçamento antes de recomendar produto.
+
 ${personaBlock}
 
 ${intentBlock}
@@ -218,10 +224,6 @@ export async function routeMessage(message, context = {}) {
 
   let products = [];
 
-  /* ===============================
-  BUSCA PRODUTOS
-  =============================== */
-
   if(ctx.stage === "recommendation"){
 
     if(ctx.use === "gaming"){
@@ -237,10 +239,6 @@ export async function routeMessage(message, context = {}) {
     }
 
   }
-
-  /* ===============================
-  OPENAI
-  =============================== */
 
   const input = [
 
