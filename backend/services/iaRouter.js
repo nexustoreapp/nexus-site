@@ -92,6 +92,12 @@ function extractContext(text, id) {
     ctx.use = "work";
   }
 
+  /* DETECT DECISION INTENT */
+
+  if(/comprar|pegar|vou levar|quero esse|como comprar/.test(text)){
+    ctx.stage = "decision";
+  }
+
   if (!ctx.stage) ctx.stage = "discovery";
 
   if (ctx.budget && ctx.use && ctx.stage === "discovery") {
@@ -118,6 +124,10 @@ function localFallback(ctx){
 
   if(ctx.stage === "recommendation" && ctx.budget){
     return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções muito boas para esse tipo de uso 👇`;
+  }
+
+  if(ctx.stage === "decision"){
+    return "Se quiser ver os detalhes completos, basta abrir o produto que eu te mostrei.";
   }
 
   return "Pode me contar um pouco mais do que você procura?";
