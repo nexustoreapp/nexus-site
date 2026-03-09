@@ -91,8 +91,6 @@ function extractContext(text, id) {
     ctx.use = "work";
   }
 
-  /* ===== STAGE ===== */
-
   if (!ctx.stage) ctx.stage = "discovery";
 
   if (ctx.budget && ctx.use && ctx.stage === "discovery") {
@@ -104,81 +102,20 @@ function extractContext(text, id) {
 }
 
 /* ===============================
-NORMALIZE
+LOCAL FALLBACK
 =============================== */
 
-function normalize(text = "") {
+function localFallback(ctx){
 
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-}
-
-/* ===============================
-CACHE KEYWORD
-=============================== */
-
-function matchByKeyword(text) {
-
-  const t = normalize(text);
-
-  for (const item of IA_CACHE) {
-
-    if (!item.keywords) continue;
-
-    for (const kw of item.keywords) {
-
-      if (t.includes(normalize(kw))) {
-
-        if (item.replyTemplates?.length) {
-
-          return item.replyTemplates[
-            Math.floor(Math.random() * item.replyTemplates.length)
-          ];
-
-        }
-
-      }
-
-    }
-
+  if(ctx.stage === "discovery"){
+    return "Para eu te ajudar melhor, você pretende usar mais para jogos, estudo ou trabalho?";
   }
 
-  return null;
-
-}
-
-/* ===============================
-CACHE INTENT
-=============================== */
-
-function matchByIntent(intent) {
-
-  if (!intent) return null;
-
-  for (const item of IA_CACHE) {
-
-    if (item.intent === intent.intent) {
-
-      if (item.replyTemplates?.length) {
-
-        return item.replyTemplates[
-          Math.floor(Math.random() * item.replyTemplates.length)
-        ];
-
-      }
-
-    }
-
+  if(ctx.stage === "recommendation" && ctx.budget){
+    return `Com um orçamento perto de ${ctx.budget}, posso sugerir algumas configurações equilibradas. Você prefere montar o PC ou comprar pronto?`;
   }
 
-  return null;
-
+  return "Pode me contar um pouco mais do que você procura?";
 }
 
 /* ===============================
@@ -280,31 +217,18 @@ export async function routeMessage(message, context = {}) {
 
   if (history.length === 0) {
 
-    const keywordMatch = matchByKeyword(text);
+    const keywordMatch = IA_CACHE.find(i =>
+      i.keywords?.some(k => text.includes(k))
+    );
 
-    if (keywordMatch) {
+    if(keywordMatch){
 
-      saveTurn(conversationId, "user", text);
-      saveTurn(conversationId, "assistant", keywordMatch);
+      const r = keywordMatch.replyTemplates[0];
 
-      return {
-        reply: keywordMatch,
-        suggestions: []
-      };
+      saveTurn(conversationId,"user",text);
+      saveTurn(conversationId,"assistant",r);
 
-    }
-
-    const intentMatch = matchByIntent(intent);
-
-    if (intentMatch) {
-
-      saveTurn(conversationId, "user", text);
-      saveTurn(conversationId, "assistant", intentMatch);
-
-      return {
-        reply: intentMatch,
-        suggestions: []
-      };
+      return { reply:r, suggestions:[] };
 
     }
 
@@ -313,50 +237,50 @@ export async function routeMessage(message, context = {}) {
   const input = [
 
     {
-      role: "system",
-      content: buildPrompt(persona, intent, ctx)
+      role:"system",
+      content:buildPrompt(persona,intent,ctx)
     },
 
     ...history,
 
     {
-      role: "user",
-      content: text
+      role:"user",
+      content:text
     }
 
   ];
 
-  let reply = "";
+  let reply="";
 
-  try {
+  try{
 
     const resp = await client.responses.create({
 
-      model: "gpt-4o-mini",
+      model:"gpt-4o-mini",
       input,
-      temperature: 0.8,
-      max_output_tokens: 300
+      temperature:0.8,
+      max_output_tokens:300
 
     });
 
-    reply =
-      resp.output_text?.trim() ||
-      "Me explica melhor o que você procura.";
+    reply = resp.output_text?.trim();
 
-  } catch (err) {
+  }catch(err){
 
-    console.error("OpenAI erro:", err);
-
-    reply = "Tive um problema aqui. Pode repetir?";
+    console.error("OpenAI erro:",err);
 
   }
 
-  saveTurn(conversationId, "user", text);
-  saveTurn(conversationId, "assistant", reply);
+  if(!reply){
+    reply = localFallback(ctx);
+  }
+
+  saveTurn(conversationId,"user",text);
+  saveTurn(conversationId,"assistant",reply);
 
   return {
     reply,
-    suggestions: []
+    suggestions:[]
   };
 
 }
