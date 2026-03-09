@@ -77,7 +77,7 @@ function extractContext(text, id) {
   const budgetMatch = text.match(/\b\d{3,6}\b/);
 
   if (budgetMatch && !ctx.budget) {
-    ctx.budget = budgetMatch[0];
+    ctx.budget = Number(budgetMatch[0]);
   }
 
   if (/jogo|fps|valorant|cs2|fortnite/.test(text)) {
@@ -91,8 +91,6 @@ function extractContext(text, id) {
   if (/edição|render|design|trabalho/.test(text)) {
     ctx.use = "work";
   }
-
-  /* DETECT DECISION INTENT */
 
   if(/comprar|pegar|vou levar|quero esse|como comprar/.test(text)){
     ctx.stage = "decision";
@@ -131,6 +129,21 @@ function localFallback(ctx){
   }
 
   return "Pode me contar um pouco mais do que você procura?";
+}
+
+/* ===============================
+FILTER BY BUDGET
+=============================== */
+
+function filterByBudget(products, budget){
+
+  if(!budget) return products;
+
+  return products.filter(p=>{
+    const price = Number(p.price || 0);
+    return price <= budget;
+  });
+
 }
 
 /* ===============================
@@ -274,6 +287,7 @@ export async function routeMessage(message, context = {}) {
 
   }
 
+  products = filterByBudget(products, ctx.budget);
   products = rankProducts(products);
 
   const input = [
