@@ -32,6 +32,7 @@ export async function chat(req, res) {
     return res.status(200).json({
       ok: true,
       reply: result.reply,
+      products: result.products || [],
       suggestions: result.suggestions || []
     });
 
