@@ -4,7 +4,7 @@ import path from "path";
 let PERSONA_CACHE = null;
 
 /* ===============================
-LOAD PERSONAS (CACHE)
+LOAD PERSONAS
 =============================== */
 
 function loadPersonas(){
@@ -59,8 +59,6 @@ function scorePersona(text,persona){
 
   const normalized = normalize(text);
 
-  /* activation signals */
-
   if(persona.activationSignals){
 
     for(const signal of persona.activationSignals){
@@ -75,8 +73,6 @@ function scorePersona(text,persona){
 
   }
 
-  /* role */
-
   if(persona.role){
 
     const r = normalize(persona.role);
@@ -86,8 +82,6 @@ function scorePersona(text,persona){
     }
 
   }
-
-  /* description */
 
   if(persona.description){
 
@@ -100,6 +94,50 @@ function scorePersona(text,persona){
   }
 
   return score;
+
+}
+
+/* ===============================
+GUIDED QUESTIONS
+=============================== */
+
+export function getGuidedQuestions(persona){
+
+  if(!persona) return [];
+
+  if(persona.id === "gamer_braba"){
+
+    return [
+      "Qual seu orçamento para o setup?",
+      "Você pretende jogar quais jogos?",
+      "Prefere focar mais em FPS ou qualidade gráfica?"
+    ];
+
+  }
+
+  if(persona.id === "vendedor_amigo"){
+
+    return [
+      "Qual tipo de produto você está procurando?",
+      "Você já tem algum orçamento em mente?",
+      "Prefere algo mais custo-benefício ou mais potente?"
+    ];
+
+  }
+
+  if(persona.id === "assistente_premium"){
+
+    return [
+      "Você quer entender melhor os planos ou alguma funcionalidade específica?",
+      "Quer ajuda para escolher o melhor plano?",
+      "Você pretende usar a Nexus com que frequência?"
+    ];
+
+  }
+
+  return [
+    "Pode me contar um pouco mais do que você procura?"
+  ];
 
 }
 
@@ -132,8 +170,6 @@ export function selectPersona(message){
     }
 
   }
-
-  /* fallback */
 
   if(!bestPersona){
 
