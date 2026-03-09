@@ -58,6 +58,47 @@
   }
 
   /* =========================
+  PRODUCT BOX
+  ========================= */
+
+  function addProduct(product){
+
+    const box = document.createElement("div");
+    box.className = "chat-product-box";
+
+    const img = document.createElement("img");
+    img.src = product.image;
+    img.className = "chat-product-img";
+
+    const name = document.createElement("div");
+    name.className = "chat-product-name";
+    name.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "chat-product-price";
+    price.textContent = product.price;
+
+    box.appendChild(img);
+    box.appendChild(name);
+    box.appendChild(price);
+
+    img.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      const modal = window.open(product.image,"_blank");
+      if(modal) modal.focus();
+    });
+
+    box.addEventListener("click",()=>{
+      window.location.href = product.url;
+    });
+
+    body.appendChild(box);
+
+    body.scrollTop = body.scrollHeight;
+
+  }
+
+  /* =========================
   ADD MESSAGE
   ========================= */
 
@@ -120,19 +161,29 @@
 
       if (!r.ok || !d?.ok) {
 
-        addMsg(d?.error || "Erro ao falar com a Nayla.", "ai");
+        addMsg(
+          d?.error || "Erro ao falar com a Nayla.",
+          "ai"
+        );
 
         return;
       }
 
       addMsg(d.reply || "Sem resposta.", "ai");
 
+      if(d.products && Array.isArray(d.products)){
+        d.products.forEach(addProduct);
+      }
+
     }
     catch {
 
       if (typing) typing.remove();
 
-      addMsg("Falha de rede. Tente novamente.", "ai");
+      addMsg(
+        "Falha de rede. Tente novamente.",
+        "ai"
+      );
 
     }
 
