@@ -91,6 +91,14 @@ function extractContext(text, id) {
     ctx.use = "work";
   }
 
+  /* ===== STAGE ===== */
+
+  if (!ctx.stage) ctx.stage = "discovery";
+
+  if (ctx.budget && ctx.use && ctx.stage === "discovery") {
+    ctx.stage = "recommendation";
+  }
+
   CONTEXT.set(id, ctx);
 
 }
@@ -221,6 +229,7 @@ CONTEXTO DO CLIENTE
 
 Orçamento: ${ctx.budget || "não informado"}
 Uso: ${ctx.use || "não informado"}
+Stage: ${ctx.stage}
 
 `;
 
@@ -230,15 +239,15 @@ Uso: ${ctx.use || "não informado"}
 Você é Nayla da Nexus Store.
 
 Função
-Ajudar clientes a escolher hardware e produtos.
+Ajudar clientes a escolher hardware.
 
-Regras
+Fluxo de conversa
 
-Nunca repita saudação
-Continue a conversa
-Use o contexto do cliente
-Faça perguntas úteis
-Seja direta
+discovery → descobrir necessidade
+recommendation → sugerir produto
+decision → ajudar decisão
+
+Nunca volte para saudação depois da primeira mensagem.
 
 ${personaBlock}
 
