@@ -5,7 +5,8 @@ import path from "path";
 
 const cache = new Map();
 
-const CATALOG_PATH = path.resolve("backend/data/catalog.index.json");
+const INDEX_PATH = path.resolve("backend/data/catalog.index.json");
+const CATALOG_FOLDER = path.resolve("backend/data/catalog");
 
 /**
 Cache simples em memória com TTL
@@ -44,29 +45,58 @@ export function clearAllCache() {
 }
 
 /* ===============================
-CATALOG LOAD
+LOAD INDEX
 =============================== */
 
-export function loadCatalog() {
+function loadIndex(){
 
-  const cached = getCache("catalog");
+  const cached = getCache("catalog_index");
 
-  if (cached) return cached;
+  if(cached) return cached;
 
-  try {
+  try{
 
-    const raw = fs.readFileSync(CATALOG_PATH, "utf-8");
-
+    const raw = fs.readFileSync(INDEX_PATH,"utf-8");
     const json = JSON.parse(raw);
 
-    setCache("catalog", json, 10 * 60 * 1000);
+    setCache("catalog_index",json,10*60*1000);
 
     return json;
 
-  } catch (err) {
+  }catch(err){
 
-    console.error("Erro carregando catálogo:", err);
+    console.error("Erro carregando catalog.index:",err);
+    return {};
 
+  }
+
+}
+
+/* ===============================
+LOAD CATEGORY FILE
+=============================== */
+
+function loadCategory(file){
+
+  const key = "cat_"+file;
+
+  const cached = getCache(key);
+  if(cached) return cached;
+
+  try{
+
+    const filePath = path.join(CATALOG_FOLDER,file);
+
+    const raw = fs.readFileSync(filePath,"utf-8");
+    const json = JSON.parse(raw);
+
+    setCache(key,json,10*60*1000);
+
+    return json;
+
+  }catch(err){
+
+    console.error("Erro carregando categoria:",file,err);
     return [];
 
   }
@@ -77,18 +107,34 @@ export function loadCatalog() {
 SEARCH PRODUCTS
 =============================== */
 
-export function searchCatalog(term) {
+export function searchCatalog(term){
 
-  const catalog = loadCatalog();
+  const index = loadIndex();
 
   const t = term.toLowerCase();
 
-  return catalog.filter(p => {
+  const results = [];
 
-    if (!p.name) return false;
+  for(const id in index){
 
-    return p.name.toLowerCase().includes(t);
+    const item = index[id];
 
-  }).slice(0,5);
+    if(!item.active) continue;
+
+    const fileProducts = loadCategory(item.file);
+
+    const product = fileProducts.find(p=>p.id === id);
+
+    if(!product) continue;
+
+    const name = String(product.name || "").toLowerCase();
+
+    if(name.includes(t)){
+      results.push(product);
+    }
+
+  }
+
+  return results.slice(0,5);
 
 }
