@@ -166,6 +166,18 @@ function rankProducts(products){
 }
 
 /* ===============================
+LIMIT PRODUCTS (UX MARKETPLACE)
+=============================== */
+
+function limitProducts(products){
+
+  if(!Array.isArray(products)) return [];
+
+  return products.slice(0,3);
+
+}
+
+/* ===============================
 PROMPT
 =============================== */
 
@@ -240,6 +252,13 @@ Quando sugerir um produto:
 - sugira um complemento ou upgrade
 - incentive o cliente a analisar o produto agora
 
+Depois de recomendar algo, sempre faça uma pergunta curta
+para ajudar o cliente a decidir.
+
+Exemplos:
+"Qual dessas opções parece mais interessante para você?"
+"Prefere a melhor custo-benefício ou a mais potente?"
+
 ${personaBlock}
 
 ${intentBlock}
@@ -289,6 +308,7 @@ export async function routeMessage(message, context = {}) {
 
   products = filterByBudget(products, ctx.budget);
   products = rankProducts(products);
+  products = limitProducts(products);
 
   const input = [
 
