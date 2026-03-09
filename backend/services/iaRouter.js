@@ -5,6 +5,7 @@ import path from "path";
 import { detectIntent } from "../ia/intentMatcher.js";
 import { selectPersona } from "../ia/personaSelector.js";
 import { normalizeSlang } from "../ia/slangNormalizer.js";
+import { searchCatalog } from "../utils/catalogCache.js";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -112,7 +113,7 @@ function localFallback(ctx){
   }
 
   if(ctx.stage === "recommendation" && ctx.budget){
-    return `Com um orçamento perto de ${ctx.budget}, posso sugerir algumas configurações equilibradas. Você prefere montar o PC ou comprar pronto?`;
+    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções interessantes 👇`;
   }
 
   return "Pode me contar um pouco mais do que você procura?";
@@ -215,24 +216,31 @@ export async function routeMessage(message, context = {}) {
 
   const persona = selectPersona(text);
 
-  if (history.length === 0) {
+  let products = [];
 
-    const keywordMatch = IA_CACHE.find(i =>
-      i.keywords?.some(k => text.includes(k))
-    );
+  /* ===============================
+  BUSCA PRODUTOS
+  =============================== */
 
-    if(keywordMatch){
+  if(ctx.stage === "recommendation"){
 
-      const r = keywordMatch.replyTemplates[0];
+    if(ctx.use === "gaming"){
+      products = searchCatalog("gpu");
+    }
 
-      saveTurn(conversationId,"user",text);
-      saveTurn(conversationId,"assistant",r);
+    if(ctx.use === "study"){
+      products = searchCatalog("notebook");
+    }
 
-      return { reply:r, suggestions:[] };
-
+    if(ctx.use === "work"){
+      products = searchCatalog("workstation");
     }
 
   }
+
+  /* ===============================
+  OPENAI
+  =============================== */
 
   const input = [
 
@@ -280,6 +288,7 @@ export async function routeMessage(message, context = {}) {
 
   return {
     reply,
+    products,
     suggestions:[]
   };
 
