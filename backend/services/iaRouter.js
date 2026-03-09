@@ -117,7 +117,7 @@ function localFallback(ctx){
   }
 
   if(ctx.stage === "recommendation" && ctx.budget){
-    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções interessantes 👇`;
+    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções muito boas para esse tipo de uso 👇`;
   }
 
   return "Pode me contar um pouco mais do que você procura?";
@@ -192,6 +192,9 @@ decision → ajudar decisão
 Nunca volte para saudação depois da primeira mensagem.
 
 Sempre descubra uso e orçamento antes de recomendar produto.
+
+Quando sugerir um produto, explique em uma frase simples
+por que ele é uma boa escolha para o cliente.
 
 ${personaBlock}
 
