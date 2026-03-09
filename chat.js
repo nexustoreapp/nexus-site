@@ -1,7 +1,7 @@
 // chat.js (Nayla - Assistente Nexus)
-// Requer: config.js definindo window.NEXUS_API (ex: https://.../api/v1)
 
 (function () {
+
   const API = window.NEXUS_API;
   const token = localStorage.getItem("nexus_token");
 
@@ -12,12 +12,56 @@
   const fab = document.getElementById("chatFab");
   const closeBtn = document.getElementById("chatClose");
 
+  const STORAGE_KEY = "nexus_chat_history";
+
   if (!API) {
     console.error("NEXUS_API não definido em config.js");
     return;
   }
 
-  function addMsg(text, who) {
+  /* =========================
+  HISTÓRICO LOCAL
+  ========================= */
+
+  function saveHistory() {
+
+    const msgs = [];
+
+    body.querySelectorAll(".chat-msg-user, .chat-msg-ai")
+      .forEach(el => {
+
+        msgs.push({
+          text: el.textContent,
+          who: el.classList.contains("chat-msg-user") ? "me" : "ai"
+        });
+
+      });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
+
+  }
+
+  function loadHistory() {
+
+    const raw = localStorage.getItem(STORAGE_KEY);
+
+    if (!raw) return;
+
+    try {
+
+      const msgs = JSON.parse(raw);
+
+      msgs.forEach(m => addMsg(m.text, m.who, false));
+
+    } catch {}
+
+  }
+
+  /* =========================
+  ADD MESSAGE
+  ========================= */
+
+  function addMsg(text, who, save = true) {
 
     const wrap = document.createElement("div");
 
@@ -30,10 +74,18 @@
 
     body.appendChild(wrap);
 
-    body.scrollTop = body.scrollHeight;
+    requestAnimationFrame(() => {
+      body.scrollTop = body.scrollHeight;
+    });
+
+    if (save) saveHistory();
 
     return wrap;
   }
+
+  /* =========================
+  SEND
+  ========================= */
 
   async function send() {
 
@@ -45,8 +97,7 @@
 
     addMsg(msg, "me");
 
-    // animação de digitação
-    const typing = addMsg("Nayla está digitando...", "ai");
+    const typing = addMsg("Nayla está digitando...", "ai", false);
 
     try {
 
@@ -69,10 +120,7 @@
 
       if (!r.ok || !d?.ok) {
 
-        addMsg(
-          d?.error || "Erro ao falar com a Nayla.",
-          "ai"
-        );
+        addMsg(d?.error || "Erro ao falar com a Nayla.", "ai");
 
         return;
       }
@@ -80,18 +128,19 @@
       addMsg(d.reply || "Sem resposta.", "ai");
 
     }
-    catch (e) {
+    catch {
 
       if (typing) typing.remove();
 
-      addMsg(
-        "Falha de rede. Tente novamente.",
-        "ai"
-      );
+      addMsg("Falha de rede. Tente novamente.", "ai");
 
     }
 
   }
+
+  /* =========================
+  UI EVENTS
+  ========================= */
 
   if (fab && panel)
     fab.addEventListener("click", () =>
@@ -107,9 +156,24 @@
     sendBtn.addEventListener("click", send);
 
   if (input) {
+
     input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") send();
+
+      if (e.key === "Enter" && !e.shiftKey) {
+
+        e.preventDefault();
+        send();
+
+      }
+
     });
+
   }
+
+  /* =========================
+  INIT
+  ========================= */
+
+  loadHistory();
 
 })();
