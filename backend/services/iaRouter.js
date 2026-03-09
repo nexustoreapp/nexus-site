@@ -124,6 +124,25 @@ function localFallback(ctx){
 }
 
 /* ===============================
+RANK PRODUCTS
+=============================== */
+
+function rankProducts(products){
+
+  if(!Array.isArray(products)) return [];
+
+  return products.sort((a,b)=>{
+
+    const pa = Number(a.price || 0);
+    const pb = Number(b.price || 0);
+
+    return pa - pb;
+
+  });
+
+}
+
+/* ===============================
 PROMPT
 =============================== */
 
@@ -244,6 +263,8 @@ export async function routeMessage(message, context = {}) {
     }
 
   }
+
+  products = rankProducts(products);
 
   const input = [
 
