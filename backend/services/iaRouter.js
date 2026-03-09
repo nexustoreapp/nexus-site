@@ -40,10 +40,16 @@ MEMORY
 =============================== */
 
 const MEMORY = new Map();
+const CONTEXT = new Map();
+
 const MAX_HISTORY = 10;
 
 function getHistory(id) {
   return MEMORY.get(id) || [];
+}
+
+function getContext(id) {
+  return CONTEXT.get(id) || {};
 }
 
 function saveTurn(id, role, content) {
@@ -56,6 +62,36 @@ function saveTurn(id, role, content) {
     id,
     h.slice(-MAX_HISTORY * 2)
   );
+
+}
+
+/* ===============================
+EXTRACT CONTEXT
+=============================== */
+
+function extractContext(text, id) {
+
+  const ctx = getContext(id);
+
+  const budgetMatch = text.match(/\b\d{3,5}\b/);
+
+  if (budgetMatch && !ctx.budget) {
+    ctx.budget = budgetMatch[0];
+  }
+
+  if (/jogo|fps|valorant|cs2|fortnite/.test(text)) {
+    ctx.use = "gaming";
+  }
+
+  if (/programar|programação|faculdade|estudo/.test(text)) {
+    ctx.use = "study";
+  }
+
+  if (/edição|render|design|trabalho/.test(text)) {
+    ctx.use = "work";
+  }
+
+  CONTEXT.set(id, ctx);
 
 }
 
@@ -141,7 +177,7 @@ function matchByIntent(intent) {
 PROMPT
 =============================== */
 
-function buildPrompt(persona, intent) {
+function buildPrompt(persona, intent, ctx) {
 
   let personaBlock = "";
 
@@ -175,6 +211,21 @@ ${intent.intent}
 
   }
 
+  let contextBlock = "";
+
+  if (ctx.budget || ctx.use) {
+
+    contextBlock = `
+
+CONTEXTO DO CLIENTE
+
+Orçamento: ${ctx.budget || "não informado"}
+Uso: ${ctx.use || "não informado"}
+
+`;
+
+  }
+
   return `
 Você é Nayla da Nexus Store.
 
@@ -183,15 +234,17 @@ Ajudar clientes a escolher hardware e produtos.
 
 Regras
 
-Nunca repita saudação várias vezes
-Continue a conversa naturalmente
-Se o usuário deu orçamento use isso
+Nunca repita saudação
+Continue a conversa
+Use o contexto do cliente
 Faça perguntas úteis
-Seja direta e humana
+Seja direta
 
 ${personaBlock}
 
 ${intentBlock}
+
+${contextBlock}
 `;
 
 }
@@ -206,15 +259,15 @@ export async function routeMessage(message, context = {}) {
 
   const text = normalizeSlang(message);
 
+  extractContext(text, conversationId);
+
+  const ctx = getContext(conversationId);
+
   const history = getHistory(conversationId);
 
   const intent = detectIntent(text);
 
   const persona = selectPersona(text);
-
-  /* =================================
-  CACHE SOMENTE NA PRIMEIRA MENSAGEM
-  ================================= */
 
   if (history.length === 0) {
 
@@ -248,15 +301,11 @@ export async function routeMessage(message, context = {}) {
 
   }
 
-  /* =================================
-  OPENAI
-  ================================= */
-
   const input = [
 
     {
       role: "system",
-      content: buildPrompt(persona, intent)
+      content: buildPrompt(persona, intent, ctx)
     },
 
     ...history,
@@ -275,9 +324,7 @@ export async function routeMessage(message, context = {}) {
     const resp = await client.responses.create({
 
       model: "gpt-4o-mini",
-
       input,
-
       temperature: 0.8,
       max_output_tokens: 300
 
