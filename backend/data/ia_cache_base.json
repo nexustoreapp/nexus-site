@@ -1,3 +1,4 @@
+[
 {
 "id":"saudacao_var",
 "intent":"greeting_variations",
@@ -564,3 +565,4 @@
 "Me fala o tipo de produto que você quer que eu tento encontrar algo interessante."
 ]
 }
+]
