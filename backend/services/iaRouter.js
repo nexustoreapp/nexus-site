@@ -7,35 +7,26 @@ import { searchCatalog } from "../utils/catalogCache.js";
 
 import {
   detectLanguage,
-  greetingByLang,
-  conversationResponse
+  greetingByLang
 } from "../ia/conversationEngine.js";
 
-import {
-  updateMemoryScore
-} from "../ia/memoryScore.js";
+import { updateMemoryScore } from "../ia/memoryScore.js";
 
 import {
   predictConversationPath,
   pathResponse
 } from "../ia/conversationPredictor.js";
 
-import {
-  predictIntentEarly
-} from "../ia/intentPredictor.js";
+import { predictIntentEarly } from "../ia/intentPredictor.js";
 
 import {
   detectBuyIntent,
   salesStrategy
 } from "../ia/salesBrain.js";
 
-import {
-  detectCustomerType
-} from "../ia/customerProfile.js";
+import { detectCustomerType } from "../ia/customerProfile.js";
 
-import {
-  humanize
-} from "../ia/humanStyle.js";
+import { humanize } from "../ia/humanStyle.js";
 
 import {
   getResponseCache,
@@ -47,9 +38,7 @@ import {
   getSimilarReply
 } from "../ia/conversationLearning.js";
 
-import {
-  learnFromConversation
-} from "../ia/selfEvolvingAI.js";
+import { learnFromConversation } from "../ia/selfEvolvingAI.js";
 
 import {
   registerSearch,
@@ -60,6 +49,19 @@ import {
   chooseProductStrategy,
   generateSalesAction
 } from "../ia/salesAgent.js";
+
+import {
+  rankProductsByNeural
+} from "../ia/neuralCommerce.js";
+
+import {
+  predictBudget,
+  predictUse
+} from "../ia/predictiveCommerce.js";
+
+import {
+  registerSearch as registerBehaviorSearch
+} from "../ia/behavioralSignals.js";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -103,11 +105,22 @@ function extractContext(text,id){
 
   const ctx = getContext(id);
 
+  const predictedBudget = predictBudget(text);
+  const predictedUse = predictUse(text);
+
   const budgetMatch = text.match(/\b\d{3,6}\b/);
 
   if(budgetMatch && !ctx.budget){
     ctx.budget = Number(budgetMatch[0]);
     registerPriceRange(ctx.budget);
+  }
+
+  if(!ctx.budget && predictedBudget){
+    ctx.budget = predictedBudget;
+  }
+
+  if(!ctx.use && predictedUse){
+    ctx.use = predictedUse;
   }
 
   if(/jogo|fps|valorant|cs2|fortnite/.test(text)){
@@ -202,6 +215,7 @@ export async function routeMessage(message,context={}){
   const ctx = getContext(conversationId);
 
   registerSearch(text);
+  registerBehaviorSearch(text);
 
   const lang = detectLanguage(context.headers || {});
   ctx.lang = lang;
@@ -330,7 +344,11 @@ PRODUCT RECOMMENDATION
   }
 
   products = filterByBudget(products,ctx.budget);
+
   products = rankProducts(products);
+
+  products = rankProductsByNeural(products);
+
   products = limitProducts(products);
 
   /* ===============================
