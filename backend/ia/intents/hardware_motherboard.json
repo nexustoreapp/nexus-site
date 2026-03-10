@@ -1,0 +1,133 @@
+[
+{
+"id":"motherboard_general_question",
+"intent":"motherboard_help",
+"keywords":["placa mae","placa mãe","motherboard","mobo"],
+"userExamples":[
+"qual placa mae comprar",
+"qual placa mãe comprar",
+"qual motherboard comprar",
+"placa mae boa",
+"placa mãe boa",
+"qual placa mae vale a pena",
+"qual placa mãe vale a pena",
+"qual placa mae escolher",
+"qual placa mãe escolher",
+"placa mae custo beneficio",
+"placa mãe custo beneficio",
+"qual motherboard vale a pena",
+"qual motherboard escolher",
+"placa mãe para pc gamer",
+"placa mãe para pc",
+"qual placa mãe usar",
+"qual placa mãe pegar",
+"placa mae boa para ryzen",
+"placa mae boa para intel",
+"qual motherboard compensa"
+],
+"replyTemplates":[
+"A placa-mãe é a base que conecta todos os componentes do PC.",
+"A escolha da placa-mãe depende muito do processador que você pretende usar.",
+"Se você me disser qual CPU pretende usar eu consigo sugerir placas-mãe compatíveis."
+]
+},
+
+{
+"id":"motherboard_compatibility",
+"intent":"motherboard_compatibility",
+"keywords":["compatibilidade","socket","soquete","chipset"],
+"userExamples":[
+"essa placa mãe é compatível",
+"qual placa mãe para ryzen",
+"qual placa mãe para intel",
+"placa mãe para ryzen 5",
+"placa mãe para i5",
+"qual socket usar",
+"qual soquete usar",
+"qual chipset escolher",
+"placa mãe compatível com ryzen",
+"placa mãe compatível com intel",
+"qual placa mãe suporta meu processador",
+"essa motherboard suporta ryzen",
+"essa placa suporta intel",
+"qual chipset para jogos",
+"qual chipset para trabalho",
+"placa mãe suporta qual cpu",
+"qual placa mãe combina com esse processador",
+"placa mãe para upgrade",
+"placa mãe compatível com meu pc",
+"qual placa mãe funciona com essa cpu"
+],
+"replyTemplates":[
+"A compatibilidade depende principalmente do socket do processador.",
+"Cada processador precisa de uma placa-mãe com socket compatível.",
+"Se você me disser qual processador pretende usar posso verificar a compatibilidade."
+]
+},
+
+{
+"id":"motherboard_upgrade",
+"intent":"motherboard_upgrade",
+"keywords":["upgrade placa mae","trocar placa mae"],
+"userExamples":[
+"vale a pena trocar placa mae",
+"upgrade de placa mae vale a pena",
+"quero trocar minha placa mae",
+"quero trocar minha placa mãe",
+"qual placa mãe melhor que a minha",
+"qual motherboard melhor que a minha",
+"upgrade de motherboard",
+"trocar placa mae melhora desempenho",
+"vale a pena trocar motherboard",
+"quero melhorar meu pc",
+"qual placa mãe colocar no meu pc",
+"qual motherboard colocar no meu pc",
+"placa mãe melhor que a minha",
+"trocar placa mae ajuda upgrade",
+"upgrade de placa mae gamer",
+"trocar placa mae para upgrade",
+"placa mae para upgrade de cpu",
+"placa mãe nova vale a pena",
+"quero upgrade de motherboard",
+"trocar placa mae melhora compatibilidade"
+],
+"replyTemplates":[
+"Trocar a placa-mãe normalmente é feito quando você quer trocar o processador também.",
+"Dependendo do seu hardware atual pode valer a pena um upgrade de placa-mãe.",
+"Se você me disser qual placa-mãe usa hoje posso sugerir opções melhores."
+]
+},
+
+{
+"id":"motherboard_features",
+"intent":"motherboard_features",
+"keywords":["slots","m2","pcie","ram slots"],
+"userExamples":[
+"quantos slots de ram tem",
+"tem slot m2",
+"essa placa tem nvme",
+"quantos slots pcie tem",
+"essa placa suporta nvme",
+"essa placa tem wifi",
+"placa mae com wifi vale a pena",
+"placa mãe com bluetooth",
+"placa mãe com mais slots",
+"placa mãe com m2",
+"placa mãe com nvme",
+"placa mae com wifi integrado",
+"placa mae gamer tem diferença",
+"placa mae suporta quantos ssd",
+"placa mae suporta quantos hd",
+"placa mae suporta quantos nvme",
+"placa mae com pcie 4",
+"placa mae com pcie 5",
+"placa mae moderna vale a pena",
+"placa mae com mais recursos"
+],
+"replyTemplates":[
+"As placas-mãe podem ter recursos diferentes como WiFi, NVMe e mais slots.",
+"Algumas placas-mãe oferecem mais conectividade e possibilidades de upgrade.",
+"Se você quiser posso explicar quais recursos costumam valer mais a pena."
+]
+}
+]
