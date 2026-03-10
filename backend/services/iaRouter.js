@@ -220,14 +220,9 @@ export async function routeMessage(message,context={}){
   const lang = detectLanguage(context.headers || {});
   ctx.lang = lang;
 
-  /* ===============================
-GREETING FIX
-=============================== */
-
   if(!ctx.started){
 
     ctx.started = true;
-
     CONTEXT.set(conversationId, ctx);
 
     const greeting = greetingByLang(lang);
@@ -246,10 +241,6 @@ GREETING FIX
 
   updateMemoryScore(ctx,text);
 
-  /* ===============================
-INTENT DETECTION
-=============================== */
-
   let intent = detectIntent(text);
 
   if(!intent){
@@ -264,16 +255,8 @@ INTENT DETECTION
 
   learnFromConversation(intent);
 
-  /* ===============================
-CUSTOMER PROFILE
-=============================== */
-
   const customerType = detectCustomerType(text);
   ctx.customerType = customerType;
-
-  /* ===============================
-SALES BRAIN
-=============================== */
 
   const buyScore = detectBuyIntent(text);
   const strategy = salesStrategy(buyScore);
@@ -281,15 +264,7 @@ SALES BRAIN
   ctx.buyScore = buyScore;
   ctx.salesStrategy = strategy;
 
-  /* ===============================
-PERSONA
-=============================== */
-
   const persona = selectPersona(text);
-
-  /* ===============================
-CACHE CHECK
-=============================== */
 
   const cached = getResponseCache(text);
 
@@ -297,29 +272,6 @@ CACHE CHECK
 
     return {
       reply:cached,
-      products:[],
-      suggestions:[]
-    };
-
-  }
-
-  /* ===============================
-CONVERSATION PREDICTOR
-=============================== */
-
-  const path = predictConversationPath(ctx,intent);
-  const pathReply = pathResponse(path,ctx);
-
-  if(pathReply){
-
-    const reply = humanize(pathReply);
-
-    setResponseCache(text,reply);
-
-    saveTurn(conversationId,"assistant",reply);
-
-    return {
-      reply,
       products:[],
       suggestions:[]
     };
@@ -353,10 +305,6 @@ PRODUCT RECOMMENDATION
   products = rankProductsByNeural(products);
   products = limitProducts(products);
 
-  /* ===============================
-AUTONOMOUS SALES AGENT
-=============================== */
-
   const salesMode = chooseProductStrategy(ctx);
   const actionProducts = generateSalesAction(salesMode,products);
 
@@ -371,8 +319,27 @@ AUTONOMOUS SALES AGENT
   }
 
   /* ===============================
-LEARNING REPLY
+CONVERSATION PREDICTOR
 =============================== */
+
+  const path = predictConversationPath(ctx,intent);
+  const pathReply = pathResponse(path,ctx);
+
+  if(pathReply){
+
+    const reply = humanize(pathReply);
+
+    setResponseCache(text,reply);
+
+    saveTurn(conversationId,"assistant",reply);
+
+    return {
+      reply,
+      products,
+      suggestions:[]
+    };
+
+  }
 
   const learned = getSimilarReply(text);
 
@@ -385,10 +352,6 @@ LEARNING REPLY
     };
 
   }
-
-  /* ===============================
-OPENAI
-=============================== */
 
   const history = getHistory(conversationId);
 
