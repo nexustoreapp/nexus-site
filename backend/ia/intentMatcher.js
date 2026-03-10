@@ -21,7 +21,7 @@ function loadIntents(){
 
   try{
 
-    const intentsDir = path.resolve("backend/data/intents");
+    const intentsDir = path.resolve("backend/ia/intents");
 
     if(!fs.existsSync(intentsDir)){
       return [];
