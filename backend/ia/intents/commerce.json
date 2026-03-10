@@ -1,0 +1,133 @@
+[
+{
+"id":"product_search",
+"intent":"product_search",
+"keywords":["produto","tem","vende","catálogo","catalogo"],
+"userExamples":[
+"vocês vendem pc",
+"vocês vendem computador",
+"tem pc gamer",
+"tem notebook",
+"tem monitor",
+"tem placa de video",
+"quais produtos vocês vendem",
+"o que vocês vendem",
+"tem hardware",
+"tem periféricos",
+"quais produtos tem no site",
+"me mostra produtos",
+"tem produtos gamer",
+"tem peças de pc",
+"tem setup gamer",
+"tem computador gamer",
+"tem equipamentos de pc",
+"tem coisas para pc",
+"tem produtos para jogos",
+"tem produtos para computador"
+],
+"replyTemplates":[
+"Temos vários produtos no catálogo. Que tipo você está procurando?",
+"Posso te ajudar a encontrar algo no catálogo.",
+"Se você me disser o tipo de produto posso tentar encontrar algumas opções."
+]
+},
+
+{
+"id":"price_question",
+"intent":"price_question",
+"keywords":["preço","valor","quanto custa"],
+"userExamples":[
+"quanto custa",
+"qual o preço",
+"qual valor",
+"quanto sai",
+"quanto fica",
+"qual o valor desse produto",
+"quanto custa esse pc",
+"quanto custa esse notebook",
+"qual o preço do produto",
+"quanto custa esse item",
+"quanto custa isso",
+"qual o valor disso",
+"quanto fica esse produto",
+"preço desse produto",
+"preço desse pc",
+"preço desse notebook",
+"preço desse monitor",
+"quanto custa esse setup",
+"quanto custa esse hardware",
+"valor do produto"
+],
+"replyTemplates":[
+"O preço pode variar dependendo do modelo ou configuração.",
+"O valor costuma aparecer diretamente na página do produto.",
+"Se quiser posso te ajudar a encontrar o produto no catálogo."
+]
+},
+
+{
+"id":"price_objection",
+"intent":"price_high",
+"keywords":["caro","preço alto"],
+"userExamples":[
+"isso está caro",
+"muito caro",
+"preço muito alto",
+"está caro",
+"valor muito alto",
+"esse produto é caro",
+"esse pc é caro",
+"esse notebook é caro",
+"esse preço está alto",
+"está muito caro",
+"não vale esse preço",
+"preço absurdo",
+"valor absurdo",
+"caro demais",
+"preço salgado",
+"valor alto",
+"caro para mim",
+"muito acima do preço",
+"preço exagerado",
+"produto caro"
+],
+"replyTemplates":[
+"Entendo. Podemos tentar encontrar algo mais custo-benefício.",
+"Dependendo do que você precisa dá para procurar algo mais acessível.",
+"Se quiser posso tentar sugerir uma opção mais barata."
+]
+},
+
+{
+"id":"cheap_request",
+"intent":"cheap_products",
+"keywords":["barato","economico","econômico","custo beneficio"],
+"userExamples":[
+"quero algo barato",
+"produto barato",
+"pc barato",
+"notebook barato",
+"monitor barato",
+"placa de video barata",
+"quero algo econômico",
+"produto custo beneficio",
+"pc custo beneficio",
+"notebook custo beneficio",
+"monitor custo beneficio",
+"setup barato",
+"hardware barato",
+"perifericos baratos",
+"algo bom e barato",
+"algo simples e barato",
+"algo barato para pc",
+"produto mais barato",
+"qual mais barato",
+"qual produto barato"
+],
+"replyTemplates":[
+"Produtos custo-benefício costumam ser bem procurados.",
+"Podemos tentar encontrar algo mais econômico que ainda funcione bem.",
+"Se quiser posso tentar sugerir algumas opções mais baratas."
+]
+}
+]
