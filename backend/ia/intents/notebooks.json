@@ -1,0 +1,133 @@
+[
+{
+"id":"notebook_general",
+"intent":"notebook_help",
+"keywords":["notebook","laptop"],
+"userExamples":[
+"qual notebook comprar",
+"notebook bom",
+"notebook custo beneficio",
+"notebook bom e barato",
+"qual notebook vale a pena",
+"notebook bom para pc",
+"notebook bom para casa",
+"notebook para uso geral",
+"notebook recomendado",
+"qual notebook escolher",
+"notebook bom para trabalho",
+"notebook bom para estudar",
+"notebook para faculdade",
+"notebook para produtividade",
+"notebook para internet",
+"notebook para tarefas básicas",
+"notebook para dia a dia",
+"notebook para casa",
+"notebook para trabalho leve",
+"notebook simples bom"
+],
+"replyTemplates":[
+"Notebooks podem variar bastante dependendo do uso.",
+"Depende bastante do que você pretende fazer com o notebook.",
+"Se você me disser o orçamento posso sugerir alguns notebooks bons."
+]
+},
+
+{
+"id":"notebook_study",
+"intent":"notebook_study",
+"keywords":["estudo","faculdade","estudar"],
+"userExamples":[
+"notebook para estudar",
+"notebook para faculdade",
+"notebook para aula",
+"notebook para estudar programação",
+"notebook para escola",
+"notebook para cursos",
+"notebook para trabalhos da faculdade",
+"notebook para pesquisa",
+"notebook para estudo online",
+"notebook para estudar em casa",
+"notebook para estudar fora",
+"notebook para anotações",
+"notebook para trabalhos acadêmicos",
+"notebook leve para estudar",
+"notebook para estudante",
+"notebook para uso acadêmico",
+"notebook para tarefas escolares",
+"notebook para faculdade e estudo",
+"notebook para estudar programação",
+"notebook para aprender programação"
+],
+"replyTemplates":[
+"Para estudo normalmente priorizamos bateria e portabilidade.",
+"Um notebook leve e com SSD costuma ser ótimo para estudantes.",
+"Dependendo do orçamento dá para encontrar modelos bem equilibrados."
+]
+},
+
+{
+"id":"notebook_work",
+"intent":"notebook_work",
+"keywords":["trabalho","design","edição"],
+"userExamples":[
+"notebook para trabalho",
+"notebook para trabalhar",
+"notebook para design",
+"notebook para edição",
+"notebook para editar video",
+"notebook para photoshop",
+"notebook para programação",
+"notebook para produtividade",
+"notebook para softwares pesados",
+"notebook para projetos",
+"notebook para render",
+"notebook para desenvolvimento",
+"notebook para trabalhar em casa",
+"notebook para escritório",
+"notebook para trabalho profissional",
+"notebook para produção",
+"notebook para softwares de design",
+"notebook para engenharia",
+"notebook para arquitetura",
+"notebook para criação"
+],
+"replyTemplates":[
+"Para trabalho pesado normalmente precisamos de processador mais forte.",
+"Alguns trabalhos também se beneficiam de GPU dedicada.",
+"Se você me disser o software que usa posso sugerir notebooks melhores."
+]
+},
+
+{
+"id":"notebook_gaming",
+"intent":"notebook_gaming",
+"keywords":["notebook gamer","laptop gamer"],
+"userExamples":[
+"notebook gamer vale a pena",
+"qual notebook gamer comprar",
+"notebook gamer bom",
+"notebook gamer custo beneficio",
+"notebook gamer barato",
+"notebook gamer para valorant",
+"notebook gamer para cs2",
+"notebook gamer para fortnite",
+"notebook gamer para jogos",
+"notebook gamer bom e barato",
+"notebook gamer recomendado",
+"notebook gamer com gpu boa",
+"notebook gamer forte",
+"notebook gamer potente",
+"notebook gamer para fps",
+"notebook gamer competitivo",
+"notebook gamer para pc",
+"notebook gamer para uso geral",
+"notebook gamer moderno",
+"notebook gamer atualizado"
+],
+"replyTemplates":[
+"Notebooks gamer normalmente incluem GPU dedicada.",
+"Eles são feitos para rodar jogos com melhor desempenho.",
+"Dependendo do orçamento dá para encontrar notebooks gamer interessantes."
+]
+}
+]
