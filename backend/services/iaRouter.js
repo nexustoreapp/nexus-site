@@ -67,13 +67,8 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-/* ===============================
-MEMORY
-=============================== */
-
 const MEMORY = new Map();
 const CONTEXT = new Map();
-
 const MAX_HISTORY = 10;
 
 function getHistory(id){
@@ -85,16 +80,9 @@ function getContext(id){
 }
 
 function saveTurn(id,role,content){
-
   const h = getHistory(id);
-
   h.push({role,content});
-
-  MEMORY.set(
-    id,
-    h.slice(-MAX_HISTORY*2)
-  );
-
+  MEMORY.set(id,h.slice(-MAX_HISTORY*2));
 }
 
 /* ===============================
@@ -123,7 +111,7 @@ function extractContext(text,id){
     ctx.use = predictedUse;
   }
 
-  if(/jogo|fps|valorant|cs2|fortnite/.test(text)){
+  if(/jogar|jogo|game|gaming|fps/.test(text)){
     ctx.use = "gaming";
   }
 
@@ -144,7 +132,6 @@ function extractContext(text,id){
   }
 
   CONTEXT.set(id,ctx);
-
 }
 
 /* ===============================
@@ -152,32 +139,23 @@ PRODUCT FILTER
 =============================== */
 
 function filterByBudget(products,budget){
-
   if(!budget) return products;
-
   return products.filter(p=>{
     const price = Number(p.price || 0);
     return price <= budget;
   });
-
 }
 
 function rankProducts(products){
-
   if(!Array.isArray(products)) return [];
-
   return products.sort((a,b)=>{
     return Number(a.price||0) - Number(b.price||0);
   });
-
 }
 
 function limitProducts(products){
-
   if(!Array.isArray(products)) return [];
-
   return products.slice(0,3);
-
 }
 
 /* ===============================
@@ -185,13 +163,9 @@ PROMPT
 =============================== */
 
 function buildPrompt(persona,intent,ctx){
-
   return `
 Você é Nayla da Nexus Store.
-
 Ajude clientes a escolher hardware.
-
-Contexto cliente:
 
 Orçamento: ${ctx.budget || "não informado"}
 Uso: ${ctx.use || "não informado"}
@@ -209,7 +183,6 @@ ROUTER
 export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
-
   const text = normalizeSlang(message);
 
   let ctx = getContext(conversationId);
@@ -232,11 +205,9 @@ export async function routeMessage(message,context={}){
       products:[],
       suggestions:[]
     };
-
   }
 
   extractContext(text,conversationId);
-
   ctx = getContext(conversationId);
 
   updateMemoryScore(ctx,text);
@@ -244,13 +215,10 @@ export async function routeMessage(message,context={}){
   let intent = detectIntent(text);
 
   if(!intent){
-
     const predicted = predictIntentEarly(text);
-
     if(predicted){
       intent = { intent: predicted };
     }
-
   }
 
   learnFromConversation(intent);
@@ -269,17 +237,15 @@ export async function routeMessage(message,context={}){
   const cached = getResponseCache(text);
 
   if(cached){
-
     return {
       reply:cached,
       products:[],
       suggestions:[]
     };
-
   }
 
   /* ===============================
-PRODUCT RECOMMENDATION
+RECOMMENDATION PRIORITY
 =============================== */
 
   let products=[];
@@ -308,14 +274,13 @@ PRODUCT RECOMMENDATION
   const salesMode = chooseProductStrategy(ctx);
   const actionProducts = generateSalesAction(salesMode,products);
 
-  if(actionProducts){
+  if(actionProducts && actionProducts.length){
 
     return {
       reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
       products: actionProducts,
       suggestions:[]
     };
-
   }
 
   /* ===============================
@@ -338,37 +303,30 @@ CONVERSATION PREDICTOR
       products,
       suggestions:[]
     };
-
   }
 
   const learned = getSimilarReply(text);
 
   if(learned){
-
     return {
       reply:learned,
       products,
       suggestions:[]
     };
-
   }
 
   const history = getHistory(conversationId);
 
   const input=[
-
     {
       role:"system",
       content:buildPrompt(persona,intent,ctx)
     },
-
     ...history,
-
     {
       role:"user",
       content:text
     }
-
   ];
 
   let reply="";
@@ -376,30 +334,25 @@ CONVERSATION PREDICTOR
   try{
 
     const resp = await client.responses.create({
-
       model:"gpt-4o-mini",
       input,
       temperature:0.7,
       max_output_tokens:150
-
     });
 
     reply = resp.output_text?.trim();
 
   }catch(err){
-
     console.error("OpenAI erro:",err);
-
   }
 
   if(!reply){
-    reply = "Me conta um pouco mais do que você procura.";
+    reply = "Pode me contar um pouco mais do que você procura?";
   }
 
   reply = humanize(reply);
 
   setResponseCache(text,reply);
-
   storeConversationSample(text,reply);
 
   saveTurn(conversationId,"user",text);
@@ -410,5 +363,4 @@ CONVERSATION PREDICTOR
     products,
     suggestions:[]
   };
-
 }
