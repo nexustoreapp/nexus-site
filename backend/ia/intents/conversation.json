@@ -1,0 +1,142 @@
+[
+{
+"id":"greeting",
+"intent":"greeting",
+"keywords":["oi","ola","olá","e ai","fala","opa","salve","bom dia","boa tarde","boa noite"],
+"userExamples":[
+"oi",
+"oii",
+"oie",
+"olá",
+"e ai",
+"eae",
+"fala",
+"opa",
+"salve",
+"bom dia",
+"boa tarde",
+"boa noite",
+"hey",
+"yo",
+"tudo bem",
+"como vai",
+"oi nayla",
+"fala nayla",
+"e ai nayla",
+"opa nayla"
+],
+"replyTemplates":[
+"Oi! Eu sou a Nayla da Nexus 👋 Como posso te ajudar hoje?",
+"E aí! Seja bem-vindo à Nexus Store. Quer ajuda para encontrar algum produto?",
+"Olá! Posso te ajudar a escolher algum produto."
+]
+},
+
+{
+"id":"user_confused",
+"intent":"user_confused",
+"keywords":["nao sei","não sei","to perdido","tô perdido","nao entendi","não entendi"],
+"userExamples":[
+"não sei o que comprar",
+"não sei qual escolher",
+"to perdido",
+"tô perdido",
+"não entendi muito bem",
+"não faço ideia",
+"não sei",
+"não sei o que eu quero",
+"não sei qual pc comprar",
+"não sei qual computador escolher",
+"estou meio perdido",
+"to meio perdido"
+],
+"replyTemplates":[
+"Tranquilo. Vamos descobrir juntos o que faz mais sentido para você.",
+"Sem problema! Posso te ajudar passo a passo.",
+"Relaxa, isso é mais comum do que parece. Me conta o que você pretende fazer com o computador."
+]
+},
+
+{
+"id":"user_exploring",
+"intent":"user_exploring",
+"keywords":["so olhando","só olhando","dando uma olhada","vendo preços"],
+"userExamples":[
+"só estou olhando",
+"estou vendo preços",
+"estou pesquisando",
+"só dando uma olhada",
+"só vendo os produtos",
+"só pesquisando",
+"só explorando",
+"só vendo o que tem"
+],
+"replyTemplates":[
+"Sem pressa 🙂 Se quiser posso te mostrar algumas opções interessantes.",
+"Boa! Se quiser posso te mostrar alguns produtos populares.",
+"Tranquilo, se precisar de ajuda é só me falar."
+]
+},
+
+{
+"id":"user_ready",
+"intent":"buyer_ready",
+"keywords":["quero comprar","vou comprar","me recomenda","qual comprar"],
+"userExamples":[
+"quero comprar um pc",
+"me recomenda um pc",
+"qual computador comprar",
+"qual pc vale a pena",
+"me indica um pc",
+"qual pc você recomenda",
+"qual computador vale a pena",
+"qual pc é bom",
+"preciso de um computador",
+"preciso de um pc"
+],
+"replyTemplates":[
+"Show! Me fala seu orçamento que eu tento te indicar algo equilibrado.",
+"Boa! Qual valor você pretende investir no PC?",
+"Legal! Dependendo do orçamento dá para montar algo bem interessante."
+]
+},
+
+{
+"id":"thanks",
+"intent":"thanks",
+"keywords":["obrigado","valeu","tmj","agradecido"],
+"userExamples":[
+"valeu",
+"obrigado",
+"brigado",
+"agradecido",
+"vlw",
+"valeu mesmo",
+"muito obrigado",
+"tmj"
+],
+"replyTemplates":[
+"Imagina! Se precisar de algo é só chamar.",
+"Tamo junto! Qualquer dúvida estou por aqui.",
+"Fico feliz em ajudar 🙂"
+]
+},
+
+{
+"id":"bye",
+"intent":"bye",
+"keywords":["tchau","ate mais","até mais","falou"],
+"userExamples":[
+"tchau",
+"até mais",
+"falou",
+"até depois",
+"até logo"
+],
+"replyTemplates":[
+"Até mais! Qualquer coisa é só voltar aqui.",
+"Foi um prazer ajudar. Até a próxima!",
+"Tchau! Sempre que precisar estou aqui."
+]
+}
+]
