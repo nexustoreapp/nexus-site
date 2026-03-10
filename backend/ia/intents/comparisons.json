@@ -1,0 +1,133 @@
+[
+{
+"id":"product_comparison_general",
+"intent":"compare_products",
+"keywords":["comparar","diferença","qual melhor"],
+"userExamples":[
+"qual é melhor",
+"qual é melhor entre esses dois",
+"qual compensa mais",
+"qual vale mais a pena",
+"qual escolher",
+"qual desses é melhor",
+"qual produto é melhor",
+"qual modelo é melhor",
+"qual vale mais",
+"qual vale investir",
+"qual tem melhor desempenho",
+"qual é mais forte",
+"qual é mais rápido",
+"qual é mais potente",
+"qual compensa comprar",
+"qual é mais custo beneficio",
+"qual tem melhor custo beneficio",
+"qual tem melhor desempenho",
+"qual modelo escolher",
+"qual desses compensa"
+],
+"replyTemplates":[
+"Boa pergunta. Comparar produtos ajuda bastante na decisão.",
+"Depende bastante do que você pretende fazer com o produto.",
+"Se quiser posso te ajudar a comparar as vantagens de cada um."
+]
+},
+
+{
+"id":"cpu_comparison",
+"intent":"cpu_comparison",
+"keywords":["intel","ryzen"],
+"userExamples":[
+"intel ou ryzen",
+"qual melhor intel ou ryzen",
+"ryzen ou intel qual vale mais",
+"qual processador é melhor intel ou ryzen",
+"qual cpu escolher intel ou ryzen",
+"ryzen é melhor que intel",
+"intel é melhor que ryzen",
+"qual compensa mais intel ou ryzen",
+"qual processador compensa mais",
+"intel vs ryzen",
+"qual cpu é melhor para jogos",
+"qual cpu é melhor para trabalho",
+"qual cpu é melhor para fps",
+"qual cpu é melhor custo beneficio",
+"qual processador vale mais a pena",
+"intel ou ryzen para pc gamer",
+"ryzen ou intel para pc",
+"intel ou ryzen para jogos",
+"intel ou ryzen para trabalho",
+"intel ou ryzen para uso geral"
+],
+"replyTemplates":[
+"Intel e Ryzen podem ser ótimos dependendo da geração e do uso.",
+"Alguns modelos da AMD oferecem ótimo custo-benefício.",
+"Dependendo do orçamento um pode fazer mais sentido que o outro."
+]
+},
+
+{
+"id":"gpu_comparison",
+"intent":"gpu_comparison",
+"keywords":["rtx","rx","gpu"],
+"userExamples":[
+"rtx ou rx qual melhor",
+"nvidia ou amd qual vale a pena",
+"qual placa de video é melhor",
+"rtx ou amd qual compensa",
+"nvidia ou amd qual compensa",
+"qual gpu escolher",
+"qual placa escolher",
+"qual placa de video vale mais a pena",
+"qual gpu vale mais a pena",
+"qual placa de video é melhor para jogos",
+"qual gpu é melhor para fps",
+"qual gpu é melhor para valorant",
+"qual placa de video é melhor para cs2",
+"rtx ou rx para jogos",
+"qual placa de video comprar entre essas",
+"qual gpu compensa mais",
+"qual gpu escolher para pc gamer",
+"qual placa de video tem melhor desempenho",
+"qual placa é mais forte",
+"qual gpu é mais potente"
+],
+"replyTemplates":[
+"Placas de vídeo da Nvidia e AMD podem ter vantagens diferentes.",
+"Alguns modelos focam mais em desempenho bruto e outros em custo-benefício.",
+"Se você me disser os modelos específicos posso ajudar a comparar."
+]
+},
+
+{
+"id":"monitor_comparison",
+"intent":"monitor_comparison",
+"keywords":["monitor","comparar"],
+"userExamples":[
+"qual monitor é melhor",
+"monitor 144hz ou 240hz",
+"qual monitor vale mais a pena",
+"qual monitor escolher",
+"qual monitor compensa mais",
+"monitor 1080p ou 1440p",
+"qual monitor é melhor para jogos",
+"qual monitor é melhor para trabalhar",
+"qual monitor tem melhor imagem",
+"qual monitor tem melhor desempenho",
+"qual monitor comprar entre esses",
+"qual monitor gamer escolher",
+"qual monitor é melhor custo beneficio",
+"qual monitor é melhor para fps",
+"qual monitor é melhor para valorant",
+"qual monitor compensa comprar",
+"qual monitor tem melhor qualidade",
+"qual monitor escolher para setup",
+"qual monitor é melhor para produtividade",
+"qual monitor tem melhor taxa de atualização"
+],
+"replyTemplates":[
+"Monitores podem variar bastante em resolução e taxa de atualização.",
+"Alguns monitores focam mais em fluidez e outros em qualidade de imagem.",
+"Se quiser posso ajudar a comparar os dois modelos."
+]
+}
+]
