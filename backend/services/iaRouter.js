@@ -5,63 +5,45 @@ import { selectPersona } from "../ia/personaSelector.js";
 import { normalizeSlang } from "../ia/slangNormalizer.js";
 import { searchCatalog } from "../utils/catalogCache.js";
 
-import {
-  detectLanguage,
-  greetingByLang
-} from "../ia/conversationEngine.js";
+import { detectLanguage, greetingByLang } from "../ia/conversationEngine.js";
 
 import { updateMemoryScore } from "../ia/memoryScore.js";
 
-import {
-  predictConversationPath,
-  pathResponse
-} from "../ia/conversationPredictor.js";
+import { predictConversationPath, pathResponse } from "../ia/conversationPredictor.js";
 
 import { predictIntentEarly } from "../ia/intentPredictor.js";
 
-import {
-  detectBuyIntent,
-  salesStrategy
-} from "../ia/salesBrain.js";
+import { detectBuyIntent, salesStrategy } from "../ia/salesBrain.js";
 
 import { detectCustomerType } from "../ia/customerProfile.js";
 
 import { humanize } from "../ia/humanStyle.js";
 
-import {
-  getResponseCache,
-  setResponseCache
-} from "../ia/responseCache.js";
+import { getResponseCache, setResponseCache } from "../ia/responseCache.js";
 
-import {
-  storeConversationSample,
-  getSimilarReply
-} from "../ia/conversationLearning.js";
+import { storeConversationSample, getSimilarReply } from "../ia/conversationLearning.js";
 
 import { learnFromConversation } from "../ia/selfEvolvingAI.js";
 
-import {
-  registerSearch,
-  registerPriceRange
-} from "../ia/marketIntelligence.js";
+import { registerSearch, registerPriceRange } from "../ia/marketIntelligence.js";
 
-import {
-  chooseProductStrategy,
-  generateSalesAction
-} from "../ia/salesAgent.js";
+import { chooseProductStrategy, generateSalesAction } from "../ia/salesAgent.js";
 
-import {
-  rankProductsByNeural
-} from "../ia/neuralCommerce.js";
+import { rankProductsByNeural } from "../ia/neuralCommerce.js";
 
-import {
-  predictBudget,
-  predictUse
-} from "../ia/predictiveCommerce.js";
+import { predictBudget, predictUse } from "../ia/predictiveCommerce.js";
 
-import {
-  registerSearch as registerBehaviorSearch
-} from "../ia/behavioralSignals.js";
+import { registerSearch as registerBehaviorSearch } from "../ia/behavioralSignals.js";
+
+import { detectConversationMode, adaptiveSalesResponse } from "../ia/adaptiveSalesFlow.js";
+
+import { commerceDecision } from "../ia/commerceBrain.js";
+
+import { mapCustomerIntent } from "../ia/customerIntentGraph.js";
+
+import { neuralMatchProducts } from "../ia/neuralProductMatcher.js";
+
+import { autonomousCommerceDecision } from "../ia/autonomousCommerceAI.js";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -84,10 +66,6 @@ function saveTurn(id,role,content){
   h.push({role,content});
   MEMORY.set(id,h.slice(-MAX_HISTORY*2));
 }
-
-/* ===============================
-CONTEXT EXTRACTION
-=============================== */
 
 function extractContext(text,id){
 
@@ -134,55 +112,10 @@ function extractContext(text,id){
   CONTEXT.set(id,ctx);
 }
 
-/* ===============================
-PRODUCT FILTER
-=============================== */
-
-function filterByBudget(products,budget){
-  if(!budget) return products;
-  return products.filter(p=>{
-    const price = Number(p.price || 0);
-    return price <= budget;
-  });
-}
-
-function rankProducts(products){
-  if(!Array.isArray(products)) return [];
-  return products.sort((a,b)=>{
-    return Number(a.price||0) - Number(b.price||0);
-  });
-}
-
-function limitProducts(products){
-  if(!Array.isArray(products)) return [];
-  return products.slice(0,3);
-}
-
-/* ===============================
-PROMPT
-=============================== */
-
-function buildPrompt(persona,intent,ctx){
-  return `
-Você é Nayla da Nexus Store.
-Ajude clientes a escolher hardware.
-
-Orçamento: ${ctx.budget || "não informado"}
-Uso: ${ctx.use || "não informado"}
-Idioma: ${ctx.lang || "pt"}
-
-Persona: ${persona?.label || "assistente"}
-Intent: ${intent?.intent || "unknown"}
-`;
-}
-
-/* ===============================
-ROUTER
-=============================== */
-
 export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
+
   const text = normalizeSlang(message);
 
   let ctx = getContext(conversationId);
@@ -196,18 +129,16 @@ export async function routeMessage(message,context={}){
   if(!ctx.started){
 
     ctx.started = true;
-    CONTEXT.set(conversationId, ctx);
+    CONTEXT.set(conversationId,ctx);
 
     const greeting = greetingByLang(lang);
 
-    return {
-      reply:greeting,
-      products:[],
-      suggestions:[]
-    };
+    return { reply:greeting, products:[], suggestions:[] };
+
   }
 
   extractContext(text,conversationId);
+
   ctx = getContext(conversationId);
 
   updateMemoryScore(ctx,text);
@@ -223,30 +154,31 @@ export async function routeMessage(message,context={}){
 
   learnFromConversation(intent);
 
-  const customerType = detectCustomerType(text);
-  ctx.customerType = customerType;
+  ctx.customerType = detectCustomerType(text);
 
-  const buyScore = detectBuyIntent(text);
-  const strategy = salesStrategy(buyScore);
+  ctx.buyScore = detectBuyIntent(text);
 
-  ctx.buyScore = buyScore;
-  ctx.salesStrategy = strategy;
+  ctx.salesStrategy = salesStrategy(ctx.buyScore);
 
-  const persona = selectPersona(text);
+  const mode = detectConversationMode(ctx);
 
-  const cached = getResponseCache(text);
+  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
 
-  if(cached){
+  if(adaptiveReply){
+
     return {
-      reply:cached,
+      reply: humanize(adaptiveReply),
       products:[],
       suggestions:[]
     };
+
   }
 
-  /* ===============================
-RECOMMENDATION PRIORITY
-=============================== */
+  ctx.intentGraph = mapCustomerIntent(ctx);
+
+  ctx.commerceDecision = commerceDecision(ctx);
+
+  ctx.autonomousDecision = autonomousCommerceDecision(ctx);
 
   let products=[];
 
@@ -266,67 +198,42 @@ RECOMMENDATION PRIORITY
 
   }
 
-  products = filterByBudget(products,ctx.budget);
-  products = rankProducts(products);
   products = rankProductsByNeural(products);
-  products = limitProducts(products);
 
-  const salesMode = chooseProductStrategy(ctx);
-  const actionProducts = generateSalesAction(salesMode,products);
+  products = neuralMatchProducts(products,ctx);
 
-  if(actionProducts && actionProducts.length){
+  const actionProducts = generateSalesAction(chooseProductStrategy(ctx),products);
+
+  if(actionProducts?.length){
 
     return {
       reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
       products: actionProducts,
       suggestions:[]
     };
+
   }
 
-  /* ===============================
-CONVERSATION PREDICTOR
-=============================== */
-
   const path = predictConversationPath(ctx,intent);
+
   const pathReply = pathResponse(path,ctx);
 
   if(pathReply){
 
-    const reply = humanize(pathReply);
-
-    setResponseCache(text,reply);
-
-    saveTurn(conversationId,"assistant",reply);
-
     return {
-      reply,
-      products,
+      reply: humanize(pathReply),
+      products:[],
       suggestions:[]
     };
-  }
 
-  const learned = getSimilarReply(text);
-
-  if(learned){
-    return {
-      reply:learned,
-      products,
-      suggestions:[]
-    };
   }
 
   const history = getHistory(conversationId);
 
   const input=[
-    {
-      role:"system",
-      content:buildPrompt(persona,intent,ctx)
-    },
+    { role:"system",content:`Você é Nayla da Nexus Store.` },
     ...history,
-    {
-      role:"user",
-      content:text
-    }
+    { role:"user",content:text }
   ];
 
   let reply="";
@@ -343,7 +250,7 @@ CONVERSATION PREDICTOR
     reply = resp.output_text?.trim();
 
   }catch(err){
-    console.error("OpenAI erro:",err);
+    console.error(err);
   }
 
   if(!reply){
@@ -352,10 +259,6 @@ CONVERSATION PREDICTOR
 
   reply = humanize(reply);
 
-  setResponseCache(text,reply);
-  storeConversationSample(text,reply);
-
-  saveTurn(conversationId,"user",text);
   saveTurn(conversationId,"assistant",reply);
 
   return {
@@ -363,4 +266,5 @@ CONVERSATION PREDICTOR
     products,
     suggestions:[]
   };
+
 }
