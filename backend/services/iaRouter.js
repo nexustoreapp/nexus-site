@@ -5,6 +5,12 @@ import { selectPersona } from "../ia/personaSelector.js";
 import { normalizeSlang } from "../ia/slangNormalizer.js";
 import { searchCatalog } from "../utils/catalogCache.js";
 
+import {
+  detectLanguage,
+  greetingByLang,
+  conversationResponse
+} from "../ia/conversationEngine.js";
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -104,51 +110,6 @@ function extractContext(text,id){
 }
 
 /* ===============================
-QUICK RESPONSES
-=============================== */
-
-function quickResponse(text){
-
-  const t = text.toLowerCase().trim();
-
-  if(/^(oi|olá|ola|eai|e aí|hey|yo)$/i.test(t)){
-    return "Oi! 👋 Posso te ajudar a escolher um PC ou algum hardware.";
-  }
-
-  if(/^(ok|blz|beleza)$/i.test(t)){
-    return "Perfeito 👍 Quer usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
-  }
-
-  return null;
-
-}
-
-/* ===============================
-LOCAL FALLBACK
-=============================== */
-
-function localFallback(ctx){
-
-  if(ctx.stage==="discovery" && !ctx.use){
-    return "O que você pretende fazer com o PC normalmente?";
-  }
-
-  if(ctx.stage==="discovery" && !ctx.budget){
-    return "Você já tem algum orçamento em mente?";
-  }
-
-  if(ctx.stage==="recommendation" && ctx.budget){
-    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções boas 👇`;
-  }
-
-  if(ctx.stage==="decision"){
-    return "Se quiser ver os detalhes completos é só abrir o produto que te mostrei.";
-  }
-
-  return "Me conta um pouco mais do que você procura.";
-}
-
-/* ===============================
 FILTER BY BUDGET
 =============================== */
 
@@ -241,6 +202,7 @@ Orçamento: ${ctx.budget || "não informado"}
 Uso: ${ctx.use || "não informado"}
 Stage: ${ctx.stage}
 Goal: ${ctx.conversationGoal || "none"}
+Language: ${ctx.lang || "pt"}
 
 `;
 
@@ -272,24 +234,33 @@ export async function routeMessage(message,context={}){
 
   const text = normalizeSlang(message);
 
-  const quick = quickResponse(text);
+  const ctx = getContext(conversationId);
 
-  if(quick){
+  const lang = detectLanguage(context.headers || {});
+  ctx.lang = lang;
+
+  if(!ctx.started){
+
+    ctx.started = true;
+
+    const greeting = greetingByLang(lang);
+
     return {
-      reply:quick,
+      reply:greeting,
       products:[],
       suggestions:[]
     };
+
   }
 
   extractContext(text,conversationId);
-
-  const ctx = getContext(conversationId);
 
   const intent = detectIntent(text);
   const persona = selectPersona(text);
 
   updateIntentMemory(ctx,intent,persona);
+
+  const smartReply = conversationResponse(ctx,intent);
 
   let products=[];
 
@@ -324,6 +295,19 @@ export async function routeMessage(message,context={}){
 
     return {
       reply,
+      products,
+      suggestions:[]
+    };
+
+  }
+
+  if(smartReply){
+
+    saveTurn(conversationId,"user",text);
+    saveTurn(conversationId,"assistant",smartReply);
+
+    return {
+      reply:smartReply,
       products,
       suggestions:[]
     };
@@ -370,7 +354,7 @@ export async function routeMessage(message,context={}){
   }
 
   if(!reply){
-    reply = localFallback(ctx);
+    reply = "Me conta um pouco mais do que você procura.";
   }
 
   saveTurn(conversationId,"user",text);
