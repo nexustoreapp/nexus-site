@@ -1,0 +1,133 @@
+[
+{
+"id":"shipping_question",
+"intent":"shipping",
+"keywords":["frete","entrega","envio"],
+"userExamples":[
+"quanto custa o frete",
+"qual o valor do frete",
+"vocês entregam",
+"vocês fazem entrega",
+"qual frete para minha cidade",
+"tem frete",
+"como funciona a entrega",
+"como funciona o envio",
+"quanto fica o frete",
+"qual valor da entrega",
+"vocês enviam para minha região",
+"entregam na minha cidade",
+"tem envio para minha cidade",
+"frete para meu cep",
+"frete para minha casa",
+"como calcular frete",
+"tem frete grátis",
+"frete caro",
+"frete barato",
+"quanto sai o frete"
+],
+"replyTemplates":[
+"O valor do frete depende da sua localização e do produto.",
+"O frete normalmente é calculado no checkout com seu CEP.",
+"Se quiser posso te ajudar a verificar as opções de entrega."
+]
+},
+
+{
+"id":"delivery_time",
+"intent":"delivery_time",
+"keywords":["prazo","demora","entrega"],
+"userExamples":[
+"quanto tempo demora",
+"qual prazo de entrega",
+"quando chega",
+"demora muito para chegar",
+"em quanto tempo chega",
+"prazo de envio",
+"tempo de entrega",
+"quando chega o produto",
+"quanto demora o envio",
+"qual o prazo de envio",
+"quantos dias demora",
+"quando recebo o produto",
+"entrega demora",
+"quanto tempo para entregar",
+"prazo para entrega",
+"prazo estimado de entrega",
+"entrega rápida",
+"demora a entrega",
+"quanto tempo leva",
+"qual prazo aproximado"
+],
+"replyTemplates":[
+"O prazo depende da transportadora e da sua região.",
+"O tempo de entrega costuma aparecer no checkout.",
+"Dependendo da localização o prazo pode variar."
+]
+},
+
+{
+"id":"payment_methods",
+"intent":"payment_methods",
+"keywords":["pagamento","pix","cartao","cartão"],
+"userExamples":[
+"quais formas de pagamento",
+"aceita pix",
+"aceita cartão",
+"posso pagar no cartão",
+"tem pagamento por pix",
+"formas de pagamento",
+"como posso pagar",
+"pagamento no site",
+"aceita boleto",
+"pagamento parcelado",
+"parcelamento no cartão",
+"pagar no cartão de crédito",
+"tem pagamento online",
+"como funciona o pagamento",
+"pagamento seguro",
+"aceita débito",
+"pagar com pix",
+"tem opção de pagamento",
+"formas de pagar",
+"como pagar no site"
+],
+"replyTemplates":[
+"A loja aceita métodos de pagamento como cartão e PIX.",
+"As opções de pagamento aparecem na etapa de checkout.",
+"Se quiser posso explicar como funciona o pagamento."
+]
+},
+
+{
+"id":"security_question",
+"intent":"security",
+"keywords":["seguro","confiavel","golpe"],
+"userExamples":[
+"é seguro comprar",
+"esse site é confiável",
+"isso é golpe",
+"posso confiar",
+"é seguro pagar aqui",
+"site confiável",
+"tenho medo de golpe",
+"esse site é seguro",
+"compra segura",
+"pagamento seguro",
+"é confiável comprar aqui",
+"esse site é legítimo",
+"tem proteção na compra",
+"compra protegida",
+"é seguro usar esse site",
+"é seguro colocar cartão",
+"tem segurança no pagamento",
+"tem proteção para cliente",
+"é seguro fazer pedido",
+"posso confiar na loja"
+],
+"replyTemplates":[
+"É normal ter essa dúvida. A loja utiliza sistemas de pagamento seguros.",
+"Os pagamentos são processados por plataformas confiáveis.",
+"Se quiser posso explicar como funciona a segurança da compra."
+]
+}
+]
