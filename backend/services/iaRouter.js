@@ -212,7 +212,7 @@ export async function routeMessage(message,context={}){
 
   const text = normalizeSlang(message);
 
-  const ctx = getContext(conversationId);
+  let ctx = getContext(conversationId);
 
   registerSearch(text);
   registerBehaviorSearch(text);
@@ -220,9 +220,15 @@ export async function routeMessage(message,context={}){
   const lang = detectLanguage(context.headers || {});
   ctx.lang = lang;
 
+  /* ===============================
+GREETING FIX
+=============================== */
+
   if(!ctx.started){
 
     ctx.started = true;
+
+    CONTEXT.set(conversationId, ctx);
 
     const greeting = greetingByLang(lang);
 
@@ -235,6 +241,8 @@ export async function routeMessage(message,context={}){
   }
 
   extractContext(text,conversationId);
+
+  ctx = getContext(conversationId);
 
   updateMemoryScore(ctx,text);
 
@@ -261,7 +269,6 @@ CUSTOMER PROFILE
 =============================== */
 
   const customerType = detectCustomerType(text);
-
   ctx.customerType = customerType;
 
   /* ===============================
@@ -269,7 +276,6 @@ SALES BRAIN
 =============================== */
 
   const buyScore = detectBuyIntent(text);
-
   const strategy = salesStrategy(buyScore);
 
   ctx.buyScore = buyScore;
@@ -302,7 +308,6 @@ CONVERSATION PREDICTOR
 =============================== */
 
   const path = predictConversationPath(ctx,intent);
-
   const pathReply = pathResponse(path,ctx);
 
   if(pathReply){
@@ -344,11 +349,8 @@ PRODUCT RECOMMENDATION
   }
 
   products = filterByBudget(products,ctx.budget);
-
   products = rankProducts(products);
-
   products = rankProductsByNeural(products);
-
   products = limitProducts(products);
 
   /* ===============================
@@ -356,7 +358,6 @@ AUTONOMOUS SALES AGENT
 =============================== */
 
   const salesMode = chooseProductStrategy(ctx);
-
   const actionProducts = generateSalesAction(salesMode,products);
 
   if(actionProducts){
