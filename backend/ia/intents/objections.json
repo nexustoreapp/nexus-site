@@ -1,0 +1,133 @@
+[
+{
+"id":"objection_price_high",
+"intent":"price_objection",
+"keywords":["caro","preço alto"],
+"userExamples":[
+"está caro",
+"muito caro",
+"preço alto",
+"esse pc está caro",
+"esse produto está caro",
+"valor muito alto",
+"preço exagerado",
+"caro demais",
+"não vale esse preço",
+"muito acima do preço",
+"preço salgado",
+"valor alto",
+"esse notebook está caro",
+"esse monitor está caro",
+"esse setup está caro",
+"esse hardware está caro",
+"preço absurdo",
+"valor absurdo",
+"preço muito elevado",
+"está caro para mim"
+],
+"replyTemplates":[
+"Entendo. Podemos tentar encontrar algo com melhor custo-benefício.",
+"Dependendo do que você precisa talvez exista uma opção mais acessível.",
+"Se quiser posso tentar sugerir algo mais barato."
+]
+},
+
+{
+"id":"objection_thinking",
+"intent":"thinking_about_it",
+"keywords":["pensar","depois"],
+"userExamples":[
+"vou pensar",
+"vou pensar depois",
+"talvez depois",
+"depois eu vejo",
+"vou ver depois",
+"vou analisar",
+"vou avaliar",
+"vou considerar",
+"vou decidir depois",
+"vou pensar melhor",
+"deixa eu pensar",
+"preciso pensar",
+"preciso analisar",
+"vou ver com calma",
+"vou olhar depois",
+"vou pesquisar mais",
+"vou comparar antes",
+"vou decidir depois",
+"talvez eu compre depois",
+"vou pensar melhor nisso"
+],
+"replyTemplates":[
+"Claro 🙂 Pesquisar antes de decidir é sempre uma boa ideia.",
+"Sem problema. Se precisar de ajuda para comparar opções posso ajudar.",
+"Tranquilo. Quando quiser continuar é só me chamar."
+]
+},
+
+{
+"id":"objection_doubt",
+"intent":"doubt_value",
+"keywords":["vale","compensa"],
+"userExamples":[
+"será que vale a pena",
+"não sei se vale a pena",
+"será que compensa",
+"não sei se compensa",
+"vale a pena comprar",
+"compensa comprar",
+"vale esse preço",
+"compensa esse valor",
+"não sei se vale comprar",
+"não sei se compensa comprar",
+"será que é bom",
+"será que esse produto vale",
+"será que esse pc vale",
+"será que esse notebook vale",
+"será que esse monitor vale",
+"será que compensa pegar",
+"não sei se esse modelo vale",
+"será que compensa investir",
+"vale a pena esse modelo",
+"compensa esse produto"
+],
+"replyTemplates":[
+"Boa pergunta. Normalmente vale analisar desempenho e custo-benefício.",
+"Se quiser posso te ajudar a comparar com outras opções.",
+"Dependendo do uso talvez exista uma opção ainda melhor."
+]
+},
+
+{
+"id":"objection_budget_low",
+"intent":"budget_limit",
+"keywords":["não tenho","pouco dinheiro"],
+"userExamples":[
+"não tenho muito dinheiro",
+"tenho pouco orçamento",
+"meu orçamento é baixo",
+"não posso gastar muito",
+"tenho pouco para gastar",
+"não tenho muito para investir",
+"meu orçamento é pequeno",
+"posso gastar pouco",
+"não tenho muito dinheiro agora",
+"quero algo bem barato",
+"preciso de algo barato",
+"quero algo simples",
+"algo mais econômico",
+"algo mais barato",
+"produto barato",
+"setup barato",
+"pc barato",
+"notebook barato",
+"monitor barato",
+"hardware barato"
+],
+"replyTemplates":[
+"Sem problema. Podemos tentar encontrar algo mais econômico.",
+"Produtos custo-benefício costumam ser ótimos nessa situação.",
+"Dependendo do uso dá para encontrar algo simples que funcione bem."
+]
+}
+]
