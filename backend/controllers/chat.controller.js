@@ -1,6 +1,6 @@
 // backend/controllers/chat.controller.js
 
-import { routeMessage } from "../services/iaRouter.js";
+import { routeMessage } from "../ia/iaRouter.js";
 
 export async function chat(req, res) {
 
@@ -26,7 +26,8 @@ export async function chat(req, res) {
 
     const result = await routeMessage(message, {
       plan,
-      conversationId
+      conversationId,
+      headers: req.headers
     });
 
     return res.status(200).json({
