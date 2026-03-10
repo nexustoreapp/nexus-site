@@ -1,6 +1,4 @@
 import OpenAI from "openai";
-import fs from "fs";
-import path from "path";
 
 import { detectIntent } from "../ia/intentMatcher.js";
 import { selectPersona } from "../ia/personaSelector.js";
@@ -12,31 +10,6 @@ const client = new OpenAI({
 });
 
 /* ===============================
-CACHE
-=============================== */
-
-let IA_CACHE = [];
-
-try {
-
-  const cachePath = path.resolve("backend/data/ia_cache_base.json");
-
-  if (fs.existsSync(cachePath)) {
-
-    const raw = fs.readFileSync(cachePath, "utf-8");
-    const json = JSON.parse(raw);
-
-    if (Array.isArray(json)) {
-      IA_CACHE = json;
-    }
-
-  }
-
-} catch (err) {
-  console.error("Erro cache IA:", err);
-}
-
-/* ===============================
 MEMORY
 =============================== */
 
@@ -45,23 +18,23 @@ const CONTEXT = new Map();
 
 const MAX_HISTORY = 10;
 
-function getHistory(id) {
+function getHistory(id){
   return MEMORY.get(id) || [];
 }
 
-function getContext(id) {
+function getContext(id){
   return CONTEXT.get(id) || {};
 }
 
-function saveTurn(id, role, content) {
+function saveTurn(id,role,content){
 
   const h = getHistory(id);
 
-  h.push({ role, content });
+  h.push({role,content});
 
   MEMORY.set(
     id,
-    h.slice(-MAX_HISTORY * 2)
+    h.slice(-MAX_HISTORY*2)
   );
 
 }
@@ -70,7 +43,7 @@ function saveTurn(id, role, content) {
 CONTEXT MEMORY
 =============================== */
 
-function updateIntentMemory(ctx, intent, persona){
+function updateIntentMemory(ctx,intent,persona){
 
   if(intent){
     ctx.lastIntent = intent.intent || intent.id;
@@ -94,25 +67,25 @@ function updateIntentMemory(ctx, intent, persona){
 EXTRACT CONTEXT
 =============================== */
 
-function extractContext(text, id) {
+function extractContext(text,id){
 
   const ctx = getContext(id);
 
   const budgetMatch = text.match(/\b\d{3,6}\b/);
 
-  if (budgetMatch && !ctx.budget) {
+  if(budgetMatch && !ctx.budget){
     ctx.budget = Number(budgetMatch[0]);
   }
 
-  if (/jogo|fps|valorant|cs2|fortnite/.test(text)) {
+  if(/jogo|fps|valorant|cs2|fortnite/.test(text)){
     ctx.use = "gaming";
   }
 
-  if (/programar|programação|faculdade|estudo/.test(text)) {
+  if(/programar|programação|faculdade|estudo/.test(text)){
     ctx.use = "study";
   }
 
-  if (/edição|render|design|trabalho/.test(text)) {
+  if(/edição|render|design|trabalho/.test(text)){
     ctx.use = "work";
   }
 
@@ -120,13 +93,13 @@ function extractContext(text, id) {
     ctx.stage = "decision";
   }
 
-  if (!ctx.stage) ctx.stage = "discovery";
+  if(!ctx.stage) ctx.stage = "discovery";
 
-  if (ctx.budget && ctx.use && ctx.stage === "discovery") {
+  if(ctx.budget && ctx.use && ctx.stage==="discovery"){
     ctx.stage = "recommendation";
   }
 
-  CONTEXT.set(id, ctx);
+  CONTEXT.set(id,ctx);
 
 }
 
@@ -143,7 +116,7 @@ function quickResponse(text){
   }
 
   if(/^(ok|blz|beleza)$/i.test(t)){
-    return "Perfeito 👍 Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
+    return "Perfeito 👍 Quer usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
   }
 
   return null;
@@ -156,30 +129,30 @@ LOCAL FALLBACK
 
 function localFallback(ctx){
 
-  if(ctx.stage === "discovery" && !ctx.use){
-    return "Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
+  if(ctx.stage==="discovery" && !ctx.use){
+    return "O que você pretende fazer com o PC normalmente?";
   }
 
-  if(ctx.stage === "discovery" && !ctx.budget){
+  if(ctx.stage==="discovery" && !ctx.budget){
     return "Você já tem algum orçamento em mente?";
   }
 
-  if(ctx.stage === "recommendation" && ctx.budget){
+  if(ctx.stage==="recommendation" && ctx.budget){
     return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções boas 👇`;
   }
 
-  if(ctx.stage === "decision"){
-    return "Se quiser ver os detalhes completos, basta abrir o produto que eu te mostrei.";
+  if(ctx.stage==="decision"){
+    return "Se quiser ver os detalhes completos é só abrir o produto que te mostrei.";
   }
 
-  return "Pode me contar um pouco mais do que você procura?";
+  return "Me conta um pouco mais do que você procura.";
 }
 
 /* ===============================
 FILTER BY BUDGET
 =============================== */
 
-function filterByBudget(products, budget){
+function filterByBudget(products,budget){
 
   if(!budget) return products;
 
@@ -199,12 +172,9 @@ function rankProducts(products){
   if(!Array.isArray(products)) return [];
 
   return products.sort((a,b)=>{
-
     const pa = Number(a.price || 0);
     const pb = Number(b.price || 0);
-
     return pa - pb;
-
   });
 
 }
@@ -225,13 +195,13 @@ function limitProducts(products){
 PROMPT
 =============================== */
 
-function buildPrompt(persona, intent, ctx) {
+function buildPrompt(persona,intent,ctx){
 
-  let personaBlock = "";
+  let personaBlock="";
 
-  if (persona) {
+  if(persona){
 
-    personaBlock = `
+    personaBlock=`
 
 PERSONA
 ${persona.label}
@@ -246,11 +216,11 @@ ${persona.tone}
 
   }
 
-  let intentBlock = "";
+  let intentBlock="";
 
-  if (intent) {
+  if(intent){
 
-    intentBlock = `
+    intentBlock=`
 
 INTENT
 ${intent.intent}
@@ -259,11 +229,11 @@ ${intent.intent}
 
   }
 
-  let contextBlock = "";
+  let contextBlock="";
 
-  if (ctx.budget || ctx.use) {
+  if(ctx.budget || ctx.use){
 
-    contextBlock = `
+    contextBlock=`
 
 CONTEXTO DO CLIENTE
 
@@ -284,6 +254,7 @@ Fluxo:
 discovery → descobrir necessidade
 recommendation → sugerir produto
 decision → ajudar decisão
+
 ${personaBlock}
 ${intentBlock}
 ${contextBlock}
@@ -295,7 +266,7 @@ ${contextBlock}
 ROUTER
 =============================== */
 
-export async function routeMessage(message, context = {}) {
+export async function routeMessage(message,context={}){
 
   const conversationId = context.conversationId || "guest";
 
@@ -305,13 +276,13 @@ export async function routeMessage(message, context = {}) {
 
   if(quick){
     return {
-      reply: quick,
-      products: [],
+      reply:quick,
+      products:[],
       suggestions:[]
     };
   }
 
-  extractContext(text, conversationId);
+  extractContext(text,conversationId);
 
   const ctx = getContext(conversationId);
 
@@ -320,25 +291,25 @@ export async function routeMessage(message, context = {}) {
 
   updateIntentMemory(ctx,intent,persona);
 
-  let products = [];
+  let products=[];
 
-  if(ctx.stage === "recommendation"){
+  if(ctx.stage==="recommendation"){
 
-    if(ctx.use === "gaming"){
+    if(ctx.use==="gaming"){
       products = searchCatalog("gpu");
     }
 
-    if(ctx.use === "study"){
+    if(ctx.use==="study"){
       products = searchCatalog("notebook");
     }
 
-    if(ctx.use === "work"){
+    if(ctx.use==="work"){
       products = searchCatalog("workstation");
     }
 
   }
 
-  products = filterByBudget(products, ctx.budget);
+  products = filterByBudget(products,ctx.budget);
   products = rankProducts(products);
   products = limitProducts(products);
 
@@ -361,7 +332,7 @@ export async function routeMessage(message, context = {}) {
 
   const history = getHistory(conversationId);
 
-  const input = [
+  const input=[
 
     {
       role:"system",
