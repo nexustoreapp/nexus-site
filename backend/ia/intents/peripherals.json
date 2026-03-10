@@ -1,0 +1,133 @@
+[
+{
+"id":"peripheral_general",
+"intent":"peripherals_help",
+"keywords":["mouse","teclado","headset","periferico","periférico"],
+"userExamples":[
+"qual mouse comprar",
+"qual teclado comprar",
+"qual headset comprar",
+"perifericos bons",
+"perifericos gamer",
+"qual periférico vale a pena",
+"mouse gamer bom",
+"teclado gamer bom",
+"headset gamer bom",
+"perifericos custo beneficio",
+"mouse custo beneficio",
+"teclado custo beneficio",
+"headset custo beneficio",
+"perifericos para pc gamer",
+"perifericos para setup",
+"quais perifericos comprar",
+"quais perifericos usar",
+"perifericos para jogar",
+"perifericos bons para pc",
+"setup gamer perifericos"
+],
+"replyTemplates":[
+"Periféricos fazem bastante diferença na experiência de uso.",
+"Depende bastante do tipo de uso e do seu orçamento.",
+"Se quiser posso sugerir alguns periféricos bons."
+]
+},
+
+{
+"id":"mouse_help",
+"intent":"mouse_help",
+"keywords":["mouse","dpi"],
+"userExamples":[
+"qual mouse gamer comprar",
+"mouse bom para jogos",
+"mouse bom para valorant",
+"mouse bom para cs2",
+"mouse bom para fps",
+"mouse leve para jogos",
+"mouse custo beneficio",
+"mouse bom e barato",
+"mouse gamer bom",
+"qual mouse vale a pena",
+"mouse para fps",
+"mouse para jogos competitivos",
+"mouse bom para pc",
+"mouse gamer leve",
+"mouse com dpi alto",
+"mouse bom para setup",
+"mouse gamer recomendado",
+"mouse para jogar melhor",
+"mouse bom para pc gamer",
+"mouse gamer profissional"
+],
+"replyTemplates":[
+"Para jogos competitivos muitas pessoas preferem mouse mais leve.",
+"O sensor e o conforto do mouse fazem bastante diferença.",
+"Dependendo do seu estilo de jogo alguns modelos funcionam melhor."
+]
+},
+
+{
+"id":"keyboard_help",
+"intent":"keyboard_help",
+"keywords":["teclado","keyboard","switch"],
+"userExamples":[
+"qual teclado gamer comprar",
+"teclado bom para jogos",
+"teclado mecanico vale a pena",
+"teclado gamer bom",
+"teclado mecanico bom",
+"teclado custo beneficio",
+"teclado bom e barato",
+"teclado gamer recomendado",
+"teclado para setup gamer",
+"teclado rgb vale a pena",
+"teclado mecanico ou membrana",
+"qual teclado vale a pena",
+"teclado gamer para jogar",
+"teclado bom para pc",
+"teclado mecanico para jogos",
+"teclado para fps",
+"teclado para pc gamer",
+"teclado gamer profissional",
+"teclado gamer silencioso",
+"teclado gamer barato"
+],
+"replyTemplates":[
+"Teclados mecânicos costumam ser bem populares para jogos.",
+"Os switches do teclado podem mudar bastante a sensação de digitação.",
+"Dependendo do uso alguns teclados fazem mais sentido que outros."
+]
+},
+
+{
+"id":"headset_help",
+"intent":"headset_help",
+"keywords":["headset","fone","fone gamer"],
+"userExamples":[
+"qual headset comprar",
+"headset gamer bom",
+"headset bom para jogos",
+"headset bom para valorant",
+"headset bom para cs2",
+"headset bom para fps",
+"headset custo beneficio",
+"headset gamer barato",
+"headset com microfone bom",
+"headset bom para discord",
+"headset para pc gamer",
+"headset para jogar",
+"headset bom para setup",
+"headset gamer recomendado",
+"headset para ouvir passos",
+"headset bom para competitivos",
+"headset para streaming",
+"headset gamer profissional",
+"headset com som bom",
+"headset gamer confortável"
+],
+"replyTemplates":[
+"Headsets bons ajudam bastante na imersão durante o jogo.",
+"Alguns headsets focam mais em conforto e outros em qualidade de som.",
+"Se quiser posso sugerir alguns modelos interessantes."
+]
+}
+]
