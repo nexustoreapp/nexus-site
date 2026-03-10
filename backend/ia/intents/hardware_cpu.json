@@ -1,0 +1,133 @@
+[
+{
+"id":"cpu_general_question",
+"intent":"cpu_help",
+"keywords":["cpu","processador","ryzen","intel"],
+"userExamples":[
+"qual processador comprar",
+"qual cpu comprar",
+"qual processador vale a pena",
+"qual cpu vale a pena",
+"qual processador é bom",
+"qual cpu é boa",
+"me recomenda um processador",
+"me recomenda uma cpu",
+"qual processador escolher",
+"qual cpu escolher",
+"qual processador compensa",
+"qual cpu compensa",
+"to querendo comprar um processador",
+"tô querendo comprar um processador",
+"qual processador é melhor",
+"qual cpu é melhor",
+"processador bom",
+"cpu boa",
+"processador custo beneficio",
+"cpu custo beneficio"
+],
+"replyTemplates":[
+"O processador é o cérebro do computador, ele influencia muito no desempenho geral.",
+"Depende bastante do seu orçamento e do que você pretende fazer no PC.",
+"Se você me disser o orçamento eu consigo sugerir alguns processadores bons."
+]
+},
+
+{
+"id":"cpu_gaming",
+"intent":"cpu_gaming",
+"keywords":["cpu jogo","processador jogo","fps"],
+"userExamples":[
+"qual cpu para jogos",
+"qual processador para jogar",
+"qual cpu roda jogos",
+"qual processador gamer",
+"cpu boa para jogos",
+"processador bom para jogos",
+"qual cpu para valorant",
+"qual cpu para cs2",
+"qual cpu para fortnite",
+"cpu para jogos competitivos",
+"processador para fps",
+"cpu gamer custo beneficio",
+"processador gamer custo beneficio",
+"qual cpu roda valorant",
+"qual cpu roda cs2",
+"qual cpu roda fortnite",
+"processador bom para fps",
+"cpu boa para fps",
+"qual cpu gamer comprar",
+"qual processador gamer comprar"
+],
+"replyTemplates":[
+"Para jogos o processador ajuda bastante na estabilidade de FPS.",
+"Alguns jogos dependem mais da CPU, principalmente jogos competitivos.",
+"Se você me disser o orçamento do PC eu consigo sugerir CPUs boas para jogos."
+]
+},
+
+{
+"id":"cpu_work",
+"intent":"cpu_work",
+"keywords":["cpu trabalho","render","edição"],
+"userExamples":[
+"qual cpu para trabalho",
+"qual processador para trabalhar",
+"cpu para edição",
+"processador para edição",
+"cpu para render",
+"processador para render",
+"cpu para design",
+"processador para design",
+"cpu para programação",
+"processador para programar",
+"qual cpu para renderizar",
+"qual processador para render",
+"cpu boa para trabalho",
+"processador bom para trabalho",
+"cpu para produtividade",
+"processador para produtividade",
+"cpu para softwares pesados",
+"processador para softwares pesados",
+"qual cpu para editar video",
+"qual processador para editar video"
+],
+"replyTemplates":[
+"Para trabalho pesado normalmente priorizamos mais núcleos no processador.",
+"Softwares de edição e render costumam usar bastante CPU.",
+"Se você me disser qual software usa posso sugerir CPUs ideais."
+]
+},
+
+{
+"id":"cpu_upgrade",
+"intent":"cpu_upgrade",
+"keywords":["upgrade cpu","trocar processador"],
+"userExamples":[
+"vale a pena trocar meu processador",
+"quero trocar minha cpu",
+"quero fazer upgrade de cpu",
+"qual cpu melhor que a minha",
+"qual processador melhor que o meu",
+"upgrade de processador vale a pena",
+"quero melhorar meu processador",
+"quero melhorar desempenho do pc",
+"trocar cpu melhora desempenho",
+"qual upgrade de cpu fazer",
+"processador melhor que o meu",
+"cpu melhor que a minha",
+"upgrade de cpu ajuda fps",
+"trocar processador ajuda fps",
+"qual cpu colocar no meu pc",
+"qual processador colocar no meu pc",
+"upgrade cpu gamer",
+"quero mais desempenho",
+"qual upgrade fazer no processador",
+"melhorar cpu do pc"
+],
+"replyTemplates":[
+"Trocar o processador pode melhorar bastante o desempenho dependendo da configuração.",
+"Se você me disser qual CPU usa hoje posso sugerir upgrades.",
+"Dependendo da sua placa-mãe dá para fazer upgrades interessantes."
+]
+}
+]
