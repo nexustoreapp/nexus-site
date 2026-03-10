@@ -12,9 +12,7 @@ import {
 } from "../ia/conversationEngine.js";
 
 import {
-  updateMemoryScore,
-  shouldAskBudget,
-  shouldAskUse
+  updateMemoryScore
 } from "../ia/memoryScore.js";
 
 import {
@@ -25,6 +23,33 @@ import {
 import {
   predictIntentEarly
 } from "../ia/intentPredictor.js";
+
+import {
+  detectBuyIntent,
+  salesStrategy
+} from "../ia/salesBrain.js";
+
+import {
+  detectCustomerType
+} from "../ia/customerProfile.js";
+
+import {
+  humanize
+} from "../ia/humanStyle.js";
+
+import {
+  getResponseCache,
+  setResponseCache
+} from "../ia/responseCache.js";
+
+import {
+  storeConversationSample,
+  getSimilarReply
+} from "../ia/conversationLearning.js";
+
+import {
+  learnFromConversation
+} from "../ia/selfEvolvingAI.js";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -61,31 +86,7 @@ function saveTurn(id,role,content){
 }
 
 /* ===============================
-CONTEXT MEMORY
-=============================== */
-
-function updateIntentMemory(ctx,intent,persona){
-
-  if(intent){
-    ctx.lastIntent = intent.intent || intent.id;
-  }
-
-  if(persona){
-    ctx.lastPersona = persona.id;
-  }
-
-  if(intent?.intent === "pc_help"){
-    ctx.conversationGoal = "pc_build";
-  }
-
-  if(intent?.intent === "product_search"){
-    ctx.conversationGoal = "product_search";
-  }
-
-}
-
-/* ===============================
-EXTRACT CONTEXT
+CONTEXT EXTRACTION
 =============================== */
 
 function extractContext(text,id){
@@ -102,7 +103,7 @@ function extractContext(text,id){
     ctx.use = "gaming";
   }
 
-  if(/programar|programação|faculdade|estudo/.test(text)){
+  if(/programar|faculdade|estudo/.test(text)){
     ctx.use = "study";
   }
 
@@ -110,13 +111,11 @@ function extractContext(text,id){
     ctx.use = "work";
   }
 
-  if(/comprar|pegar|vou levar|quero esse|como comprar/.test(text)){
-    ctx.stage = "decision";
+  if(!ctx.stage){
+    ctx.stage = "discovery";
   }
 
-  if(!ctx.stage) ctx.stage = "discovery";
-
-  if(ctx.budget && ctx.use && ctx.stage==="discovery"){
+  if(ctx.budget && ctx.use){
     ctx.stage = "recommendation";
   }
 
@@ -125,7 +124,7 @@ function extractContext(text,id){
 }
 
 /* ===============================
-FILTER BY BUDGET
+PRODUCT FILTER
 =============================== */
 
 function filterByBudget(products,budget){
@@ -139,25 +138,15 @@ function filterByBudget(products,budget){
 
 }
 
-/* ===============================
-RANK PRODUCTS
-=============================== */
-
 function rankProducts(products){
 
   if(!Array.isArray(products)) return [];
 
   return products.sort((a,b)=>{
-    const pa = Number(a.price || 0);
-    const pb = Number(b.price || 0);
-    return pa - pb;
+    return Number(a.price||0) - Number(b.price||0);
   });
 
 }
-
-/* ===============================
-LIMIT PRODUCTS
-=============================== */
 
 function limitProducts(products){
 
@@ -173,70 +162,20 @@ PROMPT
 
 function buildPrompt(persona,intent,ctx){
 
-  let personaBlock="";
+  return `
+Você é Nayla da Nexus Store.
 
-  if(persona){
+Ajude clientes a escolher hardware.
 
-    personaBlock=`
-
-PERSONA
-${persona.label}
-
-Função
-${persona.role}
-
-Tom
-${persona.tone}
-
-`;
-
-  }
-
-  let intentBlock="";
-
-  if(intent){
-
-    intentBlock=`
-
-INTENT
-${intent.intent}
-
-`;
-
-  }
-
-  let contextBlock="";
-
-  if(ctx.budget || ctx.use){
-
-    contextBlock=`
-
-CONTEXTO DO CLIENTE
+Contexto cliente:
 
 Orçamento: ${ctx.budget || "não informado"}
 Uso: ${ctx.use || "não informado"}
-Stage: ${ctx.stage}
-Goal: ${ctx.conversationGoal || "none"}
-Language: ${ctx.lang || "pt"}
+Idioma: ${ctx.lang || "pt"}
 
+Persona: ${persona?.label || "assistente"}
+Intent: ${intent?.intent || "unknown"}
 `;
-
-  }
-
-  return `
-Você é Nayla da Nexus Store.
-Ajude clientes a escolher hardware.
-
-Fluxo:
-discovery → descobrir necessidade
-recommendation → sugerir produto
-decision → ajudar decisão
-
-${personaBlock}
-${intentBlock}
-${contextBlock}
-`;
-
 }
 
 /* ===============================
@@ -272,6 +211,10 @@ export async function routeMessage(message,context={}){
 
   updateMemoryScore(ctx,text);
 
+  /* ===============================
+INTENT DETECTION
+=============================== */
+
   let intent = detectIntent(text);
 
   if(!intent){
@@ -284,15 +227,76 @@ export async function routeMessage(message,context={}){
 
   }
 
+  learnFromConversation(intent);
+
+  /* ===============================
+CUSTOMER PROFILE
+=============================== */
+
+  const customerType = detectCustomerType(text);
+
+  ctx.customerType = customerType;
+
+  /* ===============================
+SALES BRAIN
+=============================== */
+
+  const buyScore = detectBuyIntent(text);
+
+  const strategy = salesStrategy(buyScore);
+
+  ctx.buyScore = buyScore;
+  ctx.salesStrategy = strategy;
+
+  /* ===============================
+PERSONA
+=============================== */
+
   const persona = selectPersona(text);
 
-  updateIntentMemory(ctx,intent,persona);
+  /* ===============================
+CACHE CHECK
+=============================== */
+
+  const cached = getResponseCache(text);
+
+  if(cached){
+
+    return {
+      reply:cached,
+      products:[],
+      suggestions:[]
+    };
+
+  }
+
+  /* ===============================
+CONVERSATION PREDICTOR
+=============================== */
 
   const path = predictConversationPath(ctx,intent);
 
   const pathReply = pathResponse(path,ctx);
 
-  const smartReply = conversationResponse(ctx,intent);
+  if(pathReply){
+
+    const reply = humanize(pathReply);
+
+    setResponseCache(text,reply);
+
+    saveTurn(conversationId,"assistant",reply);
+
+    return {
+      reply,
+      products:[],
+      suggestions:[]
+    };
+
+  }
+
+  /* ===============================
+PRODUCT RECOMMENDATION
+=============================== */
 
   let products=[];
 
@@ -316,48 +320,25 @@ export async function routeMessage(message,context={}){
   products = rankProducts(products);
   products = limitProducts(products);
 
-  if(intent?.replyTemplates?.length){
+  /* ===============================
+LEARNING REPLY
+=============================== */
 
-    const replies = intent.replyTemplates;
+  const learned = getSimilarReply(text);
 
-    const reply = replies[Math.floor(Math.random()*replies.length)];
-
-    saveTurn(conversationId,"user",text);
-    saveTurn(conversationId,"assistant",reply);
+  if(learned){
 
     return {
-      reply,
+      reply:learned,
       products,
       suggestions:[]
     };
 
   }
 
-  if(pathReply){
-
-    saveTurn(conversationId,"user",text);
-    saveTurn(conversationId,"assistant",pathReply);
-
-    return {
-      reply:pathReply,
-      products,
-      suggestions:[]
-    };
-
-  }
-
-  if(smartReply){
-
-    saveTurn(conversationId,"user",text);
-    saveTurn(conversationId,"assistant",smartReply);
-
-    return {
-      reply:smartReply,
-      products,
-      suggestions:[]
-    };
-
-  }
+  /* ===============================
+OPENAI
+=============================== */
 
   const history = getHistory(conversationId);
 
@@ -401,6 +382,12 @@ export async function routeMessage(message,context={}){
   if(!reply){
     reply = "Me conta um pouco mais do que você procura.";
   }
+
+  reply = humanize(reply);
+
+  setResponseCache(text,reply);
+
+  storeConversationSample(text,reply);
 
   saveTurn(conversationId,"user",text);
   saveTurn(conversationId,"assistant",reply);
