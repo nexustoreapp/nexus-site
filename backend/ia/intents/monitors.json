@@ -1,0 +1,133 @@
+[
+{
+"id":"monitor_general",
+"intent":"monitor_help",
+"keywords":["monitor","tela","display"],
+"userExamples":[
+"qual monitor comprar",
+"monitor bom",
+"monitor gamer",
+"monitor bom para pc",
+"monitor custo beneficio",
+"qual monitor vale a pena",
+"monitor para pc gamer",
+"monitor bom para jogos",
+"monitor bom para trabalhar",
+"monitor bom para estudar",
+"qual monitor escolher",
+"monitor para setup",
+"monitor bom e barato",
+"monitor recomendado",
+"monitor para uso geral",
+"monitor para casa",
+"monitor para computador",
+"monitor para jogos",
+"monitor para produtividade",
+"qual monitor pegar"
+],
+"replyTemplates":[
+"Monitores podem mudar bastante a experiência de uso do PC.",
+"Depende bastante do que você pretende fazer no computador.",
+"Se você quiser posso te ajudar a escolher um monitor equilibrado."
+]
+},
+
+{
+"id":"monitor_refresh_rate",
+"intent":"monitor_refresh_rate",
+"keywords":["144hz","240hz","165hz","hz"],
+"userExamples":[
+"monitor 144hz vale a pena",
+"monitor 240hz vale a pena",
+"qual monitor 144hz comprar",
+"monitor 144hz bom",
+"monitor 165hz bom",
+"monitor 240hz para jogos",
+"monitor para fps",
+"monitor bom para valorant",
+"monitor bom para cs2",
+"monitor gamer 144hz",
+"monitor gamer 240hz",
+"monitor com hz alto",
+"monitor competitivo",
+"monitor para jogos competitivos",
+"monitor para esports",
+"monitor para fps competitivo",
+"monitor rápido para jogos",
+"monitor com alta taxa de atualização",
+"monitor para jogos rápidos",
+"monitor gamer competitivo"
+],
+"replyTemplates":[
+"Monitores com taxa de atualização alta são ótimos para jogos competitivos.",
+"144Hz já oferece uma experiência bem fluida para a maioria dos jogos.",
+"Jogadores competitivos às vezes preferem 240Hz para maior fluidez."
+]
+},
+
+{
+"id":"monitor_resolution",
+"intent":"monitor_resolution",
+"keywords":["1080p","1440p","4k","resolução"],
+"userExamples":[
+"monitor 1080p vale a pena",
+"monitor 1440p vale a pena",
+"monitor 4k vale a pena",
+"qual resolução de monitor escolher",
+"monitor full hd bom",
+"monitor qhd bom",
+"monitor 4k bom",
+"monitor para qualidade de imagem",
+"monitor para jogos bonitos",
+"monitor com resolução alta",
+"monitor bom para imagem",
+"monitor para design",
+"monitor para edição",
+"monitor para trabalhar com imagem",
+"monitor com boa resolução",
+"monitor para produtividade",
+"monitor para gráficos",
+"monitor para vídeos",
+"monitor para edição de fotos",
+"monitor para edição de vídeo"
+],
+"replyTemplates":[
+"A resolução influencia bastante na qualidade da imagem.",
+"Monitores 1080p são populares para jogos competitivos.",
+"Resoluções maiores como 1440p ou 4K oferecem imagem mais detalhada."
+]
+},
+
+{
+"id":"monitor_size",
+"intent":"monitor_size",
+"keywords":["24","27","32","polegadas"],
+"userExamples":[
+"monitor 24 polegadas vale a pena",
+"monitor 27 polegadas vale a pena",
+"monitor 32 polegadas vale a pena",
+"qual tamanho de monitor escolher",
+"monitor grande para pc",
+"monitor pequeno para pc",
+"monitor ideal para mesa",
+"monitor tamanho ideal",
+"monitor para setup gamer",
+"monitor para mesa pequena",
+"monitor para mesa grande",
+"monitor confortável para usar",
+"monitor bom para trabalhar",
+"monitor bom para estudar",
+"monitor bom para jogos",
+"monitor tamanho recomendado",
+"monitor para produtividade",
+"monitor para programação",
+"monitor para design",
+"monitor ideal para computador"
+],
+"replyTemplates":[
+"O tamanho do monitor depende muito do espaço da sua mesa.",
+"24 e 27 polegadas são tamanhos bem populares.",
+"Monitores maiores podem ser mais imersivos dependendo da distância."
+]
+}
+]
