@@ -67,6 +67,22 @@ function saveTurn(id,role,content){
   MEMORY.set(id,h.slice(-MAX_HISTORY*2));
 }
 
+function parseBudget(text){
+  const normalized = String(text || "").toLowerCase().trim();
+
+  const milMatch = normalized.match(/\b(\d{1,3})\s*(mil|k)\b/i);
+  if(milMatch){
+    return Number(milMatch[1]) * 1000;
+  }
+
+  const numberMatch = normalized.match(/\b\d{2,6}\b/);
+  if(numberMatch){
+    return Number(numberMatch[0]);
+  }
+
+  return null;
+}
+
 function extractContext(text,id){
 
   const ctx = getContext(id);
@@ -74,22 +90,23 @@ function extractContext(text,id){
   const predictedBudget = predictBudget(text);
   const predictedUse = predictUse(text);
 
-  const budgetMatch = text.match(/\b\d{3,6}\b/);
+  const parsedBudget = parseBudget(text);
 
-  if(budgetMatch && !ctx.budget){
-    ctx.budget = Number(budgetMatch[0]);
+  if(parsedBudget && !ctx.budget){
+    ctx.budget = parsedBudget;
     registerPriceRange(ctx.budget);
   }
 
   if(!ctx.budget && predictedBudget){
     ctx.budget = predictedBudget;
+    registerPriceRange(ctx.budget);
   }
 
   if(!ctx.use && predictedUse){
     ctx.use = predictedUse;
   }
 
-  if(/jogar|jogo|game|gaming|fps/.test(text)){
+  if(/jogar|jogo|game|gaming|fps|valorant|cs2|fortnite/.test(text)){
     ctx.use = "gaming";
   }
 
@@ -127,18 +144,19 @@ export async function routeMessage(message,context={}){
   ctx.lang = lang;
 
   if(!ctx.started){
-
     ctx.started = true;
     CONTEXT.set(conversationId,ctx);
 
     const greeting = greetingByLang(lang);
 
-    return { reply:greeting, products:[], suggestions:[] };
-
+    return {
+      reply:greeting,
+      products:[],
+      suggestions:[]
+    };
   }
 
   extractContext(text,conversationId);
-
   ctx = getContext(conversationId);
 
   updateMemoryScore(ctx,text);
@@ -155,91 +173,101 @@ export async function routeMessage(message,context={}){
   learnFromConversation(intent);
 
   ctx.customerType = detectCustomerType(text);
-
   ctx.buyScore = detectBuyIntent(text);
-
   ctx.salesStrategy = salesStrategy(ctx.buyScore);
 
-  const mode = detectConversationMode(ctx);
+  const persona = selectPersona(text);
 
-  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
-
-  if(adaptiveReply){
-
+  const cached = getResponseCache(text);
+  if(cached){
     return {
-      reply: humanize(adaptiveReply),
+      reply:cached,
       products:[],
       suggestions:[]
     };
-
   }
 
+  const mode = detectConversationMode(ctx);
+  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
+
   ctx.intentGraph = mapCustomerIntent(ctx);
-
   ctx.commerceDecision = commerceDecision(ctx);
-
   ctx.autonomousDecision = autonomousCommerceDecision(ctx);
 
-  let products=[];
+  let products = [];
 
-  if(ctx.stage==="recommendation"){
+  if(ctx.stage === "recommendation"){
 
-    if(ctx.use==="gaming"){
+    if(ctx.use === "gaming"){
       products = searchCatalog("gpu");
     }
 
-    if(ctx.use==="study"){
+    if(ctx.use === "study"){
       products = searchCatalog("notebook");
     }
 
-    if(ctx.use==="work"){
+    if(ctx.use === "work"){
       products = searchCatalog("workstation");
     }
 
   }
 
   products = rankProductsByNeural(products);
-
   products = neuralMatchProducts(products,ctx);
 
-  const actionProducts = generateSalesAction(chooseProductStrategy(ctx),products);
+  const actionProducts = generateSalesAction(
+    chooseProductStrategy(ctx),
+    products
+  );
 
   if(actionProducts?.length){
-
     return {
       reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
       products: actionProducts,
       suggestions:[]
     };
+  }
 
+  if(adaptiveReply){
+    return {
+      reply: humanize(adaptiveReply),
+      products:[],
+      suggestions:[]
+    };
   }
 
   const path = predictConversationPath(ctx,intent);
-
   const pathReply = pathResponse(path,ctx);
 
   if(pathReply){
-
     return {
       reply: humanize(pathReply),
       products:[],
       suggestions:[]
     };
+  }
 
+  const learned = getSimilarReply(text);
+
+  if(learned){
+    return {
+      reply:learned,
+      products,
+      suggestions:[]
+    };
   }
 
   const history = getHistory(conversationId);
 
-  const input=[
-    { role:"system",content:`Você é Nayla da Nexus Store.` },
+  const input = [
+    { role:"system", content:"Você é Nayla da Nexus Store." },
     ...history,
-    { role:"user",content:text }
+    { role:"user", content:text }
   ];
 
-  let reply="";
+  let reply = "";
 
   try{
-
     const resp = await client.responses.create({
       model:"gpt-4o-mini",
       input,
@@ -248,7 +276,6 @@ export async function routeMessage(message,context={}){
     });
 
     reply = resp.output_text?.trim();
-
   }catch(err){
     console.error(err);
   }
@@ -266,5 +293,4 @@ export async function routeMessage(message,context={}){
     products,
     suggestions:[]
   };
-
 }
