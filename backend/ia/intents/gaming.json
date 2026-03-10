@@ -1,0 +1,133 @@
+[
+{
+"id":"gaming_general",
+"intent":"gaming_general",
+"keywords":["jogo","gaming","jogar"],
+"userExamples":[
+"pc para jogar",
+"computador para jogos",
+"pc gamer",
+"setup gamer",
+"pc para rodar jogos",
+"computador gamer",
+"pc bom para jogos",
+"setup para jogos",
+"pc para valorant",
+"pc para cs2",
+"pc para fortnite",
+"pc para gta",
+"pc para warzone",
+"pc para jogos competitivos",
+"pc para fps",
+"computador para rodar jogos",
+"pc gamer bom",
+"setup gamer bom",
+"pc gamer custo beneficio",
+"pc gamer barato"
+],
+"replyTemplates":[
+"Para jogos a placa de vídeo costuma ser um dos componentes mais importantes.",
+"Dependendo do jogo o processador também pode fazer bastante diferença.",
+"Se você me disser quais jogos pretende jogar posso ajudar melhor."
+]
+},
+
+{
+"id":"gaming_games",
+"intent":"gaming_games",
+"keywords":["valorant","cs2","fortnite","gta","warzone"],
+"userExamples":[
+"quero jogar valorant",
+"quero jogar cs2",
+"quero jogar fortnite",
+"quero jogar gta",
+"quero jogar warzone",
+"pc para valorant",
+"pc para cs2",
+"pc para fortnite",
+"pc para gta",
+"pc para warzone",
+"setup para valorant",
+"setup para cs2",
+"setup para fortnite",
+"setup para gta",
+"setup para warzone",
+"computador para valorant",
+"computador para cs2",
+"computador para fortnite",
+"computador para gta",
+"computador para warzone"
+],
+"replyTemplates":[
+"Esses jogos costumam rodar bem em PCs equilibrados.",
+"Alguns jogos competitivos priorizam mais FPS do que qualidade gráfica.",
+"Dependendo da configuração dá para rodar esses jogos muito bem."
+]
+},
+
+{
+"id":"gaming_fps_question",
+"intent":"gaming_fps_question",
+"keywords":["fps","desempenho"],
+"userExamples":[
+"quantos fps roda",
+"qual fps esse pc faz",
+"esse pc roda valorant",
+"esse pc roda cs2",
+"esse pc roda fortnite",
+"qual desempenho desse pc",
+"esse setup roda jogos",
+"esse pc roda bem jogos",
+"qual fps roda valorant",
+"qual fps roda cs2",
+"qual fps roda fortnite",
+"esse pc aguenta jogos",
+"esse pc roda jogos pesados",
+"esse pc roda gta",
+"esse pc roda warzone",
+"esse pc é bom para fps",
+"esse setup é bom para jogos",
+"esse pc é forte para jogos",
+"esse pc tem bom desempenho",
+"esse pc roda bem"
+],
+"replyTemplates":[
+"O FPS depende bastante da placa de vídeo e do processador.",
+"Alguns jogos dependem mais da GPU e outros mais da CPU.",
+"Se você me disser a configuração do PC posso estimar o desempenho."
+]
+},
+
+{
+"id":"gaming_setup",
+"intent":"gaming_setup",
+"keywords":["setup","setup gamer"],
+"userExamples":[
+"quero montar setup gamer",
+"setup gamer bom",
+"setup gamer barato",
+"setup gamer custo beneficio",
+"setup gamer para valorant",
+"setup gamer para cs2",
+"setup gamer para fortnite",
+"setup gamer para gta",
+"setup gamer completo",
+"setup gamer recomendado",
+"setup gamer forte",
+"setup gamer para fps",
+"setup gamer para jogos",
+"setup gamer para pc",
+"setup gamer simples",
+"setup gamer barato e bom",
+"setup gamer moderno",
+"setup gamer equilibrado",
+"setup gamer atualizado",
+"setup gamer ideal"
+],
+"replyTemplates":[
+"Montar um setup equilibrado é importante para evitar gargalos.",
+"Dependendo do orçamento dá para montar setups bem interessantes.",
+"Se quiser posso ajudar a montar um setup equilibrado."
+]
+}
+]
