@@ -107,6 +107,26 @@ function extractContext(text, id) {
 }
 
 /* ===============================
+LOCAL QUICK RESPONSES
+=============================== */
+
+function quickResponse(text){
+
+  const t = text.toLowerCase().trim();
+
+  if(/^(oi|olá|ola|eai|e aí|hey)$/.test(t)){
+    return "Oi! 👋 Posso te ajudar a escolher um PC ou algum hardware.";
+  }
+
+  if(/^(ok|blz|beleza|entendi)$/.test(t)){
+    return "Perfeito 👍 Me conta então: você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
+  }
+
+  return null;
+
+}
+
+/* ===============================
 LOCAL FALLBACK
 =============================== */
 
@@ -254,17 +274,11 @@ discovery → descobrir necessidade
 recommendation → sugerir produto
 decision → ajudar decisão
 
-Nunca volte para saudação depois da primeira mensagem.
-
 Sempre descubra uso e orçamento antes de recomendar produto.
 
 Quando sugerir um produto:
 - explique em uma frase por que ele é bom
 - sugira um complemento ou upgrade
-- incentive o cliente a analisar o produto agora
-
-Depois de recomendar algo, sempre faça uma pergunta curta
-para ajudar o cliente a decidir.
 
 ${personaBlock}
 
@@ -284,6 +298,16 @@ export async function routeMessage(message, context = {}) {
   const conversationId = context.conversationId || "guest";
 
   const text = normalizeSlang(message);
+
+  const quick = quickResponse(text);
+
+  if(quick){
+    return {
+      reply: quick,
+      products: [],
+      suggestions:[]
+    };
+  }
 
   extractContext(text, conversationId);
 
@@ -341,8 +365,8 @@ export async function routeMessage(message, context = {}) {
 
       model:"gpt-4o-mini",
       input,
-      temperature:0.8,
-      max_output_tokens:300
+      temperature:0.7,
+      max_output_tokens:200
 
     });
 
