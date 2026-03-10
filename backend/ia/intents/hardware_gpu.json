@@ -1,0 +1,133 @@
+[
+{
+"id":"gpu_general_question",
+"intent":"gpu_help",
+"keywords":["gpu","placa de video","placa de vídeo","rtx","rx"],
+"userExamples":[
+"qual placa de video comprar",
+"qual placa de vídeo comprar",
+"qual gpu comprar",
+"qual placa de video vale a pena",
+"qual gpu vale a pena",
+"qual placa de video é boa",
+"qual gpu é boa",
+"me recomenda uma placa de video",
+"me recomenda uma gpu",
+"qual placa de video compensa",
+"qual placa de video escolher",
+"qual gpu escolher",
+"to querendo comprar uma placa de video",
+"tô querendo comprar uma gpu",
+"qual placa de video é melhor",
+"qual gpu é melhor",
+"placa de video boa",
+"gpu boa",
+"placa de video custo beneficio",
+"gpu custo beneficio"
+],
+"replyTemplates":[
+"Boa pergunta. A placa de vídeo muda muito o desempenho do PC.",
+"Depende bastante do seu orçamento. Quanto você pretende investir na GPU?",
+"Se você me disser seu orçamento eu consigo sugerir algumas GPUs boas."
+]
+},
+
+{
+"id":"gpu_game_performance",
+"intent":"gpu_game_performance",
+"keywords":["fps","rodar","desempenho"],
+"userExamples":[
+"essa gpu roda valorant",
+"essa placa roda cs2",
+"essa gpu roda fortnite",
+"quantos fps roda",
+"qual desempenho dessa gpu",
+"essa placa de video roda valorant",
+"essa gpu aguenta jogos",
+"essa placa roda bem jogos",
+"essa gpu roda gta",
+"essa gpu roda warzone",
+"essa gpu roda jogos pesados",
+"essa placa aguenta jogos",
+"qual fps essa gpu faz",
+"qual fps roda valorant",
+"qual fps roda cs2",
+"essa placa roda bem",
+"essa gpu é boa pra jogar",
+"essa placa é boa pra jogos",
+"essa gpu roda bem",
+"essa placa roda bem"
+],
+"replyTemplates":[
+"O desempenho depende bastante do processador e da GPU juntos.",
+"Alguns jogos dependem mais da placa de vídeo, outros do processador.",
+"Se você me disser qual GPU e qual jogo quer rodar eu consigo estimar melhor."
+]
+},
+
+{
+"id":"gpu_budget",
+"intent":"gpu_budget",
+"keywords":["orçamento","tenho","posso gastar"],
+"userExamples":[
+"tenho 1000 pra gpu",
+"tenho 1500 pra gpu",
+"tenho 2000 pra placa de video",
+"posso gastar 2000 na gpu",
+"meu orçamento pra gpu é 1500",
+"tenho 1200 pra placa de video",
+"posso gastar 1800",
+"tenho uns 2000 pra gpu",
+"tenho uns 1500 pra gpu",
+"tenho cerca de 2000",
+"tenho cerca de 1500",
+"tenho 2500 pra placa de video",
+"tenho 3000 pra gpu",
+"tenho 3500 pra placa de video",
+"tenho 4000 pra gpu",
+"posso gastar 2500",
+"posso gastar 3000",
+"tenho 2200",
+"tenho 1700",
+"tenho 2800"
+],
+"replyTemplates":[
+"Com esse orçamento já dá para pegar algumas GPUs interessantes.",
+"Boa! Dependendo do modelo dá para pegar algo bem forte nessa faixa.",
+"Legal. Posso tentar sugerir algumas GPUs boas nessa faixa de preço."
+]
+},
+
+{
+"id":"gpu_upgrade",
+"intent":"gpu_upgrade",
+"keywords":["upgrade","trocar placa","melhorar gpu"],
+"userExamples":[
+"vale a pena trocar minha placa de video",
+"qual gpu comprar para upgrade",
+"quero melhorar minha gpu",
+"quero trocar minha placa de video",
+"qual upgrade de gpu fazer",
+"vale a pena trocar gpu",
+"quero melhorar meu desempenho",
+"minha placa é fraca",
+"quero melhorar fps",
+"qual placa melhor que a minha",
+"quero trocar minha gpu",
+"qual gpu é melhor que a minha",
+"quero upgrade de placa de video",
+"upgrade de gpu vale a pena",
+"trocar gpu ajuda fps",
+"quero mais fps",
+"quero melhorar desempenho do pc",
+"qual upgrade fazer",
+"gpu melhor que a minha",
+"trocar placa ajuda desempenho"
+],
+"replyTemplates":[
+"Upgrade de GPU costuma melhorar bastante o desempenho em jogos.",
+"Se você me disser qual placa de vídeo tem hoje eu consigo sugerir upgrades.",
+"Dependendo da sua configuração atual dá para melhorar bastante com uma nova GPU."
+]
+}
+]
