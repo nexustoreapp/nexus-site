@@ -107,18 +107,18 @@ function extractContext(text, id) {
 }
 
 /* ===============================
-LOCAL QUICK RESPONSES
+QUICK RESPONSES
 =============================== */
 
 function quickResponse(text){
 
   const t = text.toLowerCase().trim();
 
-  if(t.includes("oi") || t.includes("olá") || t.includes("ola") || t.includes("eai") || t.includes("e aí")){
+  if(/^(oi|olá|ola|eai|e aí|hey|yo)$/i.test(t)){
     return "Oi! 👋 Posso te ajudar a escolher um PC ou algum hardware.";
   }
 
-  if(t === "ok" || t === "blz" || t === "beleza"){
+  if(/^(ok|blz|beleza)$/i.test(t)){
     return "Perfeito 👍 Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
   }
 
@@ -290,6 +290,9 @@ export async function routeMessage(message, context = {}) {
 
   const ctx = getContext(conversationId);
 
+  const intent = detectIntent(text);
+  const persona = selectPersona(text);
+
   let products = [];
 
   if(ctx.stage === "recommendation"){
@@ -312,19 +315,28 @@ export async function routeMessage(message, context = {}) {
   products = rankProducts(products);
   products = limitProducts(products);
 
-  const fallback = localFallback(ctx);
+  /* ===============================
+  INTENT TEMPLATE RESPONSE
+  =============================== */
 
-  if(ctx.stage !== "recommendation"){
+  if(intent?.replyTemplates?.length){
+
+    const replies = intent.replyTemplates;
+
+    const reply = replies[Math.floor(Math.random()*replies.length)];
+
+    saveTurn(conversationId,"user",text);
+    saveTurn(conversationId,"assistant",reply);
+
     return {
-      reply: fallback,
-      products: [],
+      reply,
+      products,
       suggestions:[]
     };
+
   }
 
   const history = getHistory(conversationId);
-  const intent = detectIntent(text);
-  const persona = selectPersona(text);
 
   const input = [
 
@@ -364,7 +376,7 @@ export async function routeMessage(message, context = {}) {
   }
 
   if(!reply){
-    reply = fallback;
+    reply = localFallback(ctx);
   }
 
   saveTurn(conversationId,"user",text);
