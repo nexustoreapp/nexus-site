@@ -68,14 +68,17 @@ function saveTurn(id,role,content){
 }
 
 function parseBudget(text){
+
   const normalized = String(text || "").toLowerCase().trim();
 
   const milMatch = normalized.match(/\b(\d{1,3})\s*(mil|k)\b/i);
+
   if(milMatch){
     return Number(milMatch[1]) * 1000;
   }
 
   const numberMatch = normalized.match(/\b\d{2,6}\b/);
+
   if(numberMatch){
     return Number(numberMatch[0]);
   }
@@ -99,7 +102,6 @@ function extractContext(text,id){
 
   if(!ctx.budget && predictedBudget){
     ctx.budget = predictedBudget;
-    registerPriceRange(ctx.budget);
   }
 
   if(!ctx.use && predictedUse){
@@ -144,19 +146,19 @@ export async function routeMessage(message,context={}){
   ctx.lang = lang;
 
   if(!ctx.started){
+
     ctx.started = true;
     CONTEXT.set(conversationId,ctx);
 
-    const greeting = greetingByLang(lang);
-
     return {
-      reply:greeting,
+      reply:greetingByLang(lang),
       products:[],
       suggestions:[]
     };
   }
 
   extractContext(text,conversationId);
+
   ctx = getContext(conversationId);
 
   updateMemoryScore(ctx,text);
@@ -164,7 +166,9 @@ export async function routeMessage(message,context={}){
   let intent = detectIntent(text);
 
   if(!intent){
+
     const predicted = predictIntentEarly(text);
+
     if(predicted){
       intent = { intent: predicted };
     }
@@ -173,13 +177,23 @@ export async function routeMessage(message,context={}){
   learnFromConversation(intent);
 
   ctx.customerType = detectCustomerType(text);
+
   ctx.buyScore = detectBuyIntent(text);
+
   ctx.salesStrategy = salesStrategy(ctx.buyScore);
+
+  ctx.intentGraph = mapCustomerIntent(ctx);
+
+  ctx.commerceDecision = commerceDecision(ctx);
+
+  ctx.autonomousDecision = autonomousCommerceDecision(ctx);
 
   const persona = selectPersona(text);
 
   const cached = getResponseCache(text);
+
   if(cached){
+
     return {
       reply:cached,
       products:[],
@@ -187,12 +201,9 @@ export async function routeMessage(message,context={}){
     };
   }
 
-  const mode = detectConversationMode(ctx);
-  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
-
-  ctx.intentGraph = mapCustomerIntent(ctx);
-  ctx.commerceDecision = commerceDecision(ctx);
-  ctx.autonomousDecision = autonomousCommerceDecision(ctx);
+  /* ===============================
+PRODUCT RECOMMENDATION
+=============================== */
 
   let products = [];
 
@@ -210,25 +221,35 @@ export async function routeMessage(message,context={}){
       products = searchCatalog("workstation");
     }
 
+    products = rankProductsByNeural(products);
+
+    products = neuralMatchProducts(products,ctx);
+
+    const actionProducts = generateSalesAction(
+      chooseProductStrategy(ctx),
+      products
+    );
+
+    if(actionProducts?.length){
+
+      return {
+        reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
+        products: actionProducts,
+        suggestions:[]
+      };
+    }
   }
 
-  products = rankProductsByNeural(products);
-  products = neuralMatchProducts(products,ctx);
+  /* ===============================
+ADAPTIVE SALES
+=============================== */
 
-  const actionProducts = generateSalesAction(
-    chooseProductStrategy(ctx),
-    products
-  );
+  const mode = detectConversationMode(ctx);
 
-  if(actionProducts?.length){
-    return {
-      reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
-      products: actionProducts,
-      suggestions:[]
-    };
-  }
+  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
 
   if(adaptiveReply){
+
     return {
       reply: humanize(adaptiveReply),
       products:[],
@@ -236,10 +257,16 @@ export async function routeMessage(message,context={}){
     };
   }
 
+  /* ===============================
+CONVERSATION PATH
+=============================== */
+
   const path = predictConversationPath(ctx,intent);
+
   const pathReply = pathResponse(path,ctx);
 
   if(pathReply){
+
     return {
       reply: humanize(pathReply),
       products:[],
@@ -250,9 +277,10 @@ export async function routeMessage(message,context={}){
   const learned = getSimilarReply(text);
 
   if(learned){
+
     return {
       reply:learned,
-      products,
+      products:[],
       suggestions:[]
     };
   }
@@ -260,23 +288,35 @@ export async function routeMessage(message,context={}){
   const history = getHistory(conversationId);
 
   const input = [
+
     { role:"system", content:"Você é Nayla da Nexus Store." },
+
     ...history,
+
     { role:"user", content:text }
+
   ];
 
   let reply = "";
 
   try{
+
     const resp = await client.responses.create({
+
       model:"gpt-4o-mini",
+
       input,
+
       temperature:0.7,
+
       max_output_tokens:150
+
     });
 
     reply = resp.output_text?.trim();
+
   }catch(err){
+
     console.error(err);
   }
 
@@ -290,7 +330,7 @@ export async function routeMessage(message,context={}){
 
   return {
     reply,
-    products,
+    products:[],
     suggestions:[]
   };
 }
