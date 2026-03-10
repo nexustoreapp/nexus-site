@@ -1,0 +1,133 @@
+[
+{
+"id":"repeat_information",
+"intent":"repeat_information",
+"keywords":["já falei","ja falei","já disse"],
+"userExamples":[
+"já falei o orçamento",
+"já disse o valor",
+"eu já falei isso",
+"já falei antes",
+"já te falei o valor",
+"já falei quanto tenho",
+"eu já respondi isso",
+"já falei o preço",
+"já falei o orçamento antes",
+"já disse que tenho 3000",
+"já falei que tenho 4000",
+"já falei que quero um pc",
+"já falei que preciso de um computador",
+"já falei que é para jogos",
+"já falei que é para trabalho",
+"já falei que é para estudar",
+"já respondi essa pergunta",
+"já te falei isso antes",
+"já falei isso agora pouco",
+"eu já disse isso"
+],
+"replyTemplates":[
+"Verdade, você mencionou isso antes 👍",
+"Perfeito, já tenho essa informação.",
+"Beleza, com isso já dá para continuar."
+]
+},
+
+{
+"id":"short_answer",
+"intent":"short_answer",
+"keywords":["sim","não","talvez"],
+"userExamples":[
+"sim",
+"não",
+"talvez",
+"acho que sim",
+"acho que não",
+"provavelmente",
+"talvez sim",
+"talvez não",
+"pode ser",
+"acho que pode",
+"acho que dá",
+"acho que não dá",
+"sim acho",
+"não acho",
+"talvez funcione",
+"sim funciona",
+"não funciona",
+"sim claro",
+"não claro",
+"sim pode"
+],
+"replyTemplates":[
+"Entendi 👍",
+"Beleza.",
+"Perfeito."
+]
+},
+
+{
+"id":"topic_change",
+"intent":"topic_change",
+"keywords":["outra coisa","mudando"],
+"userExamples":[
+"outra coisa",
+"mudando de assunto",
+"tenho outra dúvida",
+"tenho outra pergunta",
+"queria perguntar outra coisa",
+"posso perguntar outra coisa",
+"agora outra pergunta",
+"agora outra coisa",
+"agora outra dúvida",
+"deixa eu perguntar outra coisa",
+"tenho outra questão",
+"quero perguntar outra coisa",
+"agora queria saber outra coisa",
+"mudei de ideia",
+"agora quero saber outra coisa",
+"agora outra questão",
+"agora outra dúvida",
+"agora quero perguntar outra coisa",
+"agora tenho outra pergunta",
+"vamos falar de outra coisa"
+],
+"replyTemplates":[
+"Claro 🙂 Pode perguntar.",
+"Sem problema, manda a dúvida.",
+"Pode falar."
+]
+},
+
+{
+"id":"conversation_continue",
+"intent":"conversation_continue",
+"keywords":["entendi","beleza","ok"],
+"userExamples":[
+"entendi",
+"beleza",
+"ok",
+"certo",
+"perfeito",
+"blz",
+"show",
+"tá bom",
+"tá certo",
+"ok então",
+"entendi agora",
+"agora entendi",
+"beleza então",
+"ok entendido",
+"show então",
+"certo então",
+"tá bom então",
+"ok beleza",
+"entendi valeu",
+"show valeu"
+],
+"replyTemplates":[
+"Boa 👍",
+"Perfeito.",
+"Beleza."
+]
+}
+]
