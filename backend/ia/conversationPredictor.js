@@ -3,6 +3,11 @@
 export function predictConversationPath(ctx,intent){
 
   if(!intent){
+
+    if(ctx.stage === "recommendation"){
+      return "recommend_products";
+    }
+
     return "discovery";
   }
 
@@ -51,7 +56,11 @@ export function pathResponse(path,ctx){
       return "Show. Você tem mais ou menos quanto de orçamento pra montar o PC?";
     }
 
-    return "Legal. Você pretende usar mais para jogos, estudo ou trabalho?";
+    if(!ctx.use){
+      return "Legal. Você pretende usar mais para jogos, estudo ou trabalho?";
+    }
+
+    return null;
   }
 
   if(path === "setup_build"){
@@ -64,6 +73,23 @@ export function pathResponse(path,ctx){
 
   if(path === "support"){
     return "Sem stress. Me conta o que aconteceu que a gente resolve.";
+  }
+
+  if(path === "recommend_products"){
+    return null;
+  }
+
+  if(path === "discovery"){
+
+    if(!ctx.budget){
+      return "Você já tem um orçamento em mente?";
+    }
+
+    if(!ctx.use){
+      return "Você pretende usar mais para jogos, estudo ou trabalho?";
+    }
+
+    return null;
   }
 
   return null;
