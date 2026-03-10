@@ -114,12 +114,12 @@ function quickResponse(text){
 
   const t = text.toLowerCase().trim();
 
-  if(/^(oi|olá|ola|eai|e aí|hey)$/.test(t)){
+  if(t.includes("oi") || t.includes("olá") || t.includes("ola") || t.includes("eai") || t.includes("e aí")){
     return "Oi! 👋 Posso te ajudar a escolher um PC ou algum hardware.";
   }
 
-  if(/^(ok|blz|beleza|entendi)$/.test(t)){
-    return "Perfeito 👍 Me conta então: você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
+  if(t === "ok" || t === "blz" || t === "beleza"){
+    return "Perfeito 👍 Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
   }
 
   return null;
@@ -133,18 +133,7 @@ LOCAL FALLBACK
 function localFallback(ctx){
 
   if(ctx.stage === "discovery" && !ctx.use){
-
-    if(!ctx.askUseCount){
-      ctx.askUseCount = 1;
-      return "Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
-    }
-
-    if(ctx.askUseCount === 1){
-      ctx.askUseCount++;
-      return "Para eu te recomendar algo certo, preciso saber: você quer usar mais para jogar, estudar ou trabalhar?";
-    }
-
-    return "Pode me dizer se o PC é mais para jogos, estudo ou trabalho?";
+    return "Você pretende usar mais para jogos 🎮, estudo 📚 ou trabalho 💼?";
   }
 
   if(ctx.stage === "discovery" && !ctx.budget){
@@ -152,7 +141,7 @@ function localFallback(ctx){
   }
 
   if(ctx.stage === "recommendation" && ctx.budget){
-    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções muito boas para esse tipo de uso 👇`;
+    return `Com um orçamento perto de ${ctx.budget}, encontrei algumas opções boas 👇`;
   }
 
   if(ctx.stage === "decision"){
@@ -264,26 +253,14 @@ Stage: ${ctx.stage}
 
   return `
 Você é Nayla da Nexus Store.
+Ajude clientes a escolher hardware.
 
-Função
-Ajudar clientes a escolher hardware.
-
-Fluxo de conversa
-
+Fluxo:
 discovery → descobrir necessidade
 recommendation → sugerir produto
 decision → ajudar decisão
-
-Sempre descubra uso e orçamento antes de recomendar produto.
-
-Quando sugerir um produto:
-- explique em uma frase por que ele é bom
-- sugira um complemento ou upgrade
-
 ${personaBlock}
-
 ${intentBlock}
-
 ${contextBlock}
 `;
 
@@ -313,12 +290,6 @@ export async function routeMessage(message, context = {}) {
 
   const ctx = getContext(conversationId);
 
-  const history = getHistory(conversationId);
-
-  const intent = detectIntent(text);
-
-  const persona = selectPersona(text);
-
   let products = [];
 
   if(ctx.stage === "recommendation"){
@@ -340,6 +311,20 @@ export async function routeMessage(message, context = {}) {
   products = filterByBudget(products, ctx.budget);
   products = rankProducts(products);
   products = limitProducts(products);
+
+  const fallback = localFallback(ctx);
+
+  if(ctx.stage !== "recommendation"){
+    return {
+      reply: fallback,
+      products: [],
+      suggestions:[]
+    };
+  }
+
+  const history = getHistory(conversationId);
+  const intent = detectIntent(text);
+  const persona = selectPersona(text);
 
   const input = [
 
@@ -366,7 +351,7 @@ export async function routeMessage(message, context = {}) {
       model:"gpt-4o-mini",
       input,
       temperature:0.7,
-      max_output_tokens:200
+      max_output_tokens:150
 
     });
 
@@ -379,7 +364,7 @@ export async function routeMessage(message, context = {}) {
   }
 
   if(!reply){
-    reply = localFallback(ctx);
+    reply = fallback;
   }
 
   saveTurn(conversationId,"user",text);
