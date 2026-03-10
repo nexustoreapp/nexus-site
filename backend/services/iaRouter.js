@@ -51,6 +51,16 @@ import {
   learnFromConversation
 } from "../ia/selfEvolvingAI.js";
 
+import {
+  registerSearch,
+  registerPriceRange
+} from "../ia/marketIntelligence.js";
+
+import {
+  chooseProductStrategy,
+  generateSalesAction
+} from "../ia/salesAgent.js";
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -97,6 +107,7 @@ function extractContext(text,id){
 
   if(budgetMatch && !ctx.budget){
     ctx.budget = Number(budgetMatch[0]);
+    registerPriceRange(ctx.budget);
   }
 
   if(/jogo|fps|valorant|cs2|fortnite/.test(text)){
@@ -189,6 +200,8 @@ export async function routeMessage(message,context={}){
   const text = normalizeSlang(message);
 
   const ctx = getContext(conversationId);
+
+  registerSearch(text);
 
   const lang = detectLanguage(context.headers || {});
   ctx.lang = lang;
@@ -319,6 +332,24 @@ PRODUCT RECOMMENDATION
   products = filterByBudget(products,ctx.budget);
   products = rankProducts(products);
   products = limitProducts(products);
+
+  /* ===============================
+AUTONOMOUS SALES AGENT
+=============================== */
+
+  const salesMode = chooseProductStrategy(ctx);
+
+  const actionProducts = generateSalesAction(salesMode,products);
+
+  if(actionProducts){
+
+    return {
+      reply: humanize("Achei algumas opções que fazem bastante sentido para você 👇"),
+      products: actionProducts,
+      suggestions:[]
+    };
+
+  }
 
   /* ===============================
 LEARNING REPLY
