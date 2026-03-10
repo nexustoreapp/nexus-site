@@ -11,6 +11,21 @@ import {
   conversationResponse
 } from "../ia/conversationEngine.js";
 
+import {
+  updateMemoryScore,
+  shouldAskBudget,
+  shouldAskUse
+} from "../ia/memoryScore.js";
+
+import {
+  predictConversationPath,
+  pathResponse
+} from "../ia/conversationPredictor.js";
+
+import {
+  predictIntentEarly
+} from "../ia/intentPredictor.js";
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -255,10 +270,27 @@ export async function routeMessage(message,context={}){
 
   extractContext(text,conversationId);
 
-  const intent = detectIntent(text);
+  updateMemoryScore(ctx,text);
+
+  let intent = detectIntent(text);
+
+  if(!intent){
+
+    const predicted = predictIntentEarly(text);
+
+    if(predicted){
+      intent = { intent: predicted };
+    }
+
+  }
+
   const persona = selectPersona(text);
 
   updateIntentMemory(ctx,intent,persona);
+
+  const path = predictConversationPath(ctx,intent);
+
+  const pathReply = pathResponse(path,ctx);
 
   const smartReply = conversationResponse(ctx,intent);
 
@@ -295,6 +327,19 @@ export async function routeMessage(message,context={}){
 
     return {
       reply,
+      products,
+      suggestions:[]
+    };
+
+  }
+
+  if(pathReply){
+
+    saveTurn(conversationId,"user",text);
+    saveTurn(conversationId,"assistant",pathReply);
+
+    return {
+      reply:pathReply,
       products,
       suggestions:[]
     };
