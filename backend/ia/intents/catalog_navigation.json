@@ -1,0 +1,133 @@
+[
+{
+"id":"catalog_general",
+"intent":"catalog_navigation",
+"keywords":["catalogo","catálogo","produtos"],
+"userExamples":[
+"mostra o catalogo",
+"mostra o catálogo",
+"quais produtos vocês tem",
+"quais produtos vocês vendem",
+"me mostra os produtos",
+"me mostra o catálogo",
+"lista de produtos",
+"quero ver os produtos",
+"quero ver o catálogo",
+"quais produtos tem no site",
+"tem lista de produtos",
+"onde vejo os produtos",
+"onde vejo o catálogo",
+"quais itens vocês vendem",
+"tem catálogo de produtos",
+"mostra os itens",
+"quero ver o que tem",
+"quero ver as opções",
+"mostra as opções",
+"quero navegar pelos produtos"
+],
+"replyTemplates":[
+"Posso te ajudar a navegar pelo catálogo.",
+"Temos várias categorias de produtos.",
+"Que tipo de produto você quer ver?"
+]
+},
+
+{
+"id":"catalog_category_pc",
+"intent":"catalog_pc",
+"keywords":["pc","computador"],
+"userExamples":[
+"quero ver pcs",
+"quero ver computadores",
+"mostra pcs",
+"mostra computadores",
+"quais pcs vocês tem",
+"quais computadores vocês vendem",
+"lista de pcs",
+"lista de computadores",
+"quero ver pc gamer",
+"quero ver computadores gamer",
+"quais pcs gamer tem",
+"quais computadores tem",
+"mostrar pcs",
+"mostrar computadores",
+"ver pcs",
+"ver computadores",
+"mostrar pc gamer",
+"ver pc gamer",
+"quais pcs existem",
+"pc no catálogo"
+],
+"replyTemplates":[
+"Temos várias opções de computadores no catálogo.",
+"Dependendo do orçamento existem PCs bem interessantes.",
+"Se quiser posso te mostrar alguns modelos."
+]
+},
+
+{
+"id":"catalog_category_notebook",
+"intent":"catalog_notebook",
+"keywords":["notebook","laptop"],
+"userExamples":[
+"quero ver notebooks",
+"mostra notebooks",
+"quais notebooks vocês tem",
+"lista de notebooks",
+"quais laptops vocês vendem",
+"ver notebooks",
+"mostrar notebooks",
+"quero ver laptops",
+"notebooks no catálogo",
+"tem notebooks no site",
+"quais notebooks existem",
+"quais laptops tem",
+"lista de laptops",
+"mostrar laptops",
+"ver laptops",
+"notebooks disponíveis",
+"notebooks para comprar",
+"notebooks no catálogo",
+"notebooks no site",
+"notebooks à venda"
+],
+"replyTemplates":[
+"Temos alguns notebooks interessantes no catálogo.",
+"Dependendo do uso alguns notebooks podem fazer mais sentido.",
+"Se quiser posso te ajudar a escolher um notebook."
+]
+},
+
+{
+"id":"catalog_category_peripherals",
+"intent":"catalog_peripherals",
+"keywords":["mouse","teclado","headset"],
+"userExamples":[
+"quero ver mouses",
+"quero ver teclados",
+"quero ver headsets",
+"mostrar periféricos",
+"ver periféricos",
+"periféricos no catálogo",
+"periféricos gamer",
+"quais mouses vocês vendem",
+"quais teclados vocês vendem",
+"quais headsets vocês vendem",
+"lista de mouses",
+"lista de teclados",
+"lista de headsets",
+"ver mouse gamer",
+"ver teclado gamer",
+"ver headset gamer",
+"mostrar mouse gamer",
+"mostrar teclado gamer",
+"mostrar headset gamer",
+"periféricos disponíveis"
+],
+"replyTemplates":[
+"Temos vários periféricos no catálogo.",
+"Periféricos podem melhorar bastante a experiência no PC.",
+"Se quiser posso sugerir alguns periféricos interessantes."
+]
+}
+]
