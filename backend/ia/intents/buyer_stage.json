@@ -1,0 +1,133 @@
+[
+{
+"id":"buyer_curious",
+"intent":"buyer_curious",
+"keywords":["vendo","olhando","pesquisando"],
+"userExamples":[
+"estou vendo computadores",
+"só estou olhando",
+"estou pesquisando pcs",
+"estou pesquisando notebooks",
+"só vendo os produtos",
+"olhando opções de pc",
+"vendo preços de computador",
+"vendo hardware",
+"olhando periféricos",
+"estou pesquisando antes de comprar",
+"comparando pcs",
+"vendo alguns computadores",
+"vendo notebooks",
+"vendo monitores",
+"vendo setups",
+"olhando placas de video",
+"vendo produtos gamer",
+"olhando peças",
+"pesquisando hardware",
+"vendo algumas opções"
+],
+"replyTemplates":[
+"Boa 🙂 Pesquisar antes de comprar ajuda bastante.",
+"Se quiser posso te mostrar algumas opções interessantes.",
+"Se precisar comparar produtos posso te ajudar."
+]
+},
+
+{
+"id":"buyer_researching",
+"intent":"buyer_researching",
+"keywords":["qual","melhor","vale"],
+"userExamples":[
+"qual pc vale a pena",
+"qual computador vale a pena",
+"qual notebook vale a pena",
+"qual placa de video vale a pena",
+"qual monitor vale a pena",
+"qual é melhor",
+"qual compensa mais",
+"qual modelo escolher",
+"qual vale comprar",
+"qual produto vale a pena",
+"qual compensa",
+"qual é mais custo beneficio",
+"qual produto escolher",
+"qual é melhor comprar",
+"qual modelo vale mais",
+"qual produto compensa",
+"qual é a melhor opção",
+"qual opção escolher",
+"qual modelo pegar",
+"qual é mais interessante"
+],
+"replyTemplates":[
+"Boa pergunta. Normalmente vale comparar desempenho e custo-benefício.",
+"Depende bastante do seu orçamento e do uso que você pretende.",
+"Se quiser posso te ajudar a comparar algumas opções."
+]
+},
+
+{
+"id":"buyer_considering",
+"intent":"buyer_considering",
+"keywords":["pensando","talvez","acho"],
+"userExamples":[
+"estou pensando em comprar",
+"talvez eu compre um pc",
+"acho que vou pegar um computador",
+"estou considerando comprar",
+"estou pensando em montar um pc",
+"talvez eu pegue um notebook",
+"acho que vou comprar um pc",
+"estou vendo se compro",
+"talvez eu compre esse produto",
+"estou pensando nesse pc",
+"talvez eu escolha esse",
+"acho que esse vale a pena",
+"estou quase comprando",
+"estou avaliando esse pc",
+"estou vendo se compensa",
+"talvez seja esse",
+"acho que vou pegar esse",
+"estou considerando esse modelo",
+"estou avaliando esse produto",
+"acho que esse é bom"
+],
+"replyTemplates":[
+"Boa 🙂 Se quiser posso te ajudar a analisar se esse modelo vale a pena.",
+"Se quiser posso comparar esse produto com outras opções.",
+"Dependendo do uso talvez exista uma opção ainda melhor."
+]
+},
+
+{
+"id":"buyer_ready",
+"intent":"buyer_ready",
+"keywords":["vou comprar","quero comprar","fechar compra"],
+"userExamples":[
+"vou comprar um pc",
+"quero comprar esse pc",
+"vou pegar esse computador",
+"vou comprar esse notebook",
+"vou fechar a compra",
+"quero comprar agora",
+"vou comprar esse produto",
+"vou pegar esse produto",
+"vou comprar esse item",
+"quero fechar a compra",
+"vou finalizar a compra",
+"quero comprar agora mesmo",
+"vou comprar hoje",
+"vou comprar esse modelo",
+"vou comprar esse setup",
+"vou pegar esse notebook",
+"vou comprar esse hardware",
+"vou comprar esse monitor",
+"vou comprar essa placa de video",
+"vou comprar esse periférico"
+],
+"replyTemplates":[
+"Perfeito 👍 Se quiser posso te ajudar a finalizar a compra.",
+"Boa escolha. Você pode ver os detalhes completos na página do produto.",
+"Se precisar posso te orientar no processo de compra."
+]
+}
+]
