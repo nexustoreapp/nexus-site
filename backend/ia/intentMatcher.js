@@ -10,7 +10,7 @@ CACHE
 let INTENT_CACHE = null;
 
 /* ===============================
-LOAD INTENTS
+LOAD INTENTS (FRAGMENTED)
 =============================== */
 
 function loadIntents(){
@@ -21,13 +21,33 @@ function loadIntents(){
 
   try{
 
-    const filePath = path.resolve("backend/data/ia_cache_base.json");
+    const intentsDir = path.resolve("backend/data/intents");
 
-    const raw = fs.readFileSync(filePath,"utf-8");
+    if(!fs.existsSync(intentsDir)){
+      return [];
+    }
 
-    const json = JSON.parse(raw);
+    const files = fs.readdirSync(intentsDir);
 
-    INTENT_CACHE = Array.isArray(json) ? json : [];
+    const allIntents = [];
+
+    for(const file of files){
+
+      if(!file.endsWith(".json")) continue;
+
+      const filePath = path.join(intentsDir,file);
+
+      const raw = fs.readFileSync(filePath,"utf-8");
+
+      const json = JSON.parse(raw);
+
+      if(Array.isArray(json)){
+        allIntents.push(...json);
+      }
+
+    }
+
+    INTENT_CACHE = allIntents;
 
     return INTENT_CACHE;
 
