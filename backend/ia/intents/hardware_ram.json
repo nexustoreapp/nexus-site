@@ -1,0 +1,133 @@
+[
+{
+"id":"ram_general_question",
+"intent":"ram_help",
+"keywords":["ram","memoria","memória"],
+"userExamples":[
+"quanta ram precisa",
+"quantos gb de ram precisa",
+"memoria ram boa",
+"qual ram comprar",
+"qual memoria comprar",
+"ram boa para pc",
+"ram boa para jogos",
+"ram boa para trabalho",
+"memoria boa para pc",
+"qual ram vale a pena",
+"qual memoria vale a pena",
+"ram custo beneficio",
+"memoria custo beneficio",
+"quantos gb de ram usar",
+"ram é importante",
+"memoria ram é importante",
+"qual memoria ram escolher",
+"ram boa para pc gamer",
+"ram boa para uso geral",
+"qual memoria ram comprar"
+],
+"replyTemplates":[
+"A memória RAM ajuda bastante na performance geral do sistema.",
+"Hoje em dia 16GB costuma ser um bom ponto de equilíbrio para a maioria dos PCs.",
+"Dependendo do uso pode valer a pena mais memória RAM."
+]
+},
+
+{
+"id":"ram_gaming",
+"intent":"ram_gaming",
+"keywords":["ram jogo","ram gamer","ram fps"],
+"userExamples":[
+"quanta ram para jogos",
+"ram para jogos",
+"ram para valorant",
+"ram para cs2",
+"ram para fortnite",
+"quantos gb de ram para jogar",
+"ram boa para jogos",
+"memoria boa para jogos",
+"ram gamer quanto precisa",
+"memoria gamer quanto precisa",
+"ram para pc gamer",
+"memoria para pc gamer",
+"ram melhora fps",
+"memoria melhora fps",
+"ram influencia fps",
+"memoria influencia fps",
+"ram para jogos competitivos",
+"memoria para jogos competitivos",
+"ram gamer custo beneficio",
+"memoria gamer custo beneficio"
+],
+"replyTemplates":[
+"Para jogos hoje em dia 16GB de RAM costuma funcionar muito bem.",
+"Alguns jogos mais pesados podem se beneficiar de mais memória.",
+"A RAM ajuda na estabilidade geral do sistema durante o jogo."
+]
+},
+
+{
+"id":"ram_work",
+"intent":"ram_work",
+"keywords":["ram trabalho","ram edição","ram render"],
+"userExamples":[
+"quanta ram para edição",
+"ram para edição de video",
+"memoria para edição",
+"ram para render",
+"memoria para render",
+"ram para design",
+"memoria para design",
+"ram para programar",
+"memoria para programar",
+"ram para trabalho pesado",
+"memoria para trabalho pesado",
+"ram para softwares pesados",
+"memoria para softwares pesados",
+"ram para photoshop",
+"ram para premiere",
+"ram para blender",
+"memoria para produtividade",
+"ram para produtividade",
+"memoria para multitarefa",
+"ram para multitarefa"
+],
+"replyTemplates":[
+"Para trabalho pesado normalmente mais RAM ajuda bastante.",
+"Softwares de edição e render costumam usar bastante memória.",
+"Dependendo do software pode valer a pena 32GB ou mais."
+]
+},
+
+{
+"id":"ram_upgrade",
+"intent":"ram_upgrade",
+"keywords":["upgrade ram","aumentar ram","mais ram"],
+"userExamples":[
+"vale a pena aumentar ram",
+"vale a pena colocar mais ram",
+"quero aumentar ram",
+"quero mais memoria",
+"quero upgrade de ram",
+"upgrade de ram vale a pena",
+"ram melhora desempenho",
+"memoria melhora desempenho",
+"colocar mais ram ajuda",
+"adicionar ram ajuda",
+"vale a pena mais memoria",
+"vale a pena mais ram",
+"quero melhorar desempenho do pc",
+"ram melhora multitarefa",
+"memoria melhora multitarefa",
+"quero colocar mais memoria",
+"quero colocar mais ram",
+"ram extra vale a pena",
+"memoria extra vale a pena",
+"upgrade de memoria"
+],
+"replyTemplates":[
+"Aumentar a RAM pode ajudar bastante em multitarefa e softwares pesados.",
+"Se o seu PC tem pouca memória, adicionar mais RAM costuma melhorar a fluidez.",
+"Dependendo da sua configuração atual pode ser um upgrade bem interessante."
+]
+}
+]
