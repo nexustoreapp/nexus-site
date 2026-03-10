@@ -1,0 +1,133 @@
+[
+{
+"id":"recommendation_request",
+"intent":"recommendation_request",
+"keywords":["recomenda","indica","sugere"],
+"userExamples":[
+"me recomenda um pc",
+"me indica um computador",
+"qual pc você recomenda",
+"qual computador você indica",
+"me sugere um pc",
+"qual pc vale a pena",
+"qual computador vale a pena",
+"qual pc comprar",
+"qual computador comprar",
+"me indica algo bom",
+"me recomenda algo bom",
+"qual pc compensa",
+"qual computador compensa",
+"qual pc pegar",
+"qual computador pegar",
+"me ajuda escolher um pc",
+"me ajuda escolher um computador",
+"qual setup você recomenda",
+"qual pc você sugere",
+"qual computador você sugere"
+],
+"replyTemplates":[
+"Posso te ajudar com isso sim. Qual orçamento você tem em mente?",
+"Boa pergunta. Sabendo o orçamento fica bem mais fácil recomendar algo.",
+"Me fala mais ou menos quanto você pretende investir."
+]
+},
+
+{
+"id":"recommendation_budget",
+"intent":"recommendation_budget",
+"keywords":["orçamento","tenho","posso gastar"],
+"userExamples":[
+"tenho 2000",
+"tenho 3000",
+"tenho 4000",
+"tenho 5000",
+"tenho 6000",
+"tenho 7000",
+"tenho 8000",
+"posso gastar 3000",
+"posso gastar 4000",
+"posso gastar 5000",
+"meu orçamento é 3000",
+"meu orçamento é 4000",
+"meu orçamento é 5000",
+"tenho uns 3500",
+"tenho uns 4500",
+"tenho cerca de 3000",
+"tenho cerca de 4000",
+"tenho 3 mil",
+"tenho 4 mil",
+"tenho 5 mil"
+],
+"replyTemplates":[
+"Com esse orçamento já dá para pensar em algumas configurações boas.",
+"Dependendo do uso dá para montar algo bem equilibrado.",
+"Legal. Agora precisamos entender melhor como você pretende usar o PC."
+]
+},
+
+{
+"id":"recommendation_use",
+"intent":"recommendation_use",
+"keywords":["jogar","trabalhar","estudar"],
+"userExamples":[
+"é para jogar",
+"é para trabalho",
+"é para estudar",
+"é para jogar e trabalhar",
+"é para faculdade",
+"é para jogos",
+"é para programação",
+"é para design",
+"é para edição",
+"é para jogos competitivos",
+"é para jogos pesados",
+"é para uso geral",
+"é para casa",
+"é para tarefas básicas",
+"é para produtividade",
+"é para estudo e trabalho",
+"é para rodar jogos",
+"é para uso diário",
+"é para pc gamer",
+"é para trabalho pesado"
+],
+"replyTemplates":[
+"Entendi. Dependendo do uso a configuração ideal muda bastante.",
+"Agora ficou mais fácil direcionar a recomendação.",
+"Com esse tipo de uso dá para pensar em algumas configurações interessantes."
+]
+},
+
+{
+"id":"recommendation_general",
+"intent":"recommendation_general",
+"keywords":["qual melhor","qual compensa","qual vale"],
+"userExamples":[
+"qual é melhor",
+"qual compensa mais",
+"qual vale mais a pena",
+"qual escolher",
+"qual você recomenda",
+"qual seria melhor",
+"qual seria mais interessante",
+"qual vale comprar",
+"qual produto vale a pena",
+"qual é mais custo beneficio",
+"qual é melhor comprar",
+"qual compensa comprar",
+"qual vale pegar",
+"qual vale investir",
+"qual produto escolher",
+"qual opção escolher",
+"qual modelo escolher",
+"qual modelo compensa",
+"qual modelo vale",
+"qual modelo é melhor"
+],
+"replyTemplates":[
+"Depende bastante do que você pretende fazer com o computador.",
+"Normalmente vale comparar desempenho e custo-benefício.",
+"Se quiser posso te ajudar a comparar algumas opções."
+]
+}
+]
