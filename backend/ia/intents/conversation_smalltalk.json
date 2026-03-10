@@ -1,0 +1,133 @@
+[
+{
+"id":"smalltalk_anything",
+"intent":"smalltalk_anything",
+"keywords":["qualquer","tanto faz"],
+"userExamples":[
+"qualquer coisa serve",
+"tanto faz",
+"qualquer pc serve",
+"tanto faz o pc",
+"só preciso de um pc",
+"só preciso de um computador",
+"qualquer computador já ajuda",
+"não precisa ser nada específico",
+"qualquer um serve",
+"qualquer coisa já resolve",
+"não tenho preferência",
+"não ligo muito para modelo",
+"não precisa ser nada demais",
+"só quero algo que funcione",
+"algo simples já serve",
+"algo básico já resolve",
+"não precisa ser top",
+"qualquer pc bom já serve",
+"só quero um computador",
+"qualquer computador serve"
+],
+"replyTemplates":[
+"Entendi 🙂 Então vamos focar em algo equilibrado que funcione bem para várias tarefas.",
+"Beleza. Nesse caso o ideal é escolher algo com bom custo-benefício.",
+"Tranquilo. Posso tentar sugerir um computador versátil que sirva para várias coisas."
+]
+},
+
+{
+"id":"smalltalk_exploring",
+"intent":"smalltalk_exploring",
+"keywords":["vendo","olhando","pesquisando"],
+"userExamples":[
+"só estou olhando",
+"estou vendo os produtos",
+"só pesquisando",
+"estou pesquisando pc",
+"só vendo preços",
+"estou explorando o site",
+"estou comparando produtos",
+"só analisando opções",
+"só dando uma olhada",
+"só vendo o que tem",
+"estou analisando computadores",
+"estou vendo alguns pcs",
+"só vendo as opções",
+"olhando computadores",
+"vendo notebooks",
+"vendo hardware",
+"vendo peças",
+"vendo setups",
+"olhando periféricos",
+"olhando monitores"
+],
+"replyTemplates":[
+"Sem pressa 🙂 Se quiser posso te mostrar algumas opções interessantes.",
+"Tranquilo. Se quiser ajuda para comparar produtos é só me falar.",
+"Boa. Posso te ajudar a encontrar algo que valha a pena."
+]
+},
+
+{
+"id":"smalltalk_pc_need",
+"intent":"smalltalk_pc_need",
+"keywords":["preciso","quero"],
+"userExamples":[
+"preciso de um computador",
+"preciso de um pc",
+"quero um pc",
+"quero um computador",
+"quero comprar um pc",
+"quero comprar um computador",
+"to precisando de um pc",
+"tô precisando de um pc",
+"quero pegar um pc",
+"quero montar um pc",
+"quero trocar de computador",
+"preciso trocar meu pc",
+"preciso de um pc novo",
+"quero um computador novo",
+"preciso de um pc melhor",
+"quero melhorar meu pc",
+"preciso de um computador melhor",
+"quero comprar um pc novo",
+"preciso de um computador para casa",
+"quero um pc para casa"
+],
+"replyTemplates":[
+"Beleza. Me conta uma coisa: você já tem um orçamento em mente?",
+"Boa. Sabendo o orçamento fica mais fácil encontrar algo bom.",
+"Show. Se quiser posso te ajudar a escolher um computador equilibrado."
+]
+},
+
+{
+"id":"smalltalk_confused",
+"intent":"smalltalk_confused",
+"keywords":["não sei","nao sei","perdido"],
+"userExamples":[
+"não sei qual escolher",
+"não sei qual comprar",
+"estou perdido",
+"to perdido",
+"tô perdido",
+"não faço ideia",
+"não sei o que comprar",
+"não sei qual pc comprar",
+"não sei qual computador escolher",
+"estou meio perdido nisso",
+"não entendo muito de pc",
+"não entendo muito de hardware",
+"não sei muito sobre computador",
+"não sei por onde começar",
+"não sei qual vale a pena",
+"não sei qual é melhor",
+"não sei qual pegar",
+"não sei qual modelo",
+"não sei qual opção escolher",
+"não entendo muito disso"
+],
+"replyTemplates":[
+"Sem problema 🙂 Posso te ajudar a decidir passo a passo.",
+"Relaxa, muita gente fica em dúvida nessa parte.",
+"Se quiser posso te ajudar a encontrar algo que faça sentido para você."
+]
+}
+]
