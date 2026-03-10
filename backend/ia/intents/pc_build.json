@@ -1,0 +1,144 @@
+[
+{
+"id":"pc_general_need",
+"intent":"pc_need",
+"keywords":["preciso pc","preciso computador","quero pc","quero computador"],
+"userExamples":[
+"preciso de um pc",
+"preciso de um computador",
+"quero um pc",
+"quero comprar um computador",
+"to precisando de um pc",
+"estou precisando de um computador",
+"preciso de um pc novo",
+"quero pegar um pc",
+"tô querendo um pc",
+"preciso trocar meu computador",
+"quero um computador",
+"preciso de computador",
+"to querendo comprar um pc",
+"vou comprar um pc",
+"preciso de um pc bom",
+"quero um computador bom",
+"preciso montar um pc",
+"quero montar um pc",
+"to pensando em pegar um pc",
+"quero um pc qualquer"
+],
+"replyTemplates":[
+"Boa! Você já tem algum orçamento em mente para o PC?",
+"Beleza. Você pretende usar mais para jogos, trabalho ou uso geral?",
+"Show. Dependendo do orçamento dá para montar algo bem equilibrado."
+]
+},
+
+{
+"id":"pc_budget_given",
+"intent":"pc_budget",
+"keywords":["tenho","orcamento","orçamento","posso gastar"],
+"userExamples":[
+"tenho 2000",
+"tenho 3000",
+"tenho 4000",
+"tenho 5000",
+"tenho 6000",
+"posso gastar 3000",
+"posso gastar 4000",
+"meu orçamento é 3000",
+"meu orçamento é 5000",
+"tenho 3500",
+"tenho uns 3000",
+"tenho uns 3500",
+"tenho uns 4000",
+"tenho cerca de 3000",
+"tenho cerca de 4000",
+"tenho 3 mil",
+"tenho 4 mil",
+"tenho 5 mil",
+"tenho 2500",
+"tenho 4500"
+],
+"replyTemplates":[
+"Boa! Com esse orçamento já dá para montar um PC bem equilibrado.",
+"Legal! Com esse valor dá para pensar em algumas configurações interessantes.",
+"Show! Dependendo do uso dá para montar algo bem interessante."
+]
+},
+
+{
+"id":"pc_anything",
+"intent":"pc_anything",
+"keywords":["qualquer pc","qualquer coisa","tanto faz"],
+"userExamples":[
+"qualquer pc serve",
+"tanto faz o pc",
+"qualquer computador serve",
+"só preciso de um pc",
+"só quero um pc",
+"qualquer coisa serve",
+"qualquer pc já ajuda",
+"só preciso de um computador",
+"não precisa ser nada específico",
+"qualquer computador já serve",
+"não tenho preferência",
+"tanto faz qual pc",
+"pode ser qualquer um"
+],
+"replyTemplates":[
+"Entendi. Então vamos focar em algo com bom custo-benefício.",
+"Beleza, nesse caso vale a pena pegar um PC equilibrado que aguente várias coisas.",
+"Tranquilo. Posso tentar sugerir um PC versátil que sirva para várias tarefas."
+]
+},
+
+{
+"id":"pc_ready_recommendation",
+"intent":"pc_recommend",
+"keywords":["me recomenda pc","qual pc comprar","qual pc recomenda"],
+"userExamples":[
+"me recomenda um pc",
+"qual pc comprar",
+"qual computador comprar",
+"qual pc você recomenda",
+"me indica um pc",
+"qual pc vale a pena",
+"qual computador vale a pena",
+"qual pc é bom",
+"me recomenda um computador",
+"qual pc compensa",
+"qual pc pegar",
+"qual pc você indicaria",
+"qual computador você recomenda",
+"qual pc bom",
+"qual computador bom"
+],
+"replyTemplates":[
+"Claro! Se você me disser o orçamento eu consigo sugerir algumas opções boas.",
+"Boa pergunta. Qual valor você pretende investir no PC?",
+"Posso te recomendar algo sim. Qual seu orçamento aproximado?"
+]
+},
+
+{
+"id":"pc_usage_unknown",
+"intent":"pc_usage_unknown",
+"keywords":["qualquer coisa","uso geral"],
+"userExamples":[
+"é pra qualquer coisa",
+"uso geral",
+"pra usar no dia a dia",
+"pra tudo",
+"um pc normal",
+"computador normal",
+"pc normal",
+"pra fazer de tudo",
+"pra usar normalmente",
+"pc pra casa"
+],
+"replyTemplates":[
+"Perfeito. Nesse caso vale focar em um PC equilibrado que aguente várias tarefas.",
+"Beleza. Um computador de uso geral precisa ter bom processador e SSD rápido.",
+"Show. Posso te sugerir algo que funcione bem para várias coisas."
+]
+}
+]
