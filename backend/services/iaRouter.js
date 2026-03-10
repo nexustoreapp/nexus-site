@@ -67,6 +67,30 @@ function saveTurn(id, role, content) {
 }
 
 /* ===============================
+CONTEXT MEMORY
+=============================== */
+
+function updateIntentMemory(ctx, intent, persona){
+
+  if(intent){
+    ctx.lastIntent = intent.intent || intent.id;
+  }
+
+  if(persona){
+    ctx.lastPersona = persona.id;
+  }
+
+  if(intent?.intent === "pc_help"){
+    ctx.conversationGoal = "pc_build";
+  }
+
+  if(intent?.intent === "product_search"){
+    ctx.conversationGoal = "product_search";
+  }
+
+}
+
+/* ===============================
 EXTRACT CONTEXT
 =============================== */
 
@@ -246,6 +270,7 @@ CONTEXTO DO CLIENTE
 Orçamento: ${ctx.budget || "não informado"}
 Uso: ${ctx.use || "não informado"}
 Stage: ${ctx.stage}
+Goal: ${ctx.conversationGoal || "none"}
 
 `;
 
@@ -293,6 +318,8 @@ export async function routeMessage(message, context = {}) {
   const intent = detectIntent(text);
   const persona = selectPersona(text);
 
+  updateIntentMemory(ctx,intent,persona);
+
   let products = [];
 
   if(ctx.stage === "recommendation"){
@@ -314,10 +341,6 @@ export async function routeMessage(message, context = {}) {
   products = filterByBudget(products, ctx.budget);
   products = rankProducts(products);
   products = limitProducts(products);
-
-  /* ===============================
-  INTENT TEMPLATE RESPONSE
-  =============================== */
 
   if(intent?.replyTemplates?.length){
 
