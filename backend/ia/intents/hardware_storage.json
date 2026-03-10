@@ -1,0 +1,133 @@
+[
+{
+"id":"storage_general_question",
+"intent":"storage_help",
+"keywords":["ssd","armazenamento","nvme","hd"],
+"userExamples":[
+"ssd vale a pena",
+"qual ssd comprar",
+"ssd ou hd",
+"qual armazenamento comprar",
+"qual ssd é bom",
+"ssd bom para pc",
+"ssd bom para jogos",
+"ssd bom para trabalho",
+"qual ssd vale a pena",
+"ssd custo beneficio",
+"ssd nvme vale a pena",
+"qual nvme comprar",
+"ssd melhora desempenho",
+"ssd melhora velocidade",
+"qual armazenamento escolher",
+"ssd ou hd qual melhor",
+"ssd bom para pc gamer",
+"ssd para uso geral",
+"qual armazenamento para pc",
+"qual ssd pegar"
+],
+"replyTemplates":[
+"SSD costuma melhorar bastante a velocidade do sistema.",
+"Hoje em dia SSD NVMe é uma das opções mais rápidas para armazenamento.",
+"Depende do que você pretende guardar e da velocidade que quer."
+]
+},
+
+{
+"id":"storage_gaming",
+"intent":"storage_gaming",
+"keywords":["ssd jogo","armazenamento jogo"],
+"userExamples":[
+"ssd para jogos",
+"ssd melhora jogos",
+"ssd melhora fps",
+"ssd para valorant",
+"ssd para cs2",
+"ssd para fortnite",
+"ssd para pc gamer",
+"qual ssd para jogos",
+"ssd influencia jogos",
+"ssd melhora loading",
+"ssd melhora carregamento",
+"ssd ajuda jogos pesados",
+"ssd ajuda fps",
+"ssd gamer vale a pena",
+"ssd gamer custo beneficio",
+"ssd para instalar jogos",
+"ssd para jogos pesados",
+"ssd para jogos competitivos",
+"ssd para biblioteca de jogos",
+"ssd para steam"
+],
+"replyTemplates":[
+"SSD não aumenta diretamente o FPS, mas melhora muito o carregamento dos jogos.",
+"Jogos instalados em SSD costumam carregar bem mais rápido.",
+"Para jogos um SSD NVMe costuma ser uma ótima escolha."
+]
+},
+
+{
+"id":"storage_work",
+"intent":"storage_work",
+"keywords":["ssd trabalho","armazenamento trabalho"],
+"userExamples":[
+"ssd para trabalho",
+"ssd para edição",
+"ssd para render",
+"ssd para design",
+"ssd para programar",
+"ssd para produtividade",
+"ssd para softwares pesados",
+"ssd para edição de video",
+"ssd para photoshop",
+"ssd para premiere",
+"ssd para blender",
+"ssd para arquivos grandes",
+"ssd para projetos",
+"ssd para trabalho pesado",
+"ssd para dados",
+"ssd para armazenamento grande",
+"ssd para backup",
+"ssd para produtividade pesada",
+"ssd para softwares profissionais",
+"ssd para workstation"
+],
+"replyTemplates":[
+"Para trabalho pesado um SSD rápido ajuda bastante na produtividade.",
+"Softwares profissionais costumam abrir muito mais rápido em SSD.",
+"Dependendo do tamanho dos arquivos pode valer a pena um SSD maior."
+]
+},
+
+{
+"id":"storage_upgrade",
+"intent":"storage_upgrade",
+"keywords":["upgrade ssd","trocar ssd","aumentar armazenamento"],
+"userExamples":[
+"vale a pena trocar ssd",
+"quero aumentar armazenamento",
+"quero colocar mais ssd",
+"quero upgrade de armazenamento",
+"ssd melhora desempenho do pc",
+"ssd deixa pc mais rapido",
+"trocar hd por ssd vale a pena",
+"colocar nvme vale a pena",
+"upgrade de ssd vale a pena",
+"ssd melhora sistema",
+"ssd melhora windows",
+"ssd melhora boot",
+"ssd melhora abertura de programas",
+"ssd deixa pc mais rapido",
+"trocar armazenamento ajuda",
+"melhorar armazenamento do pc",
+"adicionar ssd ajuda",
+"colocar ssd extra",
+"colocar nvme no pc",
+"upgrade armazenamento pc"
+],
+"replyTemplates":[
+"Trocar HD por SSD costuma deixar o computador muito mais rápido.",
+"Adicionar um SSD pode melhorar bastante a velocidade do sistema.",
+"Dependendo da sua configuração pode ser um upgrade excelente."
+]
+}
+]
