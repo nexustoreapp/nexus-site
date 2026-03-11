@@ -2135,3 +2135,29 @@ function evolutionHook(ctx,reply){
  learnConversation(ctx);
 
 }
+/* ========================================
+CUSTOMER TYPE DETECTOR
+======================================== */
+
+function detectCustomerType(text=""){
+
+ const t = String(text).toLowerCase();
+
+ if(/benchmark|latencia|clock|vrm|chipset|fps|spec/.test(t)){
+  return "technical";
+ }
+
+ if(/comparar|qual melhor|vale a pena|diferença/.test(t)){
+  return "analyst";
+ }
+
+ if(/quero comprar|vou comprar|vou pegar|vou levar|fechar compra/.test(t)){
+  return "buyer";
+ }
+
+ if(/nao sei|não sei|to perdido|me ajuda|qual escolher/.test(t)){
+  return "lost";
+ }
+
+ return "explorer";
+}
