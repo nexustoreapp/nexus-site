@@ -7,11 +7,13 @@ GLOBAL STATE
 const CONTEXT = new Map();
 const RESPONSE_CACHE = new Map();
 const LEARNING = [];
+
 const NEURAL = {
   clicks:{},
   purchases:{},
   ignores:{},
-  conversations:{}
+  conversations:{},
+  successfulSuggestions:0
 };
 
 const MARKET = {
@@ -21,34 +23,82 @@ const MARKET = {
 };
 
 /* ========================================
-UTILS
+TIME / BASIC UTILS
 ======================================== */
 
 function now(){
   return Date.now();
 }
 
-function normalize(text=""){
-  return String(text)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9\s]/g," ")
-    .replace(/\s+/g," ")
-    .trim();
+function safeString(value=""){
+  return String(value ?? "");
 }
 
-function tokenize(text=""){
-  return normalize(text).split(" ").filter(Boolean);
+function safeNumber(value, fallback=0){
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
 }
 
 function unique(arr=[]){
   return [...new Set(arr.filter(Boolean))];
 }
 
-function safeNumber(value){
-  const n = Number(value);
-  return Number.isFinite(n) ? n : 0;
+function sum(arr=[]){
+  return arr.reduce((acc,n)=>acc+safeNumber(n,0),0);
+}
+
+function average(arr=[]){
+  if(!arr.length) return 0;
+  return sum(arr)/arr.length;
+}
+
+/* ========================================
+TEXT NORMALIZATION
+======================================== */
+
+function stripAccents(text=""){
+  return safeString(text)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
+}
+
+function normalize(text=""){
+  return stripAccents(text)
+    .toLowerCase()
+    .replace(/[_/\\|]+/g," ")
+    .replace(/[^a-z0-9\s.,!?%$+-]/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function normalizeHard(text=""){
+  return stripAccents(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function tokenize(text=""){
+  return normalizeHard(text).split(" ").filter(Boolean);
+}
+
+function hasAnyPattern(text="",patterns=[]){
+  const t = normalizeHard(text);
+  return patterns.some(pattern=>new RegExp(pattern,"i").test(t));
+}
+
+function includesAny(text="",terms=[]){
+  const t = normalizeHard(text);
+  return terms.some(term=>t.includes(normalizeHard(term)));
+}
+
+function escapeRegExp(text=""){
+  return safeString(text).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
 }
 
 /* ========================================
@@ -57,13 +107,13 @@ CACHE
 
 function getResponseCache(key){
 
-  const normalizedKey = normalize(key);
-  const item = RESPONSE_CACHE.get(normalizedKey);
+  const k = normalizeHard(key);
+  const item = RESPONSE_CACHE.get(k);
 
   if(!item) return null;
 
   if(now() > item.exp){
-    RESPONSE_CACHE.delete(normalizedKey);
+    RESPONSE_CACHE.delete(k);
     return null;
   }
 
@@ -72,16 +122,224 @@ function getResponseCache(key){
 
 function setResponseCache(key,data,ttlMs=60*1000){
 
-  const normalizedKey = normalize(key);
+  const k = normalizeHard(key);
 
-  RESPONSE_CACHE.set(normalizedKey,{
+  RESPONSE_CACHE.set(k,{
     data,
-    exp: now() + ttlMs
+    exp: now()+ttlMs
   });
+}
+
+function clearExpiredCache(){
+
+  const current = now();
+
+  for(const [key,value] of RESPONSE_CACHE.entries()){
+    if(current > value.exp){
+      RESPONSE_CACHE.delete(key);
+    }
+  }
+}
+
+/* ========================================
+TEXT REPAIR ENGINE
+corrige abreviação, gíria curta e erro comum
+======================================== */
+
+const TEXT_REPAIR_MAP = {
+
+  qro:"quero",
+  qru:"quero",
+  qr:"quero",
+  qria:"queria",
+  qriaa:"queria",
+  ql:"qual",
+  qnt:"quanto",
+  qnts:"quantos",
+  qnta:"quanta",
+  qndo:"quando",
+  qlqr:"qualquer",
+  qqr:"qualquer",
+  qq:"qualquer",
+  pq:"porque",
+  pque:"porque",
+  pk:"porque",
+  pkq:"porque",
+  prq:"porque",
+  vc:"voce",
+  vce:"voce",
+  vcs:"voces",
+  c:"voce",
+  ce:"voce",
+  cmg:"comigo",
+  ctg:"contigo",
+  blz:"beleza",
+  bllz:"beleza",
+  deboa:"de boa",
+  dboa:"de boa",
+  flw:"falou",
+  vlw:"valeu",
+  obg:"obrigado",
+  obgd:"obrigado",
+  obgdo:"obrigado",
+  obgda:"obrigada",
+  pf:"por favor",
+  pfv:"por favor",
+  pls:"por favor",
+  plz:"por favor",
+  agr:"agora",
+  agrr:"agora",
+  hj:"hoje",
+  dps:"depois",
+  dpss:"depois",
+  dnv:"de novo",
+  msm:"mesmo",
+  msmms:"mesmo",
+  msmo:"mesmo",
+  mt:"muito",
+  mto:"muito",
+  mta:"muita",
+  mtos:"muitos",
+  mds:"meu deus",
+  slk:"caramba",
+  slc:"caramba",
+  tb:"tambem",
+  tbm:"tambem",
+  tmb:"tambem",
+  td:"tudo",
+  tds:"todos",
+  tdbm:"tudo bem",
+  n:"nao",
+  nn:"nao",
+  nnn:"nao",
+  naoo:"nao",
+  nn posso:"nao posso",
+  ss:"sim",
+  sss:"sim",
+  s:"sim",
+  pd:"pode",
+  pdc:"pode crer",
+  pdc:"pode crer",
+  pde:"pode",
+  tmj:"tamo junto",
+  manoo:"mano",
+  mn:"mano",
+  mnn:"mano",
+  irmao:"irmao",
+  irmaoo:"irmao",
+  parcero:"parceiro",
+  parca:"parca",
+  parcaa:"parca",
+  pcgamer:"pc gamer",
+  pczao:"pc",
+  pczin:"pc",
+  pczinho:"pc",
+  pczin:"pc",
+  pczinhu:"pc",
+  note:"notebook",
+  not:"notebook",
+  ntb:"notebook",
+  ntbk:"notebook",
+  gpuu:"gpu",
+  cpuu:"cpu",
+  valrant:"valorant",
+  vlorant:"valorant",
+  vavalorant:"valorant",
+  vava:"valorant",
+  valo:"valorant",
+  csgo:"cs2",
+  cs:"cs2",
+  ftn:"fortnite",
+  fort:"fortnite",
+  warz:"warzone",
+  gta5:"gta 5",
+  gtav:"gta 5",
+  rdr2:"red dead redemption 2",
+  mine:"minecraft",
+  minezin:"minecraft",
+  edicao:"edicao",
+  ediçao:"edicao",
+  edição:"edicao",
+  programacao:"programacao",
+  programação:"programacao",
+  facul:"faculdade",
+  trampo:"trabalho",
+  trampar:"trabalho",
+  trampos:"trabalho",
+  job:"trabalho",
+  jobs:"trabalho",
+  custobeneficio:"custo beneficio",
+  custobeneficio:"custo beneficio",
+  cxb:"custo beneficio",
+  benecusto:"custo beneficio",
+  topzera:"top",
+  topzeira:"top",
+  brabissimo:"brabo",
+  fd:"forte",
+  foda:"muito bom",
+  monstrin:"monstro",
+  monstrão:"monstro",
+  insanooo:"insano",
+  liso:"bem",
+  rodeliso:"rodar liso",
+  rodarbem:"rodar bem"
+};
+
+function repairWord(word=""){
+  const normalizedWord = normalizeHard(word);
+
+  if(TEXT_REPAIR_MAP[normalizedWord]){
+    return TEXT_REPAIR_MAP[normalizedWord];
+  }
+
+  if(/^qro+$/.test(normalizedWord)) return "quero";
+  if(/^vava+$/.test(normalizedWord)) return "valorant";
+  if(/^mano+$/.test(normalizedWord)) return "mano";
+  if(/^obg+d?a?$/.test(normalizedWord)) return "obrigado";
+  if(/^vlw+$/.test(normalizedWord)) return "valeu";
+  if(/^blz+$/.test(normalizedWord)) return "beleza";
+  if(/^ss+$/.test(normalizedWord)) return "sim";
+  if(/^nn+$/.test(normalizedWord)) return "nao";
+
+  return word;
+}
+
+function repairText(text=""){
+
+  const normalizedText = normalize(text);
+
+  const repairedWords = normalizedText
+    .split(" ")
+    .filter(Boolean)
+    .map(repairWord);
+
+  let result = repairedWords.join(" ");
+
+  result = result
+    .replace(/\bto\b/g,"estou")
+    .replace(/\btô\b/g,"estou")
+    .replace(/\bta\b/g,"esta")
+    .replace(/\btá\b/g,"esta")
+    .replace(/\bpra\b/g,"para")
+    .replace(/\bpro\b/g,"para o")
+    .replace(/\bpros\b/g,"para os")
+    .replace(/\bpras\b/g,"para as")
+    .replace(/\bnum\b/g,"em um")
+    .replace(/\bnaum\b/g,"nao")
+    .replace(/\bvo fala\b/g,"vou falar")
+    .replace(/\buso geral msm\b/g,"uso geral mesmo")
+    .replace(/\bqquer\b/g,"qualquer")
+    .replace(/\bqualqer\b/g,"qualquer")
+    .replace(/\bqualq\b/g,"qualquer")
+    .replace(/\s+/g," ")
+    .trim();
+
+  return result;
 }
 
 /* ========================================
 SLANG NORMALIZER
+muito mais completo
 ======================================== */
 
 const SLANG_MAP = {
@@ -89,9 +347,9 @@ const SLANG_MAP = {
   oi: [
     "eae","e ai","eai","fala","fala ai","fala aí","salve","opa","yo",
     "sup","hey","hiya","hello","hi","hola","ola","alo",
-    "yo bro","yo man","yo dude",
-    "oii","oiii","oiie","oiê",
-    "ya","heya","wassup","whatsup","whats up",
+    "oii","oiii","oiie","oiê","fala chefe","fala mano","fala parceiro",
+    "fala meu mano","opa meu mano","opa mano","salve salve",
+    "ya","heya","wassup","whatsup","whats up","hey bro","hello there",
     "やあ","こんにちは","привет","مرحبا"
   ],
 
@@ -99,6 +357,7 @@ const SLANG_MAP = {
     "mano","bro","brother","parca","parça","parceiro","irmao","irmão",
     "dude","mate","my guy","bruh","man","home","chefe","patrao","patrão",
     "amigo","amiga","compa","compadre","camarada","consagrado",
+    "parsa","parsao","fi","meu fi","filhao","filhão",
     "товарищ","друг"
   ],
 
@@ -110,33 +369,36 @@ const SLANG_MAP = {
 
   problema: [
     "bug","deu ruim","zoado","travou","quebrou","parou",
-    "bugado","erro","error","glitch",
-    "lag","lagando","crash","crashou",
-    "nao funciona","não funciona","nao vai","não vai",
-    "broken","issue","problem","defeito","deu erro"
+    "bugado","erro","error","glitch","lag","lagando","crash","crashou",
+    "nao funciona","não funciona","nao vai","não vai","deu erro",
+    "broken","issue","problem","defeito","deu problema","pau",
+    "pau no sistema","travando","quebrando","ta ruim","tá ruim"
   ],
 
   comprar: [
     "pegar","adquirir","comprar","buy","purchase","get","grab","cop",
     "comprarlo","comprar eso","levar","vou levar","vou pegar",
-    "fechar","fechar compra","fechar negocio","fechar negócio"
+    "fechar","fechar compra","fechar negocio","fechar negócio",
+    "fechar a compra","passar no cartao","passar no cartão"
   ],
 
   barato: [
     "barato","baratinho","em conta","cheap","low price","budget",
     "economico","econômico","custo beneficio","custo-beneficio",
     "cost benefit","custo x beneficio","custo x benefício",
-    "mais em conta","acessivel","acessível","basicão","basico"
+    "mais em conta","acessivel","acessível","basicao","basicão","basico",
+    "mais barato","preco bom","preço bom","custo bom","custo baixo"
   ],
 
   caro: [
-    "caro","muito caro","preco alto","preço alto",
-    "expensive","overpriced","pricey","salgado"
+    "caro","muito caro","preco alto","preço alto","expensive",
+    "overpriced","pricey","salgado","salgadinho","pesado no bolso"
   ],
 
   computador: [
     "pc","computador","setup","desktop","rig","gaming rig","machine",
-    "build","maquina","máquina","cpu","pczinho","pc gamer","torre"
+    "build","maquina","máquina","cpu","pczinho","pc gamer","torre",
+    "gabinete completo","maquina gamer","máquina gamer"
   ],
 
   gpu: [
@@ -144,27 +406,32 @@ const SLANG_MAP = {
     "vga","placa grafica","placa gráfica"
   ],
 
+  cpu: [
+    "processador","cpu","ryzen","intel","i5","i7","i9","r5","r7","r9"
+  ],
+
   notebook: [
-    "notebook","laptop","pc portatil","pc portátil","ultrabook"
+    "notebook","laptop","pc portatil","pc portátil","ultrabook","note"
   ],
 
   jogar: [
     "jogar","play","gaming","rodar jogo","run games","fps game",
-    "rodar","rodar liso","joguinho","gamezinho"
+    "rodar","rodar liso","joguinho","gamezinho","brincar","jogatina"
   ],
 
   legal: [
     "top","massa","daora","show","nice","cool","awesome",
-    "dope","lit","fire","brabo","insano","animal","monstro"
+    "dope","lit","fire","brabo","insano","animal","monstro",
+    "foda","irado","sinistro","pesado","forte"
   ],
 
   comparar: [
-    "comparar","comparacao","comparação","versus","vs","diferença","diferenca",
-    "qual melhor","vale mais a pena"
+    "comparar","comparacao","comparação","versus","vs","diferenca","diferença",
+    "qual melhor","vale mais a pena","qual compensa","qual e melhor","qual é melhor"
   ],
 
   estudo: [
-    "estudo","faculdade","facul","estudar","aula","curso"
+    "estudo","faculdade","facul","estudar","aula","curso","faculdadezinha"
   ],
 
   programar: [
@@ -172,25 +439,27 @@ const SLANG_MAP = {
   ],
 
   trabalho: [
-    "trabalho","trampar","trampar com","servico","serviço","job"
+    "trabalho","trampar","trampar com","servico","serviço","job","trampar geral"
   ],
 
   render: [
-    "render","renderizar","3d","arquitetura","edicao","edição","design"
+    "render","renderizar","3d","arquitetura","edicao","edição","design",
+    "blender","after effects","premiere","photoshop"
   ],
 
   urgente: [
-    "agora","hoje","ja","já","urgente","imediato"
+    "agora","hoje","ja","já","urgente","imediato","o quanto antes"
+  ],
+
+  geral: [
+    "qualquer coisa","pra tudo","para tudo","uso geral","geral",
+    "dia a dia","de tudo","um pouco de tudo","uso misto","uso normal"
   ]
 };
 
-function escapeRegExp(text=""){
-  return text.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
-}
+function applySlangMap(text=""){
 
-function normalizeSlang(text){
-
-  let t = String(text || "").toLowerCase();
+  let t = normalize(text);
 
   for(const key in SLANG_MAP){
 
@@ -198,1283 +467,1617 @@ function normalizeSlang(text){
 
     for(const slang of list){
 
-      const rg = new RegExp(`\\b${escapeRegExp(slang)}\\b`, "g");
+      const rg = new RegExp(`\\b${escapeRegExp(normalize(slang))}\\b`, "g");
 
-      t = t.replace(rg, key);
+      t = t.replace(rg,key);
     }
   }
 
-  return normalize(t);
+  return t;
+}
+
+function normalizeSlang(text){
+
+  const repaired = repairText(text);
+  const mapped = applySlangMap(repaired);
+
+  return normalizeHard(mapped);
+}
+/* ========================================
+INTENT SIGNAL DATABASE
+======================================== */
+
+const INTENT_SIGNALS = {
+
+ greeting:[
+  "oi","ola","eae","fala","salve","opa","yo","hello"
+ ],
+
+ build_pc:[
+  "pc","computador","setup","montar pc","build pc"
+ ],
+
+ buying:[
+  "comprar","vou comprar","quero comprar","quanto custa",
+  "preco","valor","vou pegar","vou levar"
+ ],
+
+ comparison:[
+  "comparar","qual melhor","qual compensa","versus","vs"
+ ],
+
+ performance:[
+  "rodar","fps","liso","alto desempenho","performance"
+ ]
+
+};
+
+/* ========================================
+GAME DATABASE
+======================================== */
+
+const GAME_DATABASE = {
+
+ competitive:[
+  "valorant","cs2","csgo","rainbow six","overwatch","apex"
+ ],
+
+ heavy:[
+  "cyberpunk","starfield","alan wake","hogwarts legacy"
+ ],
+
+ casual:[
+  "minecraft","fortnite","roblox","gta","gta5"
+ ]
+
+};
+
+/* ========================================
+HARDWARE DATABASE
+======================================== */
+
+const HARDWARE_PATTERNS = {
+
+ gpu:/rtx\s?\d{3,4}|gtx\s?\d{3,4}|rx\s?\d{3,4}/i,
+
+ cpu:/ryzen\s?\d|i3|i5|i7|i9/i,
+
+ ram:/\d+\s?gb\s?ram/i,
+
+ storage:/\d+\s?(gb|tb)\s?(ssd|hd)/i,
+
+ monitor:/\d{2,3}\s?hz/i
+
+};
+
+/* ========================================
+BUDGET ENGINE
+======================================== */
+
+function detectBudget(text){
+
+ const t = normalizeHard(text);
+
+ let budget=null;
+
+ const mil = t.match(/(\d+)\s*(mil|k)/);
+
+ if(mil){
+  budget = Number(mil[1])*1000;
+ }
+
+ const dotted = t.match(/\d{1,3}(\.\d{3})+/);
+
+ if(!budget && dotted){
+  budget = Number(dotted[0].replace(/\./g,""));
+ }
+
+ const raw = t.match(/\b\d{3,6}\b/);
+
+ if(!budget && raw){
+  budget = Number(raw[0]);
+ }
+
+ if(!budget){
+
+  if(/barato|basico/.test(t)) budget=2500;
+
+  if(/medio|equilibrado/.test(t)) budget=4500;
+
+  if(/forte|top|insano/.test(t)) budget=8000;
+
+ }
+
+ return budget;
 }
 
 /* ========================================
-SEMANTIC / BUDGET PARSER
+GAME DETECTION
 ======================================== */
-
-function parseBudget(text){
-
-  const t = normalize(text);
-
-  const millionLike = t.match(/(\d+(?:[.,]\d+)?)\s*(mil|k)\b/);
-  if(millionLike){
-    const raw = millionLike[1].replace(",",".");
-    const value = Number(raw);
-    if(Number.isFinite(value)){
-      return Math.round(value * 1000);
-    }
-  }
-
-  const conto = t.match(/(\d+(?:[.,]\d+)?)\s*conto\b/);
-  if(conto){
-    const raw = conto[1].replace(",",".");
-    const value = Number(raw);
-    if(Number.isFinite(value)){
-      return Math.round(value * 1000);
-    }
-  }
-
-  const dotted = t.match(/\b\d{1,3}(?:\.\d{3})+\b/);
-  if(dotted){
-    return Number(dotted[0].replace(/\./g,""));
-  }
-
-  const commaMoney = t.match(/\b\d{1,3}(?:,\d{3})+\b/);
-  if(commaMoney){
-    return Number(commaMoney[0].replace(/,/g,""));
-  }
-
-  const simple = t.match(/\b\d{3,6}\b/);
-  if(simple){
-    return Number(simple[0]);
-  }
-
-  if(/nao quero gastar muito|não quero gastar muito|algo barato|mais barato|economico|econômico/.test(t)){
-    return 3000;
-  }
-
-  return null;
-}
-
-function detectUse(text){
-
-  const t = normalize(text);
-
-  if(/valorant|cs2|cs|fortnite|warzone|fps|jogar|jogo|gaming|gamer/.test(t)){
-    return "gaming";
-  }
-
-  if(/estudo|faculdade|estudar|curso|programar|programacao|programação|codigo|código|dev/.test(t)){
-    return "study";
-  }
-
-  if(/trabalho|render|edicao|edição|design|3d|arquitetura|produtividade|workstation/.test(t)){
-    return "work";
-  }
-
-  return null;
-}
 
 function detectGame(text){
 
-  const t = normalize(text);
+ const t = normalizeHard(text);
 
-  if(/valorant|vava/.test(t)) return "valorant";
-  if(/cs2|counter strike|cs\b/.test(t)) return "cs2";
-  if(/fortnite/.test(t)) return "fortnite";
-  if(/warzone/.test(t)) return "warzone";
-  if(/gta ?v|gta5|gta 5/.test(t)) return "gta5";
+ for(const group in GAME_DATABASE){
 
-  return null;
+  for(const game of GAME_DATABASE[group]){
+
+   if(t.includes(game)){
+    return {
+     game,
+     category:group
+    };
+   }
+
+  }
+
+ }
+
+ return null;
 }
+
+/* ========================================
+USE DETECTION
+======================================== */
+
+function detectUse(text){
+
+ const t = normalizeHard(text);
+
+ const uses=[];
+
+ if(/jogar|gaming|fps|jogo/.test(t)) uses.push("gaming");
+
+ if(/estudo|faculdade|curso/.test(t)) uses.push("study");
+
+ if(/render|design|3d|arquitetura/.test(t)) uses.push("work");
+
+ if(/programar|codigo|dev/.test(t)) uses.push("programming");
+
+ if(/qualquer coisa|pra tudo|uso geral/.test(t)) uses.push("general");
+
+ if(!uses.length) uses.push("general");
+
+ return unique(uses);
+}
+
+/* ========================================
+HARDWARE DETECTOR
+======================================== */
+
+function detectHardware(text){
+
+ const hardware={};
+
+ const t = normalizeHard(text);
+
+ for(const key in HARDWARE_PATTERNS){
+
+  const match = t.match(HARDWARE_PATTERNS[key]);
+
+  if(match){
+   hardware[key]=match[0];
+  }
+
+ }
+
+ return hardware;
+}
+
+/* ========================================
+INTENT DETECTOR
+======================================== */
+
+function detectIntent(text){
+
+ const t = normalizeHard(text);
+
+ const detected=[];
+
+ for(const intent in INTENT_SIGNALS){
+
+  for(const signal of INTENT_SIGNALS[intent]){
+
+   if(t.includes(signal)){
+    detected.push(intent);
+   }
+
+  }
+
+ }
+
+ if(!detected.length){
+  return "conversation";
+ }
+
+ return detected[0];
+}
+
+/* ========================================
+BUY STAGE DETECTOR
+======================================== */
+
+function detectBuyingStage(text){
+
+ const t = normalizeHard(text);
+
+ if(/quero comprar|vou comprar|vou levar/.test(t)){
+  return "decision";
+ }
+
+ if(/quanto custa|preco|valor/.test(t)){
+  return "evaluation";
+ }
+
+ if(/comparar|qual melhor/.test(t)){
+  return "comparison";
+ }
+
+ return "exploration";
+}
+
+/* ========================================
+USER LEVEL DETECTOR
+======================================== */
+
+function detectUserLevel(text){
+
+ const t = normalizeHard(text);
+
+ if(/vrm|latencia|benchmark|clock/.test(t)){
+  return "expert";
+ }
+
+ if(/comparar|vale a pena/.test(t)){
+  return "intermediate";
+ }
+
+ if(/me ajuda|nao sei/.test(t)){
+  return "beginner";
+ }
+
+ return "normal";
+}
+
+/* ========================================
+URGENCY DETECTOR
+======================================== */
+
+function detectUrgency(text){
+
+ const t = normalizeHard(text);
+
+ if(/agora|hoje|urgente|rapido/.test(t)){
+  return "high";
+ }
+
+ if(/depois|talvez/.test(t)){
+  return "low";
+ }
+
+ return "normal";
+}
+
+/* ========================================
+CONFIDENCE ENGINE
+======================================== */
+
+function computeConfidence(ctx){
+
+ let score=0;
+
+ if(ctx.intent) score+=0.2;
+
+ if(ctx.use) score+=0.2;
+
+ if(ctx.budget) score+=0.2;
+
+ if(ctx.hardware && Object.keys(ctx.hardware).length) score+=0.15;
+
+ if(ctx.game) score+=0.15;
+
+ if(ctx.buyStage) score+=0.1;
+
+ return clamp(score,0,1);
+}
+
+/* ========================================
+SEMANTIC PARSER
+======================================== */
 
 function semanticParser(text){
 
-  const normalized = normalize(text);
+ const parsed={};
 
-  const result = {
-    budget: parseBudget(normalized),
-    use: detectUse(normalized),
-    game: detectGame(normalized),
-    intent: null
-  };
+ parsed.budget = detectBudget(text);
 
-  if(/pc|computador|setup|maquina|máquina/.test(normalized)){
-    result.intent = "pc_build";
-  }
+ parsed.intent = detectIntent(text);
 
-  if(/placa de video|placa de vídeo|gpu|rtx|rx|gtx|vga/.test(normalized)){
-    result.intent = "gpu_search";
-  }
+ parsed.use = detectUse(text);
 
-  if(/notebook|laptop|ultrabook/.test(normalized)){
-    result.intent = "notebook_search";
-  }
+ parsed.hardware = detectHardware(text);
 
-  if(/monitor|144hz|165hz|240hz/.test(normalized)){
-    result.intent = "monitor_search";
-  }
+ parsed.game = detectGame(text);
 
-  return result;
+ parsed.buyStage = detectBuyingStage(text);
+
+ parsed.userLevel = detectUserLevel(text);
+
+ parsed.urgency = detectUrgency(text);
+
+ return parsed;
 }
+
 /* ========================================
-INTENT ENGINE
+CONTEXT ENRICHMENT
 ======================================== */
 
-const STATIC_INTENTS = [
-  {
-    intent:"greeting",
-    keywords:["oi","ola","olá","salve","opa","hello","hi"],
-    userExamples:["oi","oi tudo bem","fala ai"],
-    activationSignals:["oi"]
-  },
-  {
-    intent:"pc_help",
-    keywords:["pc","computador","pc gamer","montar pc","setup"],
-    userExamples:["quero um pc","quero montar um pc","preciso de um pc"],
-    activationSignals:["pc","computador","montar"]
-  },
-  {
-    intent:"gpu_help",
-    keywords:["gpu","placa de video","rtx","rx","gtx","vga"],
-    userExamples:["quero uma gpu","preciso de placa de video"],
-    activationSignals:["gpu","rtx","rx","gtx"]
-  },
-  {
-    intent:"notebook_help",
-    keywords:["notebook","laptop","ultrabook"],
-    userExamples:["quero um notebook","preciso de laptop"],
-    activationSignals:["notebook","laptop"]
-  },
-  {
-    intent:"compare_products",
-    keywords:["comparar","versus","vs","qual melhor","diferenca"],
-    userExamples:["qual melhor","qual vale mais a pena"],
-    activationSignals:["comparar","vs","diferenca"]
-  },
-  {
-    intent:"product_search",
-    keywords:["comprar","produto","catalogo","catalogo","ver opcoes","ver opções"],
-    userExamples:["quero comprar","quero ver produtos"],
-    activationSignals:["comprar","produto"]
-  },
-  {
-    intent:"purchase_problem",
-    keywords:["erro","problema","nao funciona","não funciona","falhou pagamento"],
-    userExamples:["deu erro","nao consegui comprar"],
-    activationSignals:["problema","erro"]
-  }
-];
+function enrichContext(ctx,parsed){
 
-function scoreKeywords(message,tokens,keywords=[]){
+ if(parsed.budget){
+  ctx.budget = parsed.budget;
+ }
 
-  let score = 0;
-  const normalizedMessage = normalize(message);
+ if(parsed.intent){
+  ctx.intent = parsed.intent;
+ }
 
-  for(const kw of keywords){
+ if(parsed.use){
+  ctx.use = parsed.use;
+ }
 
-    const k = normalize(kw);
+ if(parsed.game){
+  ctx.game = parsed.game;
+ }
 
-    if(normalizedMessage.includes(k)){
-      score += 10;
-    }
+ if(parsed.hardware){
 
-    for(const token of tokens){
-      if(token === k) score += 6;
-      if(k.includes(token) || token.includes(k)) score += 3;
-    }
-  }
+  ctx.hardware={
+   ...ctx.hardware,
+   ...parsed.hardware
+  };
 
-  return score;
+ }
+
+ ctx.buyStage = parsed.buyStage;
+
+ ctx.userLevel = parsed.userLevel;
+
+ ctx.urgency = parsed.urgency;
+
+ ctx.confidence = computeConfidence(ctx);
+
+ return ctx;
 }
+/* ========================================
+CONVERSATION MEMORY CORE
+======================================== */
 
-function scoreExamples(message,examples=[]){
+function ensureContext(id){
 
-  let score = 0;
-  const m = normalize(message);
+ if(!CONTEXT.has(id)){
 
-  for(const ex of examples){
-    const e = normalize(ex);
-    if(m.includes(e)) score += 15;
-  }
+  CONTEXT.set(id,{
+   stage:"discovery",
+   history:[],
+   knowledge:{},
+   emotionalState:"neutral",
+   curiosity:0,
+   confusion:0,
+   trust:0,
+   loopCount:0,
+   lastReply:null,
+   productsShown:false
+  });
 
-  return score;
-}
+ }
 
-function scoreSignals(tokens,signals=[]){
+ return CONTEXT.get(id);
 
-  let score = 0;
-
-  for(const signal of signals){
-    const sig = normalize(signal);
-
-    for(const token of tokens){
-      if(sig === token) score += 8;
-      if(sig.includes(token) || token.includes(sig)) score += 4;
-    }
-  }
-
-  return score;
-}
-
-function detectIntent(message){
-
-  const intents = STATIC_INTENTS;
-  const tokens = tokenize(message);
-
-  let best = null;
-  let bestScore = 0;
-
-  for(const intent of intents){
-
-    let score = 0;
-
-    score += scoreKeywords(message,tokens,intent.keywords || []);
-    score += scoreExamples(message,intent.userExamples || []);
-    score += scoreSignals(tokens,intent.activationSignals || []);
-
-    if(score > bestScore){
-      bestScore = score;
-      best = intent;
-    }
-  }
-
-  if(bestScore < 6) return null;
-
-  return best;
-}
-
-function predictIntentEarly(text){
-
-  const t = normalize(text);
-
-  if(/pc gamer|montar pc|quero um pc|pc pra jogar|pc bom|computador/.test(t)){
-    return { intent:"pc_help" };
-  }
-
-  if(/placa de video|gpu|rtx|rx|nvidia|amd|gtx/.test(t)){
-    return { intent:"gpu_help" };
-  }
-
-  if(/notebook|laptop|ultrabook/.test(t)){
-    return { intent:"notebook_help" };
-  }
-
-  if(/monitor|144hz|165hz|240hz/.test(t)){
-    return { intent:"monitor_help" };
-  }
-
-  if(/comparar|vs|versus|qual melhor|diferenca/.test(t)){
-    return { intent:"compare_products" };
-  }
-
-  if(/comprar|produto|catalogo|catalog/.test(t)){
-    return { intent:"product_search" };
-  }
-
-  if(/problema|erro|nao consegui comprar|falhou pagamento/.test(t)){
-    return { intent:"purchase_problem" };
-  }
-
-  return null;
-}
-
-function interpretChaos(text){
-
-  const t = normalize(text);
-
-  if(/(pc|computador).*(jogar|game|gaming|gamer)/.test(t)) return "pc_gaming";
-  if(/(pc|computador).*(trabalho|render|edicao|design)/.test(t)) return "pc_work";
-  if(/(pc|computador).*(estudo|faculdade|programar)/.test(t)) return "pc_study";
-  if(/(montar|buildar|fazer).*(pc|computador)/.test(t)) return "pc_build";
-  if(/pc gamer|setup gamer/.test(t)) return "pc_gaming";
-
-  return null;
 }
 
 /* ========================================
-MEMORY SCORE / CONTEXT
+MESSAGE STORAGE
+======================================== */
+
+function storeMessage(ctx,text){
+
+ ctx.history.push({
+  role:"user",
+  text,
+  time:Date.now()
+ });
+
+ if(ctx.history.length > 30){
+  ctx.history.shift();
+ }
+
+}
+
+/* ========================================
+ASSISTANT MEMORY
+======================================== */
+
+function storeReply(ctx,text){
+
+ ctx.history.push({
+  role:"assistant",
+  text,
+  time:Date.now()
+ });
+
+ ctx.lastReply = text;
+
+}
+
+/* ========================================
+FRUSTRATION DETECTOR
+======================================== */
+
+function detectFrustration(text){
+
+ const t = normalizeHard(text);
+
+ if(/nao entendeu|vc nao entendeu|voce nao entendeu/.test(t)) return true;
+
+ if(/ta errado|errado/.test(t)) return true;
+
+ if(/cara|mano.*(nao|n)/.test(t)) return true;
+
+ if(/que merda|que porcaria/.test(t)) return true;
+
+ return false;
+
+}
+
+/* ========================================
+CONFUSION DETECTOR
+======================================== */
+
+function detectConfusion(text){
+
+ const t = normalizeHard(text);
+
+ if(/nao sei/.test(t)) return true;
+
+ if(/to perdido/.test(t)) return true;
+
+ if(/me ajuda/.test(t)) return true;
+
+ return false;
+
+}
+
+/* ========================================
+CONVERSATION LOOP DETECTOR
+======================================== */
+
+function detectLoop(ctx,newReply){
+
+ if(!ctx.lastReply) return false;
+
+ const last = normalizeHard(ctx.lastReply);
+ const current = normalizeHard(newReply);
+
+ if(last === current){
+
+  ctx.loopCount++;
+
+ }else{
+
+  ctx.loopCount = 0;
+
+ }
+
+ if(ctx.loopCount > 2){
+
+  ctx.loopCount = 0;
+
+  return true;
+
+ }
+
+ return false;
+
+}
+
+/* ========================================
+USER TRUST ENGINE
+======================================== */
+
+function updateTrust(ctx){
+
+ if(ctx.history.length > 5){
+
+  ctx.trust += 0.1;
+
+ }
+
+ ctx.trust = clamp(ctx.trust,0,1);
+
+}
+
+/* ========================================
+CURIOSITY ENGINE
+======================================== */
+
+function updateCuriosity(ctx){
+
+ if(!ctx.use) ctx.curiosity += 0.1;
+
+ if(!ctx.budget) ctx.curiosity += 0.1;
+
+ if(ctx.game && !ctx.hardware) ctx.curiosity += 0.1;
+
+ ctx.curiosity = clamp(ctx.curiosity,0,1);
+
+}
+
+/* ========================================
+PERSONA ENGINE
+======================================== */
+
+function selectPersona(ctx){
+
+ if(ctx.userLevel === "expert") return "technical";
+
+ if(ctx.emotionalState === "frustrated") return "support";
+
+ if(ctx.buyStage === "decision") return "sales";
+
+ if(ctx.curiosity > 0.6) return "explainer";
+
+ return "friendly";
+
+}
+
+/* ========================================
+EMOTION ENGINE
+======================================== */
+
+function updateEmotion(ctx,text){
+
+ if(detectFrustration(text)){
+  ctx.emotionalState="frustrated";
+ }
+
+ else if(detectConfusion(text)){
+  ctx.emotionalState="confused";
+ }
+
+}
+
+/* ========================================
+HUMAN STYLE ENGINE
+======================================== */
+
+function humanizeReply(text){
+
+ let t = text;
+
+ t = t.replace("qual seu orçamento","quanto você pretende investir");
+ t = t.replace("qual uso","o que você pretende fazer com ele");
+ t = t.replace("produto","equipamento");
+
+ return t;
+
+}
+
+/* ========================================
+SALES STRATEGY ENGINE
+======================================== */
+
+function decideSalesStrategy(ctx){
+
+ if(ctx.buyStage === "decision") return "close";
+
+ if(ctx.buyStage === "evaluation") return "recommend";
+
+ if(ctx.curiosity > 0.5) return "educate";
+
+ return "explore";
+
+}
+
+/* ========================================
+RECOMMENDATION STRATEGY
+======================================== */
+
+function chooseRecommendationStrategy(ctx){
+
+ if(!ctx.budget) return "discover";
+
+ if(ctx.budget < 3000) return "budget";
+
+ if(ctx.budget < 7000) return "midrange";
+
+ if(ctx.budget < 15000) return "highend";
+
+ return "enthusiast";
+
+}
+
+/* ========================================
+PRODUCT MATCH INTELLIGENCE
+======================================== */
+
+function matchProducts(products,ctx){
+
+ if(!Array.isArray(products)) return [];
+
+ const scored = products.map(p=>{
+
+  let score = 0;
+
+  const name = (p.name||"").toLowerCase();
+
+  if(ctx.use?.includes("gaming") && /rtx|radeon|gtx/.test(name)){
+   score += 5;
+  }
+
+  if(ctx.game){
+   score += 2;
+  }
+
+  if(ctx.budget){
+
+   const diff = Math.abs((p.price||0)-ctx.budget);
+
+   score += Math.max(0,5-diff/1000);
+
+  }
+
+  if(ctx.userLevel === "expert"){
+   score += 1;
+  }
+
+  return {p,score};
+
+ });
+
+ scored.sort((a,b)=>b.score-a.score);
+
+ return scored.map(s=>s.p);
+
+}
+
+/* ========================================
+LEARNING ENGINE
+======================================== */
+
+function learnFromConversation(ctx){
+
+ const intent = ctx.intent || "unknown";
+
+ if(!NEURAL.conversations[intent]){
+  NEURAL.conversations[intent] = 0;
+ }
+
+ NEURAL.conversations[intent]++;
+
+}
+
+/* ========================================
+SUGGESTION ENGINE
+======================================== */
+
+function generateSuggestions(ctx){
+
+ const suggestions=[];
+
+ if(!ctx.budget){
+  suggestions.push("Quanto você pretende investir?");
+ }
+
+ if(!ctx.use){
+  suggestions.push("Você pretende usar mais para jogos ou trabalho?");
+ }
+
+ if(ctx.game){
+  suggestions.push("Quer focar mais em FPS ou qualidade gráfica?");
+ }
+
+ if(ctx.hardware?.gpu){
+  suggestions.push("Quer montar o resto do PC em volta dessa GPU?");
+ }
+
+ return suggestions;
+
+}
+
+/* ========================================
+CONVERSATION RECOVERY ENGINE
+======================================== */
+
+function recoverConversation(ctx){
+
+ if(ctx.stage === "discovery" && ctx.budget && ctx.use){
+
+  ctx.stage = "recommendation";
+
+ }
+
+ if(ctx.loopCount > 1){
+
+  ctx.stage = "discovery";
+
+ }
+
+}
+
+/* ========================================
+REPLY GENERATOR
+======================================== */
+
+function generateReply(ctx){
+
+ if(!ctx.budget){
+
+  return "Boa! Me conta mais ou menos quanto você pretende investir no PC.";
+
+ }
+
+ if(!ctx.use){
+
+  return "Legal. Você pretende usar mais para jogos, trabalho ou um pouco de tudo?";
+
+ }
+
+ if(ctx.stage === "recommendation"){
+
+  return "Achei algumas opções que podem fazer bastante sentido para você 👇";
+
+ }
+
+ return "Perfeito. Deixa eu ver algumas opções para você.";
+
+}
+/* ========================================
+CONTEXT ACCESS
 ======================================== */
 
 function getContext(id){
 
-  if(!CONTEXT.has(id)){
-    CONTEXT.set(id,{
-      started:false,
-      lang:"pt",
-      stage:"discovery",
-      budget:null,
-      use:null,
-      game:null,
-      intent:null,
-      customerType:"explorer",
-      buyScore:0,
-      salesStrategy:"explore",
-      productsShown:false,
-      lastQuestionType:null,
-      memoryScore:{
-        budget:null,
-        use:null
-      }
-    });
-  }
+ return ensureContext(id);
 
-  return CONTEXT.get(id);
-}
-
-function updateMemoryScore(ctx,text){
-
-  if(!ctx.memoryScore){
-    ctx.memoryScore = {
-      budget:null,
-      use:null
-    };
-  }
-
-  const parsedBudget = parseBudget(text);
-  const parsedUse = detectUse(text);
-
-  if(parsedBudget){
-    ctx.memoryScore.budget = {
-      value: parsedBudget,
-      score: 10
-    };
-    ctx.budget = parsedBudget;
-  }
-
-  if(parsedUse){
-    ctx.memoryScore.use = {
-      value: parsedUse,
-      score: 9
-    };
-    ctx.use = parsedUse;
-  }
-
-  return ctx;
-}
-
-function shouldAskBudget(ctx){
-  return !(ctx.memoryScore && ctx.memoryScore.budget && ctx.memoryScore.budget.score > 0);
-}
-
-function shouldAskUse(ctx){
-  return !(ctx.memoryScore && ctx.memoryScore.use && ctx.memoryScore.use.score > 0);
-}
-
-function updateConversationState(ctx){
-
-  if(!ctx.budget){
-    ctx.stage = "ask_budget";
-    return ctx;
-  }
-
-  if(!ctx.use){
-    ctx.stage = "ask_use";
-    return ctx;
-  }
-
-  if(ctx.productsShown){
-    ctx.stage = "decision";
-    return ctx;
-  }
-
-  if(ctx.buyScore > 0.85){
-    ctx.stage = "closing";
-    return ctx;
-  }
-
-  ctx.stage = "recommendation";
-  return ctx;
-}
-
-function updateContextBrain(ctx){
-
-  if(!ctx) return ctx;
-
-  if(ctx.budget && ctx.use){
-    ctx.stage = "recommendation";
-  }
-
-  if(ctx.productsShown){
-    ctx.stage = "decision";
-  }
-
-  if(ctx.buyScore > 0.85){
-    ctx.stage = "closing";
-  }
-
-  return ctx;
-}
-
-function buildCommerceContext(ctx){
-
-  return {
-    readyForRecommendation: !!(ctx.budget && ctx.use),
-    missingBudget: !ctx.budget,
-    missingUse: !ctx.use
-  };
 }
 
 /* ========================================
-CUSTOMER PROFILE / INTENT GRAPH
+CATALOG SEARCH ENGINE
 ======================================== */
 
-function detectCustomerType(text){
+function findProducts(ctx){
 
-  const t = normalize(text);
+ let products=[];
 
-  if(/benchmark|fps|latencia|clock|vrm|chipset|spec|especifica|especificacao|especificação/.test(t)){
-    return "technical";
-  }
+ if(ctx.use?.includes("gaming")){
 
-  if(/comparar|diferenca|qual melhor|vale mais a pena|versus|vs/.test(t)){
-    return "analyst";
-  }
+  products = searchCatalog("gpu");
 
-  if(/quero comprar|vou comprar|vou pegar|vou levar|fechar compra/.test(t)){
-    return "buyer";
-  }
+ }
 
-  if(/nao sei|me ajuda|to perdido|qual escolher/.test(t)){
-    return "lost";
-  }
+ if(ctx.use?.includes("study")){
 
-  return "explorer";
-}
+  products = searchCatalog("notebook");
 
-function mapCustomerIntent(ctx){
+ }
 
-  if(ctx.buyScore > 0.8){
-    return "hot";
-  }
+ if(ctx.use?.includes("work")){
 
-  if(ctx.buyScore > 0.5){
-    return "warm";
-  }
+  products = searchCatalog("workstation");
 
-  if(ctx.customerType === "technical" || ctx.customerType === "analyst"){
-    return "builder";
-  }
+ }
 
-  if(ctx.customerType === "lost" || ctx.customerType === "explorer"){
-    return "explorer";
-  }
+ if(!products.length){
 
-  return "unknown";
+  products = searchCatalog("pc");
+
+ }
+
+ products = neuralRankProducts(products);
+
+ products = matchProducts(products,ctx);
+
+ return products.slice(0,3);
+
 }
 
 /* ========================================
-SALES BRAIN
+PIPELINE EXECUTION
 ======================================== */
 
-function detectBuyIntent(text){
+function runPipeline(ctx,message){
 
-  const t = normalize(text);
-  let score = 0;
+ const repaired = repairText(message);
 
-  if(/quero comprar|vou comprar|vou levar|vou pegar|fechar compra/.test(t)) score += 0.9;
-  if(/preco|preço|quanto custa|valor|quanto sai/.test(t)) score += 0.4;
-  if(/esse roda|esse aguenta|esse e bom|esse é bom|vale a pena/.test(t)) score += 0.3;
-  if(/qual melhor|comparar|diferenca entre|diferença entre/.test(t)) score += 0.3;
-  if(/qual voce recomenda|qual você recomenda|qual pegar|qual escolher/.test(t)) score += 0.5;
-  if(/agora|hoje|ja|já|imediato/.test(t)) score += 0.2;
+ const normalized = normalizeSlang(repaired);
 
-  return Math.min(score,1);
-}
+ const parsed = semanticParser(normalized);
 
-function salesStrategy(score){
+ enrichContext(ctx,parsed);
 
-  if(score < 0.25) return "explore";
-  if(score < 0.6) return "assist";
-  return "convert";
-}
+ return normalized;
 
-function chooseProductStrategy(ctx){
-
-  if(ctx.salesStrategy === "assist") return "recommend";
-  if(ctx.salesStrategy === "convert") return "direct_offer";
-  return "conversation";
-}
-
-function generateSalesAction(strategy,products){
-
-  if(!Array.isArray(products) || !products.length) return null;
-
-  if(strategy === "recommend") return products.slice(0,3);
-  if(strategy === "direct_offer") return products.slice(0,2);
-
-  return null;
 }
 
 /* ========================================
-NEURAL / MARKET / LEARNING
+STATE MANAGEMENT
 ======================================== */
 
-function registerSearch(query){
+function updateStage(ctx){
 
-  const key = normalize(query);
-  if(!key) return;
+ if(ctx.budget && ctx.use){
 
-  if(!MARKET.searches[key]) MARKET.searches[key] = 0;
-  MARKET.searches[key]++;
+  ctx.stage="recommendation";
+
+ }
+
+ if(ctx.productsShown){
+
+  ctx.stage="decision";
+
+ }
+
 }
 
-function registerProductView(productId){
-
-  if(!productId) return;
-  if(!MARKET.products[productId]) MARKET.products[productId] = 0;
-  MARKET.products[productId]++;
-}
-
-function registerPriceRange(price){
-
-  if(!price) return;
-
-  let range = "5000+";
-
-  if(price < 2000) range = "0-2000";
-  else if(price < 3500) range = "2000-3500";
-  else if(price < 5000) range = "3500-5000";
-
-  if(!MARKET.priceRanges[range]) MARKET.priceRanges[range] = 0;
-  MARKET.priceRanges[range]++;
-}
-
-function registerConversationIntent(intent){
-
-  if(!intent) return;
-
-  const key = intent.intent || intent;
-
-  if(!NEURAL.conversations[key]) NEURAL.conversations[key] = 0;
-  NEURAL.conversations[key]++;
-}
-
-function learnFromConversation(intent){
-
-  if(!intent) return;
-
-  LEARNING.push({
-    intent: intent.intent || intent,
-    timestamp: now()
-  });
-
-  registerConversationIntent(intent);
-}
-
-function storeConversationSample(user,reply){
-
-  LEARNING.push({
-    user: normalize(user),
-    reply,
-    timestamp: now()
-  });
-
-  if(LEARNING.length > 300){
-    LEARNING.shift();
-  }
-}
-
-function getSimilarReply(message){
-
-  const m = tokenize(message);
-
-  let best = null;
-  let bestScore = 0;
-
-  for(const item of LEARNING){
-
-    if(!item.user || !item.reply) continue;
-
-    const itemTokens = tokenize(item.user);
-    let score = 0;
-
-    for(const token of itemTokens){
-      if(m.includes(token)) score++;
-    }
-
-    if(score > bestScore && score >= 2){
-      bestScore = score;
-      best = item.reply;
-    }
-  }
-
-  return best;
-}
-
-function registerSuccessfulSuggestion(){
-  NEURAL.successfulSuggestions = (NEURAL.successfulSuggestions || 0) + 1;
-}
-
-function rankProductsByNeural(products){
-
-  if(!Array.isArray(products)) return [];
-
-  const cloned = [...products];
-
-  return cloned.sort((a,b)=>{
-
-    const sa =
-      (NEURAL.clicks[a.id] || 0) * 2 +
-      (NEURAL.purchases[a.id] || 0) * 6 -
-      (NEURAL.ignores[a.id] || 0);
-
-    const sb =
-      (NEURAL.clicks[b.id] || 0) * 2 +
-      (NEURAL.purchases[b.id] || 0) * 6 -
-      (NEURAL.ignores[b.id] || 0);
-
-    return sb - sa;
-  });
-}
-
-function neuralMatchProducts(products,ctx){
-
-  if(!Array.isArray(products)) return [];
-
-  const scored = products.map(product=>{
-
-    let score = 0;
-    const name = normalize(product.name || "");
-
-    if(ctx.use === "gaming" && /rtx|radeon|rx|gtx|gpu|geforce|placa/.test(name)) score += 6;
-    if(ctx.use === "study" && /notebook|laptop|ultrabook/.test(name)) score += 5;
-    if(ctx.use === "work" && /workstation|pro|creator/.test(name)) score += 5;
-
-    if(ctx.budget && product.price){
-      const price = safeNumber(product.price);
-      const diff = Math.abs(price - ctx.budget);
-
-      if(diff < ctx.budget * 0.15) score += 5;
-      else if(diff < ctx.budget * 0.30) score += 3;
-
-      if(price > ctx.budget) score -= 1;
-    }
-
-    if(ctx.customerType === "technical" || ctx.customerType === "analyst") score += 2;
-    if(ctx.stage === "recommendation") score += 2;
-
-    return {
-      product,
-      score
-    };
-  });
-
-  scored.sort((a,b)=>b.score-a.score);
-
-  return scored.map(item=>item.product);
-}
 /* ========================================
-CONVERSATION ENGINES
+RESPONSE PIPELINE
 ======================================== */
 
-function detectLanguage(headers={}){
+function processConversation(ctx,message){
 
-  const lang = String(headers["accept-language"] || "").toLowerCase();
+ storeMessage(ctx,message);
 
-  if(lang.includes("en")) return "en";
-  if(lang.includes("es")) return "es";
-  if(lang.includes("zh")) return "zh";
-  if(lang.includes("ru")) return "ru";
+ updateEmotion(ctx,message);
 
-  return "pt";
-}
+ updateTrust(ctx);
 
-function greetingByLang(lang){
+ updateCuriosity(ctx);
 
-  const greetings = {
-    pt: "Oi! 👋 Eu sou a Nayla da Nexus. Posso te ajudar a encontrar algum hardware ou montar um PC.",
-    en: "Hi! 👋 I'm Nayla from Nexus. I can help you choose hardware or build a PC.",
-    es: "Hola! 👋 Soy Nayla de Nexus. Puedo ayudarte a elegir hardware o armar una PC.",
-    zh: "你好 👋 我是 Nexus 的 Nayla。我可以帮你选择电脑硬件或组装电脑。",
-    ru: "Привет 👋 Я Найla из Nexus. Я могу помочь выбрать комплектующие для ПК."
-  };
+ recoverConversation(ctx);
 
-  return greetings[lang] || greetings.pt;
-}
+ const strategy = decideSalesStrategy(ctx);
 
-function detectConversationMode(ctx){
+ let reply = generateReply(ctx);
 
-  if(ctx.buyScore > 0.7) return "buyer";
-  if(ctx.customerType === "technical" || ctx.customerType === "analyst") return "technical";
-  if(!ctx.budget && !ctx.use) return "lost";
-  if(ctx.budget && !ctx.use) return "guided";
-  if(ctx.budget && ctx.use) return "ready";
-  return "normal";
-}
+ if(strategy==="educate"){
 
-function adaptiveSalesResponse(mode){
+  reply = "Boa pergunta. Vamos entender isso melhor.";
 
-  if(mode === "lost"){
-    return "Sem stress 🙂 Me conta primeiro quanto você pretende investir no PC.";
-  }
+ }
 
-  if(mode === "guided"){
-    return "Boa! Com esse orçamento dá pra montar algo legal. Você pretende jogar ou usar para estudo/trabalho?";
-  }
+ if(strategy==="recommend"){
 
-  if(mode === "technical"){
-    return "Massa! Quer comparar peças específicas ou montar um setup completo?";
-  }
+  ctx.stage="recommendation";
 
-  if(mode === "buyer"){
-    return "Show! Vou te mostrar algumas opções boas agora 👇";
-  }
+ }
 
-  return null;
-}
+ if(strategy==="close"){
 
-function decideAction(ctx){
+  reply = "Achei algo perfeito para você 👇";
 
-  if(ctx.buyScore > 0.75) return "offer_product";
-  if(ctx.buyScore > 0.45) return "recommend";
-  if(ctx.stage === "discovery" || ctx.stage === "ask_budget" || ctx.stage === "ask_use") return "explore";
-  return "conversation";
-}
+ }
 
-function actionMessage(action){
+ reply = humanizeReply(reply);
 
-  if(action === "offer_product"){
-    return "Achei uma opção que encaixa muito bem no que você está procurando 👇";
-  }
+ reply = applyEmotion(reply,ctx);
 
-  if(action === "recommend"){
-    return "Separei algumas opções que podem fazer sentido para você 👇";
-  }
+ return reply;
 
-  if(action === "explore"){
-    return "Deixa eu entender melhor o que você precisa.";
-  }
-
-  return null;
-}
-
-function autonomousCommerceDecision(ctx){
-
-  if(ctx.buyScore > 0.8) return "close_sale";
-  if(ctx.stage === "recommendation") return "show_products";
-  if(!ctx.budget) return "collect_budget";
-  if(!ctx.use) return "collect_use";
-  return "conversation";
-}
-
-function commerceDecision(ctx){
-
-  if(ctx.stage === "recommendation" && ctx.buyScore > 0.6) return "show_products";
-  if(ctx.stage === "recommendation") return "suggest_products";
-  if(!ctx.budget) return "ask_budget";
-  if(!ctx.use) return "ask_use";
-  return "conversation";
-}
-
-function decideNextStep(ctx){
-
-  if(!ctx.budget) return "ask_budget";
-  if(!ctx.use) return "ask_use";
-  if(ctx.stage === "recommendation") return "recommend_products";
-  if(ctx.stage === "decision") return "assist_decision";
-  return "discovery";
-}
-
-function predictConversationPath(ctx,intent){
-
-  if(!intent){
-    if(ctx.stage === "recommendation") return "recommend_products";
-    return "discovery";
-  }
-
-  const name = intent.intent || intent;
-
-  if(name === "greeting") return "welcome";
-  if(name === "product_search") return "product_search";
-  if(name === "pc_help") return "pc_build";
-  if(name === "notebook_help") return "notebook_help";
-  if(name === "gpu_help") return "gpu_help";
-  if(name === "compare_products") return "product_compare";
-  if(name === "purchase_problem") return "support";
-
-  return "discovery";
-}
-
-function pathResponse(path,ctx){
-
-  if(path === "welcome"){
-    return "E aí! 👋 Me conta o que você está procurando hoje.";
-  }
-
-  if(path === "product_search"){
-    return "Boa! Que tipo de produto você está procurando?";
-  }
-
-  if(path === "pc_build"){
-    if(!ctx.budget) return "Show. Você tem mais ou menos quanto de orçamento pra montar o PC?";
-    if(!ctx.use) return "Legal. Você pretende usar mais para jogos, estudo ou trabalho?";
-    return null;
-  }
-
-  if(path === "notebook_help"){
-    if(!ctx.budget) return "Boa! Você já tem alguma faixa de preço em mente para o notebook?";
-    return "Você pretende usar mais para estudo, trabalho ou um pouco de tudo?";
-  }
-
-  if(path === "gpu_help"){
-    return "Boa! Você quer uma GPU mais focada em jogos competitivos, AAA ou custo-benefício?";
-  }
-
-  if(path === "product_compare"){
-    return "Boa pergunta. Quais produtos você quer comparar?";
-  }
-
-  if(path === "support"){
-    return "Sem stress. Me conta o que aconteceu que a gente resolve.";
-  }
-
-  if(path === "discovery"){
-    if(!ctx.budget) return "Você já tem um orçamento em mente?";
-    if(!ctx.use) return "Você pretende usar mais para jogos, estudo ou trabalho?";
-  }
-
-  return null;
-}
-
-function preventLoop(ctx,questionType){
-
-  if(!ctx || !questionType) return false;
-
-  if(ctx.lastQuestionType === questionType){
-    return true;
-  }
-
-  ctx.lastQuestionType = questionType;
-  return false;
 }
 
 /* ========================================
-PERSONA / STYLE / EXPLAIN
+FINAL RESPONSE BUILDER
 ======================================== */
 
-function selectPersona(message){
+function buildResponse(ctx,reply,products){
 
-  const t = normalize(message);
+ const suggestions = generateSuggestions(ctx);
 
-  if(/fps|valorant|cs2|fortnite|rtx|rx|gamer/.test(t)){
-    return {
-      id:"gamer_braba",
-      label:"Gamer Braba"
-    };
-  }
+ return {
+  reply,
+  products,
+  suggestions
+ };
 
-  if(/plano|assinatura|premium/.test(t)){
-    return {
-      id:"assistente_premium",
-      label:"Assistente Premium"
-    };
-  }
-
-  return {
-    id:"vendedor_amigo",
-    label:"Vendedor Amigo"
-  };
-}
-
-function applyEmotion(text,ctx){
-
-  if(!text) return text;
-
-  if(ctx.customerType === "lost" || ctx.customerType === "explorer"){
-    return "Relaxa 😄 " + text;
-  }
-
-  if(ctx.customerType === "technical" || ctx.customerType === "analyst" || ctx.customerType === "buyer"){
-    return "Beleza 👍 " + text;
-  }
-
-  return text;
-}
-
-function humanize(text){
-
-  if(!text) return text;
-
-  const replacements = {
-    "qual seu orcamento": "com mais ou menos quanto voce pensa em investir?",
-    "qual uso do pc": "o que voce pretende fazer mais nele?",
-    "produto": "equipamento"
-  };
-
-  let result = normalize(text);
-
-  for(const key in replacements){
-    const rg = new RegExp(key,"gi");
-    result = result.replace(rg,replacements[key]);
-  }
-
-  return result.charAt(0).toUpperCase() + result.slice(1);
-}
-
-const GAME_KNOWLEDGE = {
-  valorant: {
-    cpu: "Ryzen 5 5600",
-    ram: "16GB",
-    gpu: "RTX 4060"
-  },
-  cs2: {
-    cpu: "Ryzen 5 5600",
-    ram: "16GB",
-    gpu: "RTX 4060"
-  },
-  fortnite: {
-    cpu: "Ryzen 7",
-    ram: "16GB",
-    gpu: "RTX 4060"
-  },
-  warzone: {
-    cpu: "Ryzen 7",
-    ram: "16GB",
-    gpu: "RTX 4070"
-  },
-  gta5: {
-    cpu: "Ryzen 5 5600",
-    ram: "16GB",
-    gpu: "RTX 4060"
-  }
-};
-
-function getGameHardware(game){
-  if(!game) return null;
-  return GAME_KNOWLEDGE[game] || null;
-}
-
-function chooseRecommendationStrategy(ctx){
-
-  if(ctx.budget <= 3000) return "budget_build";
-  if(ctx.budget <= 6000) return "mid_range";
-  if(ctx.budget > 6000) return "high_end";
-  return "default";
-}
-
-function explainProduct(product,ctx){
-
-  if(!product) return null;
-
-  const name = product.name || "Esse produto";
-
-  if(ctx.game){
-    const hw = getGameHardware(ctx.game);
-    if(hw){
-      return `${name} faz bastante sentido para ${ctx.game}, e encaixa bem numa build com ${hw.cpu}, ${hw.ram} e ${hw.gpu}.`;
-    }
-  }
-
-  if(ctx.use === "gaming"){
-    return `${name} roda jogos competitivos com ótima performance e faz bastante sentido para o seu perfil.`;
-  }
-
-  if(ctx.use === "work"){
-    return `${name} é excelente para produtividade e tarefas mais pesadas.`;
-  }
-
-  if(ctx.use === "study"){
-    return `${name} atende muito bem estudo, programação e uso diário.`;
-  }
-
-  return `${name} é uma boa opção para o seu perfil.`;
 }
 
 /* ========================================
-CATALOG SEARCH STRATEGY
-======================================== */
-
-function fetchCatalogProducts(ctx){
-
-  let products = [];
-
-  if(ctx.use === "gaming"){
-    products = unique([
-      ...searchCatalog("rtx"),
-      ...searchCatalog("radeon"),
-      ...searchCatalog("gtx")
-    ]);
-  }
-
-  if(ctx.use === "study"){
-    products = unique([
-      ...searchCatalog("notebook"),
-      ...searchCatalog("laptop"),
-      ...searchCatalog("ultrabook")
-    ]);
-  }
-
-  if(ctx.use === "work"){
-    products = unique([
-      ...searchCatalog("workstation"),
-      ...searchCatalog("pro"),
-      ...searchCatalog("creator")
-    ]);
-  }
-
-  return products.filter(Boolean);
-}
-
-/* ========================================
-ROUTER
+MAIN ROUTER
 ======================================== */
 
 export async function routeMessage(message,context={}){
 
-  const id = context.conversationId || "guest";
-  const headers = context.headers || {};
+ const id = context.conversationId || "guest";
 
-  let ctx = getContext(id);
+ const ctx = getContext(id);
 
-  ctx.lang = detectLanguage(headers);
+ /* CACHE */
 
-  if(!ctx.started){
-    ctx.started = true;
+ const cached = getResponseCache(message);
 
-    return {
-      reply: greetingByLang(ctx.lang),
-      products: [],
-      suggestions: []
-    };
-  }
-
-  const rawMessage = String(message || "");
-  const cached = getResponseCache(rawMessage);
-
-  if(cached){
-    return {
-      reply: cached,
-      products: [],
-      suggestions: []
-    };
-  }
-
-  registerSearch(rawMessage);
-
-  const normalized = normalizeSlang(rawMessage);
-  const parsed = semanticParser(normalized);
-  const chaosIntent = interpretChaos(normalized);
-
-  if(parsed.budget) registerPriceRange(parsed.budget);
-
-  if(parsed.budget) ctx.budget = parsed.budget;
-  if(parsed.use) ctx.use = parsed.use;
-  if(parsed.game) ctx.game = parsed.game;
-
-  updateMemoryScore(ctx, normalized);
-
-  let intent = detectIntent(normalized);
-
-  if(!intent){
-    intent = predictIntentEarly(normalized);
-  }
-
-  if(!intent && chaosIntent){
-    intent = { intent: chaosIntent };
-  }
-
-  ctx.intent = intent;
-  learnFromConversation(intent);
-
-  ctx.customerType = detectCustomerType(normalized);
-  ctx.intentGraph = mapCustomerIntent(ctx);
-
-  ctx.buyScore = detectBuyIntent(normalized);
-  ctx.salesStrategy = salesStrategy(ctx.buyScore);
-
-  updateConversationState(ctx);
-  updateContextBrain(ctx);
-
-  const persona = selectPersona(normalized);
-  ctx.persona = persona;
-
-  const commerceCtx = buildCommerceContext(ctx);
-  const mode = detectConversationMode(ctx);
-  const adaptiveReply = adaptiveSalesResponse(mode,ctx);
-  const nextStep = decideNextStep(ctx);
-  const path = predictConversationPath(ctx,intent);
-  const predictedReply = pathResponse(path,ctx);
-  const autoAction = decideAction(ctx);
-  const autoMessage = actionMessage(autoAction);
-  const commerceDecisionResult = commerceDecision(ctx);
-  const autonomousDecision = autonomousCommerceDecision(ctx);
-  const learnedReply = getSimilarReply(normalized);
-
-  if(commerceCtx.readyForRecommendation || ctx.stage === "recommendation"){
-
-    let products = fetchCatalogProducts(ctx);
-
-    products = rankProductsByNeural(products);
-    products = neuralMatchProducts(products,ctx);
-
-    const strategy = chooseRecommendationStrategy(ctx);
-    ctx.recommendationStrategy = strategy;
-
-    const actionProducts = generateSalesAction(
-      chooseProductStrategy(ctx),
-      products
-    );
-
-    if(actionProducts && actionProducts.length){
-
-      ctx.productsShown = true;
-      updateContextBrain(ctx);
-
-      for(const product of actionProducts){
-        if(product?.id){
-          registerProductView(product.id);
-        }
-      }
-
-      registerSuccessfulSuggestion();
-
-      const explanation = explainProduct(actionProducts[0],ctx);
-
-      let reply =
-        explanation ||
-        autoMessage ||
-        "Achei algumas opções que fazem bastante sentido para você 👇";
-
-      reply = applyEmotion(reply,ctx);
-      reply = humanize(reply);
-
-      setResponseCache(rawMessage,reply);
-
-      storeConversationSample(normalized,reply);
-
-      return {
-        reply,
-        products: actionProducts,
-        suggestions: []
-      };
-    }
-  }
-
-  if(shouldAskBudget(ctx) || !ctx.budget){
-
-    if(!preventLoop(ctx,"ask_budget")){
-
-      let reply = adaptiveReply || predictedReply || "Você já tem um orçamento em mente?";
-
-      reply = applyEmotion(reply,ctx);
-      reply = humanize(reply);
-
-      setResponseCache(rawMessage,reply);
-      storeConversationSample(normalized,reply);
-
-      return {
-        reply,
-        products: [],
-        suggestions: []
-      };
-    }
-  }
-
-  if(shouldAskUse(ctx) || !ctx.use){
-
-    if(!preventLoop(ctx,"ask_use")){
-
-      let reply =
-        adaptiveReply ||
-        predictedReply ||
-        "Você pretende usar mais para jogos, estudo ou trabalho?";
-
-      reply = applyEmotion(reply,ctx);
-      reply = humanize(reply);
-
-      setResponseCache(rawMessage,reply);
-      storeConversationSample(normalized,reply);
-
-      return {
-        reply,
-        products: [],
-        suggestions: []
-      };
-    }
-  }
-
-  if(learnedReply){
-
-    const reply = humanize(applyEmotion(learnedReply,ctx));
-
-    setResponseCache(rawMessage,reply);
-
-    return {
-      reply,
-      products: [],
-      suggestions: []
-    };
-  }
-
-  if(nextStep === "assist_decision" || ctx.stage === "decision"){
-
-    let reply = "Quer que eu compare algumas opções ou prefere que eu te indique a melhor direto?";
-
-    reply = applyEmotion(reply,ctx);
-    reply = humanize(reply);
-
-    setResponseCache(rawMessage,reply);
-    storeConversationSample(normalized,reply);
-
-    return {
-      reply,
-      products: [],
-      suggestions: []
-    };
-  }
-
-  if(autonomousDecision === "close_sale"){
-
-    let reply = "Você já está bem perto de fechar. Se quiser, eu posso te mostrar a opção mais certeira agora 👇";
-
-    reply = applyEmotion(reply,ctx);
-    reply = humanize(reply);
-
-    setResponseCache(rawMessage,reply);
-    storeConversationSample(normalized,reply);
-
-    return {
-      reply,
-      products: [],
-      suggestions: []
-    };
-  }
-
-  if(commerceDecisionResult === "conversation" || autoAction === "explore"){
-
-    let reply = autoMessage || predictedReply || "Me conta um pouco melhor o que você está procurando.";
-
-    reply = applyEmotion(reply,ctx);
-    reply = humanize(reply);
-
-    setResponseCache(rawMessage,reply);
-    storeConversationSample(normalized,reply);
-
-    return {
-      reply,
-      products: [],
-      suggestions: []
-    };
-  }
-
-  let fallback = "Perfeito. Já entendi bem o que você quer. Deixa eu organizar as melhores opções para você.";
-
-  if(ctx.game){
-    const hw = getGameHardware(ctx.game);
-    if(hw){
-      fallback = `Para ${ctx.game}, uma base boa seria ${hw.cpu}, ${hw.ram} e ${hw.gpu}. Agora deixa eu encaixar isso no seu orçamento.`;
-    }
-  }
-
-  fallback = applyEmotion(fallback,ctx);
-  fallback = humanize(fallback);
-
-  setResponseCache(rawMessage,fallback);
-  storeConversationSample(normalized,fallback);
+ if(cached){
 
   return {
-    reply: fallback,
-    products: [],
-    suggestions: []
+   reply:cached,
+   products:[],
+   suggestions:[]
   };
+
+ }
+
+ /* PIPELINE */
+
+ const normalized = runPipeline(ctx,message);
+
+ updateStage(ctx);
+
+ /* PROCESS */
+
+ const reply = processConversation(ctx,normalized);
+
+ /* PRODUCTS */
+
+ let products=[];
+
+ if(ctx.stage==="recommendation"){
+
+  products = findProducts(ctx);
+
+  if(products.length){
+
+   ctx.productsShown = true;
+
+  }
+
+ }
+
+ /* LOOP PROTECTION */
+
+ if(detectLoop(ctx,reply)){
+
+  return {
+   reply:"Deixa eu reformular isso melhor para você.",
+   products:[],
+   suggestions:[]
+  };
+
+ }
+
+ /* STORE */
+
+ storeReply(ctx,reply);
+
+ learnFromConversation(ctx);
+
+ /* CACHE */
+
+ setResponseCache(message,reply);
+
+ /* FINAL */
+
+ return buildResponse(ctx,reply,products);
+
+}
+/* ========================================
+LONG CONTEXT MEMORY
+======================================== */
+
+const LONG_MEMORY = {
+ userProfiles:{},
+ conversationPatterns:{}
+};
+
+function updateUserProfile(id,ctx){
+
+ if(!LONG_MEMORY.userProfiles[id]){
+
+  LONG_MEMORY.userProfiles[id] = {
+   visits:0,
+   interests:{},
+   budgets:[]
+  };
+
+ }
+
+ const profile = LONG_MEMORY.userProfiles[id];
+
+ profile.visits++;
+
+ if(ctx.use){
+
+  for(const u of ctx.use){
+
+   if(!profile.interests[u]){
+    profile.interests[u]=0;
+   }
+
+   profile.interests[u]++;
+
+  }
+
+ }
+
+ if(ctx.budget){
+
+  profile.budgets.push(ctx.budget);
+
+ }
+
+}
+
+/* ========================================
+INTENT PROBABILITY ENGINE
+======================================== */
+
+function computeIntentProbabilities(ctx){
+
+ const probs = {};
+
+ probs.buy =
+  (ctx.buyStage==="decision"?0.6:0) +
+  (ctx.budget?0.2:0) +
+  (ctx.use?0.2:0);
+
+ probs.compare =
+  ctx.intent==="comparison"?0.7:0.1;
+
+ probs.explore =
+  ctx.stage==="discovery"?0.6:0.2;
+
+ return probs;
+
+}
+
+/* ========================================
+INFERENCE ENGINE
+deduz necessidades implícitas
+======================================== */
+
+function inferNeeds(ctx){
+
+ const inferred={};
+
+ if(ctx.game){
+
+  inferred.gpuPriority=true;
+
+ }
+
+ if(ctx.use?.includes("gaming") && !ctx.hardware?.gpu){
+
+  inferred.needsGPU=true;
+
+ }
+
+ if(ctx.budget && ctx.budget>8000){
+
+  inferred.highPerformance=true;
+
+ }
+
+ if(ctx.use?.includes("work")){
+
+  inferred.cpuPriority=true;
+
+ }
+
+ return inferred;
+
+}
+
+/* ========================================
+REASONING ENGINE
+simulação de raciocínio
+======================================== */
+
+function reasoningEngine(ctx){
+
+ const reasoning=[];
+
+ if(ctx.game){
+
+  reasoning.push("user_wants_game_performance");
+
+ }
+
+ if(ctx.budget){
+
+  reasoning.push("budget_detected");
+
+ }
+
+ if(ctx.use?.includes("gaming")){
+
+  reasoning.push("gaming_build");
+
+ }
+
+ if(ctx.hardware?.gpu){
+
+  reasoning.push("user_knows_gpu");
+
+ }
+
+ return reasoning;
+
+}
+
+/* ========================================
+SMART QUESTION GENERATOR
+======================================== */
+
+function generateSmartQuestion(ctx){
+
+ if(!ctx.budget){
+
+  return "Para eu te recomendar algo bom, quanto você pretende investir no PC?";
+
+ }
+
+ if(!ctx.use){
+
+  return "Você pretende usar mais para jogos, trabalho ou uso geral?";
+
+ }
+
+ if(ctx.game && !ctx.hardware?.gpu){
+
+  return `Você quer rodar ${ctx.game.game} em FPS alto ou qualidade gráfica alta?`;
+
+ }
+
+ if(ctx.budget>10000 && ctx.use?.includes("gaming")){
+
+  return "Você prefere focar em FPS competitivo ou gráfico ultra?";
+
+ }
+
+ return null;
+
+}
+
+/* ========================================
+CONVERSATION DIRECTION ENGINE
+======================================== */
+
+function decideConversationDirection(ctx){
+
+ const probs = computeIntentProbabilities(ctx);
+
+ if(probs.buy > 0.7){
+
+  return "push_recommendation";
+
+ }
+
+ if(probs.compare > 0.5){
+
+  return "comparison_mode";
+
+ }
+
+ if(probs.explore > 0.5){
+
+  return "exploration_mode";
+
+ }
+
+ return "normal";
+
+}
+
+/* ========================================
+ADVANCED RECOVERY ENGINE
+======================================== */
+
+function deepConversationRecovery(ctx){
+
+ if(ctx.loopCount>1){
+
+  ctx.stage="discovery";
+
+ }
+
+ if(ctx.confusion>0.5){
+
+  return "Vamos simplificar. Me conta primeiro quanto você pretende investir.";
+
+ }
+
+ return null;
+
+}
+
+/* ========================================
+BEHAVIOR MODEL
+======================================== */
+
+function updateBehaviorModel(ctx){
+
+ if(ctx.history.length>10){
+
+  ctx.trust += 0.05;
+
+ }
+
+ if(ctx.productsShown){
+
+  ctx.trust += 0.05;
+
+ }
+
+ ctx.trust = clamp(ctx.trust,0,1);
+
+}
+
+/* ========================================
+SUPER RESPONSE ENGINE
+======================================== */
+
+function generateSuperReply(ctx){
+
+ const direction = decideConversationDirection(ctx);
+
+ if(direction==="push_recommendation"){
+
+  return "Baseado no que você me contou, encontrei algumas opções muito boas 👇";
+
+ }
+
+ if(direction==="comparison_mode"){
+
+  return "Boa pergunta. Vamos comparar algumas opções interessantes.";
+
+ }
+
+ if(direction==="exploration_mode"){
+
+  return "Me conta um pouco mais do que você está procurando.";
+
+ }
+
+ return generateReply(ctx);
+
+}
+/* ========================================
+INTENT RANKING ENGINE
+======================================== */
+
+function rankIntentProbability(ctx){
+
+ const scores = {
+  buy:0,
+  explore:0,
+  compare:0,
+  learn:0
+ };
+
+ if(ctx.buyStage==="decision") scores.buy+=0.6;
+
+ if(ctx.budget) scores.buy+=0.2;
+
+ if(ctx.intent==="comparison") scores.compare+=0.7;
+
+ if(ctx.stage==="discovery") scores.explore+=0.5;
+
+ if(ctx.curiosity>0.5) scores.learn+=0.4;
+
+ const ranked = Object.entries(scores)
+  .sort((a,b)=>b[1]-a[1]);
+
+ return ranked[0][0];
+}
+
+/* ========================================
+NEXT MESSAGE PREDICTOR
+======================================== */
+
+function predictNextUserQuestion(ctx){
+
+ if(!ctx.budget){
+  return "user_will_talk_budget";
+ }
+
+ if(!ctx.use){
+  return "user_will_explain_usage";
+ }
+
+ if(ctx.game && !ctx.hardware?.gpu){
+  return "user_will_ask_gpu";
+ }
+
+ if(ctx.stage==="recommendation"){
+  return "user_will_compare_products";
+ }
+
+ return "unknown";
+}
+
+/* ========================================
+DIALOGUE DEPTH ENGINE
+======================================== */
+
+function computeDialogueDepth(ctx){
+
+ const depth = ctx.history.length;
+
+ if(depth < 4) return "surface";
+
+ if(depth < 10) return "medium";
+
+ return "deep";
+}
+
+/* ========================================
+CONVERSATION PRIORITY ENGINE
+======================================== */
+
+function decideConversationPriority(ctx){
+
+ const intent = rankIntentProbability(ctx);
+
+ if(intent==="buy") return "sales";
+
+ if(intent==="compare") return "comparison";
+
+ if(intent==="learn") return "education";
+
+ return "discovery";
+}
+
+/* ========================================
+ADAPTIVE DIALOGUE STRATEGY
+======================================== */
+
+function adaptiveDialogueStrategy(ctx){
+
+ const priority = decideConversationPriority(ctx);
+
+ const depth = computeDialogueDepth(ctx);
+
+ if(priority==="sales" && depth!=="surface"){
+  return "push_recommendation";
+ }
+
+ if(priority==="comparison"){
+  return "compare_products";
+ }
+
+ if(priority==="education"){
+  return "explain_options";
+ }
+
+ return "ask_questions";
+}
+
+/* ========================================
+SMART QUESTION TREE
+======================================== */
+
+function generateAdvancedQuestion(ctx){
+
+ const prediction = predictNextUserQuestion(ctx);
+
+ if(prediction==="user_will_talk_budget"){
+  return "Quanto você pretende investir no PC?";
+ }
+
+ if(prediction==="user_will_explain_usage"){
+  return "Você pretende usar mais para jogos, estudo ou trabalho?";
+ }
+
+ if(prediction==="user_will_ask_gpu"){
+  return "Você prefere Nvidia ou AMD para a placa de vídeo?";
+ }
+
+ if(prediction==="user_will_compare_products"){
+  return "Quer que eu compare algumas opções para você?";
+ }
+
+ return null;
+}
+
+/* ========================================
+USER BEHAVIOR MODEL
+======================================== */
+
+function analyzeUserBehavior(ctx){
+
+ const behavior = {
+  technical:false,
+  priceSensitive:false,
+  performanceFocused:false
+ };
+
+ if(ctx.userLevel==="expert"){
+  behavior.technical=true;
+ }
+
+ if(ctx.budget && ctx.budget < 3000){
+  behavior.priceSensitive=true;
+ }
+
+ if(ctx.use?.includes("gaming")){
+  behavior.performanceFocused=true;
+ }
+
+ return behavior;
+}
+
+/* ========================================
+DECISION ENGINE
+======================================== */
+
+function decideNextAction(ctx){
+
+ const strategy = adaptiveDialogueStrategy(ctx);
+
+ if(strategy==="push_recommendation"){
+  return "show_products";
+ }
+
+ if(strategy==="compare_products"){
+  return "compare_products";
+ }
+
+ if(strategy==="explain_options"){
+  return "explain";
+ }
+
+ return "ask";
+}
+
+/* ========================================
+SUPER RESPONSE BUILDER
+======================================== */
+
+function generateGodReply(ctx){
+
+ const action = decideNextAction(ctx);
+
+ if(action==="show_products"){
+  return "Baseado no que você me contou, encontrei algumas opções muito interessantes 👇";
+ }
+
+ if(action==="compare_products"){
+  return "Vamos comparar algumas opções boas para você.";
+ }
+
+ if(action==="explain"){
+  return "Deixa eu te explicar rapidamente as melhores opções para esse caso.";
+ }
+
+ const question = generateAdvancedQuestion(ctx);
+
+ if(question) return question;
+
+ return generateReply(ctx);
+}
+/* ========================================
+EVOLUTION MEMORY
+======================================== */
+
+const EVOLUTION = {
+ intents:{},
+ products:{},
+ replies:{},
+ conversations:0
+};
+
+/* ========================================
+LEARN INTENT
+======================================== */
+
+function learnIntent(intent){
+
+ if(!intent) return;
+
+ if(!EVOLUTION.intents[intent]){
+  EVOLUTION.intents[intent]=0;
+ }
+
+ EVOLUTION.intents[intent]++;
+
+}
+
+/* ========================================
+LEARN PRODUCT INTEREST
+======================================== */
+
+function learnProduct(productId){
+
+ if(!productId) return;
+
+ if(!EVOLUTION.products[productId]){
+  EVOLUTION.products[productId]=0;
+ }
+
+ EVOLUTION.products[productId]++;
+
+}
+
+/* ========================================
+LEARN REPLY SUCCESS
+======================================== */
+
+function learnReply(reply){
+
+ if(!reply) return;
+
+ if(!EVOLUTION.replies[reply]){
+  EVOLUTION.replies[reply]=0;
+ }
+
+ EVOLUTION.replies[reply]++;
+
+}
+
+/* ========================================
+CONVERSATION LEARNING
+======================================== */
+
+function learnConversation(ctx){
+
+ EVOLUTION.conversations++;
+
+ if(ctx.intent){
+  learnIntent(ctx.intent);
+ }
+
+ if(ctx.lastProduct){
+  learnProduct(ctx.lastProduct);
+ }
+
+ if(ctx.lastReply){
+  learnReply(ctx.lastReply);
+ }
+
+}
+
+/* ========================================
+POPULAR PRODUCT ENGINE
+======================================== */
+
+function getPopularProducts(){
+
+ const ranked = Object.entries(EVOLUTION.products)
+  .sort((a,b)=>b[1]-a[1])
+  .slice(0,5);
+
+ return ranked.map(r=>r[0]);
+}
+
+/* ========================================
+INTELLIGENCE BOOST
+======================================== */
+
+function applyEvolutionBoost(products){
+
+ if(!products) return products;
+
+ const popular = getPopularProducts();
+
+ return products.sort((a,b)=>{
+
+  const sa = popular.includes(a.id) ? 2 : 0;
+  const sb = popular.includes(b.id) ? 2 : 0;
+
+  return sb-sa;
+
+ });
+
+}
+
+/* ========================================
+SMART LEARNING HOOK
+======================================== */
+
+function evolutionHook(ctx,reply){
+
+ ctx.lastReply = reply;
+
+ learnConversation(ctx);
+
 }
