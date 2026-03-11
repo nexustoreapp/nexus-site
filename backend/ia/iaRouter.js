@@ -1320,7 +1320,56 @@ function updateStage(ctx){
  }
 
 }
+/* ========================================
+EMOTION APPLY
+======================================== */
 
+function applyEmotion(reply,ctx){
+
+  const persona = selectPersona(ctx);
+
+  if(persona === "support"){
+    return "Calma. " + reply;
+  }
+
+  if(persona === "sales"){
+    return "Boa. " + reply;
+  }
+
+  if(persona === "technical"){
+    return "Perfeito. " + reply;
+  }
+
+  if(persona === "explainer"){
+    return "Tranquilo. " + reply;
+  }
+
+  return reply;
+}
+
+/* ========================================
+NEURAL PRODUCT RANK
+======================================== */
+
+function neuralRankProducts(products=[]){
+
+  if(!Array.isArray(products)) return [];
+
+  return [...products].sort((a,b)=>{
+
+    const sa =
+      (NEURAL.clicks[a?.id] || 0) * 2 +
+      (NEURAL.purchases[a?.id] || 0) * 5 -
+      (NEURAL.ignores[a?.id] || 0);
+
+    const sb =
+      (NEURAL.clicks[b?.id] || 0) * 2 +
+      (NEURAL.purchases[b?.id] || 0) * 5 -
+      (NEURAL.ignores[b?.id] || 0);
+
+    return sb - sa;
+  });
+}
 /* ========================================
 RESPONSE PIPELINE
 ======================================== */
