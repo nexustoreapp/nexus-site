@@ -13,27 +13,42 @@ import { rankProductsByNeural } from "./neuralCommerce.js";
 
 import { neuralMatchProducts } from "./neuralProductMatcher.js";
 
-import { predictBudget, predictUse } from "./predictiveCommerce.js";
-
-const MEMORY = new Map();
 const CONTEXT = new Map();
+
+/* ===============================
+GET CONTEXT
+=============================== */
 
 function getContext(id){
   return CONTEXT.get(id) || {};
 }
 
+/* ===============================
+PARSE BUDGET
+=============================== */
+
 function parseBudget(text){
 
   const t = text.toLowerCase();
 
+  // 25 mil / 25k
   const mil = t.match(/(\d+)\s*(mil|k)/);
   if(mil) return Number(mil[1]) * 1000;
 
-  const num = t.match(/\d{2,6}/);
+  // 25.549
+  const dotted = t.match(/\d{1,3}(\.\d{3})+/);
+  if(dotted) return Number(dotted[0].replace(/\./g,""));
+
+  // 25549
+  const num = t.match(/\d{3,6}/);
   if(num) return Number(num[0]);
 
   return null;
 }
+
+/* ===============================
+DETECT USE
+=============================== */
 
 function detectUse(text){
 
@@ -43,11 +58,15 @@ function detectUse(text){
   if(/estudo|faculdade|programar/i.test(text))
     return "study";
 
-  if(/render|edição|trabalho/i.test(text))
+  if(/render|edição|design|trabalho/i.test(text))
     return "work";
 
   return null;
 }
+
+/* ===============================
+ROUTER
+=============================== */
 
 export async function routeMessage(message,context={}){
 
@@ -55,9 +74,14 @@ export async function routeMessage(message,context={}){
 
   let ctx = getContext(id);
 
+  /* ===============================
+START
+=============================== */
+
   if(!ctx.started){
 
     ctx.started = true;
+
     CONTEXT.set(id,ctx);
 
     return {
@@ -69,13 +93,27 @@ export async function routeMessage(message,context={}){
 
   const text = message.toLowerCase();
 
+  /* ===============================
+EXTRACT CONTEXT
+=============================== */
+
   const budget = parseBudget(text);
   if(budget) ctx.budget = budget;
 
   const use = detectUse(text);
   if(use) ctx.use = use;
 
+  /* ===============================
+INTENT
+=============================== */
+
   const intent = detectIntent(text) || predictIntentEarly(text);
+
+  ctx.intent = intent;
+
+  /* ===============================
+CUSTOMER PROFILE
+=============================== */
 
   ctx.customerType = detectCustomerType(text);
 
@@ -83,13 +121,19 @@ export async function routeMessage(message,context={}){
 
   ctx.salesStrategy = salesStrategy(ctx.buyScore);
 
+  /* ===============================
+STAGE
+=============================== */
+
   if(ctx.budget && ctx.use){
     ctx.stage = "recommendation";
   }
 
   CONTEXT.set(id,ctx);
 
-  /* PRIORIDADE: RECOMENDAÇÃO */
+  /* ===============================
+RECOMMENDATION
+=============================== */
 
   if(ctx.stage === "recommendation"){
 
@@ -120,14 +164,16 @@ export async function routeMessage(message,context={}){
       CONTEXT.set(id,ctx);
 
       return {
-        reply:"Achei algumas opções muito boas para você 👇",
+        reply:"Achei algumas opções que fazem bastante sentido para você 👇",
         products:action,
         suggestions:[]
       };
     }
   }
 
-  /* PERGUNTAS */
+  /* ===============================
+QUESTIONS
+=============================== */
 
   if(!ctx.budget){
 
@@ -147,8 +193,12 @@ export async function routeMessage(message,context={}){
     };
   }
 
+  /* ===============================
+FALLBACK
+=============================== */
+
   return {
-    reply:"Legal! Vou procurar algumas opções para você.",
+    reply:"Perfeito. Já tenho algumas ideias para você. Deixa eu procurar as melhores opções.",
     products:[],
     suggestions:[]
   };
