@@ -1,5 +1,3 @@
-// backend/ia/intentMatcher.js
-
 import fs from "fs";
 import path from "path";
 
@@ -10,7 +8,7 @@ CACHE
 let INTENT_CACHE = null;
 
 /* ===============================
-LOAD INTENTS (FRAGMENTED)
+LOAD INTENTS
 =============================== */
 
 function loadIntents(){
@@ -29,25 +27,26 @@ function loadIntents(){
 
     const files = fs.readdirSync(intentsDir);
 
-    const allIntents = [];
+    const all = [];
 
     for(const file of files){
 
       if(!file.endsWith(".json")) continue;
 
-      const filePath = path.join(intentsDir,file);
-
-      const raw = fs.readFileSync(filePath,"utf-8");
+      const raw = fs.readFileSync(
+        path.join(intentsDir,file),
+        "utf-8"
+      );
 
       const json = JSON.parse(raw);
 
       if(Array.isArray(json)){
-        allIntents.push(...json);
+        all.push(...json);
       }
 
     }
 
-    INTENT_CACHE = allIntents;
+    INTENT_CACHE = all;
 
     return INTENT_CACHE;
 
@@ -83,7 +82,9 @@ TOKENIZE
 
 function tokenize(text){
 
-  return normalize(text).split(" ").filter(Boolean);
+  return normalize(text)
+  .split(" ")
+  .filter(Boolean);
 
 }
 
@@ -91,22 +92,32 @@ function tokenize(text){
 KEYWORD SCORE
 =============================== */
 
-function scoreKeywords(tokens,keywords=[]){
+function scoreKeywords(message,tokens,keywords=[]){
 
   let score = 0;
+
+  const normalizedMessage = normalize(message);
 
   for(const kw of keywords){
 
     const k = normalize(kw);
 
+    /* frase inteira */
+
+    if(normalizedMessage.includes(k)){
+      score += 10;
+    }
+
+    /* token */
+
     for(const t of tokens){
 
       if(t === k){
-        score += 4;
+        score += 6;
       }
 
       if(k.includes(t) || t.includes(k)){
-        score += 2;
+        score += 3;
       }
 
     }
@@ -118,21 +129,21 @@ function scoreKeywords(tokens,keywords=[]){
 }
 
 /* ===============================
-EXAMPLE SCORE
+EXAMPLES SCORE
 =============================== */
 
 function scoreExamples(message,examples=[]){
 
-  const m = normalize(message);
-
   let score = 0;
+
+  const m = normalize(message);
 
   for(const ex of examples){
 
     const e = normalize(ex);
 
     if(m.includes(e)){
-      score += 6;
+      score += 15;
     }
 
   }
@@ -142,7 +153,7 @@ function scoreExamples(message,examples=[]){
 }
 
 /* ===============================
-SIGNAL SCORE
+SIGNALS SCORE
 =============================== */
 
 function scoreSignals(tokens,signals=[]){
@@ -155,8 +166,12 @@ function scoreSignals(tokens,signals=[]){
 
     for(const t of tokens){
 
+      if(sig === t){
+        score += 8;
+      }
+
       if(sig.includes(t) || t.includes(sig)){
-        score += 3;
+        score += 4;
       }
 
     }
@@ -177,18 +192,34 @@ function scoreIntent(message,intent){
 
   let score = 0;
 
-  score += scoreKeywords(tokens,intent.keywords || []);
+  score += scoreKeywords(
+    message,
+    tokens,
+    intent.keywords || []
+  );
 
-  score += scoreExamples(message,intent.userExamples || []);
+  score += scoreExamples(
+    message,
+    intent.userExamples || []
+  );
 
-  score += scoreSignals(tokens,intent.activationSignals || []);
+  score += scoreSignals(
+    tokens,
+    intent.activationSignals || []
+  );
+
+  /* prioridade */
+
+  if(intent.priority){
+    score += intent.priority;
+  }
 
   return score;
 
 }
 
 /* ===============================
-INTENT DETECTOR
+DETECT INTENT
 =============================== */
 
 export function detectIntent(message){
@@ -199,7 +230,7 @@ export function detectIntent(message){
     return null;
   }
 
-  let bestIntent = null;
+  let best = null;
   let bestScore = 0;
 
   for(const intent of intents){
@@ -209,16 +240,16 @@ export function detectIntent(message){
     if(score > bestScore){
 
       bestScore = score;
-      bestIntent = intent;
+      best = intent;
 
     }
 
   }
 
-  if(bestScore <= 0){
+  if(bestScore < 6){
     return null;
   }
 
-  return bestIntent;
+  return best;
 
 }
