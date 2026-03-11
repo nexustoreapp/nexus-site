@@ -1,10 +1,34 @@
 // backend/ia/predictiveCommerce.js
 
+/* ===============================
+PREDICT BUDGET
+=============================== */
+
 export function predictBudget(text){
 
-  const numbers = text.match(/\d{3,6}/g);
+  const t = String(text || "").toLowerCase();
 
-  if(numbers && numbers.length){
+  /* 30 mil / 30k */
+
+  const mil = t.match(/(\d+)\s*(mil|k)/);
+
+  if(mil){
+    return Number(mil[1]) * 1000;
+  }
+
+  /* 25.549 */
+
+  const dotted = t.match(/\d{1,3}(\.\d{3})+/);
+
+  if(dotted){
+    return Number(dotted[0].replace(/\./g,""));
+  }
+
+  /* 25549 */
+
+  const numbers = t.match(/\d{3,6}/);
+
+  if(numbers){
     return Number(numbers[0]);
   }
 
@@ -12,25 +36,33 @@ export function predictBudget(text){
 
 }
 
+/* ===============================
+PREDICT USE
+=============================== */
+
 export function predictUse(text){
 
-  const t = text.toLowerCase();
+  const t = String(text || "").toLowerCase();
 
-  if(/jogo|fps|valorant|cs|fortnite/.test(t)){
+  if(/jogar|jogo|game|gaming|valorant|cs2|fortnite|fps/.test(t)){
     return "gaming";
   }
 
-  if(/estudo|faculdade|programar/.test(t)){
+  if(/estudo|faculdade|programar|programacao|estudar/.test(t)){
     return "study";
   }
 
-  if(/trabalho|edição|design|render/.test(t)){
+  if(/trabalho|render|edi[cç][aã]o|design|3d|arquitetura/.test(t)){
     return "work";
   }
 
-  return "general";
+  return null;
 
 }
+
+/* ===============================
+PREDICTIVE SUGGESTION
+=============================== */
 
 export function predictiveSuggestion(ctx){
 
@@ -38,16 +70,16 @@ export function predictiveSuggestion(ctx){
     return null;
   }
 
-  if(ctx.use==="gaming"){
-    return "Se a ideia for jogar, normalmente algo na faixa de 3000 já começa a rodar bastante coisa.";
+  if(ctx.use === "gaming"){
+    return "Se a ideia for jogar, normalmente algo entre 3000 e 4000 já começa a rodar bastante coisa.";
   }
 
-  if(ctx.use==="study"){
+  if(ctx.use === "study"){
     return "Para estudo normalmente um notebook equilibrado já resolve bem.";
   }
 
-  if(ctx.use==="work"){
-    return "Para trabalho depende muito do tipo de tarefa, mas dá para montar algo bem eficiente.";
+  if(ctx.use === "work"){
+    return "Para trabalho depende bastante da tarefa, mas dá para montar algo bem eficiente.";
   }
 
   return null;
