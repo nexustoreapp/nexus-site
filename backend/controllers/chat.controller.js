@@ -9,12 +9,10 @@ export async function chat(req, res) {
     const message = String(req.body?.message || "").trim();
 
     if (!message) {
-
       return res.status(400).json({
         ok: false,
         error: "Mensagem vazia."
       });
-
     }
 
     const plan = req.user?.plan || "free";
@@ -24,17 +22,32 @@ export async function chat(req, res) {
       req.headers["x-conversation-id"] ||
       "guest";
 
-    const result = await routeMessage(message, {
+    /* =========================
+       CALL ROUTER
+    ========================= */
+
+    const result = await routeMessage(message,{
       plan,
       conversationId,
       headers: req.headers
-    });
+    }) || {};
+
+    /* =========================
+       SAFE RESPONSE
+    ========================= */
+
+    const reply =
+      result.reply ||
+      "Me conta melhor o que você está procurando.";
+
+    const products = result.products || [];
+    const suggestions = result.suggestions || [];
 
     return res.status(200).json({
       ok: true,
-      reply: result.reply,
-      products: result.products || [],
-      suggestions: result.suggestions || []
+      reply,
+      products,
+      suggestions
     });
 
   }
