@@ -2,34 +2,66 @@
 
 export function predictIntentEarly(text){
 
-  const t = String(text || "").toLowerCase();
+  const t = String(text || "").toLowerCase().trim();
 
-  if(/pc|computador|setup/.test(t)){
-    return "pc_help";
+  /* ===============================
+PC / BUILD
+=============================== */
+
+  if(/pc gamer|montar pc|quero um pc|pc pra jogar|pc bom|pc gamer/i.test(t)){
+    return { intent:"pc_help" };
   }
 
-  if(/placa de video|gpu|rtx|rx/.test(t)){
-    return "gpu_help";
+  if(/pc|computador|setup pc/i.test(t)){
+    return { intent:"pc_help" };
   }
 
-  if(/notebook|laptop/.test(t)){
-    return "notebook_help";
+  /* ===============================
+GPU
+=============================== */
+
+  if(/placa de video|gpu|rtx|rx|nvidia|amd/i.test(t)){
+    return { intent:"gpu_help" };
   }
 
-  if(/monitor|144hz|240hz/.test(t)){
-    return "monitor_help";
+  /* ===============================
+NOTEBOOK
+=============================== */
+
+  if(/notebook|laptop|ultrabook/i.test(t)){
+    return { intent:"notebook_help" };
   }
 
-  if(/setup gamer/.test(t)){
-    return "setup_help";
+  /* ===============================
+MONITOR
+=============================== */
+
+  if(/monitor|144hz|165hz|240hz/i.test(t)){
+    return { intent:"monitor_help" };
   }
 
-  if(/comprar|produto|catalogo/.test(t)){
-    return "product_search";
+  /* ===============================
+SETUP
+=============================== */
+
+  if(/setup gamer|setup completo|mesa gamer/i.test(t)){
+    return { intent:"setup_help" };
   }
 
-  if(/problema|erro|não consegui comprar/.test(t)){
-    return "purchase_problem";
+  /* ===============================
+SHOPPING
+=============================== */
+
+  if(/comprar|produto|catalogo|catalog/i.test(t)){
+    return { intent:"product_search" };
+  }
+
+  /* ===============================
+SUPPORT
+=============================== */
+
+  if(/problema|erro|nao consegui comprar|falhou pagamento/i.test(t)){
+    return { intent:"purchase_problem" };
   }
 
   return null;
