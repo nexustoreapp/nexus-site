@@ -13,56 +13,9 @@ import { rankProductsByNeural } from "./neuralCommerce.js";
 
 import { neuralMatchProducts } from "./neuralProductMatcher.js";
 
-const CONTEXT = new Map();
-
-/* ===============================
-GET CONTEXT
-=============================== */
-
-function getContext(id){
-  return CONTEXT.get(id) || {};
-}
-
-/* ===============================
-PARSE BUDGET
-=============================== */
-
-function parseBudget(text){
-
-  const t = text.toLowerCase();
-
-  // 25 mil / 25k
-  const mil = t.match(/(\d+)\s*(mil|k)/);
-  if(mil) return Number(mil[1]) * 1000;
-
-  // 25.549
-  const dotted = t.match(/\d{1,3}(\.\d{3})+/);
-  if(dotted) return Number(dotted[0].replace(/\./g,""));
-
-  // 25549
-  const num = t.match(/\d{3,6}/);
-  if(num) return Number(num[0]);
-
-  return null;
-}
-
-/* ===============================
-DETECT USE
-=============================== */
-
-function detectUse(text){
-
-  if(/valorant|cs2|fortnite|jogo|game|gaming/i.test(text))
-    return "gaming";
-
-  if(/estudo|faculdade|programar/i.test(text))
-    return "study";
-
-  if(/render|edição|design|trabalho/i.test(text))
-    return "work";
-
-  return null;
-}
+import { parseMessage } from "./semanticParser.js";
+import { getConversationState, updateConversationState } from "./conversationState.js";
+import { buildCommerceContext } from "./commerceContextBuilder.js";
 
 /* ===============================
 ROUTER
@@ -72,17 +25,17 @@ export async function routeMessage(message,context={}){
 
   const id = context.conversationId || "guest";
 
-  let ctx = getContext(id);
+  const text = String(message || "").toLowerCase();
 
   /* ===============================
 START
 =============================== */
 
-  if(!ctx.started){
+  let state = getConversationState(id);
 
-    ctx.started = true;
+  if(!state.started){
 
-    CONTEXT.set(id,ctx);
+    state.started = true;
 
     return {
       reply:"Oi! Eu sou a Nayla 👋 Como posso ajudar?",
@@ -91,17 +44,13 @@ START
     };
   }
 
-  const text = message.toLowerCase();
-
   /* ===============================
-EXTRACT CONTEXT
+SEMANTIC PARSER
 =============================== */
 
-  const budget = parseBudget(text);
-  if(budget) ctx.budget = budget;
+  const parsed = parseMessage(text);
 
-  const use = detectUse(text);
-  if(use) ctx.use = use;
+  state = updateConversationState(id,parsed);
 
   /* ===============================
 INTENT
@@ -109,88 +58,88 @@ INTENT
 
   const intent = detectIntent(text) || predictIntentEarly(text);
 
-  ctx.intent = intent;
+  state.intent = intent;
 
   /* ===============================
 CUSTOMER PROFILE
 =============================== */
 
-  ctx.customerType = detectCustomerType(text);
+  state.customerType = detectCustomerType(text);
 
-  ctx.buyScore = detectBuyIntent(text);
+  state.buyScore = detectBuyIntent(text);
 
-  ctx.salesStrategy = salesStrategy(ctx.buyScore);
-
-  /* ===============================
-STAGE
-=============================== */
-
-  if(ctx.budget && ctx.use){
-    ctx.stage = "recommendation";
-  }
-
-  CONTEXT.set(id,ctx);
+  state.salesStrategy = salesStrategy(state.buyScore);
 
   /* ===============================
-RECOMMENDATION
+COMMERCE CONTEXT
 =============================== */
 
-  if(ctx.stage === "recommendation"){
-
-    let products=[];
-
-    if(ctx.use === "gaming")
-      products = searchCatalog("gpu");
-
-    if(ctx.use === "study")
-      products = searchCatalog("notebook");
-
-    if(ctx.use === "work")
-      products = searchCatalog("workstation");
-
-    products = rankProductsByNeural(products);
-
-    products = neuralMatchProducts(products,ctx);
-
-    const action = generateSalesAction(
-      chooseProductStrategy(ctx),
-      products
-    );
-
-    if(action?.length){
-
-      ctx.productsShown = true;
-
-      CONTEXT.set(id,ctx);
-
-      return {
-        reply:"Achei algumas opções que fazem bastante sentido para você 👇",
-        products:action,
-        suggestions:[]
-      };
-    }
-  }
+  const commerceCtx = buildCommerceContext(state);
 
   /* ===============================
-QUESTIONS
+ASK BUDGET
 =============================== */
 
-  if(!ctx.budget){
+  if(commerceCtx.missingBudget){
 
     return {
       reply:"Você já tem um orçamento em mente?",
       products:[],
       suggestions:[]
     };
+
   }
 
-  if(!ctx.use){
+  /* ===============================
+ASK USE
+=============================== */
+
+  if(commerceCtx.missingUse){
 
     return {
       reply:"Você pretende usar mais para jogos, estudo ou trabalho?",
       products:[],
       suggestions:[]
     };
+
+  }
+
+  /* ===============================
+RECOMMENDATION
+=============================== */
+
+  if(commerceCtx.readyForRecommendation){
+
+    let products=[];
+
+    if(state.use === "gaming")
+      products = searchCatalog("gpu");
+
+    if(state.use === "study")
+      products = searchCatalog("notebook");
+
+    if(state.use === "work")
+      products = searchCatalog("workstation");
+
+    products = rankProductsByNeural(products);
+
+    products = neuralMatchProducts(products,state);
+
+    const action = generateSalesAction(
+      chooseProductStrategy(state),
+      products
+    );
+
+    if(action?.length){
+
+      return {
+        reply:"Achei algumas opções que fazem bastante sentido para você 👇",
+        products:action,
+        suggestions:[]
+      };
+
+    }
+
   }
 
   /* ===============================
@@ -198,7 +147,7 @@ FALLBACK
 =============================== */
 
   return {
-    reply:"Perfeito. Já tenho algumas ideias para você. Deixa eu procurar as melhores opções.",
+    reply:"Entendi. Deixa eu analisar algumas opções boas para você.",
     products:[],
     suggestions:[]
   };
