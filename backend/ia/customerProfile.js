@@ -2,19 +2,43 @@
 
 export function detectCustomerType(text){
 
-  const t = text.toLowerCase();
+  const t = String(text || "").toLowerCase();
 
-  if(/comparar|diferença|detalhe/.test(t)){
+  /* ===============================
+TECHNICAL USER
+=============================== */
+
+  if(/benchmark|fps|latencia|clock|vrm|chipset|spec|especifica/.test(t)){
+    return "technical";
+  }
+
+  /* ===============================
+ANALYST (comparador)
+=============================== */
+
+  if(/comparar|diferen[çc]a|qual melhor|vale mais a pena/.test(t)){
     return "analyst";
   }
 
-  if(/quero comprar|vou pegar/.test(t)){
+  /* ===============================
+BUYER
+=============================== */
+
+  if(/quero comprar|vou comprar|vou pegar|vou levar|fechar compra/.test(t)){
     return "buyer";
   }
 
-  if(/não sei|to perdido/.test(t)){
+  /* ===============================
+LOST USER
+=============================== */
+
+  if(/nao sei|não sei|to perdido|me ajuda|qual escolher/.test(t)){
     return "lost";
   }
+
+  /* ===============================
+DEFAULT
+=============================== */
 
   return "explorer";
 
