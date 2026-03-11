@@ -19,16 +19,27 @@ BUDGET
     result.budget = Number(mil[1]) * 1000;
   }
 
+  const dotted = t.match(/\d{1,3}(\.\d{3})+/);
+  if(!result.budget && dotted){
+    result.budget = Number(dotted[0].replace(/\./g,""));
+  }
+
   const number = t.match(/\d{3,6}/);
   if(!result.budget && number){
     result.budget = Number(number[0]);
+  }
+
+  /* linguagem informal */
+
+  if(/(\d)\s*conto/.test(t)){
+    result.budget = Number(t.match(/(\d)\s*conto/)[1]) * 1000;
   }
 
   /* ===============================
 USE
 =============================== */
 
-  if(/valorant|cs|cs2|fortnite|jogo|game|gaming/.test(t)){
+  if(/valorant|cs2|cs|fortnite|jogo|game|gaming/.test(t)){
     result.use = "gaming";
   }
 
@@ -36,7 +47,7 @@ USE
     result.use = "study";
   }
 
-  if(/edi[cç][aã]o|render|trabalho|design/.test(t)){
+  if(/render|edi[cç][aã]o|design|trabalho/.test(t)){
     result.use = "work";
   }
 
