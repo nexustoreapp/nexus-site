@@ -1389,75 +1389,80 @@ MAIN ROUTER
 
 export async function routeMessage(message,context={}){
 
- const id = context.conversationId || "guest";
+  const id = context.conversationId || "guest";
+  let ctx = getContext(id);
 
- const ctx = getContext(id);
+  const normalized = normalizeSlang(message);
+  const parsed = semanticParser(normalized);
 
- /* CACHE */
+  if(parsed.budget) ctx.budget = parsed.budget;
+  if(parsed.use) ctx.use = parsed.use;
 
- const cached = getResponseCache(message);
+  ctx.customerType = detectCustomerType(normalized);
 
- if(cached){
+  const buyScore = detectBuyIntent(normalized);
+  ctx.salesStrategy = salesStrategy(buyScore);
 
-  return {
-   reply:cached,
-   products:[],
-   suggestions:[]
-  };
-
- }
-
- /* PIPELINE */
-
- const normalized = runPipeline(ctx,message);
-
- updateStage(ctx);
-
- /* PROCESS */
-
- const reply = processConversation(ctx,normalized);
-
- /* PRODUCTS */
-
- let products=[];
-
- if(ctx.stage==="recommendation"){
-
-  products = findProducts(ctx);
-
-  if(products.length){
-
-   ctx.productsShown = true;
-
+  if(ctx.budget && ctx.use){
+    ctx.stage = "recommendation";
   }
 
- }
+  let reply = null;
+  let products = [];
+  let suggestions = [];
 
- /* LOOP PROTECTION */
+  /* ===============================
+  RECOMMENDATION
+  =============================== */
 
- if(detectLoop(ctx,reply)){
+  if(ctx.stage === "recommendation"){
+
+    if(ctx.use === "gaming"){
+      products = searchCatalog("rtx");
+    }
+
+    if(ctx.use === "study"){
+      products = searchCatalog("notebook");
+    }
+
+    if(ctx.use === "work"){
+      products = searchCatalog("workstation");
+    }
+
+    products = rankProducts(products);
+    products = matchProducts(products,ctx);
+
+    if(products.length){
+      reply = "Achei algumas opções boas para você 👇";
+      products = products.slice(0,3);
+    }
+  }
+
+  /* ===============================
+  QUESTIONS
+  =============================== */
+
+  if(!reply && !ctx.budget){
+    reply = "Você já tem um orçamento em mente?";
+  }
+
+  if(!reply && !ctx.use){
+    reply = "Você pretende usar mais para jogos, estudo ou trabalho?";
+  }
+
+  /* ===============================
+  FALLBACK FINAL
+  =============================== */
+
+  if(!reply){
+    reply = "Perfeito. Deixa eu procurar algumas opções para você.";
+  }
 
   return {
-   reply:"Deixa eu reformular isso melhor para você.",
-   products:[],
-   suggestions:[]
+    reply,
+    products,
+    suggestions
   };
-
- }
-
- /* STORE */
-
- storeReply(ctx,reply);
-
- learnFromConversation(ctx);
-
- /* CACHE */
-
- setResponseCache(message,reply);
-
- /* FINAL */
-
- return buildResponse(ctx,reply,products);
 
 }
 /* ========================================
