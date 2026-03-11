@@ -213,7 +213,7 @@ const TEXT_REPAIR_MAP = {
   nn:"nao",
   nnn:"nao",
   naoo:"nao",
-  nn posso:"nao posso",
+  nn_posso:"nao posso",
   ss:"sim",
   sss:"sim",
   s:"sim",
