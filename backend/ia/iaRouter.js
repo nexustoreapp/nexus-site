@@ -1239,13 +1239,6 @@ function getContext(id){
 }
 
 /* ========================================
-NEURAL RANK ENGINE
-======================================== */
-
-function neuralRankProducts(products){
- return products || [];
-}
-/* ========================================
 CATALOG SEARCH ENGINE
 ======================================== */
 
