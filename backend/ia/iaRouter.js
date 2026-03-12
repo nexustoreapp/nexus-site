@@ -1463,17 +1463,17 @@ export async function routeMessage(message,context={}){
 
   if(ctx.stage === "recommendation"){
 
-    if(ctx.use === "gaming"){
-      products = searchCatalog("rtx");
-    }
+    if(ctx.use?.includes("gaming")){
+  products = searchCatalog("rtx");
+}
 
-    if(ctx.use === "study"){
-      products = searchCatalog("notebook");
-    }
+if(ctx.use?.includes("study")){
+  products = searchCatalog("notebook");
+}
 
-    if(ctx.use === "work"){
-      products = searchCatalog("workstation");
-    }
+if(ctx.use?.includes("work")){
+  products = searchCatalog("workstation");
+}
 
     products = neuralRankProducts(products);
     products = matchProducts(products,ctx);
