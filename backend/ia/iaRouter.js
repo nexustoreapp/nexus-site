@@ -1445,22 +1445,25 @@ export async function routeMessage(message,context={}){
   updateStage(ctx);
 
   /* ===============================
-  GREETING
-  =============================== */
+GREETING
+=============================== */
 
-  if(ctx.intent === "greeting" && ctx.history.length <= 1){
+if(
+  parsed.intent === "greeting" &&
+  ctx.history.length <= 1
+){
 
-    return {
-      reply:"Oi! Posso te ajudar a montar um PC, escolher um notebook ou encontrar um produto ideal. O que você está procurando?",
-      products:[],
-      suggestions:[
-        "Montar um PC gamer",
-        "Escolher um notebook",
-        "Ver computadores prontos"
-      ]
-    };
+  return {
+    reply:"Oi! Posso te ajudar a montar um PC, escolher um notebook ou encontrar um produto ideal. O que você está procurando?",
+    products:[],
+    suggestions:[
+      "Montar um PC gamer",
+      "Escolher um notebook",
+      "Ver computadores prontos"
+    ]
+  };
 
-  }
+}
 
   /* ===============================
   PROCESS CONVERSATION
