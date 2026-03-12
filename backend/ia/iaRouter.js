@@ -1434,68 +1434,98 @@ MAIN ROUTER
 export async function routeMessage(message,context={}){
 
   const id = context.conversationId || "guest";
-  let ctx = getContext(id);
-
-  const normalized = normalizeSlang(message);
-  const parsed = semanticParser(normalized);
-
-  if(parsed.budget) ctx.budget = parsed.budget;
-  if(parsed.use) ctx.use = parsed.use;
-
-  if(ctx.budget && ctx.use){
-    ctx.stage = "recommendation";
-  }
-
-  let reply = null;
-  let products = [];
-  let suggestions = [];
+  const ctx = getContext(id);
 
   /* ===============================
-  RECOMMENDATION
+  PIPELINE
   =============================== */
+
+  const normalized = runPipeline(ctx,message);
+
+  updateStage(ctx);
+
+  /* ===============================
+  GREETING
+  =============================== */
+
+  if(ctx.intent === "greeting" && ctx.history.length <= 1){
+
+    return {
+      reply:"Oi! Posso te ajudar a montar um PC, escolher um notebook ou encontrar um produto ideal. O que você está procurando?",
+      products:[],
+      suggestions:[
+        "Montar um PC gamer",
+        "Escolher um notebook",
+        "Ver computadores prontos"
+      ]
+    };
+
+  }
+
+  /* ===============================
+  PROCESS CONVERSATION
+  =============================== */
+
+  let reply = processConversation(ctx,normalized);
+
+  /* ===============================
+  PRODUCT SEARCH
+  =============================== */
+
+  let products=[];
 
   if(ctx.stage === "recommendation"){
 
     if(ctx.use?.includes("gaming")){
-  products = searchCatalog("rtx");
-}
+      products = searchCatalog("gpu");
+    }
 
-if(ctx.use?.includes("study")){
-  products = searchCatalog("notebook");
-}
+    if(ctx.use?.includes("study")){
+      products = searchCatalog("notebook");
+    }
 
-if(ctx.use?.includes("work")){
-  products = searchCatalog("workstation");
-}
+    if(ctx.use?.includes("work")){
+      products = searchCatalog("workstation");
+    }
+
+    if(!products.length){
+      products = searchCatalog("pc");
+    }
 
     products = neuralRankProducts(products);
     products = matchProducts(products,ctx);
 
-    if(products.length){
-      reply = "Achei algumas opções boas para você 👇";
-      products = products.slice(0,3);
-    }
+    products = products.slice(0,3);
+
   }
 
   /* ===============================
-  QUESTIONS
+  LOOP PROTECTION
   =============================== */
 
-  if(!reply && !ctx.budget){
-    reply = "Você já tem um orçamento em mente?";
-  }
+  if(detectLoop(ctx,reply)){
 
-  if(!reply && !ctx.use){
-    reply = "Você pretende usar mais para jogos, estudo ou trabalho?";
+    reply = "Deixa eu reformular melhor para te ajudar.";
+
   }
 
   /* ===============================
-  FALLBACK FINAL
+  MEMORY
   =============================== */
 
-  if(!reply){
-    reply = "Perfeito. Deixa eu procurar algumas opções para você.";
-  }
+  storeReply(ctx,reply);
+
+  learnFromConversation(ctx);
+
+  /* ===============================
+  SUGGESTIONS
+  =============================== */
+
+  const suggestions = generateSuggestions(ctx);
+
+  /* ===============================
+  FINAL RESPONSE
+  =============================== */
 
   return {
     reply,
