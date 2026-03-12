@@ -219,7 +219,6 @@ const TEXT_REPAIR_MAP = {
   s:"sim",
   pd:"pode",
   pdc:"pode crer",
-  pdc:"pode crer",
   pde:"pode",
   tmj:"tamo junto",
   manoo:"mano",
@@ -234,7 +233,6 @@ const TEXT_REPAIR_MAP = {
   pczao:"pc",
   pczin:"pc",
   pczinho:"pc",
-  pczin:"pc",
   pczinhu:"pc",
   note:"notebook",
   not:"notebook",
@@ -268,7 +266,6 @@ const TEXT_REPAIR_MAP = {
   trampos:"trabalho",
   job:"trabalho",
   jobs:"trabalho",
-  custobeneficio:"custo beneficio",
   custobeneficio:"custo beneficio",
   cxb:"custo beneficio",
   benecusto:"custo beneficio",
@@ -1056,9 +1053,9 @@ function humanizeReply(text){
 
  let t = text;
 
- t = t.replace("qual seu orçamento","quanto você pretende investir");
- t = t.replace("qual uso","o que você pretende fazer com ele");
- t = t.replace("produto","equipamento");
+ t = t.replace(/qual seu orçamento/i,"quanto você pretende investir");
+ t = t.replace(/qual uso/i,"o que você pretende fazer com ele");
+ t = t.replace(/produto/i,"equipamento");
 
  return t;
 
@@ -1238,11 +1235,16 @@ CONTEXT ACCESS
 ======================================== */
 
 function getContext(id){
-
  return ensureContext(id);
-
 }
 
+/* ========================================
+NEURAL RANK ENGINE
+======================================== */
+
+function neuralRankProducts(products){
+ return products || [];
+}
 /* ========================================
 CATALOG SEARCH ENGINE
 ======================================== */
@@ -1447,11 +1449,6 @@ export async function routeMessage(message,context={}){
   if(parsed.budget) ctx.budget = parsed.budget;
   if(parsed.use) ctx.use = parsed.use;
 
-  ctx.customerType = detectCustomerType(normalized);
-
-  const buyScore = detectBuyIntent(normalized);
-  ctx.salesStrategy = salesStrategy(buyScore);
-
   if(ctx.budget && ctx.use){
     ctx.stage = "recommendation";
   }
@@ -1478,7 +1475,7 @@ export async function routeMessage(message,context={}){
       products = searchCatalog("workstation");
     }
 
-    products = rankProducts(products);
+    products = neuralRankProducts(products);
     products = matchProducts(products,ctx);
 
     if(products.length){
